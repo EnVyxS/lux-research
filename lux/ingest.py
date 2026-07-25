@@ -3,6 +3,8 @@
 Tier B dikerjakan lebih dulu, bukan Tier A (1m), dengan alasan yang disengaja:
 volumenya kecil, sehingga kesalahan pipeline ketahuan murah. Menemukan cacat
 setelah mengunduh 90 GB data 1-menit adalah pemborosan yang bisa dihindari.
+Keputusan itu terbukti benar: putaran pertama menyingkap cacat URL non-ASCII
+dengan biaya delapan belas menit, bukan berjam-jam.
 
 Validasi dijalankan SAAT ingest, bukan sesudahnya. Setiap simbol diperiksa
 terhadap kisi waktu yang seharusnya, dan hasilnya ikut dilaporkan. Data yang
@@ -124,7 +126,7 @@ def ingest_simbol(symbol: str, interval: str, tmp: Path) -> tuple[pd.DataFrame, 
     for b in bulan:
         url = bv.klines_url(symbol, interval, b)
         try:
-            path = bv.download(url, tmp / symbol / interval)
+            path = bv.download(url, tmp / bv.seg(symbol) / interval)
             bagian.append(baca_zip(path))
             path.unlink(missing_ok=True)
         except Exception as exc:  # noqa: BLE001
@@ -204,9 +206,22 @@ def main() -> int:
     p.add_argument("--workers", type=int, default=6)
     p.add_argument("--out", default="out")
     p.add_argument("--limit", type=int, default=0, help="batasi simbol untuk uji cepat")
+    p.add_argument(
+        "--symbols",
+        default="",
+        help="daftar simbol dipisah koma; melewati universe, dipakai untuk menambal",
+    )
+    p.add_argument(
+        "--suffix",
+        default="",
+        help="akhiran nama berkas keluaran agar tambalan tidak menimpa aset penuh",
+    )
     a = p.parse_args()
 
-    semua = muat_universe(a.quote)
+    if a.symbols.strip():
+        semua = [s.strip() for s in a.symbols.split(",") if s.strip()]
+    else:
+        semua = muat_universe(a.quote)
     if a.limit:
         semua = semua[: a.limit]
     milik_saya = [s for i, s in enumerate(semua) if i % a.shards == a.shard]
@@ -250,7 +265,7 @@ def main() -> int:
         if potongan:
             gabung = pd.concat(potongan, ignore_index=True)
             gabung["symbol"] = gabung["symbol"].astype("category")
-            berkas = out / f"ohlcv_{interval}_shard{a.shard:02d}.parquet"
+            berkas = out / f"ohlcv_{interval}_shard{a.shard:02d}{a.suffix}.parquet"
             gabung.to_parquet(
                 berkas, index=False, compression="zstd", row_group_size=1_000_000
             )
