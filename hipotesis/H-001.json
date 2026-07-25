@@ -1,0 +1,22 @@
+{
+  "id": "H-001",
+  "pernyataan": "Penembusan Donchian pada penutupan bar 1 jam menghasilkan ekspektasi positif setelah fee, slippage, dan funding nyata, pada perp USDT yang lolos ambang kelayakan, dinilai hanya di luar sampel.",
+  "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak 447 simbol",
+  "ruang_parameter": {
+    "lookback": [
+      20,
+      55,
+      100
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.05,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-25T18:26:56+00:00",
+  "komit": "",
+  "jumlah_kombinasi": 3,
+  "sidik": "f172b1ba07f257178e1b00924e235fd577aea97916116e2752f192139e7f53db"
+}
