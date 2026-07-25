@@ -1,0 +1,18 @@
+{
+  "ringkasan": {
+    "simbol_total": 0,
+    "simbol_berhasil": 0,
+    "simbol_kosong": 0,
+    "baris": 0,
+    "duplikat": 0,
+    "tidak_urut": 0,
+    "celah": 0,
+    "positif": 0,
+    "negatif": 0,
+    "ekstrem": 0,
+    "sebaran_interval_jam": {},
+    "simbol_kosong_nama": [],
+    "gerbang_lulus": false
+  },
+  "per_simbol": []
+}
