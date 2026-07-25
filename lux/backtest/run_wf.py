@@ -23,6 +23,12 @@ berkas ini:
   karena tiap jendela memulai ulang dari modal awal sehingga sambungannya
   hanya mencerminkan jendela terakhir.
 
+Gerbang gabungan wajib menyebut **nama** simbol yang menjatuhkannya. Laporan
+yang hanya berbunyi "4 dari 40 simbol gagal" memaksa pembacanya menebak, dan
+angka gabungan yang ditampilkan bisa saja bukan dimensi yang menyebabkan
+kegagalan: gerbang forward-fill menjatuhkan run pilot lewat panjang deret bar
+datar, sementara yang tercetak justru rasionya, yang lolos ambang.
+
 Pemakaian:
     python -m lux.backtest.run_wf --dir aset --interval 1h \\
         --universe reports/universe_layak.json --limit 40
@@ -40,7 +46,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from lux.backtest.engine import Hasil, Konfig, jalankan
+from lux.backtest.engine import Hasil, Konfig, Perdagangan, jalankan
 from lux.backtest.gerbang import (
     Gerbang,
     gerbang_buy_and_hold,
@@ -61,6 +67,7 @@ from lux.strategi import breakout_atr
 
 POLA_DILARANG = ("_retry",)
 HARI_MS = 86_400_000
+JAM_MS = 3_600_000
 
 
 # --------------------------------------------------------------------------
@@ -138,6 +145,74 @@ def muat_konfig(path: Path) -> Konfig:
 
 
 # --------------------------------------------------------------------------
+# Pembongkaran biaya
+# --------------------------------------------------------------------------
+def rincian_R(p: Perdagangan) -> dict:
+    """Pecah satu perdagangan menjadi komponen-komponennya dalam satuan R.
+
+    Kerugian yang melewati 1R hanya punya dua sumber yang mungkin: harga yang
+    menembus stop, atau biaya. Mesin ini selalu mengisi stop tepat di harga
+    stop, sehingga sumber pertama tertutup secara struktural dan sisanya wajib
+    biaya. Pembongkaran ini ada supaya klaim tersebut dapat diperiksa langsung
+    dari laporan, bukan disimpulkan dari penalaran tentang kode.
+
+    ``stop_frac`` ikut dilaporkan karena biaya dalam satuan R berbanding
+    terbalik dengannya: pada stop yang sangat rapat, fee dan slippage yang
+    tampak kecil terhadap harga menjadi besar terhadap risiko.
+    """
+    risiko = p.jarak_stop * p.ukuran
+    if risiko <= 0:
+        return {
+            "symbol": p.symbol,
+            "R": 0.0,
+            "kotor_R": 0.0,
+            "transaksi_R": 0.0,
+            "funding_R": 0.0,
+            "stop_frac": 0.0,
+            "jam": 0.0,
+            "alasan": p.alasan_keluar,
+        }
+    return {
+        "symbol": p.symbol,
+        "R": p.laba / risiko,
+        "kotor_R": p.laba_kotor / risiko,
+        "transaksi_R": p.biaya_transaksi / risiko,
+        "funding_R": p.biaya_funding / risiko,
+        "stop_frac": p.jarak_stop / p.harga_masuk if p.harga_masuk > 0 else 0.0,
+        "jam": (p.keluar_ms - p.masuk_ms) / JAM_MS,
+        "alasan": p.alasan_keluar,
+    }
+
+
+def diagnosa_biaya(perdagangan: list[Perdagangan], n: int = 10) -> dict:
+    """Ringkas beban biaya atas seluruh perdagangan, plus n terburuk.
+
+    Rerata dikembalikan sebagai ``None`` bila tidak ada perdagangan. Nol akan
+    terbaca sebagai "tidak ada biaya", padahal artinya "tidak ada yang diukur".
+    """
+    rincian = [rincian_R(p) for p in perdagangan]
+    if not rincian:
+        return {
+            "jumlah": 0,
+            "rerata_transaksi_R": None,
+            "rerata_funding_R": None,
+            "rerata_stop_frac": None,
+            "trade_biaya_lebih_1R": 0,
+            "terburuk": [],
+        }
+    return {
+        "jumlah": len(rincian),
+        "rerata_transaksi_R": float(np.mean([r["transaksi_R"] for r in rincian])),
+        "rerata_funding_R": float(np.mean([r["funding_R"] for r in rincian])),
+        "rerata_stop_frac": float(np.mean([r["stop_frac"] for r in rincian])),
+        "trade_biaya_lebih_1R": int(
+            sum(1 for r in rincian if r["transaksi_R"] + r["funding_R"] > 1.0)
+        ),
+        "terburuk": sorted(rincian, key=lambda r: r["R"])[:n],
+    }
+
+
+# --------------------------------------------------------------------------
 # Definisi turunan
 # --------------------------------------------------------------------------
 def simbol_mati_dari_akhir(
@@ -187,23 +262,40 @@ def ringkas_gabungan(ringkasan_per_simbol: list[dict]) -> dict:
 # --------------------------------------------------------------------------
 # Gerbang yang harus digabung per simbol
 # --------------------------------------------------------------------------
-def gabung_gerbang(nama: str, daftar: list[Gerbang], ambang: float | None) -> Gerbang:
+def gabung_gerbang(
+    nama: str,
+    daftar: list[Gerbang],
+    ambang: float | None,
+    nama_simbol: list[str] | None = None,
+) -> Gerbang:
     """Gabungkan gerbang per simbol menjadi satu putusan.
 
     Satu simbol gagal berarti gerbangnya gagal. Menghitung berapa persen simbol
     yang lulus akan mengubah gerbang menjadi skor, dan angka nilainya diambil
     dari kasus terburuk supaya jarak menuju kegagalan tetap terlihat.
+
+    Bila ``nama_simbol`` diberikan, nama simbol yang gagal ikut dicetak beserta
+    catatan aslinya. Tanpa itu, laporan hanya menyebut jumlah, dan jumlah tidak
+    dapat ditindaklanjuti: catatan asli menyimpan dimensi mana yang dilanggar,
+    yang belum tentu sama dengan angka gabungan yang ditampilkan.
     """
     if not daftar:
         return Gerbang(nama, False, None, ambang, "tidak dapat dinilai: tidak ada simbol")
-    gagal = [g for g in daftar if not g.lulus]
+    pasang = list(zip(nama_simbol or [""] * len(daftar), daftar))
+    gagal = [(s, g) for s, g in pasang if not g.lulus]
     ternilai = [g.nilai for g in daftar if g.nilai is not None]
+    catatan = f"{len(gagal)} dari {len(daftar)} simbol gagal"
+    if gagal and any(s for s, _ in gagal):
+        rinci = "; ".join(f"{s} ({g.catatan})" for s, g in gagal[:5])
+        if len(gagal) > 5:
+            rinci += f"; dan {len(gagal) - 5} lagi"
+        catatan = f"{catatan} — {rinci}"
     return Gerbang(
         nama,
         not gagal,
         max(ternilai) if ternilai else None,
         ambang,
-        f"{len(gagal)} dari {len(daftar)} simbol gagal",
+        catatan,
     )
 
 
@@ -214,8 +306,11 @@ def gerbang_overlap_gabungan(hasil_per_simbol: dict[str, Hasil]) -> Gerbang:
     diversifikasi, bukan penumpukan. Yang dilarang adalah dua posisi pada simbol
     yang sama.
     """
-    daftar = [gerbang_overlap(h) for h in hasil_per_simbol.values() if h.jumlah_trade]
-    return gabung_gerbang("overlap", daftar, 0.0)
+    nama = [s for s, h in sorted(hasil_per_simbol.items()) if h.jumlah_trade]
+    daftar = [
+        gerbang_overlap(hasil_per_simbol[s]) for s in nama
+    ]
+    return gabung_gerbang("overlap", daftar, 0.0, nama)
 
 
 def gerbang_bnh_gabungan(daftar: list[Gerbang]) -> Gerbang:
@@ -316,6 +411,7 @@ def main(argv: list[str] | None = None) -> int:
     hasil_per_simbol: dict[str, Hasil] = {}
     jendela_sampel: list[tuple[pd.DataFrame, np.ndarray, str]] = []
     g_forward: list[Gerbang] = []
+    nama_forward: list[str] = []
     g_bnh: list[Gerbang] = []
 
     for i, s in enumerate(sorted(bingkai), 1):
@@ -359,6 +455,7 @@ def main(argv: list[str] | None = None) -> int:
         )
 
         g_forward.append(gerbang_forward_fill(df))
+        nama_forward.append(s)
 
         # Buy-and-hold: laba luar sampel atas modal awal, dibandingkan dengan
         # memegang aset sepanjang wilayah penilaian. Kurva ekuitas tiap jendela
@@ -394,6 +491,14 @@ def main(argv: list[str] | None = None) -> int:
     gabungan = ringkas_gabungan(ringkasan_simbol)
     print(json.dumps(gabungan, indent=2), flush=True)
 
+    diagnosa = diagnosa_biaya(semua_trade)
+    print(
+        "biaya rerata: transaksi "
+        f"{diagnosa['rerata_transaksi_R']}R, funding {diagnosa['rerata_funding_R']}R, "
+        f"{diagnosa['trade_biaya_lebih_1R']} trade berbiaya di atas 1R",
+        flush=True,
+    )
+
     # ----------------------------------------------------------------------
     # Sembilan gerbang
     # ----------------------------------------------------------------------
@@ -403,7 +508,7 @@ def main(argv: list[str] | None = None) -> int:
         ekuitas=np.array([konfig.modal_awal]),
     )
 
-    gerbang_ff = gabung_gerbang("forward_fill", g_forward, 0.30)
+    gerbang_ff = gabung_gerbang("forward_fill", g_forward, 0.30, nama_forward)
     gerbang_bnh = gerbang_bnh_gabungan(g_bnh)
 
     # Entri acak atas wilayah penilaian yang sama persis.
@@ -520,6 +625,7 @@ def main(argv: list[str] | None = None) -> int:
             "simbol_mati_di_universe": len(mati),
         },
         "gabungan": gabungan,
+        "diagnosa_biaya": diagnosa,
         "gerbang": laporan.ke_dict(),
         "putusan": {"lulus": putusan.lulus, "alasan": putusan.alasan},
         "per_simbol": per_simbol,
@@ -568,6 +674,36 @@ def main(argv: list[str] | None = None) -> int:
         md.append(
             f"| {g.nama} | {'lulus' if g.lulus else 'GAGAL'} | {n} | {am} | {g.catatan} |"
         )
+
+    md += [
+        "",
+        "## Pembongkaran biaya",
+        "",
+        "Mesin mengisi stop tepat di harga stop, sehingga kerugian yang berasal "
+        "dari harga tidak dapat melewati 1R. Kerugian di luar itu wajib berasal "
+        "dari biaya, dan tabel ini memperlihatkannya per perdagangan.",
+        "",
+    ]
+    if diagnosa["jumlah"]:
+        md += [
+            f"- Rerata biaya transaksi: **{diagnosa['rerata_transaksi_R']:.4f}R**",
+            f"- Rerata biaya funding: **{diagnosa['rerata_funding_R']:.4f}R**",
+            f"- Rerata jarak stop terhadap harga: "
+            f"**{diagnosa['rerata_stop_frac'] * 100:.3f}%**",
+            f"- Perdagangan dengan biaya melebihi 1R: "
+            f"**{diagnosa['trade_biaya_lebih_1R']:,}** dari {diagnosa['jumlah']:,}",
+            "",
+            "| Simbol | R | Kotor R | Transaksi R | Funding R | Stop % harga | Jam | Alasan |",
+            "|---|---|---|---|---|---|---|---|",
+        ]
+        for r in diagnosa["terburuk"]:
+            md.append(
+                f"| {r['symbol']} | {r['R']:.3f} | {r['kotor_R']:.3f} | "
+                f"{r['transaksi_R']:.3f} | {r['funding_R']:.3f} | "
+                f"{r['stop_frac'] * 100:.3f} | {r['jam']:.1f} | {r['alasan']} |"
+            )
+    else:
+        md += ["Tidak ada perdagangan untuk dibongkar."]
 
     md += [
         "",
