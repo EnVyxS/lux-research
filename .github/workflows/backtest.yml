@@ -23,6 +23,11 @@ name: backtest
 #
 # Log dikomit balik apa pun hasilnya. Kegagalan yang tidak terbaca akan ditebak,
 # dan tebakan tentang penyebab kegagalan hampir selalu meleset.
+#
+# ADR-003: universe diubah ke universe_layak_v2.json (438 simbol, ekor datar
+# dipangkas). --akhir-sejati meneruskan akhir_sejati.json sehingga gerbang
+# survivorship menggunakan tanggal kematian sejati simbol, bukan stempel bar
+# terakhir mentah yang untuk simbol mati sama dengan tanggal ujung dataset.
 
 on:
   workflow_dispatch:
@@ -56,7 +61,7 @@ jobs:
       - name: Pasang dependensi
         run: pip install -r requirements.txt pytest
 
-      # Gerbang pra-terbang. Sudah tujuh kali mencegah pekerjaan panjang yang
+      # Gerbang pra-terbang. Sudah delapan kali mencegah pekerjaan panjang yang
       # sia-sia karena cacat yang tertangkap dalam hitungan detik.
       - name: Uji dulu, baru unduh
         env:
@@ -73,6 +78,7 @@ jobs:
         run: |
           python -c "import yaml, pandas, pyarrow; print('impor pihak ketiga siap')"
           python -c "import lux.backtest.run_wf as m; print('run_wf siap', m.POLA_DILARANG)"
+          python -c "import lux.potong_ekor; print('potong_ekor siap')"
 
       - name: Unduh aset
         env:
@@ -94,7 +100,8 @@ jobs:
           python -m lux.backtest.run_wf \
             --dir aset \
             --interval 1h \
-            --universe reports/universe_layak.json \
+            --universe reports/universe_layak_v2.json \
+            --akhir-sejati reports/akhir_sejati.json \
             --limit "${{ github.event.inputs.limit || 40 }}" \
             --ulangan "${{ github.event.inputs.ulangan || 100 }}" \
             --out reports 2>&1 | tee logs/backtest.log
