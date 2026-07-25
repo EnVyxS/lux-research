@@ -2,7 +2,7 @@
 
 > Penembusan Donchian pada penutupan bar 1 jam menghasilkan ekspektasi positif setelah fee, slippage, dan funding nyata, pada perp USDT yang lolos ambang kelayakan, dinilai hanya di luar sampel.
 
-Sidik hipotesis `e458f4c82abf6735` · ruang 3 kombinasi · 40 simbol · 28.3s
+Sidik hipotesis `e458f4c82abf6735` · ruang 3 kombinasi · 40 simbol · 16.9s
 
 ## Putusan
 
