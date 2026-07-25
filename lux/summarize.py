@@ -4,6 +4,11 @@ Dijalankan sebagai job terpisah setelah semua shard selesai. Alasannya bukan
 kerapian: delapan job yang meng-commit ke branch yang sama secara bersamaan
 akan saling menimpa. Satu job agregasi menghapus balapan itu sepenuhnya.
 
+Versi pertama hanya melaporkan JUMLAH simbol yang gagal. Itu cacat: angka
+"3 simbol gagal" tidak bisa didiagnosis maupun diperbaiki karena nama dan
+alasannya hanya ada di artifact yang kedaluwarsa dalam tujuh hari. Versi ini
+mengangkat nama simbol dan pesan galatnya ke dalam laporan yang di-commit.
+
 Pemakaian: python -m lux.summarize <direktori_shard> [nama_keluaran]
 """
 
@@ -13,6 +18,30 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+
+def kumpulkan_kegagalan(sumber: Path) -> list[dict]:
+    """Mengangkat entri gagal dari berkas detail per simbol."""
+    kegagalan: list[dict] = []
+    for p in sorted(sumber.rglob("detail_*.json")):
+        try:
+            data = json.loads(p.read_text())
+        except Exception:  # noqa: BLE001
+            continue
+        if not isinstance(data, list):
+            continue
+        for c in data:
+            if isinstance(c, dict) and c.get("error"):
+                kegagalan.append(
+                    {
+                        "symbol": c.get("symbol"),
+                        "interval": c.get("interval"),
+                        "error": str(c.get("error"))[:300],
+                        "contoh_gagal": c.get("contoh_gagal"),
+                        "sumber": p.name,
+                    }
+                )
+    return kegagalan
 
 
 def main() -> int:
@@ -36,6 +65,8 @@ def main() -> int:
                     t[k] = t.get(k, 0) + v
             t["detik_maks"] = max(t.get("detik_maks", 0), d.get("detik", 0))
 
+    kegagalan = kumpulkan_kegagalan(sumber)
+
     # Gerbang mutu. Gagal berarti pipeline berhenti, bukan dilanjutkan dengan
     # catatan kecil di bawah tabel.
     gerbang = {
@@ -53,6 +84,8 @@ def main() -> int:
         "total": total,
         "gerbang": gerbang,
         "semua_gerbang_lulus": all(all(g.values()) for g in gerbang.values()),
+        "jumlah_kegagalan": len(kegagalan),
+        "kegagalan": kegagalan,
         "per_shard": ringkasan_shard,
     }
 
@@ -69,10 +102,23 @@ def main() -> int:
             f"{t.get('simbol_gagal', 0)} | {t.get('total_duplikat', 0):,} | "
             f"{t.get('total_celah_kisi', 0):,} | {t.get('bytes', 0) / 1048576:.1f} MB |"
         )
+
+    if kegagalan:
+        baris += ["", "## Simbol gagal", "", "| Simbol | Interval | Galat |", "|---|---|---|"]
+        for k in kegagalan:
+            pesan = str(k["error"]).replace("|", "/")[:160]
+            baris.append(f"| {k['symbol']} | {k['interval']} | {pesan} |")
+
     baris += ["", f"Semua gerbang lulus: **{hasil['semua_gerbang_lulus']}**", ""]
     Path(f"reports/{nama}.md").write_text(chr(10).join(baris))
 
-    print(json.dumps({k: v for k, v in hasil.items() if k != "per_shard"}, indent=2))
+    print(
+        json.dumps(
+            {k: v for k, v in hasil.items() if k != "per_shard"},
+            indent=2,
+            ensure_ascii=False,
+        )
+    )
     return 0
 
 
