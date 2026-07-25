@@ -28,6 +28,10 @@ name: backtest
 # dipangkas). --akhir-sejati meneruskan akhir_sejati.json sehingga gerbang
 # survivorship menggunakan tanggal kematian sejati simbol, bukan stempel bar
 # terakhir mentah yang untuk simbol mati sama dengan tanggal ujung dataset.
+#
+# Re-trigger: circular import diperbaiki di 4b776175 (lazy import potong_ekor
+# di dalam fungsi muat_ohlcv). Run sebelumnya (backtest #6) gagal di step
+# "Uji dulu, baru unduh" sebelum unduhan dimulai.
 
 on:
   workflow_dispatch:
