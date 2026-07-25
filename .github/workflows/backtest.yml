@@ -1,0 +1,70 @@
+name: backtest
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Jumlah simbol yang diuji (0 = semua)"
+        default: "40"
+      ulangan:
+        description: "Ulangan uji permutasi entri acak"
+        default: "100"
+  push:
+    paths:
+      - ".github/workflows/backtest.yml"
+
+permissions:
+  contents: write
+
+env:
+  TAG: tier-b-v1
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Pasang dependensi
+        run: pip install -r requirements.txt pytest
+
+      # Gerbang pra-terbang. Sudah enam kali mencegah unduhan ratusan MB yang
+      # sia-sia karena cacat yang tertangkap dalam hitungan detik.
+      - name: Uji dulu, baru unduh
+        env:
+          PYTHONPATH: .
+        run: python -m pytest tests -q
+
+      - name: Unduh aset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download "$TAG" -p 'ohlcv_1h_*.parquet' -D aset
+          gh release download "$TAG" -p 'funding_shard*.parquet' -D aset
+          ls -la aset | head -30
+
+      - name: Jalankan walk-forward
+        env:
+          PYTHONPATH: .
+        run: |
+          python -m lux.backtest.run_wf \
+            --dir aset \
+            --interval 1h \
+            --universe reports/universe_layak.json \
+            --limit "${{ github.event.inputs.limit || 40 }}" \
+            --ulangan "${{ github.event.inputs.ulangan || 100 }}" \
+            --out reports
+
+      - name: Commit laporan kembali ke repo
+        run: |
+          git config user.name "lux-backtest"
+          git config user.email "actions@github.com"
+          git add reports/ hipotesis/
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(backtest): laporan run ${GITHUB_RUN_ID} [skip ci]"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main

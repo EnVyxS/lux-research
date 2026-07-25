@@ -118,6 +118,12 @@ class HasilJendela:
     parameter: dict
     skor_latih: float
     hasil_uji: Hasil
+    # Bingkai dan sinyal jendela uji disimpan agar uji permutasi dapat
+    # dijalankan ulang atas wilayah penilaian yang sama persis. Tanpa ini,
+    # gerbang entri acak harus menghitung ulang sinyal dan berisiko menguji
+    # wilayah yang sedikit berbeda dari yang dinilai.
+    bingkai_uji: pd.DataFrame | None = None
+    sinyal_uji: np.ndarray | None = None
 
 
 @dataclass
@@ -202,6 +208,7 @@ def jalankan_walk_forward(
     jadwal: Jadwal | None = None,
     symbol: str = "",
     min_trade_latih: int = 10,
+    simpan_bingkai: bool = False,
 ) -> HasilWalkForward:
     """Pilih parameter pada tiap jendela latih, nilai pada jendela uji.
 
@@ -261,6 +268,8 @@ def jalankan_walk_forward(
                 parameter=dict(terbaik),
                 skor_latih=skor_terbaik,
                 hasil_uji=jalankan(uji, s_uji, k, jadwal=jadwal, symbol=symbol),
+                bingkai_uji=uji if simpan_bingkai else None,
+                sinyal_uji=s_uji if simpan_bingkai else None,
             )
         )
 
