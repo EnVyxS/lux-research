@@ -1,0 +1,116 @@
+# Diagnostik blok bar datar atas seluruh universe layak.
+#
+# Gerbang forward_fill menjatuhkan 4 dari 40 simbol pilot, dan catatannya
+# memperlihatkan deret datar terpanjang hampir sepanjang seluruh bar datar
+# simbol itu. Artinya bar datar menggumpal dalam satu blok, bukan tersebar.
+# Workflow ini menjawab pertanyaan yang tidak dijawab gerbangnya: di mana blok
+# itu berada dalam riwayat, satu harga atau banyak, dan ada volumenya atau
+# tidak. Tiga penanda itu memisahkan padding pra-listing, feed beku, dan pasar
+# yang benar-benar sangat tidak likuid.
+#
+# Dijalankan atas 447 simbol layak, bukan 40 simbol pilot, karena keputusan
+# yang akan diambil menyangkut universe, bukan sampelnya.
+name: diag-datar
+
+on:
+  workflow_dispatch:
+    inputs:
+      min_panjang:
+        description: Panjang minimum blok yang dilaporkan, dalam bar
+        default: "24"
+      limit:
+        description: Batas jumlah simbol, 0 berarti seluruh universe layak
+        default: "0"
+  # Menyunting berkas ini adalah satu-satunya cara memicu run dari MCP.
+  push:
+    paths:
+      - '.github/workflows/diag_datar.yml'
+
+permissions:
+  contents: write
+
+env:
+  TAG: tier-b-v1
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Pasang dependensi
+        run: pip install -r requirements.txt pytest
+
+      # Gerbang pra-terbang. Delapan kali sudah menghentikan run dalam hitungan
+      # detik sebelum unduhan ratusan megabita terlanjur berjalan.
+      - name: Uji dulu, baru unduh
+        env:
+          PYTHONPATH: .
+        run: python -m pytest tests -q
+
+      - name: Periksa impor modul jalan
+        env:
+          PYTHONPATH: .
+        run: python -c "import lux.diag_datar; print('impor jalan')"
+
+      # Pola WAJIB lebar: ohlcv_1h_* mencakup shard utama dan shard ekor.
+      # Mempersempitnya ke ohlcv_1h_shard* pernah membuang seluruh data ekor
+      # tanpa satu pun pesan galat.
+      - name: Unduh aset OHLCV
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p aset
+          gh release download "$TAG" -p 'ohlcv_1h_*.parquet' -D aset --clobber
+          ls -la aset
+          du -sh aset
+
+      - name: Jalankan diagnostik
+        id: jalan
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          mkdir -p logs
+          python -m lux.diag_datar \
+            --dir aset \
+            --interval 1h \
+            --universe reports/universe_layak.json \
+            --out reports \
+            --min-panjang "${{ github.event.inputs.min_panjang || '24' }}" \
+            --limit "${{ github.event.inputs.limit || '0' }}" \
+            2>&1 | tee logs/diag_datar.log
+
+      # Tidak ada cara membaca log run lewat MCP, jadi log dikomit balik.
+      # Mekanisme ini sudah terbukti bekerja pada backtest.
+      - name: Salin log ke laporan
+        if: always()
+        run: |
+          mkdir -p reports
+          {
+            echo '# Log run diagnostik bar datar'
+            echo
+            echo "Commit: \`${GITHUB_SHA}\`"
+            echo "Status langkah jalan: \`${{ steps.jalan.outcome }}\`"
+            echo
+            echo '```'
+            tail -c 60000 logs/diag_datar.log 2>/dev/null || echo 'tidak ada log'
+            echo '```'
+          } > reports/diag_datar_log.md
+
+      - name: Commit laporan kembali ke repo
+        if: always()
+        run: |
+          git config user.name "lux-diag"
+          git config user.email "actions@github.com"
+          git add reports || true
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(diag): laporan bar datar run ${GITHUB_RUN_ID} [skip ci]"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
