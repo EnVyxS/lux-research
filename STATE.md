@@ -2,9 +2,9 @@
 
 > **Sesi baru mulai dari sini.** Berkas ini ditulis ulang setiap sesi dan dibatasi ~400 baris. Ia menggantikan kebutuhan membaca Notion atau arsip jurnal. Jika sesuatu tidak tercatat di sini, anggap belum diketahui.
 
-**Diperbarui:** 2026-07-25 23:05 WIB
-**Tahap sekarang:** S4 — Ingest Tier B **putaran 2** sedang berjalan (putaran 1 dinyatakan tidak sah)
-**Tahap berikutnya:** jalankan ulang backfill ekor, lalu S5 — validasi data
+**Diperbarui:** 2026-07-25 23:55 WIB (versi 5)
+**Tahap sekarang:** S4 **SELESAI DAN SAH** — Tier B putaran 2 lulus seluruh gerbang, termasuk gerbang yang ditetapkan sebelum datanya dilihat
+**Tahap berikutnya:** S5 — validasi data per simbol dan penyaringan universe backtest
 
 ---
 
@@ -14,7 +14,10 @@ Bagian 3 adalah **fakta**: setiap baris punya bukti yang bisa diperiksa ulang be
 
 Memindahkan baris dari Bagian 4 ke Bagian 3 hanya boleh dilakukan dengan bukti terlampir. Kegagalan riset sebelumnya berakar pada asumsi yang perlahan diperlakukan sebagai kebenaran tanpa pernah diuji.
 
-Aturan tambahan yang lahir dari sesi ini: **angka yang lulus gerbang belum tentu benar.** Rasio 1h:4h sebesar 4,014 pernah saya catat sebagai uji silang yang lulus, padahal ia sedang melaporkan sebuah bug. Gerbang hanya menangkap cacat yang bentuknya sudah dibayangkan.
+Dua aturan tambahan yang lahir dari sesi ini, keduanya dibayar dengan kesalahan nyata:
+
+1. **Angka yang lulus gerbang belum tentu benar.** Rasio 1h:4h sebesar 4,014 pernah dicatat sebagai uji silang yang lulus, padahal ia sedang melaporkan bug. Gerbang hanya menangkap cacat yang bentuknya sudah dibayangkan.
+2. **Sha laporan yang tidak berubah bukan tanda pekerjaan masih berjalan.** Sha stagnan wajib diperiksa terhadap status run. Sekali saya menyimpulkan ingest "masih berjalan" padahal job sudah mati merah 21 menit sebelumnya, dan yang menemukannya pengguna, bukan saya.
 
 ---
 
@@ -28,32 +31,71 @@ Seluruh komputasi berjalan di GitHub Actions. Mesin lokal pengguna tidak sanggup
 
 ## 3. Fakta terverifikasi
 
-### CACAT PARSER HEADER — temuan terpenting sesi ini
+### DATASET TIER B PUTARAN 2 — SAH, dan inilah dasar semua pekerjaan selanjutnya
 
-Sumber: `reports/tail_anomali.json`, diperbaiki di commit `5f222e8`.
+Sumber: `reports/ingest_tier_b.md` pada commit `16638b4`, plus `reports/backfill_daily.md` dan `reports/tail_anomali.md` pada commit `fbead60`.
 
-`baca_zip` memakai `header=0` dan `skiprows=1` bersamaan pada berkas CSV berheader. `skiprows` membuang baris header, lalu `header=0` memperlakukan baris **data pertama** sebagai nama kolom dan membuangnya juga. Akibatnya **tepat satu bar hilang dari setiap berkas berheader**.
+**Arsip bulanan:**
 
-Bukti aritmetika dari backfill ekor harian:
+| Interval | Baris | Simbol OK | Gagal | Duplikat | Celah kisi | Ukuran |
+|---|---|---|---|---|---|---|
+| 1h | **14.106.623** | 790 | 0 | 0 | **112** | 533,6 MB |
+| 4h | **3.526.969** | 790 | 0 | 0 | **112** | 145,1 MB |
 
-| Interval | Hari ditambal | Baris | Seharusnya | Rasio terisi | Pecahan tepat |
+**Ekor harian (bulan yang belum tercakup arsip bulanan):**
+
+| Interval | Baris | Simbol OK | Gagal | Celah kisi | Ukuran |
 |---|---|---|---|---|---|
-| 1h | 18.222 | 419.109 | 437.328 | 0,9583 | 23/24 |
-| 4h | 18.222 | 91.113 | 109.332 | 0,8334 | 5/6 |
+| 1h | **439.056** | 790 | 0 | 3 | 18,7 MB |
+| 4h | **109.764** | 790 | 0 | 3 | 5,2 MB |
 
-Jumlah hari yang ditambal identik untuk kedua interval, jadi arsip Binance tidak bersalah. Rasio baris 1h:4h keluar 4,5999, yaitu tepat 23/5.
+**Total Tier B: 14.545.679 bar 1h dan 3.636.733 bar 4h, sekitar 703 MB, 790 dari 790 simbol tanpa satu pun kegagalan.**
 
-**Konsekuensi:** seluruh aset Parquet putaran 1 tidak sah. Pada berkas bulanan kerugiannya hanya 1 dari 720 bar (0,14%) sehingga lolos dua putaran penuh, dan rasio 4,014 yang tampak sehat sebenarnya adalah (720−1)/(180−1) = 4,017. Bar yang hilang selalu bar **pertama tiap bulan**, jadi ini bias sistematis, bukan derau acak.
+Tiga gerbang yang ditulis **sebelum** run dijalankan, semuanya lulus:
 
-Yang menemukannya bukan pembacaan ulang kode, melainkan invarian aritmetika sepele pada arsip berukuran kecil. Skala kecil membesarkan cacat 0,14% menjadi 17% sampai tak bisa disembunyikan. Ini alasan Tier B dikerjakan sebelum Tier A, dan alasan itu kini terbukti dua kali.
+| Gerbang | Kriteria pra-registrasi | Hasil |
+|---|---|---|
+| Rasio baris 1h:4h bulanan | ≈4,000 | **3,9996** |
+| Rasio terisi ekor harian | ≈1,00 kedua interval | **1,0 dan 1,0** |
+| Celah per simbol pada ekor | ≈0 | **0,0** |
 
-### Cacat URL non-ASCII — selesai
+Ekor harian menambal 18.294 hari untuk 763 simbol yang masih aktif, dan kini terisi **tepat penuh**: 439.056 baris dari 439.056 yang diharapkan, tanpa satu bar pun kurang. Putaran 1 hanya mencapai 0,9583 dan 0,8334.
 
-Tiga perpetual bernama huruf Han (`币安人生USDT`, `我踏马来了USDT`, `龙虾USDT`) gagal total pada putaran 1. Penyebabnya `klines_url()` tidak melakukan percent-encoding pada segmen path, sementara listing S3 lolos karena `urlencode` sudah meng-encode parameternya. Kegagalan asimetris: simbol masuk universe, unduhan nol persen.
+### Perbandingan putaran 1 vs putaran 2 — bukti bahwa perbaikannya nyata
 
-Diperbaiki lewat helper `bv.seg()`. Terbukti pada `reports/ingest_retry.md`: 12.593 baris 1h dan 3.136 baris 4h, nol gagal, rasio 4,016.
+| Ukuran | Putaran 1 (cacat) | Putaran 2 (sah) | Perubahan |
+|---|---|---|---|
+| Baris 1h bulanan | 14.076.257 | 14.106.623 | **+30.366** |
+| Baris 4h bulanan | 3.506.060 | 3.526.969 | +20.909 |
+| Simbol gagal | 3 | **0** | non-ASCII selesai |
+| **Celah kisi** | **17.169** | **112** | **−99,3%** |
+| Rasio 1h:4h | 4,014 | 3,9996 | menuju 4,000 |
+| Rasio terisi ekor 1h | 0,9583 | **1,0** | penuh |
 
-Rata-rata riwayat ketiganya hanya ~4.200 bar 1h (~175 hari), sehingga ambang `min_bar_1h: 8760` di `config/lux.yaml` mengeluarkannya dari universe backtest **berdasarkan aturan yang ditulis sebelum angkanya dilihat**, bukan karena namanya aneh.
+### KOREKSI PENTING: 17.169 celah itu adalah bug, dan saya sempat menyatakan sebaliknya
+
+Saya pernah menuliskan bahwa celah kisi identik 17.169 di 1h dan 4h **bukan** bug, dengan alasan jumlah diskontinuitas sama dengan jumlah blok arsip yang hilang dan tidak bergantung ukuran bar, sehingga konsistensinya "memperkuat metrik". Penalaran itu keliru.
+
+Kesamaan angka antar interval bukan tanda kesehatan, melainkan **sidik jari satu bar yang hilang per berkas**: setiap awal bulan yang terpotong menciptakan tepat satu lompatan, sama banyak di 1h maupun di 4h. Setelah parser diperbaiki, angkanya jatuh ke 112. Sisa 112 itulah lubang arsip yang sungguhan.
+
+Pelajarannya lebih berharga daripada datanya: saya merasionalisasi bukti yang sedang menunjuk ke bug saya sendiri, dan yang membongkarnya bukan argumen melainkan angka sesudah perbaikan. **Penjelasan yang membuat anomali terasa wajar harus dicurigai lebih keras daripada anomalinya.**
+
+### Cacat parser — tiga lapis, semuanya sudah ditutup
+
+Cacat 1, ditemukan lewat invarian aritmetika (`5f222e8`): `baca_zip` memakai `header=0` dan `skiprows=1` bersamaan, sehingga pandas membuang baris header **dan** memperlakukan baris data pertama sebagai nama kolom. Tepat satu bar hilang dari setiap berkas berheader. Pecahan buktinya bulat sempurna: 23/24 = 0,9583, 5/6 = 0,8334, 23/5 = 4,5999, dan (720−1)/(180−1) = 4,017 yang selama dua putaran menyamar sebagai rasio sehat.
+
+Cacat 2 dan 3, ditemukan lewat pengujian sintetis sebelum data disentuh (`16638b4`):
+
+- **BOM UTF-8 merusak deteksi header.** Pemeriksaan `lstrip()` lalu `startswith("open_time")` gagal karena BOM bukan karakter spasi. Deteksi gagal, baris header dibaca sebagai data, berkas ambruk. Kini dekode memakai `utf-8-sig`.
+- **Satu baris sampah menggagalkan seluruh berkas.** `dtype=float64` di `read_csv` membuat pandas melempar galat keras pada satu sel non-numerik. Satu baris rusak akan menghapus **satu bulan penuh** dari dataset. Kini konversi dilakukan sesudah pembacaan dengan `errors="coerce"`, lalu hanya baris tanpa waktu atau tanpa harga yang dibuang. Kehilangan satu bar jauh lebih baik daripada kehilangan satu bulan.
+
+Dua cacat terakhir tertangkap dengan biaya **43 detik**, bukan 18 menit, karena `pytest` kini berjalan di dalam job sebelum satu byte pun diunduh. Gerbang pra-terbang itu sudah membayar dirinya sendiri pada hari pertama.
+
+### Cacat URL non-ASCII — selesai dan terbukti
+
+Tiga perpetual bernama huruf Han (`币安人生USDT`, `我踏马来了USDT`, `龙虾USDT`) gagal total pada putaran 1 karena `klines_url()` tidak melakukan percent-encoding pada segmen path, sementara listing S3 lolos karena `urlencode` sudah meng-encode parameternya. Kegagalan asimetris: simbol masuk universe, unduhan nol persen. Diperbaiki lewat helper `bv.seg()`. Putaran 2 mencatat **790 dari 790 berhasil**.
+
+Rata-rata riwayat ketiganya hanya ~4.200 bar 1h (~175 hari), sehingga ambang `min_bar_1h: 8760` mengeluarkannya dari universe backtest **berdasarkan aturan yang ditulis sebelum angkanya dilihat**, bukan karena namanya aneh.
 
 ### Universe — sumber: `reports/universe.json`, 2026-07-25T14:35Z
 
@@ -69,7 +111,6 @@ Rata-rata riwayat ketiganya hanya ~4.200 bar 1h (~175 hari), sehingga ambang `mi
 | Baris point-in-time | 21.789 pasangan simbol-bulan |
 | Rentang arsip bulanan | 2020-01 → 2026-06 |
 | Simbol tanpa data 1h | 0 |
-| Simbol dengan lubang arsip | 2, keduanya SETTLED |
 
 Universe riset tidak terpengaruh cacat parser, karena ia dibangun dari enumerasi nama berkas, bukan dari isinya.
 
@@ -81,7 +122,7 @@ Dataset lama berisi 528 simbol. Terhadap universe riset 790, artinya **262 simbo
 
 Arsip bulanan berhenti di **2026-06**, arsip harian mencapai **2026-07-24**. Ingest yang hanya membaca arsip bulanan kehilangan ~24 hari terbaru tanpa tanda apa pun. `lux/backfill_daily.py` menutupnya dengan aturan umum: bandingkan bulan yang ada di arsip bulanan dengan bulan yang ada di arsip harian, unduh harian hanya untuk bulan yang tidak tercakup. Bukan tambalan tanggal, jadi tidak perlu disentuh lagi bulan depan.
 
-Hipotesis lama "Sep–Des 2019 hilang" sudah gugur: arsip harian majors mulai 2019-12-31, dan kehilangan di ujung awal hanya satu hari. Tiga bulan pertama futures Binance tidak ada di arsip sama sekali.
+Hipotesis lama "Sep–Des 2019 hilang" sudah gugur: arsip harian majors mulai 2019-12-31. Tiga bulan pertama futures Binance tidak ada di arsip sama sekali.
 
 ### Model biaya — `lux/costs.py`, `config/lux.yaml`
 
@@ -91,13 +132,27 @@ Angka yang layak diingat: stop 0,1% dengan biaya bolak-balik 0,2% menghabiskan 2
 
 Seluruh parameter yang memengaruhi hasil ada di `config/lux.yaml`, tidak tersebar sebagai konstanta di kode. Parameter tersembunyi adalah jalur paling umum masuknya overfitting tanpa jejak.
 
+### Validasi data — `lux/validate.py` (baru, commit `42fdae2`)
+
+Modul ini memisahkan dua hal yang sering dicampur, dan pencampurannya adalah cara paling halus survivorship bias masuk:
+
+- **Integritas** — apakah data konsisten dengan dirinya sendiri. Punya jawaban benar atau salah. Yang diperiksa: duplikat waktu, waktu mundur, stempel tidak selaras kisi interval, `high` lebih kecil dari `max(open,close)`, `low` lebih besar dari `min(open,close)`, harga nol atau negatif, volume negatif, nilai kosong.
+- **Kelayakan** — apakah instrumen cukup panjang dan cukup likuid untuk diuji. Ini keputusan, dan ambangnya sudah beku di `config/lux.yaml` sebelum datanya dilihat.
+
+Dua keputusan desain yang perlu dipertahankan:
+
+1. **Celah bukan pelanggaran fatal.** Perdagangan memang pernah terhenti; itu fakta pasar, bukan kerusakan data. Yang fatal adalah data yang bertentangan dengan dirinya sendiri, karena itu berarti pembacaan kita salah, bukan pasarnya.
+2. **Penolakan selalu menyertakan alasan, dan semua alasan dikumpulkan, bukan hanya yang pertama.** Simbol yang ditolak tanpa alasan tercatat akan terlihat seperti simbol yang tidak pernah ada.
+
+Likuiditas diukur sebagai **median** nilai transaksi harian, bukan rata-rata, karena satu hari peluncuran yang gila dapat mengangkat rata-rata instrumen yang sehari-hari nyaris tidak diperdagangkan.
+
 ### Pengujian — `reports/tests.md`
 
-28 pengujian, semuanya tanpa jaringan, berjalan dalam hitungan milidetik: 16 untuk model biaya, 12 untuk parser dengan ZIP sintetis. Dua di antaranya menjaga invarian yang menyingkap bug: jumlah bar tidak boleh berubah karena keberadaan header, dan rasio 1h:4h harus tepat 4,0.
+**32 pengujian hijau** pada commit `16638b4` (`32 passed in 0.66s`), ditambah 22 pengujian validasi pada `42fdae2`. Semuanya tanpa jaringan, selesai dalam hitungan milidetik.
 
-Pengujian kini berjalan **di dalam** job ingest sebelum satu byte pun diunduh. Pada putaran pertama, tidak ada satu pun pengujian yang jalan sebelum job 18 menit dimulai.
+Invarian yang menjaga bug tidak kembali: jumlah bar tidak boleh berubah karena keberadaan header, rasio 1h:4h harus tepat 4,0, BOM tidak boleh merusak deteksi header, dan satu baris sampah tidak boleh menggagalkan berkas.
 
-CI juga sudah menangkap kesalahan saya sendiri: sebuah asersi menuntut `winrate_impas(2,2) > 1.0` padahal aritmetikanya tepat 1,0. Yang salah asersinya, bukan implementasinya. Pengujian yang menuntut hal keliru berbahaya karena mengundang orang menambal kode yang sudah benar.
+CI juga sudah dua kali menangkap kesalahan saya sendiri: sebuah asersi menuntut `winrate_impas(2,2) > 1.0` padahal aritmetikanya tepat 1,0, dan dua berkas uji ditulis ke direktori yang belum dibuat. Pengujian yang menuntut hal keliru berbahaya karena mengundang orang menambal kode yang sudah benar.
 
 ### Kapasitas runner — sumber: `reports/doctor.json`
 
@@ -110,7 +165,7 @@ CI juga sudah menangkap kesalahan saya sendiri: sebuah asersi menuntut `winrate_
 
 Disk 88 GB, bukan 14 GB seperti diperkirakan. **Batas 6 jam per job, bukan disk, yang menjadi kendala utama.** Model CPU berbeda antar run, jadi setiap tolok ukur berbasis waktu wajib mencatat model CPU-nya.
 
-Durasi terukur putaran 1: delapan shard paralel, 790 simbol, dua interval, selesai ~18 menit; shard terlama 554,7 detik untuk bagian 1h saja. Data 1m sekitar 60× lebih besar, sehingga satu shard akan menembus batas 6 jam. **Tier A butuh minimal 24 shard, bukan 8.**
+Durasi terukur: delapan shard paralel, 790 simbol, dua interval, selesai ~18 menit; shard terlama 554,7 detik untuk bagian 1h saja. Data 1m sekitar 60× lebih besar, sehingga satu shard akan menembus batas 6 jam. **Tier A butuh minimal 24 shard, bukan 8.**
 
 ### Konektivitas
 
@@ -141,8 +196,10 @@ HTTP 451 berarti diblokir atas dasar hukum; runner GitHub berbasis di AS. Snapsh
 - Agen **tidak bisa** membuat atau mengunggah rilis. Runner melakukannya lewat `gh release upload`.
 - Agen **tidak bisa** memicu workflow manual. Pemicu satu-satunya adalah push, jadi setiap workflow diberi filter `paths` pada berkasnya sendiri.
 - Agen **tidak bisa** membaca log workflow. **Setiap workflow wajib menulis hasil ke `reports/` dan meng-commit balik.** Workflow yang tidak mengikuti pola ini hasilnya tidak akan pernah terlihat.
-- Agen **tidak bisa** mengunduh artifact, tapi runner bisa. `gh run list` plus `gh run download` di dalam runner membuat artifact run mana pun terbaca secara tidak langsung, jauh lebih murah daripada mengulang pekerjaan. Pola ini yang memungkinkan diagnosis cacat parser tanpa mengunduh ulang data.
+- Agen **tidak bisa** mengunduh artifact, tapi runner bisa. `gh run list` plus `gh run download` di dalam runner membuat artifact run mana pun terbaca secara tidak langsung. Pola ini yang memungkinkan diagnosis cacat parser tanpa mengunduh ulang data.
+- Agen **tidak bisa** melihat status run. Kesimpulan tentang berjalan atau tidaknya sebuah job hanya boleh diambil dari perubahan sha laporan **plus** konfirmasi pengguna, bukan dari sha saja.
 - Sandbox agen **tidak punya jaringan**. Semua pengambilan data terjadi di runner.
+- Analisis kini digabung ke dalam job penghasil datanya (`analyze_tail` berjalan di job `gabung`), supaya diagnosis tidak tertunda menunggu workflow terpisah dipicu.
 
 ---
 
@@ -150,16 +207,16 @@ HTTP 451 berarti diblokir atas dasar hukum; runner GitHub berbasis di AS. Snapsh
 
 | Asumsi | Cara memverifikasi |
 |---|---|
-| Jumlah baris Tier B yang sah | `reports/ingest_tier_b.json` putaran 2 |
-| Rasio 1h:4h akan menjadi ≈4,00 setelah perbaikan | sama; ini gerbang utamanya |
-| Celah kisi turun drastis setelah perbaikan | sama |
+| Seluruh 790 simbol lolos pemeriksaan integritas per simbol | jalankan `lux/validate.py` atas aset Release |
+| Berapa simbol tersisa setelah ambang kelayakan diterapkan | sama; angkanya wajib dicatat apa pun hasilnya |
 | Throughput cukup untuk Tier A dalam 6 jam per shard | ukur ulang dengan ≥24 shard |
 | Funding rate tersedia untuk seluruh 790 perp | belum diperiksa |
 | `metrics/`, `bookTicker/`, `liquidationSnapshot/` tersedia | belum |
+| Dataset G lama (528 simbol) konsisten dengan data baru | diff terhadap 1h putaran 2 |
 
 Throughput 1,30 MiB/s dari `doctor.json` **tidak boleh dipakai**: berkas ujinya 1,9 MB sehingga waktunya didominasi latensi.
 
-Angka Tier B putaran 1 (14.076.257 baris 1h, 3.506.060 baris 4h, 677,6 MiB) **tidak boleh dikutip lagi**. Semuanya kekurangan satu bar per berkas.
+**Angka yang dilarang dikutip:** seluruh hasil putaran 1 (14.076.257 baris 1h, 3.506.060 baris 4h, 677,6 MiB, 17.169 celah, rasio 4,014) dan hasil `ingest_retry` serta `backfill` putaran 1. Semuanya kekurangan satu bar per berkas. Aset Parquet pra-`16638b4` di Release sudah tertimpa oleh putaran 2 (`--clobber`), kecuali aset `_retry` yang kini digantikan oleh ingest normal karena ketiga simbol non-ASCII sudah berhasil.
 
 ---
 
@@ -173,13 +230,12 @@ Dibutuhkan dari pengguna, belum memblokir: **token integrasi Notion** sebagai Gi
 
 ## 6. Tindakan berikutnya
 
-1. Baca `reports/ingest_tier_b.json` putaran 2. Gerbang: nol duplikat, nol simbol gagal, **dan rasio baris 1h:4h harus ≈4,00**.
-2. Jalankan ulang `backfill_daily.yml` — cakupan bulanan berubah dan hasil lamanya sama-sama cacat.
-3. Jalankan `analyze_tail.yml` lagi setelah backfill baru; rasio terisi harus ≈1,00, bukan 0,958 dan 0,833.
-4. Bandingkan hasil terhadap Dataset G lama (528 simbol) sebagai uji silang independen.
-5. Ingest funding rate; tanpa itu model biaya perpetual tidak lengkap.
-6. Terapkan ambang `config/lux.yaml` untuk menyaring universe backtest, lalu catat berapa simbol yang tersisa.
-7. Baru setelah semua gerbang lulus, pertimbangkan Tier A (1m) dengan ≥24 shard.
+1. Tulis `.github/workflows/validate.yml`: unduh aset Parquet dari Release `tier-b-v1`, jalankan `lux/validate.py` per simbol, tulis `reports/validate.md` dan `reports/universe_layak.json`. **Catat jumlah simbol yang lolos dan seluruh alasan penolakan**, bukan hanya jumlahnya.
+2. Ingest funding rate dari `data/futures/um/monthly/fundingRate/`; tanpa itu model biaya perpetual tidak lengkap.
+3. Diff terhadap Dataset G lama (528 simbol) sebagai uji silang independen dari sumber berbeda.
+4. `lux/manifest.py` — catatan write-once atas setiap aset beserta SHA256, supaya asal setiap baris dapat dilacak.
+5. Mesin backtest (`lux/backtest/engine.py`) dengan sembilan gerbang mutu terpasang sejak awal, bukan ditambahkan setelah ada hasil.
+6. Baru setelah semua gerbang lulus, pertimbangkan Tier A (1m) dengan ≥24 shard.
 
 ---
 
@@ -202,6 +258,7 @@ Sudah diuji dengan baris sintetis bercacat; menolak dengan benar dan menolak men
 | `lux/universe.py` | universe point-in-time dan klasifikasi jenis kontrak |
 | `lux/ingest.py` | ingest Tier B dengan validasi per simbol |
 | `lux/backfill_daily.py` | penutup celah ekor dari arsip harian |
+| `lux/validate.py` | integritas OHLCV dan penyaringan kelayakan universe |
 | `lux/costs.py` | model biaya dalam satuan R |
 | `lux/summarize.py` | agregasi laporan antar shard, termasuk nama simbol gagal |
 | `lux/analyze_tail.py` | penelusuran anomali dari artifact tanpa unduh ulang |
