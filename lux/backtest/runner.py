@@ -1,4 +1,4 @@
-"""Runner bersama untuk keluarga hipotesis (ADR-006).
+"""Runner bersama untuk keluarga hipotesis (ADR-006, diperluas ADR-007).
 
 ADR-005 mensyaratkan ekstraksi ini sebelum orkestrator keempat dibuat, dan
 syaratnya dipenuhi di sini. Tiga orkestrator lama — ``run_wf`` (H-001b),
@@ -9,6 +9,11 @@ jadi seluruh hipotesis dinilai oleh kode yang sama.
 Data dimuat sekali untuk seluruh keluarga. Selain hemat waktu, itu menjamin
 semua hipotesis melihat kumpulan berkas yang identik, sehingga gerbang
 ``checksum`` cukup dinilai sekali dan perbandingan antar hipotesis sah.
+
+Sejak ADR-007, sebuah ``Spek`` boleh membawa ``buat_konfig`` sehingga parameter
+keluar ikut dipilih walk-forward. Uji permutasi memakai konfig milik masing­-
+masing jendela, bukan konfig dasar, agar yang dibandingkan benar-benar wilayah
+penilaian yang sama.
 """
 
 from __future__ import annotations
@@ -96,6 +101,9 @@ class Spek:
     kandidat: list[dict]
     nama: str
     params_lookahead: dict = field(default_factory=dict)
+    # ADR-007: bila diisi, tiap kandidat membawa Konfig sendiri sehingga
+    # parameter keluar ikut dipilih di dalam sampel.
+    buat_konfig: Callable[[dict, Konfig], Konfig] | None = None
 
 
 def muat_konteks(opsi: Opsi) -> Konteks:
@@ -165,10 +173,11 @@ def jalankan_spek(
     per_simbol: list[dict] = []
     semua_trade = []
     hasil_per_simbol: dict[str, Hasil] = {}
-    jendela_sampel: list[tuple[pd.DataFrame, np.ndarray, str]] = []
+    jendela_sampel: list[tuple[pd.DataFrame, np.ndarray, str, Konfig]] = []
     g_forward: list[Gerbang] = []
     nama_forward: list[str] = []
     g_bnh: list[Gerbang] = []
+    parameter_terpilih: dict[str, int] = {}
 
     for i, s in enumerate(sorted(ktx.bingkai), 1):
         df = ktx.bingkai[s]
@@ -190,6 +199,7 @@ def jalankan_spek(
             jadwal=jadwal,
             symbol=s,
             simpan_bingkai=s in ktx.sampel,
+            buat_konfig=spek.buat_konfig,
         )
         r = wf.ringkas()
         trade_simbol = wf.perdagangan_luar_sampel
@@ -209,6 +219,12 @@ def jalankan_spek(
                 "parameter": r["parameter_per_jendela"],
             }
         )
+
+        # Berapa sering tiap kandidat terpilih. Parameter yang meloncat-loncat
+        # berarti tidak ada yang stabil untuk ditemukan.
+        for p in r["parameter_per_jendela"]:
+            kunci = json.dumps(p, sort_keys=True, ensure_ascii=False)
+            parameter_terpilih[kunci] = parameter_terpilih.get(kunci, 0) + 1
 
         g_forward.append(gerbang_forward_fill(df))
         nama_forward.append(s)
@@ -232,7 +248,9 @@ def jalankan_spek(
 
         for hj in wf.per_jendela:
             if hj.bingkai_uji is not None and hj.sinyal_uji is not None:
-                jendela_sampel.append((hj.bingkai_uji, hj.sinyal_uji, s))
+                jendela_sampel.append(
+                    (hj.bingkai_uji, hj.sinyal_uji, s, hj.konfig or konfig)
+                )
 
         if i % 10 == 0 or i == len(ktx.bingkai):
             print(
@@ -249,6 +267,7 @@ def jalankan_spek(
 
     print(json.dumps(gabungan, indent=2), flush=True)
     print(f"alasan keluar: {alasan}", flush=True)
+    print(f"parameter terpilih: {parameter_terpilih}", flush=True)
 
     hasil_pool = Hasil(
         symbol="POOL",
@@ -261,18 +280,18 @@ def jalankan_spek(
 
     p_acak: float | None = None
     if jendela_sampel:
-        panjang = [len(s_) for _, s_, _ in jendela_sampel]
+        panjang = [len(s_) for _, s_, _, _ in jendela_sampel]
         batas = np.cumsum([0] + panjang)
-        sinyal_gabung = np.concatenate([s_ for _, s_, _ in jendela_sampel])
+        sinyal_gabung = np.concatenate([s_ for _, s_, _, _ in jendela_sampel])
 
         def penilai(sinyal_acak: np.ndarray) -> float:
             rs = []
-            for k, (bingkai_j, _, sym) in enumerate(jendela_sampel):
+            for k, (bingkai_j, _, sym, konfig_j) in enumerate(jendela_sampel):
                 potong = sinyal_acak[batas[k] : batas[k + 1]]
                 hasil_j = jalankan(
                     bingkai_j,
                     potong,
-                    konfig,
+                    konfig_j,
                     jadwal=ktx.jadwal.get(sym),
                     symbol=sym,
                 )
@@ -336,9 +355,11 @@ def jalankan_spek(
             "maks_umur_bar": konfig.maks_umur_bar,
             "maks_carry_R": konfig.maks_carry_R,
             "jendela_carry_hari": konfig.jendela_carry_hari,
+            "konfig_per_kandidat": spek.buat_konfig is not None,
         },
         "gabungan": gabungan,
         "alasan_keluar": alasan,
+        "parameter_terpilih": parameter_terpilih,
         "diagnosa_biaya": diagnosa,
         "gerbang": laporan.ke_dict(),
         "putusan": {"lulus": putusan.lulus, "alasan": putusan.alasan},
@@ -405,6 +426,19 @@ def jalankan_spek(
     else:
         md += ["Tidak ada perdagangan untuk dibongkar."]
 
+    if parameter_terpilih:
+        md += [
+            "",
+            "## Parameter yang terpilih di dalam sampel",
+            "",
+            "| Parameter | Jumlah jendela |",
+            "|---|---|",
+        ]
+        for kunci, jml in sorted(
+            parameter_terpilih.items(), key=lambda kv: -kv[1]
+        )[:12]:
+            md.append(f"| `{kunci}` | {jml} |")
+
     md += [
         "",
         "## Sepuluh simbol dengan total R tertinggi",
@@ -435,6 +469,7 @@ def jalankan_spek(
         "gerbang_gagal": laporan.yang_gagal,
         "lulus": bool(putusan.lulus and laporan.semua_lulus),
         "alasan": putusan.alasan,
+        "alasan_keluar": alasan,
         "rerata_transaksi_R": diagnosa.get("rerata_transaksi_R"),
         "detik": isi["detik"],
     }

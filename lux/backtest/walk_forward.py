@@ -22,6 +22,13 @@ wilayah yang bukan wilayah penilaian.
 **Jumlah kandidat dilaporkan.** Mencoba 200 kombinasi lalu melaporkan yang
 terbaik bukan penemuan, melainkan pencarian. Angkanya disimpan bersama hasil
 agar besarnya ruang pencarian tidak hilang dari ingatan saat hasilnya dinilai.
+
+**Parameter keluar boleh ikut dipilih (ADR-007).** ``buat_konfig`` memungkinkan
+setiap kandidat membawa ``Konfig`` sendiri, sehingga rasio imbalan dan sejenisnya
+dapat diperlakukan sebagai parameter yang dipilih di dalam sampel, bukan sebagai
+tetapan global. Bila argumen itu tidak diberikan, jalur eksekusinya sama persis
+seperti sebelum ADR-007 — syarat mutlak, karena hasil H-001b, H-002, dan H-003
+harus tetap dapat diulang bita demi bita.
 """
 
 from __future__ import annotations
@@ -124,6 +131,10 @@ class HasilJendela:
     # wilayah yang sedikit berbeda dari yang dinilai.
     bingkai_uji: pd.DataFrame | None = None
     sinyal_uji: np.ndarray | None = None
+    # Konfig yang benar-benar dipakai menilai jendela ini. Ketika parameter
+    # keluar ikut dipilih (ADR-007), konfig berbeda antar jendela, dan uji
+    # permutasi wajib memakai konfig yang sama dengan yang dinilai.
+    konfig: Konfig | None = None
 
 
 @dataclass
@@ -209,6 +220,7 @@ def jalankan_walk_forward(
     symbol: str = "",
     min_trade_latih: int = 10,
     simpan_bingkai: bool = False,
+    buat_konfig: Callable[[dict, Konfig], Konfig] | None = None,
 ) -> HasilWalkForward:
     """Pilih parameter pada tiap jendela latih, nilai pada jendela uji.
 
@@ -219,6 +231,12 @@ def jalankan_walk_forward(
 
     ``pemanasan`` menambahkan bar di depan jendela uji untuk mematangkan
     indikator. Sinyal pada bar pemanasan dipaksa nol sebelum mesin dijalankan.
+
+    ``buat_konfig`` opsional (ADR-007) menerima satu set parameter dan konfig
+    dasar, lalu mengembalikan konfig untuk kandidat itu. Dengan begitu parameter
+    keluar seperti ``imbalan_R`` dapat ikut dipilih di dalam sampel. Bila tidak
+    diberikan, konfig dasar dipakai apa adanya untuk semua kandidat, sama persis
+    seperti perilaku sebelum ADR-007.
     """
     if not kandidat:
         raise ValueError("kandidat parameter kosong")
@@ -226,6 +244,10 @@ def jalankan_walk_forward(
         raise ValueError("pemanasan tidak boleh negatif")
 
     k = konfig or Konfig()
+
+    def konfig_untuk(params: dict) -> Konfig:
+        return buat_konfig(params, k) if buat_konfig is not None else k
+
     jendela = bagi_jendela(
         len(df), panjang_latih, panjang_uji, embargo=embargo, berjangkar=berjangkar
     )
@@ -240,7 +262,14 @@ def jalankan_walk_forward(
             if s.size != len(latih):
                 raise ValueError("panjang sinyal latih tidak sama dengan potongan")
             skor = _skor_baku(
-                jalankan(latih, s, k, jadwal=jadwal, symbol=symbol), min_trade_latih
+                jalankan(
+                    latih,
+                    s,
+                    konfig_untuk(params),
+                    jadwal=jadwal,
+                    symbol=symbol,
+                ),
+                min_trade_latih,
             )
             if skor > skor_terbaik:
                 skor_terbaik = skor
@@ -262,14 +291,16 @@ def jalankan_walk_forward(
             # Pemanasan memberi makan indikator, bukan membuka posisi.
             s_uji[:n_pemanasan] = 0
 
+        k_uji = konfig_untuk(terbaik)
         hasil.per_jendela.append(
             HasilJendela(
                 jendela=j,
                 parameter=dict(terbaik),
                 skor_latih=skor_terbaik,
-                hasil_uji=jalankan(uji, s_uji, k, jadwal=jadwal, symbol=symbol),
+                hasil_uji=jalankan(uji, s_uji, k_uji, jadwal=jadwal, symbol=symbol),
                 bingkai_uji=uji if simpan_bingkai else None,
                 sinyal_uji=s_uji if simpan_bingkai else None,
+                konfig=k_uji,
             )
         )
 
