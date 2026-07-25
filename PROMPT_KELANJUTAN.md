@@ -23,34 +23,48 @@ run dari MCP hanya satu: menyunting berkas workflow itu sendiri.
 | Funding | 1.982.017 baris, 447 simbol, 3 celah sejati, jitter maks 47 ms |
 | **Universe layak v2 (ADR-003)** | **438** — `reports/universe_layak_v2.json` |
 
-## Posisi riset: dua hipotesis selesai, keduanya DITOLAK
+## Posisi riset: tiga hipotesis selesai, ketiganya DITOLAK
 
-**H-001b** (run `30172926477`): ekspektasi 0,0309R < 0,05R, gerbang
-`invarian_risiko` GAGAL pada −2,5853R. Penyebabnya carry funding, bukan fee:
-perdagangan terburuk memuat `funding_R` 1,545 atas posisi 130 jam.
+| | H-001b | H-002 | H-003 |
+|---|---|---|---|
+| Run | `30172926477` | `30174642490` | `30175179866` |
+| Mekanisme | Donchian | Donchian + saringan carry (ADR-004) | pembalikan skor-z (ADR-005) |
+| Ekspektasi R | 0,03086 | **0,03159** | **−0,24782** |
+| Perdagangan | 19.093 | 18.883 | 28.959 |
+| Jendela positif | 208/356 | 212/356 | 25/356 |
+| Gerbang gagal | `invarian_risiko` −2,5853 | — (sembilan lulus) | `buy_and_hold`, `entri_acak` p 1,0, `invarian_risiko` −1,8637 |
 
-**H-002** (run `30174642490`, ADR-004, saringan umur 168 bar + carry 0,25R):
-**sembilan gerbang lulus**, `invarian_risiko` pulih ke −1,3215R, tetapi
-ekspektasi 0,03159R tetap di bawah 0,05R. 18.883 perdagangan, 596,44R, 212/356
-jendela positif.
+Dataset, kriteria, limit 40 simbol, dan kode penilaian identik pada ketiganya.
 
-Tafsiran yang sudah dikunci ADR-004 **sebelum** angkanya terlihat: breakout
-Donchian 1 jam tidak punya keunggulan yang memadai pada dataset ini. Gerbang
-`entri_acak` lulus dengan p 0,0099, jadi sinyalnya memang mengalahkan entri
-acak — besarnya saja yang terlalu kecil setelah biaya nyata.
+**Temuan terpenting sampai hari ini bukan salah satu putusan, melainkan jarak di
+antara keduanya.** Pada kerangka eksekusi yang identik, kelanjutan memberi
++0,0316R dan pembalikan memberi −0,2478R. Rentang 0,28R itu membuktikan kerangka
+stop 2×ATR / target 2R **meneruskan** informasi arah, jadi ia bukan penyebab
+kegagalan. Keunggulan tipis Donchian nyata (p entri acak 0,0099), hanya terlalu
+kecil untuk menutup biaya transaksi rerata 0,0345R per perdagangan.
 
-**Yang DILARANG:** menyetel ulang `maks_umur_bar` atau `maks_carry_R` untuk
-mengejar 0,05R, menurunkan ambang, atau menjalankan ulang H-001b/H-002.
+**Cacat yang ditemukan H-003:** saringan carry ADR-004 bisa tembus.
+`carry_terproyeksi_R` adalah proyeksi rerata 30 hari, bukan jaminan; AKTUSDT
+membayar `funding_R` 0,833 atas 77 jam dengan stop 5,064% dari harga. Gerbang
+yang lulus pada satu hipotesis belum tentu tidak bisa gagal pada hipotesis lain.
+
+**Yang DILARANG:** menyetel ulang saringan atau ambang untuk mengejar 0,05R;
+menjalankan ulang H-001b, H-002, atau H-003; membalik tanda H-003 dan
+menjalankannya sebagai "perbaikan" alih-alih sebagai hipotesis baru berlabel ID
+baru dengan ADR-nya sendiri; mendaftarkan hipotesis sinyal harga keempat sebagai
+reaksi langsung atas kegagalan H-003 (ADR-005).
 
 ## PEKERJAAN BERIKUTNYA (urutan wajib)
 
-1. **H-003 — keluarga strategi baru.** Mekanisme berbeda dari breakout Donchian
-   (misalnya pembalikan rerata, atau breakout dengan saringan rezim), ruang
-   parameter kecil, didaftarkan lewat `lux/praregistrasi.py` sebelum dijalankan,
-   dengan orkestrator sendiri seperti `run_h002.py` agar hasil lama tetap dapat
-   diulang.
+1. **Pilih satu dari dua arah, tulis ADR-006 lebih dulu, baru kodenya.**
+   - **Horizon.** Biaya 0,0345R hampir menelan keunggulan 0,032R. Bar 4h membagi
+     biaya yang sama ke pergerakan lebih besar. **Prasyarat mutlak: validasi 4h
+     lewat `validate.yml`,** yang belum pernah dijalankan.
+   - **Funding sebagai sinyal.** Selama ini hanya diperlakukan sebagai biaya.
+     79,1% penagihan positif dan carry ekstrem sampai −533,9%/tahun adalah
+     struktur yang belum pernah diuji kandungan informasi arahnya.
 2. Perketat `gerbang_lulus` di `lux/funding.py` (celah dan jitter ikut menilai).
-3. Validasi interval 4h lewat `validate.yml`.
+3. Perbaiki docstring `lux/costs.py` yang masih menyebut pembagi funding 8 jam.
 4. Diff terhadap Dataset G lama (528 simbol) sebagai uji silang survivorship.
 5. `lux/manifest.py`, `Makefile`, `docs/PIPELINE.md`, salin ADR-001 dan ADR-002.
 6. Pelapor Notion (`NOTION_TOKEN`) untuk LUX Gatekeeper.
@@ -58,10 +72,12 @@ mengejar 0,05R, menurunkan ambang, atau menjalankan ulang H-001b/H-002.
 
 ## Peta orkestrator
 
-- `lux/backtest/run_wf.py` — H-001b. **Jangan disunting.** Menyuntingnya membuat
-  angka H-001b tidak lagi dapat diulang.
-- `lux/backtest/run_h002.py` — H-002. Mengimpor seluruh fungsi pemuatan dan
-  penilaian dari `run_wf`, jadi perbandingan antar hipotesis tetap sah.
+- `lux/backtest/run_wf.py` — H-001b. **Jangan disunting.**
+- `lux/backtest/run_h002.py` — H-002. Dibekukan.
+- `lux/backtest/run_h003.py` — H-003. Dibekukan.
+- Semuanya mengimpor fungsi pemuatan dan penilaian dari `run_wf`, sehingga ketiga
+  hipotesis dinilai kode yang sama. **Tiga salinan adalah batas wajar;
+  orkestrator keempat harus didahului ekstraksi runner bersama.**
 - `.github/workflows/backtest.yml` — satu-satunya pemicu. Menyunting berkas ini
   menjalankan backtest. `--limit 40` wajib tetap agar hasil dapat dibandingkan.
 
@@ -85,6 +101,8 @@ artifact yang kedaluwarsa 90 hari sementara keluarannya sudah permanen di
   daripada anomalinya sendiri.**
 - **Durasi run tidak boleh dipakai sebagai bukti diagnosis.**
 - **Keputusan metodologis ditulis dan dikomit sebelum kodenya ada.**
+- **Rancang percobaan yang informatif ke dua arah.** H-003 gagal telak dan justru
+  karena itu ia menjawab pertanyaan yang tidak terjawab oleh keberhasilan.
 - Ambang pra-registrasi **tidak boleh** diubah setelah melihat hasil, dan
   hipotesis yang ditolak tidak dihitung ulang.
 
