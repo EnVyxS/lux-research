@@ -2,14 +2,10 @@ name: funding-check
 
 # Menghitung ulang metrik funding dari Parquet yang sudah ada di Release.
 #
-# Putaran 3, dan yang terakhir untuk metrik ini. Dua putaran sebelumnya
-# memperdebatkan dari mana kisi funding harus diambil, kolom metadata atau
-# pengukuran, padahal keduanya benar dan pertanyaannya salah. Kisi berubah
-# sepanjang umur simbol, jadi celah didefinisikan tanpa mengasumsikan kisi:
-# jarak yang melebihi delapan jam, kisi terpanjang yang mungkin.
-#
-# Percobaan kedua putaran 3: percobaan pertama tertahan di gerbang pengujian
-# karena satu harapan uji keliru menganggap jarak empat jam tidak selaras.
+# Putaran 5. Empat putaran sebelumnya gagal dengan cara yang berbeda-beda:
+# tiga memaksakan satu kisi untuk seluruh umur simbol, dan yang keempat
+# membandingkan waktu tanpa toleransi sehingga jitter beberapa milidetik
+# terbaca sebagai penagihan yang hilang.
 
 on:
   workflow_dispatch:
