@@ -1,0 +1,206 @@
+"""Menjalankan validasi integritas dan kelayakan atas aset Parquet Tier B.
+
+Dipanggil dari runner, bukan dari sandbox agen, karena berkasnya ratusan MB.
+
+Keluaran sengaja mencatat **alasan** setiap penolakan, bukan hanya jumlahnya.
+Laporan yang hanya menyebut "624 simbol lolos" tidak bisa didiagnosis, dan
+angka yang tidak bisa didiagnosis pernah membuat riset ini kehilangan dua
+putaran penuh.
+
+Pemakaian:
+    python -m lux.validate_run --dir aset --interval 1h --config config/lux.yaml
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from collections import Counter
+from pathlib import Path
+
+import pandas as pd
+
+from lux.validate import (
+    AmbangKelayakan,
+    median_quote_volume_harian,
+    nilai_kelayakan,
+    periksa_seri,
+    rasio_bar_datar,
+)
+
+
+def muat_ambang(path: Path) -> AmbangKelayakan:
+    """Membaca ambang dari config. Gagal keras bila config tidak terbaca.
+
+    Diam-diam memakai nilai bawaan akan membuat laporan tampak sah padahal
+    aturannya bukan aturan yang disepakati.
+    """
+    import yaml
+
+    with path.open(encoding="utf-8") as f:
+        cfg = yaml.safe_load(f)
+    u = cfg["universe"]
+    return AmbangKelayakan(
+        min_bar=int(u["min_bar_1h"]),
+        min_median_quote_volume_harian=float(u["min_median_quote_volume_harian"]),
+        maks_rasio_bar_datar=float(u["maks_rasio_bar_datar"]),
+    )
+
+
+def muat_semua(direktori: Path, interval: str) -> pd.DataFrame:
+    """Menggabungkan seluruh shard, termasuk ekor harian.
+
+    Satu simbol bisa tersebar di berkas bulanan dan berkas ekor dengan nomor
+    shard berbeda, karena jumlah shard kedua tahap tidak sama. Karena itu
+    penggabungan harus dilakukan atas seluruh berkas, bukan per shard.
+    """
+    berkas = sorted(direktori.glob(f"ohlcv_{interval}_*.parquet"))
+    if not berkas:
+        raise SystemExit(f"tidak ada berkas ohlcv_{interval}_*.parquet di {direktori}")
+    bagian = []
+    for p in berkas:
+        df = pd.read_parquet(p)
+        bagian.append(df)
+        print(f"  dibaca {p.name}: {len(df):,} baris", flush=True)
+    gabung = pd.concat(bagian, ignore_index=True)
+    gabung["symbol"] = gabung["symbol"].astype(str)
+    return gabung
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dir", required=True)
+    ap.add_argument("--interval", default="1h")
+    ap.add_argument("--config", default="config/lux.yaml")
+    ap.add_argument("--out", default="reports")
+    a = ap.parse_args(argv)
+
+    ambang = muat_ambang(Path(a.config))
+    print(
+        f"ambang: min_bar={ambang.min_bar} "
+        f"min_median_quote={ambang.min_median_quote_volume_harian:,.0f} "
+        f"maks_bar_datar={ambang.maks_rasio_bar_datar}",
+        flush=True,
+    )
+
+    df = muat_semua(Path(a.dir), a.interval)
+    print(f"total {len(df):,} baris, {df['symbol'].nunique()} simbol", flush=True)
+
+    hasil: list[dict] = []
+    for symbol, bagian in df.groupby("symbol", sort=True, observed=True):
+        bagian = bagian.sort_values("open_time").reset_index(drop=True)
+        h = periksa_seri(bagian, str(symbol), a.interval)
+        median = median_quote_volume_harian(bagian, a.interval)
+        layak, alasan = nilai_kelayakan(h, median, ambang)
+        baris = h.sebagai_dict()
+        baris.pop("catatan", None)
+        baris["median_quote_harian"] = round(median, 2)
+        baris["rasio_bar_datar"] = round(rasio_bar_datar(h), 4)
+        baris["layak"] = layak
+        baris["alasan"] = alasan
+        hasil.append(baris)
+
+    integritas_gagal = [h for h in hasil if not h["lulus"]]
+    layak = [h for h in hasil if h["layak"]]
+    tidak_layak = [h for h in hasil if not h["layak"]]
+
+    # Kenapa simbol ditolak, bukan sekadar berapa banyak.
+    sebab = Counter()
+    for h in tidak_layak:
+        for al in h["alasan"]:
+            sebab[al.split(" (")[0]] += 1
+
+    ringkas = {
+        "interval": a.interval,
+        "total_simbol": len(hasil),
+        "total_baris": int(len(df)),
+        "integritas_gagal": len(integritas_gagal),
+        "layak": len(layak),
+        "tidak_layak": len(tidak_layak),
+        "sebab_penolakan": dict(sebab),
+        "total_celah": int(sum(h["celah"] for h in hasil)),
+        "gerbang_integritas_lulus": len(integritas_gagal) == 0,
+    }
+
+    out = Path(a.out)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / f"validate_{a.interval}.json").write_text(
+        json.dumps({"ringkasan": ringkas, "per_simbol": hasil}, indent=2),
+        encoding="utf-8",
+    )
+    (out / "universe_layak.json").write_text(
+        json.dumps(
+            {
+                "interval": a.interval,
+                "ambang": {
+                    "min_bar": ambang.min_bar,
+                    "min_median_quote_volume_harian": ambang.min_median_quote_volume_harian,
+                    "maks_rasio_bar_datar": ambang.maks_rasio_bar_datar,
+                },
+                "jumlah": len(layak),
+                "simbol": sorted(h["symbol"] for h in layak),
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    baris_md = [
+        f"# Validasi Tier B {a.interval}",
+        "",
+        f"Total {ringkas['total_baris']:,} baris atas {ringkas['total_simbol']} simbol.",
+        "",
+        "## Integritas",
+        "",
+        f"- Simbol dengan pelanggaran fatal: **{ringkas['integritas_gagal']}**",
+        f"- Total celah (bukan pelanggaran; perdagangan memang pernah berhenti): {ringkas['total_celah']:,}",
+        "",
+        "## Kelayakan universe backtest",
+        "",
+        f"- **Layak: {ringkas['layak']} dari {ringkas['total_simbol']}**",
+        f"- Ditolak: {ringkas['tidak_layak']}",
+        "",
+        "| Sebab penolakan | Simbol |",
+        "|---|---|",
+    ]
+    for k, v in sorted(sebab.items(), key=lambda kv: -kv[1]):
+        baris_md.append(f"| {k} | {v} |")
+
+    if integritas_gagal:
+        baris_md += [
+            "",
+            "## Simbol yang gagal integritas",
+            "",
+            "| Simbol | Duplikat | Tidak urut | Luar kisi | High<max | Low>min | Harga\u22640 | Kosong |",
+            "|---|---|---|---|---|---|---|---|",
+        ]
+        for h in integritas_gagal[:50]:
+            baris_md.append(
+                f"| {h['symbol']} | {h['duplikat_waktu']} | {h['waktu_tidak_urut']} | "
+                f"{h['tidak_selaras_kisi']} | {h['high_lebih_kecil']} | "
+                f"{h['low_lebih_besar']} | {h['harga_non_positif']} | {h['nilai_kosong']} |"
+            )
+
+    terpendek = sorted(hasil, key=lambda h: h["baris"])[:10]
+    baris_md += [
+        "",
+        "## Sepuluh simbol dengan riwayat terpendek",
+        "",
+        "| Simbol | Bar | Median quote harian | Layak |",
+        "|---|---|---|---|",
+    ]
+    for h in terpendek:
+        baris_md.append(
+            f"| {h['symbol']} | {h['baris']:,} | {h['median_quote_harian']:,.0f} | "
+            f"{'ya' if h['layak'] else 'tidak'} |"
+        )
+
+    (out / f"validate_{a.interval}.md").write_text("\n".join(baris_md) + "\n", encoding="utf-8")
+
+    print(json.dumps(ringkas, indent=2), flush=True)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
