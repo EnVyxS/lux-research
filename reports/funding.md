@@ -1,13 +1,13 @@
 # Ingest funding rate
 
-- Simbol: **0 dari 0**
-- Baris: **0**
-- Duplikat: 0 | Tidak urut: 0 | Celah kisi: 0
-- Funding positif: 0 (0.0%) | negatif: 0
-- Melebihi 2%: 0 (dicatat, tidak dibuang)
-- Sebaran interval funding (jam): {}
+- Simbol: **447 dari 447**
+- Baris: **1,982,017**
+- Duplikat: 0 | Tidak urut: 0 | Celah kisi: 1,380,741
+- Funding positif: 1,563,845 (79.1%) | negatif: 413,944
+- Melebihi 2%: 85 (dicatat, tidak dibuang)
+- Sebaran interval funding (jam): {'4': 304, '8': 244, '1': 96, '2': 14}
 
-Gerbang lulus: **False**
+Gerbang lulus: **True**
 
 Pangsa funding positif di atas 50% berarti pemegang posisi long membayar
 lebih sering daripada menerima. Itu biaya struktural yang harus ditanggung

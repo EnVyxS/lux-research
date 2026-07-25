@@ -1,18 +1,7834 @@
 {
   "ringkasan": {
-    "simbol_total": 0,
-    "simbol_berhasil": 0,
+    "simbol_total": 447,
+    "simbol_berhasil": 447,
     "simbol_kosong": 0,
-    "baris": 0,
+    "baris": 1982017,
     "duplikat": 0,
     "tidak_urut": 0,
-    "celah": 0,
-    "positif": 0,
-    "negatif": 0,
-    "ekstrem": 0,
-    "sebaran_interval_jam": {},
+    "celah": 1380741,
+    "positif": 1563845,
+    "negatif": 413944,
+    "ekstrem": 85,
+    "sebaran_interval_jam": {
+      "4": 304,
+      "8": 244,
+      "1": 96,
+      "2": 14
+    },
     "simbol_kosong_nama": [],
-    "gerbang_lulus": false
+    "gerbang_lulus": true
   },
-  "per_simbol": []
+  "per_simbol": [
+    {
+      "symbol": "1000000BOBUSDT",
+      "bulan": 13,
+      "gagal": [],
+      "baris": 2343,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1798,
+      "positif": 2235,
+      "negatif": 108,
+      "ekstrem": 0,
+      "rate_min": -0.0092275,
+      "rate_maks": 0.00486696,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "1000CHEEMSUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3494,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2243,
+      "positif": 3272,
+      "negatif": 222,
+      "ekstrem": 0,
+      "rate_min": -0.00810141,
+      "rate_maks": 0.00145681,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "1000RATSUSDT",
+      "bulan": 31,
+      "gagal": [],
+      "baris": 5569,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2790,
+      "positif": 5467,
+      "negatif": 102,
+      "ekstrem": 0,
+      "rate_min": -0.00182285,
+      "rate_maks": 0.00392931,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "1000XECUSDT",
+      "bulan": 58,
+      "gagal": [],
+      "baris": 5243,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3144,
+      "positif": 4201,
+      "negatif": 1042,
+      "ekstrem": 0,
+      "rate_min": -0.01199541,
+      "rate_maks": 0.00130484,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ACEUSDT",
+      "bulan": 31,
+      "gagal": [],
+      "baris": 5759,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5683,
+      "positif": 4753,
+      "negatif": 1006,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00103143,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "ADAUSDT",
+      "bulan": 78,
+      "gagal": [],
+      "baris": 7063,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4349,
+      "positif": 5680,
+      "negatif": 1383,
+      "ekstrem": 0,
+      "rate_min": -0.004875,
+      "rate_maks": 0.00396642,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "AGLDUSDT",
+      "bulan": 36,
+      "gagal": [],
+      "baris": 3205,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1458,
+      "positif": 2320,
+      "negatif": 885,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00130405,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "AIUSDT",
+      "bulan": 28,
+      "gagal": [],
+      "baris": 5045,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2473,
+      "positif": 4583,
+      "negatif": 462,
+      "ekstrem": 0,
+      "rate_min": -0.00046442,
+      "rate_maks": 0.00276276,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ALCHUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3236,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2159,
+      "positif": 3233,
+      "negatif": 3,
+      "ekstrem": 0,
+      "rate_min": -0.00039145,
+      "rate_maks": 0.00449926,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ALPINEUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2522,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1930,
+      "positif": 2328,
+      "negatif": 194,
+      "ekstrem": 0,
+      "rate_min": -0.01010926,
+      "rate_maks": 0.00133379,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ANTUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 2805,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1647,
+      "positif": 2308,
+      "negatif": 497,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00134954,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ARBUSDT",
+      "bulan": 40,
+      "gagal": [],
+      "baris": 3587,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1685,
+      "positif": 2999,
+      "negatif": 588,
+      "ekstrem": 0,
+      "rate_min": -0.00033612,
+      "rate_maks": 0.00128625,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ARPAUSDT",
+      "bulan": 57,
+      "gagal": [],
+      "baris": 5147,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3059,
+      "positif": 4195,
+      "negatif": 952,
+      "ekstrem": 0,
+      "rate_min": -0.01561108,
+      "rate_maks": 0.00173912,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ATAUSDT",
+      "bulan": 58,
+      "gagal": [],
+      "baris": 5170,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3102,
+      "positif": 4591,
+      "negatif": 579,
+      "ekstrem": 1,
+      "rate_min": -0.03,
+      "rate_maks": 0.00409994,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "AUDIOUSDT",
+      "bulan": 36,
+      "gagal": [],
+      "baris": 3195,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1990,
+      "positif": 2696,
+      "negatif": 499,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00213823,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "AVAXUSDT",
+      "bulan": 70,
+      "gagal": [],
+      "baris": 6322,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4008,
+      "positif": 4488,
+      "negatif": 1833,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00518469,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "B2USDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2521,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1930,
+      "positif": 2411,
+      "negatif": 110,
+      "ekstrem": 0,
+      "rate_min": -0.00300688,
+      "rate_maks": 0.00192926,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "BALUSDT",
+      "bulan": 58,
+      "gagal": [],
+      "baris": 5257,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3205,
+      "positif": 3861,
+      "negatif": 1395,
+      "ekstrem": 0,
+      "rate_min": -0.00854397,
+      "rate_maks": 0.00620709,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "BANKUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2628,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2002,
+      "positif": 2535,
+      "negatif": 93,
+      "ekstrem": 0,
+      "rate_min": -0.01033356,
+      "rate_maks": 0.00242639,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "BCHUSDT",
+      "bulan": 78,
+      "gagal": [],
+      "baris": 7119,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4363,
+      "positif": 4534,
+      "negatif": 2584,
+      "ekstrem": 0,
+      "rate_min": -0.005025,
+      "rate_maks": 0.00307942,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "BICOUSDT",
+      "bulan": 34,
+      "gagal": [],
+      "baris": 3020,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1423,
+      "positif": 2746,
+      "negatif": 274,
+      "ekstrem": 0,
+      "rate_min": -0.00408375,
+      "rate_maks": 0.00131171,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "BLURUSDT",
+      "bulan": 39,
+      "gagal": [],
+      "baris": 3795,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3782,
+      "positif": 2559,
+      "negatif": 1236,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.0010672,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "BNTUSDT",
+      "bulan": 39,
+      "gagal": [],
+      "baris": 3520,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1724,
+      "positif": 2806,
+      "negatif": 714,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00155043,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "BROCCOLIF3BUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 3932,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3549,
+      "positif": 3618,
+      "negatif": 314,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.01011322,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "BTCUSDT",
+      "bulan": 78,
+      "gagal": [],
+      "baris": 7119,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4363,
+      "positif": 6089,
+      "negatif": 1030,
+      "ekstrem": 0,
+      "rate_min": -0.003,
+      "rate_maks": 0.003,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "C98USDT",
+      "bulan": 59,
+      "gagal": [],
+      "baris": 5315,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3207,
+      "positif": 4397,
+      "negatif": 918,
+      "ekstrem": 0,
+      "rate_min": -0.00827509,
+      "rate_maks": 0.00142967,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "CELRUSDT",
+      "bulan": 64,
+      "gagal": [],
+      "baris": 5759,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3591,
+      "positif": 5139,
+      "negatif": 620,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.0035691,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "CHESSUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3157,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1731,
+      "positif": 3029,
+      "negatif": 128,
+      "ekstrem": 0,
+      "rate_min": -0.00088374,
+      "rate_maks": 0.01350848,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "CKBUSDT",
+      "bulan": 41,
+      "gagal": [],
+      "baris": 3656,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1751,
+      "positif": 3131,
+      "negatif": 525,
+      "ekstrem": 1,
+      "rate_min": -0.02848533,
+      "rate_maks": 0.00184116,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "COTIUSDT",
+      "bulan": 64,
+      "gagal": [],
+      "baris": 5816,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3635,
+      "positif": 4955,
+      "negatif": 861,
+      "ekstrem": 0,
+      "rate_min": -0.01007998,
+      "rate_maks": 0.00453613,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "CTKUSDT",
+      "bulan": 68,
+      "gagal": [],
+      "baris": 7428,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6826,
+      "positif": 6015,
+      "negatif": 1413,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00657415,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "DASHUSDT",
+      "bulan": 77,
+      "gagal": [],
+      "baris": 7016,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4336,
+      "positif": 6213,
+      "negatif": 803,
+      "ekstrem": 0,
+      "rate_min": -0.0145086,
+      "rate_maks": 0.00474021,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "DEGOUSDT",
+      "bulan": 17,
+      "gagal": [],
+      "baris": 2996,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2987,
+      "positif": 2812,
+      "negatif": 184,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00416654,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "DIAUSDT",
+      "bulan": 21,
+      "gagal": [],
+      "baris": 3817,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2323,
+      "positif": 3218,
+      "negatif": 599,
+      "ekstrem": 0,
+      "rate_min": -0.01161684,
+      "rate_maks": 0.00048839,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "DOGSUSDT",
+      "bulan": 23,
+      "gagal": [],
+      "baris": 4039,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2399,
+      "positif": 3380,
+      "negatif": 659,
+      "ekstrem": 0,
+      "rate_min": -0.00319703,
+      "rate_maks": 0.00046387,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "DRIFTUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3745,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3693,
+      "positif": 2970,
+      "negatif": 775,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00117839,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "DYMUSDT",
+      "bulan": 29,
+      "gagal": [],
+      "baris": 5247,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2717,
+      "positif": 3884,
+      "negatif": 1363,
+      "ekstrem": 0,
+      "rate_min": -0.017054,
+      "rate_maks": 0.00097703,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ENAUSDT",
+      "bulan": 27,
+      "gagal": [],
+      "baris": 4915,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2642,
+      "positif": 2818,
+      "negatif": 2097,
+      "ekstrem": 0,
+      "rate_min": -0.00601292,
+      "rate_maks": 0.00040225,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "EPICUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2847,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2060,
+      "positif": 2532,
+      "negatif": 315,
+      "ekstrem": 0,
+      "rate_min": -0.00196584,
+      "rate_maks": 0.0001795,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "ETHUSDT",
+      "bulan": 78,
+      "gagal": [],
+      "baris": 7119,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4363,
+      "positif": 6121,
+      "negatif": 998,
+      "ekstrem": 0,
+      "rate_min": -0.00356332,
+      "rate_maks": 0.00375,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "FHEUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2665,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2012,
+      "positif": 2602,
+      "negatif": 63,
+      "ekstrem": 0,
+      "rate_min": -0.00690535,
+      "rate_maks": 0.00161192,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "FLMUSDT",
+      "bulan": 63,
+      "gagal": [],
+      "baris": 8483,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 8209,
+      "positif": 7542,
+      "negatif": 941,
+      "ekstrem": 0,
+      "rate_min": -0.015,
+      "rate_maks": 0.00632054,
+      "interval_jam": [
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "FORMUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2811,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2058,
+      "positif": 2700,
+      "negatif": 111,
+      "ekstrem": 0,
+      "rate_min": -0.00229284,
+      "rate_maks": 0.00171422,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "FXSUSDT",
+      "bulan": 37,
+      "gagal": [],
+      "baris": 3247,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1464,
+      "positif": 2834,
+      "negatif": 413,
+      "ekstrem": 0,
+      "rate_min": -0.00681941,
+      "rate_maks": 0.00217876,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "GHSTUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3005,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1683,
+      "positif": 2840,
+      "negatif": 165,
+      "ekstrem": 0,
+      "rate_min": -0.00631811,
+      "rate_maks": 0.00062382,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "GOATUSDT",
+      "bulan": 21,
+      "gagal": [],
+      "baris": 3685,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2297,
+      "positif": 3050,
+      "negatif": 635,
+      "ekstrem": 0,
+      "rate_min": -0.00143302,
+      "rate_maks": 0.00166703,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "GRTUSDT",
+      "bulan": 67,
+      "gagal": [],
+      "baris": 6059,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3829,
+      "positif": 4847,
+      "negatif": 1212,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00654947,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "HAEDALUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2555,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1953,
+      "positif": 2033,
+      "negatif": 522,
+      "ekstrem": 0,
+      "rate_min": -0.01843734,
+      "rate_maks": 0.00120017,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "HIFIUSDT",
+      "bulan": 26,
+      "gagal": [],
+      "baris": 4414,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1697,
+      "positif": 4129,
+      "negatif": 285,
+      "ekstrem": 1,
+      "rate_min": -0.025,
+      "rate_maks": 0.00234452,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "HMSTRUSDT",
+      "bulan": 22,
+      "gagal": [],
+      "baris": 3853,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2333,
+      "positif": 3332,
+      "negatif": 521,
+      "ekstrem": 0,
+      "rate_min": -0.00927944,
+      "rate_maks": 0.00050871,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "HUMAUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2401,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1845,
+      "positif": 1851,
+      "negatif": 550,
+      "ekstrem": 0,
+      "rate_min": -0.01158489,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ICNTUSDT",
+      "bulan": 12,
+      "gagal": [],
+      "baris": 2174,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1668,
+      "positif": 1552,
+      "negatif": 622,
+      "ekstrem": 0,
+      "rate_min": -0.01609092,
+      "rate_maks": 0.00069196,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "IDUSDT",
+      "bulan": 40,
+      "gagal": [],
+      "baris": 3755,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3724,
+      "positif": 2619,
+      "negatif": 1136,
+      "ekstrem": 2,
+      "rate_min": -0.03,
+      "rate_maks": 0.00146944,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "INJUSDT",
+      "bulan": 47,
+      "gagal": [],
+      "baris": 4243,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2267,
+      "positif": 2692,
+      "negatif": 1551,
+      "ekstrem": 0,
+      "rate_min": -0.01183133,
+      "rate_maks": 0.00130169,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "IOUSDT",
+      "bulan": 25,
+      "gagal": [],
+      "baris": 4495,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2534,
+      "positif": 2549,
+      "negatif": 1946,
+      "ekstrem": 0,
+      "rate_min": -0.00472441,
+      "rate_maks": 0.00032421,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "JOEUSDT",
+      "bulan": 40,
+      "gagal": [],
+      "baris": 3571,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1671,
+      "positif": 3175,
+      "negatif": 396,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00164241,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "KAIAUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3439,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2230,
+      "positif": 2757,
+      "negatif": 682,
+      "ekstrem": 0,
+      "rate_min": -0.00381661,
+      "rate_maks": 0.0005744,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "KERNELUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2653,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2010,
+      "positif": 1088,
+      "negatif": 1565,
+      "ekstrem": 0,
+      "rate_min": -0.01898632,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "KSMUSDT",
+      "bulan": 69,
+      "gagal": [],
+      "baris": 6257,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3962,
+      "positif": 4858,
+      "negatif": 1399,
+      "ekstrem": 0,
+      "rate_min": -0.01582769,
+      "rate_maks": 0.00517288,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "LEVERUSDT",
+      "bulan": 31,
+      "gagal": [],
+      "baris": 2665,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 996,
+      "positif": 2440,
+      "negatif": 225,
+      "ekstrem": 1,
+      "rate_min": -0.00794277,
+      "rate_maks": 0.03,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "LITUSDT",
+      "bulan": 60,
+      "gagal": [],
+      "baris": 5881,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5620,
+      "positif": 5622,
+      "negatif": 259,
+      "ekstrem": 2,
+      "rate_min": -0.025,
+      "rate_maks": 0.00594589,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "LSKUSDT",
+      "bulan": 30,
+      "gagal": [],
+      "baris": 6262,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5977,
+      "positif": 3913,
+      "negatif": 2348,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00200934,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "LUNAUSDT",
+      "bulan": 17,
+      "gagal": [],
+      "baris": 1410,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1218,
+      "positif": 1046,
+      "negatif": 364,
+      "ekstrem": 0,
+      "rate_min": -0.00999975,
+      "rate_maks": 0.00537462,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "MASKUSDT",
+      "bulan": 59,
+      "gagal": [],
+      "baris": 7225,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6987,
+      "positif": 5677,
+      "negatif": 1548,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00153445,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "MBOXUSDT",
+      "bulan": 23,
+      "gagal": [],
+      "baris": 3978,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3951,
+      "positif": 3503,
+      "negatif": 475,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00113512,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "METISUSDT",
+      "bulan": 28,
+      "gagal": [],
+      "baris": 5045,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2675,
+      "positif": 4248,
+      "negatif": 797,
+      "ekstrem": 0,
+      "rate_min": -0.00577172,
+      "rate_maks": 0.0011752,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "MKRUSDT",
+      "bulan": 62,
+      "gagal": [],
+      "baris": 5557,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3423,
+      "positif": 4890,
+      "negatif": 667,
+      "ekstrem": 0,
+      "rate_min": -0.00593507,
+      "rate_maks": 0.00684145,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "MORPHOUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3481,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2241,
+      "positif": 2467,
+      "negatif": 1014,
+      "ekstrem": 0,
+      "rate_min": -0.00188444,
+      "rate_maks": 0.00079666,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "MUBARAKUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2821,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2060,
+      "positif": 2505,
+      "negatif": 316,
+      "ekstrem": 0,
+      "rate_min": -0.00145438,
+      "rate_maks": 0.00086885,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "NEARUSDT",
+      "bulan": 69,
+      "gagal": [],
+      "baris": 6256,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3961,
+      "positif": 4930,
+      "negatif": 1326,
+      "ekstrem": 0,
+      "rate_min": -0.00481102,
+      "rate_maks": 0.00559178,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "NFPUSDT",
+      "bulan": 31,
+      "gagal": [],
+      "baris": 5497,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2768,
+      "positif": 5157,
+      "negatif": 340,
+      "ekstrem": 0,
+      "rate_min": -0.00952672,
+      "rate_maks": 0.00307214,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "NOTUSDT",
+      "bulan": 26,
+      "gagal": [],
+      "baris": 4651,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2576,
+      "positif": 3688,
+      "negatif": 963,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00047579,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "OGUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2486,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1906,
+      "positif": 2205,
+      "negatif": 281,
+      "ekstrem": 0,
+      "rate_min": -0.0051915,
+      "rate_maks": 0.00010496,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ONEUSDT",
+      "bulan": 64,
+      "gagal": [],
+      "baris": 5792,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3613,
+      "positif": 4909,
+      "negatif": 883,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00396806,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ORCAUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 4445,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4145,
+      "positif": 2296,
+      "negatif": 2149,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00050955,
+      "interval_jam": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "symbol": "PAXGUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2763,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2042,
+      "positif": 2138,
+      "negatif": 624,
+      "ekstrem": 0,
+      "rate_min": -0.00062491,
+      "rate_maks": 0.00021025,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "PERPUSDT",
+      "bulan": 33,
+      "gagal": [],
+      "baris": 5295,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2517,
+      "positif": 4820,
+      "negatif": 475,
+      "ekstrem": 1,
+      "rate_min": -0.025,
+      "rate_maks": 0.0010619,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "PIXELUSDT",
+      "bulan": 29,
+      "gagal": [],
+      "baris": 5212,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5197,
+      "positif": 4422,
+      "negatif": 790,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00127785,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "POLYXUSDT",
+      "bulan": 33,
+      "gagal": [],
+      "baris": 5979,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5948,
+      "positif": 4481,
+      "negatif": 1498,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00124765,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "PROMPTUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2696,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2690,
+      "positif": 2389,
+      "negatif": 307,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00012274,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "PUMPUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2540,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1905,
+      "positif": 2139,
+      "negatif": 401,
+      "ekstrem": 0,
+      "rate_min": -0.00581101,
+      "rate_maks": 0.00931056,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "QTUMUSDT",
+      "bulan": 76,
+      "gagal": [],
+      "baris": 6939,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4309,
+      "positif": 5755,
+      "negatif": 1183,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00439507,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "REDUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 3286,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3168,
+      "positif": 1418,
+      "negatif": 1868,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.0001,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "RESOLVUSDT",
+      "bulan": 13,
+      "gagal": [],
+      "baris": 3089,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2841,
+      "positif": 1326,
+      "negatif": 1763,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "RNDRUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 1678,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 610,
+      "positif": 1416,
+      "negatif": 262,
+      "ekstrem": 0,
+      "rate_min": -0.00113784,
+      "rate_maks": 0.00170938,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "RSRUSDT",
+      "bulan": 69,
+      "gagal": [],
+      "baris": 6242,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3952,
+      "positif": 4872,
+      "negatif": 1370,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00563405,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "SAGAUSDT",
+      "bulan": 27,
+      "gagal": [],
+      "baris": 4876,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2635,
+      "positif": 4173,
+      "negatif": 703,
+      "ekstrem": 0,
+      "rate_min": -0.00442563,
+      "rate_maks": 0.00040068,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "SCRTUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3518,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2250,
+      "positif": 2896,
+      "negatif": 622,
+      "ekstrem": 0,
+      "rate_min": -0.00661811,
+      "rate_maks": 0.00042615,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "SHELLUSDT",
+      "bulan": 17,
+      "gagal": [],
+      "baris": 2988,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2095,
+      "positif": 2355,
+      "negatif": 633,
+      "ekstrem": 0,
+      "rate_min": -0.00975524,
+      "rate_maks": 0.0015469,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "SKYAIUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2480,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1902,
+      "positif": 2441,
+      "negatif": 39,
+      "ekstrem": 0,
+      "rate_min": -0.00136442,
+      "rate_maks": 0.00296408,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "SONICUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3231,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2154,
+      "positif": 1236,
+      "negatif": 1995,
+      "ekstrem": 0,
+      "rate_min": -0.00994954,
+      "rate_maks": 0.00043938,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "SPKUSDT",
+      "bulan": 13,
+      "gagal": [],
+      "baris": 2270,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1745,
+      "positif": 1491,
+      "negatif": 779,
+      "ekstrem": 0,
+      "rate_min": -0.01329525,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "STEEMUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5957,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5902,
+      "positif": 3990,
+      "negatif": 1967,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00123333,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "STOUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2787,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2748,
+      "positif": 2326,
+      "negatif": 461,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00337023,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "SUNUSDT",
+      "bulan": 23,
+      "gagal": [],
+      "baris": 4063,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2412,
+      "positif": 3159,
+      "negatif": 904,
+      "ekstrem": 0,
+      "rate_min": -0.00635944,
+      "rate_maks": 0.00042456,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "SWARMSUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3235,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2158,
+      "positif": 3208,
+      "negatif": 27,
+      "ekstrem": 0,
+      "rate_min": -0.00030472,
+      "rate_maks": 0.00189851,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "SYRUPUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2519,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1929,
+      "positif": 1778,
+      "negatif": 741,
+      "ekstrem": 0,
+      "rate_min": -0.01390578,
+      "rate_maks": 0.00019646,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "TAUSDT",
+      "bulan": 12,
+      "gagal": [],
+      "baris": 2067,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1583,
+      "positif": 2058,
+      "negatif": 9,
+      "ekstrem": 0,
+      "rate_min": -0.00423229,
+      "rate_maks": 0.00387129,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "TLMUSDT",
+      "bulan": 40,
+      "gagal": [],
+      "baris": 4037,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4029,
+      "positif": 3549,
+      "negatif": 488,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00135965,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "TONUSDT",
+      "bulan": 28,
+      "gagal": [],
+      "baris": 5064,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2651,
+      "positif": 3521,
+      "negatif": 1543,
+      "ekstrem": 0,
+      "rate_min": -0.00165521,
+      "rate_maks": 0.0035385,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "TRXUSDT",
+      "bulan": 78,
+      "gagal": [],
+      "baris": 7076,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4351,
+      "positif": 4624,
+      "negatif": 2451,
+      "ekstrem": 0,
+      "rate_min": -0.004875,
+      "rate_maks": 0.00378456,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "TUTUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2804,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2058,
+      "positif": 2734,
+      "negatif": 70,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00079595,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "USDCUSDT",
+      "bulan": 40,
+      "gagal": [],
+      "baris": 3618,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1716,
+      "positif": 1888,
+      "negatif": 1730,
+      "ekstrem": 0,
+      "rate_min": -0.00056128,
+      "rate_maks": 0.00141118,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "VANRYUSDT",
+      "bulan": 28,
+      "gagal": [],
+      "baris": 5035,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2671,
+      "positif": 4307,
+      "negatif": 727,
+      "ekstrem": 0,
+      "rate_min": -0.0100446,
+      "rate_maks": 0.00167414,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "VICUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 3054,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3008,
+      "positif": 2661,
+      "negatif": 393,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "VVVUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3105,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2126,
+      "positif": 1657,
+      "negatif": 1448,
+      "ekstrem": 0,
+      "rate_min": -0.01266612,
+      "rate_maks": 0.00110283,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "WIFUSDT",
+      "bulan": 30,
+      "gagal": [],
+      "baris": 5365,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2742,
+      "positif": 4085,
+      "negatif": 1280,
+      "ekstrem": 0,
+      "rate_min": -0.00635609,
+      "rate_maks": 0.00395284,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "XAIUSDT",
+      "bulan": 30,
+      "gagal": [],
+      "baris": 5419,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2754,
+      "positif": 4160,
+      "negatif": 1259,
+      "ekstrem": 0,
+      "rate_min": -0.01092612,
+      "rate_maks": 0.00103353,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "XTZUSDT",
+      "bulan": 77,
+      "gagal": [],
+      "baris": 8091,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 8077,
+      "positif": 6384,
+      "negatif": 1707,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00448353,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "YFIUSDT",
+      "bulan": 71,
+      "gagal": [],
+      "baris": 6389,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4062,
+      "positif": 5391,
+      "negatif": 998,
+      "ekstrem": 0,
+      "rate_min": -0.00485719,
+      "rate_maks": 0.00482477,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ZEREBROUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3265,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2170,
+      "positif": 3158,
+      "negatif": 107,
+      "ekstrem": 0,
+      "rate_min": -0.00227664,
+      "rate_maks": 0.01096649,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ZKUSDT",
+      "bulan": 25,
+      "gagal": [],
+      "baris": 4505,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4489,
+      "positif": 3515,
+      "negatif": 990,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.0004058,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "1000000MOGUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3601,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2272,
+      "positif": 3277,
+      "negatif": 324,
+      "ekstrem": 0,
+      "rate_min": -0.00087479,
+      "rate_maks": 0.00124075,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "1000FLOKIUSDT",
+      "bulan": 38,
+      "gagal": [],
+      "baris": 3454,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1566,
+      "positif": 2290,
+      "negatif": 1163,
+      "ekstrem": 1,
+      "rate_min": -0.02034567,
+      "rate_maks": 0.00186147,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "1000SATSUSDT",
+      "bulan": 31,
+      "gagal": [],
+      "baris": 5587,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2792,
+      "positif": 5114,
+      "negatif": 473,
+      "ekstrem": 0,
+      "rate_min": -0.00331731,
+      "rate_maks": 0.00121844,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "1INCHUSDT",
+      "bulan": 67,
+      "gagal": [],
+      "baris": 6040,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3816,
+      "positif": 4528,
+      "negatif": 1512,
+      "ekstrem": 0,
+      "rate_min": -0.009,
+      "rate_maks": 0.0075,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ACHUSDT",
+      "bulan": 41,
+      "gagal": [],
+      "baris": 3674,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1767,
+      "positif": 2898,
+      "negatif": 776,
+      "ekstrem": 1,
+      "rate_min": -0.03,
+      "rate_maks": 0.00207948,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "AERGOUSDT",
+      "bulan": 22,
+      "gagal": [],
+      "baris": 4002,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3956,
+      "positif": 2802,
+      "negatif": 1200,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00068408,
+      "interval_jam": [
+        2,
+        4
+      ]
+    },
+    {
+      "symbol": "AGTUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2438,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1869,
+      "positif": 2397,
+      "negatif": 41,
+      "ekstrem": 0,
+      "rate_min": -0.00534757,
+      "rate_maks": 0.00328573,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "AIXBTUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3342,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2197,
+      "positif": 2255,
+      "negatif": 1087,
+      "ekstrem": 0,
+      "rate_min": -0.00152601,
+      "rate_maks": 0.0042899,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ALGOUSDT",
+      "bulan": 73,
+      "gagal": [],
+      "baris": 6663,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4213,
+      "positif": 5605,
+      "negatif": 1058,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00410236,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ALTUSDT",
+      "bulan": 30,
+      "gagal": [],
+      "baris": 5323,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2734,
+      "positif": 4221,
+      "negatif": 1102,
+      "ekstrem": 0,
+      "rate_min": -0.01197215,
+      "rate_maks": 0.00099982,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "APEUSDT",
+      "bulan": 52,
+      "gagal": [],
+      "baris": 4699,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2666,
+      "positif": 2745,
+      "negatif": 1954,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00149157,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ARCUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3175,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2146,
+      "positif": 3025,
+      "negatif": 150,
+      "ekstrem": 0,
+      "rate_min": -0.01040781,
+      "rate_maks": 0.00296749,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ARUSDT",
+      "bulan": 58,
+      "gagal": [],
+      "baris": 5213,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3115,
+      "positif": 4431,
+      "negatif": 782,
+      "ekstrem": 0,
+      "rate_min": -0.00199239,
+      "rate_maks": 0.00156657,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ATHUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2725,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2026,
+      "positif": 1855,
+      "negatif": 870,
+      "ekstrem": 0,
+      "rate_min": -0.01403795,
+      "rate_maks": 0.00036653,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "AUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2391,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1837,
+      "positif": 2075,
+      "negatif": 316,
+      "ekstrem": 0,
+      "rate_min": -0.00077826,
+      "rate_maks": 0.0001,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "AWEUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2433,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1867,
+      "positif": 1778,
+      "negatif": 655,
+      "ekstrem": 0,
+      "rate_min": -0.01545534,
+      "rate_maks": 0.0001,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "B3USDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2658,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2644,
+      "positif": 2369,
+      "negatif": 289,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00149995,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "BANANAS31USDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2798,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2061,
+      "positif": 2630,
+      "negatif": 168,
+      "ekstrem": 0,
+      "rate_min": -0.00554426,
+      "rate_maks": 0.00278288,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "BANUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3556,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3522,
+      "positif": 3412,
+      "negatif": 144,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00740181,
+      "interval_jam": [
+        2,
+        4
+      ]
+    },
+    {
+      "symbol": "BEAMXUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5738,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2812,
+      "positif": 4943,
+      "negatif": 794,
+      "ekstrem": 0,
+      "rate_min": -0.00919698,
+      "rate_maks": 0.00095473,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "BIGTIMEUSDT",
+      "bulan": 33,
+      "gagal": [],
+      "baris": 5953,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2860,
+      "positif": 5245,
+      "negatif": 708,
+      "ekstrem": 0,
+      "rate_min": -0.008626,
+      "rate_maks": 0.00141997,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "BLZUSDT",
+      "bulan": 58,
+      "gagal": [],
+      "baris": 7133,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4442,
+      "positif": 6476,
+      "negatif": 657,
+      "ekstrem": 7,
+      "rate_min": -0.025,
+      "rate_maks": 0.005805,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "BOMEUSDT",
+      "bulan": 28,
+      "gagal": [],
+      "baris": 5019,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2669,
+      "positif": 4182,
+      "negatif": 837,
+      "ekstrem": 0,
+      "rate_min": -0.00049666,
+      "rate_maks": 0.00096509,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "BRUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2797,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2058,
+      "positif": 2651,
+      "negatif": 146,
+      "ekstrem": 0,
+      "rate_min": -0.01114505,
+      "rate_maks": 0.00088744,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "BULLAUSDT",
+      "bulan": 12,
+      "gagal": [],
+      "baris": 2349,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2295,
+      "positif": 2259,
+      "negatif": 90,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00768067,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "CAKEUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5827,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2834,
+      "positif": 4738,
+      "negatif": 1089,
+      "ekstrem": 0,
+      "rate_min": -0.0022059,
+      "rate_maks": 0.00106808,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "CETUSUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3607,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2274,
+      "positif": 3238,
+      "negatif": 369,
+      "ekstrem": 0,
+      "rate_min": -0.00313286,
+      "rate_maks": 0.00057721,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "CHILLGUYUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3481,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2241,
+      "positif": 3371,
+      "negatif": 110,
+      "ekstrem": 0,
+      "rate_min": -0.00319823,
+      "rate_maks": 0.00136335,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "COMPUSDT",
+      "bulan": 73,
+      "gagal": [],
+      "baris": 6575,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4153,
+      "positif": 4801,
+      "negatif": 1773,
+      "ekstrem": 0,
+      "rate_min": -0.01591719,
+      "rate_maks": 0.00280501,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "COWUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3607,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2274,
+      "positif": 3090,
+      "negatif": 517,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00042686,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "CTSIUSDT",
+      "bulan": 57,
+      "gagal": [],
+      "baris": 5126,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3041,
+      "positif": 4466,
+      "negatif": 660,
+      "ekstrem": 0,
+      "rate_min": -0.015,
+      "rate_maks": 0.00177195,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "DEEPUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2606,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1993,
+      "positif": 1535,
+      "negatif": 1071,
+      "ekstrem": 0,
+      "rate_min": -0.00310922,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "DENTUSDT",
+      "bulan": 62,
+      "gagal": [],
+      "baris": 5563,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3447,
+      "positif": 4920,
+      "negatif": 642,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00450992,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "DODOUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 1386,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1204,
+      "positif": 1098,
+      "negatif": 288,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.0075,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "DOLOUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2555,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1953,
+      "positif": 2118,
+      "negatif": 437,
+      "ekstrem": 0,
+      "rate_min": -0.01680179,
+      "rate_maks": 0.00264711,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "DUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3201,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3174,
+      "positif": 2519,
+      "negatif": 682,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "EDUUSDT",
+      "bulan": 39,
+      "gagal": [],
+      "baris": 3478,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1587,
+      "positif": 2993,
+      "negatif": 485,
+      "ekstrem": 0,
+      "rate_min": -0.01043491,
+      "rate_maks": 0.00151128,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ENJUSDT",
+      "bulan": 70,
+      "gagal": [],
+      "baris": 6885,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6804,
+      "positif": 4897,
+      "negatif": 1988,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00631868,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "ERAUSDT",
+      "bulan": 12,
+      "gagal": [],
+      "baris": 2177,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2147,
+      "positif": 1517,
+      "negatif": 660,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "ETHWUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5671,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2800,
+      "positif": 5561,
+      "negatif": 110,
+      "ekstrem": 0,
+      "rate_min": -0.00076622,
+      "rate_maks": 0.00169682,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "FIDAUSDT",
+      "bulan": 22,
+      "gagal": [],
+      "baris": 3936,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3918,
+      "positif": 2725,
+      "negatif": 1211,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00072338,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "FLOWUSDT",
+      "bulan": 53,
+      "gagal": [],
+      "baris": 5733,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5616,
+      "positif": 4290,
+      "negatif": 1443,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00346053,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "FTMUSDT",
+      "bulan": 58,
+      "gagal": [],
+      "baris": 5190,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3150,
+      "positif": 4566,
+      "negatif": 624,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00693447,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "GALAUSDT",
+      "bulan": 58,
+      "gagal": [],
+      "baris": 5242,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3143,
+      "positif": 4268,
+      "negatif": 973,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00132857,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "GLMUSDT",
+      "bulan": 29,
+      "gagal": [],
+      "baris": 5157,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2700,
+      "positif": 2936,
+      "negatif": 2220,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00117456,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "GPSUSDT",
+      "bulan": 17,
+      "gagal": [],
+      "baris": 3491,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3332,
+      "positif": 2375,
+      "negatif": 1116,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00010337,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "GTCUSDT",
+      "bulan": 61,
+      "gagal": [],
+      "baris": 5537,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3402,
+      "positif": 4867,
+      "negatif": 670,
+      "ekstrem": 0,
+      "rate_min": -0.01293186,
+      "rate_maks": 0.0019802,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "HBARUSDT",
+      "bulan": 64,
+      "gagal": [],
+      "baris": 5795,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3616,
+      "positif": 4484,
+      "negatif": 1310,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.0035822,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "HIGHUSDT",
+      "bulan": 41,
+      "gagal": [],
+      "baris": 3673,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1783,
+      "positif": 3103,
+      "negatif": 570,
+      "ekstrem": 1,
+      "rate_min": -0.02071448,
+      "rate_maks": 0.00193064,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "HOMEUSDT",
+      "bulan": 13,
+      "gagal": [],
+      "baris": 2657,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2534,
+      "positif": 1792,
+      "negatif": 865,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00014572,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "HUSDT",
+      "bulan": 13,
+      "gagal": [],
+      "baris": 2638,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2536,
+      "positif": 2091,
+      "negatif": 546,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00314567,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "ICPUSDT",
+      "bulan": 46,
+      "gagal": [],
+      "baris": 4197,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2227,
+      "positif": 3312,
+      "negatif": 885,
+      "ekstrem": 0,
+      "rate_min": -0.00740802,
+      "rate_maks": 0.00130299,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ILVUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5779,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2820,
+      "positif": 4763,
+      "negatif": 1016,
+      "ekstrem": 0,
+      "rate_min": -0.00767583,
+      "rate_maks": 0.00131688,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "IOSTUSDT",
+      "bulan": 77,
+      "gagal": [],
+      "baris": 6965,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4321,
+      "positif": 5581,
+      "negatif": 1384,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00556662,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "IPUSDT",
+      "bulan": 17,
+      "gagal": [],
+      "baris": 3569,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3393,
+      "positif": 1710,
+      "negatif": 1859,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00038606,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "JSTUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2570,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1965,
+      "positif": 1452,
+      "negatif": 1118,
+      "ekstrem": 0,
+      "rate_min": -0.00387283,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "KAITOUSDT",
+      "bulan": 17,
+      "gagal": [],
+      "baris": 2971,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2094,
+      "positif": 1521,
+      "negatif": 1450,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "KMNOUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3342,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2197,
+      "positif": 2173,
+      "negatif": 1168,
+      "ekstrem": 0,
+      "rate_min": -0.00405185,
+      "rate_maks": 0.00130088,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "LAUSDT",
+      "bulan": 13,
+      "gagal": [],
+      "baris": 4096,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3547,
+      "positif": 1952,
+      "negatif": 2144,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00026457,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "LINAUSDT",
+      "bulan": 52,
+      "gagal": [],
+      "baris": 4660,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2755,
+      "positif": 3991,
+      "negatif": 669,
+      "ekstrem": 1,
+      "rate_min": -0.02,
+      "rate_maks": 0.03,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "LPTUSDT",
+      "bulan": 56,
+      "gagal": [],
+      "baris": 8967,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 8688,
+      "positif": 5292,
+      "negatif": 3675,
+      "ekstrem": 7,
+      "rate_min": -0.025,
+      "rate_maks": 0.00130647,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "LTCUSDT",
+      "bulan": 78,
+      "gagal": [],
+      "baris": 7094,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4355,
+      "positif": 5811,
+      "negatif": 971,
+      "ekstrem": 0,
+      "rate_min": -0.004875,
+      "rate_maks": 0.00380638,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "MAGICUSDT",
+      "bulan": 42,
+      "gagal": [],
+      "baris": 5068,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4454,
+      "positif": 3367,
+      "negatif": 1701,
+      "ekstrem": 3,
+      "rate_min": -0.03,
+      "rate_maks": 0.00118644,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "MATICUSDT",
+      "bulan": 69,
+      "gagal": [],
+      "baris": 6233,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3946,
+      "positif": 5347,
+      "negatif": 886,
+      "ekstrem": 0,
+      "rate_min": -0.00681345,
+      "rate_maks": 0.0056224,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "MELANIAUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3158,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2139,
+      "positif": 2472,
+      "negatif": 686,
+      "ekstrem": 0,
+      "rate_min": -0.0174189,
+      "rate_maks": 0.00139456,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "MEUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 4646,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4273,
+      "positif": 1701,
+      "negatif": 2945,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.0005662,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "MLNUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2484,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1850,
+      "positif": 2320,
+      "negatif": 164,
+      "ekstrem": 0,
+      "rate_min": -0.0139376,
+      "rate_maks": 0.00083855,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "MOVEUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3445,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3433,
+      "positif": 1277,
+      "negatif": 2168,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00061921,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "MUSDT",
+      "bulan": 12,
+      "gagal": [],
+      "baris": 3080,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2802,
+      "positif": 2207,
+      "negatif": 873,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00101472,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "NEIROUSDT",
+      "bulan": 22,
+      "gagal": [],
+      "baris": 3914,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2358,
+      "positif": 3157,
+      "negatif": 756,
+      "ekstrem": 0,
+      "rate_min": -0.00080557,
+      "rate_maks": 0.00070595,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "NILUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2780,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2053,
+      "positif": 2537,
+      "negatif": 243,
+      "ekstrem": 0,
+      "rate_min": -0.00747339,
+      "rate_maks": 0.0001,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "NTRNUSDT",
+      "bulan": 29,
+      "gagal": [],
+      "baris": 5166,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2377,
+      "positif": 4753,
+      "negatif": 413,
+      "ekstrem": 0,
+      "rate_min": -0.0170431,
+      "rate_maks": 0.0046443,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "OMGUSDT",
+      "bulan": 60,
+      "gagal": [],
+      "baris": 5448,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5447,
+      "positif": 4870,
+      "negatif": 578,
+      "ekstrem": 6,
+      "rate_min": -0.024,
+      "rate_maks": 0.00325239,
+      "interval_jam": [
+        2,
+        8
+      ]
+    },
+    {
+      "symbol": "ONGUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5677,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2800,
+      "positif": 4413,
+      "negatif": 1264,
+      "ekstrem": 0,
+      "rate_min": -0.01622598,
+      "rate_maks": 0.00125162,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ORDIUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5797,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2824,
+      "positif": 4913,
+      "negatif": 883,
+      "ekstrem": 0,
+      "rate_min": -0.00095272,
+      "rate_maks": 0.00132451,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "PENDLEUSDT",
+      "bulan": 36,
+      "gagal": [],
+      "baris": 3214,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1462,
+      "positif": 2622,
+      "negatif": 592,
+      "ekstrem": 0,
+      "rate_min": -0.00323475,
+      "rate_maks": 0.00151776,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "PHAUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3284,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2181,
+      "positif": 2308,
+      "negatif": 976,
+      "ekstrem": 0,
+      "rate_min": -0.00960942,
+      "rate_maks": 8.574e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "PLUMEUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 3425,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3225,
+      "positif": 1912,
+      "negatif": 1512,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00047502,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "POPCATUSDT",
+      "bulan": 23,
+      "gagal": [],
+      "baris": 4063,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2412,
+      "positif": 3478,
+      "negatif": 585,
+      "ekstrem": 0,
+      "rate_min": -0.00340213,
+      "rate_maks": 0.00143392,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "PROMUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3187,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2150,
+      "positif": 2829,
+      "negatif": 358,
+      "ekstrem": 0,
+      "rate_min": -0.01022726,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "PUNDIXUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2558,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1956,
+      "positif": 1966,
+      "negatif": 592,
+      "ekstrem": 0,
+      "rate_min": -0.01286157,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "RAREUSDT",
+      "bulan": 23,
+      "gagal": [],
+      "baris": 4105,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2427,
+      "positif": 3150,
+      "negatif": 955,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00038261,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "REEFUSDT",
+      "bulan": 53,
+      "gagal": [],
+      "baris": 5473,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4568,
+      "positif": 4616,
+      "negatif": 857,
+      "ekstrem": 4,
+      "rate_min": -0.03,
+      "rate_maks": 0.01760327,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "REZUSDT",
+      "bulan": 27,
+      "gagal": [],
+      "baris": 4747,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2596,
+      "positif": 2905,
+      "negatif": 1842,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00046422,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "RONINUSDT",
+      "bulan": 29,
+      "gagal": [],
+      "baris": 5255,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2720,
+      "positif": 3265,
+      "negatif": 1990,
+      "ekstrem": 0,
+      "rate_min": -0.01662776,
+      "rate_maks": 0.00120599,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "RUNEUSDT",
+      "bulan": 70,
+      "gagal": [],
+      "baris": 6377,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4054,
+      "positif": 5199,
+      "negatif": 1178,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.0066555,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "SAHARAUSDT",
+      "bulan": 13,
+      "gagal": [],
+      "baris": 3051,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2795,
+      "positif": 1807,
+      "negatif": 1244,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00046795,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "SCRUSDT",
+      "bulan": 21,
+      "gagal": [],
+      "baris": 3698,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2301,
+      "positif": 3274,
+      "negatif": 424,
+      "ekstrem": 0,
+      "rate_min": -0.00109676,
+      "rate_maks": 0.00099956,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "SIGNUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 4156,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3651,
+      "positif": 2942,
+      "negatif": 1214,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 9.496e-05,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "SNXUSDT",
+      "bulan": 71,
+      "gagal": [],
+      "baris": 6440,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4086,
+      "positif": 4830,
+      "negatif": 1610,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00565081,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "SOONUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 3509,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3181,
+      "positif": 1740,
+      "negatif": 1769,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00185522,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "SPXUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3403,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2215,
+      "positif": 2581,
+      "negatif": 822,
+      "ekstrem": 0,
+      "rate_min": -0.00252797,
+      "rate_maks": 0.00087337,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "STGUSDT",
+      "bulan": 47,
+      "gagal": [],
+      "baris": 4351,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4320,
+      "positif": 3106,
+      "negatif": 1245,
+      "ekstrem": 1,
+      "rate_min": -0.03,
+      "rate_maks": 0.00151689,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "STRKUSDT",
+      "bulan": 29,
+      "gagal": [],
+      "baris": 5167,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2703,
+      "positif": 3685,
+      "negatif": 1482,
+      "ekstrem": 0,
+      "rate_min": -0.00169406,
+      "rate_maks": 0.0013281,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "SUPERUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 7009,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6572,
+      "positif": 4247,
+      "negatif": 2762,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00097408,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "SXPUSDT",
+      "bulan": 66,
+      "gagal": [],
+      "baris": 5890,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3657,
+      "positif": 5042,
+      "negatif": 848,
+      "ekstrem": 0,
+      "rate_min": -0.01759891,
+      "rate_maks": 0.0075,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "SYSUSDT",
+      "bulan": 22,
+      "gagal": [],
+      "baris": 3828,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2240,
+      "positif": 3439,
+      "negatif": 389,
+      "ekstrem": 0,
+      "rate_min": -0.00219451,
+      "rate_maks": 0.00224485,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "THETAUSDT",
+      "bulan": 74,
+      "gagal": [],
+      "baris": 6679,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4217,
+      "positif": 5583,
+      "negatif": 1094,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00481224,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "TNSRUSDT",
+      "bulan": 27,
+      "gagal": [],
+      "baris": 5667,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5420,
+      "positif": 3899,
+      "negatif": 1768,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00052199,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "TRBUSDT",
+      "bulan": 70,
+      "gagal": [],
+      "baris": 9357,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6264,
+      "positif": 8168,
+      "negatif": 1189,
+      "ekstrem": 18,
+      "rate_min": -0.03,
+      "rate_maks": 0.00695638,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "TSTUSDT",
+      "bulan": 17,
+      "gagal": [],
+      "baris": 3037,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2114,
+      "positif": 2894,
+      "negatif": 143,
+      "ekstrem": 0,
+      "rate_min": -0.0027213,
+      "rate_maks": 0.00150976,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "TWTUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5822,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2835,
+      "positif": 5346,
+      "negatif": 476,
+      "ekstrem": 0,
+      "rate_min": -0.00073758,
+      "rate_maks": 0.00129396,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "USTCUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5678,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2801,
+      "positif": 4823,
+      "negatif": 855,
+      "ekstrem": 0,
+      "rate_min": -0.00175756,
+      "rate_maks": 0.00106045,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "VELODROMEUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3385,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2206,
+      "positif": 3133,
+      "negatif": 252,
+      "ekstrem": 0,
+      "rate_min": -0.00866555,
+      "rate_maks": 0.00030923,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "VINEUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2754,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1850,
+      "positif": 2523,
+      "negatif": 231,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.0019123,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "WALUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2761,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2040,
+      "positif": 1059,
+      "negatif": 1702,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "WLDUSDT",
+      "bulan": 36,
+      "gagal": [],
+      "baris": 3217,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1462,
+      "positif": 2267,
+      "negatif": 950,
+      "ekstrem": 0,
+      "rate_min": -0.00145228,
+      "rate_maks": 0.00137251,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "XLMUSDT",
+      "bulan": 78,
+      "gagal": [],
+      "baris": 7063,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4349,
+      "positif": 5361,
+      "negatif": 1702,
+      "ekstrem": 0,
+      "rate_min": -0.004875,
+      "rate_maks": 0.00383364,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "XVGUSDT",
+      "bulan": 36,
+      "gagal": [],
+      "baris": 3291,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3266,
+      "positif": 2814,
+      "negatif": 477,
+      "ekstrem": 2,
+      "rate_min": -0.0274009,
+      "rate_maks": 0.00134259,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "YGGUSDT",
+      "bulan": 35,
+      "gagal": [],
+      "baris": 6170,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6159,
+      "positif": 5265,
+      "negatif": 905,
+      "ekstrem": 1,
+      "rate_min": -0.025,
+      "rate_maks": 0.0008552,
+      "interval_jam": [
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "ZETAUSDT",
+      "bulan": 29,
+      "gagal": [],
+      "baris": 5277,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2724,
+      "positif": 4033,
+      "negatif": 1244,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00098822,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "ZROUSDT",
+      "bulan": 25,
+      "gagal": [],
+      "baris": 4441,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2520,
+      "positif": 2607,
+      "negatif": 1833,
+      "ekstrem": 0,
+      "rate_min": -0.01122639,
+      "rate_maks": 0.00047459,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "1000BONKUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5707,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2810,
+      "positif": 4349,
+      "negatif": 1357,
+      "ekstrem": 0,
+      "rate_min": -0.0066559,
+      "rate_maks": 0.00417077,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "1000LUNCUSDT",
+      "bulan": 46,
+      "gagal": [],
+      "baris": 4171,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2203,
+      "positif": 3098,
+      "negatif": 1073,
+      "ekstrem": 0,
+      "rate_min": -0.00472487,
+      "rate_maks": 0.0016897,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "1000SHIBUSDT",
+      "bulan": 62,
+      "gagal": [],
+      "baris": 5632,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3487,
+      "positif": 4059,
+      "negatif": 1572,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00200858,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "1MBABYDOGEUSDT",
+      "bulan": 22,
+      "gagal": [],
+      "baris": 3914,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2358,
+      "positif": 3059,
+      "negatif": 855,
+      "ekstrem": 0,
+      "rate_min": -0.00241325,
+      "rate_maks": 0.00104984,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ACTUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3577,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2270,
+      "positif": 3029,
+      "negatif": 548,
+      "ekstrem": 0,
+      "rate_min": -0.01608479,
+      "rate_maks": 0.00058302,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "AEROUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3439,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2230,
+      "positif": 2074,
+      "negatif": 1365,
+      "ekstrem": 0,
+      "rate_min": -0.01767668,
+      "rate_maks": 0.0020101,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "AINUSDT",
+      "bulan": 12,
+      "gagal": [],
+      "baris": 2132,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1629,
+      "positif": 2108,
+      "negatif": 24,
+      "ekstrem": 0,
+      "rate_min": -0.00284734,
+      "rate_maks": 0.00150805,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "AKROUSDT",
+      "bulan": 17,
+      "gagal": [],
+      "baris": 1480,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1278,
+      "positif": 1335,
+      "negatif": 145,
+      "ekstrem": 0,
+      "rate_min": -0.009,
+      "rate_maks": 0.00739425,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ALICEUSDT",
+      "bulan": 64,
+      "gagal": [],
+      "baris": 6228,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6208,
+      "positif": 5428,
+      "negatif": 800,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00421891,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "ANIMEUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3418,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3325,
+      "positif": 1960,
+      "negatif": 1458,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "API3USDT",
+      "bulan": 53,
+      "gagal": [],
+      "baris": 8337,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 8150,
+      "positif": 5969,
+      "negatif": 2368,
+      "ekstrem": 2,
+      "rate_min": -0.025,
+      "rate_maks": 0.00095607,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "ARKMUSDT",
+      "bulan": 36,
+      "gagal": [],
+      "baris": 3208,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1459,
+      "positif": 2650,
+      "negatif": 558,
+      "ekstrem": 0,
+      "rate_min": -0.00942189,
+      "rate_maks": 0.00145475,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ASRUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2522,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1930,
+      "positif": 2413,
+      "negatif": 109,
+      "ekstrem": 0,
+      "rate_min": -0.01001162,
+      "rate_maks": 0.00041419,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ATOMUSDT",
+      "bulan": 77,
+      "gagal": [],
+      "baris": 7009,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4333,
+      "positif": 4664,
+      "negatif": 2344,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.0075,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "AVAAIUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3175,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2146,
+      "positif": 3125,
+      "negatif": 50,
+      "ekstrem": 0,
+      "rate_min": -0.00085044,
+      "rate_maks": 0.00255077,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "AXLUSDT",
+      "bulan": 28,
+      "gagal": [],
+      "baris": 5797,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5581,
+      "positif": 4274,
+      "negatif": 1523,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00106846,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "BABYUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2755,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2729,
+      "positif": 1915,
+      "negatif": 840,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "BANANAUSDT",
+      "bulan": 23,
+      "gagal": [],
+      "baris": 4263,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4219,
+      "positif": 2866,
+      "negatif": 1397,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00045452,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "BATUSDT",
+      "bulan": 77,
+      "gagal": [],
+      "baris": 6989,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4325,
+      "positif": 5851,
+      "negatif": 1138,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00415429,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "BELUSDT",
+      "bulan": 68,
+      "gagal": [],
+      "baris": 6152,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3896,
+      "positif": 5254,
+      "negatif": 898,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00693193,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "BIOUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 4071,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3833,
+      "positif": 1503,
+      "negatif": 2568,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00017975,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "BMTUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2821,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2060,
+      "positif": 2377,
+      "negatif": 444,
+      "ekstrem": 0,
+      "rate_min": -0.01992075,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "BRETTUSDT",
+      "bulan": 23,
+      "gagal": [],
+      "baris": 4076,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2420,
+      "positif": 3446,
+      "negatif": 630,
+      "ekstrem": 0,
+      "rate_min": -0.00144264,
+      "rate_maks": 0.00102427,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "BSVUSDT",
+      "bulan": 33,
+      "gagal": [],
+      "baris": 5906,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2855,
+      "positif": 4480,
+      "negatif": 1426,
+      "ekstrem": 0,
+      "rate_min": -0.00329504,
+      "rate_maks": 0.00133701,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "BUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2425,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1862,
+      "positif": 2424,
+      "negatif": 1,
+      "ekstrem": 0,
+      "rate_min": -0.00095712,
+      "rate_maks": 0.00190994,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "CATIUSDT",
+      "bulan": 22,
+      "gagal": [],
+      "baris": 3896,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2356,
+      "positif": 3513,
+      "negatif": 383,
+      "ekstrem": 0,
+      "rate_min": -0.00153507,
+      "rate_maks": 0.00043248,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "CFXUSDT",
+      "bulan": 41,
+      "gagal": [],
+      "baris": 3680,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1773,
+      "positif": 3183,
+      "negatif": 497,
+      "ekstrem": 0,
+      "rate_min": -0.00108949,
+      "rate_maks": 0.00143787,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "CHRUSDT",
+      "bulan": 64,
+      "gagal": [],
+      "baris": 5810,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3630,
+      "positif": 5042,
+      "negatif": 767,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00431264,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "COOKIEUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3236,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2159,
+      "positif": 2691,
+      "negatif": 545,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00057921,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "CROSSUSDT",
+      "bulan": 12,
+      "gagal": [],
+      "baris": 2132,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1629,
+      "positif": 2101,
+      "negatif": 31,
+      "ekstrem": 0,
+      "rate_min": -0.00105802,
+      "rate_maks": 0.00124968,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "CUSDT",
+      "bulan": 12,
+      "gagal": [],
+      "baris": 2230,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2184,
+      "positif": 1824,
+      "negatif": 406,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00061686,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "DEFIUSDT",
+      "bulan": 61,
+      "gagal": [],
+      "baris": 5431,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3343,
+      "positif": 4458,
+      "negatif": 973,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.0075,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "DEXEUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3320,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2193,
+      "positif": 3041,
+      "negatif": 279,
+      "ekstrem": 0,
+      "rate_min": -0.00179571,
+      "rate_maks": 0.00088576,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "DODOXUSDT",
+      "bulan": 35,
+      "gagal": [],
+      "baris": 6152,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3059,
+      "positif": 5896,
+      "negatif": 256,
+      "ekstrem": 0,
+      "rate_min": -0.01237827,
+      "rate_maks": 0.00121578,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "DOODUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 3695,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3329,
+      "positif": 2189,
+      "negatif": 1505,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00105601,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "DUSKUSDT",
+      "bulan": 54,
+      "gagal": [],
+      "baris": 5480,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5455,
+      "positif": 4404,
+      "negatif": 1076,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00134241,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "EGLDUSDT",
+      "bulan": 70,
+      "gagal": [],
+      "baris": 6349,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4032,
+      "positif": 5538,
+      "negatif": 811,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00656088,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ENSUSDT",
+      "bulan": 56,
+      "gagal": [],
+      "baris": 5023,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2949,
+      "positif": 4065,
+      "negatif": 958,
+      "ekstrem": 0,
+      "rate_min": -0.00071034,
+      "rate_maks": 0.0017361,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ETCUSDT",
+      "bulan": 78,
+      "gagal": [],
+      "baris": 7073,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4351,
+      "positif": 5517,
+      "negatif": 1556,
+      "ekstrem": 0,
+      "rate_min": -0.005025,
+      "rate_maks": 0.00484806,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "FARTCOINUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3342,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2197,
+      "positif": 3172,
+      "negatif": 170,
+      "ekstrem": 0,
+      "rate_min": -0.00083415,
+      "rate_maks": 0.00159307,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "FILUSDT",
+      "bulan": 69,
+      "gagal": [],
+      "baris": 6251,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3958,
+      "positif": 5107,
+      "negatif": 1144,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00418946,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "FLUXUSDT",
+      "bulan": 22,
+      "gagal": [],
+      "baris": 3993,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2380,
+      "positif": 3292,
+      "negatif": 701,
+      "ekstrem": 0,
+      "rate_min": -0.00733659,
+      "rate_maks": 0.0004528,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "FUNUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2823,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2659,
+      "positif": 2002,
+      "negatif": 821,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00176634,
+      "interval_jam": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "symbol": "GALUSDT",
+      "bulan": 28,
+      "gagal": [],
+      "baris": 2499,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1324,
+      "positif": 2139,
+      "negatif": 360,
+      "ekstrem": 0,
+      "rate_min": -0.01092724,
+      "rate_maks": 0.00134796,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "GMTUSDT",
+      "bulan": 52,
+      "gagal": [],
+      "baris": 5314,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5288,
+      "positif": 3541,
+      "negatif": 1772,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00119706,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "GRASSUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3595,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2272,
+      "positif": 2696,
+      "negatif": 899,
+      "ekstrem": 0,
+      "rate_min": -0.00315123,
+      "rate_maks": 0.00078133,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "GUNUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2737,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2033,
+      "positif": 1951,
+      "negatif": 786,
+      "ekstrem": 0,
+      "rate_min": -0.00898975,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "HEIUSDT",
+      "bulan": 17,
+      "gagal": [],
+      "baris": 3028,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3020,
+      "positif": 2822,
+      "negatif": 206,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00025765,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "HIPPOUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 4082,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3779,
+      "positif": 4011,
+      "negatif": 71,
+      "ekstrem": 0,
+      "rate_min": -0.00336403,
+      "rate_maks": 0.02,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "HOOKUSDT",
+      "bulan": 39,
+      "gagal": [],
+      "baris": 3478,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1645,
+      "positif": 3216,
+      "negatif": 262,
+      "ekstrem": 0,
+      "rate_min": -0.00274503,
+      "rate_maks": 0.00203416,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "HYPERUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2755,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2722,
+      "positif": 1809,
+      "negatif": 946,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "ICXUSDT",
+      "bulan": 70,
+      "gagal": [],
+      "baris": 6713,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6700,
+      "positif": 5714,
+      "negatif": 999,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00681955,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "IMXUSDT",
+      "bulan": 53,
+      "gagal": [],
+      "baris": 7779,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4686,
+      "positif": 5615,
+      "negatif": 2163,
+      "ekstrem": 1,
+      "rate_min": -0.025,
+      "rate_maks": 0.0008495,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "IOTAUSDT",
+      "bulan": 77,
+      "gagal": [],
+      "baris": 6992,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4328,
+      "positif": 5727,
+      "negatif": 1265,
+      "ekstrem": 0,
+      "rate_min": -0.00759516,
+      "rate_maks": 0.00748375,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "JASMYUSDT",
+      "bulan": 51,
+      "gagal": [],
+      "baris": 4601,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2579,
+      "positif": 3204,
+      "negatif": 1397,
+      "ekstrem": 0,
+      "rate_min": -0.00701523,
+      "rate_maks": 0.00184935,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "JTOUSDT",
+      "bulan": 31,
+      "gagal": [],
+      "baris": 5612,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2794,
+      "positif": 4105,
+      "negatif": 1507,
+      "ekstrem": 0,
+      "rate_min": -0.01726278,
+      "rate_maks": 0.00127057,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "KASUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5742,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2815,
+      "positif": 5170,
+      "negatif": 572,
+      "ekstrem": 0,
+      "rate_min": -0.00121102,
+      "rate_maks": 0.00262432,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "KNCUSDT",
+      "bulan": 73,
+      "gagal": [],
+      "baris": 6599,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4168,
+      "positif": 5498,
+      "negatif": 1101,
+      "ekstrem": 0,
+      "rate_min": -0.01979319,
+      "rate_maks": 0.00603195,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "LAYERUSDT",
+      "bulan": 17,
+      "gagal": [],
+      "baris": 5142,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4487,
+      "positif": 2374,
+      "negatif": 2768,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00016147,
+      "interval_jam": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "symbol": "LINKUSDT",
+      "bulan": 78,
+      "gagal": [],
+      "baris": 7070,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4351,
+      "positif": 5803,
+      "negatif": 923,
+      "ekstrem": 0,
+      "rate_min": -0.004875,
+      "rate_maks": 0.004444,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "LQTYUSDT",
+      "bulan": 40,
+      "gagal": [],
+      "baris": 3628,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1725,
+      "positif": 2986,
+      "negatif": 642,
+      "ekstrem": 0,
+      "rate_min": -0.01336813,
+      "rate_maks": 0.00112199,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "LUMIAUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3356,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2201,
+      "positif": 3066,
+      "negatif": 290,
+      "ekstrem": 0,
+      "rate_min": -0.00814228,
+      "rate_maks": 0.00062558,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "MANAUSDT",
+      "bulan": 64,
+      "gagal": [],
+      "baris": 5801,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3622,
+      "positif": 4380,
+      "negatif": 1421,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00384486,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "MAVIAUSDT",
+      "bulan": 29,
+      "gagal": [],
+      "baris": 5162,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2703,
+      "positif": 4966,
+      "negatif": 196,
+      "ekstrem": 0,
+      "rate_min": -0.00570367,
+      "rate_maks": 0.0017143,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "MEMEUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5821,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2834,
+      "positif": 4523,
+      "negatif": 1298,
+      "ekstrem": 0,
+      "rate_min": -0.01865725,
+      "rate_maks": 0.00133407,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "MEWUSDT",
+      "bulan": 25,
+      "gagal": [],
+      "baris": 4459,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2526,
+      "positif": 3405,
+      "negatif": 1054,
+      "ekstrem": 0,
+      "rate_min": -0.00645459,
+      "rate_maks": 0.00079857,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "MOCAUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3368,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2201,
+      "positif": 2595,
+      "negatif": 773,
+      "ekstrem": 0,
+      "rate_min": -0.00962922,
+      "rate_maks": 0.00955048,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "MOVRUSDT",
+      "bulan": 31,
+      "gagal": [],
+      "baris": 5503,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2770,
+      "positif": 4884,
+      "negatif": 619,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00123076,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "MYROUSDT",
+      "bulan": 21,
+      "gagal": [],
+      "baris": 3715,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1635,
+      "positif": 3649,
+      "negatif": 66,
+      "ekstrem": 0,
+      "rate_min": -0.00171228,
+      "rate_maks": 0.00749045,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "NEOUSDT",
+      "bulan": 77,
+      "gagal": [],
+      "baris": 6977,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4325,
+      "positif": 5865,
+      "negatif": 1112,
+      "ekstrem": 0,
+      "rate_min": -0.00760987,
+      "rate_maks": 0.004659,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "NKNUSDT",
+      "bulan": 59,
+      "gagal": [],
+      "baris": 6169,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5755,
+      "positif": 5204,
+      "negatif": 965,
+      "ekstrem": 0,
+      "rate_min": -0.01790626,
+      "rate_maks": 0.00412159,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "NXPCUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2469,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1894,
+      "positif": 1752,
+      "negatif": 717,
+      "ekstrem": 0,
+      "rate_min": -0.00843988,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "OMUSDT",
+      "bulan": 25,
+      "gagal": [],
+      "baris": 4623,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4573,
+      "positif": 2580,
+      "negatif": 2043,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00116984,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "ONTUSDT",
+      "bulan": 77,
+      "gagal": [],
+      "baris": 8022,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 7872,
+      "positif": 5920,
+      "negatif": 2101,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00480755,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "OXTUSDT",
+      "bulan": 33,
+      "gagal": [],
+      "baris": 2937,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1277,
+      "positif": 2503,
+      "negatif": 434,
+      "ekstrem": 0,
+      "rate_min": -0.01102396,
+      "rate_maks": 0.00141149,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "PENGUUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3361,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2201,
+      "positif": 2251,
+      "negatif": 1110,
+      "ekstrem": 0,
+      "rate_min": -0.00481974,
+      "rate_maks": 0.00078905,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "PHBUSDT",
+      "bulan": 40,
+      "gagal": [],
+      "baris": 3567,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1696,
+      "positif": 3331,
+      "negatif": 236,
+      "ekstrem": 0,
+      "rate_min": -0.0058012,
+      "rate_maks": 0.0016738,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "PNUTUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3577,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2270,
+      "positif": 2738,
+      "negatif": 839,
+      "ekstrem": 0,
+      "rate_min": -0.00084132,
+      "rate_maks": 0.00071179,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "PORTALUSDT",
+      "bulan": 29,
+      "gagal": [],
+      "baris": 5113,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2685,
+      "positif": 4514,
+      "negatif": 599,
+      "ekstrem": 0,
+      "rate_min": -0.01164116,
+      "rate_maks": 0.00127241,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "PUFFERUSDT",
+      "bulan": 11,
+      "gagal": [],
+      "baris": 1849,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1425,
+      "positif": 1570,
+      "negatif": 279,
+      "ekstrem": 0,
+      "rate_min": -0.01644569,
+      "rate_maks": 0.00021349,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "PYTHUSDT",
+      "bulan": 32,
+      "gagal": [],
+      "baris": 5707,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2810,
+      "positif": 4303,
+      "negatif": 1404,
+      "ekstrem": 0,
+      "rate_min": -0.00465582,
+      "rate_maks": 0.00110126,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "RAYSOLUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3399,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2214,
+      "positif": 2998,
+      "negatif": 401,
+      "ekstrem": 0,
+      "rate_min": -0.00910862,
+      "rate_maks": 0.00149249,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "RENDERUSDT",
+      "bulan": 24,
+      "gagal": [],
+      "baris": 4226,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2455,
+      "positif": 3109,
+      "negatif": 1117,
+      "ekstrem": 0,
+      "rate_min": -0.00138511,
+      "rate_maks": 0.00049347,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "RIFUSDT",
+      "bulan": 33,
+      "gagal": [],
+      "baris": 5900,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2855,
+      "positif": 5126,
+      "negatif": 774,
+      "ekstrem": 0,
+      "rate_min": -0.01442618,
+      "rate_maks": 0.0019463,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "ROSEUSDT",
+      "bulan": 55,
+      "gagal": [],
+      "baris": 4931,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2869,
+      "positif": 4163,
+      "negatif": 768,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00118616,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "RVNUSDT",
+      "bulan": 65,
+      "gagal": [],
+      "baris": 7805,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 7561,
+      "positif": 6540,
+      "negatif": 1265,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00373391,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "SANDUSDT",
+      "bulan": 66,
+      "gagal": [],
+      "baris": 5948,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3740,
+      "positif": 4599,
+      "negatif": 1349,
+      "ekstrem": 0,
+      "rate_min": -0.009,
+      "rate_maks": 0.00541132,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "SEIUSDT",
+      "bulan": 35,
+      "gagal": [],
+      "baris": 3148,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1439,
+      "positif": 1693,
+      "negatif": 1455,
+      "ekstrem": 0,
+      "rate_min": -0.00716713,
+      "rate_maks": 0.00174247,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "SIRENUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 3267,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3120,
+      "positif": 2467,
+      "negatif": 800,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00702524,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "SOLUSDT",
+      "bulan": 70,
+      "gagal": [],
+      "baris": 6424,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6404,
+      "positif": 4586,
+      "negatif": 1837,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00332469,
+      "interval_jam": [
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "SOPHUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 3553,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3192,
+      "positif": 1926,
+      "negatif": 1627,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "SQDUSDT",
+      "bulan": 13,
+      "gagal": [],
+      "baris": 2716,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2586,
+      "positif": 1850,
+      "negatif": 865,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00052464,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "STMXUSDT",
+      "bulan": 52,
+      "gagal": [],
+      "baris": 6519,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6494,
+      "positif": 5840,
+      "negatif": 678,
+      "ekstrem": 3,
+      "rate_min": -0.025,
+      "rate_maks": 0.00360232,
+      "interval_jam": [
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "STXUSDT",
+      "bulan": 41,
+      "gagal": [],
+      "baris": 3677,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1770,
+      "positif": 2878,
+      "negatif": 799,
+      "ekstrem": 0,
+      "rate_min": -0.00523417,
+      "rate_maks": 0.00186917,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "SUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3182,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2150,
+      "positif": 2291,
+      "negatif": 891,
+      "ekstrem": 0,
+      "rate_min": -0.00159813,
+      "rate_maks": 0.00010021,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "SXTUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2547,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1949,
+      "positif": 1705,
+      "negatif": 842,
+      "ekstrem": 0,
+      "rate_min": -0.0088157,
+      "rate_maks": 0.00013517,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "TACUSDT",
+      "bulan": 12,
+      "gagal": [],
+      "baris": 2102,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1604,
+      "positif": 2056,
+      "negatif": 46,
+      "ekstrem": 0,
+      "rate_min": -0.00215101,
+      "rate_maks": 0.00521896,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "THEUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3481,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2241,
+      "positif": 2831,
+      "negatif": 650,
+      "ekstrem": 0,
+      "rate_min": -0.00601609,
+      "rate_maks": 0.00046062,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "TOKENUSDT",
+      "bulan": 26,
+      "gagal": [],
+      "baris": 4577,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1882,
+      "positif": 4104,
+      "negatif": 473,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00391081,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "TRUMPUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3169,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2141,
+      "positif": 1332,
+      "negatif": 1837,
+      "ekstrem": 0,
+      "rate_min": -0.00683466,
+      "rate_maks": 0.00265219,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "TURBOUSDT",
+      "bulan": 26,
+      "gagal": [],
+      "baris": 4567,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2558,
+      "positif": 3122,
+      "negatif": 1445,
+      "ekstrem": 0,
+      "rate_min": -0.01722125,
+      "rate_maks": 0.00069095,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "UMAUSDT",
+      "bulan": 38,
+      "gagal": [],
+      "baris": 6124,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3507,
+      "positif": 5033,
+      "negatif": 1091,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00119951,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "USUALUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3355,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2201,
+      "positif": 1924,
+      "negatif": 1431,
+      "ekstrem": 0,
+      "rate_min": -0.01620648,
+      "rate_maks": 7.78e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "VELVETUSDT",
+      "bulan": 12,
+      "gagal": [],
+      "baris": 2102,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1604,
+      "positif": 2091,
+      "negatif": 11,
+      "ekstrem": 0,
+      "rate_min": -0.00051956,
+      "rate_maks": 0.0023227,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "VIRTUALUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3403,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2215,
+      "positif": 1920,
+      "negatif": 1483,
+      "ekstrem": 0,
+      "rate_min": -0.00156143,
+      "rate_maks": 0.00108112,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "WAXPUSDT",
+      "bulan": 33,
+      "gagal": [],
+      "baris": 5960,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5948,
+      "positif": 4889,
+      "negatif": 1071,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.0012287,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "WOOUSDT",
+      "bulan": 51,
+      "gagal": [],
+      "baris": 4636,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2610,
+      "positif": 3848,
+      "negatif": 788,
+      "ekstrem": 0,
+      "rate_min": -0.00426564,
+      "rate_maks": 0.00096408,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "XMRUSDT",
+      "bulan": 77,
+      "gagal": [],
+      "baris": 7026,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4337,
+      "positif": 5838,
+      "negatif": 1188,
+      "ekstrem": 0,
+      "rate_min": -0.00652497,
+      "rate_maks": 0.00426181,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "XVSUSDT",
+      "bulan": 39,
+      "gagal": [],
+      "baris": 3527,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1630,
+      "positif": 2939,
+      "negatif": 588,
+      "ekstrem": 0,
+      "rate_min": -0.00930667,
+      "rate_maks": 0.00116023,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ZECUSDT",
+      "bulan": 77,
+      "gagal": [],
+      "baris": 7016,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4336,
+      "positif": 6038,
+      "negatif": 978,
+      "ekstrem": 0,
+      "rate_min": -0.01639734,
+      "rate_maks": 0.00407061,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ZILUSDT",
+      "bulan": 73,
+      "gagal": [],
+      "baris": 7226,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 7175,
+      "positif": 5834,
+      "negatif": 1392,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.0047497,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "ZRXUSDT",
+      "bulan": 73,
+      "gagal": [],
+      "baris": 7272,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 7226,
+      "positif": 5276,
+      "negatif": 1996,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00599248,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "1000CATUSDT",
+      "bulan": 21,
+      "gagal": [],
+      "baris": 3703,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2301,
+      "positif": 3174,
+      "negatif": 529,
+      "ekstrem": 0,
+      "rate_min": -0.00428434,
+      "rate_maks": 0.00124533,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "1000PEPEUSDT",
+      "bulan": 38,
+      "gagal": [],
+      "baris": 3457,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1568,
+      "positif": 2649,
+      "negatif": 808,
+      "ekstrem": 0,
+      "rate_min": -0.00230358,
+      "rate_maks": 0.00237744,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "1000WHYUSDT",
+      "bulan": 17,
+      "gagal": [],
+      "baris": 2862,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1766,
+      "positif": 2732,
+      "negatif": 130,
+      "ekstrem": 0,
+      "rate_min": -0.00279169,
+      "rate_maks": 0.01012011,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "bulan": 69,
+      "gagal": [],
+      "baris": 6251,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3958,
+      "positif": 5318,
+      "negatif": 932,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00529812,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ACXUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3427,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2224,
+      "positif": 3251,
+      "negatif": 176,
+      "ekstrem": 0,
+      "rate_min": -0.01688123,
+      "rate_maks": 0.00070325,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "AEVOUSDT",
+      "bulan": 28,
+      "gagal": [],
+      "baris": 5035,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2671,
+      "positif": 4331,
+      "negatif": 704,
+      "ekstrem": 0,
+      "rate_min": -0.00880646,
+      "rate_maks": 0.00052114,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "AIOTUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2557,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1955,
+      "positif": 1994,
+      "negatif": 563,
+      "ekstrem": 0,
+      "rate_min": -0.01220844,
+      "rate_maks": 0.00636574,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "AKTUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3536,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2255,
+      "positif": 2890,
+      "negatif": 646,
+      "ekstrem": 0,
+      "rate_min": -0.01228258,
+      "rate_maks": 0.00218,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "ALPHAUSDT",
+      "bulan": 59,
+      "gagal": [],
+      "baris": 5296,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3250,
+      "positif": 4780,
+      "negatif": 516,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00541942,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ANKRUSDT",
+      "bulan": 66,
+      "gagal": [],
+      "baris": 6292,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6278,
+      "positif": 4865,
+      "negatif": 1427,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.0075,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "APTUSDT",
+      "bulan": 45,
+      "gagal": [],
+      "baris": 4054,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2102,
+      "positif": 2585,
+      "negatif": 1469,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00142671,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ARKUSDT",
+      "bulan": 34,
+      "gagal": [],
+      "baris": 4554,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4547,
+      "positif": 3395,
+      "negatif": 1159,
+      "ekstrem": 6,
+      "rate_min": -0.03,
+      "rate_maks": 0.00164309,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "ASTRUSDT",
+      "bulan": 41,
+      "gagal": [],
+      "baris": 3701,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1794,
+      "positif": 2819,
+      "negatif": 882,
+      "ekstrem": 0,
+      "rate_min": -0.01431307,
+      "rate_maks": 0.00191238,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "AUCTIONUSDT",
+      "bulan": 31,
+      "gagal": [],
+      "baris": 5631,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5600,
+      "positif": 4200,
+      "negatif": 1431,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00122241,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "AVAUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3385,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2206,
+      "positif": 3059,
+      "negatif": 326,
+      "ekstrem": 0,
+      "rate_min": -0.00123068,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "AXSUSDT",
+      "bulan": 68,
+      "gagal": [],
+      "baris": 6794,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6744,
+      "positif": 2659,
+      "negatif": 4135,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00699948,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "BAKEUSDT",
+      "bulan": 54,
+      "gagal": [],
+      "baris": 4795,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2848,
+      "positif": 4314,
+      "negatif": 481,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00595113,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "BANDUSDT",
+      "bulan": 72,
+      "gagal": [],
+      "baris": 6488,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4112,
+      "positif": 5460,
+      "negatif": 1028,
+      "ekstrem": 0,
+      "rate_min": -0.01875,
+      "rate_maks": 0.00622582,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "BBUSDT",
+      "bulan": 26,
+      "gagal": [],
+      "baris": 4669,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2578,
+      "positif": 3488,
+      "negatif": 1181,
+      "ekstrem": 0,
+      "rate_min": -0.00466739,
+      "rate_maks": 0.00043282,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "BERAUSDT",
+      "bulan": 17,
+      "gagal": [],
+      "baris": 3055,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2114,
+      "positif": 797,
+      "negatif": 2258,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "BLUEBIRDUSDT",
+      "bulan": 21,
+      "gagal": [],
+      "baris": 1874,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 834,
+      "positif": 1497,
+      "negatif": 377,
+      "ekstrem": 0,
+      "rate_min": -0.0013969,
+      "rate_maks": 0.00257931,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "BNBUSDT",
+      "bulan": 77,
+      "gagal": [],
+      "baris": 6998,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4331,
+      "positif": 1730,
+      "negatif": 1738,
+      "ekstrem": 0,
+      "rate_min": -0.00584369,
+      "rate_maks": 0.00441898,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "BROCCOLI714USDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2834,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2824,
+      "positif": 2639,
+      "negatif": 195,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00099751,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "BTCDOMUSDT",
+      "bulan": 61,
+      "gagal": [],
+      "baris": 5507,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3375,
+      "positif": 4881,
+      "negatif": 626,
+      "ekstrem": 0,
+      "rate_min": -0.00637412,
+      "rate_maks": 0.00692908,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "BZRXUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 1445,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1183,
+      "positif": 1384,
+      "negatif": 61,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00624505,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "CELOUSDT",
+      "bulan": 58,
+      "gagal": [],
+      "baris": 5213,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3115,
+      "positif": 4449,
+      "negatif": 764,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00161949,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "CGPTUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3342,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2197,
+      "positif": 3031,
+      "negatif": 311,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00233317,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "CHZUSDT",
+      "bulan": 66,
+      "gagal": [],
+      "baris": 6021,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3799,
+      "positif": 4658,
+      "negatif": 1363,
+      "ekstrem": 0,
+      "rate_min": -0.00917941,
+      "rate_maks": 0.0059638,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "COSUSDT",
+      "bulan": 22,
+      "gagal": [],
+      "baris": 3794,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3766,
+      "positif": 3106,
+      "negatif": 688,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00047598,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "CRVUSDT",
+      "bulan": 70,
+      "gagal": [],
+      "baris": 6386,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4061,
+      "positif": 4631,
+      "negatif": 1755,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00470345,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "CYBERUSDT",
+      "bulan": 35,
+      "gagal": [],
+      "baris": 6149,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6132,
+      "positif": 4267,
+      "negatif": 1882,
+      "ekstrem": 3,
+      "rate_min": -0.025,
+      "rate_maks": 0.0009506,
+      "interval_jam": [
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "DEGENUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3174,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1976,
+      "positif": 3012,
+      "negatif": 162,
+      "ekstrem": 0,
+      "rate_min": -0.00212792,
+      "rate_maks": 0.00224595,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "DFUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2418,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1518,
+      "positif": 2287,
+      "negatif": 131,
+      "ekstrem": 0,
+      "rate_min": -0.00285084,
+      "rate_maks": 0.00125848,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "bulan": 72,
+      "gagal": [],
+      "baris": 6545,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4136,
+      "positif": 5370,
+      "negatif": 1175,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00377995,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "DOTUSDT",
+      "bulan": 71,
+      "gagal": [],
+      "baris": 6422,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4079,
+      "positif": 4235,
+      "negatif": 2187,
+      "ekstrem": 0,
+      "rate_min": -0.00331019,
+      "rate_maks": 0.00379921,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "DYDXUSDT",
+      "bulan": 58,
+      "gagal": [],
+      "baris": 5266,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3165,
+      "positif": 4366,
+      "negatif": 900,
+      "ekstrem": 0,
+      "rate_min": -0.00237123,
+      "rate_maks": 0.00136264,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "EIGENUSDT",
+      "bulan": 21,
+      "gagal": [],
+      "baris": 3825,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2325,
+      "positif": 2706,
+      "negatif": 1119,
+      "ekstrem": 0,
+      "rate_min": -0.00277223,
+      "rate_maks": 0.00059683,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "EOSUSDT",
+      "bulan": 78,
+      "gagal": [],
+      "baris": 7097,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4357,
+      "positif": 6504,
+      "negatif": 593,
+      "ekstrem": 0,
+      "rate_min": -0.004875,
+      "rate_maks": 0.00338628,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ETHFIUSDT",
+      "bulan": 28,
+      "gagal": [],
+      "baris": 5005,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2664,
+      "positif": 3638,
+      "negatif": 1367,
+      "ekstrem": 0,
+      "rate_min": -0.00318454,
+      "rate_maks": 0.00077928,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "FETUSDT",
+      "bulan": 42,
+      "gagal": [],
+      "baris": 3785,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1868,
+      "positif": 2870,
+      "negatif": 915,
+      "ekstrem": 0,
+      "rate_min": -0.00351973,
+      "rate_maks": 0.00175229,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "FIOUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 3456,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3449,
+      "positif": 3186,
+      "negatif": 269,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00272696,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "FOOTBALLUSDT",
+      "bulan": 24,
+      "gagal": [],
+      "baris": 2064,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 999,
+      "positif": 1842,
+      "negatif": 222,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.0075,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "FUSDT",
+      "bulan": 13,
+      "gagal": [],
+      "baris": 2549,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2456,
+      "positif": 1542,
+      "negatif": 1007,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00166222,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "GASUSDT",
+      "bulan": 33,
+      "gagal": [],
+      "baris": 5917,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5862,
+      "positif": 4452,
+      "negatif": 1464,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00125195,
+      "interval_jam": [
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "GMXUSDT",
+      "bulan": 41,
+      "gagal": [],
+      "baris": 3689,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1782,
+      "positif": 2904,
+      "negatif": 785,
+      "ekstrem": 0,
+      "rate_min": -0.00546006,
+      "rate_maks": 0.00157289,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "GRIFFAINUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3265,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2170,
+      "positif": 3110,
+      "negatif": 155,
+      "ekstrem": 0,
+      "rate_min": -0.00179754,
+      "rate_maks": 0.00123825,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "GUSDT",
+      "bulan": 23,
+      "gagal": [],
+      "baris": 4155,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4134,
+      "positif": 2970,
+      "negatif": 1185,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00056588,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "HFTUSDT",
+      "bulan": 39,
+      "gagal": [],
+      "baris": 3547,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1649,
+      "positif": 2891,
+      "negatif": 656,
+      "ekstrem": 0,
+      "rate_min": -0.0122891,
+      "rate_maks": 0.00139914,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "HIVEUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3409,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3376,
+      "positif": 2108,
+      "negatif": 1301,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "HOTUSDT",
+      "bulan": 64,
+      "gagal": [],
+      "baris": 5756,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3589,
+      "positif": 5179,
+      "negatif": 577,
+      "ekstrem": 0,
+      "rate_min": -0.0173027,
+      "rate_maks": 0.00550436,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "HYPEUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2378,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1826,
+      "positif": 2009,
+      "negatif": 369,
+      "ekstrem": 0,
+      "rate_min": -0.00065132,
+      "rate_maks": 0.00197693,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "IDOLUSDT",
+      "bulan": 12,
+      "gagal": [],
+      "baris": 2168,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1662,
+      "positif": 2152,
+      "negatif": 16,
+      "ekstrem": 0,
+      "rate_min": -0.00429561,
+      "rate_maks": 0.00259617,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "INITUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 2701,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2691,
+      "positif": 2089,
+      "negatif": 612,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00015634,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "IOTXUSDT",
+      "bulan": 59,
+      "gagal": [],
+      "baris": 5353,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3239,
+      "positif": 4561,
+      "negatif": 792,
+      "ekstrem": 0,
+      "rate_min": -0.00439236,
+      "rate_maks": 0.0021866,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "JELLYJELLYUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2780,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2776,
+      "positif": 2606,
+      "negatif": 174,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.01586473,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "JUPUSDT",
+      "bulan": 29,
+      "gagal": [],
+      "baris": 5284,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2726,
+      "positif": 3059,
+      "negatif": 2225,
+      "ekstrem": 0,
+      "rate_min": -0.00125229,
+      "rate_maks": 0.0008926,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "KAVAUSDT",
+      "bulan": 72,
+      "gagal": [],
+      "baris": 7937,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 7718,
+      "positif": 5523,
+      "negatif": 2414,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00622522,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "KOMAUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3403,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2215,
+      "positif": 3264,
+      "negatif": 139,
+      "ekstrem": 0,
+      "rate_min": -0.00308528,
+      "rate_maks": 0.00370933,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "LDOUSDT",
+      "bulan": 46,
+      "gagal": [],
+      "baris": 4133,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2174,
+      "positif": 3516,
+      "negatif": 617,
+      "ekstrem": 0,
+      "rate_min": -0.00553862,
+      "rate_maks": 0.00137891,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "LISTAUSDT",
+      "bulan": 25,
+      "gagal": [],
+      "baris": 4441,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2520,
+      "positif": 3932,
+      "negatif": 509,
+      "ekstrem": 0,
+      "rate_min": -0.00333139,
+      "rate_maks": 0.00049106,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "LRCUSDT",
+      "bulan": 66,
+      "gagal": [],
+      "baris": 6662,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6527,
+      "positif": 4704,
+      "negatif": 1957,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00612703,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "LUNA2USDT",
+      "bulan": 46,
+      "gagal": [],
+      "baris": 5340,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5156,
+      "positif": 3828,
+      "negatif": 1512,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00187928,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "MANTAUSDT",
+      "bulan": 30,
+      "gagal": [],
+      "baris": 5365,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2742,
+      "positif": 4050,
+      "negatif": 1315,
+      "ekstrem": 0,
+      "rate_min": -0.00538034,
+      "rate_maks": 0.00116368,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "MAVUSDT",
+      "bulan": 37,
+      "gagal": [],
+      "baris": 3295,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1474,
+      "positif": 2751,
+      "negatif": 544,
+      "ekstrem": 0,
+      "rate_min": -0.01603132,
+      "rate_maks": 0.00151155,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "MERLUSDT",
+      "bulan": 14,
+      "gagal": [],
+      "baris": 2686,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2601,
+      "positif": 1838,
+      "negatif": 848,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00052673,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "MINAUSDT",
+      "bulan": 41,
+      "gagal": [],
+      "baris": 3731,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1822,
+      "positif": 2986,
+      "negatif": 745,
+      "ekstrem": 2,
+      "rate_min": -0.03,
+      "rate_maks": 0.00227773,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "MOODENGUSDT",
+      "bulan": 21,
+      "gagal": [],
+      "baris": 3680,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2295,
+      "positif": 2618,
+      "negatif": 1062,
+      "ekstrem": 0,
+      "rate_min": -0.00889684,
+      "rate_maks": 0.00129299,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "MTLUSDT",
+      "bulan": 64,
+      "gagal": [],
+      "baris": 5758,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5755,
+      "positif": 4064,
+      "negatif": 1694,
+      "ekstrem": 1,
+      "rate_min": -0.02304742,
+      "rate_maks": 0.00340444,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "MYXUSDT",
+      "bulan": 13,
+      "gagal": [],
+      "baris": 3731,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3301,
+      "positif": 3159,
+      "negatif": 572,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00290694,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "NEWTUSDT",
+      "bulan": 13,
+      "gagal": [],
+      "baris": 2689,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2558,
+      "positif": 1933,
+      "negatif": 756,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 5e-05,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "NMRUSDT",
+      "bulan": 37,
+      "gagal": [],
+      "baris": 6318,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6293,
+      "positif": 4585,
+      "negatif": 1733,
+      "ekstrem": 1,
+      "rate_min": -0.02254191,
+      "rate_maks": 0.00102119,
+      "interval_jam": [
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "OGNUSDT",
+      "bulan": 63,
+      "gagal": [],
+      "baris": 6127,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6110,
+      "positif": 4990,
+      "negatif": 1137,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00393117,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "ONDOUSDT",
+      "bulan": 30,
+      "gagal": [],
+      "baris": 5353,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2738,
+      "positif": 3704,
+      "negatif": 1649,
+      "ekstrem": 0,
+      "rate_min": -0.00482215,
+      "rate_maks": 0.00228396,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "OPUSDT",
+      "bulan": 49,
+      "gagal": [],
+      "baris": 4472,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2464,
+      "positif": 3470,
+      "negatif": 1002,
+      "ekstrem": 0,
+      "rate_min": -0.00354675,
+      "rate_maks": 0.00202586,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "PARTIUSDT",
+      "bulan": 16,
+      "gagal": [],
+      "baris": 2773,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2049,
+      "positif": 1883,
+      "negatif": 890,
+      "ekstrem": 0,
+      "rate_min": -0.01466864,
+      "rate_maks": 0.00025692,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "PEOPLEUSDT",
+      "bulan": 55,
+      "gagal": [],
+      "baris": 4951,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2888,
+      "positif": 4207,
+      "negatif": 744,
+      "ekstrem": 0,
+      "rate_min": -0.00712992,
+      "rate_maks": 0.00154029,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "PIPPINUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 4471,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4049,
+      "positif": 2892,
+      "negatif": 1579,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00847599,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "POLUSDT",
+      "bulan": 22,
+      "gagal": [],
+      "baris": 3931,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2363,
+      "positif": 2404,
+      "negatif": 1527,
+      "ekstrem": 0,
+      "rate_min": -0.00099255,
+      "rate_maks": 0.00044099,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "POWRUSDT",
+      "bulan": 33,
+      "gagal": [],
+      "baris": 5868,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2843,
+      "positif": 5051,
+      "negatif": 817,
+      "ekstrem": 0,
+      "rate_min": -0.01698996,
+      "rate_maks": 0.0012934,
+      "interval_jam": [
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "PUMPBTCUSDT",
+      "bulan": 13,
+      "gagal": [],
+      "baris": 2299,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1765,
+      "positif": 2195,
+      "negatif": 104,
+      "ekstrem": 0,
+      "rate_min": -0.00924019,
+      "rate_maks": 0.00745888,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "QNTUSDT",
+      "bulan": 45,
+      "gagal": [],
+      "baris": 4049,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2097,
+      "positif": 2922,
+      "negatif": 1127,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00104764,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "RDNTUSDT",
+      "bulan": 36,
+      "gagal": [],
+      "baris": 3311,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3296,
+      "positif": 2363,
+      "negatif": 948,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.0009424,
+      "interval_jam": [
+        1,
+        8
+      ]
+    },
+    {
+      "symbol": "RENUSDT",
+      "bulan": 57,
+      "gagal": [],
+      "baris": 5131,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3108,
+      "positif": 4560,
+      "negatif": 571,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00629403,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "RLCUSDT",
+      "bulan": 72,
+      "gagal": [],
+      "baris": 6482,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4109,
+      "positif": 5186,
+      "negatif": 1296,
+      "ekstrem": 0,
+      "rate_min": -0.01276765,
+      "rate_maks": 0.00592455,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "RPLUSDT",
+      "bulan": 22,
+      "gagal": [],
+      "baris": 4058,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4029,
+      "positif": 3096,
+      "negatif": 962,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00047345,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "SAFEUSDT",
+      "bulan": 21,
+      "gagal": [],
+      "baris": 3679,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2295,
+      "positif": 3054,
+      "negatif": 624,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00108213,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "SANTOSUSDT",
+      "bulan": 21,
+      "gagal": [],
+      "baris": 3661,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2289,
+      "positif": 3474,
+      "negatif": 187,
+      "ekstrem": 0,
+      "rate_min": -0.00643056,
+      "rate_maks": 0.00047305,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "SFPUSDT",
+      "bulan": 65,
+      "gagal": [],
+      "baris": 5858,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3668,
+      "positif": 5293,
+      "negatif": 565,
+      "ekstrem": 0,
+      "rate_min": -0.01,
+      "rate_maks": 0.00425944,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "SKLUSDT",
+      "bulan": 67,
+      "gagal": [],
+      "baris": 6932,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6870,
+      "positif": 5700,
+      "negatif": 1232,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00692557,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "SOLVUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3175,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2146,
+      "positif": 2981,
+      "negatif": 194,
+      "ekstrem": 0,
+      "rate_min": -0.00442466,
+      "rate_maks": 0.00076738,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "SPELLUSDT",
+      "bulan": 46,
+      "gagal": [],
+      "baris": 4180,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2211,
+      "positif": 3152,
+      "negatif": 1028,
+      "ekstrem": 2,
+      "rate_min": -0.03,
+      "rate_maks": 0.00157118,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "SSVUSDT",
+      "bulan": 41,
+      "gagal": [],
+      "baris": 3671,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1764,
+      "positif": 3253,
+      "negatif": 418,
+      "ekstrem": 0,
+      "rate_min": -0.00132714,
+      "rate_maks": 0.00149849,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "STORJUSDT",
+      "bulan": 70,
+      "gagal": [],
+      "baris": 7029,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 6986,
+      "positif": 5317,
+      "negatif": 1712,
+      "ekstrem": 1,
+      "rate_min": -0.03,
+      "rate_maks": 0.00605817,
+      "interval_jam": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "SUIUSDT",
+      "bulan": 38,
+      "gagal": [],
+      "baris": 3463,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1572,
+      "positif": 2486,
+      "negatif": 977,
+      "ekstrem": 0,
+      "rate_min": -0.00286299,
+      "rate_maks": 0.00136507,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "SUSHIUSDT",
+      "bulan": 70,
+      "gagal": [],
+      "baris": 6377,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4054,
+      "positif": 5521,
+      "negatif": 855,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00408861,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "SYNUSDT",
+      "bulan": 23,
+      "gagal": [],
+      "baris": 4099,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2425,
+      "positif": 3526,
+      "negatif": 573,
+      "ekstrem": 0,
+      "rate_min": -0.01279132,
+      "rate_maks": 0.00043512,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "TAOUSDT",
+      "bulan": 27,
+      "gagal": [],
+      "baris": 4861,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2626,
+      "positif": 3727,
+      "negatif": 1134,
+      "ekstrem": 0,
+      "rate_min": -0.00359598,
+      "rate_maks": 0.0004558,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "TIAUSDT",
+      "bulan": 33,
+      "gagal": [],
+      "baris": 5838,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2838,
+      "positif": 3807,
+      "negatif": 2030,
+      "ekstrem": 0,
+      "rate_min": -0.00241487,
+      "rate_maks": 0.00100553,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "TOMOUSDT",
+      "bulan": 47,
+      "gagal": [],
+      "baris": 4210,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2755,
+      "positif": 3837,
+      "negatif": 373,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00533241,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "TRUUSDT",
+      "bulan": 38,
+      "gagal": [],
+      "baris": 3426,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1580,
+      "positif": 2800,
+      "negatif": 626,
+      "ekstrem": 0,
+      "rate_min": -0.01375486,
+      "rate_maks": 0.00272887,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "TUSDT",
+      "bulan": 41,
+      "gagal": [],
+      "baris": 5094,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 5060,
+      "positif": 3531,
+      "negatif": 1563,
+      "ekstrem": 1,
+      "rate_min": -0.03,
+      "rate_maks": 0.00164716,
+      "interval_jam": [
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "symbol": "UNIUSDT",
+      "bulan": 70,
+      "gagal": [],
+      "baris": 6338,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4022,
+      "positif": 5630,
+      "negatif": 708,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00411945,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "VANAUSDT",
+      "bulan": 19,
+      "gagal": [],
+      "baris": 3367,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2201,
+      "positif": 1806,
+      "negatif": 1561,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.00033327,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "VETUSDT",
+      "bulan": 77,
+      "gagal": [],
+      "baris": 6986,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4325,
+      "positif": 6087,
+      "negatif": 899,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00516163,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "VTHOUSDT",
+      "bulan": 18,
+      "gagal": [],
+      "baris": 3146,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2136,
+      "positif": 2453,
+      "negatif": 693,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 7.519e-05,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "WCTUSDT",
+      "bulan": 15,
+      "gagal": [],
+      "baris": 3515,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3242,
+      "positif": 2511,
+      "negatif": 1004,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 6.622e-05,
+      "interval_jam": [
+        1,
+        4
+      ]
+    },
+    {
+      "symbol": "WUSDT",
+      "bulan": 27,
+      "gagal": [],
+      "baris": 4909,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2642,
+      "positif": 3883,
+      "negatif": 1026,
+      "ekstrem": 0,
+      "rate_min": -0.00346923,
+      "rate_maks": 0.00075373,
+      "interval_jam": [
+        4
+      ]
+    },
+    {
+      "symbol": "XRPUSDT",
+      "bulan": 78,
+      "gagal": [],
+      "baris": 7103,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 4359,
+      "positif": 5673,
+      "negatif": 1429,
+      "ekstrem": 0,
+      "rate_min": -0.005025,
+      "rate_maks": 0.00487889,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "YFIIUSDT",
+      "bulan": 20,
+      "gagal": [],
+      "baris": 1765,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 1464,
+      "positif": 1510,
+      "negatif": 255,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00484048,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ZENUSDT",
+      "bulan": 68,
+      "gagal": [],
+      "baris": 6134,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 3882,
+      "positif": 5500,
+      "negatif": 634,
+      "ekstrem": 0,
+      "rate_min": -0.0075,
+      "rate_maks": 0.00545874,
+      "interval_jam": [
+        8
+      ]
+    },
+    {
+      "symbol": "ZKJUSDT",
+      "bulan": 12,
+      "gagal": [],
+      "baris": 2124,
+      "duplikat": 0,
+      "tidak_urut": 0,
+      "celah": 2118,
+      "positif": 1986,
+      "negatif": 138,
+      "ekstrem": 0,
+      "rate_min": -0.02,
+      "rate_maks": 0.0025954,
+      "interval_jam": [
+        1,
+        4
+      ]
+    }
+  ]
 }
