@@ -1,6 +1,6 @@
 # Log run backtest
 
-Commit: `4bedd8813f8fd9e343c89401bc1d9c73fcf5a416`
+Commit: `2ab240690919b2b4cedd88dfe4fd447f4d8cd8c7`
 Status langkah jalan: `success`
 
 ```
@@ -36,12 +36,13 @@ universe layak 447, diuji 40
   "total_R": 604.2635452881991,
   "ekspektasi_R": 0.031703229028761756
 }
-entri acak: nyata 0.07385R, p 0.009900990099009901, 30s
+biaya rerata: transaksi 0.03424944244020956R, funding 0.0012308753298671748R, 2 trade berbiaya di atas 1R
+entri acak: nyata 0.07385R, p 0.009900990099009901, 29s
 # Backtest H-001 — breakout Donchian 1 jam
 
 > Penembusan Donchian pada penutupan bar 1 jam menghasilkan ekspektasi positif setelah fee, slippage, dan funding nyata, pada perp USDT yang lolos ambang kelayakan, dinilai hanya di luar sampel.
 
-Sidik hipotesis `f172b1ba07f25717` · ruang 3 kombinasi · 40 simbol · 30.6s
+Sidik hipotesis `f172b1ba07f25717` · ruang 3 kombinasi · 40 simbol · 29.9s
 
 ## Putusan
 

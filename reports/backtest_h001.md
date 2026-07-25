@@ -2,7 +2,7 @@
 
 > Penembusan Donchian pada penutupan bar 1 jam menghasilkan ekspektasi positif setelah fee, slippage, dan funding nyata, pada perp USDT yang lolos ambang kelayakan, dinilai hanya di luar sampel.
 
-Sidik hipotesis `f172b1ba07f25717` · ruang 3 kombinasi · 40 simbol · 30.6s
+Sidik hipotesis `f172b1ba07f25717` · ruang 3 kombinasi · 40 simbol · 29.9s
 
 ## Putusan
 
@@ -25,15 +25,37 @@ Gerbang gagal: forward_fill, invarian_risiko, checksum
 
 | Gerbang | Putusan | Nilai | Ambang | Catatan |
 |---|---|---|---|---|
-| forward_fill | GAGAL | 0.2137 | 0.3 | 4 dari 40 simbol gagal |
+| forward_fill | GAGAL | 0.2137 | 0.3 | 4 dari 40 simbol gagal — 1000WHYUSDT (rasio bar datar 0.2137, deret terpanjang 3111 bar); AERGOUSDT (rasio bar datar 0.0288, deret terpanjang 470 bar); AIUSDT (rasio bar datar 0.0943, deret terpanjang 2101 bar); ALPHAUSDT (rasio bar datar 0.1472, deret terpanjang 7310 bar) |
 | buy_and_hold | lulus | 0.8007 | 0.0 | median selisih 0.8007; unggul di 36/40 simbol |
 | entri_acak | lulus | 0.0099 | 0.05 | 0 dari 100 permutasi menyamai atau melampaui |
 | lookahead | lulus | 0.0000 | 0.0 | 0 sinyal berubah saat data masa depan dihapus |
 | invarian_risiko | GAGAL | -2.5853 | -1.5 | kerugian terburuk -2.585R dari 19060 perdagangan |
 | funding | lulus | 11238.2546 | 0.0 | total funding mutlak 11238.254635 atas 19060 trade |
 | overlap | lulus | 0.0000 | 0.0 | 0 dari 40 simbol gagal |
-| checksum | GAGAL | 4.0000 | 0.0 | hilang 0, asing 4, tidak cocok 0 |
+| checksum | GAGAL | — | — | tidak dapat dinilai: manifest baru ditulis pada run ini; run berikutnya akan membandingkannya |
 | survivorship | lulus | 0.7450 | 0.5 | porsi delisted diuji 0.0250 vs universe 0.0336 |
+
+## Pembongkaran biaya
+
+Mesin mengisi stop tepat di harga stop, sehingga kerugian yang berasal dari harga tidak dapat melewati 1R. Kerugian di luar itu wajib berasal dari biaya, dan tabel ini memperlihatkannya per perdagangan.
+
+- Rerata biaya transaksi: **0.0342R**
+- Rerata biaya funding: **0.0012R**
+- Rerata jarak stop terhadap harga: **3.582%**
+- Perdagangan dengan biaya melebihi 1R: **2** dari 19,060
+
+| Simbol | R | Kotor R | Transaksi R | Funding R | Stop % harga | Jam | Alasan |
+|---|---|---|---|---|---|---|---|
+| ANIMEUSDT | -2.585 | -1.013 | 0.026 | 1.545 | 3.847 | 130.0 | stop |
+| AERGOUSDT | -2.276 | -1.021 | 0.042 | 1.212 | 2.391 | 76.0 | stop |
+| AERGOUSDT | -1.498 | -1.043 | 0.086 | 0.370 | 1.162 | 34.0 | stop |
+| AERGOUSDT | -1.479 | -1.019 | 0.038 | 0.422 | 2.659 | 174.0 | stop |
+| AERGOUSDT | -1.468 | -1.007 | 0.013 | 0.448 | 7.921 | 62.0 | stop |
+| ACEUSDT | -1.436 | -1.023 | 0.045 | 0.369 | 2.272 | 96.0 | stop |
+| AERGOUSDT | -1.423 | -1.007 | 0.014 | 0.401 | 7.162 | 79.0 | stop |
+| ADAUSDT | -1.403 | -1.038 | 0.077 | 0.289 | 1.295 | 38.0 | stop |
+| 1000XECUSDT | -1.395 | -1.013 | 0.026 | 0.356 | 3.987 | 219.0 | stop |
+| ANIMEUSDT | -1.371 | -1.009 | 0.018 | 0.344 | 5.808 | 196.0 | stop |
 
 ## Sepuluh simbol dengan total R tertinggi
 

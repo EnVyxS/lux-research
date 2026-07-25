@@ -16,7 +16,7 @@
       "maks_p_entri_acak": 0.05,
       "min_jendela_positif_rasio": 0.5
     },
-    "dibuat_utc": "2026-07-25T18:28:17+00:00",
+    "dibuat_utc": "2026-07-25T18:40:16+00:00",
     "komit": "",
     "jumlah_kombinasi": 3,
     "sidik": "f172b1ba07f257178e1b00924e235fd577aea97916116e2752f192139e7f53db"
@@ -51,6 +51,115 @@
     "total_R": 604.2635452881991,
     "ekspektasi_R": 0.031703229028761756
   },
+  "diagnosa_biaya": {
+    "jumlah": 19060,
+    "rerata_transaksi_R": 0.03424944244020956,
+    "rerata_funding_R": 0.0012308753298671748,
+    "rerata_stop_frac": 0.03582275733915794,
+    "trade_biaya_lebih_1R": 2,
+    "terburuk": [
+      {
+        "symbol": "ANIMEUSDT",
+        "R": -2.585270890002368,
+        "kotor_R": -1.0134966249002844,
+        "transaksi_R": 0.026499998113020097,
+        "funding_R": 1.5452742669890638,
+        "stop_frac": 0.03847152655679373,
+        "jam": 130.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "AERGOUSDT",
+        "R": -2.276225415760831,
+        "kotor_R": -1.0214150886751485,
+        "transaksi_R": 0.0423408848946501,
+        "funding_R": 1.2124694421910323,
+        "stop_frac": 0.023906185996424627,
+        "jam": 76.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "AERGOUSDT",
+        "R": -1.4979299420450638,
+        "kotor_R": -1.0425341813766895,
+        "transaksi_R": 0.08554709566268773,
+        "funding_R": 0.36984866500568664,
+        "stop_frac": 0.011618671112234845,
+        "jam": 34.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "AERGOUSDT",
+        "R": -1.479468059120915,
+        "kotor_R": -1.0193061740724214,
+        "transaksi_R": 0.038122001231878574,
+        "funding_R": 0.4220398838166149,
+        "stop_frac": 0.026587013290132116,
+        "jam": 174.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "AERGOUSDT",
+        "R": -1.4682637170323927,
+        "kotor_R": -1.0068120988205378,
+        "transaksi_R": 0.013127603690486421,
+        "funding_R": 0.44832401452136844,
+        "stop_frac": 0.07921295502743371,
+        "jam": 62.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "ACEUSDT",
+        "R": -1.4363730413945144,
+        "kotor_R": -1.0225053066426648,
+        "transaksi_R": 0.04452186593865668,
+        "funding_R": 0.36934586881319265,
+        "stop_frac": 0.022721791980417762,
+        "jam": 96.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "AERGOUSDT",
+        "R": -1.422568726855396,
+        "kotor_R": -1.0074812726416555,
+        "transaksi_R": 0.014466285919631686,
+        "funding_R": 0.4006211682941087,
+        "stop_frac": 0.07162017953813045,
+        "jam": 79.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "R": -1.4033557179036138,
+        "kotor_R": -1.03809952193022,
+        "transaksi_R": 0.07667999409949512,
+        "funding_R": 0.2885762018738988,
+        "stop_frac": 0.012953528308038795,
+        "jam": 38.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "1000XECUSDT",
+        "R": -1.3946516578613701,
+        "kotor_R": -1.0130395203833382,
+        "transaksi_R": 0.02558556052687384,
+        "funding_R": 0.35602657695115814,
+        "stop_frac": 0.03987393334949688,
+        "jam": 219.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "ANIMEUSDT",
+        "R": -1.3707774355142508,
+        "kotor_R": -1.009108117585905,
+        "transaksi_R": 0.01772078923060518,
+        "funding_R": 0.3439485286977409,
+        "stop_frac": 0.058084708417394215,
+        "jam": 196.0,
+        "alasan": "stop"
+      }
+    ]
+  },
   "gerbang": {
     "semua_lulus": false,
     "gerbang_gagal": [
@@ -64,7 +173,7 @@
         "lulus": false,
         "nilai": 0.21371161640447894,
         "ambang": 0.3,
-        "catatan": "4 dari 40 simbol gagal"
+        "catatan": "4 dari 40 simbol gagal — 1000WHYUSDT (rasio bar datar 0.2137, deret terpanjang 3111 bar); AERGOUSDT (rasio bar datar 0.0288, deret terpanjang 470 bar); AIUSDT (rasio bar datar 0.0943, deret terpanjang 2101 bar); ALPHAUSDT (rasio bar datar 0.1472, deret terpanjang 7310 bar)"
       },
       {
         "nama": "buy_and_hold",
@@ -111,9 +220,9 @@
       {
         "nama": "checksum",
         "lulus": false,
-        "nilai": 4.0,
-        "ambang": 0.0,
-        "catatan": "hilang 0, asing 4, tidak cocok 0"
+        "nilai": null,
+        "ambang": null,
+        "catatan": "tidak dapat dinilai: manifest baru ditulis pada run ini; run berikutnya akan membandingkannya"
       },
       {
         "nama": "survivorship",
@@ -1609,5 +1718,5 @@
       ]
     }
   ],
-  "detik": 30.6
+  "detik": 29.9
 }
