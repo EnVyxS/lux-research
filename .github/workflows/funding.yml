@@ -4,6 +4,12 @@ name: funding
 #
 # Diambil hanya untuk universe layak, bukan seluruh 790 simbol, karena data
 # yang tidak akan pernah diuji tidak layak dibayar dengan waktu runner.
+#
+# Percobaan 2. Percobaan 1 mati di gerbang pengujian dalam 49 detik: berkas
+# funding berheader tanpa baris data membuat pandas melempar EmptyDataError,
+# dan karena galat itu ditangkap di tingkat bulan, satu berkas kosong akan
+# menandai seluruh bulan sebagai gagal. Bulan tanpa funding memang ada, jadi
+# keadaan itu sah dan kini dikembalikan sebagai frame kosong.
 
 on:
   workflow_dispatch:

@@ -121,9 +121,30 @@ def test_kisi_empat_jam_tidak_dianggap_celah(tmp_path):
     assert stat["celah"] == 0
 
 
-def test_berkas_kosong_tidak_melempar(tmp_path):
-    isi = HEADER + "\n"
-    p = buat_zip(tmp_path / "l" / "arsip.zip", isi.encode())
+def test_berkas_hanya_header_tidak_melempar(tmp_path):
+    """Bulan tanpa funding memang ada, misalnya kontrak yang baru terdaftar.
+
+    Sebelum perbaikan, keadaan sah ini melempar ``EmptyDataError`` dan ditangkap
+    sebagai kegagalan bulan, sehingga satu berkas kosong dapat menandai simbol
+    yang datanya sebenarnya lengkap.
+    """
+    p = buat_zip(tmp_path / "l" / "arsip.zip", (HEADER + "\n").encode())
+    df = baca_zip(p)
+    assert df.empty
+    assert list(df.columns) == KOLOM
+    assert periksa(df)["baris"] == 0
+
+
+def test_berkas_benar_benar_kosong_tidak_melempar(tmp_path):
+    p = buat_zip(tmp_path / "m" / "arsip.zip", b"")
     df = baca_zip(p)
     assert df.empty
     assert periksa(df)["baris"] == 0
+
+
+def test_berkas_berisi_hanya_baris_sampah_tidak_melempar(tmp_path):
+    isi = HEADER + "\n" + "sampah,sampah,sampah\n"
+    p = buat_zip(tmp_path / "n" / "arsip.zip", isi.encode())
+    df = baca_zip(p)
+    assert df.empty
+    assert list(df.columns) == KOLOM

@@ -17,7 +17,11 @@ ditemukan lagi lewat data cacat:
   baris sampah tidak menggagalkan satu bulan penuh;
 - ``header=None`` dengan ``skiprows`` yang dihitung, bukan ``header=0``
   bersamaan ``skiprows``, yang dulu membuang satu baris tiap berkas;
-- stempel mikrodetik dinormalisasi ke milidetik.
+- stempel mikrodetik dinormalisasi ke milidetik;
+- berkas tanpa baris data dikembalikan sebagai frame kosong, bukan galat.
+  Bulan tanpa funding memang ada, misalnya saat kontrak baru terdaftar di
+  penghujung bulan, dan satu berkas semacam itu tidak boleh menghapus seluruh
+  riwayat simbolnya.
 """
 
 from __future__ import annotations
@@ -43,11 +47,14 @@ AMBANG_MIKRO = 1e14
 
 JAM_MS = 3_600_000
 
-# Funding rate wajar berada jauh di bawah 1%. Binance membatasi pada 2% untuk
-# sebagian besar pasangan. Nilai di atas ambang ini tidak dibuang, hanya
-# dihitung, karena lonjakan ekstrem memang pernah terjadi dan membuangnya diam
-# diam berarti menyembunyikan biaya nyata dari backtest.
+# Funding rate wajar berada jauh di bawah 1%. Nilai di atas ambang ini tidak
+# dibuang, hanya dihitung, karena lonjakan ekstrem memang pernah terjadi dan
+# membuangnya diam-diam berarti menyembunyikan biaya nyata dari backtest.
 AMBANG_EKSTREM = 0.02
+
+
+def frame_kosong() -> pd.DataFrame:
+    return pd.DataFrame({k: pd.Series(dtype="float64") for k in KOLOM})
 
 
 def funding_url(symbol: str, month: str) -> str:
@@ -84,12 +91,18 @@ def baca_zip(path: Path) -> pd.DataFrame:
     awal = mentah[:64].decode("utf-8-sig", "ignore").lstrip().lstrip("\ufeff").lower()
     punya_header = awal.startswith("calc_time")
 
-    df = pd.read_csv(
-        io.BytesIO(mentah),
-        header=None,
-        skiprows=1 if punya_header else 0,
-        encoding="utf-8-sig",
-    )
+    try:
+        df = pd.read_csv(
+            io.BytesIO(mentah),
+            header=None,
+            skiprows=1 if punya_header else 0,
+            encoding="utf-8-sig",
+        )
+    except pd.errors.EmptyDataError:
+        # Berkas hanya berisi header, atau kosong sama sekali. Ini keadaan sah,
+        # bukan kerusakan, dan harus dikembalikan sebagai frame kosong supaya
+        # bulan-bulan lain pada simbol yang sama tetap terbaca.
+        return frame_kosong()
 
     if df.shape[1] >= 3:
         df = df.iloc[:, :3]
@@ -106,7 +119,7 @@ def baca_zip(path: Path) -> pd.DataFrame:
 
     df = df.dropna(subset=["calc_time", "last_funding_rate"])
     if df.empty:
-        return df
+        return frame_kosong()
 
     besar = df["calc_time"] > AMBANG_MIKRO
     if besar.any():
@@ -167,7 +180,9 @@ def ingest_simbol(symbol: str, tmp: Path) -> tuple[pd.DataFrame, dict]:
         url = funding_url(symbol, b)
         try:
             path = bv.download(url, tmp / symbol)
-            bagian.append(baca_zip(path))
+            df_bulan = baca_zip(path)
+            if not df_bulan.empty:
+                bagian.append(df_bulan)
             path.unlink(missing_ok=True)
         except Exception as exc:  # noqa: BLE001
             gagal.append(f"{b}: {exc}")
@@ -206,7 +221,7 @@ def gabungkan_laporan(direktori: Path, keluaran: Path) -> dict:
 
     berhasil = [d for d in detail if d["baris"] > 0]
     gagal = [d for d in detail if d["baris"] == 0]
-    kisi = {}
+    kisi: dict[str, int] = {}
     for d in detail:
         for j in d.get("interval_jam", []):
             kisi[str(j)] = kisi.get(str(j), 0) + 1
