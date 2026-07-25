@@ -10,6 +10,11 @@
 #
 # Dijalankan atas 447 simbol layak, bukan 40 simbol pilot, karena keputusan
 # yang akan diambil menyangkut universe, bukan sampelnya.
+#
+# Run pertama workflow ini berhenti di gerbang pra-terbang karena uji letak()
+# gagal. Kegagalan itu bukan gangguan melainkan temuan: letak() menilai posisi
+# blok hanya dari titik mulainya, sehingga feed yang mati paling lama justru
+# paling mudah lolos dari kategorinya sendiri. Diperbaiki di d550fd4.
 name: diag-datar
 
 on:
@@ -47,7 +52,7 @@ jobs:
       - name: Pasang dependensi
         run: pip install -r requirements.txt pytest
 
-      # Gerbang pra-terbang. Delapan kali sudah menghentikan run dalam hitungan
+      # Gerbang pra-terbang. Sembilan kali sudah menghentikan run dalam hitungan
       # detik sebelum unduhan ratusan megabita terlanjur berjalan.
       - name: Uji dulu, baru unduh
         env:
