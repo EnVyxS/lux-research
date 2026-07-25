@@ -16,7 +16,7 @@
       "maks_p_entri_acak": 0.05,
       "min_jendela_positif_rasio": 0.5
     },
-    "dibuat_utc": "2026-07-25T18:26:56+00:00",
+    "dibuat_utc": "2026-07-25T18:28:17+00:00",
     "komit": "",
     "jumlah_kombinasi": 3,
     "sidik": "f172b1ba07f257178e1b00924e235fd577aea97916116e2752f192139e7f53db"
@@ -41,15 +41,15 @@
       "1000RATSUSDT",
       "1000SATSUSDT"
     ],
-    "simbol_mati_di_universe": 14
+    "simbol_mati_di_universe": 15
   },
   "gabungan": {
     "jumlah_simbol": 40,
-    "jumlah_jendela": 349,
-    "jendela_positif": 204,
-    "jumlah_trade_luar_sampel": 18524,
-    "total_R": 647.1102772677592,
-    "ekspektasi_R": 0.03493361462253073
+    "jumlah_jendela": 359,
+    "jendela_positif": 208,
+    "jumlah_trade_luar_sampel": 19060,
+    "total_R": 604.2635452881991,
+    "ekspektasi_R": 0.031703229028761756
   },
   "gerbang": {
     "semua_lulus": false,
@@ -62,7 +62,7 @@
       {
         "nama": "forward_fill",
         "lulus": false,
-        "nilai": 0.18131750232458335,
+        "nilai": 0.21371161640447894,
         "ambang": 0.3,
         "catatan": "4 dari 40 simbol gagal"
       },
@@ -92,14 +92,14 @@
         "lulus": false,
         "nilai": -2.585270890002368,
         "ambang": -1.5,
-        "catatan": "kerugian terburuk -2.585R dari 18524 perdagangan"
+        "catatan": "kerugian terburuk -2.585R dari 19060 perdagangan"
       },
       {
         "nama": "funding",
         "lulus": true,
-        "nilai": 10995.524564352689,
+        "nilai": 11238.25463530013,
         "ambang": 0.0,
-        "catatan": "total funding mutlak 10995.524564 atas 18524 trade"
+        "catatan": "total funding mutlak 11238.254635 atas 19060 trade"
       },
       {
         "nama": "overlap",
@@ -111,29 +111,29 @@
       {
         "nama": "checksum",
         "lulus": false,
-        "nilai": null,
-        "ambang": null,
-        "catatan": "tidak dapat dinilai: manifest baru ditulis pada run ini; run berikutnya akan membandingkannya"
+        "nilai": 4.0,
+        "ambang": 0.0,
+        "catatan": "hilang 0, asing 4, tidak cocok 0"
       },
       {
         "nama": "survivorship",
         "lulus": true,
-        "nilai": 0.7982142857142858,
+        "nilai": 0.745,
         "ambang": 0.5,
-        "catatan": "porsi delisted diuji 0.0250 vs universe 0.0313"
+        "catatan": "porsi delisted diuji 0.0250 vs universe 0.0336"
       }
     ]
   },
   "putusan": {
     "lulus": false,
     "alasan": [
-      "ekspektasi 0.0349R < 0.05R"
+      "ekspektasi 0.0317R < 0.05R"
     ]
   },
   "per_simbol": [
     {
       "symbol": "1000000BOBUSDT",
-      "bar": 9376,
+      "bar": 9952,
       "jendela": 2,
       "trade": 90,
       "total_R": 7.8563,
@@ -149,7 +149,7 @@
     },
     {
       "symbol": "1000000MOGUSDT",
-      "bar": 14412,
+      "bar": 14988,
       "jendela": 4,
       "trade": 207,
       "total_R": -2.4214,
@@ -171,7 +171,7 @@
     },
     {
       "symbol": "1000BONKUSDT",
-      "bar": 22834,
+      "bar": 23410,
       "jendela": 8,
       "trade": 335,
       "total_R": 54.5397,
@@ -205,12 +205,15 @@
     },
     {
       "symbol": "1000CATUSDT",
-      "bar": 14820,
-      "jendela": 4,
-      "trade": 216,
-      "total_R": 48.8374,
-      "ekspektasi_R": 0.2261,
+      "bar": 15396,
+      "jendela": 5,
+      "trade": 263,
+      "total_R": 41.052,
+      "ekspektasi_R": 0.15609,
       "parameter": [
+        {
+          "lookback": 55
+        },
         {
           "lookback": 55
         },
@@ -227,7 +230,7 @@
     },
     {
       "symbol": "1000CHEEMSUSDT",
-      "bar": 13981,
+      "bar": 14557,
       "jendela": 4,
       "trade": 253,
       "total_R": 51.7271,
@@ -249,7 +252,7 @@
     },
     {
       "symbol": "1000FLOKIUSDT",
-      "bar": 27632,
+      "bar": 28208,
       "jendela": 10,
       "trade": 515,
       "total_R": 33.7762,
@@ -289,7 +292,7 @@
     },
     {
       "symbol": "1000LUNCUSDT",
-      "bar": 33371,
+      "bar": 33947,
       "jendela": 13,
       "trade": 668,
       "total_R": 0.3875,
@@ -338,7 +341,7 @@
     },
     {
       "symbol": "1000PEPEUSDT",
-      "bar": 27656,
+      "bar": 28232,
       "jendela": 10,
       "trade": 502,
       "total_R": 59.7407,
@@ -378,7 +381,7 @@
     },
     {
       "symbol": "1000RATSUSDT",
-      "bar": 22282,
+      "bar": 22858,
       "jendela": 8,
       "trade": 493,
       "total_R": 12.2834,
@@ -412,7 +415,7 @@
     },
     {
       "symbol": "1000SATSUSDT",
-      "bar": 22354,
+      "bar": 22930,
       "jendela": 8,
       "trade": 401,
       "total_R": 16.2907,
@@ -446,11 +449,11 @@
     },
     {
       "symbol": "1000SHIBUSDT",
-      "bar": 45055,
-      "jendela": 18,
-      "trade": 870,
-      "total_R": 22.7051,
-      "ekspektasi_R": 0.0261,
+      "bar": 45631,
+      "jendela": 19,
+      "trade": 953,
+      "total_R": 2.7385,
+      "ekspektasi_R": 0.00287,
       "parameter": [
         {
           "lookback": 100
@@ -505,12 +508,15 @@
         },
         {
           "lookback": 20
+        },
+        {
+          "lookback": 20
         }
       ]
     },
     {
       "symbol": "1000WHYUSDT",
-      "bar": 13981,
+      "bar": 14557,
       "jendela": 4,
       "trade": 162,
       "total_R": 10.0315,
@@ -532,7 +538,7 @@
     },
     {
       "symbol": "1000XECUSDT",
-      "bar": 41949,
+      "bar": 42525,
       "jendela": 17,
       "trade": 983,
       "total_R": -9.3512,
@@ -593,7 +599,7 @@
     },
     {
       "symbol": "1INCHUSDT",
-      "bar": 48326,
+      "bar": 48902,
       "jendela": 20,
       "trade": 1267,
       "total_R": 10.7921,
@@ -663,7 +669,7 @@
     },
     {
       "symbol": "1MBABYDOGEUSDT",
-      "bar": 15661,
+      "bar": 16237,
       "jendela": 5,
       "trade": 232,
       "total_R": 15.4687,
@@ -688,7 +694,7 @@
     },
     {
       "symbol": "AAVEUSDT",
-      "bar": 50009,
+      "bar": 50585,
       "jendela": 21,
       "trade": 1041,
       "total_R": 45.1171,
@@ -761,7 +767,7 @@
     },
     {
       "symbol": "ACEUSDT",
-      "bar": 22214,
+      "bar": 22790,
       "jendela": 8,
       "trade": 321,
       "total_R": 21.3837,
@@ -795,7 +801,7 @@
     },
     {
       "symbol": "ACHUSDT",
-      "bar": 29386,
+      "bar": 29962,
       "jendela": 11,
       "trade": 658,
       "total_R": -8.2742,
@@ -838,7 +844,7 @@
     },
     {
       "symbol": "ACTUSDT",
-      "bar": 14316,
+      "bar": 14892,
       "jendela": 4,
       "trade": 250,
       "total_R": -1.2814,
@@ -860,7 +866,7 @@
     },
     {
       "symbol": "ACXUSDT",
-      "bar": 13713,
+      "bar": 14289,
       "jendela": 4,
       "trade": 113,
       "total_R": -0.6033,
@@ -882,11 +888,11 @@
     },
     {
       "symbol": "ADAUSDT",
-      "bar": 56224,
-      "jendela": 23,
-      "trade": 1246,
-      "total_R": 59.3425,
-      "ekspektasi_R": 0.04763,
+      "bar": 56800,
+      "jendela": 24,
+      "trade": 1327,
+      "total_R": 66.2926,
+      "ekspektasi_R": 0.04996,
       "parameter": [
         {
           "lookback": 100
@@ -956,12 +962,15 @@
         },
         {
           "lookback": 100
+        },
+        {
+          "lookback": 20
         }
       ]
     },
     {
       "symbol": "AERGOUSDT",
-      "bar": 15793,
+      "bar": 16345,
       "jendela": 5,
       "trade": 274,
       "total_R": -24.2848,
@@ -986,7 +995,7 @@
     },
     {
       "symbol": "AEROUSDT",
-      "bar": 13762,
+      "bar": 14338,
       "jendela": 4,
       "trade": 238,
       "total_R": 26.2684,
@@ -1008,7 +1017,7 @@
     },
     {
       "symbol": "AEVOUSDT",
-      "bar": 20147,
+      "bar": 20723,
       "jendela": 7,
       "trade": 292,
       "total_R": 30.4812,
@@ -1039,11 +1048,11 @@
     },
     {
       "symbol": "AGLDUSDT",
-      "bar": 25630,
-      "jendela": 9,
-      "trade": 470,
-      "total_R": -12.9961,
-      "ekspektasi_R": -0.02765,
+      "bar": 26206,
+      "jendela": 10,
+      "trade": 514,
+      "total_R": -15.2898,
+      "ekspektasi_R": -0.02975,
       "parameter": [
         {
           "lookback": 100
@@ -1071,12 +1080,15 @@
         },
         {
           "lookback": 20
+        },
+        {
+          "lookback": 55
         }
       ]
     },
     {
       "symbol": "AGTUSDT",
-      "bar": 9758,
+      "bar": 10334,
       "jendela": 2,
       "trade": 115,
       "total_R": -14.0655,
@@ -1092,20 +1104,23 @@
     },
     {
       "symbol": "AINUSDT",
-      "bar": 8534,
-      "jendela": 1,
-      "trade": 50,
-      "total_R": -8.4495,
-      "ekspektasi_R": -0.16899,
+      "bar": 9110,
+      "jendela": 2,
+      "trade": 103,
+      "total_R": 0.0239,
+      "ekspektasi_R": 0.00023,
       "parameter": [
         {
           "lookback": 20
+        },
+        {
+          "lookback": 55
         }
       ]
     },
     {
       "symbol": "AIOTUSDT",
-      "bar": 10236,
+      "bar": 10812,
       "jendela": 2,
       "trade": 78,
       "total_R": 49.4845,
@@ -1121,11 +1136,11 @@
     },
     {
       "symbol": "AIUSDT",
-      "bar": 21708,
-      "jendela": 7,
-      "trade": 299,
-      "total_R": 42.2831,
-      "ekspektasi_R": 0.14142,
+      "bar": 22284,
+      "jendela": 8,
+      "trade": 319,
+      "total_R": 45.5745,
+      "ekspektasi_R": 0.14287,
       "parameter": [
         {
           "lookback": 55
@@ -1147,12 +1162,15 @@
         },
         {
           "lookback": 100
+        },
+        {
+          "lookback": 20
         }
       ]
     },
     {
       "symbol": "AIXBTUSDT",
-      "bar": 13374,
+      "bar": 13950,
       "jendela": 4,
       "trade": 249,
       "total_R": -26.4585,
@@ -1193,7 +1211,7 @@
     },
     {
       "symbol": "AKTUSDT",
-      "bar": 14149,
+      "bar": 14725,
       "jendela": 4,
       "trade": 178,
       "total_R": 6.6209,
@@ -1215,12 +1233,15 @@
     },
     {
       "symbol": "ALCHUSDT",
-      "bar": 12949,
-      "jendela": 3,
-      "trade": 209,
-      "total_R": 23.1084,
-      "ekspektasi_R": 0.11057,
+      "bar": 13525,
+      "jendela": 4,
+      "trade": 260,
+      "total_R": 26.2213,
+      "ekspektasi_R": 0.10085,
       "parameter": [
+        {
+          "lookback": 20
+        },
         {
           "lookback": 20
         },
@@ -1234,7 +1255,7 @@
     },
     {
       "symbol": "ALGOUSDT",
-      "bar": 52935,
+      "bar": 53511,
       "jendela": 22,
       "trade": 1215,
       "total_R": 66.4758,
@@ -1310,7 +1331,7 @@
     },
     {
       "symbol": "ALICEUSDT",
-      "bar": 46389,
+      "bar": 46965,
       "jendela": 19,
       "trade": 1125,
       "total_R": 17.0336,
@@ -1377,7 +1398,7 @@
     },
     {
       "symbol": "ALPHAUSDT",
-      "bar": 49097,
+      "bar": 49673,
       "jendela": 20,
       "trade": 919,
       "total_R": 47.8181,
@@ -1447,7 +1468,7 @@
     },
     {
       "symbol": "ALPINEUSDT",
-      "bar": 10095,
+      "bar": 10671,
       "jendela": 2,
       "trade": 102,
       "total_R": -10.2976,
@@ -1463,11 +1484,11 @@
     },
     {
       "symbol": "ALTUSDT",
-      "bar": 21298,
-      "jendela": 7,
-      "trade": 438,
-      "total_R": 13.2701,
-      "ekspektasi_R": 0.0303,
+      "bar": 21874,
+      "jendela": 8,
+      "trade": 492,
+      "total_R": 1.6709,
+      "ekspektasi_R": 0.0034,
       "parameter": [
         {
           "lookback": 55
@@ -1489,16 +1510,19 @@
         },
         {
           "lookback": 20
+        },
+        {
+          "lookback": 55
         }
       ]
     },
     {
       "symbol": "ANIMEUSDT",
-      "bar": 12559,
-      "jendela": 3,
-      "trade": 187,
-      "total_R": -23.2675,
-      "ekspektasi_R": -0.12443,
+      "bar": 13135,
+      "jendela": 4,
+      "trade": 215,
+      "total_R": -25.8191,
+      "ekspektasi_R": -0.12009,
       "parameter": [
         {
           "lookback": 100
@@ -1508,16 +1532,19 @@
         },
         {
           "lookback": 20
+        },
+        {
+          "lookback": 100
         }
       ]
     },
     {
       "symbol": "ANKRUSDT",
-      "bar": 47561,
-      "jendela": 19,
-      "trade": 1077,
-      "total_R": 2.2168,
-      "ekspektasi_R": 0.00206,
+      "bar": 48137,
+      "jendela": 20,
+      "trade": 1152,
+      "total_R": -18.2612,
+      "ekspektasi_R": -0.01585,
       "parameter": [
         {
           "lookback": 55
@@ -1572,6 +1599,9 @@
         },
         {
           "lookback": 100
+        },
+        {
+          "lookback": 20
         },
         {
           "lookback": 20
@@ -1579,5 +1609,5 @@
       ]
     }
   ],
-  "detik": 30.3
+  "detik": 30.6
 }
