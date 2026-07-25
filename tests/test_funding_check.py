@@ -92,9 +92,21 @@ def test_jarak_lebih_rapat_bukan_celah():
     assert celah_teramati(t, JAM8) == (0, 0)
 
 
-def test_jarak_tiga_jam_dihitung_sebagai_tidak_selaras():
-    t = pd.Series([AWAL, AWAL + 3 * JAM, AWAL + 7 * JAM])
+def test_dua_jarak_tidak_selaras_dihitung_dua(): 
+    """Jarak 3 jam dan 5 jam sama-sama bukan kisi sah."""
+    t = pd.Series([AWAL, AWAL + 3 * JAM, AWAL + 8 * JAM])
     assert tidak_selaras(t) == 2
+
+
+def test_jarak_empat_jam_setelah_tiga_jam_tetap_sah():
+    """Harapan pengujian yang pernah salah, dikunci supaya tidak lahir lagi.
+
+    Deret AWAL, +3 jam, +7 jam menghasilkan jarak 3 jam lalu 4 jam. Hanya yang
+    pertama tidak selaras; empat jam adalah kisi sah dan tidak boleh ikut
+    dihitung hanya karena berdiri di sebelah jarak yang ganjil.
+    """
+    t = pd.Series([AWAL, AWAL + 3 * JAM, AWAL + 7 * JAM])
+    assert tidak_selaras(t) == 1
 
 
 def test_kisi_sah_tidak_dihitung_tidak_selaras():

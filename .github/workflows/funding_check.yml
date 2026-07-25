@@ -7,6 +7,9 @@ name: funding-check
 # pengukuran, padahal keduanya benar dan pertanyaannya salah. Kisi berubah
 # sepanjang umur simbol, jadi celah didefinisikan tanpa mengasumsikan kisi:
 # jarak yang melebihi delapan jam, kisi terpanjang yang mungkin.
+#
+# Percobaan kedua putaran 3: percobaan pertama tertahan di gerbang pengujian
+# karena satu harapan uji keliru menganggap jarak empat jam tidak selaras.
 
 on:
   workflow_dispatch:
