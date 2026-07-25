@@ -6,18 +6,20 @@
     "di_luar_universe": [],
     "duplikat": 0,
     "tidak_urut": 0,
-    "celah": 266612,
-    "periode_hilang": 10720,
+    "celah": 3,
+    "periode_hilang": 3188,
     "jarak_tidak_selaras": 22,
-    "simbol_dengan_celah": 202,
+    "jarak_bergeser": 1193171,
+    "geseran_maks_ms": 47,
+    "simbol_dengan_celah": 3,
     "simbol_berbilang_rezim": 295,
     "positif": 1563845,
     "negatif": 413944,
     "ekstrem": 85,
     "kisi_teramati": {
-      "1.0": 3,
-      "4.0": 267,
-      "8.0": 177
+      "1.0": 4,
+      "4.0": 269,
+      "8.0": 174
     },
     "awal": 1577836800000,
     "akhir": 1782849600003,
@@ -48,6 +50,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1797,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -77,6 +81,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2271,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -106,6 +112,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2809,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -135,6 +143,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2300,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -164,6 +174,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2242,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -190,9 +202,11 @@
       "symbol": "1000FLOKIUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 786,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1566,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -218,9 +232,11 @@
       "symbol": "1000LUNCUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1110,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2203,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -246,9 +262,11 @@
       "symbol": "1000PEPEUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 787,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1568,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -277,6 +295,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2789,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -306,6 +326,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2791,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -332,9 +354,11 @@
       "symbol": "1000SHIBUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1759,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3487,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -363,6 +387,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1766,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4
       ],
@@ -388,9 +414,11 @@
       "symbol": "1000XECUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1586,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3144,
+      "geseran_maks_ms": 34,
       "rezim_kisi": [
         8
       ],
@@ -416,9 +444,11 @@
       "symbol": "1INCHUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1921,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3816,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -447,6 +477,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2357,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -473,9 +505,11 @@
       "symbol": "AAVEUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1994,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3958,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -505,6 +539,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2931,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -532,9 +568,11 @@
       "symbol": "ACHUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 884,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1767,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -563,6 +601,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2269,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -592,6 +632,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2223,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -618,9 +660,11 @@
       "symbol": "ADAUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2191,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4349,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -650,6 +694,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2400,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         2,
         4,
@@ -680,6 +726,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2229,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -709,6 +757,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2670,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -735,9 +785,11 @@
       "symbol": "AGLDUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 733,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1458,
+      "geseran_maks_ms": 16,
       "rezim_kisi": [
         8
       ],
@@ -766,6 +818,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1868,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -795,6 +849,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1628,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -824,6 +880,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1954,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -853,6 +911,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2473,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4
       ],
@@ -881,6 +941,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2196,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -907,9 +969,11 @@
       "symbol": "AKROUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 646,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1278,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -938,6 +1002,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2254,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -967,6 +1033,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2158,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -993,9 +1061,11 @@
       "symbol": "ALGOUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2122,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4213,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -1023,9 +1093,11 @@
       "symbol": "ALICEUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1698,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3960,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         4,
@@ -1053,9 +1125,11 @@
       "symbol": "ALPHAUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1642,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3250,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -1084,6 +1158,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1929,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -1113,6 +1189,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2733,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -1143,6 +1221,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2334,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -1172,9 +1252,11 @@
       "symbol": "ANKRUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1776,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4004,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         2,
@@ -1203,9 +1285,11 @@
       "symbol": "ANTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 831,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1647,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         8
       ],
@@ -1231,9 +1315,11 @@
       "symbol": "APEUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1341,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2666,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         8
       ],
@@ -1261,9 +1347,11 @@
       "symbol": "API3USDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 659,
-      "periode_hilang": 659,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 4610,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         1,
         4,
@@ -1291,9 +1379,11 @@
       "symbol": "APTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1058,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2102,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -1319,9 +1409,11 @@
       "symbol": "ARBUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 840,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1685,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -1350,6 +1442,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2145,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -1376,9 +1470,11 @@
       "symbol": "ARKMUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 733,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1459,
+      "geseran_maks_ms": 16,
       "rezim_kisi": [
         8
       ],
@@ -1404,18 +1500,20 @@
       "awal": 1695139200000,
       "akhir": 1782849600003,
       "symbol": "ARKUSDT",
-      "langkah_teramati_ms": 28800000,
-      "jam_teramati": 8.0,
-      "celah_teramati": 196,
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2495,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
         4,
         8
       ],
-      "biaya_tahunan_long": -0.20164668333333335
+      "biaya_tahunan_long": -0.4032933666666667
     },
     {
       "baris": 5147,
@@ -1437,9 +1535,11 @@
       "symbol": "ARPAUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1542,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3059,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         8
       ],
@@ -1465,9 +1565,11 @@
       "symbol": "ARUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1570,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3115,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         8
       ],
@@ -1496,6 +1598,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1929,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -1522,9 +1626,11 @@
       "symbol": "ASTRUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 900,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1794,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -1550,9 +1656,11 @@
       "symbol": "ATAUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1563,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3102,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -1581,6 +1689,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2025,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -1607,9 +1717,11 @@
       "symbol": "ATOMUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2183,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4333,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -1639,6 +1751,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2828,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -1667,9 +1781,11 @@
       "symbol": "AUDIOUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1007,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1990,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -1699,6 +1815,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1836,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -1728,6 +1846,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2145,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -1757,6 +1877,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2205,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -1783,9 +1905,11 @@
       "symbol": "AVAXUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2018,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4008,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -1815,6 +1939,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1866,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -1845,6 +1971,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3206,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -1874,9 +2002,11 @@
       "symbol": "AXSUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1780,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4397,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         4,
@@ -1907,6 +2037,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1929,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -1937,6 +2069,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1835,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4
@@ -1967,6 +2101,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2054,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -1994,9 +2130,11 @@
       "symbol": "BAKEUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1444,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2848,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -2022,9 +2160,11 @@
       "symbol": "BALUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1623,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3205,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -2051,9 +2191,11 @@
       "symbol": "BANANAS31USDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1,
-      "periode_hilang": 1,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2056,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -2085,6 +2227,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2544,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -2112,9 +2256,11 @@
       "symbol": "BANDUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2073,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4112,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -2143,6 +2289,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2001,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -2173,6 +2321,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2258,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         2,
         4,
@@ -2200,9 +2350,11 @@
       "symbol": "BATUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2179,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4325,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -2231,6 +2383,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2577,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -2257,9 +2411,11 @@
       "symbol": "BCHUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2198,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4363,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -2289,6 +2445,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2810,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -2315,9 +2473,11 @@
       "symbol": "BELUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1961,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3896,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -2346,6 +2506,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2113,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -2372,9 +2534,11 @@
       "symbol": "BICOUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 715,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1423,
+      "geseran_maks_ms": 16,
       "rezim_kisi": [
         8
       ],
@@ -2403,6 +2567,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2859,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -2433,6 +2599,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2811,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -2461,9 +2629,11 @@
       "symbol": "BLUEBIRDUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 418,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 834,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -2491,9 +2661,11 @@
       "symbol": "BLURUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 701,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 1835,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         1,
         4,
@@ -2522,9 +2694,11 @@
       "symbol": "BLZUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1310,
-      "periode_hilang": 1310,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3749,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         4,
         8
@@ -2554,6 +2728,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2059,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -2580,9 +2756,11 @@
       "symbol": "BNBUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2182,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4331,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -2608,9 +2786,11 @@
       "symbol": "BNTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 862,
+      "celah_teramati": 1,
       "periode_hilang": 2501,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1723,
+      "geseran_maks_ms": 25,
       "rezim_kisi": [
         8
       ],
@@ -2640,6 +2820,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2666,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -2669,6 +2851,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2419,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -2700,6 +2884,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2082,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -2729,9 +2915,11 @@
       "symbol": "BROCCOLIF3BUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 13,
-      "periode_hilang": 13,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2957,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -2762,6 +2950,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2057,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -2792,6 +2982,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2854,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -2818,9 +3010,11 @@
       "symbol": "BTCDOMUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1705,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3375,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -2846,9 +3040,11 @@
       "symbol": "BTCUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2198,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4363,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -2878,6 +3074,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1801,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -2910,6 +3108,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1861,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -2936,9 +3136,11 @@
       "symbol": "BZRXUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 597,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1183,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -2964,9 +3166,11 @@
       "symbol": "C98USDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1618,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3207,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -2995,6 +3199,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2833,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -3022,9 +3228,11 @@
       "symbol": "CATIUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 2,
-      "periode_hilang": 2,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2354,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -3051,9 +3259,11 @@
       "symbol": "CELOUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1570,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3115,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         8
       ],
@@ -3079,9 +3289,11 @@
       "symbol": "CELRUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1812,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3591,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -3110,6 +3322,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2273,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -3136,9 +3350,11 @@
       "symbol": "CFXUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 887,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1773,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -3167,6 +3383,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2196,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -3196,6 +3414,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1731,
+      "geseran_maks_ms": 20,
       "rezim_kisi": [
         4
       ],
@@ -3224,6 +3444,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2240,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -3250,9 +3472,11 @@
       "symbol": "CHRUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1831,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3630,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -3278,9 +3502,11 @@
       "symbol": "CHZUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1912,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3799,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -3306,9 +3532,11 @@
       "symbol": "CKBUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 876,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1751,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -3334,9 +3562,11 @@
       "symbol": "COMPUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2093,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4153,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -3365,6 +3595,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2158,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -3395,6 +3627,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2304,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -3422,9 +3656,11 @@
       "symbol": "COTIUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1834,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3635,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -3453,6 +3689,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2273,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -3482,6 +3720,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1628,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -3508,9 +3748,11 @@
       "symbol": "CRVUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2048,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4061,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -3537,9 +3779,11 @@
       "symbol": "CTKUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1475,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4884,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         4,
         8
@@ -3566,9 +3810,11 @@
       "symbol": "CTSIUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1532,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3041,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         8
       ],
@@ -3598,6 +3844,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1700,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -3628,9 +3876,11 @@
       "symbol": "CYBERUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 9,
-      "periode_hilang": 9,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2891,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         2,
         4,
@@ -3658,9 +3908,11 @@
       "symbol": "DASHUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2184,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4336,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -3689,6 +3941,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1992,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -3715,9 +3969,11 @@
       "symbol": "DEFIUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1691,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3343,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -3746,6 +4002,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1976,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4
       ],
@@ -3775,6 +4033,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1917,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4
@@ -3801,9 +4061,11 @@
       "symbol": "DENTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1741,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3447,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -3832,6 +4094,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2192,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -3861,6 +4125,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1518,
+      "geseran_maks_ms": 20,
       "rezim_kisi": [
         4
       ],
@@ -3889,6 +4155,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2322,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -3915,9 +4183,11 @@
       "symbol": "DODOUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 609,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1204,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -3944,9 +4214,11 @@
       "symbol": "DODOXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 14,
-      "periode_hilang": 14,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2889,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -3973,9 +4245,11 @@
       "symbol": "DOGEUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2084,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4136,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -4004,6 +4278,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2398,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -4034,6 +4310,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1952,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -4064,6 +4342,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2838,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -4091,9 +4371,11 @@
       "symbol": "DOTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2056,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4079,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -4123,6 +4405,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2380,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -4154,6 +4438,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2142,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4
@@ -4182,9 +4468,11 @@
       "symbol": "DUSKUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1258,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3300,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         1,
         4,
@@ -4212,9 +4500,11 @@
       "symbol": "DYDXUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1595,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3165,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -4243,6 +4533,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2716,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -4269,9 +4561,11 @@
       "symbol": "EDUUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 797,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1587,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -4297,9 +4591,11 @@
       "symbol": "EGLDUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2032,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4032,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -4328,6 +4624,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2324,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -4357,6 +4655,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2641,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -4385,9 +4685,11 @@
       "symbol": "ENJUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1905,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 4448,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         2,
@@ -4416,9 +4718,11 @@
       "symbol": "ENSUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1485,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2949,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         8
       ],
@@ -4444,9 +4748,11 @@
       "symbol": "EOSUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2195,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4357,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -4476,6 +4782,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2059,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -4506,6 +4814,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1663,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -4533,9 +4843,11 @@
       "symbol": "ETCUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2192,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4351,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -4564,6 +4876,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2663,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -4590,9 +4904,11 @@
       "symbol": "ETHUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2198,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4363,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -4621,6 +4937,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2799,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -4650,6 +4968,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2196,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -4676,9 +4996,11 @@
       "symbol": "FETUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 937,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1868,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -4707,6 +5029,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2011,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -4737,6 +5061,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2381,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -4765,9 +5091,11 @@
       "symbol": "FILUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1994,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3958,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -4797,6 +5125,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2026,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4
@@ -4825,9 +5155,11 @@
       "symbol": "FLMUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1298,
-      "periode_hilang": 1298,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4813,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         2,
         4,
@@ -4857,9 +5189,11 @@
       "symbol": "FLOWUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1191,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3491,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         1,
         2,
@@ -4891,6 +5225,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2379,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -4917,9 +5253,11 @@
       "symbol": "FOOTBALLUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 506,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 999,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -4949,6 +5287,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2057,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -4975,9 +5315,11 @@
       "symbol": "FTMUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1592,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3150,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -5008,6 +5350,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2084,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -5039,6 +5383,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1962,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -5066,9 +5412,11 @@
       "symbol": "FXSUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 740,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1464,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -5094,9 +5442,11 @@
       "symbol": "GALAUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1586,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3143,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         8
       ],
@@ -5122,9 +5472,11 @@
       "symbol": "GALUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 665,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1324,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -5155,6 +5507,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2853,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         2,
         4,
@@ -5185,6 +5539,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1683,
+      "geseran_maks_ms": 20,
       "rezim_kisi": [
         4
       ],
@@ -5214,6 +5570,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2699,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -5242,9 +5600,11 @@
       "symbol": "GMTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1158,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3155,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         1,
         4,
@@ -5272,9 +5632,11 @@
       "symbol": "GMXUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 892,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1782,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -5303,6 +5665,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2296,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -5333,6 +5697,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2486,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -5364,6 +5730,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2271,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -5393,6 +5761,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2169,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -5419,9 +5789,11 @@
       "symbol": "GRTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1927,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3829,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -5447,9 +5819,11 @@
       "symbol": "GTCUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1716,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3402,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -5478,6 +5852,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2032,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -5508,6 +5884,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2457,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -5540,6 +5918,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1952,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -5566,9 +5946,11 @@
       "symbol": "HBARUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1823,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3616,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -5598,6 +5980,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2115,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -5626,9 +6010,11 @@
       "symbol": "HFTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 825,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1649,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -5655,9 +6041,11 @@
       "symbol": "HIFIUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 5,
-      "periode_hilang": 5,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1632,
+      "geseran_maks_ms": 20,
       "rezim_kisi": [
         4,
         8
@@ -5684,9 +6072,11 @@
       "symbol": "HIGHUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 894,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1783,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -5716,6 +6106,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2686,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4
@@ -5746,6 +6138,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2251,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -5777,6 +6171,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2332,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -5807,6 +6203,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2034,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -5834,9 +6232,11 @@
       "symbol": "HOOKUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 828,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1645,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -5862,9 +6262,11 @@
       "symbol": "HOTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1811,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3589,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -5893,6 +6295,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1844,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -5923,6 +6327,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2052,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -5955,6 +6361,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2124,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -5985,6 +6393,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1825,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6014,6 +6424,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1667,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6040,9 +6452,11 @@
       "symbol": "ICPUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1123,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2227,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -6070,9 +6484,11 @@
       "symbol": "ICXUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1917,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4316,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         4,
@@ -6103,6 +6519,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1661,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6131,9 +6549,11 @@
       "symbol": "IDUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 807,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1805,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         1,
         4,
@@ -6165,6 +6585,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2819,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6192,9 +6614,11 @@
       "symbol": "IMXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 676,
-      "periode_hilang": 676,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4201,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         4,
         8
@@ -6225,6 +6649,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2057,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -6252,9 +6678,11 @@
       "symbol": "INJUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1146,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2267,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -6280,9 +6708,11 @@
       "symbol": "IOSTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2177,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4321,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -6308,9 +6738,11 @@
       "symbol": "IOTAUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2180,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4328,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -6336,9 +6768,11 @@
       "symbol": "IOTXUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1635,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3239,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -6367,6 +6801,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2533,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6398,6 +6834,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2529,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -6425,9 +6863,11 @@
       "symbol": "JASMYUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1294,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2579,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         8
       ],
@@ -6458,6 +6898,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2055,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -6485,9 +6927,11 @@
       "symbol": "JOEUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 834,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1671,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -6516,6 +6960,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1964,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6545,6 +6991,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2793,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6574,6 +7022,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2725,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6603,6 +7053,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2229,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6632,6 +7084,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2093,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6662,6 +7116,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2814,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6690,9 +7146,11 @@
       "symbol": "KAVAUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1812,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 5248,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         2,
@@ -6724,6 +7182,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2009,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6753,6 +7213,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2196,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6779,9 +7241,11 @@
       "symbol": "KNCUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2101,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4168,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -6810,6 +7274,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2214,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -6836,9 +7302,11 @@
       "symbol": "KSMUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1997,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3962,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -6869,6 +7337,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 3138,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -6896,18 +7366,20 @@
       "awal": 1739289600000,
       "akhir": 1782849600003,
       "symbol": "LAYERUSDT",
-      "langkah_teramati_ms": 14400000,
-      "jam_teramati": 4.0,
+      "langkah_teramati_ms": 3600000,
+      "jam_teramati": 1.0,
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 3712,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
         4,
         8
       ],
-      "biaya_tahunan_long": -0.5768670652275378
+      "biaya_tahunan_long": -2.3074682609101513
     },
     {
       "baris": 4133,
@@ -6929,9 +7401,11 @@
       "symbol": "LDOUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1096,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2174,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -6957,9 +7431,11 @@
       "symbol": "LEVERUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 503,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 996,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -6985,9 +7461,11 @@
       "symbol": "LINAUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1396,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2755,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -7013,9 +7491,11 @@
       "symbol": "LINKUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2192,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4351,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -7044,6 +7524,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2519,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -7071,9 +7553,11 @@
       "symbol": "LITUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1433,
+      "celah_teramati": 1,
       "periode_hilang": 562,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3701,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         4,
         8
@@ -7102,9 +7586,11 @@
       "symbol": "LPTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 794,
-      "periode_hilang": 794,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 5117,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         1,
         4,
@@ -7132,9 +7618,11 @@
       "symbol": "LQTYUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 860,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1725,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -7162,9 +7650,11 @@
       "symbol": "LRCUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1769,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4286,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         4,
@@ -7196,6 +7686,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3467,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -7223,9 +7715,11 @@
       "symbol": "LTCUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2194,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4355,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -7254,6 +7748,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2200,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -7282,9 +7778,11 @@
       "symbol": "LUNA2USDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 882,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3099,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         1,
         4,
@@ -7312,9 +7810,11 @@
       "symbol": "LUNAUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 619,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1218,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -7339,16 +7839,18 @@
       "awal": 1674489600016,
       "akhir": 1782849600003,
       "symbol": "MAGICUSDT",
-      "langkah_teramati_ms": 28800000,
-      "jam_teramati": 8.0,
-      "celah_teramati": 432,
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2861,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         4,
         8
       ],
-      "biaya_tahunan_long": -0.12100330557419102
+      "biaya_tahunan_long": -0.24200661114838204
     },
     {
       "baris": 5801,
@@ -7370,9 +7872,11 @@
       "symbol": "MANAUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1826,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3622,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -7401,6 +7905,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2741,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -7429,9 +7935,11 @@
       "symbol": "MASKUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1177,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4679,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         4,
@@ -7459,9 +7967,11 @@
       "symbol": "MATICUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1988,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3946,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -7490,6 +8000,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2702,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -7516,9 +8028,11 @@
       "symbol": "MAVUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 741,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1474,
+      "geseran_maks_ms": 16,
       "rezim_kisi": [
         8
       ],
@@ -7548,6 +8062,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2362,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4
@@ -7577,6 +8093,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2138,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -7606,6 +8124,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2833,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -7636,6 +8156,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2076,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -7668,6 +8190,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2672,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -7699,6 +8223,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3185,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -7730,6 +8256,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2525,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -7756,9 +8284,11 @@
       "symbol": "MINAUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 914,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1822,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -7784,9 +8314,11 @@
       "symbol": "MKRUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1734,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3423,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -7815,6 +8347,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1850,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4
       ],
@@ -7843,6 +8377,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2200,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -7872,6 +8408,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2294,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -7901,6 +8439,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2240,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -7931,6 +8471,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2243,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -7961,6 +8503,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2769,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -7988,9 +8532,11 @@
       "symbol": "MTLUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1810,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3590,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         4,
         8
@@ -8020,6 +8566,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2059,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8050,6 +8598,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2366,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -8081,6 +8631,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1635,
+      "geseran_maks_ms": 20,
       "rezim_kisi": [
         4
       ],
@@ -8110,6 +8662,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2876,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -8137,9 +8691,11 @@
       "symbol": "NEARUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1996,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3961,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -8168,6 +8724,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2357,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8194,9 +8752,11 @@
       "symbol": "NEOUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2179,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4325,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -8226,6 +8786,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2064,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -8256,6 +8818,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2767,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8286,6 +8850,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2051,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8313,9 +8879,11 @@
       "symbol": "NKNUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1305,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3919,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         4,
         8
@@ -8344,9 +8912,11 @@
       "symbol": "NMRUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 29,
-      "periode_hilang": 29,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2926,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         2,
         4,
@@ -8377,6 +8947,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2575,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8404,9 +8976,11 @@
       "symbol": "NTRNUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1,
-      "periode_hilang": 1,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2377,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8436,6 +9010,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1893,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8464,9 +9040,11 @@
       "symbol": "OGNUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1697,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3880,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         4,
@@ -8497,6 +9075,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1905,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8524,9 +9104,11 @@
       "symbol": "OMGUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1667,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 3299,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         2,
         8
@@ -8558,6 +9140,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2264,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -8588,6 +9172,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2737,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8614,9 +9200,11 @@
       "symbol": "ONEUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1822,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3613,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -8645,6 +9233,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2799,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8673,9 +9263,11 @@
       "symbol": "ONTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1980,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 5128,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         2,
@@ -8704,9 +9296,11 @@
       "symbol": "OPUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1240,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2464,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -8737,6 +9331,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2990,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -8768,6 +9364,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2823,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8794,9 +9392,11 @@
       "symbol": "OXTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 642,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1277,
+      "geseran_maks_ms": 16,
       "rezim_kisi": [
         8
       ],
@@ -8825,6 +9425,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2048,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8855,6 +9457,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2041,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8881,9 +9485,11 @@
       "symbol": "PENDLEUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 735,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1462,
+      "geseran_maks_ms": 16,
       "rezim_kisi": [
         8
       ],
@@ -8913,6 +9519,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2200,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -8939,9 +9547,11 @@
       "symbol": "PEOPLEUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1455,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2888,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         8
       ],
@@ -8968,9 +9578,11 @@
       "symbol": "PERPUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 158,
-      "periode_hilang": 158,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2172,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         4,
         8
@@ -9000,6 +9612,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2180,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9026,9 +9640,11 @@
       "symbol": "PHBUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 849,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1696,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -9058,6 +9674,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 3150,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -9090,6 +9708,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2729,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -9121,6 +9741,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2539,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -9151,6 +9773,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2269,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9180,6 +9804,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2362,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9211,6 +9837,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2922,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -9241,6 +9869,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2411,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9270,6 +9900,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2684,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9300,6 +9932,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2841,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9330,6 +9964,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2035,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -9361,6 +9997,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2149,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9391,6 +10029,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1425,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4
       ],
@@ -9419,6 +10059,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1764,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9448,6 +10090,8 @@
       "celah_teramati": 1,
       "periode_hilang": 125,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1903,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9477,6 +10121,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1955,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9506,6 +10152,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2809,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9532,9 +10180,11 @@
       "symbol": "QNTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1055,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2097,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -9560,9 +10210,11 @@
       "symbol": "QTUMUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2171,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4309,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -9591,6 +10243,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2426,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9618,9 +10272,11 @@
       "symbol": "RAYSOLUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1,
-      "periode_hilang": 1,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2210,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9648,9 +10304,11 @@
       "symbol": "RDNTUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 722,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1483,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         1,
         8
@@ -9682,6 +10340,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2383,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -9710,9 +10370,11 @@
       "symbol": "REEFUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1277,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3104,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         4,
         8
@@ -9742,6 +10404,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2454,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9768,9 +10432,11 @@
       "symbol": "RENUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1573,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3108,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -9800,6 +10466,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2364,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -9830,6 +10498,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2595,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9860,6 +10530,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2853,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9886,9 +10558,11 @@
       "symbol": "RLCUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2071,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4109,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -9914,9 +10588,11 @@
       "symbol": "RNDRUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 305,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 610,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -9943,9 +10619,11 @@
       "symbol": "RONINUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1,
-      "periode_hilang": 1,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2718,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -9972,9 +10650,11 @@
       "symbol": "ROSEUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1446,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2869,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         8
       ],
@@ -10004,6 +10684,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2450,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -10031,9 +10713,11 @@
       "symbol": "RSRUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1991,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3952,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -10059,9 +10743,11 @@
       "symbol": "RUNEUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2044,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4054,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -10089,9 +10775,11 @@
       "symbol": "RVNUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1409,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 5170,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         4,
@@ -10122,6 +10810,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2294,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -10149,9 +10839,11 @@
       "symbol": "SAGAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1,
-      "periode_hilang": 1,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2634,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -10182,6 +10874,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2334,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -10209,9 +10903,11 @@
       "symbol": "SANDUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1883,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3740,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -10240,6 +10936,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2288,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -10269,6 +10967,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2249,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -10298,6 +10998,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2300,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -10324,9 +11026,11 @@
       "symbol": "SEIUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 723,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1439,
+      "geseran_maks_ms": 16,
       "rezim_kisi": [
         8
       ],
@@ -10352,9 +11056,11 @@
       "symbol": "SFPUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1847,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3668,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -10383,6 +11089,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2094,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -10413,6 +11121,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3173,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -10443,9 +11153,11 @@
       "symbol": "SIRENUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1,
-      "periode_hilang": 1,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2421,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -10475,9 +11187,11 @@
       "symbol": "SKLUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1701,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4506,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         4,
@@ -10508,6 +11222,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1901,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -10534,9 +11250,11 @@
       "symbol": "SNXUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2060,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4086,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -10564,9 +11282,11 @@
       "symbol": "SOLUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2019,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4091,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         2,
         4,
@@ -10597,6 +11317,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2145,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -10626,6 +11348,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2153,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -10657,6 +11381,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2706,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -10689,6 +11415,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2718,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -10716,9 +11444,11 @@
       "symbol": "SPELLUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1113,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2211,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -10747,6 +11477,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1744,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -10776,6 +11508,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2214,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -10806,6 +11540,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2089,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         2,
@@ -10834,9 +11570,11 @@
       "symbol": "SSVUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 883,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1764,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -10866,6 +11604,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2949,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -10895,9 +11635,11 @@
       "symbol": "STGUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1113,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2343,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         1,
         2,
@@ -10928,9 +11670,11 @@
       "symbol": "STMXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1106,
-      "periode_hilang": 1106,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3313,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         2,
         4,
@@ -10960,9 +11704,11 @@
       "symbol": "STORJUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1829,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4563,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         4,
@@ -10994,6 +11740,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 2,
+      "jarak_bergeser": 2099,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -11025,6 +11773,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2702,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11051,9 +11801,11 @@
       "symbol": "STXUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 886,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1770,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -11079,9 +11831,11 @@
       "symbol": "SUIUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 788,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1572,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -11110,6 +11864,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2411,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11140,6 +11896,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3795,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -11170,6 +11928,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2149,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11196,9 +11956,11 @@
       "symbol": "SUSHIUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2044,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4054,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -11227,6 +11989,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2157,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11253,9 +12017,11 @@
       "symbol": "SXPUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1850,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3657,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -11285,6 +12051,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1948,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11314,6 +12082,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2424,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11341,9 +12111,11 @@
       "symbol": "SYRUPUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1,
-      "periode_hilang": 1,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1928,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11371,9 +12143,11 @@
       "symbol": "SYSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1,
-      "periode_hilang": 1,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2240,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11403,6 +12177,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1603,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11432,6 +12208,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2625,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11461,6 +12239,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1582,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11487,9 +12267,11 @@
       "symbol": "THETAUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2124,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4217,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -11518,6 +12300,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2240,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11547,6 +12331,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2837,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11575,9 +12361,11 @@
       "symbol": "TLMUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 751,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2054,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         1,
         4,
@@ -11609,6 +12397,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3243,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -11639,6 +12429,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1882,
+      "geseran_maks_ms": 20,
       "rezim_kisi": [
         4
       ],
@@ -11664,9 +12456,11 @@
       "symbol": "TOMOUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1390,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2755,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -11696,6 +12490,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2650,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11723,9 +12519,11 @@
       "symbol": "TRBUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1332,
-      "periode_hilang": 1332,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 5499,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         4,
         8
@@ -11755,6 +12553,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2140,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11781,9 +12581,11 @@
       "symbol": "TRUUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 790,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1580,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -11809,9 +12611,11 @@
       "symbol": "TRXUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2192,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4351,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -11840,6 +12644,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2113,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11869,6 +12675,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2557,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11895,17 +12703,19 @@
       "awal": 1675209600013,
       "akhir": 1782849600003,
       "symbol": "TUSDT",
-      "langkah_teramati_ms": 28800000,
-      "jam_teramati": 8.0,
-      "celah_teramati": 421,
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2869,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         2,
         4,
         8
       ],
-      "biaya_tahunan_long": -0.10718284973498234
+      "biaya_tahunan_long": -0.21436569946996467
     },
     {
       "baris": 2804,
@@ -11930,6 +12740,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2057,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11960,6 +12772,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2833,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -11987,9 +12801,11 @@
       "symbol": "UMAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 102,
-      "periode_hilang": 102,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2945,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         4,
         8
@@ -12016,9 +12832,11 @@
       "symbol": "UNIUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2026,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4022,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -12044,9 +12862,11 @@
       "symbol": "USDCUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 855,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1716,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -12076,6 +12896,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2800,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12105,6 +12927,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2200,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12134,6 +12958,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2200,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12164,6 +12990,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2670,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12194,6 +13022,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2205,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12223,6 +13053,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1603,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12249,9 +13081,11 @@
       "symbol": "VETUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2179,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4325,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -12281,6 +13115,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2235,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -12311,6 +13147,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1850,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4
       ],
@@ -12339,6 +13177,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2214,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12368,6 +13208,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2135,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12398,6 +13240,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2125,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12427,6 +13271,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2039,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12458,6 +13304,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2889,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -12489,6 +13337,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2665,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -12519,6 +13369,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2741,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12545,9 +13397,11 @@
       "symbol": "WLDUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 735,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1462,
+      "geseran_maks_ms": 16,
       "rezim_kisi": [
         8
       ],
@@ -12573,9 +13427,11 @@
       "symbol": "WOOUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1313,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2610,
+      "geseran_maks_ms": 31,
       "rezim_kisi": [
         8
       ],
@@ -12604,6 +13460,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2641,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12633,6 +13491,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2753,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -12659,9 +13519,11 @@
       "symbol": "XLMUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2191,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4349,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -12687,9 +13549,11 @@
       "symbol": "XMRUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2185,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4337,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -12715,9 +13579,11 @@
       "symbol": "XRPUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2196,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4359,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -12745,9 +13611,11 @@
       "symbol": "XTZUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1799,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 5174,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         4,
@@ -12776,9 +13644,11 @@
       "symbol": "XVGUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 738,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1472,
+      "geseran_maks_ms": 16,
       "rezim_kisi": [
         4,
         8
@@ -12805,9 +13675,11 @@
       "symbol": "XVSUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 816,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1630,
+      "geseran_maks_ms": 28,
       "rezim_kisi": [
         8
       ],
@@ -12833,9 +13705,11 @@
       "symbol": "YFIIUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 743,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1464,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -12861,9 +13735,11 @@
       "symbol": "YFIUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2048,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4062,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -12891,9 +13767,11 @@
       "symbol": "YGGUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 17,
-      "periode_hilang": 17,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
       "jarak_tidak_selaras": 1,
+      "jarak_bergeser": 2896,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         2,
         4,
@@ -12921,9 +13799,11 @@
       "symbol": "ZECUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 2184,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4336,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -12949,9 +13829,11 @@
       "symbol": "ZENUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1953,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 3882,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         8
       ],
@@ -12980,6 +13862,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2169,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -13010,6 +13894,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2723,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -13038,9 +13924,11 @@
       "symbol": "ZILUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1944,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4654,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         4,
@@ -13072,6 +13960,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 1638,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4
@@ -13102,6 +13992,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2558,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         1,
         4,
@@ -13132,6 +14024,8 @@
       "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 2519,
+      "geseran_maks_ms": 24,
       "rezim_kisi": [
         4,
         8
@@ -13160,9 +14054,11 @@
       "symbol": "ZRXUSDT",
       "langkah_teramati_ms": 28800000,
       "jam_teramati": 8.0,
-      "celah_teramati": 1899,
+      "celah_teramati": 0,
       "periode_hilang": 0,
       "jarak_tidak_selaras": 0,
+      "jarak_bergeser": 4694,
+      "geseran_maks_ms": 47,
       "rezim_kisi": [
         1,
         4,
