@@ -1,0 +1,29 @@
+{
+  "run_id": "30161543831",
+  "commit": "b8722a5d70687367620b84df9bda076eb38d88a9",
+  "waktu_utc": "2026-07-25T14:23:36Z",
+  "runner": {
+    "vcpu": 4,
+    "ram_gb": 15,
+    "disk_avail_gb": 88,
+    "cpu_model": "AMD EPYC 7763 64-Core Processor"
+  },
+  "cdn": {
+    "head_http": "200",
+    "download_bytes": 38890,
+    "download_seconds": 0.406569,
+    "checksum_ok": false,
+    "csv_bytes": 91706,
+    "csv_rows": 745,
+    "zip_ratio": 2.36
+  },
+  "s3_listing": {
+    "http": "200",
+    "ok": true
+  },
+  "exchange_info": {
+    "http": "451",
+    "symbols": null
+  },
+  "delisted_probe": " SRMUSDT=200 FTTUSDT=404 COCOSUSDT=404"
+}
