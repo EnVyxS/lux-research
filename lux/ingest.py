@@ -1,10 +1,10 @@
 """Ingest Tier B: kline 1h dan 4h untuk seluruh universe perpetual.
 
 Tier B dikerjakan lebih dulu, bukan Tier A (1m), dengan alasan yang disengaja:
-volumenya kecil, sehingga kesalahan pipeline ketahuan murah. Menemukan cacat
-setelah mengunduh 90 GB data 1-menit adalah pemborosan yang bisa dihindari.
-Keputusan itu terbukti benar: putaran pertama menyingkap cacat URL non-ASCII
-dengan biaya delapan belas menit, bukan berjam-jam.
+volumenya kecil, sehingga kesalahan pipeline ketahuan murah. Keputusan itu sudah
+terbukti dua kali. Putaran pertama menyingkap cacat URL non-ASCII, dan backfill
+ekor menyingkap cacat parser header — keduanya dengan biaya belasan menit, bukan
+berjam-jam pada 90 GB data 1-menit.
 
 Validasi dijalankan SAAT ingest, bukan sesudahnya. Setiap simbol diperiksa
 terhadap kisi waktu yang seharusnya, dan hasilnya ikut dilaporkan. Data yang
@@ -15,6 +15,12 @@ Dua jebakan format yang ditangani di sini:
 
 1. Berkas CSV Binance yang lebih baru memiliki baris header, yang lama tidak.
    Membaca tanpa deteksi akan menyisipkan baris teks ke dalam kolom numerik.
+   PERINGATAN yang lahir dari kesalahan nyata: header tidak boleh dilewati dua
+   kali. Menggabungkan ``header=0`` dengan ``skiprows=1`` membuat pandas
+   membuang baris header sekaligus memperlakukan baris DATA pertama sebagai
+   nama kolom, sehingga tepat satu bar hilang dari setiap berkas berheader.
+   Pada berkas bulanan kerugiannya cuma 1 dari 720 bar dan lolos dari perhatian;
+   pada berkas harian kerugiannya 1 dari 24 dan langsung merusak rasio interval.
 2. Sebagian berkas terbaru memakai stempel waktu MIKRODETIK, bukan milidetik.
    Tanpa normalisasi, dua berkas dari simbol yang sama tidak akan tersambung
    dan seluruh kisi waktu menjadi kacau.
@@ -86,9 +92,12 @@ def baca_zip(path: Path) -> pd.DataFrame:
     awal = mentah[:64].decode("utf-8", "ignore").lstrip().lower()
     punya_header = awal.startswith("open_time")
 
+    # ``header=None`` selalu, dan baris header dibuang HANYA lewat skiprows.
+    # Jangan pernah memakai keduanya sekaligus; lihat catatan pada docstring
+    # modul ini.
     df = pd.read_csv(
         io.BytesIO(mentah),
-        header=0 if punya_header else None,
+        header=None,
         names=KOLOM,
         skiprows=1 if punya_header else 0,
         dtype={c: "float64" for c in KOLOM[1:6] + KOLOM[7:11]},
