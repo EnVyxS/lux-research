@@ -1,0 +1,40 @@
+{
+  "id": "H-007",
+  "pernyataan": "Dengan sinyal Donchian yang tidak diubah sama sekali, memperlakukan rasio imbalan sebagai parameter yang dipilih walk-forward menghasilkan ekspektasi bersih di luar sampel minimal 0,05R. Yang diuji adalah titik impas, bukan sinyal: titik impas kotor adalah 1/(1+imbalan), sehingga imbalan 3R menurunkannya dari 0,333 ke 0,250.",
+  "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)",
+  "ruang_parameter": {
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "imbalan_R": [
+      1.0,
+      2.0,
+      3.0,
+      4.0
+    ],
+    "atr_pengali_stop": [
+      2.0
+    ],
+    "maks_umur_bar": [
+      168
+    ],
+    "maks_carry_R": [
+      0.25
+    ],
+    "jendela_carry_hari": [
+      30
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.05,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-25T21:48:00+00:00",
+  "komit": "",
+  "jumlah_kombinasi": 12,
+  "sidik": "7f5e7aeeaa29284bd99b63c54216eb7ff0775bc790d926d7307fd585d1b43263"
+}

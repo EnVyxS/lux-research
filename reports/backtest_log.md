@@ -1,10 +1,14 @@
-# Log run backtest keluarga ADR-006
+# Log run backtest H-007 (ADR-007)
 
-Commit: `ae3df8c50bec77e5614f3cd5729a97b5708ac0bb`
+Commit: `1970f6bb6c64842e8779e1927680a9b64af7a195`
 Status langkah jalan: `success`
 
 ```
-keluarga ADR-006: 3 hipotesis, ambang p entri acak 0.0167 (Bonferroni)
+titik impas kotor per imbalan:
+  1.0R -> 0.5000
+  2.0R -> 0.3333
+  3.0R -> 0.2500
+  4.0R -> 0.2000
 universe layak 438, diuji 40
   dibaca ohlcv_1h_shard00.parquet
   dibaca ohlcv_1h_shard01.parquet
@@ -22,88 +26,35 @@ universe layak 438, diuji 40
 40 simbol dimuat, 447 jadwal funding, 790 simbol dipindai untuk survivorship
 checksum: hilang 0, asing 0, tidak cocok 0
 
-=== H-004 terdaftar di hipotesis/H-004.json (sidik 98d6a5e15b2c, 3 kombinasi) ===
-  [10/40] 1000SATSUSDT: 178 trade, 2s
-  [20/40] ACXUSDT: 70 trade, 5s
-  [30/40] AKROUSDT: 59 trade, 7s
-  [40/40] ANTUSDT: 150 trade, 11s
+=== H-007 terdaftar di hipotesis/H-007.json (sidik 7f5e7aeeaa29, 12 kombinasi) ===
+  [10/40] 1000SATSUSDT: 261 trade, 6s
+  [20/40] ACXUSDT: 148 trade, 15s
+  [30/40] AKROUSDT: 174 trade, 20s
+  [40/40] ANTUSDT: 322 trade, 29s
 {
   "jumlah_simbol": 40,
   "jumlah_jendela": 356,
-  "jendela_positif": 154,
-  "jumlah_trade_luar_sampel": 7899,
-  "total_R": -143.6347868008707,
-  "ekspektasi_R": -0.018183920344457614
+  "jendela_positif": 199,
+  "jumlah_trade_luar_sampel": 14962,
+  "total_R": 605.1026635410902,
+  "ekspektasi_R": 0.04044263223774163
 }
-alasan keluar: {'target': 2659, 'stop': 5127, 'akhir_data': 66, 'umur': 47}
-entri acak: nyata 0.06815R, p 0.009900990099009901
+alasan keluar: {'target': 4125, 'stop': 10276, 'akhir_data': 190, 'umur': 371}
+parameter terpilih: {'{"imbalan_R": 4.0, "lookback": 100}': 83, '{"imbalan_R": 3.0, "lookback": 20}': 40, '{"imbalan_R": 2.0, "lookback": 100}': 11, '{"imbalan_R": 3.0, "lookback": 100}': 32, '{"imbalan_R": 4.0, "lookback": 20}': 66, '{"imbalan_R": 3.0, "lookback": 55}': 29, '{"imbalan_R": 4.0, "lookback": 55}': 45, '{"imbalan_R": 2.0, "lookback": 55}': 12, '{"imbalan_R": 1.0, "lookback": 20}': 11, '{"imbalan_R": 2.0, "lookback": 20}': 15, '{"imbalan_R": 1.0, "lookback": 100}': 7, '{"imbalan_R": 1.0, "lookback": 55}': 5}
+entri acak: nyata 0.10810R, p 0.009900990099009901
+# Titik impas — bongkaran seluruh hipotesis
 
-=== H-005 terdaftar di hipotesis/H-005.json (sidik 9c4b6324e795, 3 kombinasi) ===
-  [10/40] 1000SATSUSDT: 234 trade, 4s
-  [20/40] ACXUSDT: 136 trade, 10s
-  [30/40] AKROUSDT: 124 trade, 13s
-  [40/40] ANTUSDT: 220 trade, 19s
-{
-  "jumlah_simbol": 40,
-  "jumlah_jendela": 356,
-  "jendela_positif": 151,
-  "jumlah_trade_luar_sampel": 12194,
-  "total_R": -435.4910472730682,
-  "ekspektasi_R": -0.03571355152313172
-}
-alasan keluar: {'target': 4057, 'stop': 7962, 'umur': 66, 'akhir_data': 109}
-entri acak: nyata 0.00415R, p 0.039603960396039604
+Dengan stop 1R dan target sebesar imbalan, ekspektasi kotor adalah `p·imbalan − (1−p)` dan titik impas kotor adalah `1/(1+imbalan)`. Sebaran hasilnya terpotong di kedua sisi, sehingga tidak ada ekor panjang yang dapat menyelamatkan ekspektasi.
 
-=== H-006 terdaftar di hipotesis/H-006.json (sidik e503a9a83318, 3 kombinasi) ===
-  [10/40] 1000SATSUSDT: 328 trade, 2s
-  [20/40] ACXUSDT: 210 trade, 4s
-  [30/40] AKROUSDT: 182 trade, 6s
-  [40/40] ANTUSDT: 469 trade, 8s
-{
-  "jumlah_simbol": 40,
-  "jumlah_jendela": 356,
-  "jendela_positif": 76,
-  "jumlah_trade_luar_sampel": 20385,
-  "total_R": -2741.510048211513,
-  "ekspektasi_R": -0.13448663469274041
-}
-alasan keluar: {'target': 6032, 'stop': 13993, 'akhir_data': 210, 'umur': 150}
-entri acak: nyata -0.14069R, p 1.0
-# Keluarga ADR-006 — H-004, H-005, H-006
-
-Tiga hipotesis dijalankan serentak pada kerangka eksekusi identik H-002. Ambang `p entri acak` diperketat ke **0.0167** (Bonferroni 0,05/3) sebelum hasil terlihat.
-
-| Hipotesis | Mekanisme | Ekspektasi R | Total R | Trade | Jendela + | p acak | Putusan |
+| Hipotesis | Mekanisme | Imbalan | Laju kena target | Kotor | Bersih | Seretan | Laju dibutuhkan |
 |---|---|---|---|---|---|---|---|
-| H-004 | breakout + ADX ≥ 30 | -0.01818 | -143.63 | 7,899 | 154/356 | 0.0099 | DITOLAK |
-| H-005 | entri retest (sniper) | -0.03571 | -435.49 | 12,194 | 151/356 | 0.0396 | DITOLAK |
-| H-006 | sapuan likuiditas (SMC) | -0.13449 | -2741.51 | 20,385 | 76/356 | 1.0000 | DITOLAK |
+| H-002 | Donchian + saringan carry | 2,0 | 0.36028 | +0.08084 | +0.03159 | 0.04925 | 0.36642 |
+| H-004 | + ADX >= 30 | 2,0 | 0.34151 | +0.02453 | -0.01818 | 0.04271 | 0.36424 |
+| H-005 | entri retest | 2,0 | 0.33755 | +0.01265 | -0.03571 | 0.04836 | 0.36612 |
+| H-006 | sapuan likuiditas | 2,0 | 0.30122 | -0.09633 | -0.13449 | 0.03816 | 0.36272 |
+| H-003 | pembalikan skor-z | 2,0 | 0.26326 | -0.21021 | -0.24782 | 0.03761 | 0.36254 |
+| H-007 | imbalan dipilih WF | campuran | 0.28644 | -0.14068 | +0.04044 | -0.18113 | 0.28962 |
 
-## Alasan penolakan
+"Laju dibutuhkan" adalah laju kena target yang diperlukan untuk mencapai ekspektasi bersih 0,05R dengan seretan biaya yang sama.
 
-**H-004** — breakout + ADX ≥ 30
-- ekspektasi -0.0182R < 0.05R
-- jendela positif 0.43 < 0.5
-
-**H-005** — entri retest (sniper)
-- Gerbang gagal: invarian_risiko
-- ekspektasi -0.0357R < 0.05R
-- p entri acak 0.0396 > 0.0167
-- jendela positif 0.42 < 0.5
-
-**H-006** — sapuan likuiditas (SMC)
-- Gerbang gagal: entri_acak, invarian_risiko
-- ekspektasi -0.1345R < 0.05R
-- p entri acak 1.0000 > 0.0167
-- jendela positif 0.21 < 0.5
-
-## Pembanding tetap
-
-| Hipotesis | Ekspektasi R | Putusan |
-|---|---|---|
-| H-001b Donchian | 0,03086 | DITOLAK |
-| H-002 Donchian + saringan carry | 0,03159 | DITOLAK |
-| H-003 pembalikan skor-z | −0,24782 | DITOLAK |
-
-Angka pembanding disalin dari laporan yang sudah dikomit; ketiganya tidak dijalankan ulang.
 ```
