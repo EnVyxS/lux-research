@@ -2,11 +2,17 @@
 
 from __future__ import annotations
 
-import pytest
-
 from lux.backtest.engine import Konfig
-from lux.backtest.run_h007 import IMBALAN, LOOKBACK, hipotesis_h007, kandidat, spek_h007
-from lux.backtest.run_wf import hipotesis_h001
+from lux.backtest.run_h002 import hipotesis_h002
+from lux.backtest.run_h007 import (
+    IMBALAN,
+    LOOKBACK,
+    PEMBANDING,
+    hipotesis_h007,
+    kandidat,
+    spek_h007,
+    tabel_titik_impas,
+)
 
 KONFIG = Konfig(maks_umur_bar=168, maks_carry_R=0.25)
 
@@ -26,22 +32,22 @@ def test_imbalan_baku_ikut_diuji():
     assert 2.0 in IMBALAN
 
 
-def test_kriteria_sama_dengan_hipotesis_tunggal_lama():
+def test_kriteria_sama_dengan_h002():
     """Percobaan tunggal: tidak ada koreksi multiplisitas, tidak ada pelonggaran."""
     k = hipotesis_h007(KONFIG).kriteria
-    lama = hipotesis_h001().kriteria
+    lama = hipotesis_h002(KONFIG).kriteria
     assert k.min_ekspektasi_R == lama.min_ekspektasi_R
     assert k.maks_p_entri_acak == lama.maks_p_entri_acak
     assert k.min_trade_luar_sampel == lama.min_trade_luar_sampel
     assert k.min_jendela_positif_rasio == lama.min_jendela_positif_rasio
 
 
-def test_dataset_identik():
-    assert hipotesis_h007(KONFIG).dataset == hipotesis_h001().dataset
+def test_dataset_identik_dengan_h002():
+    assert hipotesis_h007(KONFIG).dataset == hipotesis_h002(KONFIG).dataset
 
 
-def test_sidik_berbeda_dari_hipotesis_lama():
-    assert hipotesis_h007(KONFIG).sidik() != hipotesis_h001().sidik()
+def test_sidik_berbeda_dari_h002():
+    assert hipotesis_h007(KONFIG).sidik() != hipotesis_h002(KONFIG).sidik()
 
 
 def test_stop_tidak_ikut_dicari():
@@ -68,4 +74,22 @@ def test_setiap_kandidat_punya_dua_kunci():
         assert set(k) == {"lookback", "imbalan_R"}
         assert k["imbalan_R"] in IMBALAN
         assert k["lookback"] in LOOKBACK
-}
+
+
+def test_pembanding_hanya_hipotesis_yang_sudah_ditolak():
+    """Angka pembanding disalin dari laporan, bukan dihitung ulang."""
+    id_ = [b[0] for b in PEMBANDING]
+    assert id_ == ["H-002", "H-004", "H-005", "H-006", "H-003"]
+    assert all(b[3] < 0.05 for b in PEMBANDING)
+
+
+def test_tabel_titik_impas_memuat_semua_baris():
+    from lux.analisis.titik_impas import ringkas_laporan
+
+    baris = [
+        (id_, label, "2,0", ringkas_laporan(alasan, bersih, imbalan=2.0))
+        for id_, label, alasan, bersih in PEMBANDING
+    ]
+    md = "\n".join(tabel_titik_impas(baris))
+    for id_, *_ in PEMBANDING:
+        assert f"| {id_} |" in md

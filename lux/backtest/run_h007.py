@@ -22,15 +22,17 @@ from pathlib import Path
 
 from lux.analisis.titik_impas import ringkas_laporan, titik_impas
 from lux.backtest.engine import Konfig
-from lux.backtest.run_h002 import muat_konfig_h002
+from lux.backtest.run_h002 import hipotesis_h002, muat_konfig_h002
 from lux.backtest.runner import Opsi, Spek, jalankan_spek, muat_konteks
-from lux.backtest.run_wf import hipotesis_h001
 from lux.praregistrasi import Hipotesis, Kriteria
 from lux.strategi import breakout_atr
 
 LOOKBACK = [20, 55, 100]
 IMBALAN = [1.0, 2.0, 3.0, 4.0]
 
+# Disalin kata per kata dari hipotesis_h002. Diuji kesamaannya di
+# tests/test_run_h007.py, karena dataset yang berbeda satu karakter pun membuat
+# perbandingan H-007 dengan H-002 tidak sah.
 DATASET = (
     "tier-b-v1 ohlcv_1h + funding_shard, "
     "universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)"
@@ -73,7 +75,7 @@ def hipotesis_h007(konfig: Konfig, komit: str = "") -> Hipotesis:
             "jendela_carry_hari": [konfig.jendela_carry_hari],
         },
         # Percobaan tunggal, jadi tidak ada koreksi multiplisitas. Kriterianya
-        # sama persis dengan H-001b.
+        # sama persis dengan H-002.
         kriteria=Kriteria(
             min_ekspektasi_R=0.05,
             min_trade_luar_sampel=100,
@@ -106,6 +108,34 @@ PEMBANDING = [
 ]
 
 
+def tabel_titik_impas(baris: list[tuple[str, str, str, dict]]) -> list[str]:
+    md = [
+        "# Titik impas — bongkaran seluruh hipotesis",
+        "",
+        "Dengan stop 1R dan target sebesar imbalan, ekspektasi kotor adalah "
+        "`p·imbalan − (1−p)` dan titik impas kotor adalah `1/(1+imbalan)`. "
+        "Sebaran hasilnya terpotong di kedua sisi, sehingga tidak ada ekor "
+        "panjang yang dapat menyelamatkan ekspektasi.",
+        "",
+        "| Hipotesis | Mekanisme | Imbalan | Laju kena target | Kotor | Bersih | "
+        "Seretan | Laju dibutuhkan |",
+        "|---|---|---|---|---|---|---|---|",
+    ]
+    for id_, label, im, r in baris:
+        md.append(
+            f"| {id_} | {label} | {im} | {r['laju_kena_target']:.5f} | "
+            f"{r['ekspektasi_kotor']:+.5f} | {r['ekspektasi_bersih']:+.5f} | "
+            f"{r['seretan_tersirat']:.5f} | {r['laju_dibutuhkan']:.5f} |"
+        )
+    md += [
+        "",
+        '"Laju dibutuhkan" adalah laju kena target yang diperlukan untuk '
+        "mencapai ekspektasi bersih 0,05R dengan seretan biaya yang sama.",
+        "",
+    ]
+    return md
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", required=True)
@@ -120,6 +150,12 @@ def main(argv: list[str] | None = None) -> int:
     a = ap.parse_args(argv)
 
     konfig = muat_konfig_h002(Path(a.config))
+
+    # Dataset wajib identik dengan H-002; bila tidak, perbandingannya tidak sah.
+    # Diperiksa di sini juga, sebelum satu bar pun dimuat, bukan di ujung run.
+    if hipotesis_h007(konfig).dataset != hipotesis_h002(konfig).dataset:
+        raise ValueError("dataset H-007 tidak identik dengan H-002")
+
     opsi = Opsi(
         dir_aset=Path(a.dir),
         out=Path(a.out),
@@ -137,47 +173,31 @@ def main(argv: list[str] | None = None) -> int:
     ktx = muat_konteks(opsi)
     hasil = jalankan_spek(spek_h007(konfig, a.komit), ktx, konfig, opsi)
 
-    # Aritmetika titik impas atas hasil sendiri dan seluruh pembanding.
-    # Imbalan H-007 berbeda antar jendela, jadi bongkarannya memakai imbalan
-    # dasar dan hanya berlaku sebagai perkiraan; itu dinyatakan terus terang
-    # alih-alih disembunyikan.
-    baris = []
-    for id_, label, alasan, bersih in PEMBANDING:
-        r = ringkas_laporan(alasan, bersih, imbalan=2.0)
-        baris.append((id_, label, "2,0", r))
+    # Aritmetika titik impas atas hasil sendiri dan seluruh pembanding. Imbalan
+    # H-007 berbeda antar jendela, jadi bongkarannya memakai imbalan 2,0 dan
+    # hanya berlaku sebagai perkiraan kasar; itu dinyatakan terus terang di
+    # kolom "Imbalan" alih-alih disembunyikan.
+    baris = [
+        (id_, label, "2,0", ringkas_laporan(alasan, bersih, imbalan=2.0))
+        for id_, label, alasan, bersih in PEMBANDING
+    ]
     try:
-        r_h007 = ringkas_laporan(
-            hasil["alasan_keluar"], hasil["ekspektasi_R"] or 0.0, imbalan=2.0
+        baris.append(
+            (
+                "H-007",
+                "imbalan dipilih WF",
+                "campuran",
+                ringkas_laporan(
+                    hasil["alasan_keluar"], hasil["ekspektasi_R"] or 0.0, imbalan=2.0
+                ),
+            )
         )
-        baris.append(("H-007", "imbalan dipilih WF", "campuran", r_h007))
     except ValueError as e:
         print(f"bongkaran titik impas H-007 dilewati: {e}", flush=True)
 
-    md = [
-        "# Titik impas — bongkaran seluruh hipotesis",
-        "",
-        "Dengan stop 1R dan target sebesar imbalan, ekspektasi kotor adalah "
-        "`p·imbalan − (1−p)` dan titik impas kotor adalah `1/(1+imbalan)`. "
-        "Sebaran hasilnya terpotong di kedua sisi, sehingga tidak ada ekor "
-        "panjang yang dapat menyelamatkan ekspektasi.",
-        "",
-        "| Hipotesis | Mekanisme | Imbalan | Laju kena target | Kotor | Bersih | Seretan | Laju dibutuhkan |",
-        "|---|---|---|---|---|---|---|---|",
-    ]
-    for id_, label, im, r in baris:
-        md.append(
-            f"| {id_} | {label} | {im} | {r['laju_kena_target']:.5f} | "
-            f"{r['ekspektasi_kotor']:+.5f} | {r['ekspektasi_bersih']:+.5f} | "
-            f"{r['seretan_tersirat']:.5f} | {r['laju_dibutuhkan']:.5f} |"
-        )
-    md += [
-        "",
-        "\"Laju dibutuhkan\" adalah laju kena target yang diperlukan untuk "
-        "mencapai ekspektasi bersih 0,05R dengan seretan biaya yang sama.",
-        "",
-    ]
-
+    md = tabel_titik_impas(baris)
     out = Path(a.out)
+    out.mkdir(parents=True, exist_ok=True)
     (out / "titik_impas.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     (out / "titik_impas.json").write_text(
         json.dumps(
@@ -191,8 +211,6 @@ def main(argv: list[str] | None = None) -> int:
         encoding="utf-8",
     )
     print("\n".join(md), flush=True)
-
-    assert hipotesis_h001().dataset == DATASET, "dataset harus identik"
     return 0
 
 
