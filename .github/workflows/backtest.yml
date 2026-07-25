@@ -29,8 +29,16 @@ name: backtest
 # survivorship menggunakan tanggal kematian sejati simbol, bukan stempel bar
 # terakhir mentah yang untuk simbol mati sama dengan tanggal ujung dataset.
 #
-# Pemicu run ini: H-001.json lama dihapus (blocker praregistrasi sekali-tulis).
-# H-001 akan didaftar ulang dengan dataset universe_layak_v2 438 simbol.
+# ADR-004: yang dijalankan sekarang H-002, bukan H-001b. H-001b sudah selesai
+# dan DITOLAK oleh gerbang invarian_risiko (kerugian terburuk -2,5853R vs ambang
+# -1,5R, run 30172926477); penyebabnya funding pada posisi yang dipegang 130
+# jam, bukan fee. H-001b TIDAK dihitung ulang dan ambangnya TIDAK dilonggarkan.
+# H-002 memakai dataset, kriteria, dan kode penilaian yang sama persis, dan
+# hanya menambahkan dua saringan kelayakan perdagangan yang nilainya dibaca dari
+# config/lux.yaml. Laporannya terpisah: reports/backtest_h002.{json,md}.
+#
+# limit tetap 40 simbol pertama secara alfabet, sama dengan H-001b. Mengubahnya
+# akan membuat kedua hasil tidak dapat dibandingkan.
 
 on:
   workflow_dispatch:
@@ -75,6 +83,11 @@ jobs:
       # dalam dua detik, bukan sesudah ratusan megabita berpindah. pyyaml pernah
       # hanya terpasang di sebagian workflow dan menjatuhkan run ini tepat
       # setelah unduhan selesai.
+      #
+      # Pembacaan config ikut diuji di sini: bila kunci saringan ADR-004 hilang,
+      # run_h002 akan menjalankan H-002 tanpa saringan apa pun, yaitu H-001b
+      # dengan nama lain. muat_konfig_h002 menolaknya, dan penolakan itu harus
+      # terjadi sekarang, bukan setelah unduhan.
       - name: Periksa impor modul jalan
         env:
           PYTHONPATH: .
@@ -82,6 +95,7 @@ jobs:
           python -c "import yaml, pandas, pyarrow; print('impor pihak ketiga siap')"
           python -c "import lux.backtest.run_wf as m; print('run_wf siap', m.POLA_DILARANG)"
           python -c "import lux.potong_ekor; print('potong_ekor siap')"
+          python -c "from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); print('saringan ADR-004 siap:', k.maks_umur_bar, k.maks_carry_R, k.jendela_carry_hari)"
 
       - name: Unduh aset
         env:
@@ -93,14 +107,14 @@ jobs:
           ls -la aset
           du -sh aset
 
-      - name: Jalankan walk-forward
+      - name: Jalankan walk-forward H-002
         id: jalan
         env:
           PYTHONPATH: .
         run: |
           set -o pipefail
           mkdir -p logs
-          python -m lux.backtest.run_wf \
+          python -m lux.backtest.run_h002 \
             --dir aset \
             --interval 1h \
             --universe reports/universe_layak_v2.json \
@@ -114,7 +128,7 @@ jobs:
         run: |
           mkdir -p reports logs
           {
-            echo "# Log run backtest"
+            echo "# Log run backtest H-002"
             echo
             echo "Commit: \`${GITHUB_SHA}\`"
             echo "Status langkah jalan: \`${{ steps.jalan.outcome }}\`"
