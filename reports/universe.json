@@ -1,0 +1,36 @@
+{
+  "waktu_utc": "2026-07-25T14:32:21+00:00",
+  "interval": "1h",
+  "total_simbol": 937,
+  "simbol_masih_aktif": 808,
+  "simbol_delisted": 129,
+  "simbol_tanpa_data_1h": 0,
+  "contoh_tanpa_data": [],
+  "total_baris_pit": 21789,
+  "bulan_paling_awal": "2020-01",
+  "bulan_paling_akhir": "2026-06",
+  "per_quote": {
+    "USDT": 790,
+    "LAIN": 67,
+    "BUSD": 41,
+    "USDC": 39
+  },
+  "simbol_dengan_lubang_arsip": 2,
+  "total_bulan_hilang": 11,
+  "contoh_lubang": [
+    {
+      "symbol": "TLMUSDTSETTLED",
+      "first_month": "2022-01",
+      "last_month": "2023-03",
+      "bulan_hilang": 6
+    },
+    {
+      "symbol": "BNXUSDTSETTLED",
+      "first_month": "2022-04",
+      "last_month": "2023-02",
+      "bulan_hilang": 5
+    }
+  ],
+  "gerbang_min_simbol": 841,
+  "gerbang_lulus": true
+}
