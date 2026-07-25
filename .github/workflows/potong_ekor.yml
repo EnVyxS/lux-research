@@ -1,0 +1,118 @@
+# Pemangkasan ekor datar simbol mati — pelaksanaan ADR-003.
+#
+# Diagnostik diag-datar membuktikan 62 dari 447 simbol layak berakhir dengan
+# blok bar datar berharga tunggal yang membentang sampai bar terakhir dataset,
+# sebagian sepanjang dua puluh bulan. Harga terakhir simbol yang berhenti
+# diperdagangkan disalin berulang sampai ujung dataset.
+#
+# Akibat terpenting bukan bar palsu yang dapat diperdagangkan, melainkan bahwa
+# gerbang survivorship kehilangan kemampuannya untuk gagal: simbol mati dikenali
+# dari stempel bar terakhirnya, dan bar terakhir simbol mati ini sama dengan bar
+# terakhir simbol yang masih hidup.
+#
+# Aset TIDAK ditulis ulang. Aset bersifat write-once, dan menulis ulang 703 MB
+# untuk membuang ekornya akan menghapus kemampuan memeriksa ulang keputusan ini
+# terhadap data aslinya. Yang dihasilkan di sini adalah dua tabel yang dapat
+# diaudit: tanggal kematian sejati per simbol, dan universe layak versi dua.
+name: potong-ekor
+
+on:
+  workflow_dispatch:
+    inputs:
+      min_panjang:
+        description: Panjang minimum ekor datar yang dipangkas, dalam bar
+        default: "24"
+      maks_rasio:
+        description: Rasio bar datar maksimum setelah pemangkasan
+        default: "0.10"
+  # Menyunting berkas ini adalah satu-satunya cara memicu run dari MCP.
+  push:
+    paths:
+      - '.github/workflows/potong_ekor.yml'
+
+permissions:
+  contents: write
+
+env:
+  TAG: tier-b-v1
+
+jobs:
+  potong:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Pasang dependensi
+        run: pip install -r requirements.txt pytest
+
+      # Gerbang pra-terbang. Sembilan kali sudah menghentikan run dalam hitungan
+      # detik sebelum unduhan ratusan megabita terlanjur berjalan.
+      - name: Uji dulu, baru unduh
+        env:
+          PYTHONPATH: .
+        run: python -m pytest tests -q
+
+      - name: Periksa impor modul jalan
+        env:
+          PYTHONPATH: .
+        run: python -c "import lux.potong_ekor; print('impor jalan')"
+
+      # Pola WAJIB lebar: ohlcv_1h_* mencakup shard utama dan shard ekor.
+      # Mempersempitnya pernah membuang seluruh data ekor tanpa pesan galat.
+      - name: Unduh aset OHLCV
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p aset
+          gh release download "$TAG" -p 'ohlcv_1h_*.parquet' -D aset --clobber
+          ls -la aset
+          du -sh aset
+
+      - name: Jalankan pemangkasan
+        id: jalan
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          mkdir -p logs
+          python -m lux.potong_ekor \
+            --dir aset \
+            --interval 1h \
+            --universe reports/universe_layak.json \
+            --out reports \
+            --min-panjang "${{ github.event.inputs.min_panjang || '24' }}" \
+            --maks-rasio "${{ github.event.inputs.maks_rasio || '0.10' }}" \
+            2>&1 | tee logs/potong_ekor.log
+
+      # Tidak ada cara membaca log run lewat MCP, jadi log dikomit balik.
+      - name: Salin log ke laporan
+        if: always()
+        run: |
+          mkdir -p reports
+          {
+            echo '# Log run pemangkasan ekor datar'
+            echo
+            echo "Commit: \`${GITHUB_SHA}\`"
+            echo "Status langkah jalan: \`${{ steps.jalan.outcome }}\`"
+            echo
+            echo '```'
+            tail -c 60000 logs/potong_ekor.log 2>/dev/null || echo 'tidak ada log'
+            echo '```'
+          } > reports/potong_ekor_log.md
+
+      - name: Commit laporan kembali ke repo
+        if: always()
+        run: |
+          git config user.name "lux-potong"
+          git config user.email "actions@github.com"
+          git add reports || true
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(potong): laporan ekor datar run ${GITHUB_RUN_ID} [skip ci]"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
