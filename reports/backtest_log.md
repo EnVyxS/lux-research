@@ -1,11 +1,11 @@
-# Log run backtest H-002
+# Log run backtest H-003
 
-Commit: `ee1f705c18b0c4b414e1b1bd6ec114afd36f2a9f`
+Commit: `cd943f84176ab572e83f36690cb70c1887b48eda`
 Status langkah jalan: `success`
 
 ```
-hipotesis H-002 terdaftar di hipotesis/H-002.json (sidik 16fb57692a6f)
-ruang pencarian: 3 kombinasi (umur maks 168 bar, carry maks 0.25R, jendela 30 hari)
+hipotesis H-003 terdaftar di hipotesis/H-003.json (sidik 3a1cdc867f61)
+ruang pencarian: 3 kombinasi (jendela [24, 72, 168], ambang 2.0)
 universe layak 438, diuji 40
   dibaca ohlcv_1h_shard00.parquet
   dibaca ohlcv_1h_shard01.parquet
@@ -21,32 +21,32 @@ universe layak 438, diuji 40
   dibaca ohlcv_1h_tail_shard03.parquet
   akhir_per_simbol: 790 simbol dari reports/akhir_sejati.json
 40 simbol dimuat, 447 jadwal funding, 790 simbol dipindai untuk survivorship
-  [5/40] 1000CHEEMSUSDT: 253 trade, 4s
-  [10/40] 1000SATSUSDT: 378 trade, 5s
-  [15/40] 1MBABYDOGEUSDT: 232 trade, 7s
-  [20/40] ACXUSDT: 162 trade, 8s
-  [25/40] AGTUSDT: 102 trade, 9s
-  [30/40] AKROUSDT: 217 trade, 9s
-  [35/40] ALPHAUSDT: 879 trade, 10s
-  [40/40] ANTUSDT: 373 trade, 11s
+  [5/40] 1000CHEEMSUSDT: 472 trade, 4s
+  [10/40] 1000SATSUSDT: 519 trade, 6s
+  [15/40] 1MBABYDOGEUSDT: 413 trade, 8s
+  [20/40] ACXUSDT: 318 trade, 9s
+  [25/40] AGTUSDT: 106 trade, 11s
+  [30/40] AKROUSDT: 256 trade, 11s
+  [35/40] ALPHAUSDT: 1485 trade, 13s
+  [40/40] ANTUSDT: 505 trade, 15s
 {
   "jumlah_simbol": 40,
   "jumlah_jendela": 356,
-  "jendela_positif": 212,
-  "jumlah_trade_luar_sampel": 18883,
-  "total_R": 596.4426936993348,
-  "ekspektasi_R": 0.03158622537199252
+  "jendela_positif": 25,
+  "jumlah_trade_luar_sampel": 28959,
+  "total_R": -7176.59924421273,
+  "ekspektasi_R": -0.24781930467946856
 }
-biaya rerata: transaksi 0.034534421301562764R, funding 0.000536020846484891R, 0 trade berbiaya di atas 1R
-alasan keluar: {'target': 6707, 'stop': 11909, 'akhir_data': 164, 'umur': 103}
-entri acak: nyata 0.07392R, p 0.009900990099009901, 32s
-# Backtest H-002 — batas umur posisi dan saringan carry (ADR-004)
+biaya rerata: transaksi 0.03353019486624796R, funding -0.0017218206444440914R, 0 trade berbiaya di atas 1R
+alasan keluar: {'target': 7503, 'stop': 20997, 'akhir_data': 258, 'umur': 201}
+entri acak: nyata -0.26690R, p 1.0, 43s
+# Backtest H-003 — pembalikan jangka pendek (ADR-005)
 
-> Penembusan Donchian pada penutupan bar 1 jam menghasilkan ekspektasi positif setelah fee, slippage, dan funding nyata, bila posisi dibatasi umurnya dan entri dengan carry funding terproyeksi berlebihan ditolak, pada perp USDT yang lolos ambang kelayakan, dinilai hanya di luar sampel.
+> Pembalikan jangka pendek — membeli penutupan yang jatuh dua simpangan baku di bawah rerata bergulir dan menjual yang melonjak dua simpangan baku di atasnya — menghasilkan ekspektasi positif setelah fee, slippage, dan funding nyata, pada kerangka eksekusi yang sama persis dengan H-002, dinilai hanya di luar sampel.
 
-Sidik hipotesis `16fb57692a6f0888` · ruang 3 kombinasi · 40 simbol · 32.6s
+Sidik hipotesis `3a1cdc867f61bf67` · ruang 3 kombinasi · 40 simbol · 43.6s
 
-Saringan: umur maksimum **168 bar**, carry terproyeksi maksimum **0.25R** atas jendela 30 hari.
+Kerangka eksekusi identik H-002. Yang berbeda hanya sinyalnya, dan arahnya berlawanan.
 
 ## Putusan
 
@@ -54,14 +54,14 @@ Saringan: umur maksimum **168 bar**, carry terproyeksi maksimum **0.25R** atas j
 
 Kriteria pra-registrasi yang tidak terpenuhi:
 
-- ekspektasi 0.0316R < 0.05R
+- ekspektasi -0.2478R < 0.05R
+- p entri acak 1.0000 > 0.05
+- jendela positif 0.07 < 0.5
+
+Gerbang gagal: buy_and_hold, entri_acak, invarian_risiko
 
 ## Hasil luar sampel
 
-- Perdagangan: **18,883**
-- Total R: **596.44**
-- Ekspektasi: **0.03158622537199252**
-- Jendela positif: 212/356
-- Alasan keluar: {'target': 6707, 'stop': 11909, 'akhir_data': 164, 'umur': 103}
-
+- Perdagangan: **28,959**
+- Total R: **-7176.60**
 ```

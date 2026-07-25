@@ -1,0 +1,2112 @@
+{
+  "hipotesis": {
+    "id": "H-003",
+    "pernyataan": "Pembalikan jangka pendek — membeli penutupan yang jatuh dua simpangan baku di bawah rerata bergulir dan menjual yang melonjak dua simpangan baku di atasnya — menghasilkan ekspektasi positif setelah fee, slippage, dan funding nyata, pada kerangka eksekusi yang sama persis dengan H-002, dinilai hanya di luar sampel.",
+    "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)",
+    "ruang_parameter": {
+      "jendela": [
+        24,
+        72,
+        168
+      ],
+      "ambang": [
+        2.0
+      ],
+      "maks_umur_bar": [
+        168
+      ],
+      "maks_carry_R": [
+        0.25
+      ],
+      "jendela_carry_hari": [
+        30
+      ]
+    },
+    "kriteria": {
+      "min_ekspektasi_R": 0.05,
+      "min_trade_luar_sampel": 100,
+      "maks_p_entri_acak": 0.05,
+      "min_jendela_positif_rasio": 0.5
+    },
+    "dibuat_utc": "2026-07-25T21:13:06+00:00",
+    "komit": "",
+    "jumlah_kombinasi": 3,
+    "sidik": "3a1cdc867f61bf67b092d836d19f6b77f156889b74d15ece98806b0a6608fcd0"
+  },
+  "parameter_run": {
+    "interval": "1h",
+    "limit": 40,
+    "panjang_latih": 4320,
+    "panjang_uji": 2160,
+    "embargo": 168,
+    "pemanasan": 200,
+    "ulangan_permutasi": 100,
+    "sampel_permutasi": [
+      "1000000BOBUSDT",
+      "1000000MOGUSDT",
+      "1000BONKUSDT",
+      "1000CATUSDT",
+      "1000CHEEMSUSDT",
+      "1000FLOKIUSDT",
+      "1000LUNCUSDT",
+      "1000PEPEUSDT",
+      "1000RATSUSDT",
+      "1000SATSUSDT"
+    ],
+    "simbol_mati_di_universe": 64,
+    "maks_umur_bar": 168,
+    "maks_carry_R": 0.25,
+    "jendela_carry_hari": 30
+  },
+  "gabungan": {
+    "jumlah_simbol": 40,
+    "jumlah_jendela": 356,
+    "jendela_positif": 25,
+    "jumlah_trade_luar_sampel": 28959,
+    "total_R": -7176.59924421273,
+    "ekspektasi_R": -0.24781930467946856
+  },
+  "alasan_keluar": {
+    "target": 7503,
+    "stop": 20997,
+    "akhir_data": 258,
+    "umur": 201
+  },
+  "diagnosa_biaya": {
+    "jumlah": 28959,
+    "rerata_transaksi_R": 0.03353019486624796,
+    "rerata_funding_R": -0.0017218206444440914,
+    "rerata_stop_frac": 0.0363569085894886,
+    "trade_biaya_lebih_1R": 0,
+    "terburuk": [
+      {
+        "symbol": "AKTUSDT",
+        "R": -1.8636755413456403,
+        "kotor_R": -1.0103731807722276,
+        "transaksi_R": 0.02025154813484537,
+        "funding_R": 0.8330508124385672,
+        "stop_frac": 0.05064224098948475,
+        "jam": 77.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "ALPHAUSDT",
+        "R": -1.4781187498597048,
+        "kotor_R": -1.0115956500473178,
+        "transaksi_R": 0.022697097919659993,
+        "funding_R": 0.4438260018927271,
+        "stop_frac": 0.0450627045614917,
+        "jam": 3.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "ANIMEUSDT",
+        "R": -1.475856170875099,
+        "kotor_R": -1.0093836291988356,
+        "transaksi_R": 0.018271950212273496,
+        "funding_R": 0.4482005914639902,
+        "stop_frac": 0.056283303682402155,
+        "jam": 1.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "1000WHYUSDT",
+        "R": -1.4085889480589422,
+        "kotor_R": -1.0133946211154847,
+        "transaksi_R": 0.02728254492041441,
+        "funding_R": 0.36791178202304287,
+        "stop_frac": 0.035985148198300364,
+        "jam": 91.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "ALPHAUSDT",
+        "R": -1.3494060288017573,
+        "kotor_R": -1.0320728509523072,
+        "transaksi_R": 0.06366173833010337,
+        "funding_R": 0.25367143951934673,
+        "stop_frac": 0.015836390598846464,
+        "jam": 9.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "ACHUSDT",
+        "R": -1.345598191556488,
+        "kotor_R": -1.0046044418944826,
+        "transaksi_R": 0.008711186009912598,
+        "funding_R": 0.3322825636520931,
+        "stop_frac": 0.12181924189793406,
+        "jam": 65.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "R": -1.3093453471781173,
+        "kotor_R": -1.0137707872199673,
+        "transaksi_R": 0.028034689046320595,
+        "funding_R": 0.2675398709118294,
+        "stop_frac": 0.03503660956422109,
+        "jam": 135.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "AGLDUSDT",
+        "R": -1.299004978813622,
+        "kotor_R": -1.010255421991043,
+        "transaksi_R": 0.020015971693084007,
+        "funding_R": 0.2687335851294951,
+        "stop_frac": 0.05125354909905633,
+        "jam": 42.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "AGLDUSDT",
+        "R": -1.2682561458676471,
+        "kotor_R": -1.0105855696274855,
+        "transaksi_R": 0.020676432039788625,
+        "funding_R": 0.23699414420037307,
+        "stop_frac": 0.04957578188120268,
+        "jam": 43.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "R": -1.2592833282060933,
+        "kotor_R": -1.0490281057215547,
+        "transaksi_R": 0.09758072549598046,
+        "funding_R": 0.11267449698855819,
+        "stop_frac": 0.010303307589808979,
+        "jam": 40.0,
+        "alasan": "stop"
+      }
+    ]
+  },
+  "gerbang": {
+    "semua_lulus": false,
+    "gerbang_gagal": [
+      "buy_and_hold",
+      "entri_acak",
+      "invarian_risiko"
+    ],
+    "rincian": [
+      {
+        "nama": "forward_fill",
+        "lulus": true,
+        "nilai": 0.00025348542458808617,
+        "ambang": 0.3,
+        "catatan": "0 dari 40 simbol gagal"
+      },
+      {
+        "nama": "buy_and_hold",
+        "lulus": false,
+        "nilai": -0.0782950478764709,
+        "ambang": 0.0,
+        "catatan": "median selisih -0.0783; unggul di 19/40 simbol"
+      },
+      {
+        "nama": "entri_acak",
+        "lulus": false,
+        "nilai": 1.0,
+        "ambang": 0.05,
+        "catatan": "100 dari 100 permutasi menyamai atau melampaui"
+      },
+      {
+        "nama": "lookahead",
+        "lulus": true,
+        "nilai": 0.0,
+        "ambang": 0.0,
+        "catatan": "0 sinyal berubah saat data masa depan dihapus"
+      },
+      {
+        "nama": "invarian_risiko",
+        "lulus": false,
+        "nilai": -1.8636755413456403,
+        "ambang": -1.5,
+        "catatan": "kerugian terburuk -1.864R dari 28959 perdagangan"
+      },
+      {
+        "nama": "funding",
+        "lulus": true,
+        "nilai": 13153.541375436329,
+        "ambang": 0.0,
+        "catatan": "total funding mutlak 13153.541375 atas 28959 trade"
+      },
+      {
+        "nama": "overlap",
+        "lulus": true,
+        "nilai": 0.0,
+        "ambang": 0.0,
+        "catatan": "0 dari 40 simbol gagal"
+      },
+      {
+        "nama": "checksum",
+        "lulus": true,
+        "nilai": 0.0,
+        "ambang": 0.0,
+        "catatan": "hilang 0, asing 0, tidak cocok 0"
+      },
+      {
+        "nama": "survivorship",
+        "lulus": true,
+        "nilai": 0.85546875,
+        "ambang": 0.5,
+        "catatan": "porsi delisted diuji 0.1250 vs universe 0.1461"
+      }
+    ]
+  },
+  "putusan": {
+    "lulus": false,
+    "alasan": [
+      "ekspektasi -0.2478R < 0.05R",
+      "p entri acak 1.0000 > 0.05",
+      "jendela positif 0.07 < 0.5"
+    ]
+  },
+  "pembanding": [
+    {
+      "label": "H-001b",
+      "ekspektasi_R": 0.030857864162317453,
+      "total_R": 589.1692004511272,
+      "jumlah_trade_luar_sampel": 19093,
+      "invarian_risiko": null,
+      "p_entri_acak": null,
+      "lulus": false
+    },
+    {
+      "label": "H-002",
+      "ekspektasi_R": 0.03158622537199252,
+      "total_R": 596.4426936993348,
+      "jumlah_trade_luar_sampel": 18883,
+      "invarian_risiko": null,
+      "p_entri_acak": null,
+      "lulus": false
+    }
+  ],
+  "per_simbol": [
+    {
+      "symbol": "1000000BOBUSDT",
+      "bar": 9952,
+      "jendela": 2,
+      "trade": 74,
+      "total_R": 0.216,
+      "ekspektasi_R": 0.00292,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000000MOGUSDT",
+      "bar": 14988,
+      "jendela": 4,
+      "trade": 334,
+      "total_R": -89.0607,
+      "ekspektasi_R": -0.26665,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000BONKUSDT",
+      "bar": 23410,
+      "jendela": 8,
+      "trade": 810,
+      "total_R": -195.4918,
+      "ekspektasi_R": -0.24135,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000CATUSDT",
+      "bar": 15396,
+      "jendela": 5,
+      "trade": 384,
+      "total_R": -124.93,
+      "ekspektasi_R": -0.32534,
+      "parameter": [
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000CHEEMSUSDT",
+      "bar": 14557,
+      "jendela": 4,
+      "trade": 472,
+      "total_R": -131.2708,
+      "ekspektasi_R": -0.27812,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000FLOKIUSDT",
+      "bar": 28208,
+      "jendela": 10,
+      "trade": 851,
+      "total_R": -276.7032,
+      "ekspektasi_R": -0.32515,
+      "parameter": [
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000LUNCUSDT",
+      "bar": 33947,
+      "jendela": 13,
+      "trade": 1065,
+      "total_R": -221.1255,
+      "ekspektasi_R": -0.20763,
+      "parameter": [
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000PEPEUSDT",
+      "bar": 28232,
+      "jendela": 10,
+      "trade": 947,
+      "total_R": -284.0157,
+      "ekspektasi_R": -0.29991,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000RATSUSDT",
+      "bar": 22858,
+      "jendela": 8,
+      "trade": 684,
+      "total_R": -161.9301,
+      "ekspektasi_R": -0.23674,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000SATSUSDT",
+      "bar": 22930,
+      "jendela": 8,
+      "trade": 519,
+      "total_R": -154.4828,
+      "ekspektasi_R": -0.29765,
+      "parameter": [
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000SHIBUSDT",
+      "bar": 45631,
+      "jendela": 19,
+      "trade": 1573,
+      "total_R": -393.1113,
+      "ekspektasi_R": -0.24991,
+      "parameter": [
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000WHYUSDT",
+      "bar": 11446,
+      "jendela": 3,
+      "trade": 112,
+      "total_R": -8.7161,
+      "ekspektasi_R": -0.07782,
+      "parameter": [
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000XECUSDT",
+      "bar": 42525,
+      "jendela": 17,
+      "trade": 1318,
+      "total_R": -364.9979,
+      "ekspektasi_R": -0.27693,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1INCHUSDT",
+      "bar": 48902,
+      "jendela": 20,
+      "trade": 1711,
+      "total_R": -405.5654,
+      "ekspektasi_R": -0.23703,
+      "parameter": [
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1MBABYDOGEUSDT",
+      "bar": 16237,
+      "jendela": 5,
+      "trade": 413,
+      "total_R": -131.2676,
+      "ekspektasi_R": -0.31784,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "bar": 50585,
+      "jendela": 21,
+      "trade": 1696,
+      "total_R": -398.7524,
+      "ekspektasi_R": -0.23511,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ACEUSDT",
+      "bar": 22790,
+      "jendela": 8,
+      "trade": 651,
+      "total_R": -146.9482,
+      "ekspektasi_R": -0.22573,
+      "parameter": [
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ACHUSDT",
+      "bar": 29962,
+      "jendela": 11,
+      "trade": 779,
+      "total_R": -131.507,
+      "ekspektasi_R": -0.16882,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ACTUSDT",
+      "bar": 14892,
+      "jendela": 4,
+      "trade": 306,
+      "total_R": -75.2334,
+      "ekspektasi_R": -0.24586,
+      "parameter": [
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ACXUSDT",
+      "bar": 14289,
+      "jendela": 4,
+      "trade": 318,
+      "total_R": -84.3616,
+      "ekspektasi_R": -0.26529,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ADAUSDT",
+      "bar": 56800,
+      "jendela": 24,
+      "trade": 2034,
+      "total_R": -598.6569,
+      "ekspektasi_R": -0.29432,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AEROUSDT",
+      "bar": 14338,
+      "jendela": 4,
+      "trade": 310,
+      "total_R": -104.3863,
+      "ekspektasi_R": -0.33673,
+      "parameter": [
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AEVOUSDT",
+      "bar": 20723,
+      "jendela": 7,
+      "trade": 606,
+      "total_R": -159.145,
+      "ekspektasi_R": -0.26262,
+      "parameter": [
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AGLDUSDT",
+      "bar": 26206,
+      "jendela": 10,
+      "trade": 880,
+      "total_R": -241.6791,
+      "ekspektasi_R": -0.27464,
+      "parameter": [
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AGTUSDT",
+      "bar": 10334,
+      "jendela": 2,
+      "trade": 106,
+      "total_R": 6.0052,
+      "ekspektasi_R": 0.05665,
+      "parameter": [
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AINUSDT",
+      "bar": 9110,
+      "jendela": 2,
+      "trade": 170,
+      "total_R": -54.5298,
+      "ekspektasi_R": -0.32076,
+      "parameter": [
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AIOTUSDT",
+      "bar": 10812,
+      "jendela": 2,
+      "trade": 156,
+      "total_R": -65.8363,
+      "ekspektasi_R": -0.42203,
+      "parameter": [
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AIUSDT",
+      "bar": 20183,
+      "jendela": 7,
+      "trade": 585,
+      "total_R": -160.871,
+      "ekspektasi_R": -0.27499,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AIXBTUSDT",
+      "bar": 13950,
+      "jendela": 4,
+      "trade": 391,
+      "total_R": -45.3911,
+      "ekspektasi_R": -0.11609,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AKROUSDT",
+      "bar": 11835,
+      "jendela": 3,
+      "trade": 256,
+      "total_R": -72.5786,
+      "ekspektasi_R": -0.28351,
+      "parameter": [
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AKTUSDT",
+      "bar": 14725,
+      "jendela": 4,
+      "trade": 353,
+      "total_R": -67.1452,
+      "ekspektasi_R": -0.19021,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALCHUSDT",
+      "bar": 13525,
+      "jendela": 4,
+      "trade": 306,
+      "total_R": -74.3533,
+      "ekspektasi_R": -0.24298,
+      "parameter": [
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALGOUSDT",
+      "bar": 53511,
+      "jendela": 22,
+      "trade": 1859,
+      "total_R": -448.3033,
+      "ekspektasi_R": -0.24115,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALICEUSDT",
+      "bar": 46965,
+      "jendela": 19,
+      "trade": 1379,
+      "total_R": -321.5979,
+      "ekspektasi_R": -0.23321,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALPHAUSDT",
+      "bar": 42363,
+      "jendela": 17,
+      "trade": 1485,
+      "total_R": -316.9292,
+      "ekspektasi_R": -0.21342,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALPINEUSDT",
+      "bar": 10671,
+      "jendela": 2,
+      "trade": 174,
+      "total_R": -25.0214,
+      "ekspektasi_R": -0.1438,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALTUSDT",
+      "bar": 21874,
+      "jendela": 8,
+      "trade": 646,
+      "total_R": -128.3727,
+      "ekspektasi_R": -0.19872,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ANIMEUSDT",
+      "bar": 13135,
+      "jendela": 4,
+      "trade": 204,
+      "total_R": -53.0038,
+      "ekspektasi_R": -0.25982,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ANKRUSDT",
+      "bar": 48137,
+      "jendela": 20,
+      "trade": 1537,
+      "total_R": -333.9064,
+      "ekspektasi_R": -0.21725,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "ANTUSDT",
+      "bar": 19829,
+      "jendela": 7,
+      "trade": 505,
+      "total_R": -131.6418,
+      "ekspektasi_R": -0.26068,
+      "parameter": [
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 24,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 72,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        },
+        {
+          "jendela": 168,
+          "ambang": 2.0
+        }
+      ]
+    }
+  ],
+  "detik": 43.6
+}
