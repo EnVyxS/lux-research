@@ -1,4 +1,4 @@
-"""Menjalankan hipotesis H-001 secara utuh: walk-forward, gerbang, putusan.
+"""Menjalankan hipotesis H-001b secara utuh: walk-forward, gerbang, putusan.
 
 Dipanggil dari runner, bukan sandbox agen, karena asetnya ratusan megabita.
 
@@ -40,6 +40,12 @@ Tanggal kematian sejati simbol dibaca dari ``reports/akhir_sejati.json``
 alih-alih dari stempel bar terakhir mentah -- perbedaan ini krusial karena
 pipa data mengisi harga terakhir simbol mati sampai ujung dataset, sehingga
 stempel mentah tidak dapat membedakan simbol mati dari simbol hidup.
+
+Mengapa H-001b bukan H-001:
+    H-001 sudah terdaftar dengan dataset lama (universe_layak 447 simbol,
+    tercemar padding ekor datar). Praregistrasi bersifat sekali-tulis dan
+    menolak isi berbeda pada ID yang sama. H-001b adalah hipotesis aktif
+    dengan dataset bersih (ADR-003, 438 simbol).
 
 Pemakaian:
     python -m lux.backtest.run_wf --dir aset --interval 1h \\
@@ -388,8 +394,15 @@ def gerbang_bnh_gabungan(daftar: list[Gerbang]) -> Gerbang:
 
 
 def hipotesis_h001(komit: str = "") -> Hipotesis:
+    """H-001b: hipotesis aktif dengan dataset bersih ADR-003.
+
+    H-001 (universe_layak 447 simbol, tercemar padding ekor datar) dipertahankan
+    sebagai rekam jejak. H-001b menggunakan universe_layak_v2 438 simbol setelah
+    pemangkasan. Praregistrasi menolak isi berbeda pada ID yang sama, sehingga
+    ID baru diperlukan.
+    """
     return Hipotesis(
-        id="H-001",
+        id="H-001b",
         pernyataan=(
             "Penembusan Donchian pada penutupan bar 1 jam menghasilkan ekspektasi "
             "positif setelah fee, slippage, dan funding nyata, pada perp USDT yang "
@@ -421,7 +434,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--akhir-sejati", default="reports/akhir_sejati.json")
     ap.add_argument("--config", default="config/lux.yaml")
     ap.add_argument("--out", default="reports")
-    ap.add_argument("--hipotesis", default="hipotesis/H-001.json")
+    ap.add_argument("--hipotesis", default="hipotesis/H-001b.json")
     ap.add_argument("--limit", type=int, default=40)
     ap.add_argument("--panjang-latih", type=int, default=4320)
     ap.add_argument("--panjang-uji", type=int, default=2160)
@@ -694,7 +707,7 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     md = [
-        "# Backtest H-001 \u2014 breakout Donchian 1 jam",
+        "# Backtest H-001b — breakout Donchian 1 jam (ADR-003)",
         "",
         f"> {h.pernyataan}",
         "",
