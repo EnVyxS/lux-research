@@ -30,9 +30,14 @@ kegagalan: gerbang forward-fill menjatuhkan run pilot lewat panjang deret bar
 datar, sementara yang tercetak justru rasionya, yang lolos ambang.
 
 ADR-003 (ekor datar): Aset Parquet **tidak** ditulis ulang. Pemangkasan
-diterapkan saat muat lewat ``_potong_ekor`` sehingga prinsip write-once tetap
-terjaga. Tanggal kematian sejati simbol dibaca dari ``reports/akhir_sejati.json``
-alih-alih dari stempel bar terakhir mentah — perbedaan ini krusial karena
+diterapkan saat muat lewat ``lux.potong_ekor.potong`` sehingga prinsip
+write-once tetap terjaga. Import dilakukan secara lazy (di dalam fungsi
+``muat_ohlcv``) untuk memutus rantai circular import:
+
+    run_wf -> potong_ekor -> diag_datar -> run_wf (untuk pilih_berkas)
+
+Tanggal kematian sejati simbol dibaca dari ``reports/akhir_sejati.json``
+alih-alih dari stempel bar terakhir mentah -- perbedaan ini krusial karena
 pipa data mengisi harga terakhir simbol mati sampai ujung dataset, sehingga
 stempel mentah tidak dapat membedakan simbol mati dari simbol hidup.
 
@@ -71,7 +76,6 @@ from lux.backtest.gerbang import (
 )
 from lux.backtest.walk_forward import jalankan_walk_forward
 from lux.funding_model import ambil_jadwal, muat_jadwal
-from lux.potong_ekor import potong as _potong_ekor
 from lux.praregistrasi import Hipotesis, Kriteria, nilai, simpan
 from lux.strategi import breakout_atr
 
@@ -104,9 +108,14 @@ def muat_ohlcv(
 ) -> tuple[dict[str, pd.DataFrame], list[Path]]:
     """Muat OHLCV per simbol dan pangkas ekor datar sesuai ADR-003.
 
-    Pemangkasan diterapkan setelah sort, sebelum data masuk ke backtest.
-    Aset Parquet tidak disentuh; prinsip write-once tetap terjaga.
+    Import ``potong_ekor`` dilakukan secara lazy di dalam fungsi ini untuk
+    memutus circular import:
+        run_wf -> potong_ekor -> diag_datar -> run_wf (pilih_berkas)
+    Pemangkasan diterapkan setelah sort; aset Parquet tidak disentuh.
     """
+    # Lazy import untuk memutus circular: run_wf -> potong_ekor -> diag_datar -> run_wf
+    from lux.potong_ekor import potong as _potong_ekor  # noqa: PLC0415
+
     berkas = pilih_berkas(direktori, interval)
     if not berkas:
         raise SystemExit(f"tidak ada ohlcv_{interval}_*.parquet sah di {direktori}")
@@ -133,9 +142,9 @@ def akhir_per_simbol(
 
     Bila ``akhir_sejati_path`` ada dan filenya tersedia, stempel dibaca dari
     sana. File itu dihasilkan oleh ``lux.potong_ekor`` dan menyimpan tanggal
-    kematian nyata simbol — bukan stempel bar terakhir mentah yang untuk simbol
-    mati sama dengan tanggal ujung dataset (karena pipa data mengisi harga
-    terakhir sampai ujung).
+    kematian nyata simbol -- bukan stempel bar terakhir mentah yang untuk
+    simbol mati sama dengan tanggal ujung dataset (karena pipa data mengisi
+    harga terakhir sampai ujung).
 
     Membaca dua kolom mentah sebagai fallback masih tersedia untuk pengujian
     unit, tapi pada produksi selalu harus ada ``akhir_sejati.json``.
