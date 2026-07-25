@@ -2,28 +2,37 @@
 
 Tier B dikerjakan lebih dulu, bukan Tier A (1m), dengan alasan yang disengaja:
 volumenya kecil, sehingga kesalahan pipeline ketahuan murah. Keputusan itu sudah
-terbukti dua kali. Putaran pertama menyingkap cacat URL non-ASCII, dan backfill
-ekor menyingkap cacat parser header — keduanya dengan biaya belasan menit, bukan
-berjam-jam pada 90 GB data 1-menit.
+terbukti berulang kali. Putaran pertama menyingkap cacat URL non-ASCII, backfill
+ekor menyingkap cacat parser header, dan pengujian pra-terbang menyingkap dua
+cacat lagi sebelum satu byte pun diunduh.
 
 Validasi dijalankan SAAT ingest, bukan sesudahnya. Setiap simbol diperiksa
 terhadap kisi waktu yang seharusnya, dan hasilnya ikut dilaporkan. Data yang
 cacat tetap ditulis, tapi cacatnya tercatat — menyembunyikan cacat jauh lebih
 berbahaya daripada memilikinya.
 
-Dua jebakan format yang ditangani di sini:
+Empat jebakan format yang ditangani di ``baca_zip``, semuanya lahir dari
+kegagalan nyata, bukan dari kehati-hatian teoretis:
 
 1. Berkas CSV Binance yang lebih baru memiliki baris header, yang lama tidak.
-   Membaca tanpa deteksi akan menyisipkan baris teks ke dalam kolom numerik.
-   PERINGATAN yang lahir dari kesalahan nyata: header tidak boleh dilewati dua
-   kali. Menggabungkan ``header=0`` dengan ``skiprows=1`` membuat pandas
-   membuang baris header sekaligus memperlakukan baris DATA pertama sebagai
-   nama kolom, sehingga tepat satu bar hilang dari setiap berkas berheader.
-   Pada berkas bulanan kerugiannya cuma 1 dari 720 bar dan lolos dari perhatian;
-   pada berkas harian kerugiannya 1 dari 24 dan langsung merusak rasio interval.
-2. Sebagian berkas terbaru memakai stempel waktu MIKRODETIK, bukan milidetik.
-   Tanpa normalisasi, dua berkas dari simbol yang sama tidak akan tersambung
-   dan seluruh kisi waktu menjadi kacau.
+2. Header tidak boleh dilewati dua kali. Menggabungkan ``header=0`` dengan
+   ``skiprows=1`` membuat pandas membuang baris header sekaligus memperlakukan
+   baris DATA pertama sebagai nama kolom, sehingga tepat satu bar hilang dari
+   setiap berkas berheader. Pada berkas bulanan kerugiannya cuma 1 dari 720 bar
+   dan lolos dua putaran penuh; pada berkas harian kerugiannya 1 dari 24 dan
+   langsung merusak rasio interval.
+3. BOM UTF-8 di awal berkas bukan spasi, sehingga ``lstrip()`` tidak
+   membuangnya. Akibatnya deteksi header gagal, baris header dibaca sebagai
+   data, dan seluruh berkas ambruk. Dekode wajib memakai ``utf-8-sig``.
+4. Satu baris sampah tidak boleh menggagalkan seluruh berkas. Menetapkan
+   ``dtype=float64`` di ``read_csv`` membuat pandas melempar galat keras alih-alih
+   menandai barisnya. Kolom dikonversi setelah pembacaan dengan ``coerce``, lalu
+   baris tanpa waktu atau tanpa harga dibuang. Kehilangan satu bar jauh lebih
+   baik daripada kehilangan satu bulan.
+
+Satu lagi: sebagian berkas terbaru memakai stempel waktu MIKRODETIK, bukan
+milidetik. Tanpa normalisasi, dua berkas dari simbol yang sama tidak akan
+tersambung dan seluruh kisi waktu menjadi kacau.
 """
 
 from __future__ import annotations
@@ -71,6 +80,10 @@ SIMPAN = [
     "taker_buy_quote",
 ]
 
+# Bar tanpa salah satu kolom ini tidak dapat dipakai sama sekali, jadi barisnya
+# dibuang. Kolom lain yang kosong cukup dibiarkan NaN.
+WAJIB = ["open_time", "open", "high", "low", "close"]
+
 STEP_MS = {"1m": 60_000, "5m": 300_000, "15m": 900_000, "1h": 3_600_000, "4h": 14_400_000}
 
 # Stempel waktu di atas ambang ini pasti mikrodetik. Milidetik untuk tahun 2286
@@ -89,29 +102,36 @@ def baca_zip(path: Path) -> pd.DataFrame:
     if not mentah.strip():
         return pd.DataFrame(columns=KOLOM)
 
-    awal = mentah[:64].decode("utf-8", "ignore").lstrip().lower()
+    # ``utf-8-sig`` membuang BOM. ``lstrip()`` saja tidak cukup karena BOM bukan
+    # karakter spasi.
+    awal = mentah[:64].decode("utf-8-sig", "ignore").lstrip().lower()
     punya_header = awal.startswith("open_time")
 
     # ``header=None`` selalu, dan baris header dibuang HANYA lewat skiprows.
-    # Jangan pernah memakai keduanya sekaligus; lihat catatan pada docstring
-    # modul ini.
+    # Jangan pernah memakai keduanya sekaligus.
     df = pd.read_csv(
         io.BytesIO(mentah),
         header=None,
         names=KOLOM,
         skiprows=1 if punya_header else 0,
-        dtype={c: "float64" for c in KOLOM[1:6] + KOLOM[7:11]},
+        encoding="utf-8-sig",
     )
 
     if df.empty:
         return df
 
-    ot = pd.to_numeric(df["open_time"], errors="coerce")
-    df = df.loc[ot.notna()].copy()
-    ot = ot.dropna()
+    # Konversi setelah pembacaan, bukan lewat ``dtype``, supaya satu baris rusak
+    # hanya menghilangkan baris itu dan tidak menggagalkan seluruh berkas.
+    for kolom in KOLOM:
+        df[kolom] = pd.to_numeric(df[kolom], errors="coerce")
+
+    df = df.dropna(subset=WAJIB).copy()
+    if df.empty:
+        return df
+
     # Normalisasi mikrodetik ke milidetik.
-    mikro = ot > AMBANG_MIKRO
-    ot = ot.where(~mikro, ot // 1000)
+    ot = df["open_time"]
+    ot = ot.where(ot <= AMBANG_MIKRO, ot // 1000)
     df["open_time"] = ot.astype("int64")
     return df
 
@@ -147,6 +167,10 @@ def ingest_simbol(symbol: str, interval: str, tmp: Path) -> tuple[pd.DataFrame, 
         return pd.DataFrame(), catatan
 
     df = pd.concat(bagian, ignore_index=True)
+    if df.empty:
+        catatan["error"] = "seluruh berkas kosong setelah pembacaan"
+        return pd.DataFrame(), catatan
+
     df["symbol"] = symbol
 
     sebelum = len(df)

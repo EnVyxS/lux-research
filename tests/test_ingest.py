@@ -3,20 +3,21 @@
 Seluruh pengujian di sini memakai berkas ZIP sintetis, tanpa jaringan sama
 sekali, sehingga berjalan dalam hitungan milidetik.
 
-Keberadaan berkas ini adalah konsekuensi langsung dari satu bug: parser
-membuang tepat satu bar dari setiap berkas berheader, karena ``header=0`` dan
-``skiprows=1`` dipakai bersamaan. Pada berkas bulanan kerugiannya 1 dari 720 bar
-dan tidak terlihat selama dua putaran penuh. Yang akhirnya menyingkapnya bukan
-pemeriksaan kode, melainkan sebuah invarian: rasio jumlah baris 1h terhadap 4h
-wajib mendekati 4, dan pada backfill harian rasionya 4,60 alias tepat 23/5.
+Berkas ini lahir dari satu bug: parser membuang tepat satu bar dari setiap
+berkas berheader, karena ``header=0`` dan ``skiprows=1`` dipakai bersamaan. Pada
+berkas bulanan kerugiannya 1 dari 720 bar dan tidak terlihat selama dua putaran
+penuh. Yang menyingkapnya bukan pembacaan kode, melainkan sebuah invarian: rasio
+jumlah baris 1h terhadap 4h wajib mendekati 4, dan pada backfill harian rasionya
+4,60 alias tepat 23/5.
 
-Pelajarannya dicatat di sini supaya tidak hilang: invarian aritmetika sederhana
-menangkap cacat yang tidak tertangkap oleh membaca ulang kode.
+Pada eksekusi pertamanya, berkas ini langsung menemukan dua cacat lain yang
+sebelumnya tidak terpikirkan: BOM UTF-8 merusak deteksi header, dan satu baris
+sampah menggagalkan seluruh berkas. Keduanya ditemukan dalam 43 detik, sebelum
+satu byte data pun diunduh.
 """
 
 from __future__ import annotations
 
-import io
 import zipfile
 from pathlib import Path
 
@@ -34,8 +35,9 @@ def baris_csv(open_time: int) -> str:
     )
 
 
-def buat_zip(tmp_path: Path, isi: str, nama: str = "data.csv") -> Path:
-    path = tmp_path / "arsip.zip"
+def buat_zip(direktori: Path, isi: str, nama: str = "data.csv") -> Path:
+    direktori.mkdir(parents=True, exist_ok=True)
+    path = direktori / "arsip.zip"
     with zipfile.ZipFile(path, "w") as z:
         z.writestr(nama, isi)
     return path
@@ -48,11 +50,7 @@ def test_berkas_tanpa_header_terbaca_utuh(tmp_path: Path):
 
 
 def test_berkas_berheader_terbaca_utuh(tmp_path: Path):
-    """Inilah pengujian yang seharusnya ada sejak awal.
-
-    Dua puluh empat baris data harus tetap dua puluh empat, bukan dua puluh
-    tiga. Bug lama membuat baris pertama diperlakukan sebagai nama kolom.
-    """
+    """Dua puluh empat baris data harus tetap dua puluh empat, bukan 23."""
     data = "\n".join(baris_csv(1600000000000 + i * 3600000) for i in range(24))
     df = baca_zip(buat_zip(tmp_path, HEADER + "\n" + data))
     assert len(df) == 24
@@ -88,9 +86,14 @@ def test_rasio_1h_terhadap_4h_mendekati_empat(tmp_path: Path):
 
 def test_stempel_mikrodetik_dinormalisasi(tmp_path: Path):
     mikro = 1600000000000000  # mikrodetik
-    isi = baris_csv(mikro)
-    df = baca_zip(buat_zip(tmp_path, isi))
+    df = baca_zip(buat_zip(tmp_path, baris_csv(mikro)))
     assert int(df["open_time"].iloc[0]) == 1600000000000
+
+
+def test_stempel_milidetik_tidak_diubah(tmp_path: Path):
+    mili = 1600000000000
+    df = baca_zip(buat_zip(tmp_path, baris_csv(mili)))
+    assert int(df["open_time"].iloc[0]) == mili
 
 
 def test_berkas_kosong_menghasilkan_dataframe_kosong(tmp_path: Path):
@@ -99,7 +102,8 @@ def test_berkas_kosong_menghasilkan_dataframe_kosong(tmp_path: Path):
 
 
 def test_zip_tanpa_csv_ditolak(tmp_path: Path):
-    path = tmp_path / "arsip.zip"
+    direktori = tmp_path
+    path = direktori / "arsip.zip"
     with zipfile.ZipFile(path, "w") as z:
         z.writestr("catatan.txt", "bukan csv")
     with pytest.raises(RuntimeError):
@@ -107,15 +111,47 @@ def test_zip_tanpa_csv_ditolak(tmp_path: Path):
 
 
 def test_baris_sampah_dibuang_bukan_menggagalkan_berkas(tmp_path: Path):
+    """Cacat yang ditemukan pengujian ini pada eksekusi pertamanya.
+
+    Sebelumnya ``dtype=float64`` di ``read_csv`` membuat satu baris rusak
+    melempar galat keras, sehingga seluruh berkas bulanan hilang. Kehilangan satu
+    bar jauh lebih baik daripada kehilangan satu bulan.
+    """
     data = "\n".join(
         [
             baris_csv(1600000000000),
             "bukan,angka,sama,sekali,x,y,z,a,b,c,d,e",
-            baris_csv(1600000003600000 // 1),
+            baris_csv(1600000003600000),
         ]
     )
     df = baca_zip(buat_zip(tmp_path, data))
     assert len(df) == 2
+
+
+def test_baris_dengan_harga_rusak_dibuang(tmp_path: Path):
+    """Bar tanpa harga tidak dapat dipakai, meski waktunya sah."""
+    rusak = "1600000000000,,,,,1000.0,1600000003599999,100500.0,50,500.0,50250.0,0"
+    data = "\n".join([baris_csv(1600000003600000), rusak])
+    df = baca_zip(buat_zip(tmp_path, data))
+    assert len(df) == 1
+
+
+def test_encoding_utf8_bom_tidak_merusak_deteksi_header(tmp_path: Path):
+    """Cacat kedua yang ditemukan pengujian ini pada eksekusi pertamanya.
+
+    BOM UTF-8 bukan karakter spasi, sehingga ``lstrip()`` tidak membuangnya dan
+    deteksi header gagal. Akibatnya baris header terbaca sebagai data dan
+    seluruh berkas ambruk.
+    """
+    data = "\n".join(baris_csv(1600000000000 + i * 3600000) for i in range(3))
+    df = baca_zip(buat_zip(tmp_path, "\ufeff" + HEADER + "\n" + data))
+    assert len(df) == 3
+
+
+def test_bom_tanpa_header_tetap_terbaca(tmp_path: Path):
+    data = "\n".join(baris_csv(1600000000000 + i * 3600000) for i in range(3))
+    df = baca_zip(buat_zip(tmp_path, "\ufeff" + data))
+    assert len(df) == 3
 
 
 def test_kolom_bertipe_numerik(tmp_path: Path):
@@ -130,9 +166,7 @@ def test_urutan_kolom_sesuai_spesifikasi(tmp_path: Path):
     assert list(df.columns) == KOLOM
 
 
-def test_encoding_utf8_bom_tidak_merusak_deteksi_header(tmp_path: Path):
-    data = "\n".join(baris_csv(1600000000000 + i * 3600000) for i in range(3))
-    isi = "\ufeff" + HEADER + "\n" + data
-    df = baca_zip(buat_zip(tmp_path, isi))
-    # BOM tidak boleh menyebabkan baris header ikut terbaca sebagai data.
-    assert len(df) == 3
+def test_seluruh_baris_sampah_menghasilkan_kosong(tmp_path: Path):
+    data = "\n".join(["a,b,c,d,e,f,g,h,i,j,k,l"] * 3)
+    df = baca_zip(buat_zip(tmp_path, data))
+    assert df.empty

@@ -2,11 +2,15 @@ name: ingest-tier-b
 
 # S4 — ingest kline 1h dan 4h untuk seluruh universe perpetual USDT.
 #
-# Putaran 2 (revisi parser). Putaran 1 menghasilkan data yang kehilangan tepat
-# satu bar dari setiap berkas bulanan berheader, karena header dilewati dua kali
-# oleh pandas. Seluruh aset putaran 1 karena itu TIDAK SAH dan digantikan.
-# Menyimpan data yang diketahui cacat jauh lebih berbahaya daripada tidak punya
-# data, sebab cacatnya akan diwarisi oleh setiap hasil backtest sesudahnya.
+# Putaran 2, percobaan kedua. Percobaan pertama mati di gerbang pengujian dalam
+# 43 detik karena parser masih menyimpan dua cacat: BOM UTF-8 merusak deteksi
+# header, dan satu baris sampah menggagalkan seluruh berkas. Gerbang itu bekerja
+# tepat sebagaimana mestinya — 43 detik jauh lebih murah daripada 18 menit yang
+# menghasilkan data cacat.
+#
+# Aset putaran 1 TIDAK SAH: header dilewati dua kali sehingga tepat satu bar
+# hilang dari setiap berkas bulanan berheader. Bar yang hilang selalu bar pertama
+# tiap bulan, jadi cacatnya sistematis dan akan diwarisi setiap backtest.
 #
 # Tiga keputusan struktural:
 #
@@ -65,8 +69,7 @@ jobs:
       - run: pip install -r requirements.txt pytest
 
       # Pengujian murni-logika berjalan dalam hitungan milidetik. Menjalankannya
-      # sebelum job berdurasi belasan menit mencegah terulangnya pemborosan
-      # akibat cacat parser yang sudah diketahui bentuknya.
+      # sebelum job berdurasi belasan menit sudah terbukti menghemat dua putaran.
       - name: Uji parser sebelum mengunduh apa pun
         env:
           PYTHONPATH: .
