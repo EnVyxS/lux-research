@@ -1,11 +1,11 @@
 name: doctor
 
-# Mengukur kapasitas runner yang sebenarnya, lalu MENULIS HASILNYA KEMBALI
-# ke repo. Agen tidak punya kemampuan membaca log workflow, jadi commit balik
-# adalah satu-satunya jalur umpan balik yang tersedia.
+# Mengukur kapasitas runner dan konektivitas sumber data, lalu MENULIS HASILNYA
+# KEMBALI ke repo. Agen tidak punya kemampuan membaca log workflow, jadi commit
+# balik adalah satu-satunya jalur umpan balik yang tersedia.
 #
 # Angka di STATE.md bagian "asumsi" hanya boleh naik ke bagian "fakta"
-# setelah muncul di reports/doctor.json.
+# setelah muncul di reports/.
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ permissions:
 jobs:
   measure:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,9 +29,11 @@ jobs:
           # Sengaja tidak memakai set -e. Kegagalan probe adalah DATA, bukan
           # alasan menghentikan job. Setiap kegagalan harus sampai ke laporan.
           set +e
-          mkdir -p reports
+          mkdir -p reports /tmp/dl
 
-          URL="https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1h/BTCUSDT-1h-2024-01.zip"
+          FNAME="BTCUSDT-1h-2024-01.zip"
+          BASE="https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1h"
+          URL="$BASE/$FNAME"
           S3="https://s3-ap-northeast-1.amazonaws.com/data.binance.vision"
 
           VCPU=$(nproc)
@@ -44,59 +46,52 @@ jobs:
           # --- Probe 1: HEAD ke CDN ---
           HEAD_CODE=$(curl -sSIL -o /dev/null -w '%{http_code}' --max-time 60 "$URL")
 
-          # --- Probe 2: unduhan nyata, ukur throughput ---
-          DL=$(curl -sS -o /tmp/probe.zip -w '%{size_download} %{time_total}' --max-time 300 "$URL")
+          # --- Probe 2: unduhan nyata ---
+          # PENTING: berkas HARUS disimpan dengan nama aslinya. Berkas .CHECKSUM
+          # memuat nama berkas, sehingga sha256sum -c gagal bila namanya diubah.
+          # Run sebelumnya melaporkan checksum_ok=false murni karena bug ini.
+          DL=$(curl -sS -o "/tmp/dl/$FNAME" -w '%{size_download} %{time_total}' --max-time 300 "$URL")
           DL_BYTES=$(echo "$DL" | awk '{print $1}')
           DL_SECS=$(echo "$DL" | awk '{print $2}')
           [ -z "$DL_BYTES" ] && DL_BYTES=0
           [ -z "$DL_SECS" ] && DL_SECS=0
 
           # --- Probe 3: verifikasi checksum ---
-          curl -sS --max-time 60 "$URL.CHECKSUM" -o /tmp/probe.CHECKSUM
+          curl -sS --max-time 60 "$URL.CHECKSUM" -o "/tmp/dl/$FNAME.CHECKSUM"
           CKS_OK=false
-          if [ -s /tmp/probe.CHECKSUM ] && [ -s /tmp/probe.zip ]; then
-            ( cd /tmp && sha256sum -c probe.CHECKSUM > /tmp/cks.txt 2>&1 ) && CKS_OK=true
-          fi
-          CKS_OUT=$(cat /tmp/cks.txt 2>/dev/null | head -3)
+          ( cd /tmp/dl && sha256sum -c "$FNAME.CHECKSUM" > /tmp/cks.txt 2>&1 ) && CKS_OK=true
+          CKS_OUT=$(head -3 /tmp/cks.txt 2>/dev/null)
 
-          # --- Probe 4: bongkar dan periksa skema CSV ---
+          # --- Probe 4: throughput pada berkas besar ---
+          # Berkas 1h sangat kecil sehingga waktunya didominasi latensi, bukan
+          # bandwidth. Berkas 1m dipakai untuk mengukur throughput sebenarnya,
+          # karena inilah yang menentukan anggaran waktu ingest Tier A.
+          BIG="BTCUSDT-1m-2024-01.zip"
+          BIGURL="https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/$BIG"
+          BD=$(curl -sS -o "/tmp/dl/$BIG" -w '%{size_download} %{time_total}' --max-time 300 "$BIGURL")
+          BIG_BYTES=$(echo "$BD" | awk '{print $1}')
+          BIG_SECS=$(echo "$BD" | awk '{print $2}')
+          [ -z "$BIG_BYTES" ] && BIG_BYTES=0
+          [ -z "$BIG_SECS" ] && BIG_SECS=0
+          MBPS=$(awk -v b="$BIG_BYTES" -v s="$BIG_SECS" 'BEGIN{if(s>0)printf "%.2f", (b/1048576)/s; else print 0}')
+
+          # --- Probe 5: bongkar dan periksa skema CSV ---
           RAW_BYTES=0; ROWS=0; HEADLINE=""; RATIO="0"
-          if [ -s /tmp/probe.zip ]; then
-            rm -rf /tmp/probe && mkdir -p /tmp/probe
-            unzip -o -q /tmp/probe.zip -d /tmp/probe 2>/dev/null
-            CSV=$(ls /tmp/probe/*.csv 2>/dev/null | head -1)
-            if [ -n "$CSV" ]; then
-              RAW_BYTES=$(stat -c %s "$CSV")
-              ROWS=$(wc -l < "$CSV")
-              HEADLINE=$(head -1 "$CSV")
-              RATIO=$(awk -v r="$RAW_BYTES" -v z="$DL_BYTES" 'BEGIN{if(z>0)printf "%.2f", r/z; else print 0}')
-            fi
+          rm -rf /tmp/probe && mkdir -p /tmp/probe
+          unzip -o -q "/tmp/dl/$FNAME" -d /tmp/probe 2>/dev/null
+          CSV=$(ls /tmp/probe/*.csv 2>/dev/null | head -1)
+          if [ -n "$CSV" ]; then
+            RAW_BYTES=$(stat -c %s "$CSV")
+            ROWS=$(wc -l < "$CSV")
+            HEADLINE=$(head -1 "$CSV")
+            RATIO=$(awk -v r="$RAW_BYTES" -v z="$DL_BYTES" 'BEGIN{if(z>0)printf "%.2f", r/z; else print 0}')
           fi
-
-          # --- Probe 5: endpoint S3 listing (belum pernah terverifikasi) ---
-          S3_CODE=$(curl -sS -o /tmp/s3.xml -w '%{http_code}' --max-time 60 "$S3?list-type=2&max-keys=20&prefix=data/futures/um/monthly/klines/&delimiter=%2F")
-          S3_OK=false
-          grep -q 'CommonPrefixes' /tmp/s3.xml 2>/dev/null && S3_OK=true
-          S3_PREFIXES=$(grep -o '<Prefix>[^<]*</Prefix>' /tmp/s3.xml 2>/dev/null | head -6 | tr '\n' ' ')
-          S3_SNIPPET=$(head -c 600 /tmp/s3.xml 2>/dev/null)
 
           # --- Probe 6: REST exchangeInfo ---
-          # Runner GitHub berbasis di AS. Binance memblokir sebagian IP AS,
-          # jadi kegagalan di sini diharapkan dan bukan penghenti.
           EI_CODE=$(curl -sS -o /tmp/ei.json -w '%{http_code}' --max-time 60 https://fapi.binance.com/fapi/v1/exchangeInfo)
           EI_SYM=$(python3 -c "import json;print(len(json.load(open('/tmp/ei.json'))['symbols']))" 2>/dev/null)
           [ -z "$EI_SYM" ] && EI_SYM=null
-          EI_ERR=$(head -c 300 /tmp/ei.json 2>/dev/null | tr -d '\n' | cut -c1-300)
 
-          # --- Probe 7: probe simbol delisted (uji survivorship) ---
-          DEL_RESULT=""
-          for SYM in SRMUSDT FTTUSDT COCOSUSDT; do
-            DURL="https://data.binance.vision/data/futures/um/monthly/klines/$SYM/1h/$SYM-1h-2021-06.zip"
-            C=$(curl -sSIL -o /dev/null -w '%{http_code}' --max-time 45 "$DURL")
-            DEL_RESULT="$DEL_RESULT $SYM=$C"
-          done
-
-          # --- Tulis JSON ---
           cat > reports/doctor.json <<EOF
           {
             "run_id": "${GITHUB_RUN_ID}",
@@ -115,21 +110,18 @@ jobs:
               "checksum_ok": ${CKS_OK},
               "csv_bytes": ${RAW_BYTES},
               "csv_rows": ${ROWS},
-              "zip_ratio": ${RATIO}
-            },
-            "s3_listing": {
-              "http": "${S3_CODE}",
-              "ok": ${S3_OK}
+              "zip_ratio": ${RATIO},
+              "big_file_bytes": ${BIG_BYTES},
+              "big_file_seconds": ${BIG_SECS},
+              "throughput_mib_per_s": ${MBPS}
             },
             "exchange_info": {
               "http": "${EI_CODE}",
               "symbols": ${EI_SYM}
-            },
-            "delisted_probe": "${DEL_RESULT}"
+            }
           }
           EOF
 
-          # --- Tulis laporan manusia ---
           {
             echo "# Laporan doctor"
             echo
@@ -141,8 +133,8 @@ jobs:
             echo "|---|---|"
             echo "| vCPU | ${VCPU} |"
             echo "| RAM | ${RAM_H} |"
-            echo "| Disk bebas di workspace | ${DISK_GB} GB |"
-            echo "| Model CPU | ${CPU_MODEL} |"
+            echo "| Disk bebas | ${DISK_GB} GB |"
+            echo "| CPU | ${CPU_MODEL} |"
             echo
             echo '```'
             echo "${DISK_TABLE}"
@@ -151,10 +143,10 @@ jobs:
             echo "## Binance Vision CDN"
             echo
             echo "- HEAD: \`${HEAD_CODE}\`"
-            echo "- Terunduh: ${DL_BYTES} byte dalam ${DL_SECS} detik"
-            echo "- Checksum cocok: ${CKS_OK}"
-            echo "- CSV hasil bongkar: ${RAW_BYTES} byte, ${ROWS} baris"
-            echo "- Rasio zip: ${RATIO}x"
+            echo "- Berkas 1h: ${DL_BYTES} byte dalam ${DL_SECS} detik"
+            echo "- Checksum cocok: **${CKS_OK}**"
+            echo "- Berkas 1m: ${BIG_BYTES} byte dalam ${BIG_SECS} detik, throughput ${MBPS} MiB/s"
+            echo "- CSV hasil bongkar: ${RAW_BYTES} byte, ${ROWS} baris, rasio ${RATIO}x"
             echo "- Baris pertama CSV:"
             echo '```'
             echo "${HEADLINE}"
@@ -164,40 +156,82 @@ jobs:
             echo "${CKS_OUT}"
             echo '```'
             echo
-            echo "## Endpoint S3 listing"
-            echo
-            echo "- HTTP: \`${S3_CODE}\`, berisi CommonPrefixes: ${S3_OK}"
-            echo "- Prefix contoh: ${S3_PREFIXES}"
-            echo '```xml'
-            echo "${S3_SNIPPET}"
-            echo '```'
-            echo
             echo "## REST exchangeInfo"
             echo
-            echo "- HTTP: \`${EI_CODE}\`, jumlah simbol: ${EI_SYM}"
-            echo "- Cuplikan respons:"
-            echo '```'
-            echo "${EI_ERR}"
-            echo '```'
-            echo
-            echo "## Probe simbol delisted"
-            echo
-            echo "Kode 200 berarti Binance masih mengarsipkan data simbol yang sudah delisted, yang menentukan apakah universe bebas survivorship bias dapat dibangun."
-            echo
-            echo '```'
-            echo "${DEL_RESULT}"
-            echo '```'
-            echo
-            echo "## Versi alat"
-            echo '```'
-            python3 --version 2>&1
-            gh --version 2>&1 | head -1
-            git --version 2>&1
-            echo '```'
+            echo "- HTTP \`${EI_CODE}\`, simbol: ${EI_SYM}"
+            echo "- Kode 451 berarti diblokir atas dasar hukum. Runner GitHub berbasis di AS."
           } > reports/doctor.md
 
-          echo '===== ISI LAPORAN ====='
           cat reports/doctor.md
+          exit 0
+
+      - name: Probe universe dari S3 listing
+        run: |
+          # Ini menjawab pertanyaan terpenting yang masih terbuka: berapa banyak
+          # simbol yang PERNAH ada, bukan yang aktif hari ini. Karena exchangeInfo
+          # diblokir dari runner, arsip S3 adalah satu-satunya sumber universe.
+          python3 - <<'PYEOF'
+          import json, urllib.request, urllib.parse
+          import xml.etree.ElementTree as ET
+
+          S3 = "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision"
+          NS = {"s3": "http://s3.amazonaws.com/doc/2006-03-01/"}
+          out = {"ok": False}
+
+          def listing(prefix, delimiter="/"):
+              token, prefixes, keys = None, [], []
+              while True:
+                  q = {"list-type": "2", "max-keys": "1000",
+                       "prefix": prefix, "delimiter": delimiter}
+                  if token:
+                      q["continuation-token"] = token
+                  url = S3 + "?" + urllib.parse.urlencode(q)
+                  with urllib.request.urlopen(url, timeout=90) as r:
+                      root = ET.fromstring(r.read())
+                  prefixes += [e.text for e in root.findall("s3:CommonPrefixes/s3:Prefix", NS)]
+                  keys += [e.text for e in root.findall("s3:Contents/s3:Key", NS)]
+                  if root.findtext("s3:IsTruncated", "false", NS) != "true":
+                      break
+                  token = root.findtext("s3:NextContinuationToken", None, NS)
+                  if not token:
+                      break
+              return prefixes, keys
+
+          try:
+              base = "data/futures/um/monthly/klines/"
+              prefixes, _ = listing(base)
+              symbols = sorted(p[len(base):].strip("/") for p in prefixes)
+              out["total_symbols_pernah_ada"] = len(symbols)
+              out["contoh_20"] = symbols[:20]
+
+              # Simbol yang sudah delisted. Kehadirannya membuktikan arsip tidak
+              # menderita survivorship bias.
+              cek = ["SRMUSDT", "FTTUSDT", "COCOSUSDT", "BTSUSDT",
+                     "SCUSDT", "RAYUSDT", "HNTUSDT", "TOMOUSDT", "CVCUSDT"]
+              hadir = {}
+              for s in cek:
+                  if s not in symbols:
+                      hadir[s] = {"ada": False}
+                      continue
+                  _, keys = listing(f"{base}{s}/1h/")
+                  bulan = sorted(k.rsplit("/", 1)[-1] for k in keys if k.endswith(".zip"))
+                  hadir[s] = {"ada": True, "jumlah_bulan": len(bulan),
+                              "pertama": bulan[0] if bulan else None,
+                              "terakhir": bulan[-1] if bulan else None}
+              out["probe_delisted"] = hadir
+
+              _, btc = listing(f"{base}BTCUSDT/1h/")
+              zips = [k for k in btc if k.endswith(".zip")]
+              out["btcusdt_1h_bulan"] = len(zips)
+
+              out["ok"] = True
+          except Exception as e:
+              out["error"] = f"{type(e).__name__}: {e}"
+
+          with open("reports/universe_probe.json", "w") as f:
+              json.dump(out, f, indent=2, ensure_ascii=False)
+          print(json.dumps(out, indent=2, ensure_ascii=False)[:4000])
+          PYEOF
           exit 0
 
       - name: Commit laporan kembali ke repo
@@ -210,6 +244,6 @@ jobs:
             echo "Tidak ada perubahan laporan."
             exit 0
           fi
-          git commit -m "chore(doctor): laporan kapasitas runner run ${GITHUB_RUN_ID} [skip ci]"
+          git commit -m "chore(doctor): laporan run ${GITHUB_RUN_ID} [skip ci]"
           git pull --rebase --autostash origin main
           git push origin HEAD:main
