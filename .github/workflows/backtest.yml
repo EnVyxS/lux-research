@@ -35,38 +35,50 @@ name: backtest
 #   H-004   run 30175665060  DITOLAK, -0,01818R, sembilan gerbang lulus
 #   H-005   run 30175665060  DITOLAK, -0,03571R, p 0,0396 > 0,0167 (Bonferroni)
 #   H-006   run 30175665060  DITOLAK, -0,13449R, p entri acak 1,0
-#   H-007   sekarang         struktur keluar (ADR-007)
+#   H-007   run 30176317156  DITOLAK, +0,04044R terbaik, invarian_risiko -1,9769
+#   H-008   sekarang         pengaman carry keras (ADR-008)
 #
 # Tidak satu pun dari hipotesis yang sudah divonis dijalankan ulang, dan tidak
 # satu ambang pun diturunkan. Yang boleh dilakukan hanya mendaftarkan hipotesis
 # baru dengan ID baru.
 #
-# ADR-007. Enam hipotesis pertama semuanya menggeser laju kena target sambil
-# membiarkan titik impas tetap di 1/3, karena stop 1R dan target 2R tidak pernah
-# diutak-atik. Dibongkar dari histogram alasan keluar yang sudah dikomit, keenam
-# hasilnya terurut sempurna menurut satu angka itu saja:
+# ADR-008. H-007 adalah hasil terbaik yang pernah diukur dan dijatuhkan bukan
+# oleh ekspektasinya melainkan oleh gerbang risiko. Gerbang yang sama sudah
+# menjatuhkan empat dari tujuh hipotesis:
 #
-#   H-002  laju 0,36028  kotor +0,08084  bersih +0,03159
-#   H-004  laju 0,34151  kotor +0,02453  bersih -0,01818
-#   H-005  laju 0,33755  kotor +0,01265  bersih -0,03571
-#   H-006  laju 0,30122  kotor -0,09633  bersih -0,13449
-#   H-003  laju 0,26326  kotor -0,21021  bersih -0,24782
+#   H-001b  -2,5853R    H-003  -1,8637R
+#   H-005   -1,9122R    H-007  -1,9769R    (ambang -1,5R)
 #
-# H-007 tidak menyentuh sinyal sama sekali. Yang diuji adalah titik impasnya,
-# dengan memperlakukan imbalan_R sebagai parameter yang dipilih walk-forward:
-# lookback {20,55,100} x imbalan {1,2,3,4} = 12 kombinasi. Titik impas kotor
-# adalah 1/(1+imbalan), jadi 3R menurunkannya dari 0,3333 ke 0,2500.
+# Stop berjarak 1R, jadi kerugian jauh melampaui 1R hanya mungkin bila ada biaya
+# menumpuk di luar kendali stop. Saringan carry ADR-004 seharusnya menutupnya,
+# dan saringan itu MENYALA di keempat run tersebut. Ia tetap tembus karena ia
+# proyeksi: dihitung sekali di saat entri dari rerata rate 30 hari terakhir,
+# lalu tidak pernah dinilai ulang. Rate yang melonjak sesudah entri tidak
+# terlihat olehnya.
 #
-# Percobaan tunggal, jadi ambang p entri acak kembali ke 0,05 tanpa koreksi
+# H-008 menambahkan pengaman kedua yang tidak menebak apa pun: posisi ditutup
+# saat carry yang SUDAH tertagih melewati ambang, dinilai pada pembukaan tiap
+# bar. Alasan keluar barunya 'carry'.
+#
+# Ruang parameter = grid H-007 PERSIS ditambah satu sumbu:
+#   lookback {20,55,100} x imbalan {1,2,3,4} x carry keras {0,00; 0,25; 0,50}
+#   = 36 kombinasi.
+#
+# Grid imbalan sengaja TIDAK dipersempit meski 4R menang di H-007. Mempersempit
+# ruang pencarian setelah melihat hasil adalah penyetelan pasca-hoc. Ambang 0,00
+# ikut dilombakan supaya percobaan ini bisa menyimpulkan bahwa pengamannya
+# merugikan, dari run yang sama.
+#
+# Percobaan tunggal, jadi ambang p entri acak tetap 0,05 tanpa koreksi
 # multiplisitas. ADR-006 melarang sinyal harga ketujuh; larangan itu dihormati
-# dengan tidak menulis satu baris pun di lux/strategi/.
+# dengan tidak menulis satu baris pun di lux/strategi/. Sinyalnya sama persis
+# dengan H-002 dan H-007.
 #
-# walk_forward.py menerima buat_konfig opsional. Tanpa argumen itu jalurnya sama
-# persis seperti sebelumnya, sehingga run_wf.py, run_h002.py, dan run_h003.py
-# tetap dapat diulang bita demi bita. Hal itu dikunci langsung oleh pengujian.
+# Pengaman baru bawaannya MATI (0,0), sehingga H-001b sampai H-007 tetap dapat
+# diulang bita demi bita. Itu dikunci pengujian, bukan diandaikan.
 #
 # limit tetap 40 simbol pertama secara alfabet. Mengubahnya membuat seluruh
-# hasil tidak dapat dibandingkan dengan H-001b sampai H-006.
+# hasil tidak dapat dibandingkan dengan H-001b sampai H-007.
 
 on:
   workflow_dispatch:
@@ -117,8 +129,9 @@ jobs:
           python -c "import yaml, pandas, pyarrow; print('impor pihak ketiga siap')"
           python -c "import lux.backtest.run_wf as m; print('run_wf siap', m.POLA_DILARANG)"
           python -c "import lux.backtest.runner as r; print('runner bersama siap')"
-          python -c "from lux.analisis.titik_impas import titik_impas; print('titik impas 2R', round(titik_impas(2.0), 4), '3R', round(titik_impas(3.0), 4))"
-          python -c "from lux.backtest.run_h007 import IMBALAN, LOOKBACK, kandidat, spek_h007; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); s = spek_h007(k); print('H-007 siap:', s.h.id, s.nama, s.h.jumlah_kombinasi, 'kombinasi, sidik', s.h.sidik()[:12]); print('  lookback', LOOKBACK, 'imbalan', IMBALAN, 'kandidat', len(kandidat())); print('  konfig per kandidat:', s.buat_konfig is not None); print('  saringan ADR-004 tetap:', k.maks_umur_bar, k.maks_carry_R, k.jendela_carry_hari)"
+          python -c "from lux.backtest.engine import Konfig; print('ADR-008 bawaan mati:', Konfig().maks_carry_realisasi_R == 0.0)"
+          python -c "from lux.analisis.titik_impas import ALASAN_TIDAK_SELESAI; print('alasan tidak selesai:', ALASAN_TIDAK_SELESAI)"
+          python -c "from lux.backtest.run_h008 import CARRY_KERAS, IMBALAN, LOOKBACK, kandidat, spek_h008; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); s = spek_h008(k); print('H-008 siap:', s.h.id, s.nama, s.h.jumlah_kombinasi, 'kombinasi, sidik', s.h.sidik()[:12]); print('  lookback', LOOKBACK, 'imbalan', IMBALAN, 'carry keras', CARRY_KERAS, 'kandidat', len(kandidat())); print('  saringan ADR-004 tetap:', k.maks_umur_bar, k.maks_carry_R, k.jendela_carry_hari)"
 
       - name: Unduh aset
         env:
@@ -130,14 +143,14 @@ jobs:
           ls -la aset
           du -sh aset
 
-      - name: Jalankan H-007 (struktur keluar)
+      - name: Jalankan H-008 (pengaman carry keras)
         id: jalan
         env:
           PYTHONPATH: .
         run: |
           set -o pipefail
           mkdir -p logs
-          python -m lux.backtest.run_h007 \
+          python -m lux.backtest.run_h008 \
             --dir aset \
             --interval 1h \
             --universe reports/universe_layak_v2.json \
@@ -151,7 +164,7 @@ jobs:
         run: |
           mkdir -p reports logs
           {
-            echo "# Log run backtest H-007 (ADR-007)"
+            echo "# Log run backtest H-008 (ADR-008)"
             echo
             echo "Commit: \`${GITHUB_SHA}\`"
             echo "Status langkah jalan: \`${{ steps.jalan.outcome }}\`"
