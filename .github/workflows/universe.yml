@@ -1,0 +1,67 @@
+name: universe
+
+# S3 — membangun universe point-in-time dari arsip.
+#
+# Mengikuti pola wajib: hasil ditulis ke reports/ dan reference/ lalu di-commit
+# balik, karena agen tidak bisa membaca log workflow.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'lux/universe.py'
+      - 'lux/binance_vision.py'
+      - '.github/workflows/universe.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Siapkan Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Pasang dependensi
+        run: pip install -r requirements.txt
+
+      - name: Bangun universe
+        id: bangun
+        env:
+          PYTHONPATH: .
+        run: |
+          set +e
+          python -m lux.universe
+          echo "kode=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Commit hasil
+        run: |
+          set -e
+          git config user.name "lux-universe"
+          git config user.email "actions@github.com"
+          git add reference/ reports/
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan."
+            exit 0
+          fi
+          git commit -m "data(universe): universe point-in-time run ${GITHUB_RUN_ID} [skip ci]"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
+
+      - name: Tegakkan gerbang
+        run: |
+          # Gerbang ditegakkan SETELAH commit, supaya bukti kegagalan tetap
+          # tersimpan di repo alih-alih hilang bersama job yang merah.
+          if [ "${{ steps.bangun.outputs.kode }}" != "0" ]; then
+            echo "Gerbang universe gagal. Lihat reports/universe.json."
+            exit 1
+          fi
