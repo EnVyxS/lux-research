@@ -1,7 +1,11 @@
 name: doctor
 
-# Mengukur kapasitas runner yang sebenarnya. Angka di STATE.md bagian "asumsi"
-# tidak boleh dipindahkan ke bagian "fakta" sebelum job ini berjalan.
+# Mengukur kapasitas runner yang sebenarnya, lalu MENULIS HASILNYA KEMBALI
+# ke repo. Agen tidak punya kemampuan membaca log workflow, jadi commit balik
+# adalah satu-satunya jalur umpan balik yang tersedia.
+#
+# Angka di STATE.md bagian "asumsi" hanya boleh naik ke bagian "fakta"
+# setelah muncul di reports/doctor.json.
 
 on:
   workflow_dispatch:
@@ -9,69 +13,203 @@ on:
     paths:
       - '.github/workflows/doctor.yml'
 
+permissions:
+  contents: write
+
 jobs:
   measure:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: CPU dan RAM
+      - name: Ukur kapasitas dan konektivitas
         run: |
-          echo "::group::CPU"
-          nproc
-          lscpu | grep -E 'Model name|^CPU\(s\)|MHz' || true
-          echo "::endgroup::"
-          echo "::group::RAM"
-          free -h
-          echo "::endgroup::"
+          # Sengaja tidak memakai set -e. Kegagalan probe adalah DATA, bukan
+          # alasan menghentikan job. Setiap kegagalan harus sampai ke laporan.
+          set +e
+          mkdir -p reports
 
-      - name: Disk bebas
-        run: |
-          df -h
-          echo "---"
-          echo "Bebas di workspace (GB):"
-          df -BG --output=avail "$GITHUB_WORKSPACE" | tail -1
-
-      - name: Konektivitas ke Binance Vision
-        run: |
-          set -x
-          # Prefix data/ wajib. Tanpa itu S3 mengembalikan NoSuchKey.
           URL="https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1h/BTCUSDT-1h-2024-01.zip"
-          curl -sSIL -o /dev/null -w 'http=%{http_code} size=%{size_download} time=%{time_total}\n' "$URL"
-
-      - name: Uji unduh nyata dan ukur throughput
-        run: |
-          URL="https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1h/BTCUSDT-1h-2024-01.zip"
-          time curl -sS -o /tmp/probe.zip "$URL"
-          ls -lh /tmp/probe.zip
-          curl -sS "$URL.CHECKSUM" -o /tmp/probe.CHECKSUM
-          cat /tmp/probe.CHECKSUM
-          cd /tmp && sha256sum -c probe.CHECKSUM || echo 'PERINGATAN: checksum tidak cocok'
-
-      - name: Uji endpoint S3 listing
-        run: |
-          # Endpoint ini belum pernah terverifikasi. Kalau gagal, pembangunan
-          # universe point-in-time harus memakai jalur lain.
           S3="https://s3-ap-northeast-1.amazonaws.com/data.binance.vision"
-          curl -sS "$S3?list-type=2&max-keys=20&prefix=data/futures/um/monthly/klines/&delimiter=%2F" | head -c 2000
-          echo
 
-      - name: Uji exchangeInfo REST
-        run: |
-          # Runner GitHub berbasis di AS. Binance memblokir sebagian IP AS,
-          # jadi kegagalan di sini bukan kejutan dan bukan penghenti.
-          code=$(curl -sS -o /tmp/ei.json -w '%{http_code}' https://fapi.binance.com/fapi/v1/exchangeInfo || echo 000)
-          echo "http=$code"
-          if [ "$code" = "200" ]; then
-            python3 -c "import json;d=json.load(open('/tmp/ei.json'));print('simbol:',len(d['symbols']))"
-          else
-            echo 'exchangeInfo tidak dapat dijangkau dari runner'
+          VCPU=$(nproc)
+          RAM_GB=$(free -g | awk '/^Mem:/{print $2}')
+          RAM_H=$(free -h | awk '/^Mem:/{print $2}')
+          DISK_GB=$(df -BG --output=avail "$GITHUB_WORKSPACE" | tail -1 | tr -dc '0-9')
+          DISK_TABLE=$(df -h | grep -E '^/dev|Filesystem')
+          CPU_MODEL=$(lscpu | grep 'Model name' | sed 's/.*: *//')
+
+          # --- Probe 1: HEAD ke CDN ---
+          HEAD_CODE=$(curl -sSIL -o /dev/null -w '%{http_code}' --max-time 60 "$URL")
+
+          # --- Probe 2: unduhan nyata, ukur throughput ---
+          DL=$(curl -sS -o /tmp/probe.zip -w '%{size_download} %{time_total}' --max-time 300 "$URL")
+          DL_BYTES=$(echo "$DL" | awk '{print $1}')
+          DL_SECS=$(echo "$DL" | awk '{print $2}')
+          [ -z "$DL_BYTES" ] && DL_BYTES=0
+          [ -z "$DL_SECS" ] && DL_SECS=0
+
+          # --- Probe 3: verifikasi checksum ---
+          curl -sS --max-time 60 "$URL.CHECKSUM" -o /tmp/probe.CHECKSUM
+          CKS_OK=false
+          if [ -s /tmp/probe.CHECKSUM ] && [ -s /tmp/probe.zip ]; then
+            ( cd /tmp && sha256sum -c probe.CHECKSUM > /tmp/cks.txt 2>&1 ) && CKS_OK=true
+          fi
+          CKS_OUT=$(cat /tmp/cks.txt 2>/dev/null | head -3)
+
+          # --- Probe 4: bongkar dan periksa skema CSV ---
+          RAW_BYTES=0; ROWS=0; HEADLINE=""; RATIO="0"
+          if [ -s /tmp/probe.zip ]; then
+            rm -rf /tmp/probe && mkdir -p /tmp/probe
+            unzip -o -q /tmp/probe.zip -d /tmp/probe 2>/dev/null
+            CSV=$(ls /tmp/probe/*.csv 2>/dev/null | head -1)
+            if [ -n "$CSV" ]; then
+              RAW_BYTES=$(stat -c %s "$CSV")
+              ROWS=$(wc -l < "$CSV")
+              HEADLINE=$(head -1 "$CSV")
+              RATIO=$(awk -v r="$RAW_BYTES" -v z="$DL_BYTES" 'BEGIN{if(z>0)printf "%.2f", r/z; else print 0}')
+            fi
           fi
 
-      - name: Versi alat
+          # --- Probe 5: endpoint S3 listing (belum pernah terverifikasi) ---
+          S3_CODE=$(curl -sS -o /tmp/s3.xml -w '%{http_code}' --max-time 60 "$S3?list-type=2&max-keys=20&prefix=data/futures/um/monthly/klines/&delimiter=%2F")
+          S3_OK=false
+          grep -q 'CommonPrefixes' /tmp/s3.xml 2>/dev/null && S3_OK=true
+          S3_PREFIXES=$(grep -o '<Prefix>[^<]*</Prefix>' /tmp/s3.xml 2>/dev/null | head -6 | tr '\n' ' ')
+          S3_SNIPPET=$(head -c 600 /tmp/s3.xml 2>/dev/null)
+
+          # --- Probe 6: REST exchangeInfo ---
+          # Runner GitHub berbasis di AS. Binance memblokir sebagian IP AS,
+          # jadi kegagalan di sini diharapkan dan bukan penghenti.
+          EI_CODE=$(curl -sS -o /tmp/ei.json -w '%{http_code}' --max-time 60 https://fapi.binance.com/fapi/v1/exchangeInfo)
+          EI_SYM=$(python3 -c "import json;print(len(json.load(open('/tmp/ei.json'))['symbols']))" 2>/dev/null)
+          [ -z "$EI_SYM" ] && EI_SYM=null
+          EI_ERR=$(head -c 300 /tmp/ei.json 2>/dev/null | tr -d '\n' | cut -c1-300)
+
+          # --- Probe 7: probe simbol delisted (uji survivorship) ---
+          DEL_RESULT=""
+          for SYM in SRMUSDT FTTUSDT COCOSUSDT; do
+            DURL="https://data.binance.vision/data/futures/um/monthly/klines/$SYM/1h/$SYM-1h-2021-06.zip"
+            C=$(curl -sSIL -o /dev/null -w '%{http_code}' --max-time 45 "$DURL")
+            DEL_RESULT="$DEL_RESULT $SYM=$C"
+          done
+
+          # --- Tulis JSON ---
+          cat > reports/doctor.json <<EOF
+          {
+            "run_id": "${GITHUB_RUN_ID}",
+            "commit": "${GITHUB_SHA}",
+            "waktu_utc": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "runner": {
+              "vcpu": ${VCPU},
+              "ram_gb": ${RAM_GB},
+              "disk_avail_gb": ${DISK_GB},
+              "cpu_model": "${CPU_MODEL}"
+            },
+            "cdn": {
+              "head_http": "${HEAD_CODE}",
+              "download_bytes": ${DL_BYTES},
+              "download_seconds": ${DL_SECS},
+              "checksum_ok": ${CKS_OK},
+              "csv_bytes": ${RAW_BYTES},
+              "csv_rows": ${ROWS},
+              "zip_ratio": ${RATIO}
+            },
+            "s3_listing": {
+              "http": "${S3_CODE}",
+              "ok": ${S3_OK}
+            },
+            "exchange_info": {
+              "http": "${EI_CODE}",
+              "symbols": ${EI_SYM}
+            },
+            "delisted_probe": "${DEL_RESULT}"
+          }
+          EOF
+
+          # --- Tulis laporan manusia ---
+          {
+            echo "# Laporan doctor"
+            echo
+            echo "Run \`${GITHUB_RUN_ID}\` pada commit \`${GITHUB_SHA}\`, $(date -u +%Y-%m-%dT%H:%M:%SZ)."
+            echo
+            echo "## Kapasitas runner"
+            echo
+            echo "| Sumber daya | Nilai |"
+            echo "|---|---|"
+            echo "| vCPU | ${VCPU} |"
+            echo "| RAM | ${RAM_H} |"
+            echo "| Disk bebas di workspace | ${DISK_GB} GB |"
+            echo "| Model CPU | ${CPU_MODEL} |"
+            echo
+            echo '```'
+            echo "${DISK_TABLE}"
+            echo '```'
+            echo
+            echo "## Binance Vision CDN"
+            echo
+            echo "- HEAD: \`${HEAD_CODE}\`"
+            echo "- Terunduh: ${DL_BYTES} byte dalam ${DL_SECS} detik"
+            echo "- Checksum cocok: ${CKS_OK}"
+            echo "- CSV hasil bongkar: ${RAW_BYTES} byte, ${ROWS} baris"
+            echo "- Rasio zip: ${RATIO}x"
+            echo "- Baris pertama CSV:"
+            echo '```'
+            echo "${HEADLINE}"
+            echo '```'
+            echo "- Keluaran sha256sum:"
+            echo '```'
+            echo "${CKS_OUT}"
+            echo '```'
+            echo
+            echo "## Endpoint S3 listing"
+            echo
+            echo "- HTTP: \`${S3_CODE}\`, berisi CommonPrefixes: ${S3_OK}"
+            echo "- Prefix contoh: ${S3_PREFIXES}"
+            echo '```xml'
+            echo "${S3_SNIPPET}"
+            echo '```'
+            echo
+            echo "## REST exchangeInfo"
+            echo
+            echo "- HTTP: \`${EI_CODE}\`, jumlah simbol: ${EI_SYM}"
+            echo "- Cuplikan respons:"
+            echo '```'
+            echo "${EI_ERR}"
+            echo '```'
+            echo
+            echo "## Probe simbol delisted"
+            echo
+            echo "Kode 200 berarti Binance masih mengarsipkan data simbol yang sudah delisted, yang menentukan apakah universe bebas survivorship bias dapat dibangun."
+            echo
+            echo '```'
+            echo "${DEL_RESULT}"
+            echo '```'
+            echo
+            echo "## Versi alat"
+            echo '```'
+            python3 --version 2>&1
+            gh --version 2>&1 | head -1
+            git --version 2>&1
+            echo '```'
+          } > reports/doctor.md
+
+          echo '===== ISI LAPORAN ====='
+          cat reports/doctor.md
+          exit 0
+
+      - name: Commit laporan kembali ke repo
         run: |
-          python3 --version
-          gh --version
-          git --version
+          set -e
+          git config user.name "lux-doctor"
+          git config user.email "actions@github.com"
+          git add reports/
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan laporan."
+            exit 0
+          fi
+          git commit -m "chore(doctor): laporan kapasitas runner run ${GITHUB_RUN_ID} [skip ci]"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
