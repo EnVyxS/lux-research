@@ -29,21 +29,33 @@ name: backtest
 # memakai tanggal kematian sejati, bukan stempel bar terakhir mentah.
 #
 # Riwayat hipotesis yang dijalankan berkas ini:
-#   H-001b  run 30172926477  DITOLAK, invarian_risiko gagal (-2,5853R)
-#   H-002   run 30174642490  DITOLAK, sembilan gerbang lulus, 0,03159R < 0,05R
-#   H-003   sekarang         pembalikan jangka pendek (ADR-005)
+#   H-001b        run 30172926477  DITOLAK, invarian_risiko gagal (-2,5853R)
+#   H-002         run 30174642490  DITOLAK, sembilan gerbang lulus, 0,03159R
+#   H-003         run 30175179866  DITOLAK telak, -0,24782R, p entri acak 1,0
+#   H-004..H-006  sekarang         keluarga ADR-006
 #
 # Tidak satu pun dari hipotesis yang sudah divonis dijalankan ulang, dan tidak
 # satu ambang pun diturunkan. Yang boleh dilakukan hanya mendaftarkan hipotesis
 # baru dengan ID baru.
 #
-# ADR-005: H-003 memakai kerangka eksekusi yang sama persis dengan H-002 dan
-# hanya mengganti modul sinyalnya, dengan arah yang berlawanan. Bila H-003 juga
-# gagal dengan pola yang mirip, yang tertuduh adalah kerangka stop/target dan
-# biayanya, bukan arah sinyal.
+# ADR-006 menjalankan TIGA hipotesis dalam satu run:
+#   H-004  breakout Donchian yang hanya aktif saat ADX(14) >= 30
+#   H-005  entri retest, yaitu "sniper entry" yang diterjemahkan mekanis
+#   H-006  sapuan likuiditas, satu-satunya bagian SMC yang dapat dikodekan
 #
-# limit tetap 40 simbol pertama secara alfabet. Mengubahnya membuat ketiga hasil
-# tidak dapat dibandingkan.
+# Tiga percobaan serentak melipatgandakan peluang positif palsu, jadi ambang
+# p entri acak sudah diperketat ke 0,0167 (Bonferroni 0,05/3) di dalam kode,
+# ditetapkan sebelum satu angka pun terlihat.
+#
+# Data dimuat SEKALI untuk ketiganya oleh lux/backtest/runner.py. Selain hemat
+# waktu, itu menjamin ketiga hipotesis melihat kumpulan berkas yang identik,
+# sehingga perbandingan antar hipotesis sah dan checksum cukup dinilai sekali.
+#
+# run_wf.py, run_h002.py, dan run_h003.py tidak disentuh sama sekali, sehingga
+# ketiga hasil lama tetap dapat diulang bita demi bita.
+#
+# limit tetap 40 simbol pertama secara alfabet. Mengubahnya membuat seluruh
+# hasil tidak dapat dibandingkan dengan H-001b, H-002, dan H-003.
 
 on:
   workflow_dispatch:
@@ -95,7 +107,8 @@ jobs:
           python -c "import lux.backtest.run_wf as m; print('run_wf siap', m.POLA_DILARANG)"
           python -c "import lux.potong_ekor; print('potong_ekor siap')"
           python -c "from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); print('saringan ADR-004 siap:', k.maks_umur_bar, k.maks_carry_R, k.jendela_carry_hari)"
-          python -c "from lux.backtest.run_h003 import hipotesis_h003; from lux.backtest.run_h002 import muat_konfig_h002; h = hipotesis_h003(muat_konfig_h002('config/lux.yaml')); print('H-003 siap:', h.id, h.jumlah_kombinasi, 'kombinasi, sidik', h.sidik()[:12])"
+          python -c "import lux.backtest.runner as r; print('runner bersama siap')"
+          python -c "from lux.backtest.run_keluarga import AMBANG_P, semua_spek; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); print('ambang p Bonferroni:', AMBANG_P); [print(' ', s.h.id, s.nama, s.h.jumlah_kombinasi, 'kombinasi, sidik', s.h.sidik()[:12]) for s in semua_spek(k)]"
 
       - name: Unduh aset
         env:
@@ -107,14 +120,14 @@ jobs:
           ls -la aset
           du -sh aset
 
-      - name: Jalankan walk-forward H-003
+      - name: Jalankan keluarga ADR-006
         id: jalan
         env:
           PYTHONPATH: .
         run: |
           set -o pipefail
           mkdir -p logs
-          python -m lux.backtest.run_h003 \
+          python -m lux.backtest.run_keluarga \
             --dir aset \
             --interval 1h \
             --universe reports/universe_layak_v2.json \
@@ -128,7 +141,7 @@ jobs:
         run: |
           mkdir -p reports logs
           {
-            echo "# Log run backtest H-003"
+            echo "# Log run backtest keluarga ADR-006"
             echo
             echo "Commit: \`${GITHUB_SHA}\`"
             echo "Status langkah jalan: \`${{ steps.jalan.outcome }}\`"
