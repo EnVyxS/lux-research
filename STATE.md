@@ -2,9 +2,9 @@
 
 > **Sesi baru mulai dari sini.** Berkas ini ditulis ulang setiap sesi. Ia menggantikan kebutuhan membaca Notion atau arsip jurnal. Jika sesuatu tidak tercatat di sini, anggap belum diketahui.
 
-**Diperbarui:** 2026-07-26 04:30 WIB (versi 8)
-**Tahap sekarang:** S8 **SELESAI** — tiga hipotesis dijalankan sampai putusan, ketiganya DITOLAK secara sah; kerangka eksekusi terbukti **bukan** penyebab kegagalan
-**Tahap berikutnya:** S9 — menyerang sumber keunggulan, bukan sinyal harga keempat
+**Diperbarui:** 2026-07-26 04:45 WIB (versi 9)
+**Tahap sekarang:** S9 **SELESAI** — enam hipotesis sinyal harga sudah divonis; **tidak satu pun** punya ekspektasi yang memadai, dan yang terbaik tetap Donchian polos
+**Tahap berikutnya:** S10 — berhenti mencari sinyal harga; serang horizon atau funding sebagai sinyal
 
 ---
 
@@ -20,7 +20,9 @@ Lima aturan yang lahir dari kesalahan nyata, bukan dari teori:
 4. **Lihat sebaran mentah sebelum berteori.** Metrik celah funding gagal lima putaran; satu tabel histogram di awal akan menyelesaikannya dalam satu putaran.
 5. **Hipotesis yang ditolak tetap ditolak.** Ambang tidak disetel ulang setelah hasil terlihat; yang boleh dilakukan hanyalah mendaftarkan hipotesis baru dengan ID baru.
 
-Aturan keenam, lahir di sesi ini: **percobaan yang dirancang agar informatif ke dua arah lebih berharga daripada percobaan yang dirancang agar berhasil.** H-003 gagal jauh lebih telak daripada H-002, dan justru karena itu ia mengajarkan sesuatu yang tidak bisa diajarkan oleh keberhasilan.
+Aturan keenam (S8): **percobaan yang dirancang agar informatif ke dua arah lebih berharga daripada percobaan yang dirancang agar berhasil.**
+
+Aturan ketujuh, lahir di S9: **saringan yang membuang perdagangan tidak otomatis membuang perdagangan yang buruk.** ADX ≥ 30 membuang 58% perdagangan H-002 dan menjungkirkan tandanya. Sebelum sesi ini, "saring saat tidak tren" terdengar seperti perbaikan gratis. Ia bukan perbaikan gratis, dan hanya pengukuran yang bisa menunjukkannya.
 
 ---
 
@@ -34,65 +36,82 @@ Seluruh komputasi berjalan di GitHub Actions. Mesin lokal pengguna tidak sanggup
 
 ## 3. Fakta terverifikasi
 
-### HASIL RISET TERBARU — H-003 DITOLAK TELAK, DAN ITULAH TEMUANNYA
+### HASIL RISET TERBARU — KELUARGA ADR-006 DITOLAK BERTIGA
 
-Sumber: `reports/backtest_h003.md` dan `.json`, run **`30175179866`**, commit kode `cd943f8`, commit laporan `15162e7`. ADR-005. Sidik hipotesis `3a1cdc867f61bf67`.
+Sumber: `reports/keluarga_adr006.{md,json}`, `reports/backtest_h00{4_adx,5_retest,6_smc}.{md,json}`, run **`30175665060`**, commit kode `1aedb84`, commit workflow `ae3df8c`, commit laporan `c0636bf`. ADR-006.
 
-H-003 menguji **pembalikan jangka pendek**: membeli penutupan yang jatuh dua simpangan baku di bawah rerata bergulir, menjual yang melonjak dua simpangan baku di atasnya. Jendela 24, 72, 168 bar; tiga kombinasi; ambang z 2,0 ditetapkan di muka dan tidak dicari.
+Tiga usulan pengguna — SMC, sniper entry, trend breakout, ADX 30 — dipilah lebih dulu. **Trend breakout tidak diuji ulang** karena itu persis H-001b dan H-002. Tiga sisanya didaftarkan sebagai hipotesis baru dan dijalankan serentak dalam satu run, dengan data dimuat sekali sehingga ketiganya melihat kumpulan berkas yang identik.
 
-| Besaran | Nilai |
-|---|---|
-| Putusan | **DITOLAK** |
-| Ekspektasi | **−0,24782R** |
-| Total R | **−7.176,60** |
-| Perdagangan luar sampel | 28.959 |
-| Jendela positif | **25 / 356** |
-| Gerbang gagal | `buy_and_hold`, `entri_acak`, `invarian_risiko` |
-| Durasi | 43,6 detik, 40 simbol |
+Karena tiga percobaan dilakukan serentak, ambang `p entri acak` **diperketat ke 0,0167 (Bonferroni 0,05/3) sebelum satu angka pun terlihat**. Ambang lain tidak diubah.
 
-Gerbang `entri_acak` **p 1,0000**: seluruh 100 permutasi menyamai atau melampaui sinyal nyata. Entri acak lebih baik daripada pembalikan jangka pendek pada dataset ini.
+| Hipotesis | Mekanisme | Sidik | Ekspektasi R | Total R | Trade | Jendela + | p acak | Putusan |
+|---|---|---|---|---|---|---|---|---|
+| H-004 | breakout + ADX(14) ≥ 30 | `98d6a5e15b2cc08b` | **−0,01818** | −143,63 | 7.899 | 154/356 | 0,0099 | DITOLAK |
+| H-005 | entri retest ("sniper") | — | **−0,03571** | −435,49 | 12.194 | 151/356 | 0,0396 | DITOLAK |
+| H-006 | sapuan likuiditas (SMC) | — | **−0,13449** | −2.741,51 | 20.385 | 76/356 | 1,0000 | DITOLAK |
 
-### Temuan utama: asimetri 0,28R membuktikan kerangkanya bukan tertuduh
+Gerbang gagal: H-004 **tidak ada** (sembilan gerbang lulus, ditolak murni karena kriteria pra-registrasi); H-005 `invarian_risiko`; H-006 `entri_acak` dan `invarian_risiko`.
 
-ADR-005 ditulis sebelum angka apa pun ada, dan menyebut dua tafsiran yang tidak dapat dipisahkan oleh data lama:
+### Temuan utama S9: saringan tren membuang perdagangan yang menguntungkan
 
-1. Arah taruhan H-001b salah, dan yang tersisa di pasar justru pembalikan.
-2. Kerangkanya yang membatasi — stop 2×ATR, target 2R, biaya nyata menyisakan terlalu sedikit ruang bagi mekanisme apa pun.
+H-004 adalah hasil paling informatif sesi ini, dan hasilnya berlawanan dengan intuisi yang hampir universal di kalangan praktisi.
 
-**Keduanya salah, dan cara gagalnya yang menjawab.** Pada kerangka eksekusi yang identik bita demi bita, kelanjutan menghasilkan **+0,0316R** dan pembalikan menghasilkan **−0,2478R**. Rentang 0,28R antara dua mekanisme berlawanan itu mustahil muncul dari kerangka yang meredam segalanya. Kerangka ini **meneruskan** informasi arah dengan baik; tafsiran 2 terfalsifikasi oleh percobaannya sendiri.
+Kerangka, dataset, universe, limit 40 simbol, dan kode penilaian H-004 **identik dengan H-002**. Satu-satunya perbedaan adalah saringan ADX ≥ 30. Efeknya:
 
-Tafsiran 1 juga terfalsifikasi, dan lebih keras: arah taruhan H-001b bukan hanya benar, ia satu-satunya arah yang punya tanda positif. Keunggulan kecil Donchian (p 0,0099, 0,032R) adalah **informasi arah yang nyata**, hanya terlalu tipis untuk menutup biaya. Kegagalan cermin H-003 adalah bukti pendukung terkuat yang dimiliki H-002 sampai hari ini.
+| | H-002 | H-004 |
+|---|---|---|
+| Perdagangan | 18.883 | **7.899** (−58%) |
+| Ekspektasi R | **+0,03159** | **−0,01818** |
+| Total R | +596,44 | −143,63 |
+| Jendela positif | 212/356 | 154/356 |
+| Rerata biaya transaksi | 0,0345R | 0,0313R |
 
-**Yang tidak boleh disimpulkan:** bahwa membalik tanda H-003 menghasilkan strategi menguntungkan. Membalik tanda sinyal pembalikan tidak menghasilkan Donchian, dan biaya transaksi tetap dibayar ke arah mana pun taruhan dipasang. Ini hipotesis baru dan harus didaftarkan seperti hipotesis baru.
+Saringan itu **berhasil** menurunkan biaya per perdagangan (0,0345R → 0,0313R) dan **berhasil** membuang lebih dari separuh perdagangan. Meski begitu ekspektasinya jatuh menembus nol. Kesimpulan yang dipaksakan aritmetika: **perdagangan yang dibuang saringan itu, secara agregat, adalah perdagangan yang menguntungkan.** Penembusan yang terjadi saat ADX masih rendah — yaitu saat tren baru mulai terbentuk — justru penyumbang keunggulan; saat ADX sudah di atas 30, sebagian besar pergerakan sudah terjadi.
 
-### Cacat yang ditemukan H-003 pada saringan ADR-004
+`entri_acak` H-004 tetap lulus pada p 0,0099. Sinyalnya masih memuat informasi, tetapi informasi itu kini bertanda salah setelah biaya.
 
-`invarian_risiko` H-003 **GAGAL pada −1,8637R** meski saringan carry aktif. Perdagangan terburuk AKTUSDT: `kotor_R` −1,010, `funding_R` **0,833**, 77 jam, stop 5,064% dari harga.
+### Sapuan likuiditas mengonfirmasi temuan H-003, bukan menambah temuan baru
 
-`carry_terproyeksi_R` adalah **proyeksi dari rerata 30 hari terakhir, bukan jaminan**. Ketika rate melonjak setelah entri, atau ketika stop sangat lebar sehingga funding per R membesar, saringan itu tembus. Pada H-002 kebetulan tidak ada kasus yang menembusnya; pada 28.959 perdagangan H-003 ada. **Lulusnya gerbang pada satu hipotesis bukan bukti gerbang itu tidak bisa gagal pada hipotesis lain.**
+H-006 gagal dengan pola yang sama persis dengan H-003: p entri acak **1,0000**, hanya 76 dari 356 jendela positif. Keduanya adalah pembalikan-di-level. Dengan dua mekanisme pembalikan yang independen secara konstruksi kini gagal dengan tanda dan pola yang sama, pernyataan berikut naik dari asumsi menjadi fakta: **pada 1h perpetual USDT, keluarga mekanisme pembalikan jangka pendek punya ekspektasi negatif yang sistematis, bukan kebetulan sampel.**
 
-Rerata `funding_R` H-003 adalah **−0,0017** — negatif, artinya posisi pembalikan rata-rata justru **menerima** funding. Ia tetap rugi telak. Funding bukan penyebab kegagalan H-003; arah sinyalnyalah penyebabnya.
+Itu sekaligus menutup perdebatan SMC dalam batas yang jujur: bagian SMC yang **dapat dikodekan tanpa penafsiran** sudah diukur dan rugi telak. Bagian lainnya (order block, fair value gap, BOS/CHoCH) tidak diuji karena tidak punya definisi yang dapat diuji — dan sesuatu yang tidak dapat didefinisikan secara mekanis tidak dapat difalsifikasi, sehingga tidak dapat dipercaya maupun dibantah oleh mesin ini.
+
+### Menunda entri tidak menyelamatkan keunggulan yang tipis
+
+H-005 menguji dugaan yang lahir dari S8: biaya rerata 0,0345R hampir menelan keunggulan 0,032R, jadi masuk lebih dekat ke level seharusnya memperkecil biaya per R. Dugaan itu **salah dalam praktik**. Menunggu retest memang membuang perdagangan, tetapi yang hangus adalah penembusan yang langsung lari — yaitu justru yang paling menguntungkan. Ekspektasi jatuh ke −0,0357R.
+
+H-004 dan H-005 gagal karena sebab yang sama dan itu bukan kebetulan: **keduanya adalah saringan yang mengurangi jumlah perdagangan, dan keduanya membuang sisi kanan sebaran.** Keunggulan Donchian tampaknya berasal dari sedikit perdagangan berekor panjang, bukan dari rerata yang sehat.
+
+### Papan skor enam hipotesis
+
+| ID | Mekanisme | Ekspektasi R | Putusan |
+|---|---|---|---|
+| H-001b | Donchian polos | 0,03086 | DITOLAK |
+| **H-002** | **Donchian + saringan carry** | **0,03159** | **DITOLAK, terbaik sejauh ini** |
+| H-003 | pembalikan skor-z | −0,24782 | DITOLAK |
+| H-004 | Donchian + ADX ≥ 30 | −0,01818 | DITOLAK |
+| H-005 | entri retest | −0,03571 | DITOLAK |
+| H-006 | sapuan likuiditas | −0,13449 | DITOLAK |
+
+Seluruhnya pada dataset, kriteria, limit 40 simbol, dan kode penilaian yang identik. Itulah yang membuat tabel ini sah dibandingkan.
+
+**Kesimpulan struktural S9:** enam mekanisme sinyal harga pada 1h sudah diukur, dan yang terbaik pun hanya 0,032R terhadap biaya 0,0345R. Ambang 0,05R tidak pernah didekati. Melanjutkan pencarian sinyal harga ketujuh pada horizon 1h adalah pengulangan, bukan penelitian.
+
+### H-003 — pembalikan skor-z, DITOLAK telak
+
+Sumber: `reports/backtest_h003.md`, run **`30175179866`**, commit laporan `15162e7`. ADR-005. Sidik `3a1cdc867f61bf67`. Ekspektasi **−0,24782R**, total −7.176,60R, 28.959 perdagangan, **25/356** jendela positif, `entri_acak` **p 1,0000**. Gerbang gagal: `buy_and_hold`, `entri_acak`, `invarian_risiko`.
+
+**Asimetri 0,28R** antara kelanjutan (+0,0316R) dan pembalikan (−0,2478R) pada kerangka identik memfalsifikasi tafsiran bahwa kerangka stop/target-lah yang membatasi. Kerangka ini meneruskan informasi arah dengan baik. Arah taruhan Donchian nyata, hanya terlalu tipis.
+
+Rerata `funding_R` H-003 **−0,0017** — posisi pembalikan rata-rata justru **menerima** funding, dan tetap rugi telak. Funding bukan penyebab kegagalannya.
+
+### Cacat yang ditemukan pada saringan ADR-004, masih terbuka
+
+`invarian_risiko` gagal pada **−1,8637R** di H-003 dan gagal lagi di H-005, meski saringan carry aktif. `carry_terproyeksi_R` adalah **proyeksi rerata 30 hari, bukan jaminan**: ketika rate melonjak setelah entri, atau stop sangat lebar sehingga funding per R membesar, saringan itu tembus. H-002 dan H-004 kebetulan tidak punya kasus penembus. **Lulusnya gerbang pada satu hipotesis bukan bukti gerbang itu tidak bisa gagal pada hipotesis lain.**
 
 ### H-002 — DITOLAK, sembilan gerbang lulus
 
-Sumber: `reports/backtest_h002.md`, run **`30174642490`**, commit laporan `858eedc`. Ekspektasi **0,03159R** < 0,05R. 18.883 perdagangan, 596,44R, 212/356 jendela positif, 32,6 detik. Saringan ADR-004: umur maksimum 168 bar, carry terproyeksi maksimum 0,25R atas jendela 30 hari.
-
-| Besaran | H-001b | H-002 | H-003 |
-|---|---|---|---|
-| Mekanisme | Donchian | Donchian + saringan carry | pembalikan skor-z |
-| Ekspektasi R | 0,03086 | **0,03159** | **−0,24782** |
-| Total R | 589,17 | 596,44 | −7.176,60 |
-| Perdagangan | 19.093 | 18.883 | 28.959 |
-| Jendela positif | 208/356 | 212/356 | 25/356 |
-| `invarian_risiko` | −2,5853 GAGAL | −1,3215 lulus | −1,8637 GAGAL |
-| `entri_acak` p | — | 0,0099 lulus | 1,0000 GAGAL |
-| Putusan | DITOLAK | DITOLAK | DITOLAK |
-
-Dataset, kriteria, limit 40 simbol, dan kode penilaian identik pada ketiganya. Itulah yang membuat perbandingan di atas sah.
-
-Alasan keluar H-002: stop 11.909, target 6.707, `akhir_data` 164, `umur` 103. H-003: stop 20.997, target 7.503, `akhir_data` 258, `umur` 201.
-
-**Diagnosis ADR-004 terbukti benar** untuk H-002: kerugian yang melewati 1R berasal dari carry funding, bukan fee dan bukan cacat mesin. Ekspektasi hanya naik 0,0007R — saringan memperbaiki ekor kerugian, bukan keunggulan.
+Sumber: `reports/backtest_h002.md`, run **`30174642490`**, commit laporan `858eedc`. Ekspektasi **0,03159R** < 0,05R. 18.883 perdagangan, 596,44R, 212/356 jendela positif. Saringan ADR-004: umur maksimum 168 bar, carry terproyeksi maksimum 0,25R atas jendela 30 hari. Alasan keluar: stop 11.909, target 6.707, `akhir_data` 164, `umur` 103.
 
 ### H-001b — DITOLAK, tidak dihitung ulang selamanya
 
@@ -100,13 +119,13 @@ Sumber: `reports/backtest_h001.md`, run `30172926477`, commit `88746cf`. Ekspekt
 
 ### MESIN BACKTEST — sembilan gerbang terpasang dan terbukti bisa gagal
 
-`lux/backtest/engine.py`, `gerbang.py`, `walk_forward.py`, `run_wf.py` (H-001b), `run_h002.py`, `run_h003.py`. Gerbang: `forward_fill`, `buy_and_hold`, `entri_acak`, `lookahead`, `invarian_risiko`, `funding`, `overlap`, `checksum`, `survivorship`. **Gerbang yang tidak dapat dinilai berarti GAGAL.**
+`lux/backtest/engine.py`, `gerbang.py`, `walk_forward.py`, `run_wf.py` (H-001b), `run_h002.py`, `run_h003.py`, **`runner.py` (runner bersama)**, **`run_keluarga.py` (H-004–H-006)**. Gerbang: `forward_fill`, `buy_and_hold`, `entri_acak`, `lookahead`, `invarian_risiko`, `funding`, `overlap`, `checksum`, `survivorship`. **Gerbang yang tidak dapat dinilai berarti GAGAL.**
 
-Bukti bahwa gerbangnya bukan hiasan, kini dari tiga hipotesis: `invarian_risiko` menjatuhkan H-001b dan H-003; `entri_acak` dan `buy_and_hold` menjatuhkan H-003; `checksum` pernah menemukan empat aset asing akibat pola unduh yang dipersempit; `forward_fill` menjatuhkan run pilot lewat panjang deret bar datar sementara rasionya lolos.
+Bukti bahwa gerbangnya bukan hiasan, kini dari enam hipotesis: `invarian_risiko` menjatuhkan H-001b, H-003, dan H-005; `entri_acak` menjatuhkan H-003 dan H-006; `buy_and_hold` menjatuhkan H-003; `checksum` pernah menemukan empat aset asing akibat pola unduh yang dipersempit; `forward_fill` menjatuhkan run pilot lewat panjang deret bar datar sementara rasionya lolos.
 
 Pra-registrasi bersifat **sekali tulis**. Nilai saringan ikut masuk ke sidik hipotesis, sehingga percobaan diam-diam dengan nilai lain akan tertolak.
 
-Pola orkestrator sudah mapan: satu hipotesis, satu orkestrator, dibekukan setelah dijalankan, seluruh fungsi pemuatan dan penilaian diimpor dari `run_wf`. **Tiga salinan adalah batas wajar; orkestrator keempat harus didahului ekstraksi runner bersama.**
+**Utang orkestrator sudah dibayar.** ADR-005 mensyaratkan ekstraksi runner bersama sebelum orkestrator keempat; `lux/backtest/runner.py` memenuhinya sebelum H-004 ditulis. `run_wf.py`, `run_h002.py`, dan `run_h003.py` tidak disentuh, sehingga hasil lama tetap dapat diulang bita demi bita. Hipotesis baru kini cukup mendaftarkan satu `Spek`.
 
 ### MODEL FUNDING NYATA — `lux/funding_model.py`
 
@@ -151,11 +170,11 @@ Carry ekstrem bagi long: 1000WHYUSDT 60,7%/tahun, 1000000BOBUSDT 60,1%, BROCCOLI
 
 ### Pengujian — `reports/tests.md`
 
-**318 pengujian hijau** pada commit `5dda655`, kode keluar 0, 1,26 detik, seluruhnya tanpa jaringan. Naik dari 299 (`8a29df1`) lewat `test_reversi.py` (12) dan `test_run_h003.py` (7).
+**354 pengujian hijau** pada commit `1aedb84` (run `30175618453`), kode keluar 0, 2,03 detik, seluruhnya tanpa jaringan. Naik dari 318 (`5dda655`) lewat `test_rezim_adx.py` (8), `test_retest.py` (10), `test_smc.py` (9), `test_run_keluarga.py` (9).
 
 ### Kapasitas runner — `reports/doctor.json`
 
-4 vCPU, 15 GB RAM, 88 GB disk bebas. **Batas 6 jam per job, bukan disk, yang menjadi kendala utama.** Backtest 40 simbol selesai di bawah satu menit; **Tier A butuh minimal 24 shard**.
+4 vCPU, 15 GB RAM, 88 GB disk bebas. **Batas 6 jam per job, bukan disk, yang menjadi kendala utama.** Tiga hipotesis 40 simbol selesai dalam satu run singkat; **Tier A butuh minimal 24 shard**.
 
 ### Konektivitas
 
@@ -176,10 +195,13 @@ CDN `data.binance.vision` 200; S3 listing 200; REST `fapi.binance.com` **451 per
 |---|---|
 | Keunggulan kelanjutan membesar pada horizon lebih panjang (4h) | jalankan hipotesis baru pada 4h setelah validasi 4h |
 | Funding sebagai **sinyal** memuat informasi arah, bukan hanya biaya | uji hipotesis berbasis funding, belum pernah dilakukan |
+| Keunggulan Donchian berasal dari sedikit perdagangan berekor panjang | periksa sebaran R H-002; didukung H-004 dan H-005 tetapi belum diukur langsung |
 | Integritas 4h sama bersihnya dengan 1h | jalankan `validate.yml` untuk interval 4h |
 | Dataset G lama (528 simbol) konsisten dengan data baru | diff terhadap universe layak v2 438 |
 | Hasil 40 simbol pertama mewakili 438 simbol | jalankan `--limit 0` sekali, hanya untuk hipotesis yang layak |
 | Throughput cukup untuk Tier A dalam 6 jam per shard | ukur ulang dengan ≥24 shard |
+
+**Sudah turun dari asumsi menjadi fakta di S9:** saringan rezim tren memperbaiki keunggulan breakout (**salah**, H-004); menunda entri sampai retest memperkecil biaya per R secara menguntungkan (**salah**, H-005); SMC yang dapat dikodekan punya keunggulan (**salah**, H-006).
 
 **Angka yang dilarang dikutip:** seluruh hasil ingest putaran 1 (14.076.257 baris 1h, 3.506.060 baris 4h, 17.169 celah, rasio 4,014); metrik celah funding putaran 1–4 (1.380.741 · 1.193.209 · 587.131 · 266.612); seluruh run pilot H-001 termasuk `30170073890` (0,0317R, 19.060 perdagangan, 604,26R) karena datanya memuat ekor palsu.
 
@@ -195,21 +217,25 @@ Dibutuhkan dari pengguna, belum memblokir: **token integrasi Notion** sebagai Gi
 
 ## 6. Tindakan berikutnya
 
-Tiga hipotesis sinyal harga sudah dijalankan sampai putusan. ADR-005 melarang hipotesis harga keempat sebagai reaksi terhadap kegagalan H-003, dan larangan itu berlaku.
+Enam hipotesis sinyal harga pada 1h sudah divonis. **Hipotesis harga ketujuh pada horizon 1h dilarang** — ADR-006 melarangnya secara eksplisit, dan enam titik data mendukung larangan itu, bukan hanya satu.
 
-Dua arah yang sah, keduanya menyerang hal yang belum pernah disentuh, dan masing-masing wajib didahului ADR sebelum kodenya ditulis:
+Dua arah yang sah, masing-masing wajib didahului ADR sebelum kodenya ditulis:
 
-1. **Horizon.** Keunggulan kelanjutan nyata tetapi tipis (0,032R) sementara biaya transaksi rerata 0,0345R. Biaya per perdagangan hampir menelan seluruh keunggulan. Horizon lebih panjang membagi biaya yang sama ke pergerakan yang lebih besar. **Prasyarat: validasi 4h** — tanpa itu, hasil 4h tidak boleh dipercaya.
-2. **Sumber data yang belum dipakai sebagai sinyal.** Funding selama ini hanya diperlakukan sebagai biaya. 79,1% penagihan positif dan carry ekstrem sampai −533,9%/tahun adalah struktur yang belum pernah diuji kandungan informasi arahnya.
+1. **Horizon 4h.** Keunggulan terbaik yang pernah diukur adalah 0,032R terhadap biaya 0,0345R. Biaya per perdagangan menelan hampir seluruh keunggulan, dan S9 membuktikan bahwa mengurangi jumlah perdagangan lewat saringan justru merusak. Yang belum dicoba adalah membiarkan jumlah perdagangan turun secara **struktural** lewat horizon yang lebih panjang, sehingga biaya yang sama dibagi ke pergerakan yang lebih besar. **Prasyarat mutlak: jalankan `validate.yml` untuk 4h.** Tanpa itu hasil 4h tidak boleh dipercaya.
+2. **Funding sebagai sinyal.** Belum pernah diuji kandungan informasi arahnya. 79,1% penagihan positif dan carry ekstrem sampai −533,9%/tahun adalah struktur nyata, dan H-003 menunjukkan funding kadang mengalir ke arah yang berlawanan dengan dugaan.
+
+Sebelum keduanya, satu pekerjaan diagnostik yang murah dan berpotensi mengubah arah:
+
+3. **Periksa sebaran R H-002.** Bila keunggulan benar-benar berasal dari segelintir perdagangan berekor panjang, maka target 2R yang memotong pemenang lebih awal adalah tertuduh utama, dan itu pertanyaan tentang **struktur keluar**, bukan tentang sinyal masuk. Data untuk ini sudah ada di `reports/backtest_h002.json`; tidak perlu run baru.
 
 Sisanya, tidak memblokir:
 
-3. Perketat `gerbang_lulus` di `lux/funding.py` supaya celah dan jitter ikut menilai.
-4. Perbaiki docstring `lux/costs.py` yang masih menyebut pembagi funding 8 jam tetap.
-5. Diff terhadap Dataset G lama (528 simbol). **Satu-satunya butir dari daftar tugas awal pengguna yang benar-benar masih terbuka.**
-6. `lux/manifest.py`, `Makefile`, `docs/PIPELINE.md`; salin ADR-001 dan ADR-002 ke `decisions/`.
-7. Pelapor Notion (`NOTION_TOKEN`) agar LUX Gatekeeper menerima hasil run otomatis.
-8. Tier A (1m) hanya setelah seluruh gerbang Tier B lulus, dengan ≥24 shard.
+4. Perketat `gerbang_lulus` di `lux/funding.py` supaya celah dan jitter ikut menilai.
+5. Perbaiki docstring `lux/costs.py` yang masih menyebut pembagi funding 8 jam tetap.
+6. Diff terhadap Dataset G lama (528 simbol). **Satu-satunya butir dari daftar tugas awal pengguna yang benar-benar masih terbuka.**
+7. `lux/manifest.py`, `Makefile`, `docs/PIPELINE.md`; salin ADR-001 dan ADR-002 ke `decisions/`.
+8. Pelapor Notion (`NOTION_TOKEN`) agar LUX Gatekeeper menerima hasil run otomatis.
+9. Tier A (1m) hanya setelah seluruh gerbang Tier B lulus, dengan ≥24 shard.
 
 ---
 
@@ -235,20 +261,25 @@ Agen **LUX Gatekeeper** aktif di Notion. Terpicu saat runner membuat baris di da
 | `lux/diag_datar.py` · `lux/potong_ekor.py` | diagnosis dan pemangkasan ekor datar (ADR-003) |
 | `lux/praregistrasi.py` | hipotesis sekali tulis dan penilaian terhadap kriteria |
 | `lux/strategi/breakout_atr.py` | sinyal kelanjutan (H-001b, H-002) |
-| `lux/strategi/reversi_zskor.py` | sinyal pembalikan (H-003), arah berlawanan |
+| `lux/strategi/reversi_zskor.py` | sinyal pembalikan (H-003) |
+| `lux/strategi/rezim_adx.py` | ADX Wilder dan saringan rezim (H-004) |
+| `lux/strategi/retest.py` | entri retest, "sniper entry" mekanis (H-005) |
+| `lux/strategi/smc.py` | sapuan likuiditas, bagian SMC yang dapat dikodekan (H-006) |
 | `lux/backtest/engine.py` | mesin eksekusi: stop, target, batas umur, saringan carry |
 | `lux/backtest/gerbang.py` | sembilan gerbang mutu |
 | `lux/backtest/walk_forward.py` | pemilihan parameter dalam sampel, penilaian di luar sampel |
 | `lux/backtest/run_wf.py` | orkestrator H-001b — **jangan disunting** |
 | `lux/backtest/run_h002.py` | orkestrator H-002 (ADR-004) — dibekukan |
 | `lux/backtest/run_h003.py` | orkestrator H-003 (ADR-005) — dibekukan |
-| `tests/` | **318** pengujian tanpa jaringan, wajib hijau sebelum unduhan |
+| `lux/backtest/runner.py` | **runner bersama**: muat sekali, jalankan, nilai, laporkan |
+| `lux/backtest/run_keluarga.py` | keluarga ADR-006 (H-004, H-005, H-006) |
+| `tests/` | **354** pengujian tanpa jaringan, wajib hijau sebelum unduhan |
 | `reports/` | keluaran mesin tiap run, sumber bukti Bagian 3 |
-| `hipotesis/` | pendaftaran sekali tulis: `H-001b`, `H-002`, `H-003` |
-| `decisions/` | ADR-003 (ekor datar), ADR-004 (carry funding), ADR-005 (pembalikan) |
+| `hipotesis/` | pendaftaran sekali tulis: `H-001b`, `H-002`, `H-003`, `H-004`, `H-005`, `H-006` |
+| `decisions/` | ADR-003 (ekor datar), ADR-004 (carry funding), ADR-005 (pembalikan), ADR-006 (keluarga) |
 | `journal/` | riwayat per sesi |
 
-**Workflow aktif (10):** `tests`, `backtest`, `validate`, `potong_ekor`, `ingest_tier_b`, `backfill_daily`, `funding`, `funding_check`, `universe`, `doctor`.
+**Workflow aktif (10):** `tests`, `backtest`, `validate`, `potong_ekor`, `ingest_tier_b`, `backfill_daily`, `funding`, `funding_check`, `universe`, `doctor`. `backtest.yml` kini menjalankan `lux.backtest.run_keluarga`.
 
 **Dihapus di S7** karena masukannya artifact yang kedaluwarsa 90 hari sementara keluarannya sudah permanen di `reports/`: `analyze_tail.yml` (`07860a7`), `diagnose.yml` (`f4af734`), `diag_datar.yml` (`41ca693`). `retry_failed.yml` dihapus lebih dulu di `3a206c6`. Modul Python-nya tetap ada.
 
