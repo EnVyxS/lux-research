@@ -59,14 +59,12 @@ def test_atr_kurang_data_mengembalikan_nan_semua():
 
 def test_sinyal_dieksekusi_pada_bar_berikutnya():
     """Pencegahan lookahead yang paling penting di seluruh mesin."""
-    harga = [100.0] * 20 + [100.0] * 20
-    df = bingkai(harga)
+    df = bingkai([100.0] * 40)
     sinyal = np.zeros(len(df), dtype=int)
     sinyal[20] = 1
     hasil = jalankan(df, sinyal)
-    assert hasil.jumlah_trade >= 0
-    if hasil.perdagangan:
-        assert hasil.perdagangan[0].masuk_ms == AWAL + 21 * JAM
+    assert hasil.jumlah_trade == 1
+    assert hasil.perdagangan[0].masuk_ms == AWAL + 21 * JAM
 
 
 def test_sinyal_pada_bar_terakhir_diabaikan():
@@ -86,18 +84,39 @@ def test_sinyal_sebelum_atr_siap_tidak_membuka_posisi():
 
 def test_stop_menang_saat_stop_dan_target_sama_sama_tersentuh():
     """Ketidaktahuan urutan di dalam bar tidak boleh berbuah laba."""
-    harga = [100.0] * 20
-    df = bingkai(harga)
-    df.loc[21 if len(df) > 21 else len(df) - 1, "high"] = 100.0
-    df = bingkai(harga + [100.0] * 5)
-    # Bar terakhir menyapu jauh ke dua arah sekaligus.
-    df.loc[len(df) - 1, "high"] = 200.0
-    df.loc[len(df) - 1, "low"] = 1.0
+    df = bingkai([100.0] * 30)
+    # Bar 26 menyapu jauh ke dua arah sekaligus; posisi dibuka di bar 25.
+    df.loc[26, "high"] = 300.0
+    df.loc[26, "low"] = 1.0
     sinyal = np.zeros(len(df), dtype=int)
-    sinyal[len(df) - 2] = 1
+    sinyal[24] = 1
+    hasil = jalankan(df, sinyal)
+    assert hasil.perdagangan[0].alasan_keluar == "stop"
+
+
+def test_posisi_terbuka_di_akhir_data_tetap_dicatat():
+    """Cacat yang ditemukan CI: posisi terbuka sempat dibuang diam-diam.
+
+    Posisi yang belum ditutup cenderung yang sedang merugi, karena yang
+    menguntungkan lebih dulu menyentuh target. Membuangnya menghapus kerugian
+    dari catatan.
+    """
+    df = bingkai([100.0] * 30)
+    sinyal = np.zeros(len(df), dtype=int)
+    sinyal[27] = 1
     hasil = jalankan(df, sinyal)
     assert hasil.jumlah_trade == 1
-    assert hasil.perdagangan[0].alasan_keluar == "stop"
+    assert hasil.perdagangan[0].alasan_keluar == "akhir_data"
+
+
+def test_posisi_terbuka_yang_merugi_tidak_hilang_dari_ringkasan():
+    harga = [100.0] * 26 + [95.0, 90.0, 85.0, 80.0]
+    df = bingkai(harga)
+    sinyal = np.zeros(len(df), dtype=int)
+    sinyal[26] = 1
+    hasil = jalankan(df, sinyal)
+    assert hasil.jumlah_trade == 1
+    assert hasil.ringkas()["laba_bersih"] < 0
 
 
 def test_hanya_satu_posisi_terbuka_pada_satu_waktu():
@@ -122,12 +141,11 @@ def test_slippage_memperburuk_harga_masuk_kedua_arah():
         sinyal = np.zeros(len(df), dtype=int)
         sinyal[20] = arah
         hasil = jalankan(df, sinyal, Konfig(slippage=0.001))
-        if hasil.perdagangan:
-            p = hasil.perdagangan[0]
-            if arah == 1:
-                assert p.harga_masuk > 100.0
-            else:
-                assert p.harga_masuk < 100.0
+        p = hasil.perdagangan[0]
+        if arah == 1:
+            assert p.harga_masuk > 100.0
+        else:
+            assert p.harga_masuk < 100.0
 
 
 def test_ukuran_posisi_mempertaruhkan_pecahan_modal_yang_ditetapkan():
@@ -137,9 +155,8 @@ def test_ukuran_posisi_mempertaruhkan_pecahan_modal_yang_ditetapkan():
     sinyal[20] = 1
     k = Konfig(risiko_per_trade=0.01, modal_awal=10_000.0, slippage=0.0)
     hasil = jalankan(df, sinyal, k)
-    if hasil.perdagangan:
-        p = hasil.perdagangan[0]
-        assert p.jarak_stop * p.ukuran == pytest.approx(100.0)
+    p = hasil.perdagangan[0]
+    assert p.jarak_stop * p.ukuran == pytest.approx(100.0)
 
 
 def test_biaya_transaksi_selalu_mengurangi_hasil():
@@ -174,8 +191,7 @@ def test_funding_ditagih_dari_jadwal_untuk_posisi_long():
         )
     )
     hasil = jalankan(df, sinyal, jadwal=j)
-    if hasil.perdagangan:
-        assert hasil.perdagangan[0].biaya_funding >= 0.0
+    assert hasil.perdagangan[0].biaya_funding >= 0.0
 
 
 def test_tanpa_sinyal_ekuitas_tidak_bergerak():

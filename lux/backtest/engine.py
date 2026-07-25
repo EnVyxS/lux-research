@@ -15,20 +15,23 @@ hasilnya, karena harga penutupan belum diketahui ketika keputusan diambil.
 **Bila stop dan target sama-sama tersentuh di dalam satu bar, stop yang
 dimenangkan.** Data OHLC tidak memuat urutan kejadian di dalam bar, jadi
 urutannya tidak diketahui. Memilih target berarti memberi hadiah atas
-ketidaktahuan; memilih stop berarti membayar untuk ketidaktahuan itu. Pilihan
-kedua yang jujur. Pada strategi bertarget lebar, asumsi ini bisa memangkas
-hasil beberapa persen, dan pemangkasan itu memang harus terjadi.
+ketidaktahuan; memilih stop berarti membayar untuk ketidaktahuan itu.
 
-**Slippage selalu melawan posisi**, baik saat masuk maupun keluar. Bursa tidak
-pernah memberi harga yang lebih baik dari yang diminta secara sistematis.
+**Slippage selalu melawan posisi**, baik saat masuk maupun keluar.
 
 **Funding ditagih dari jadwal nyata**, bukan dari kisi tetap. Lihat
 ``lux/funding_model.py``; kisi tetap delapan jam terbukti salah untuk 269 dari
 447 simbol layak.
 
 **Hanya satu posisi terbuka pada satu waktu.** Posisi bertumpuk membuat
-ekuitas naik karena penambahan eksposur, bukan karena keunggulan sinyal, dan
-itu salah satu cara paling umum hasil backtest terlihat hebat tanpa sebab.
+ekuitas naik karena penambahan eksposur, bukan karena keunggulan sinyal.
+
+**Posisi yang masih terbuka saat data habis ditutup dan dicatat**, dengan
+alasan keluar ``akhir_data``. Versi pertama mesin ini diam-diam membuangnya,
+dan cacat itu tertangkap oleh sebuah pengujian yang sebenarnya sedang menguji
+hal lain. Membuang posisi terbuka bukan kelalaian netral: posisi yang belum
+ditutup cenderung yang sedang merugi, karena yang menguntungkan lebih dulu
+menyentuh target. Menghilangkannya berarti menghapus kerugian dari catatan.
 """
 
 from __future__ import annotations
@@ -90,9 +93,8 @@ class Perdagangan:
     def R(self) -> float:
         """Hasil bersih dalam satuan risiko awal.
 
-        Dinyatakan dalam R agar sebanding antar simbol dan antar tingkat
-        volatilitas. Perdagangan yang untung 100 dolar tidak berarti apa-apa
-        sampai diketahui berapa yang dipertaruhkan untuk mendapatkannya.
+        Perdagangan yang untung 100 dolar tidak berarti apa-apa sampai
+        diketahui berapa yang dipertaruhkan untuk mendapatkannya.
         """
         risiko = self.jarak_stop * self.ukuran
         return self.laba / risiko if risiko > 0 else 0.0
@@ -110,11 +112,7 @@ class Hasil:
         return len(self.perdagangan)
 
     def ringkas(self) -> dict:
-        """Ringkasan yang selalu menyertakan biaya, bukan hanya laba.
-
-        Laba bersih tanpa total biaya di sebelahnya menyembunyikan strategi
-        yang sesungguhnya sedang memindahkan uang ke bursa.
-        """
+        """Ringkasan yang selalu menyertakan biaya, bukan hanya laba."""
         n = self.jumlah_trade
         if n == 0:
             return {
@@ -153,7 +151,7 @@ def atr(
     Nilai pada indeks t hanya memakai bar sampai t, sehingga aman dipakai untuk
     keputusan pada penutupan bar t. Periode awal bernilai NaN dan bar tersebut
     tidak boleh diperdagangkan; mengisi NaN dengan nilai apa pun berarti
-    memperdagangkan volatilitas yang belum diketahui.
+    menentukan ukuran posisi dari volatilitas yang belum diketahui.
     """
     n = close.size
     hasil = np.full(n, np.nan, dtype="float64")
@@ -178,6 +176,40 @@ def _harga_eksekusi(harga: float, arah: int, masuk: bool, slippage: float) -> fl
     return harga * (1.0 + sisi * slippage)
 
 
+def _catat(
+    symbol: str,
+    arah: int,
+    masuk_ms: int,
+    harga_masuk: float,
+    ukuran: float,
+    jarak_stop: float,
+    harga_keluar: float,
+    keluar_ms: int,
+    alasan: str,
+    fee: float,
+    jadwal: Jadwal | None,
+) -> Perdagangan:
+    kotor = arah * (harga_keluar - harga_masuk) * ukuran
+    transaksi = fee * ukuran * (harga_masuk + harga_keluar)
+    dana = 0.0
+    if jadwal is not None:
+        dana = arah * jadwal.jumlah_rate(masuk_ms, keluar_ms) * harga_masuk * ukuran
+    return Perdagangan(
+        symbol=symbol,
+        arah=arah,
+        masuk_ms=masuk_ms,
+        keluar_ms=keluar_ms,
+        harga_masuk=harga_masuk,
+        harga_keluar=harga_keluar,
+        ukuran=ukuran,
+        jarak_stop=jarak_stop,
+        alasan_keluar=alasan,
+        biaya_transaksi=transaksi,
+        biaya_funding=dana,
+        laba_kotor=kotor,
+    )
+
+
 def jalankan(
     df: pd.DataFrame,
     sinyal: np.ndarray,
@@ -190,12 +222,9 @@ def jalankan(
     ``df`` wajib memuat kolom ``open_time``, ``open``, ``high``, ``low``,
     ``close``, terurut menaik tanpa duplikat.
 
-    ``sinyal[t]`` adalah keputusan yang diambil pada **penutupan bar t**,
-    bernilai +1 untuk long, -1 untuk short, 0 untuk diam. Eksekusinya terjadi
-    pada **pembukaan bar t+1**. Sinyal pada bar terakhir diabaikan karena tidak
-    ada bar berikutnya untuk mengeksekusinya, dan mengeksekusinya pada bar yang
-    sama persis adalah bentuk lookahead yang paling sering lolos tanpa
-    disadari.
+    ``sinyal[t]`` adalah keputusan pada **penutupan bar t**: +1 long, -1 short,
+    0 diam. Eksekusinya terjadi pada **pembukaan bar t+1**. Sinyal pada bar
+    terakhir diabaikan karena tidak ada bar berikutnya untuk mengeksekusinya.
     """
     k = konfig or Konfig()
     wajib = ("open_time", "open", "high", "low", "close")
@@ -236,32 +265,18 @@ def jalankan(
                 # Stop menang bila keduanya tersentuh: urutan di dalam bar
                 # tidak diketahui, dan ketidaktahuan tidak boleh berbuah laba.
                 harga = stop if kena_stop else target
-                alasan = "stop" if kena_stop else "target"
-                keluar = _harga_eksekusi(harga, arah, False, k.slippage)
-                keluar_ms = int(waktu[t])
-                kotor = arah * (keluar - harga_masuk) * ukuran
-                transaksi = k.fee * ukuran * (harga_masuk + keluar)
-                dana = 0.0
-                if jadwal is not None:
-                    dana = (
-                        arah
-                        * jadwal.jumlah_rate(masuk_ms, keluar_ms)
-                        * harga_masuk
-                        * ukuran
-                    )
-                p = Perdagangan(
-                    symbol=symbol,
-                    arah=arah,
-                    masuk_ms=masuk_ms,
-                    keluar_ms=keluar_ms,
-                    harga_masuk=harga_masuk,
-                    harga_keluar=keluar,
-                    ukuran=ukuran,
-                    jarak_stop=jarak_stop,
-                    alasan_keluar=alasan,
-                    biaya_transaksi=transaksi,
-                    biaya_funding=dana,
-                    laba_kotor=kotor,
+                p = _catat(
+                    symbol,
+                    arah,
+                    masuk_ms,
+                    harga_masuk,
+                    ukuran,
+                    jarak_stop,
+                    _harga_eksekusi(harga, arah, False, k.slippage),
+                    int(waktu[t]),
+                    "stop" if kena_stop else "target",
+                    k.fee,
+                    jadwal,
                 )
                 perdagangan.append(p)
                 modal += p.laba
@@ -287,5 +302,26 @@ def jalankan(
             ekuitas[t] = modal + arah * (c[t] - harga_masuk) * ukuran
         else:
             ekuitas[t] = modal
+
+    if arah != 0 and n > 0:
+        # Posisi yang belum ditutup cenderung yang sedang merugi, karena yang
+        # menguntungkan lebih dulu menyentuh target. Membuangnya berarti
+        # menghapus kerugian dari catatan.
+        p = _catat(
+            symbol,
+            arah,
+            masuk_ms,
+            harga_masuk,
+            ukuran,
+            jarak_stop,
+            _harga_eksekusi(float(c[-1]), arah, False, k.slippage),
+            int(waktu[-1]),
+            "akhir_data",
+            k.fee,
+            jadwal,
+        )
+        perdagangan.append(p)
+        modal += p.laba
+        ekuitas[-1] = modal
 
     return Hasil(symbol=symbol, perdagangan=perdagangan, ekuitas=ekuitas, waktu=waktu)
