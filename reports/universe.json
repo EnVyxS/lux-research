@@ -1,36 +1,83 @@
 {
-  "waktu_utc": "2026-07-25T14:32:21+00:00",
+  "waktu_utc": "2026-07-25T14:35:22+00:00",
   "interval": "1h",
   "total_simbol": 937,
-  "simbol_masih_aktif": 808,
-  "simbol_delisted": 129,
-  "simbol_tanpa_data_1h": 0,
-  "contoh_tanpa_data": [],
   "total_baris_pit": 21789,
   "bulan_paling_awal": "2020-01",
   "bulan_paling_akhir": "2026-06",
-  "per_quote": {
-    "USDT": 790,
-    "LAIN": 67,
-    "BUSD": 41,
-    "USDC": 39
+  "per_jenis_kontrak": {
+    "perp": 872,
+    "delivery": 50,
+    "settled": 15
   },
+  "per_quote": {
+    "USDT": 852,
+    "BUSD": 43,
+    "USDC": 39,
+    "LAIN": 3
+  },
+  "perp": {
+    "total": 872,
+    "usdt": 790,
+    "masih_aktif": 801,
+    "delisted": 71,
+    "usdt_masih_aktif": 761,
+    "usdt_delisted": 29
+  },
+  "contoh_quote_lain": [
+    "BTCUSD1",
+    "ETHBTC",
+    "ICPUSDT_SETTLED"
+  ],
+  "simbol_tanpa_data_1h": 0,
   "simbol_dengan_lubang_arsip": 2,
   "total_bulan_hilang": 11,
   "contoh_lubang": [
     {
       "symbol": "TLMUSDTSETTLED",
+      "contract_type": "settled",
       "first_month": "2022-01",
       "last_month": "2023-03",
       "bulan_hilang": 6
     },
     {
       "symbol": "BNXUSDTSETTLED",
+      "contract_type": "settled",
       "first_month": "2022-04",
       "last_month": "2023-02",
       "bulan_hilang": 5
     }
   ],
+  "arsip_harian": {
+    "BTCUSDT": {
+      "harian_pertama": "2019-12-31",
+      "harian_terakhir": "2026-07-24",
+      "jumlah_hari": 2398,
+      "bulanan_pertama": "2020-01",
+      "harian_lebih_awal": true
+    },
+    "ETHUSDT": {
+      "harian_pertama": "2019-12-31",
+      "harian_terakhir": "2026-07-24",
+      "jumlah_hari": 2398,
+      "bulanan_pertama": "2020-01",
+      "harian_lebih_awal": true
+    },
+    "BCHUSDT": {
+      "harian_pertama": "2019-12-31",
+      "harian_terakhir": "2026-07-24",
+      "jumlah_hari": 2398,
+      "bulanan_pertama": "2020-01",
+      "harian_lebih_awal": true
+    },
+    "XRPUSDT": {
+      "harian_pertama": "2020-01-06",
+      "harian_terakhir": "2026-07-24",
+      "jumlah_hari": 2388,
+      "bulanan_pertama": "2020-01",
+      "harian_lebih_awal": false
+    }
+  },
   "gerbang_min_simbol": 841,
   "gerbang_lulus": true
 }
