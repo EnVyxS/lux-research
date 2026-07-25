@@ -1,0 +1,79 @@
+{
+  "waktu_utc": "2026-07-25T15:11:26+00:00",
+  "jumlah_shard": 1,
+  "total": {
+    "1h": {
+      "baris": 12593,
+      "simbol_berhasil": 3,
+      "simbol_gagal": 0,
+      "total_bar_hilang": 16,
+      "total_duplikat": 0,
+      "total_celah_kisi": 16,
+      "simbol_bermasalah": 3,
+      "bytes": 829476,
+      "detik_maks": 7.2
+    },
+    "4h": {
+      "baris": 3136,
+      "simbol_berhasil": 3,
+      "simbol_gagal": 0,
+      "total_bar_hilang": 16,
+      "total_duplikat": 0,
+      "total_celah_kisi": 16,
+      "simbol_bermasalah": 3,
+      "bytes": 226736,
+      "detik_maks": 5.4
+    }
+  },
+  "gerbang": {
+    "1h": {
+      "tidak_ada_duplikat": true,
+      "tidak_ada_simbol_gagal": true,
+      "ada_baris": true
+    },
+    "4h": {
+      "tidak_ada_duplikat": true,
+      "tidak_ada_simbol_gagal": true,
+      "ada_baris": true
+    }
+  },
+  "semua_gerbang_lulus": true,
+  "jumlah_kegagalan": 0,
+  "kegagalan": [],
+  "per_shard": [
+    {
+      "shard": 0,
+      "shards": 1,
+      "quote": "USDT",
+      "simbol_ditugaskan": 3,
+      "mulai_utc": "2026-07-25T15:11:12+00:00",
+      "interval": {
+        "1h": {
+          "baris": 12593,
+          "simbol_berhasil": 3,
+          "simbol_gagal": 0,
+          "total_bar_hilang": 16,
+          "total_duplikat": 0,
+          "total_celah_kisi": 16,
+          "simbol_bermasalah": 3,
+          "berkas": "out/ohlcv_1h_shard00_retry.parquet",
+          "bytes": 829476,
+          "detik": 7.2
+        },
+        "4h": {
+          "baris": 3136,
+          "simbol_berhasil": 3,
+          "simbol_gagal": 0,
+          "total_bar_hilang": 16,
+          "total_duplikat": 0,
+          "total_celah_kisi": 16,
+          "simbol_bermasalah": 3,
+          "berkas": "out/ohlcv_4h_shard00_retry.parquet",
+          "bytes": 226736,
+          "detik": 5.4
+        }
+      },
+      "selesai_utc": "2026-07-25T15:11:25+00:00"
+    }
+  ]
+}
