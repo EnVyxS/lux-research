@@ -5,6 +5,18 @@ name: backtest
 # didorong lebih dulu, sehingga run pertamanya berjalan ketika
 # lux/backtest/run_wf.py belum ada.
 #
+# KEGAGALAN YANG TIDAK TERBACA. Run 30177134015 mati 30 detik setelah berkas
+# ini didorong, sebelum langkah jalan, dan satu-satunya yang tertulis ke repo
+# adalah 'tidak ada log; kegagalan terjadi sebelum langkah jalan'. Agen tidak
+# punya akses ke log Actions, sehingga penyebabnya hanya bisa ditebak, dan
+# tebakan tentang penyebab kegagalan hampir selalu meleset.
+#
+# Cacatnya ada pada rancangan berkas ini, bukan pada kegagalannya: doktrin
+# 'tulis hasil ke reports/' hanya diterapkan pada langkah jalan, sedangkan
+# gerbang pra-terbang yang mendahuluinya dibiarkan bisu. Sejak sekarang setiap
+# langkah pra-terbang punya id, keluarannya disalurkan ke logs/preflight.log,
+# dan hasil tiap langkah dicetak ke laporan apa pun yang terjadi.
+#
 # --komit sengaja TIDAK diteruskan. Pendaftaran hipotesis bersifat sekali-tulis
 # dan menolak isi yang berbeda; memasukkan sha commit ke dalamnya akan membuat
 # setiap run berikutnya mati karena isinya tidak lagi sama dengan yang
@@ -21,9 +33,6 @@ name: backtest
 # aset asing. Bila gerbang itu kembali berbunyi, yang pertama harus dicurigai
 # adalah perbedaan kumpulan berkas, bukan kerusakan aset.
 #
-# Log dikomit balik apa pun hasilnya. Kegagalan yang tidak terbaca akan ditebak,
-# dan tebakan tentang penyebab kegagalan hampir selalu meleset.
-#
 # ADR-003: universe universe_layak_v2.json (438 simbol, ekor datar dipangkas).
 # --akhir-sejati meneruskan akhir_sejati.json sehingga gerbang survivorship
 # memakai tanggal kematian sejati, bukan stempel bar terakhir mentah.
@@ -36,7 +45,8 @@ name: backtest
 #   H-005   run 30175665060  DITOLAK, -0,03571R, p 0,0396 > 0,0167 (Bonferroni)
 #   H-006   run 30175665060  DITOLAK, -0,13449R, p entri acak 1,0
 #   H-007   run 30176317156  DITOLAK, +0,04044R terbaik, invarian_risiko -1,9769
-#   H-008   sekarang         pengaman carry keras (ADR-008)
+#   H-008   run 30177134015  GAGAL sebelum langkah jalan, penyebab tidak terbaca
+#   H-008   sekarang         pengaman carry keras (ADR-008), pra-terbang bersuara
 #
 # Tidak satu pun dari hipotesis yang sudah divonis dijalankan ulang, dan tidak
 # satu ambang pun diturunkan. Yang boleh dilakukan hanya mendaftarkan hipotesis
@@ -109,42 +119,68 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+
       - name: Pasang dependensi
-        run: pip install -r requirements.txt pytest
+        id: deps
+        run: |
+          set -o pipefail
+          mkdir -p logs
+          echo "=== pasang dependensi ===" >> logs/preflight.log
+          python -V 2>&1 | tee -a logs/preflight.log
+          pip install -r requirements.txt pytest 2>&1 | tee -a logs/preflight.log
+          pip list 2>&1 | tee -a logs/preflight.log
 
       # Gerbang pra-terbang. Sudah berkali-kali mencegah pekerjaan panjang yang
       # sia-sia karena cacat yang tertangkap dalam hitungan detik.
       - name: Uji dulu, baru unduh
+        id: uji
+        if: always() && steps.deps.outcome == 'success'
         env:
           PYTHONPATH: .
-        run: python -m pytest tests -q
+        run: |
+          set -o pipefail
+          mkdir -p logs
+          echo "=== pytest ===" >> logs/preflight.log
+          python -m pytest tests -q 2>&1 | tee -a logs/preflight.log
 
       # Impor dan pembacaan config diuji sebelum satu bita pun diunduh.
       # pyyaml pernah hanya terpasang di sebagian workflow dan menjatuhkan run
       # ini tepat setelah unduhan selesai.
       - name: Periksa impor modul jalan
+        id: impor
+        if: always() && steps.uji.outcome == 'success'
         env:
           PYTHONPATH: .
         run: |
-          python -c "import yaml, pandas, pyarrow; print('impor pihak ketiga siap')"
-          python -c "import lux.backtest.run_wf as m; print('run_wf siap', m.POLA_DILARANG)"
-          python -c "import lux.backtest.runner as r; print('runner bersama siap')"
-          python -c "from lux.backtest.engine import Konfig; print('ADR-008 bawaan mati:', Konfig().maks_carry_realisasi_R == 0.0)"
-          python -c "from lux.analisis.titik_impas import ALASAN_TIDAK_SELESAI; print('alasan tidak selesai:', ALASAN_TIDAK_SELESAI)"
-          python -c "from lux.backtest.run_h008 import CARRY_KERAS, IMBALAN, LOOKBACK, kandidat, spek_h008; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); s = spek_h008(k); print('H-008 siap:', s.h.id, s.nama, s.h.jumlah_kombinasi, 'kombinasi, sidik', s.h.sidik()[:12]); print('  lookback', LOOKBACK, 'imbalan', IMBALAN, 'carry keras', CARRY_KERAS, 'kandidat', len(kandidat())); print('  saringan ADR-004 tetap:', k.maks_umur_bar, k.maks_carry_R, k.jendela_carry_hari)"
+          set -o pipefail
+          mkdir -p logs
+          echo "=== impor ===" >> logs/preflight.log
+          {
+            python -c "import yaml, pandas, pyarrow; print('impor pihak ketiga siap')"
+            python -c "import lux.backtest.run_wf as m; print('run_wf siap', m.POLA_DILARANG)"
+            python -c "import lux.backtest.runner as r; print('runner bersama siap')"
+            python -c "from lux.backtest.engine import Konfig; print('ADR-008 bawaan mati:', Konfig().maks_carry_realisasi_R == 0.0)"
+            python -c "from lux.analisis.titik_impas import ALASAN_TIDAK_SELESAI; print('alasan tidak selesai:', ALASAN_TIDAK_SELESAI)"
+            python -c "from lux.backtest.run_h008 import CARRY_KERAS, IMBALAN, LOOKBACK, kandidat, spek_h008; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); s = spek_h008(k); print('H-008 siap:', s.h.id, s.nama, s.h.jumlah_kombinasi, 'kombinasi, sidik', s.h.sidik()[:12]); print('  lookback', LOOKBACK, 'imbalan', IMBALAN, 'carry keras', CARRY_KERAS, 'kandidat', len(kandidat())); print('  saringan ADR-004 tetap:', k.maks_umur_bar, k.maks_carry_R, k.jendela_carry_hari)"
+          } 2>&1 | tee -a logs/preflight.log
 
       - name: Unduh aset
+        id: unduh
+        if: always() && steps.impor.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          mkdir -p aset
+          set -o pipefail
+          mkdir -p aset logs
+          echo "=== unduh ===" >> logs/preflight.log
           gh release download "$TAG" -p 'ohlcv_1h_*.parquet' -D aset --clobber
           gh release download "$TAG" -p 'funding_shard*.parquet' -D aset --clobber
-          ls -la aset
-          du -sh aset
+          ls -la aset | tail -20 2>&1 | tee -a logs/preflight.log
+          du -sh aset 2>&1 | tee -a logs/preflight.log
 
       - name: Jalankan H-008 (pengaman carry keras)
         id: jalan
+        if: always() && steps.unduh.outcome == 'success'
         env:
           PYTHONPATH: .
         run: |
@@ -159,6 +195,9 @@ jobs:
             --ulangan "${{ github.event.inputs.ulangan || 100 }}" \
             --out reports 2>&1 | tee logs/backtest.log
 
+      # Laporan ini WAJIB tetap terbentuk pada kegagalan apa pun, termasuk
+      # kegagalan yang terjadi sebelum satu bita data pun diunduh. Tanpa itu,
+      # satu-satunya cara mengetahui penyebabnya adalah menebak.
       - name: Salin log ke laporan
         if: always()
         run: |
@@ -167,7 +206,23 @@ jobs:
             echo "# Log run backtest H-008 (ADR-008)"
             echo
             echo "Commit: \`${GITHUB_SHA}\`"
-            echo "Status langkah jalan: \`${{ steps.jalan.outcome }}\`"
+            echo "Run: \`${GITHUB_RUN_ID}\`"
+            echo
+            echo "| Langkah | Hasil |"
+            echo "|---|---|"
+            echo "| pasang dependensi | \`${{ steps.deps.outcome }}\` |"
+            echo "| pytest | \`${{ steps.uji.outcome }}\` |"
+            echo "| impor | \`${{ steps.impor.outcome }}\` |"
+            echo "| unduh aset | \`${{ steps.unduh.outcome }}\` |"
+            echo "| jalan | \`${{ steps.jalan.outcome }}\` |"
+            echo
+            echo "## Pra-terbang"
+            echo
+            echo '```'
+            tail -c 20000 logs/preflight.log 2>/dev/null || echo "(logs/preflight.log tidak terbentuk sama sekali)"
+            echo '```'
+            echo
+            echo "## Langkah jalan"
             echo
             echo '```'
             tail -c 60000 logs/backtest.log 2>/dev/null || echo "(tidak ada log; kegagalan terjadi sebelum langkah jalan)"
