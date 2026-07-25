@@ -2,11 +2,11 @@
 
 | Interval | Simbol | Hari | Baris | Diharapkan | Terisi | Celah/simbol |
 |---|---|---|---|---|---|---|
-| 1h | 760 | 18,222 | 419,109 | 437,328 | 0.9583 | 22.98 |
-| 4h | 760 | 18,222 | 91,113 | 109,332 | 0.8334 | 22.98 |
+| 1h | 763 | 18,294 | 439,056 | 439,056 | 1.0 | 0.0 |
+| 4h | 763 | 18,294 | 109,764 | 109,764 | 1.0 | 0.0 |
 
 ## Perbandingan interval
 
-- Hari ditambal 1h: 18,222, 4h: 18,222
-- Rasio baris 1h:4h = 4.5999 (seharusnya 4,0)
+- Hari ditambal 1h: 18,294, 4h: 18,294
+- Rasio baris 1h:4h = 4.0 (seharusnya 4,0)
 - Diagnosis: **jumlah hari sama, selisih ada pada isi berkas**

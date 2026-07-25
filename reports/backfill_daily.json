@@ -1,179 +1,181 @@
 {
-  "waktu_utc": "2026-07-25T15:30:46+00:00",
+  "waktu_utc": "2026-07-25T16:45:21+00:00",
   "jumlah_shard": 4,
   "total": {
     "1h": {
-      "baris": 419109,
-      "simbol_berhasil": 787,
-      "simbol_gagal": 3,
+      "baris": 439056,
+      "simbol_berhasil": 790,
+      "simbol_gagal": 0,
       "simbol_butuh_backfill": 763,
       "total_hari_diunduh": 18294,
       "total_duplikat": 0,
-      "total_celah_kisi": 17462,
-      "bytes": 18790156,
-      "detik_maks": 1317.3
+      "total_celah_kisi": 3,
+      "bytes": 19588127,
+      "detik_maks": 570.5
     },
     "4h": {
-      "baris": 91113,
-      "simbol_berhasil": 787,
-      "simbol_gagal": 3,
+      "baris": 109764,
+      "simbol_berhasil": 790,
+      "simbol_gagal": 0,
       "simbol_butuh_backfill": 763,
       "total_hari_diunduh": 18294,
       "total_duplikat": 0,
-      "total_celah_kisi": 17462,
-      "bytes": 4627285,
-      "detik_maks": 1365.3
+      "total_celah_kisi": 3,
+      "bytes": 5459028,
+      "detik_maks": 614.6
     }
   },
   "gerbang": {
     "1h": {
       "tidak_ada_duplikat": true,
-      "tidak_ada_simbol_gagal": false,
+      "tidak_ada_simbol_gagal": true,
       "ada_baris": true
     },
     "4h": {
       "tidak_ada_duplikat": true,
-      "tidak_ada_simbol_gagal": false,
+      "tidak_ada_simbol_gagal": true,
       "ada_baris": true
     }
   },
-  "semua_gerbang_lulus": false,
+  "semua_gerbang_lulus": true,
+  "jumlah_kegagalan": 0,
+  "kegagalan": [],
   "per_shard": [
     {
       "shard": 0,
       "shards": 4,
       "quote": "USDT",
       "simbol_ditugaskan": 198,
-      "mulai_utc": "2026-07-25T14:45:47+00:00",
+      "mulai_utc": "2026-07-25T16:25:30+00:00",
       "interval": {
         "1h": {
-          "baris": 104328,
-          "simbol_berhasil": 197,
-          "simbol_gagal": 1,
+          "baris": 109440,
+          "simbol_berhasil": 198,
+          "simbol_gagal": 0,
           "simbol_butuh_backfill": 191,
           "total_hari_diunduh": 4560,
           "total_duplikat": 0,
-          "total_celah_kisi": 4346,
+          "total_celah_kisi": 0,
           "berkas": "out/ohlcv_1h_tail_shard00.parquet",
-          "bytes": 4629419,
-          "detik": 1304.7
+          "bytes": 4834550,
+          "detik": 365.8
         },
         "4h": {
-          "baris": 22680,
-          "simbol_berhasil": 197,
-          "simbol_gagal": 1,
+          "baris": 27360,
+          "simbol_berhasil": 198,
+          "simbol_gagal": 0,
           "simbol_butuh_backfill": 191,
           "total_hari_diunduh": 4560,
           "total_duplikat": 0,
-          "total_celah_kisi": 4346,
+          "total_celah_kisi": 0,
           "berkas": "out/ohlcv_4h_tail_shard00.parquet",
-          "bytes": 1150465,
-          "detik": 1346.8
+          "bytes": 1362914,
+          "detik": 363.6
         }
       },
-      "selesai_utc": "2026-07-25T15:29:59+00:00"
+      "selesai_utc": "2026-07-25T16:37:40+00:00"
     },
     {
       "shard": 1,
       "shards": 4,
       "quote": "USDT",
       "simbol_ditugaskan": 198,
-      "mulai_utc": "2026-07-25T14:45:50+00:00",
+      "mulai_utc": "2026-07-25T16:25:24+00:00",
       "interval": {
         "1h": {
-          "baris": 108216,
-          "simbol_berhasil": 197,
-          "simbol_gagal": 1,
+          "baris": 113496,
+          "simbol_berhasil": 198,
+          "simbol_gagal": 0,
           "simbol_butuh_backfill": 197,
           "total_hari_diunduh": 4729,
           "total_duplikat": 0,
-          "total_celah_kisi": 4509,
+          "total_celah_kisi": 1,
           "berkas": "out/ohlcv_1h_tail_shard01.parquet",
-          "bytes": 5003864,
-          "detik": 1317.3
+          "bytes": 5234777,
+          "detik": 570.5
         },
         "4h": {
-          "baris": 23526,
-          "simbol_berhasil": 197,
-          "simbol_gagal": 1,
+          "baris": 28374,
+          "simbol_berhasil": 198,
+          "simbol_gagal": 0,
           "simbol_butuh_backfill": 197,
           "total_hari_diunduh": 4729,
           "total_duplikat": 0,
-          "total_celah_kisi": 4509,
+          "total_celah_kisi": 1,
           "berkas": "out/ohlcv_4h_tail_shard01.parquet",
-          "bytes": 1224783,
-          "detik": 1365.3
+          "bytes": 1437885,
+          "detik": 614.6
         }
       },
-      "selesai_utc": "2026-07-25T15:30:33+00:00"
+      "selesai_utc": "2026-07-25T16:45:09+00:00"
     },
     {
       "shard": 2,
       "shards": 4,
       "quote": "USDT",
       "simbol_ditugaskan": 197,
-      "mulai_utc": "2026-07-25T14:45:47+00:00",
+      "mulai_utc": "2026-07-25T16:25:35+00:00",
       "interval": {
         "1h": {
-          "baris": 104973,
+          "baris": 109536,
           "simbol_berhasil": 197,
           "simbol_gagal": 0,
           "simbol_butuh_backfill": 190,
           "total_hari_diunduh": 4564,
           "total_duplikat": 0,
-          "total_celah_kisi": 4374,
+          "total_celah_kisi": 1,
           "berkas": "out/ohlcv_1h_tail_shard02.parquet",
-          "bytes": 4723571,
-          "detik": 569.7
+          "bytes": 4894539,
+          "detik": 520.1
         },
         "4h": {
-          "baris": 22821,
+          "baris": 27384,
           "simbol_berhasil": 197,
           "simbol_gagal": 0,
           "simbol_butuh_backfill": 190,
           "total_hari_diunduh": 4564,
           "total_duplikat": 0,
-          "total_celah_kisi": 4374,
+          "total_celah_kisi": 1,
           "berkas": "out/ohlcv_4h_tail_shard02.parquet",
-          "bytes": 1159036,
-          "detik": 603.8
+          "bytes": 1364053,
+          "detik": 554.3
         }
       },
-      "selesai_utc": "2026-07-25T15:05:21+00:00"
+      "selesai_utc": "2026-07-25T16:43:29+00:00"
     },
     {
       "shard": 3,
       "shards": 4,
       "quote": "USDT",
       "simbol_ditugaskan": 197,
-      "mulai_utc": "2026-07-25T14:45:53+00:00",
+      "mulai_utc": "2026-07-25T16:25:35+00:00",
       "interval": {
         "1h": {
-          "baris": 101592,
-          "simbol_berhasil": 196,
-          "simbol_gagal": 1,
+          "baris": 106584,
+          "simbol_berhasil": 197,
+          "simbol_gagal": 0,
           "simbol_butuh_backfill": 185,
           "total_hari_diunduh": 4441,
           "total_duplikat": 0,
-          "total_celah_kisi": 4233,
+          "total_celah_kisi": 1,
           "berkas": "out/ohlcv_1h_tail_shard03.parquet",
-          "bytes": 4433302,
-          "detik": 1275.7
+          "bytes": 4624261,
+          "detik": 340.0
         },
         "4h": {
-          "baris": 22086,
-          "simbol_berhasil": 196,
-          "simbol_gagal": 1,
+          "baris": 26646,
+          "simbol_berhasil": 197,
+          "simbol_gagal": 0,
           "simbol_butuh_backfill": 185,
           "total_hari_diunduh": 4441,
           "total_duplikat": 0,
-          "total_celah_kisi": 4233,
+          "total_celah_kisi": 1,
           "berkas": "out/ohlcv_4h_tail_shard03.parquet",
-          "bytes": 1093001,
-          "detik": 1318.2
+          "bytes": 1294176,
+          "detik": 333.8
         }
       },
-      "selesai_utc": "2026-07-25T15:29:07+00:00"
+      "selesai_utc": "2026-07-25T16:36:49+00:00"
     }
   ]
 }
