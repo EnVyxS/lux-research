@@ -1,0 +1,77 @@
+name: doctor
+
+# Mengukur kapasitas runner yang sebenarnya. Angka di STATE.md bagian "asumsi"
+# tidak boleh dipindahkan ke bagian "fakta" sebelum job ini berjalan.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/doctor.yml'
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: CPU dan RAM
+        run: |
+          echo "::group::CPU"
+          nproc
+          lscpu | grep -E 'Model name|^CPU\(s\)|MHz' || true
+          echo "::endgroup::"
+          echo "::group::RAM"
+          free -h
+          echo "::endgroup::"
+
+      - name: Disk bebas
+        run: |
+          df -h
+          echo "---"
+          echo "Bebas di workspace (GB):"
+          df -BG --output=avail "$GITHUB_WORKSPACE" | tail -1
+
+      - name: Konektivitas ke Binance Vision
+        run: |
+          set -x
+          # Prefix data/ wajib. Tanpa itu S3 mengembalikan NoSuchKey.
+          URL="https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1h/BTCUSDT-1h-2024-01.zip"
+          curl -sSIL -o /dev/null -w 'http=%{http_code} size=%{size_download} time=%{time_total}\n' "$URL"
+
+      - name: Uji unduh nyata dan ukur throughput
+        run: |
+          URL="https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1h/BTCUSDT-1h-2024-01.zip"
+          time curl -sS -o /tmp/probe.zip "$URL"
+          ls -lh /tmp/probe.zip
+          curl -sS "$URL.CHECKSUM" -o /tmp/probe.CHECKSUM
+          cat /tmp/probe.CHECKSUM
+          cd /tmp && sha256sum -c probe.CHECKSUM || echo 'PERINGATAN: checksum tidak cocok'
+
+      - name: Uji endpoint S3 listing
+        run: |
+          # Endpoint ini belum pernah terverifikasi. Kalau gagal, pembangunan
+          # universe point-in-time harus memakai jalur lain.
+          S3="https://s3-ap-northeast-1.amazonaws.com/data.binance.vision"
+          curl -sS "$S3?list-type=2&max-keys=20&prefix=data/futures/um/monthly/klines/&delimiter=%2F" | head -c 2000
+          echo
+
+      - name: Uji exchangeInfo REST
+        run: |
+          # Runner GitHub berbasis di AS. Binance memblokir sebagian IP AS,
+          # jadi kegagalan di sini bukan kejutan dan bukan penghenti.
+          code=$(curl -sS -o /tmp/ei.json -w '%{http_code}' https://fapi.binance.com/fapi/v1/exchangeInfo || echo 000)
+          echo "http=$code"
+          if [ "$code" = "200" ]; then
+            python3 -c "import json;d=json.load(open('/tmp/ei.json'));print('simbol:',len(d['symbols']))"
+          else
+            echo 'exchangeInfo tidak dapat dijangkau dari runner'
+          fi
+
+      - name: Versi alat
+        run: |
+          python3 --version
+          gh --version
+          git --version
