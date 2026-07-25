@@ -24,6 +24,11 @@ kepentingan strategi: bila keliru, ia menagih lebih, bukan kurang.
 Jeda perdagangan tidak perlu diperlakukan khusus. Selama penghentian, bursa
 tidak menerbitkan penagihan, sehingga jumlahnya nol dengan sendirinya. Itulah
 keuntungan menjumlahkan peristiwa alih-alih mengalikan durasi.
+
+ADR-004 menambahkan satu kemampuan lagi: **memproyeksikan** carry ke depan
+untuk keperluan saringan entri. Proyeksi itu dipisahkan dengan tegas dari
+penagihan sesungguhnya dan hanya boleh membaca masa lalu; lihat
+``statistik_trailing`` dan ``carry_terproyeksi_R``.
 """
 
 from __future__ import annotations
@@ -33,6 +38,8 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+HARI_MS = 86_400_000
 
 
 @dataclass(frozen=True)
@@ -79,6 +86,32 @@ class Jadwal:
         awal, akhir = self._irisan(masuk_ms, keluar_ms)
         return akhir - awal
 
+    def statistik_trailing(
+        self, sampai_ms: int, jendela_ms: int
+    ) -> tuple[float, int]:
+        """Rerata rate dan jumlah penagihan pada jendela yang BERAKHIR di ``sampai_ms``.
+
+        Fungsi ini adalah satu-satunya jalan sah menuju proyeksi carry, dan
+        bentuknya sengaja dibuat sehingga masa depan mustahil ikut terbaca:
+        batas atas jendela adalah waktu masuk itu sendiri, tidak ada argumen
+        yang dapat menggesernya ke depan.
+
+        Jendela yang kosong mengembalikan ``(0.0, 0)``. Nol di sini berarti
+        bursa tidak menerbitkan penagihan apa pun pada periode itu, bukan
+        bahwa datanya hilang; pemanggil yang membutuhkan pembedaan itu dapat
+        memeriksa jumlahnya.
+        """
+        if jendela_ms <= 0:
+            raise ValueError("jendela_ms harus positif")
+        mulai = sampai_ms - jendela_ms
+        awal = int(np.searchsorted(self.waktu, mulai, side="right"))
+        akhir = int(np.searchsorted(self.waktu, sampai_ms, side="right"))
+        n = akhir - awal
+        if n <= 0:
+            return 0.0, 0
+        total = float(self.kumulatif[akhir] - self.kumulatif[awal])
+        return total / n, n
+
 
 def muat_jadwal(direktori: str | Path) -> dict[str, Jadwal]:
     """Baca seluruh shard funding menjadi jadwal per simbol."""
@@ -112,6 +145,44 @@ def funding_dalam_R(
     if stop_pecahan <= 0:
         raise ValueError("stop_pecahan harus positif")
     return arah * jadwal.jumlah_rate(masuk_ms, keluar_ms) / stop_pecahan
+
+
+def carry_terproyeksi_R(
+    jadwal: Jadwal,
+    arah: int,
+    masuk_ms: int,
+    umur_ms: int,
+    stop_pecahan: float,
+    jendela_ms: int = 30 * HARI_MS,
+) -> float:
+    """Perkiraan ongkos funding sepanjang umur maksimum posisi, dalam satuan R.
+
+    ADR-004. Angka ini **bukan** biaya yang akan ditagih; ia hanya dipakai
+    untuk memutuskan apakah sebuah entri layak dibuka. Perbedaannya penting:
+    biaya sesungguhnya dijumlahkan dari peristiwa yang terjadi, sedangkan yang
+    ini adalah tebakan yang dibuat sebelum peristiwanya ada.
+
+    Tebakannya disusun dari dua besaran yang keduanya dibaca dari jendela masa
+    lalu yang berakhir tepat di ``masuk_ms``: rerata rate dan kerapatan
+    penagihan. Kerapatan ikut dipakai, bukan hanya rerata rate, karena simbol
+    berkisi empat jam menagih dua kali lebih sering daripada simbol berkisi
+    delapan jam pada rate yang sama persis. Mengabaikan kerapatan akan
+    mengulang bentuk kesalahan yang membuat modul ini ditulis.
+
+    Nilai positif berarti diperkirakan membayar, negatif berarti diperkirakan
+    dibayar.
+    """
+    if arah not in (1, -1):
+        raise ValueError("arah harus +1 atau -1")
+    if stop_pecahan <= 0:
+        raise ValueError("stop_pecahan harus positif")
+    if umur_ms < 0:
+        raise ValueError("umur_ms tidak boleh negatif")
+    rerata, n = jadwal.statistik_trailing(masuk_ms, jendela_ms)
+    if n == 0:
+        return 0.0
+    perkiraan_penagihan = n * (umur_ms / jendela_ms)
+    return arah * rerata * perkiraan_penagihan / stop_pecahan
 
 
 def ambil_jadwal(jadwal: dict[str, Jadwal], symbol: str) -> Jadwal:
