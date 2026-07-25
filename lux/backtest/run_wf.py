@@ -9,8 +9,22 @@ sama persis dengan yang dilaporkan, bukan atas wilayah yang dihitung ulang.
 Dan putusan akhir dibuat oleh pembanding yang tidak tahu apa-apa tentang berapa
 hasilnya, hanya tentang ambang yang sudah tertulis.
 
+Tiga gerbang tidak boleh dinilai atas kumpulan perdagangan yang sudah
+dicampur antar simbol, dan ketiganya sempat salah dipasang di versi pertama
+berkas ini:
+
+- **Overlap** dinilai per simbol. Dua posisi pada dua simbol berbeda memang
+  berjalan bersamaan, dan menilainya dari kumpulan campuran akan selalu
+  melaporkan tumpang tindih yang sebenarnya sah.
+- **Survivorship** dinilai terhadap universe layak yang penuh, bukan terhadap
+  subset yang kebetulan diuji. Membandingkan subset dengan dirinya sendiri
+  selalu menghasilkan rasio satu, yaitu gerbang yang tidak pernah bisa gagal.
+- **Buy-and-hold** tidak boleh memakai kurva ekuitas jendela yang disambung,
+  karena tiap jendela memulai ulang dari modal awal sehingga sambungannya
+  hanya mencerminkan jendela terakhir.
+
 Pemakaian:
-    python -m lux.backtest.run_wf --dir aset --interval 1h \
+    python -m lux.backtest.run_wf --dir aset --interval 1h \\
         --universe reports/universe_layak.json --limit 40
 """
 
@@ -26,7 +40,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from lux.backtest.engine import Konfig, jalankan
+from lux.backtest.engine import Hasil, Konfig, jalankan
 from lux.backtest.gerbang import (
     Gerbang,
     gerbang_buy_and_hold,
@@ -56,7 +70,7 @@ def pilih_berkas(direktori: Path, interval: str) -> list[Path]:
     """Berkas yang sah dibaca. Aturannya sama dengan validasi, dan sengaja
     diulang di sini alih-alih diimpor, agar backtest tidak diam-diam ikut
     berubah bila aturan validasi disunting."""
-    semua = sorted(direktori.glob(f"ohlcv_{interval}_*.parquet"))
+    semua = sorted(Path(direktori).glob(f"ohlcv_{interval}_*.parquet"))
     return [p for p in semua if not any(t in p.name for t in POLA_DILARANG)]
 
 
@@ -87,6 +101,25 @@ def muat_ohlcv(
     return hasil, berkas
 
 
+def akhir_per_simbol(direktori: Path, interval: str) -> dict[str, int]:
+    """Stempel bar terakhir tiap simbol di seluruh aset, dua kolom saja.
+
+    Dipisahkan dari ``muat_ohlcv`` karena gerbang survivorship harus menilai
+    universe penuh sementara backtest hanya menjalankan sebagiannya. Membaca
+    dua kolom untuk 790 simbol jauh lebih murah daripada memuat seluruh bar,
+    dan tanpa ini gerbang survivorship membandingkan subset dengan dirinya
+    sendiri lalu selalu lulus.
+    """
+    akhir: dict[str, int] = {}
+    for p in pilih_berkas(Path(direktori), interval):
+        df = pd.read_parquet(p, columns=["symbol", "open_time"])
+        m = df.groupby("symbol", observed=True)["open_time"].max()
+        for s, t in m.items():
+            s = str(s)
+            akhir[s] = max(akhir.get(s, 0), int(t))
+    return akhir
+
+
 def muat_konfig(path: Path) -> Konfig:
     """Gagal keras bila config tidak terbaca. Diam-diam memakai nilai bawaan
     membuat laporan tampak sah padahal aturannya bukan yang disepakati."""
@@ -107,8 +140,8 @@ def muat_konfig(path: Path) -> Konfig:
 # --------------------------------------------------------------------------
 # Definisi turunan
 # --------------------------------------------------------------------------
-def simbol_mati(
-    bingkai: dict[str, pd.DataFrame], ambang_hari: int = 30
+def simbol_mati_dari_akhir(
+    akhir: dict[str, int], ambang_hari: int = 30
 ) -> set[str]:
     """Simbol yang datanya berhenti jauh sebelum data lain berakhir.
 
@@ -117,12 +150,16 @@ def simbol_mati(
     tersedia untuk bursa lain di kemudian hari; sedangkan "berhenti terbit"
     dapat diperiksa ulang siapa pun dari aset yang sama.
     """
-    if not bingkai:
+    if not akhir:
         return set()
-    akhir = {s: int(d["open_time"].iloc[-1]) for s, d in bingkai.items()}
     terakhir = max(akhir.values())
     batas = terakhir - ambang_hari * HARI_MS
     return {s for s, t in akhir.items() if t < batas}
+
+
+def simbol_mati(bingkai: dict[str, pd.DataFrame], ambang_hari: int = 30) -> set[str]:
+    akhir = {s: int(d["open_time"].iloc[-1]) for s, d in bingkai.items() if len(d)}
+    return simbol_mati_dari_akhir(akhir, ambang_hari)
 
 
 def ringkas_gabungan(ringkasan_per_simbol: list[dict]) -> dict:
@@ -145,6 +182,64 @@ def ringkas_gabungan(ringkasan_per_simbol: list[dict]) -> dict:
         "total_R": float(total_r),
         "ekspektasi_R": float(total_r / n) if n else None,
     }
+
+
+# --------------------------------------------------------------------------
+# Gerbang yang harus digabung per simbol
+# --------------------------------------------------------------------------
+def gabung_gerbang(nama: str, daftar: list[Gerbang], ambang: float | None) -> Gerbang:
+    """Gabungkan gerbang per simbol menjadi satu putusan.
+
+    Satu simbol gagal berarti gerbangnya gagal. Menghitung berapa persen simbol
+    yang lulus akan mengubah gerbang menjadi skor, dan angka nilainya diambil
+    dari kasus terburuk supaya jarak menuju kegagalan tetap terlihat.
+    """
+    if not daftar:
+        return Gerbang(nama, False, None, ambang, "tidak dapat dinilai: tidak ada simbol")
+    gagal = [g for g in daftar if not g.lulus]
+    ternilai = [g.nilai for g in daftar if g.nilai is not None]
+    return Gerbang(
+        nama,
+        not gagal,
+        max(ternilai) if ternilai else None,
+        ambang,
+        f"{len(gagal)} dari {len(daftar)} simbol gagal",
+    )
+
+
+def gerbang_overlap_gabungan(hasil_per_simbol: dict[str, Hasil]) -> Gerbang:
+    """Overlap dinilai per simbol, tidak pernah atas kumpulan campuran.
+
+    Dua posisi pada dua simbol berbeda memang berjalan bersamaan; itu
+    diversifikasi, bukan penumpukan. Yang dilarang adalah dua posisi pada simbol
+    yang sama.
+    """
+    daftar = [gerbang_overlap(h) for h in hasil_per_simbol.values() if h.jumlah_trade]
+    return gabung_gerbang("overlap", daftar, 0.0)
+
+
+def gerbang_bnh_gabungan(daftar: list[Gerbang]) -> Gerbang:
+    """Keunggulan terhadap buy-and-hold dinilai dari median lintas simbol.
+
+    Median dipilih, bukan rerata, karena satu simbol yang naik ribuan persen
+    dapat menyeret rerata menjadi positif meskipun strategi kalah di hampir
+    semua simbol lain.
+    """
+    nilai_nilai = [g.nilai for g in daftar if g.nilai is not None]
+    if not nilai_nilai:
+        return Gerbang(
+            "buy_and_hold", False, None, 0.0, "tidak dapat dinilai: tidak ada simbol"
+        )
+    arr = np.array(nilai_nilai, dtype="float64")
+    med = float(np.median(arr))
+    unggul = int((arr > 0).sum())
+    return Gerbang(
+        "buy_and_hold",
+        med > 0.0,
+        med,
+        0.0,
+        f"median selisih {med:.4f}; unggul di {unggul}/{arr.size} simbol",
+    )
 
 
 def hipotesis_h001(komit: str = "") -> Hipotesis:
@@ -203,7 +298,12 @@ def main(argv: list[str] | None = None) -> int:
 
     bingkai, berkas = muat_ohlcv(Path(a.dir), a.interval, set(dipilih))
     jadwal_semua = muat_jadwal(Path(a.dir))
-    print(f"{len(bingkai)} simbol dimuat, {len(jadwal_semua)} jadwal funding", flush=True)
+    akhir_semesta = akhir_per_simbol(Path(a.dir), a.interval)
+    print(
+        f"{len(bingkai)} simbol dimuat, {len(jadwal_semua)} jadwal funding, "
+        f"{len(akhir_semesta)} simbol dipindai untuk survivorship",
+        flush=True,
+    )
 
     # Sampel permutasi dipilih sebelum hasil terlihat, dari daftar terurut,
     # sehingga tidak mungkin menjadi pilihan yang menguntungkan.
@@ -213,6 +313,7 @@ def main(argv: list[str] | None = None) -> int:
     ringkasan_simbol: list[dict] = []
     per_simbol: list[dict] = []
     semua_trade = []
+    hasil_per_simbol: dict[str, Hasil] = {}
     jendela_sampel: list[tuple[pd.DataFrame, np.ndarray, str]] = []
     g_forward: list[Gerbang] = []
     g_bnh: list[Gerbang] = []
@@ -239,8 +340,10 @@ def main(argv: list[str] | None = None) -> int:
             simpan_bingkai=s in sampel,
         )
         r = wf.ringkas()
+        trade_simbol = wf.perdagangan_luar_sampel
         ringkasan_simbol.append(r)
-        semua_trade.extend(wf.perdagangan_luar_sampel)
+        semua_trade.extend(trade_simbol)
+        hasil_per_simbol[s] = Hasil(symbol=s, perdagangan=trade_simbol)
         per_simbol.append(
             {
                 "symbol": s,
@@ -256,16 +359,24 @@ def main(argv: list[str] | None = None) -> int:
         )
 
         g_forward.append(gerbang_forward_fill(df))
-        gabung_ekuitas = np.concatenate(
-            [hj.hasil_uji.ekuitas for hj in wf.per_jendela]
-        ) if wf.per_jendela else np.array([])
-        if gabung_ekuitas.size:
-            from lux.backtest.engine import Hasil as _H
 
+        # Buy-and-hold: laba luar sampel atas modal awal, dibandingkan dengan
+        # memegang aset sepanjang wilayah penilaian. Kurva ekuitas tiap jendela
+        # tidak disambung karena masing-masing memulai ulang dari modal awal.
+        if wf.per_jendela and trade_simbol:
+            awal_uji = wf.per_jendela[0].jendela.uji_awal
+            akhir_uji = wf.per_jendela[-1].jendela.uji_akhir
+            laba = float(sum(p.laba for p in trade_simbol))
             g_bnh.append(
                 gerbang_buy_and_hold(
-                    _H(symbol=s, ekuitas=gabung_ekuitas),
-                    df.iloc[wf.per_jendela[0].jendela.uji_awal :],
+                    Hasil(
+                        symbol=s,
+                        perdagangan=trade_simbol,
+                        ekuitas=np.array(
+                            [konfig.modal_awal, konfig.modal_awal + laba]
+                        ),
+                    ),
+                    df.iloc[awal_uji:akhir_uji],
                 )
             )
 
@@ -286,45 +397,16 @@ def main(argv: list[str] | None = None) -> int:
     # ----------------------------------------------------------------------
     # Sembilan gerbang
     # ----------------------------------------------------------------------
-    from lux.backtest.engine import Hasil as HasilKosong
-
-    hasil_pool = HasilKosong(
+    hasil_pool = Hasil(
         symbol="POOL",
         perdagangan=semua_trade,
         ekuitas=np.array([konfig.modal_awal]),
     )
 
-    # 1. forward-fill: gagal bila ada satu simbol pun gagal.
-    if g_forward:
-        gagal_ff = [g for g in g_forward if not g.lulus]
-        nilai_ff = max((g.nilai or 0.0) for g in g_forward)
-        gerbang_ff = Gerbang(
-            "forward_fill",
-            not gagal_ff,
-            nilai_ff,
-            0.30,
-            f"{len(gagal_ff)} dari {len(g_forward)} simbol gagal, rasio datar "
-            f"tertinggi {nilai_ff:.4f}",
-        )
-    else:
-        gerbang_ff = Gerbang("forward_fill", False, None, None, "tidak dapat dinilai")
+    gerbang_ff = gabung_gerbang("forward_fill", g_forward, 0.30)
+    gerbang_bnh = gerbang_bnh_gabungan(g_bnh)
 
-    # 2. buy-and-hold: median selisih lintas simbol.
-    if g_bnh:
-        selisih = np.array([g.nilai for g in g_bnh if g.nilai is not None])
-        med = float(np.median(selisih)) if selisih.size else 0.0
-        unggul = int((selisih > 0).sum())
-        gerbang_bnh = Gerbang(
-            "buy_and_hold",
-            med > 0.0,
-            med,
-            0.0,
-            f"median selisih {med:.4f}; unggul di {unggul}/{selisih.size} simbol",
-        )
-    else:
-        gerbang_bnh = Gerbang("buy_and_hold", False, None, None, "tidak dapat dinilai")
-
-    # 3. entri acak atas wilayah penilaian yang sama persis.
+    # Entri acak atas wilayah penilaian yang sama persis.
     p_acak: float | None = None
     if jendela_sampel:
         panjang = [len(s_) for _, s_, _ in jendela_sampel]
@@ -351,14 +433,15 @@ def main(argv: list[str] | None = None) -> int:
         )
         p_acak = gerbang_acak.nilai
         print(
-            f"entri acak: nyata {nyata:.5f}R, p {p_acak}, "
-            f"{time.time() - t0:.0f}s",
+            f"entri acak: nyata {nyata:.5f}R, p {p_acak}, {time.time() - t0:.0f}s",
             flush=True,
         )
     else:
-        gerbang_acak = Gerbang("entri_acak", False, None, None, "tidak ada jendela sampel")
+        gerbang_acak = Gerbang(
+            "entri_acak", False, None, None, "tidak dapat dinilai: tidak ada jendela sampel"
+        )
 
-    # 4. lookahead atas fungsi sinyal, bukan atas hasil.
+    # Lookahead atas fungsi sinyal, bukan atas hasil.
     if bingkai:
         contoh = bingkai[sorted(bingkai)[0]]
         gerbang_la = gerbang_lookahead(
@@ -366,14 +449,13 @@ def main(argv: list[str] | None = None) -> int:
             lambda d: breakout_atr.sinyal(d, {"lookback": 55}),
         )
     else:
-        gerbang_la = Gerbang("lookahead", False, None, None, "tidak ada data")
+        gerbang_la = Gerbang("lookahead", False, None, None, "tidak dapat dinilai: tidak ada data")
 
-    # 5-7
     gerbang_ir = gerbang_invarian_risiko(hasil_pool)
     gerbang_fd = gerbang_funding(hasil_pool, jadwal_dimuat=bool(jadwal_semua))
-    gerbang_ov = gerbang_overlap(hasil_pool)
+    gerbang_ov = gerbang_overlap_gabungan(hasil_per_simbol)
 
-    # 8. checksum aset terhadap manifest sekali-tulis.
+    # Checksum aset terhadap manifest sekali-tulis.
     manifest_path = Path(a.out) / "manifest_aset.json"
     terhitung = {p.name: sha256_berkas(p) for p in berkas}
     if manifest_path.exists():
@@ -393,12 +475,15 @@ def main(argv: list[str] | None = None) -> int:
             "run berikutnya akan membandingkannya",
         )
 
-    # 9. survivorship dengan definisi yang diturunkan dari data.
-    mati = simbol_mati(bingkai)
+    # Survivorship terhadap universe layak yang penuh, bukan subset yang diuji.
+    semesta_layak = [s for s in semesta if s in akhir_semesta]
+    mati = simbol_mati_dari_akhir(
+        {s: akhir_semesta[s] for s in semesta_layak}
+    )
     gerbang_sv = gerbang_survivorship(
         simbol_diuji=[r["symbol"] for r in ringkasan_simbol],
         simbol_delisted=mati,
-        simbol_universe=list(bingkai),
+        simbol_universe=semesta_layak,
     )
 
     laporan = susun_laporan(
@@ -432,6 +517,7 @@ def main(argv: list[str] | None = None) -> int:
             "pemanasan": a.pemanasan,
             "ulangan_permutasi": a.ulangan,
             "sampel_permutasi": sorted(sampel),
+            "simbol_mati_di_universe": len(mati),
         },
         "gabungan": gabungan,
         "gerbang": laporan.ke_dict(),
@@ -444,12 +530,12 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     md = [
-        "# Backtest H-001 — breakout Donchian 1 jam",
+        "# Backtest H-001 \u2014 breakout Donchian 1 jam",
         "",
         f"> {h.pernyataan}",
         "",
-        f"Sidik hipotesis `{h.sidik()[:16]}` · ruang {h.jumlah_kombinasi} kombinasi "
-        f"· {gabungan['jumlah_simbol']} simbol · {isi['detik']}s",
+        f"Sidik hipotesis `{h.sidik()[:16]}` \u00b7 ruang {h.jumlah_kombinasi} kombinasi "
+        f"\u00b7 {gabungan['jumlah_simbol']} simbol \u00b7 {isi['detik']}s",
         "",
         "## Putusan",
         "",
@@ -477,8 +563,8 @@ def main(argv: list[str] | None = None) -> int:
         "|---|---|---|---|---|",
     ]
     for g in laporan.gerbang:
-        n = "—" if g.nilai is None else f"{g.nilai:.4f}"
-        am = "—" if g.ambang is None else f"{g.ambang}"
+        n = "\u2014" if g.nilai is None else f"{g.nilai:.4f}"
+        am = "\u2014" if g.ambang is None else f"{g.ambang}"
         md.append(
             f"| {g.nama} | {'lulus' if g.lulus else 'GAGAL'} | {n} | {am} | {g.catatan} |"
         )
