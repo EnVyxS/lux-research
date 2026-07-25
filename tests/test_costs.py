@@ -2,6 +2,13 @@
 
 Pengujian ini menjaga sifat-sifat yang harus benar apa pun implementasinya,
 bukan sekadar mengunci angka keluaran hari ini.
+
+Catatan atas satu kegagalan nyata: versi pertama berkas ini menuntut
+``winrate_impas(2.0, 2.0) > 1.0``, padahal aritmetikanya menghasilkan tepat
+1,0. Yang salah adalah asersinya, bukan implementasinya, dan kesalahan itu
+ditangkap oleh CI sebelum sempat memengaruhi keputusan apa pun. Pengujian yang
+menuntut hal keliru adalah bahaya tersendiri: ia mengundang orang menambal kode
+yang sudah benar.
 """
 
 from __future__ import annotations
@@ -14,6 +21,7 @@ from lux.costs import (
     ModelBiaya,
     biaya_dalam_R,
     funding_dalam_R,
+    layak_secara_biaya,
     stop_frac,
     total_biaya_R,
     winrate_impas,
@@ -79,10 +87,25 @@ def test_biaya_menaikkan_ambang_impas():
 
 def test_stop_sangat_sempit_membuat_strategi_mustahil():
     # Stop 0,1% dengan biaya 0,2% bolak-balik berarti dua R hilang sebelum
-    # perdagangan dimulai; tidak ada winrate yang menyelamatkannya.
+    # perdagangan dimulai. Pada imbalan 2R, titik impasnya tepat 100% dan
+    # kemenangan pun hanya menghasilkan nol, jadi konfigurasi ini mati.
     biaya = biaya_dalam_R(0.001)
     assert biaya == pytest.approx(2.0)
-    assert winrate_impas(2.0, biaya) > 1.0
+    assert winrate_impas(2.0, biaya) == pytest.approx(1.0)
+    assert not layak_secara_biaya(2.0, biaya)
+
+
+def test_ambang_impas_boleh_melebihi_satu():
+    # Tidak boleh dijepit ke 1,0: angka di atas satu adalah cara rumus ini
+    # menyatakan bahwa konfigurasinya mustahil.
+    assert winrate_impas(1.0, 2.0) > 1.0
+    assert not layak_secara_biaya(1.0, 2.0)
+
+
+def test_konfigurasi_wajar_dinyatakan_layak():
+    biaya = biaya_dalam_R(0.02)
+    assert layak_secara_biaya(2.0, biaya)
+    assert winrate_impas(2.0, biaya) < 0.4
 
 
 def test_semua_masukan_tidak_masuk_akal_ditolak():
@@ -94,6 +117,8 @@ def test_semua_masukan_tidak_masuk_akal_ditolak():
         funding_dalam_R(0.0001, -1, 0.02)
     with pytest.raises(ValueError):
         winrate_impas(0.0, 0.1)
+    with pytest.raises(ValueError):
+        layak_secara_biaya(0.0, 0.1)
 
 
 def test_tidak_ada_nilai_nan_yang_lolos():

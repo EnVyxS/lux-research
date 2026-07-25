@@ -101,14 +101,31 @@ def winrate_impas(rasio_imbalan: float, biaya_R: float) -> float:
     """Tingkat kemenangan minimum agar strategi sekadar impas.
 
     Dengan target ``rasio_imbalan`` R dan kerugian 1 R, ekspektasi bersih nol
-    tercapai saat p*(imbalan - biaya) = (1 - p)*(1 + biaya).
+    tercapai saat p*(imbalan - biaya) = (1 - p)*(1 + biaya), sehingga
+    p = (1 + biaya) / (imbalan + 1).
 
     Angka inilah pembanding yang jujur. Sebuah strategi dengan winrate 55%
     terdengar bagus sampai terlihat bahwa titik impasnya berada di 58%.
+
+    Nilai kembalian dapat melebihi 1,0. Itu bukan kesalahan, melainkan cara
+    rumus ini menyatakan bahwa strategi tersebut mustahil menguntungkan pada
+    struktur biaya tersebut. Jangan pernah menjepitnya ke 1,0: menyembunyikan
+    angka mustahil akan membuat konfigurasi yang tidak layak tampak wajar.
     """
     if rasio_imbalan <= 0:
         raise ValueError("rasio_imbalan harus positif")
-    penyebut = rasio_imbalan + 1.0
-    if penyebut <= 0:
-        raise ValueError("parameter tidak masuk akal")
-    return (1.0 + biaya_R) / penyebut
+    return (1.0 + biaya_R) / (rasio_imbalan + 1.0)
+
+
+def layak_secara_biaya(rasio_imbalan: float, biaya_R: float) -> bool:
+    """Apakah konfigurasi ini punya harapan sama sekali.
+
+    Bila biaya sama besar atau lebih besar daripada target imbalan, kemenangan
+    pun tidak menghasilkan apa pun, sehingga winrate 100% sekalipun hanya
+    berujung nol atau minus. Ambang ini harus diperiksa SEBELUM backtest
+    dijalankan, karena mesin backtest akan dengan patuh menghasilkan kurva
+    ekuitas untuk konfigurasi yang secara aritmetika sudah mati.
+    """
+    if rasio_imbalan <= 0:
+        raise ValueError("rasio_imbalan harus positif")
+    return rasio_imbalan > biaya_R and winrate_impas(rasio_imbalan, biaya_R) < 1.0
