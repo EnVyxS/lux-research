@@ -1,8 +1,12 @@
 """Pengujian metrik kisi funding.
 
-Pelajaran yang dikunci di sini: kisi funding berubah sepanjang umur sebuah
-simbol, jadi metrik apa pun yang memaksakan satu kisi untuk seluruh riwayat
-akan salah. Tiga putaran metrik gagal karena itu.
+Dua pelajaran dikunci di berkas ini, keduanya dibayar dengan putaran metrik
+yang gagal:
+
+1. Kisi funding berubah sepanjang umur sebuah simbol, jadi metrik apa pun yang
+   memaksakan satu kisi untuk seluruh riwayat akan salah.
+2. Waktu tidak boleh dibandingkan tanpa toleransi. Pergeseran beberapa
+   milidetik bukan penagihan yang hilang.
 """
 
 from __future__ import annotations
@@ -11,8 +15,10 @@ import pandas as pd
 import pytest
 
 from lux.funding_check import (
+    TOLERANSI_MS,
     biaya_tahunan,
     celah_teramati,
+    geseran,
     langkah_teramati,
     tidak_selaras,
 )
@@ -52,7 +58,7 @@ def test_deret_rapi_tidak_punya_celah():
 
 
 def test_peralihan_delapan_ke_empat_jam_bukan_celah():
-    """Inti dari tiga kegagalan metrik sebelumnya.
+    """Inti dari tiga putaran metrik yang gagal.
 
     Simbol yang hidup separuh umurnya di kisi delapan jam lalu pindah ke empat
     jam tidak kehilangan satu pun penagihan. Metrik yang memaksakan kisi empat
@@ -62,12 +68,11 @@ def test_peralihan_delapan_ke_empat_jam_bukan_celah():
     mulai = t[-1]
     t += [mulai + (i + 1) * 4 * JAM for i in range(400)]
     s = pd.Series(t)
-    assert langkah_teramati(s) == 4 * JAM  # modusnya kisi baru
+    assert langkah_teramati(s) == 4 * JAM
     assert celah_teramati(s, langkah_teramati(s)) == (0, 0)
 
 
 def test_kisi_delapan_jam_penuh_tidak_pernah_dianggap_celah():
-    """Delapan jam adalah kisi terpanjang yang sah, jadi tidak pernah celah."""
     assert celah_teramati(waktu(JAM8, 50), 4 * JAM) == (0, 0)
 
 
@@ -75,6 +80,32 @@ def test_jarak_di_atas_delapan_jam_adalah_celah():
     t = pd.Series([AWAL, AWAL + 9 * JAM])
     peristiwa, _ = celah_teramati(t, JAM8)
     assert peristiwa == 1
+
+
+def test_jitter_milidetik_bukan_celah():
+    """Putaran metrik keempat gagal tepat di sini.
+
+    Jarak delapan jam lebih beberapa milidetik lolos ambang "lebih dari delapan
+    jam", lalu dibulatkan menjadi tepat satu penagihan hilang. Data sungguhan
+    memuat 1.193.171 jarak semacam ini dengan pergeseran terbesar 47 ms, dan
+    seluruhnya sempat terhitung sebagai kerusakan data.
+    """
+    t = pd.Series([AWAL, AWAL + JAM8 + 3, AWAL + 2 * JAM8 + 47])
+    assert celah_teramati(t, JAM8) == (0, 0)
+    jumlah, maks = geseran(t)
+    assert jumlah == 2
+    assert maks == 44
+
+
+def test_pergeseran_melebihi_toleransi_tetap_celah():
+    """Toleransi tidak boleh menjadi tempat sembunyi anomali sungguhan."""
+    t = pd.Series([AWAL, AWAL + JAM8 + TOLERANSI_MS * 2])
+    assert celah_teramati(t, JAM8)[0] == 1
+
+
+def test_jitter_tidak_memecah_kisi_saat_mengukur_langkah():
+    t = pd.Series([AWAL + i * JAM8 + i % 5 for i in range(40)])
+    assert langkah_teramati(t) == JAM8
 
 
 def test_penagihan_hilang_dihitung_dengan_kisi_simbol():
@@ -92,7 +123,7 @@ def test_jarak_lebih_rapat_bukan_celah():
     assert celah_teramati(t, JAM8) == (0, 0)
 
 
-def test_dua_jarak_tidak_selaras_dihitung_dua(): 
+def test_dua_jarak_tidak_selaras_dihitung_dua():
     """Jarak 3 jam dan 5 jam sama-sama bukan kisi sah."""
     t = pd.Series([AWAL, AWAL + 3 * JAM, AWAL + 8 * JAM])
     assert tidak_selaras(t) == 2
