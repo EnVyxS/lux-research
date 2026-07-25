@@ -29,33 +29,44 @@ name: backtest
 # memakai tanggal kematian sejati, bukan stempel bar terakhir mentah.
 #
 # Riwayat hipotesis yang dijalankan berkas ini:
-#   H-001b        run 30172926477  DITOLAK, invarian_risiko gagal (-2,5853R)
-#   H-002         run 30174642490  DITOLAK, sembilan gerbang lulus, 0,03159R
-#   H-003         run 30175179866  DITOLAK telak, -0,24782R, p entri acak 1,0
-#   H-004..H-006  sekarang         keluarga ADR-006
+#   H-001b  run 30172926477  DITOLAK, invarian_risiko gagal (-2,5853R)
+#   H-002   run 30174642490  DITOLAK, sembilan gerbang lulus, +0,03159R
+#   H-003   run 30175179866  DITOLAK telak, -0,24782R, p entri acak 1,0
+#   H-004   run 30175665060  DITOLAK, -0,01818R, sembilan gerbang lulus
+#   H-005   run 30175665060  DITOLAK, -0,03571R, p 0,0396 > 0,0167 (Bonferroni)
+#   H-006   run 30175665060  DITOLAK, -0,13449R, p entri acak 1,0
+#   H-007   sekarang         struktur keluar (ADR-007)
 #
 # Tidak satu pun dari hipotesis yang sudah divonis dijalankan ulang, dan tidak
 # satu ambang pun diturunkan. Yang boleh dilakukan hanya mendaftarkan hipotesis
 # baru dengan ID baru.
 #
-# ADR-006 menjalankan TIGA hipotesis dalam satu run:
-#   H-004  breakout Donchian yang hanya aktif saat ADX(14) >= 30
-#   H-005  entri retest, yaitu "sniper entry" yang diterjemahkan mekanis
-#   H-006  sapuan likuiditas, satu-satunya bagian SMC yang dapat dikodekan
+# ADR-007. Enam hipotesis pertama semuanya menggeser laju kena target sambil
+# membiarkan titik impas tetap di 1/3, karena stop 1R dan target 2R tidak pernah
+# diutak-atik. Dibongkar dari histogram alasan keluar yang sudah dikomit, keenam
+# hasilnya terurut sempurna menurut satu angka itu saja:
 #
-# Tiga percobaan serentak melipatgandakan peluang positif palsu, jadi ambang
-# p entri acak sudah diperketat ke 0,0167 (Bonferroni 0,05/3) di dalam kode,
-# ditetapkan sebelum satu angka pun terlihat.
+#   H-002  laju 0,36028  kotor +0,08084  bersih +0,03159
+#   H-004  laju 0,34151  kotor +0,02453  bersih -0,01818
+#   H-005  laju 0,33755  kotor +0,01265  bersih -0,03571
+#   H-006  laju 0,30122  kotor -0,09633  bersih -0,13449
+#   H-003  laju 0,26326  kotor -0,21021  bersih -0,24782
 #
-# Data dimuat SEKALI untuk ketiganya oleh lux/backtest/runner.py. Selain hemat
-# waktu, itu menjamin ketiga hipotesis melihat kumpulan berkas yang identik,
-# sehingga perbandingan antar hipotesis sah dan checksum cukup dinilai sekali.
+# H-007 tidak menyentuh sinyal sama sekali. Yang diuji adalah titik impasnya,
+# dengan memperlakukan imbalan_R sebagai parameter yang dipilih walk-forward:
+# lookback {20,55,100} x imbalan {1,2,3,4} = 12 kombinasi. Titik impas kotor
+# adalah 1/(1+imbalan), jadi 3R menurunkannya dari 0,3333 ke 0,2500.
 #
-# run_wf.py, run_h002.py, dan run_h003.py tidak disentuh sama sekali, sehingga
-# ketiga hasil lama tetap dapat diulang bita demi bita.
+# Percobaan tunggal, jadi ambang p entri acak kembali ke 0,05 tanpa koreksi
+# multiplisitas. ADR-006 melarang sinyal harga ketujuh; larangan itu dihormati
+# dengan tidak menulis satu baris pun di lux/strategi/.
+#
+# walk_forward.py menerima buat_konfig opsional. Tanpa argumen itu jalurnya sama
+# persis seperti sebelumnya, sehingga run_wf.py, run_h002.py, dan run_h003.py
+# tetap dapat diulang bita demi bita. Hal itu dikunci langsung oleh pengujian.
 #
 # limit tetap 40 simbol pertama secara alfabet. Mengubahnya membuat seluruh
-# hasil tidak dapat dibandingkan dengan H-001b, H-002, dan H-003.
+# hasil tidak dapat dibandingkan dengan H-001b sampai H-006.
 
 on:
   workflow_dispatch:
@@ -105,10 +116,9 @@ jobs:
         run: |
           python -c "import yaml, pandas, pyarrow; print('impor pihak ketiga siap')"
           python -c "import lux.backtest.run_wf as m; print('run_wf siap', m.POLA_DILARANG)"
-          python -c "import lux.potong_ekor; print('potong_ekor siap')"
-          python -c "from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); print('saringan ADR-004 siap:', k.maks_umur_bar, k.maks_carry_R, k.jendela_carry_hari)"
           python -c "import lux.backtest.runner as r; print('runner bersama siap')"
-          python -c "from lux.backtest.run_keluarga import AMBANG_P, semua_spek; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); print('ambang p Bonferroni:', AMBANG_P); [print(' ', s.h.id, s.nama, s.h.jumlah_kombinasi, 'kombinasi, sidik', s.h.sidik()[:12]) for s in semua_spek(k)]"
+          python -c "from lux.analisis.titik_impas import titik_impas; print('titik impas 2R', round(titik_impas(2.0), 4), '3R', round(titik_impas(3.0), 4))"
+          python -c "from lux.backtest.run_h007 import IMBALAN, LOOKBACK, kandidat, spek_h007; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); s = spek_h007(k); print('H-007 siap:', s.h.id, s.nama, s.h.jumlah_kombinasi, 'kombinasi, sidik', s.h.sidik()[:12]); print('  lookback', LOOKBACK, 'imbalan', IMBALAN, 'kandidat', len(kandidat())); print('  konfig per kandidat:', s.buat_konfig is not None); print('  saringan ADR-004 tetap:', k.maks_umur_bar, k.maks_carry_R, k.jendela_carry_hari)"
 
       - name: Unduh aset
         env:
@@ -120,14 +130,14 @@ jobs:
           ls -la aset
           du -sh aset
 
-      - name: Jalankan keluarga ADR-006
+      - name: Jalankan H-007 (struktur keluar)
         id: jalan
         env:
           PYTHONPATH: .
         run: |
           set -o pipefail
           mkdir -p logs
-          python -m lux.backtest.run_keluarga \
+          python -m lux.backtest.run_h007 \
             --dir aset \
             --interval 1h \
             --universe reports/universe_layak_v2.json \
@@ -141,7 +151,7 @@ jobs:
         run: |
           mkdir -p reports logs
           {
-            echo "# Log run backtest keluarga ADR-006"
+            echo "# Log run backtest H-007 (ADR-007)"
             echo
             echo "Commit: \`${GITHUB_SHA}\`"
             echo "Status langkah jalan: \`${{ steps.jalan.outcome }}\`"
