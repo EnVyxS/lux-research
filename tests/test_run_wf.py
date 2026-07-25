@@ -4,21 +4,31 @@ Tiga pengujian di berkas ini mengunci cacat yang sempat ada di versi pertama
 orkestrator: overlap yang dinilai atas perdagangan campuran antar simbol,
 survivorship yang membandingkan subset dengan dirinya sendiri, dan gerbang
 gabungan yang meluluskan mayoritas alih-alih menuntut semuanya.
+
+Tambahan ADR-003: dua pengujian baru mengunci perilaku pemangkasan ekor datar
+pada ``muat_ohlcv`` dan pembacaan tanggal kematian sejati pada
+``akhir_per_simbol``.
 """
 
 from __future__ import annotations
 
+import json
+
 import numpy as np
 import pandas as pd
+import pyarrow as pa
+import pyarrow.parquet as pq
 import pytest
 
 from lux.backtest.engine import Hasil, Perdagangan
 from lux.backtest.gerbang import Gerbang
 from lux.backtest.run_wf import (
+    akhir_per_simbol,
     gabung_gerbang,
     gerbang_bnh_gabungan,
     gerbang_overlap_gabungan,
     hipotesis_h001,
+    muat_ohlcv,
     pilih_berkas,
     ringkas_gabungan,
     sha256_berkas,
@@ -27,6 +37,7 @@ from lux.backtest.run_wf import (
 )
 
 HARI = 86_400_000
+JAM = 3_600_000
 AWAL = 1_600_000_000_000
 
 
@@ -49,6 +60,88 @@ def trade(symbol, masuk, keluar):
         biaya_funding=0.01,
         laba_kotor=1.0,
     )
+
+
+# --- ADR-003: muat_ohlcv memangkas ekor datar ----------------------------
+def test_muat_ohlcv_memangkas_ekor_datar(tmp_path):
+    """muat_ohlcv harus memanggil potong_ekor per simbol setelah sort.
+
+    Ekor datar (o=h=l=c, volume 0) dari simbol mati harus terpangkas sebelum
+    data masuk ke walk-forward. Bila tidak, bar palsu ikut diperdagangkan dan
+    posisi dapat bertahan berbulan-bulan tanpa volume nyata.
+    """
+    N_HIDUP = 200  # bar dengan harga bergerak
+    N_EKOR = 50   # bar datar di ujung (simulasi padding simbol mati)
+    N_TOTAL = N_HIDUP + N_EKOR
+
+    times = [AWAL + i * JAM for i in range(N_TOTAL)]
+    # Bar hidup: harga naik sedikit tiap bar
+    opens = [100.0 + i * 0.01 for i in range(N_HIDUP)] + [101.99] * N_EKOR
+    highs = [o + 0.5 for o in opens[:N_HIDUP]] + list(opens[N_HIDUP:])
+    lows = [o - 0.5 for o in opens[:N_HIDUP]] + list(opens[N_HIDUP:])
+    closes = list(opens)
+    volumes = [500.0] * N_HIDUP + [0.0] * N_EKOR
+
+    df = pd.DataFrame({
+        "symbol": ["TESUSDT"] * N_TOTAL,
+        "open_time": times,
+        "open": opens,
+        "high": highs,
+        "low": lows,
+        "close": closes,
+        "volume": volumes,
+    })
+    pq.write_table(pa.Table.from_pandas(df), tmp_path / "ohlcv_1h_shard00.parquet")
+
+    bingkai, _ = muat_ohlcv(tmp_path, "1h", {"TESUSDT"})
+
+    assert "TESUSDT" in bingkai
+    # Ekor 50 bar datar harus hilang
+    assert len(bingkai["TESUSDT"]) == N_HIDUP
+
+
+# --- ADR-003: akhir_per_simbol membaca dari JSON --------------------------
+def test_akhir_per_simbol_membaca_akhir_sejati_json(tmp_path):
+    """Bila akhir_sejati.json tersedia, stempel harus diambil dari sana.
+
+    Stempel mentah dari parquet untuk simbol mati sama dengan tanggal ujung
+    dataset, sehingga gerbang survivorship tidak dapat membedakan simbol mati
+    dari simbol hidup. JSON menyimpan tanggal kematian nyata.
+    """
+    data = {
+        "interval": "1h",
+        "akhir": {
+            "BTCUSDT": {"akhir_ms": 1784934000000, "dipangkas": 0, "bar_awal": 57552},
+            "RENUSDT": {"akhir_ms": 1733216400000, "dipangkas": 14366, "bar_awal": 50657},
+        },
+    }
+    json_path = tmp_path / "akhir_sejati.json"
+    json_path.write_text(json.dumps(data), encoding="utf-8")
+
+    hasil = akhir_per_simbol(tmp_path, "1h", json_path)
+
+    assert hasil["BTCUSDT"] == 1784934000000
+    # RENUSDT: tanggal kematian sejati, jauh lebih awal dari ujung dataset
+    assert hasil["RENUSDT"] == 1733216400000
+    assert len(hasil) == 2
+
+
+def test_akhir_per_simbol_fallback_bila_json_tidak_ada(tmp_path):
+    """Bila JSON tidak ada, fungsi jatuh ke parquet mentah (fallback).
+
+    Dalam produksi ini tidak boleh terjadi, tapi fallback penting untuk
+    pengujian unit yang tidak membutuhkan JSON.
+    """
+    # Tidak ada JSON, tidak ada parquet — hasilnya kosong
+    hasil = akhir_per_simbol(tmp_path, "1h", tmp_path / "tidak_ada.json")
+    assert hasil == {}
+
+
+def test_akhir_per_simbol_tanpa_json_path_fallback_ke_parquet(tmp_path):
+    """Bila akhir_sejati_path=None, harus tetap membaca dari parquet."""
+    # Tidak ada parquet — hasilnya kosong, tidak ada error
+    hasil = akhir_per_simbol(tmp_path, "1h", None)
+    assert hasil == {}
 
 
 # --- simbol mati ----------------------------------------------------------
@@ -188,6 +281,9 @@ def test_hipotesis_h001_terkunci_pada_kriteria_yang_ketat():
     assert h.kriteria.min_trade_luar_sampel == 100
     assert h.kriteria.maks_p_entri_acak == 0.05
     assert h.jumlah_kombinasi == 3
+    # Dataset harus mencerminkan ADR-003
+    assert "438" in h.dataset
+    assert "ADR-003" in h.dataset
 
 
 def test_hasil_pool_menerima_ekuitas_satu_titik():

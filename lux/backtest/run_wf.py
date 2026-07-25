@@ -29,9 +29,18 @@ angka gabungan yang ditampilkan bisa saja bukan dimensi yang menyebabkan
 kegagalan: gerbang forward-fill menjatuhkan run pilot lewat panjang deret bar
 datar, sementara yang tercetak justru rasionya, yang lolos ambang.
 
+ADR-003 (ekor datar): Aset Parquet **tidak** ditulis ulang. Pemangkasan
+diterapkan saat muat lewat ``_potong_ekor`` sehingga prinsip write-once tetap
+terjaga. Tanggal kematian sejati simbol dibaca dari ``reports/akhir_sejati.json``
+alih-alih dari stempel bar terakhir mentah — perbedaan ini krusial karena
+pipa data mengisi harga terakhir simbol mati sampai ujung dataset, sehingga
+stempel mentah tidak dapat membedakan simbol mati dari simbol hidup.
+
 Pemakaian:
     python -m lux.backtest.run_wf --dir aset --interval 1h \\
-        --universe reports/universe_layak.json --limit 40
+        --universe reports/universe_layak_v2.json \\
+        --akhir-sejati reports/akhir_sejati.json \\
+        --limit 40
 """
 
 from __future__ import annotations
@@ -62,6 +71,7 @@ from lux.backtest.gerbang import (
 )
 from lux.backtest.walk_forward import jalankan_walk_forward
 from lux.funding_model import ambil_jadwal, muat_jadwal
+from lux.potong_ekor import potong as _potong_ekor
 from lux.praregistrasi import Hipotesis, Kriteria, nilai, simpan
 from lux.strategi import breakout_atr
 
@@ -92,6 +102,11 @@ def sha256_berkas(path: Path, blok: int = 1 << 20) -> str:
 def muat_ohlcv(
     direktori: Path, interval: str, simbol: set[str]
 ) -> tuple[dict[str, pd.DataFrame], list[Path]]:
+    """Muat OHLCV per simbol dan pangkas ekor datar sesuai ADR-003.
+
+    Pemangkasan diterapkan setelah sort, sebelum data masuk ke backtest.
+    Aset Parquet tidak disentuh; prinsip write-once tetap terjaga.
+    """
     berkas = pilih_berkas(direktori, interval)
     if not berkas:
         raise SystemExit(f"tidak ada ohlcv_{interval}_*.parquet sah di {direktori}")
@@ -104,19 +119,42 @@ def muat_ohlcv(
     gabung = pd.concat(bagian, ignore_index=True)
     hasil = {}
     for s, b in gabung.groupby("symbol", sort=True, observed=True):
-        hasil[str(s)] = b.sort_values("open_time").reset_index(drop=True)
+        sorted_b = b.sort_values("open_time").reset_index(drop=True)
+        hasil[str(s)] = _potong_ekor(sorted_b)
     return hasil, berkas
 
 
-def akhir_per_simbol(direktori: Path, interval: str) -> dict[str, int]:
-    """Stempel bar terakhir tiap simbol di seluruh aset, dua kolom saja.
+def akhir_per_simbol(
+    direktori: Path,
+    interval: str,
+    akhir_sejati_path: Path | None = None,
+) -> dict[str, int]:
+    """Stempel bar terakhir *sejati* tiap simbol di seluruh aset.
 
-    Dipisahkan dari ``muat_ohlcv`` karena gerbang survivorship harus menilai
-    universe penuh sementara backtest hanya menjalankan sebagiannya. Membaca
-    dua kolom untuk 790 simbol jauh lebih murah daripada memuat seluruh bar,
-    dan tanpa ini gerbang survivorship membandingkan subset dengan dirinya
-    sendiri lalu selalu lulus.
+    Bila ``akhir_sejati_path`` ada dan filenya tersedia, stempel dibaca dari
+    sana. File itu dihasilkan oleh ``lux.potong_ekor`` dan menyimpan tanggal
+    kematian nyata simbol — bukan stempel bar terakhir mentah yang untuk simbol
+    mati sama dengan tanggal ujung dataset (karena pipa data mengisi harga
+    terakhir sampai ujung).
+
+    Membaca dua kolom mentah sebagai fallback masih tersedia untuk pengujian
+    unit, tapi pada produksi selalu harus ada ``akhir_sejati.json``.
     """
+    if akhir_sejati_path is not None and Path(akhir_sejati_path).exists():
+        data = json.loads(Path(akhir_sejati_path).read_text(encoding="utf-8"))
+        akhir = {s: int(v["akhir_ms"]) for s, v in data["akhir"].items()}
+        print(
+            f"  akhir_per_simbol: {len(akhir)} simbol dari {akhir_sejati_path}",
+            flush=True,
+        )
+        return akhir
+
+    # Fallback: hitung dari parquet mentah. Hasilnya bisa menyesatkan untuk
+    # simbol mati karena stempel terakhirnya identik dengan simbol hidup.
+    print(
+        "  peringatan: akhir_sejati.json tidak tersedia, memakai stempel parquet mentah",
+        flush=True,
+    )
     akhir: dict[str, int] = {}
     for p in pilih_berkas(Path(direktori), interval):
         df = pd.read_parquet(p, columns=["symbol", "open_time"])
@@ -224,6 +262,9 @@ def simbol_mati_dari_akhir(
     delisting eksternal. Daftar eksternal bisa hilang, berubah, atau tidak
     tersedia untuk bursa lain di kemudian hari; sedangkan "berhenti terbit"
     dapat diperiksa ulang siapa pun dari aset yang sama.
+
+    Dengan ADR-003, stempel yang masuk ke sini sudah dikoreksi: simbol mati
+    menggunakan tanggal kematian sejatinya, bukan tanggal ujung dataset.
     """
     if not akhir:
         return set()
@@ -345,7 +386,10 @@ def hipotesis_h001(komit: str = "") -> Hipotesis:
             "positif setelah fee, slippage, dan funding nyata, pada perp USDT yang "
             "lolos ambang kelayakan, dinilai hanya di luar sampel."
         ),
-        dataset="tier-b-v1 ohlcv_1h + funding_shard, universe_layak 447 simbol",
+        dataset=(
+            "tier-b-v1 ohlcv_1h + funding_shard, "
+            "universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)"
+        ),
         ruang_parameter=dict(breakout_atr.RUANG_PARAMETER),
         kriteria=Kriteria(
             min_ekspektasi_R=0.05,
@@ -364,7 +408,8 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", required=True)
     ap.add_argument("--interval", default="1h")
-    ap.add_argument("--universe", default="reports/universe_layak.json")
+    ap.add_argument("--universe", default="reports/universe_layak_v2.json")
+    ap.add_argument("--akhir-sejati", default="reports/akhir_sejati.json")
     ap.add_argument("--config", default="config/lux.yaml")
     ap.add_argument("--out", default="reports")
     ap.add_argument("--hipotesis", default="hipotesis/H-001.json")
@@ -393,7 +438,9 @@ def main(argv: list[str] | None = None) -> int:
 
     bingkai, berkas = muat_ohlcv(Path(a.dir), a.interval, set(dipilih))
     jadwal_semua = muat_jadwal(Path(a.dir))
-    akhir_semesta = akhir_per_simbol(Path(a.dir), a.interval)
+    akhir_semesta = akhir_per_simbol(
+        Path(a.dir), a.interval, Path(a.akhir_sejati)
+    )
     print(
         f"{len(bingkai)} simbol dimuat, {len(jadwal_semua)} jadwal funding, "
         f"{len(akhir_semesta)} simbol dipindai untuk survivorship",
@@ -581,6 +628,8 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     # Survivorship terhadap universe layak yang penuh, bukan subset yang diuji.
+    # Stempel akhir_semesta sudah dikoreksi ADR-003 sehingga simbol mati
+    # menggunakan tanggal kematian nyatanya, bukan tanggal ujung dataset.
     semesta_layak = [s for s in semesta if s in akhir_semesta]
     mati = simbol_mati_dari_akhir(
         {s: akhir_semesta[s] for s in semesta_layak}
