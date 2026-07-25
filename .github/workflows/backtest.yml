@@ -10,10 +10,14 @@ name: backtest
 # setiap run berikutnya mati karena isinya tidak lagi sama dengan yang
 # terdaftar. Sha run tetap terekam di riwayat Actions.
 #
-# Log dikomit balik apa pun hasilnya. Tanpa itu, kegagalan hanya terbaca lewat
-# antarmuka Actions, dan pihak yang menjalankan riset ini tidak selalu punya
-# akses ke sana. Kegagalan yang tidak terbaca akan ditebak, dan tebakan tentang
-# penyebab kegagalan hampir selalu meleset.
+# Pola unduh WAJIB sama persis dengan validate.yml, yaitu 'ohlcv_1h_*.parquet'.
+# Pola itu ikut menarik shard ekor hasil backfill harian. Sempat dipersempit
+# menjadi 'ohlcv_1h_shard*' di sini, yang akan membuat backtest berjalan di atas
+# kumpulan data yang bukan kumpulan data yang divalidasi. Aset '_retry' tetap
+# tersaring di dalam kode, bukan lewat pola unduh.
+#
+# Log dikomit balik apa pun hasilnya. Kegagalan yang tidak terbaca akan ditebak,
+# dan tebakan tentang penyebab kegagalan hampir selalu meleset.
 
 on:
   workflow_dispatch:
@@ -55,7 +59,9 @@ jobs:
         run: python -m pytest tests -q
 
       # Impor diuji sebelum aset diunduh. Dependensi yang hilang harus ketahuan
-      # dalam dua detik, bukan sesudah ratusan megabita berpindah.
+      # dalam dua detik, bukan sesudah ratusan megabita berpindah. pyyaml pernah
+      # hanya terpasang di sebagian workflow dan menjatuhkan run ini tepat
+      # setelah unduhan selesai.
       - name: Periksa impor modul jalan
         env:
           PYTHONPATH: .
@@ -67,9 +73,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release download "$TAG" -p 'ohlcv_1h_shard*.parquet' -D aset
-          gh release download "$TAG" -p 'funding_shard*.parquet' -D aset
+          mkdir -p aset
+          gh release download "$TAG" -p 'ohlcv_1h_*.parquet' -D aset --clobber
+          gh release download "$TAG" -p 'funding_shard*.parquet' -D aset --clobber
           ls -la aset
+          du -sh aset
 
       - name: Jalankan walk-forward
         id: jalan
