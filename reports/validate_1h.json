@@ -1,19 +1,20 @@
 {
   "ringkasan": {
     "interval": "1h",
+    "berkas_diabaikan": [],
     "total_simbol": 790,
-    "total_baris": 14558272,
-    "integritas_gagal": 3,
+    "total_baris": 14545679,
+    "integritas_gagal": 0,
     "layak": 447,
     "tidak_layak": 343,
     "sebab_penolakan": {
-      "riwayat terlalu pendek": 276,
+      "riwayat terlalu pendek": 277,
       "terlalu banyak bar datar": 74,
-      "likuiditas terlalu tipis": 77,
-      "integritas gagal": 3
+      "likuiditas terlalu tipis": 77
     },
-    "total_celah": 12705,
-    "gerbang_integritas_lulus": false
+    "total_celah": 112,
+    "total_duplikat": 0,
+    "gerbang_integritas_lulus": true
   },
   "per_simbol": [
     {
@@ -17311,72 +17312,70 @@
     {
       "symbol": "\u5e01\u5b89\u4eba\u751fUSDT",
       "interval": "1h",
-      "baris": 12737,
-      "duplikat_waktu": 6076,
+      "baris": 6661,
+      "duplikat_waktu": 0,
       "waktu_tidak_urut": 0,
       "tidak_selaras_kisi": 0,
-      "celah": 6076,
+      "celah": 0,
       "high_lebih_kecil": 0,
       "low_lebih_besar": 0,
       "harga_non_positif": 0,
       "volume_negatif": 0,
       "nilai_kosong": 0,
       "bar_datar": 0,
-      "pelanggaran_fatal": 6076,
-      "lulus": false,
-      "median_quote_harian": 75331214.71,
+      "pelanggaran_fatal": 0,
+      "lulus": true,
+      "median_quote_harian": 37848424.78,
       "rasio_bar_datar": 0.0,
       "layak": false,
       "alasan": [
-        "integritas gagal (6076 pelanggaran fatal)"
+        "riwayat terlalu pendek (6661 < 8760 bar)"
       ]
     },
     {
       "symbol": "\u6211\u8e0f\u9a6c\u6765\u4e86USDT",
       "interval": "1h",
-      "baris": 8270,
-      "duplikat_waktu": 3844,
+      "baris": 4426,
+      "duplikat_waktu": 0,
       "waktu_tidak_urut": 0,
       "tidak_selaras_kisi": 0,
-      "celah": 3844,
+      "celah": 0,
       "high_lebih_kecil": 0,
       "low_lebih_besar": 0,
       "harga_non_positif": 0,
       "volume_negatif": 0,
       "nilai_kosong": 0,
       "bar_datar": 0,
-      "pelanggaran_fatal": 3844,
-      "lulus": false,
-      "median_quote_harian": 8611785.7,
+      "pelanggaran_fatal": 0,
+      "lulus": true,
+      "median_quote_harian": 4305892.85,
       "rasio_bar_datar": 0.0,
       "layak": false,
       "alasan": [
-        "integritas gagal (3844 pelanggaran fatal)",
-        "riwayat terlalu pendek (8270 < 8760 bar)"
+        "riwayat terlalu pendek (4426 < 8760 bar)"
       ]
     },
     {
       "symbol": "\u9f99\u867eUSDT",
       "interval": "1h",
-      "baris": 5926,
-      "duplikat_waktu": 2673,
+      "baris": 3253,
+      "duplikat_waktu": 0,
       "waktu_tidak_urut": 0,
       "tidak_selaras_kisi": 0,
-      "celah": 2673,
+      "celah": 0,
       "high_lebih_kecil": 0,
       "low_lebih_besar": 0,
       "harga_non_positif": 0,
       "volume_negatif": 0,
       "nilai_kosong": 0,
       "bar_datar": 0,
-      "pelanggaran_fatal": 2673,
-      "lulus": false,
-      "median_quote_harian": 7960409.13,
+      "pelanggaran_fatal": 0,
+      "lulus": true,
+      "median_quote_harian": 4242408.28,
       "rasio_bar_datar": 0.0,
       "layak": false,
       "alasan": [
-        "integritas gagal (2673 pelanggaran fatal)",
-        "riwayat terlalu pendek (5926 < 8760 bar)"
+        "riwayat terlalu pendek (3253 < 8760 bar)"
       ]
     }
   ]
