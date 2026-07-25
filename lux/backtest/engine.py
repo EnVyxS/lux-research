@@ -44,8 +44,18 @@ hanya menyala bila diminta secara eksplisit lewat ``Konfig``:
   melebihi ambang. Proyeksi hanya membaca masa lalu; lihat
   ``lux.funding_model.carry_terproyeksi_R``.
 
-Selama kedua nilai itu nol, mesin berperilaku persis seperti sebelum ADR-004,
-dan itu dikunci oleh pengujian, bukan diandaikan.
+**ADR-008 menambahkan saringan ketiga, juga bawaan MATI:**
+
+- ``maks_carry_realisasi_R`` menutup posisi yang ongkos funding **yang sudah
+  benar-benar tertagih** melewati ambang. Berbeda dengan ``maks_carry_R`` yang
+  menebak sekali di saat entri lalu tidak pernah menilai ulang, saringan ini
+  tidak menebak apa pun: ia menjumlahkan penagihan yang sudah terjadi dan
+  dinilai ulang pada pembukaan tiap bar. Saringan proyeksi terbukti tembus di
+  H-001b, H-003, H-005, dan H-007 justru karena rate dapat melonjak setelah
+  entri, dan proyeksi tidak punya cara mengetahuinya.
+
+Selama ketiga nilai itu nol, mesin berperilaku persis seperti sebelum ADR-004
+dan ADR-008, dan itu dikunci oleh pengujian, bukan diandaikan.
 """
 
 from __future__ import annotations
@@ -55,7 +65,12 @@ from dataclasses import dataclass, field
 import numpy as np
 import pandas as pd
 
-from lux.funding_model import HARI_MS, Jadwal, carry_terproyeksi_R
+from lux.funding_model import (
+    HARI_MS,
+    Jadwal,
+    carry_terproyeksi_R,
+    funding_dalam_R,
+)
 
 
 @dataclass(frozen=True)
@@ -75,6 +90,10 @@ class Konfig:
     maks_umur_bar: int = 0
     maks_carry_R: float = 0.0
     jendela_carry_hari: int = 30
+    # ADR-008. Nol berarti mati, dengan alasan yang sama seperti di atas.
+    # Medan ini sengaja diletakkan paling akhir supaya posisi argumen medan
+    # lama tidak bergeser.
+    maks_carry_realisasi_R: float = 0.0
 
     def __post_init__(self) -> None:
         if self.atr_periode < 2:
@@ -93,6 +112,8 @@ class Konfig:
             raise ValueError("maks_carry_R tidak boleh negatif")
         if self.jendela_carry_hari <= 0:
             raise ValueError("jendela_carry_hari harus positif")
+        if self.maks_carry_realisasi_R < 0:
+            raise ValueError("maks_carry_realisasi_R tidak boleh negatif")
 
 
 @dataclass(frozen=True)
@@ -249,7 +270,12 @@ def _boleh_masuk(
     Menganggap simbol tanpa jadwal berbiaya nol adalah bentuk kelalaian yang
     menyamar sebagai kelulusan, dan justru pada saringan biaya kelalaian itu
     paling menguntungkan hasil.
+
+    ADR-008 memakai alasan yang sama: pengaman carry keras juga mustahil
+    dinilai tanpa jadwal, jadi entri ditolak alih-alih dibuka tanpa pengawasan.
     """
+    if k.maks_carry_realisasi_R > 0 and jadwal is None:
+        return False
     if k.maks_carry_R <= 0:
         return True
     if k.maks_umur_bar <= 0:
@@ -267,6 +293,37 @@ def _boleh_masuk(
         jendela_ms=k.jendela_carry_hari * HARI_MS,
     )
     return proyeksi <= k.maks_carry_R
+
+
+def carry_terealisasi_R(
+    jadwal: Jadwal,
+    arah: int,
+    masuk_ms: int,
+    sekarang_ms: int,
+    harga_masuk: float,
+    jarak_stop: float,
+) -> float:
+    """Ongkos funding yang SUDAH tertagih sampai ``sekarang_ms``, dalam satuan R.
+
+    ADR-008. Tidak ada tebakan di sini: yang dijumlahkan adalah penagihan yang
+    benar-benar terjadi. Nilai positif berarti posisi membayar.
+
+    Aritmetikanya diserahkan ke ``lux.funding_model.funding_dalam_R`` alih-alih
+    ditulis ulang. Dua implementasi dari besaran yang sama adalah cara paling
+    andal melahirkan selisih tanda yang tidak terdeteksi siapa pun, dan pada
+    besaran biaya selisih tanda selalu berpihak pada hasil yang lebih indah.
+    """
+    if harga_masuk <= 0:
+        raise ValueError("harga_masuk harus positif")
+    if jarak_stop <= 0:
+        raise ValueError("jarak_stop harus positif")
+    return funding_dalam_R(
+        jadwal,
+        masuk_ms=masuk_ms,
+        keluar_ms=sekarang_ms,
+        stop_pecahan=jarak_stop / harga_masuk,
+        arah=arah,
+    )
 
 
 def jalankan(
@@ -341,6 +398,40 @@ def jalankan(
             perdagangan.append(p)
             modal += p.laba
             arah = 0
+
+        # ADR-008: pengaman carry keras, dinilai pada pembukaan bar dari
+        # penagihan yang sudah benar-benar terjadi. Ditempatkan SESUDAH
+        # pemeriksaan umur supaya semantik ADR-004 tidak bergeser: bila
+        # keduanya terpicu di bar yang sama, harga keluarnya sama sehingga
+        # labanya identik dan hanya labelnya yang berbeda.
+        if arah != 0 and k.maks_carry_realisasi_R > 0 and jadwal is not None:
+            if (
+                carry_terealisasi_R(
+                    jadwal,
+                    arah=arah,
+                    masuk_ms=masuk_ms,
+                    sekarang_ms=int(waktu[t]),
+                    harga_masuk=harga_masuk,
+                    jarak_stop=jarak_stop,
+                )
+                > k.maks_carry_realisasi_R
+            ):
+                p = _catat(
+                    symbol,
+                    arah,
+                    masuk_ms,
+                    harga_masuk,
+                    ukuran,
+                    jarak_stop,
+                    _harga_eksekusi(o[t], arah, False, k.slippage),
+                    int(waktu[t]),
+                    "carry",
+                    k.fee,
+                    jadwal,
+                )
+                perdagangan.append(p)
+                modal += p.laba
+                arah = 0
 
         if arah != 0:
             kena_stop = l[t] <= stop if arah == 1 else h[t] >= stop

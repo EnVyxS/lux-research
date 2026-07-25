@@ -16,6 +16,12 @@ Tidak ada data pasar yang dibaca, dan tidak ada putusan yang dihasilkan.
 
 from __future__ import annotations
 
+# Alasan keluar yang hasilnya TIDAK terpotong di 1R maupun di imbalan, sehingga
+# tidak boleh ikut menentukan laju kena target. Daftar ini eksplisit supaya
+# alasan keluar baru harus diputuskan secara sadar, bukan diam-diam masuk ke
+# penyebut. ``carry`` ditambahkan oleh ADR-008.
+ALASAN_TIDAK_SELESAI = ("umur", "akhir_data", "carry")
+
 
 def titik_impas(imbalan: float) -> float:
     """Laju kena target minimum agar ekspektasi kotor nol.
@@ -30,9 +36,10 @@ def titik_impas(imbalan: float) -> float:
 def laju_kena_target(alasan_keluar: dict[str, int]) -> float:
     """Porsi target terhadap perdagangan yang benar-benar selesai.
 
-    Keluar karena ``umur`` dan ``akhir_data`` sengaja **tidak** dihitung: hasil
-    keduanya tidak terpotong di 1R maupun di imbalan, sehingga memasukkannya
-    akan merusak aritmetika dua hasil yang menjadi dasar seluruh modul ini.
+    Keluar karena ``umur``, ``akhir_data``, dan ``carry`` (ADR-008) sengaja
+    **tidak** dihitung: hasil ketiganya tidak terpotong di 1R maupun di
+    imbalan, sehingga memasukkannya akan merusak aritmetika dua hasil yang
+    menjadi dasar seluruh modul ini. Lihat ``ALASAN_TIDAK_SELESAI``.
     """
     target = int(alasan_keluar.get("target", 0))
     stop = int(alasan_keluar.get("stop", 0))
@@ -55,8 +62,8 @@ def seretan_tersirat(kotor: float, bersih: float) -> float:
     """Selisih antara ekspektasi kotor dan ekspektasi bersih yang dilaporkan.
 
     Besaran ini menyerap fee, slippage, funding, dan sumbangan perdagangan yang
-    keluar karena umur atau habisnya data. Ia **bukan** biaya transaksi murni
-    dan tidak boleh dikutip seolah-olah begitu.
+    keluar karena umur, habisnya data, atau pengaman carry. Ia **bukan** biaya
+    transaksi murni dan tidak boleh dikutip seolah-olah begitu.
     """
     return kotor - bersih
 
