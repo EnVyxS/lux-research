@@ -1,8 +1,8 @@
-"""Pengujian metrik kisi teramati.
+"""Pengujian metrik kisi funding.
 
-Pelajaran yang dikunci di sini: metrik tidak boleh mempercayai kolom metadata
-sebagai kebenaran tentang bentuk datanya sendiri. Dua putaran metrik funding
-gagal justru karena mempercayainya.
+Pelajaran yang dikunci di sini: kisi funding berubah sepanjang umur sebuah
+simbol, jadi metrik apa pun yang memaksakan satu kisi untuk seluruh riwayat
+akan salah. Tiga putaran metrik gagal karena itu.
 """
 
 from __future__ import annotations
@@ -10,7 +10,12 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from lux.funding_check import biaya_tahunan, celah_teramati, langkah_teramati
+from lux.funding_check import (
+    biaya_tahunan,
+    celah_teramati,
+    langkah_teramati,
+    tidak_selaras,
+)
 
 JAM = 3_600_000
 JAM8 = 8 * JAM
@@ -43,34 +48,65 @@ def test_langkah_teramati_pada_seri_satu_baris_tidak_menebak():
 
 
 def test_deret_rapi_tidak_punya_celah():
-    t = waktu(JAM8, 30)
-    assert celah_teramati(t, JAM8) == (0, 0)
+    assert celah_teramati(waktu(JAM8, 30), JAM8) == (0, 0)
 
 
-def test_satu_periode_hilang_dihitung_satu():
-    t = pd.Series([AWAL, AWAL + JAM8, AWAL + 3 * JAM8])
-    peristiwa, hilang = celah_teramati(t, JAM8)
+def test_peralihan_delapan_ke_empat_jam_bukan_celah():
+    """Inti dari tiga kegagalan metrik sebelumnya.
+
+    Simbol yang hidup separuh umurnya di kisi delapan jam lalu pindah ke empat
+    jam tidak kehilangan satu pun penagihan. Metrik yang memaksakan kisi empat
+    jam ke seluruh riwayat akan melaporkan separuh datanya sebagai celah.
+    """
+    t = list(waktu(JAM8, 200))
+    mulai = t[-1]
+    t += [mulai + (i + 1) * 4 * JAM for i in range(400)]
+    s = pd.Series(t)
+    assert langkah_teramati(s) == 4 * JAM  # modusnya kisi baru
+    assert celah_teramati(s, langkah_teramati(s)) == (0, 0)
+
+
+def test_kisi_delapan_jam_penuh_tidak_pernah_dianggap_celah():
+    """Delapan jam adalah kisi terpanjang yang sah, jadi tidak pernah celah."""
+    assert celah_teramati(waktu(JAM8, 50), 4 * JAM) == (0, 0)
+
+
+def test_jarak_di_atas_delapan_jam_adalah_celah():
+    t = pd.Series([AWAL, AWAL + 9 * JAM])
+    peristiwa, _ = celah_teramati(t, JAM8)
     assert peristiwa == 1
-    assert hilang == 1
 
 
-def test_jeda_panjang_dihitung_sebagai_banyak_periode():
-    t = pd.Series([AWAL, AWAL + 10 * JAM8])
-    peristiwa, hilang = celah_teramati(t, JAM8)
-    assert peristiwa == 1
-    assert hilang == 9
+def test_penagihan_hilang_dihitung_dengan_kisi_simbol():
+    """Jeda yang sama berarti lebih banyak penagihan hilang pada kisi rapat."""
+    t = pd.Series([AWAL, AWAL + 504 * JAM])
+    _, hilang_8 = celah_teramati(t, JAM8)
+    _, hilang_4 = celah_teramati(t, 4 * JAM)
+    assert hilang_8 == 62
+    assert hilang_4 == 125
 
 
 def test_jarak_lebih_rapat_bukan_celah():
     """Penyisipan bukan kehilangan; keduanya tidak boleh saling menutupi."""
     t = pd.Series([AWAL, AWAL + JAM, AWAL + JAM8])
-    peristiwa, hilang = celah_teramati(t, JAM8)
-    assert peristiwa == 0
-    assert hilang == 0
+    assert celah_teramati(t, JAM8) == (0, 0)
 
 
-def test_tanpa_langkah_tidak_menghitung_celah():
-    assert celah_teramati(waktu(JAM8, 5), None) == (0, 0)
+def test_jarak_tiga_jam_dihitung_sebagai_tidak_selaras():
+    t = pd.Series([AWAL, AWAL + 3 * JAM, AWAL + 7 * JAM])
+    assert tidak_selaras(t) == 2
+
+
+def test_kisi_sah_tidak_dihitung_tidak_selaras():
+    for langkah in (1, 2, 4, 8):
+        assert tidak_selaras(waktu(langkah * JAM, 10)) == 0
+
+
+def test_jeda_panjang_tidak_dihitung_sebagai_tidak_selaras():
+    """Satu anomali hanya boleh muncul di satu kolom."""
+    t = pd.Series([AWAL, AWAL + 500 * JAM])
+    assert tidak_selaras(t) == 0
+    assert celah_teramati(t, JAM8)[0] == 1
 
 
 def test_urutan_acak_dirapikan_sebelum_dinilai():
@@ -80,7 +116,6 @@ def test_urutan_acak_dirapikan_sebelum_dinilai():
 
 
 def test_biaya_tahunan_memakai_kisi_teramati_bukan_kolom():
-    """Bila kolom dan kenyataan berbeda, kenyataan yang menentukan biaya."""
     stat = {"jam_teramati": 8.0, "interval_jam": [4], "rate_rerata": 0.0001}
     assert biaya_tahunan(stat) == pytest.approx(0.1095, abs=1e-4)
 
@@ -91,4 +126,7 @@ def test_biaya_tahunan_jatuh_ke_kolom_bila_tak_teramati():
 
 
 def test_biaya_tahunan_tanpa_informasi_apa_pun_tidak_menebak():
-    assert biaya_tahunan({"jam_teramati": None, "interval_jam": [], "rate_rerata": 0.1}) is None
+    assert (
+        biaya_tahunan({"jam_teramati": None, "interval_jam": [], "rate_rerata": 0.1})
+        is None
+    )

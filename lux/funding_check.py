@@ -3,23 +3,31 @@
 Dijalankan alih-alih mengulang ingest, karena datanya sudah ada di Release dan
 yang dipersoalkan adalah metriknya, bukan datanya.
 
-Riwayat singkat metrik celah di modul ini, karena penting untuk tidak
-mengulanginya:
+Riwayat metrik celah di modul ini ditulis lengkap karena kesalahannya berulang
+tiga kali dengan bentuk yang sama:
 
-1. Putaran pertama memakai satu langkah tetap per simbol, yaitu nilai terkecil
-   pada kolom ``funding_interval_hours``. Hasilnya 1.380.741 celah dari
-   1.982.017 baris.
-2. Putaran kedua memakai langkah per baris dari kolom yang sama, dan
-   mengecualikan baris tempat kisi berpindah. Hasilnya nyaris tidak berubah:
-   1.193.209 celah, sementara peralihan kisi hanya 366 peristiwa pada 160
-   simbol. Perpindahan rezim terlalu jarang untuk menjelaskan 60% baris.
+1. Langkah tetap per simbol, diambil dari nilai terkecil kolom
+   ``funding_interval_hours``. Hasil: 1.380.741 celah dari 1.982.017 baris.
+2. Langkah per baris dari kolom yang sama, peralihan dikecualikan. Hasil nyaris
+   sama, 1.193.209, padahal peralihan hanya 366 peristiwa pada 160 simbol.
+3. Langkah diukur dari modus jarak antarbaris, bukan dari kolom. Hasil masih
+   587.131, dan sekaligus membuktikan kolomnya tidak pernah salah: nol dari 447
+   simbol yang kolomnya tidak cocok dengan kisi teramati.
 
-Kesimpulan yang tersisa: kolom ``funding_interval_hours`` tidak dapat dipakai
-sebagai kisi yang berlaku pada baris itu. Karena itu modul ini berhenti
-mempercayainya dan **mengukur** kisi dari jarak antarbaris yang benar-benar
-ada, lalu melaporkan selisih antara yang dideklarasikan dan yang teramati.
-Bila keduanya berbeda jauh, itu sendiri temuan yang harus terlihat, bukan
-disembunyikan di balik satu angka celah.
+Sebaran jarak mentah menutup kasusnya. Seluruh 1.981.570 jarak jatuh pada
+4 jam (52,0%), 8 jam (45,2%), 1 jam (2,7%), 2 jam (0,1%), ditambah 19 jarak
+3 jam, 3 jarak 6 jam, dan tiga jarak sangat panjang.
+
+Cacatnya sama pada ketiga putaran: memaksakan **satu** kisi untuk seluruh umur
+simbol. Binance memindahkan ratusan pasangan dari 8 jam ke 4 jam, sehingga satu
+simbol wajar memiliki dua rezim berdurasi tahunan. Menilai separuh riwayat
+dengan kisi separuh lainnya menghasilkan ratusan ribu celah semu.
+
+Aturan yang dipakai sekarang tidak memerlukan asumsi kisi sama sekali: karena
+kisi funding terpanjang adalah delapan jam, setiap jarak yang melebihi delapan
+jam berarti ada periode yang benar-benar tidak tertagih. Jarak yang lebih
+pendek adalah kisi sah atau penyelarasan saat berpindah rezim, dan dihitung
+terpisah supaya tetap terlihat.
 
 Pemakaian:
     python -m lux.funding_check --dir aset --universe reports/universe_layak.json
@@ -39,6 +47,14 @@ from lux.funding import AMBANG_EKSTREM, JAM_MS, periksa
 
 SETAHUN_JAM = 24 * 365
 
+# Kisi funding terpanjang yang dipakai Binance. Jarak di atas ini tidak dapat
+# dijelaskan oleh rezim mana pun, jadi pasti ada periode yang hilang.
+MAKS_KISI_JAM = 8
+MAKS_KISI_MS = MAKS_KISI_JAM * JAM_MS
+
+# Kisi yang sah dipakai sebagai interval funding.
+KISI_SAH_JAM = (1, 2, 4, 8)
+
 
 def muat_semua(direktori: Path) -> pd.DataFrame:
     berkas = sorted(direktori.glob("funding_shard*.parquet"))
@@ -55,11 +71,11 @@ def muat_semua(direktori: Path) -> pd.DataFrame:
 
 
 def langkah_teramati(t: pd.Series) -> int | None:
-    """Kisi yang benar-benar dipakai, diukur dari jarak antarbaris.
+    """Kisi paling sering dipakai simbol ini, diukur dari jarak antarbaris.
 
-    Modus dipilih, bukan rerata atau minimum: satu penghentian perdagangan
-    panjang akan menggeser rerata, dan satu peristiwa sisipan akan menggeser
-    minimum, sedangkan modus bertahan selama mayoritas jarak masih normal.
+    Dipakai untuk menaksir berapa periode yang hilang di dalam sebuah celah,
+    bukan untuk menentukan apakah sesuatu adalah celah. Modus dipilih karena
+    rerata tertipu satu jeda panjang dan minimum tertipu satu penyisipan.
     """
     beda = t.sort_values().diff().dropna()
     if beda.empty:
@@ -68,26 +84,41 @@ def langkah_teramati(t: pd.Series) -> int | None:
     return int(modus.iloc[0]) if not modus.empty else None
 
 
-def celah_teramati(t: pd.Series, langkah: int | None) -> tuple[int, int]:
+def celah_teramati(t: pd.Series, langkah: int | None = None) -> tuple[int, int]:
     """(jumlah peristiwa celah, perkiraan periode yang hilang).
 
-    Hanya jarak yang **lebih besar** dari kisi yang dihitung sebagai celah.
-    Jarak yang lebih rapat adalah penyisipan, bukan kehilangan, dan dilaporkan
-    lewat jalur lain supaya dua jenis anomali tidak saling menutupi.
+    Celah didefinisikan tanpa mengasumsikan kisi simbol: jarak yang melebihi
+    kisi terpanjang yang mungkin. Jumlah periode hilang ditaksir memakai kisi
+    yang paling sering dipakai simbol tersebut, karena satu jeda 504 jam berarti
+    126 penagihan hilang bagi simbol berkisi 4 jam tetapi 63 bagi yang 8 jam.
     """
-    if not langkah:
-        return 0, 0
     beda = t.sort_values().diff().dropna()
-    lebih = beda[beda > langkah]
-    hilang = int(((lebih / langkah).round() - 1).clip(lower=0).sum())
+    lebih = beda[beda > MAKS_KISI_MS]
+    if lebih.empty:
+        return 0, 0
+    dasar = langkah or MAKS_KISI_MS
+    hilang = int(((lebih / dasar).round() - 1).clip(lower=0).sum())
     return int(len(lebih)), hilang
+
+
+def tidak_selaras(t: pd.Series) -> int:
+    """Jarak di bawah kisi terpanjang yang bukan kisi sah.
+
+    Bukan pelanggaran: ini penyelarasan saat sebuah simbol berpindah rezim,
+    misalnya melompat tiga jam sekali untuk masuk ke kisi empat jam. Dihitung
+    supaya jumlahnya tetap terlihat, bukan lenyap ke dalam angka celah.
+    """
+    beda = t.sort_values().diff().dropna()
+    pendek = beda[beda <= MAKS_KISI_MS]
+    jam = (pendek / JAM_MS).round(4)
+    return int((~jam.isin(KISI_SAH_JAM)).sum())
 
 
 def biaya_tahunan(stat: dict) -> float | None:
     """Perkiraan biaya funding setahun bagi posisi long yang ditahan terus.
 
-    Kisi yang dipakai adalah kisi teramati bila tersedia, karena kisi itu yang
-    menentukan berapa kali biaya benar-benar ditagihkan.
+    Memakai kisi teramati bila ada, karena kisi itulah yang menentukan berapa
+    kali biaya benar-benar ditagihkan.
     """
     jam = stat.get("jam_teramati")
     if not jam and stat.get("interval_jam"):
@@ -124,32 +155,24 @@ def main(argv: list[str] | None = None) -> int:
         peristiwa, hilang = celah_teramati(t, langkah)
         stat["celah_teramati"] = peristiwa
         stat["periode_hilang"] = hilang
+        stat["jarak_tidak_selaras"] = tidak_selaras(t)
 
-        dideklarasi = stat["interval_jam"]
-        stat["kolom_cocok_teramati"] = bool(
-            stat["jam_teramati"] is not None
-            and dideklarasi
-            and any(abs(stat["jam_teramati"] - j) < 1e-6 for j in dideklarasi)
+        jam_hadir = sorted(
+            set((t.diff().dropna() / JAM_MS).round(4)) & set(KISI_SAH_JAM)
         )
+        stat["rezim_kisi"] = [int(j) for j in jam_hadir]
 
         stat["biaya_tahunan_long"] = biaya_tahunan(stat)
         hasil.append(stat)
 
-        # Sebaran jarak dikumpulkan global supaya bentuk kisi sebenarnya
-        # terlihat sebagai data, bukan sebagai dugaan.
-        beda = t.diff().dropna()
-        for jam, n in (beda / JAM_MS).round(4).value_counts().items():
+        for jam, n in (t.diff().dropna() / JAM_MS).round(4).value_counts().items():
             sebaran_beda[float(jam)] += int(n)
 
-    tidak_cocok = [h for h in hasil if not h["kolom_cocok_teramati"]]
     dengan_celah = [h for h in hasil if h["celah_teramati"] > 0]
+    berbilang_rezim = [h for h in hasil if len(h["rezim_kisi"]) > 1]
     kisi_teramati: Counter = Counter(
         h["jam_teramati"] for h in hasil if h["jam_teramati"] is not None
     )
-    kisi_dideklarasi: Counter = Counter()
-    for h in hasil:
-        for j in h["interval_jam"]:
-            kisi_dideklarasi[j] += 1
 
     biaya = sorted(
         (h for h in hasil if h["biaya_tahunan_long"] is not None),
@@ -163,16 +186,15 @@ def main(argv: list[str] | None = None) -> int:
         "di_luar_universe": sorted(ada - layak),
         "duplikat": sum(h["duplikat"] for h in hasil),
         "tidak_urut": sum(h["tidak_urut"] for h in hasil),
-        "celah_menurut_kolom": sum(h["celah"] for h in hasil),
-        "celah_teramati": sum(h["celah_teramati"] for h in hasil),
+        "celah": sum(h["celah_teramati"] for h in hasil),
         "periode_hilang": sum(h["periode_hilang"] for h in hasil),
+        "jarak_tidak_selaras": sum(h["jarak_tidak_selaras"] for h in hasil),
         "simbol_dengan_celah": len(dengan_celah),
-        "simbol_kolom_tidak_cocok": len(tidak_cocok),
+        "simbol_berbilang_rezim": len(berbilang_rezim),
         "positif": sum(h["positif"] for h in hasil),
         "negatif": sum(h["negatif"] for h in hasil),
         "ekstrem": sum(h["ekstrem"] for h in hasil),
         "kisi_teramati": {str(k): v for k, v in sorted(kisi_teramati.items())},
-        "kisi_dideklarasi": {str(k): v for k, v in sorted(kisi_dideklarasi.items())},
         "awal": min(h["awal"] for h in hasil),
         "akhir": max(h["akhir"] for h in hasil),
     }
@@ -180,7 +202,6 @@ def main(argv: list[str] | None = None) -> int:
         ringkas["duplikat"] == 0
         and ringkas["tidak_urut"] == 0
         and not ringkas["hilang_dari_universe"]
-        and ringkas["simbol_kolom_tidak_cocok"] == 0
     )
 
     out = Path(a.out)
@@ -203,14 +224,12 @@ def main(argv: list[str] | None = None) -> int:
         f"{ringkas['baris']:,} baris atas {ringkas['simbol']} simbol, "
         f"{tgl(ringkas['awal'])} sampai {tgl(ringkas['akhir'])}.",
         "",
-        "## Kisi sebenarnya",
+        "## Sebaran jarak antarbaris",
         "",
-        "Dua putaran metrik sebelumnya memakai kolom `funding_interval_hours`",
-        "sebagai kisi yang berlaku, dan keduanya melaporkan lebih dari separuh",
-        "baris sebagai celah. Tabel di bawah mengukur jarak antarbaris apa adanya,",
-        "supaya terlihat apakah kolom itu memang dapat dipercaya.",
+        "Tabel ini yang seharusnya dibuat lebih dulu. Tiga putaran metrik celah",
+        "gagal karena berteori tentang bentuk kisi tanpa pernah melihatnya.",
         "",
-        "| Jarak antarbaris (jam) | Peristiwa | Pangsa |",
+        "| Jarak (jam) | Peristiwa | Pangsa |",
         "|---|---|---|",
     ]
     for jam, n in sorted(sebaran_beda.items(), key=lambda kv: -kv[1])[:15]:
@@ -218,19 +237,24 @@ def main(argv: list[str] | None = None) -> int:
 
     md += [
         "",
-        f"- Kisi teramati (modus per simbol): {ringkas['kisi_teramati']}",
-        f"- Kisi menurut kolom: {ringkas['kisi_dideklarasi']}",
-        f"- Simbol yang kolomnya tidak cocok dengan kisi teramati: "
-        f"**{ringkas['simbol_kolom_tidak_cocok']} dari {ringkas['simbol']}**",
+        f"- Kisi yang paling sering dipakai tiap simbol: {ringkas['kisi_teramati']}",
+        f"- Simbol yang hidup di lebih dari satu rezim kisi: "
+        f"**{ringkas['simbol_berbilang_rezim']} dari {ringkas['simbol']}**",
+        "",
+        "Kisi funding bukan sifat tetap sebuah simbol. Binance memindahkan",
+        "ratusan pasangan dari delapan jam ke empat jam, jadi satu simbol wajar",
+        "memiliki dua rezim berdurasi tahunan. Metrik apa pun yang memaksakan",
+        "satu kisi untuk seluruh umur simbol akan salah, tidak peduli kisi itu",
+        "diambil dari kolom metadata atau diukur dari data.",
         "",
         "## Integritas",
         "",
         f"- Duplikat: **{ringkas['duplikat']}** | Tidak urut: **{ringkas['tidak_urut']}**",
-        f"- Celah menurut kisi teramati: **{ringkas['celah_teramati']:,}** peristiwa "
-        f"pada {ringkas['simbol_dengan_celah']} simbol, "
-        f"setara {ringkas['periode_hilang']:,} periode hilang",
-        f"- Celah menurut kolom interval (metrik lama): "
-        f"{ringkas['celah_menurut_kolom']:,}",
+        f"- Celah sejati, yaitu jarak melebihi {MAKS_KISI_JAM} jam: "
+        f"**{ringkas['celah']}** peristiwa pada {ringkas['simbol_dengan_celah']} simbol, "
+        f"setara {ringkas['periode_hilang']:,} penagihan tak tercatat",
+        f"- Jarak tidak selaras kisi sah, penyelarasan saat pindah rezim: "
+        f"{ringkas['jarak_tidak_selaras']}",
         f"- Simbol layak tanpa data funding: {len(ringkas['hilang_dari_universe'])}",
         "",
         "## Arah biaya",
@@ -245,41 +269,50 @@ def main(argv: list[str] | None = None) -> int:
         "",
         "## Sepuluh biaya tahunan tertinggi bagi long",
         "",
-        "| Simbol | Biaya setahun | Rerata per periode | Kisi teramati | Kolom |",
+        "Angka setahun adalah ekstrapolasi rerata historis, bukan ramalan. Ia",
+        "dipakai untuk menakar besaran rintangan, bukan sebagai masukan strategi.",
+        "",
+        "| Simbol | Biaya setahun | Rerata per periode | Kisi utama | Rezim |",
         "|---|---|---|---|---|",
     ]
     for h in biaya[:10]:
         md.append(
             f"| {h['symbol']} | {h['biaya_tahunan_long']:.1%} | "
-            f"{h['rate_rerata']:.6f} | {h['jam_teramati']} | {h['interval_jam']} |"
+            f"{h['rate_rerata']:.6f} | {h['jam_teramati']} | {h['rezim_kisi']} |"
         )
 
     md += [
         "",
         "## Sepuluh funding paling menguntungkan bagi long",
         "",
-        "| Simbol | Biaya setahun | Rerata per periode | Kisi teramati | Kolom |",
+        "| Simbol | Biaya setahun | Rerata per periode | Kisi utama | Rezim |",
         "|---|---|---|---|---|",
     ]
     for h in biaya[-10:][::-1]:
         md.append(
             f"| {h['symbol']} | {h['biaya_tahunan_long']:.1%} | "
-            f"{h['rate_rerata']:.6f} | {h['jam_teramati']} | {h['interval_jam']} |"
+            f"{h['rate_rerata']:.6f} | {h['jam_teramati']} | {h['rezim_kisi']} |"
         )
 
-    if tidak_cocok:
+    if dengan_celah:
         md += [
             "",
-            "## Sepuluh ketidakcocokan kolom terhadap kisi teramati",
+            "## Simbol dengan celah sejati",
             "",
-            "| Simbol | Kisi teramati | Kolom | Baris |",
+            "| Simbol | Peristiwa | Penagihan hilang | Kisi utama |",
             "|---|---|---|---|",
         ]
-        for h in sorted(tidak_cocok, key=lambda h: -h["baris"])[:10]:
+        for h in sorted(dengan_celah, key=lambda h: -h["periode_hilang"])[:20]:
             md.append(
-                f"| {h['symbol']} | {h['jam_teramati']} | {h['interval_jam']} | "
-                f"{h['baris']:,} |"
+                f"| {h['symbol']} | {h['celah_teramati']} | "
+                f"{h['periode_hilang']:,} | {h['jam_teramati']} |"
             )
+        md += [
+            "",
+            "Jeda sepanjang ini adalah penghentian perdagangan sungguhan, bukan",
+            "data yang hilang: tidak ada funding ditagihkan ketika pasangannya",
+            "memang tidak diperdagangkan.",
+        ]
 
     md += ["", f"Gerbang lulus: **{ringkas['gerbang_lulus']}**"]
 
