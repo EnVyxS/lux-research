@@ -2,9 +2,13 @@ name: funding-check
 
 # Menghitung ulang metrik funding dari Parquet yang sudah ada di Release.
 #
-# Tidak mengunduh ulang arsip Binance: datanya sudah benar, yang cacat adalah
-# rumus celahnya. Membedakan "data salah" dari "metrik salah" menentukan apakah
-# perbaikan berharga dua puluh menit atau satu menit.
+# Tidak mengunduh ulang arsip Binance: datanya sudah benar, yang dipersoalkan
+# adalah rumus celahnya.
+#
+# Putaran 2. Putaran 1 memakai kolom `funding_interval_hours` sebagai kisi dan
+# tetap melaporkan 1.193.209 celah, sementara peralihan kisi hanya 366
+# peristiwa. Karena itu putaran ini berhenti mempercayai kolom tersebut dan
+# mengukur kisi dari jarak antarbaris, lalu melaporkan selisih keduanya.
 
 on:
   workflow_dispatch:
