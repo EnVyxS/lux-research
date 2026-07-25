@@ -1,5 +1,5 @@
 {
-  "waktu_utc": "2026-07-25T14:56:16+00:00",
+  "waktu_utc": "2026-07-25T15:06:15+00:00",
   "jumlah_shard": 8,
   "total": {
     "1h": {
@@ -38,6 +38,51 @@
     }
   },
   "semua_gerbang_lulus": false,
+  "jumlah_kegagalan": 6,
+  "kegagalan": [
+    {
+      "symbol": "币安人生USDT",
+      "interval": "1h",
+      "error": "semua unduhan gagal",
+      "contoh_gagal": null,
+      "sumber": "detail_1h_shard03.json"
+    },
+    {
+      "symbol": "币安人生USDT",
+      "interval": "4h",
+      "error": "semua unduhan gagal",
+      "contoh_gagal": null,
+      "sumber": "detail_4h_shard03.json"
+    },
+    {
+      "symbol": "我踏马来了USDT",
+      "interval": "1h",
+      "error": "semua unduhan gagal",
+      "contoh_gagal": null,
+      "sumber": "detail_1h_shard04.json"
+    },
+    {
+      "symbol": "我踏马来了USDT",
+      "interval": "4h",
+      "error": "semua unduhan gagal",
+      "contoh_gagal": null,
+      "sumber": "detail_4h_shard04.json"
+    },
+    {
+      "symbol": "龙虾USDT",
+      "interval": "1h",
+      "error": "semua unduhan gagal",
+      "contoh_gagal": null,
+      "sumber": "detail_1h_shard05.json"
+    },
+    {
+      "symbol": "龙虾USDT",
+      "interval": "4h",
+      "error": "semua unduhan gagal",
+      "contoh_gagal": null,
+      "sumber": "detail_4h_shard05.json"
+    }
+  ],
   "per_shard": [
     {
       "shard": 0,
