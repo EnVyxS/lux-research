@@ -1,0 +1,44 @@
+# Konfigurasi tunggal LUX.
+#
+# Semua angka yang memengaruhi hasil backtest harus berada di sini, bukan
+# tersebar sebagai konstanta di dalam kode. Alasannya bukan kerapian: parameter
+# yang tersembunyi di kode adalah cara paling umum overfitting menyelinap masuk
+# tanpa disadari, karena tidak ada yang mencatat kapan ia diubah.
+#
+# Setiap perubahan pada berkas ini WAJIB tercatat di journal/ beserta alasannya.
+
+versi: 1
+
+universe:
+  quote: USDT
+  jenis_kontrak: perp
+  # Instrumen dengan riwayat terlalu pendek tidak dapat diuji secara bermakna:
+  # tidak cukup untuk walk-forward maupun untuk mengukur perilaku lintas rezim.
+  min_bar_1h: 8760          # kira-kira satu tahun
+  # Ambang likuiditas memakai median nilai transaksi harian, bukan volume koin,
+  # supaya sebanding antar instrumen dengan harga sangat berbeda.
+  min_median_quote_volume_harian: 1000000
+  # Bar datar berlebihan menandakan harga tidak bergerak sama sekali; strategi
+  # apa pun yang untung di sana kemungkinan besar mengeksploitasi cacat data.
+  maks_rasio_bar_datar: 0.30
+
+biaya:
+  fee_maker: 0.0002
+  fee_taker: 0.0005
+  # Diasumsikan masuk dan keluar dengan market order sampai terbukti sebaliknya.
+  # Asumsi pesimistis adalah satu-satunya asumsi yang aman soal biaya.
+  fee_efektif: 0.0005
+  slippage: 0.0005
+  funding_interval_jam: 8
+
+risiko:
+  atr_periode: 14
+  atr_pengali_stop: 2.0
+  risiko_per_trade: 0.005
+
+validasi:
+  seed: 42
+  # Ambang minimum keunggulan terhadap pembanding. Strategi yang tidak melewati
+  # ini dianggap tidak ada, bukan "menjanjikan".
+  min_keunggulan_vs_buy_hold: 0.0
+  min_trade_untuk_dinilai: 100
