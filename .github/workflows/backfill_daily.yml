@@ -3,6 +3,14 @@ name: backfill-daily
 # Menutup bulan yang tidak tercakup arsip bulanan, memakai arsip harian.
 # Dijalankan SETELAH ingest Tier B selesai, dan diulang berkala karena arsip
 # bulanan akan selalu tertinggal sekitar satu bulan.
+#
+# Putaran 2. Hasil putaran 1 tidak sah: parser masih membuang satu bar dari
+# setiap berkas berheader, sehingga rasio terisi hanya 0,9583 untuk 1h (tepat
+# 23/24) dan 0,8334 untuk 4h (tepat 5/6). Justru arsip harian yang kecil itulah
+# yang membesarkan cacat 0,14% pada arsip bulanan menjadi 17% sampai terlihat.
+#
+# Kriteria lulus ditetapkan SEBELUM run ini dijalankan: rasio terisi pada
+# reports/tail_anomali.json harus mendekati 1,00 untuk kedua interval.
 
 on:
   workflow_dispatch:
@@ -38,7 +46,14 @@ jobs:
           python-version: '3.12'
           cache: 'pip'
 
-      - run: pip install -r requirements.txt
+      - run: pip install -r requirements.txt pytest
+
+      # Gerbang pra-terbang. Sudah terbukti menghentikan dua putaran cacat
+      # dalam 43 detik, sebelum satu byte pun diunduh.
+      - name: Uji parser sebelum mengunduh apa pun
+        env:
+          PYTHONPATH: .
+        run: python -m pytest tests -q
 
       - name: Backfill shard ${{ matrix.shard }}
         env:
@@ -90,6 +105,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python -m lux.summarize shards backfill_daily
+      - name: Analisis anomali langsung dari shard yang sama
+        env:
+          PYTHONPATH: .
+        run: python -m lux.analyze_tail shards
       - name: Commit laporan
         run: |
           set -e
@@ -97,6 +116,6 @@ jobs:
           git config user.email "actions@github.com"
           git add reports/
           git diff --cached --quiet && exit 0
-          git commit -m "data(backfill): laporan ekor harian run ${GITHUB_RUN_ID} [skip ci]"
+          git commit -m "data(backfill): laporan ekor harian putaran 2 run ${GITHUB_RUN_ID} [skip ci]"
           git pull --rebase --autostash origin main
           git push origin HEAD:main
