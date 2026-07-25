@@ -1,0 +1,45 @@
+{
+  "id": "H-008",
+  "pernyataan": "Dengan sinyal Donchian yang tidak diubah sama sekali, menambahkan keluar paksa saat carry TEREALISASI melewati ambang yang dipilih walk-forward menghasilkan ekspektasi bersih di luar sampel minimal 0,05R dan membuat gerbang invarian_risiko lulus. Saringan ADR-004 menebak biaya sekali di saat entri dan tidak pernah menilai ulang; pengaman ini tidak menebak apa pun, ia menjumlahkan penagihan yang sudah terjadi pada pembukaan tiap bar.",
+  "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)",
+  "ruang_parameter": {
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "imbalan_R": [
+      1.0,
+      2.0,
+      3.0,
+      4.0
+    ],
+    "maks_carry_realisasi_R": [
+      0.0,
+      0.25,
+      0.5
+    ],
+    "atr_pengali_stop": [
+      2.0
+    ],
+    "maks_umur_bar": [
+      168
+    ],
+    "maks_carry_R": [
+      0.25
+    ],
+    "jendela_carry_hari": [
+      30
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.05,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-25T22:16:59+00:00",
+  "komit": "",
+  "jumlah_kombinasi": 36,
+  "sidik": "dfeeea04fd4107f612918c2deee9d10dd9a118bae29f51a30d00dd3038e3c16a"
+}
