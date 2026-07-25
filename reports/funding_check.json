@@ -6,18 +6,24 @@
     "di_luar_universe": [],
     "duplikat": 0,
     "tidak_urut": 0,
-    "celah": 1193209,
-    "peralihan_kisi": 366,
-    "simbol_berpindah_kisi": 160,
+    "celah_menurut_kolom": 1193209,
+    "celah_teramati": 587131,
+    "periode_hilang": 41184,
     "simbol_dengan_celah": 447,
+    "simbol_kolom_tidak_cocok": 0,
     "positif": 1563845,
     "negatif": 413944,
     "ekstrem": 85,
-    "sebaran_interval_jam": {
-      "4": 304,
-      "8": 244,
+    "kisi_teramati": {
+      "1.0": 3,
+      "4.0": 267,
+      "8.0": 177
+    },
+    "kisi_dideklarasi": {
       "1": 96,
-      "2": 14
+      "2": 14,
+      "4": 304,
+      "8": 244
     },
     "awal": 1577836800000,
     "akhir": 1782849600003,
@@ -43,7 +49,12 @@
       "awal": 1749110400000,
       "akhir": 1782849600003,
       "symbol": "1000000BOBUSDT",
-      "biaya_tahunan_long": 0.40072317780623123
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 913,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.6010847667093469
     },
     {
       "baris": 3601,
@@ -63,6 +74,11 @@
       "awal": 1730995200000,
       "akhir": 1782849600003,
       "symbol": "1000000MOGUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1151,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1112339922521522
     },
     {
@@ -83,6 +99,11 @@
       "awal": 1700668800000,
       "akhir": 1782849600003,
       "symbol": "1000BONKUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1421,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.09336504932538986
     },
     {
@@ -103,6 +124,11 @@
       "awal": 1729526400000,
       "akhir": 1782849600003,
       "symbol": "1000CATUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1166,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08274917069943291
     },
     {
@@ -123,6 +149,11 @@
       "awal": 1732536000008,
       "akhir": 1782849600003,
       "symbol": "1000CHEEMSUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1136,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1262482663136806
     },
     {
@@ -143,6 +174,11 @@
       "awal": 1683388800000,
       "akhir": 1782835200005,
       "symbol": "1000FLOKIUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 786,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.0021186284452808404
     },
     {
@@ -163,6 +199,11 @@
       "awal": 1662739200000,
       "akhir": 1782835200005,
       "symbol": "1000LUNCUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1110,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.04208624230400384
     },
     {
@@ -183,6 +224,11 @@
       "awal": 1683302400000,
       "akhir": 1782835200005,
       "symbol": "1000PEPEUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 787,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08984525996528782
     },
     {
@@ -203,6 +249,11 @@
       "awal": 1702656000000,
       "akhir": 1782849600003,
       "symbol": "1000RATSUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1411,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.4318650820973245
     },
     {
@@ -223,6 +274,11 @@
       "awal": 1702396800000,
       "akhir": 1782849600003,
       "symbol": "1000SATSUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1412,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.13730436856989442
     },
     {
@@ -243,6 +299,11 @@
       "awal": 1620662400013,
       "akhir": 1782835200005,
       "symbol": "1000SHIBUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1759,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.03475302717507102
     },
     {
@@ -263,6 +324,11 @@
       "awal": 1732536000008,
       "akhir": 1773734400002,
       "symbol": "1000WHYUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 892,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.6074074882599579
     },
     {
@@ -283,6 +349,11 @@
       "awal": 1631865600047,
       "akhir": 1782835200005,
       "symbol": "1000XECUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1586,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.04566878050734311
     },
     {
@@ -303,6 +374,11 @@
       "awal": 1608912000000,
       "akhir": 1782835200005,
       "symbol": "1INCHUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1921,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08338632941225167
     },
     {
@@ -323,6 +399,11 @@
       "awal": 1726488000000,
       "akhir": 1782849600003,
       "symbol": "1MBABYDOGEUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1195,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.03412720531425653
     },
     {
@@ -343,6 +424,11 @@
       "awal": 1602835200003,
       "akhir": 1782835200005,
       "symbol": "AAVEUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1994,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1465596294912814
     },
     {
@@ -364,7 +450,12 @@
       "awal": 1702900800000,
       "akhir": 1782849600003,
       "symbol": "ACEUSDT",
-      "biaya_tahunan_long": -0.047167496718180234
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1382,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.029479685448862643
     },
     {
       "baris": 3674,
@@ -384,6 +475,11 @@
       "awal": 1677052800010,
       "akhir": 1782835200005,
       "symbol": "ACHUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 884,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.037714085968971155
     },
     {
@@ -404,6 +500,11 @@
       "awal": 1731340800000,
       "akhir": 1782849600003,
       "symbol": "ACTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1150,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.03121169387755102
     },
     {
@@ -424,6 +525,11 @@
       "awal": 1733500800000,
       "akhir": 1782849600003,
       "symbol": "ACXUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1127,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.058368542048438894
     },
     {
@@ -444,6 +550,11 @@
       "awal": 1579449600000,
       "akhir": 1782835200005,
       "symbol": "ADAUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2191,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.138236047947048
     },
     {
@@ -465,7 +576,12 @@
       "awal": 1725984000000,
       "akhir": 1782849600003,
       "symbol": "AERGOUSDT",
-      "biaya_tahunan_long": -1.3676184452773612
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1184,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -1.025713833958021
     },
     {
       "baris": 3439,
@@ -485,6 +601,11 @@
       "awal": 1733328000000,
       "akhir": 1782849600003,
       "symbol": "AEROUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1130,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.17607571343413783
     },
     {
@@ -505,6 +626,11 @@
       "awal": 1710345600000,
       "akhir": 1782849600003,
       "symbol": "AEVOUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1352,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.03153740490566037
     },
     {
@@ -525,6 +651,11 @@
       "awal": 1690560000000,
       "akhir": 1782835200005,
       "symbol": "AGLDUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 733,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.08467206224648986
     },
     {
@@ -545,6 +676,11 @@
       "awal": 1747742400003,
       "akhir": 1782849600003,
       "symbol": "AGTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 947,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.4029193529532404
     },
     {
@@ -565,6 +701,11 @@
       "awal": 1752148800001,
       "akhir": 1782849600003,
       "symbol": "AINUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 828,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.30177391590056285
     },
     {
@@ -585,6 +726,11 @@
       "awal": 1746028800003,
       "akhir": 1782849600003,
       "symbol": "AIOTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 992,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.1884479754790771
     },
     {
@@ -605,6 +751,11 @@
       "awal": 1704729600000,
       "akhir": 1777363200000,
       "symbol": "AIUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1248,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1252518256888008
     },
     {
@@ -625,6 +776,11 @@
       "awal": 1734724800000,
       "akhir": 1782849600003,
       "symbol": "AIXBTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1114,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.031642616696588854
     },
     {
@@ -645,6 +801,11 @@
       "awal": 1611043200005,
       "akhir": 1653638400008,
       "symbol": "AKROUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 646,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.30193936925675674
     },
     {
@@ -665,6 +826,11 @@
       "awal": 1731931200000,
       "akhir": 1782849600003,
       "symbol": "AKTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1143,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.10632720653280545
     },
     {
@@ -685,6 +851,11 @@
       "awal": 1736251200001,
       "akhir": 1782849600003,
       "symbol": "ALCHUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1095,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.26096466359703335
     },
     {
@@ -705,6 +876,11 @@
       "awal": 1590969600000,
       "akhir": 1782835200005,
       "symbol": "ALGOUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2122,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1410973252588924
     },
     {
@@ -727,7 +903,12 @@
       "awal": 1615824000030,
       "akhir": 1782849600003,
       "symbol": "ALICEUSDT",
-      "biaya_tahunan_long": 0.12735848110271236
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1698,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.06898584393063585
     },
     {
       "baris": 5296,
@@ -747,6 +928,11 @@
       "awal": 1606118400000,
       "akhir": 1758614400001,
       "symbol": "ALPHAUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1642,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.17981099000188822
     },
     {
@@ -767,6 +953,11 @@
       "awal": 1746532800000,
       "akhir": 1782849600003,
       "symbol": "ALPINEUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 981,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.0467486066217288
     },
     {
@@ -787,6 +978,11 @@
       "awal": 1706198400000,
       "akhir": 1782849600003,
       "symbol": "ALTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1383,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.010350738981777189
     },
     {
@@ -808,7 +1004,12 @@
       "awal": 1737662400000,
       "akhir": 1782849600003,
       "symbol": "ANIMEUSDT",
-      "biaya_tahunan_long": -0.8905613343475717
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1041,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.5566008339672323
     },
     {
       "baris": 6292,
@@ -830,7 +1031,12 @@
       "awal": 1611590400000,
       "akhir": 1782849600003,
       "symbol": "ANKRUSDT",
-      "biaya_tahunan_long": 0.05785124519536408
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1776,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.03133609114748887
     },
     {
       "baris": 2805,
@@ -850,6 +1056,11 @@
       "awal": 1640592000005,
       "akhir": 1721347200000,
       "symbol": "ANTUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 831,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.050977949465240646
     },
     {
@@ -870,6 +1081,11 @@
       "awal": 1647532800004,
       "akhir": 1782835200005,
       "symbol": "APEUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1341,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.06150424615875718
     },
     {
@@ -892,7 +1108,12 @@
       "awal": 1645459200005,
       "akhir": 1782849600003,
       "symbol": "API3USDT",
-      "biaya_tahunan_long": -0.33223838643673714
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 3162,
+      "periode_hilang": 1794,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.35992491863979853
     },
     {
       "baris": 4054,
@@ -912,6 +1133,11 @@
       "awal": 1666108800000,
       "akhir": 1782835200005,
       "symbol": "APTUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1058,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.01477356767390232
     },
     {
@@ -932,6 +1158,11 @@
       "awal": 1679558400001,
       "akhir": 1782835200005,
       "symbol": "ARBUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 840,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.09240672641483133
     },
     {
@@ -952,6 +1183,11 @@
       "awal": 1737129600008,
       "akhir": 1782849600003,
       "symbol": "ARCUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1088,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.3995913178582677
     },
     {
@@ -972,6 +1208,11 @@
       "awal": 1690473600001,
       "akhir": 1782835200005,
       "symbol": "ARKMUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 733,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07751411474438902
     },
     {
@@ -994,7 +1235,12 @@
       "awal": 1695139200000,
       "akhir": 1782849600003,
       "symbol": "ARKUSDT",
-      "biaya_tahunan_long": -0.37227080000000007
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 196,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.20164668333333335
     },
     {
       "baris": 5147,
@@ -1014,6 +1260,11 @@
       "awal": 1634630400000,
       "akhir": 1782835200005,
       "symbol": "ARPAUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1542,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.024128117573343693
     },
     {
@@ -1034,6 +1285,11 @@
       "awal": 1632729600001,
       "akhir": 1782835200005,
       "symbol": "ARUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1570,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08746880164972184
     },
     {
@@ -1054,6 +1310,11 @@
       "awal": 1746532800000,
       "akhir": 1782849600003,
       "symbol": "ASRUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 981,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.02917393477398891
     },
     {
@@ -1074,6 +1335,11 @@
       "awal": 1676275200008,
       "akhir": 1782835200005,
       "symbol": "ASTRUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 900,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.01938176627938395
     },
     {
@@ -1094,6 +1360,11 @@
       "awal": 1630310400008,
       "akhir": 1779177600001,
       "symbol": "ATAUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1563,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07858437998065763
     },
     {
@@ -1114,6 +1385,11 @@
       "awal": 1743609600000,
       "akhir": 1782849600003,
       "symbol": "ATHUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1029,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.1635255319266055
     },
     {
@@ -1134,6 +1410,11 @@
       "awal": 1581004800000,
       "akhir": 1782835200005,
       "symbol": "ATOMUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2183,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.10200824559138251
     },
     {
@@ -1155,7 +1436,12 @@
       "awal": 1702656000000,
       "akhir": 1782849600003,
       "symbol": "AUCTIONUSDT",
-      "biaya_tahunan_long": -0.4456223854235482
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1405,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.2785139908897176
     },
     {
       "baris": 3195,
@@ -1175,6 +1461,11 @@
       "awal": 1629360000014,
       "akhir": 1721347200000,
       "symbol": "AUDIOUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1007,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07275172117370893
     },
     {
@@ -1196,7 +1487,12 @@
       "awal": 1748419200003,
       "akhir": 1782849600003,
       "symbol": "AUSDT",
-      "biaya_tahunan_long": 0.046862397323295696
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 932,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.07029359598494354
     },
     {
       "baris": 3175,
@@ -1216,6 +1512,11 @@
       "awal": 1737129600008,
       "akhir": 1782849600003,
       "symbol": "AVAAIUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1088,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.2555526726614173
     },
     {
@@ -1236,6 +1537,11 @@
       "awal": 1734105600001,
       "akhir": 1782849600003,
       "symbol": "AVAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1118,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.06629277509601184
     },
     {
@@ -1256,6 +1562,11 @@
       "awal": 1600790400004,
       "akhir": 1782835200005,
       "symbol": "AVAXUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2018,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.06967736493198355
     },
     {
@@ -1277,7 +1588,12 @@
       "awal": 1747814400001,
       "akhir": 1782849600003,
       "symbol": "AWEUSDT",
-      "biaya_tahunan_long": -0.3994059531442663
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 946,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.5991089297163994
     },
     {
       "baris": 5797,
@@ -1298,7 +1614,12 @@
       "awal": 1709308800000,
       "akhir": 1782849600003,
       "symbol": "AXLUSDT",
-      "biaya_tahunan_long": -0.3901681937553907
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1266,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.24385512109711918
     },
     {
       "baris": 6794,
@@ -1320,7 +1641,12 @@
       "awal": 1605859200005,
       "akhir": 1782849600003,
       "symbol": "AXSUSDT",
-      "biaya_tahunan_long": -0.5091213938226037
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1780,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.275774088320577
     },
     {
       "baris": 2521,
@@ -1340,6 +1666,11 @@
       "awal": 1746547200000,
       "akhir": 1782849600003,
       "symbol": "B2USDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 981,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.24898155172550573
     },
     {
@@ -1361,7 +1692,12 @@
       "awal": 1739448000000,
       "akhir": 1777363200000,
       "symbol": "B3USDT",
-      "biaya_tahunan_long": -0.15467771268623023
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 919,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.09667357042889389
     },
     {
       "baris": 2755,
@@ -1382,7 +1718,12 @@
       "awal": 1743868800000,
       "akhir": 1782849600003,
       "symbol": "BABYUSDT",
-      "biaya_tahunan_long": -0.4383388005517241
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1024,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.27396175034482756
     },
     {
       "baris": 4795,
@@ -1402,6 +1743,11 @@
       "awal": 1621411200003,
       "akhir": 1759478400006,
       "symbol": "BAKEUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1444,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.11789755385818561
     },
     {
@@ -1422,6 +1768,11 @@
       "awal": 1598947200000,
       "akhir": 1750320000003,
       "symbol": "BALUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1623,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.02819649786950732
     },
     {
@@ -1443,7 +1794,12 @@
       "awal": 1742486400000,
       "akhir": 1782849600003,
       "symbol": "BANANAS31USDT",
-      "biaya_tahunan_long": 0.04666810164403146
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1048,
+      "periode_hilang": 6,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.07000215246604718
     },
     {
       "baris": 4263,
@@ -1465,7 +1821,12 @@
       "awal": 1723651200000,
       "akhir": 1782849600003,
       "symbol": "BANANAUSDT",
-      "biaya_tahunan_long": -0.15367882862556165
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1208,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.16648539767769177
     },
     {
       "baris": 6488,
@@ -1485,6 +1846,11 @@
       "awal": 1596009600000,
       "akhir": 1782835200005,
       "symbol": "BANDUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2073,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.10536855386097412
     },
     {
@@ -1505,6 +1871,11 @@
       "awal": 1745006400000,
       "akhir": 1782849600003,
       "symbol": "BANKUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1017,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08752393333333333
     },
     {
@@ -1526,7 +1897,12 @@
       "awal": 1731931200000,
       "akhir": 1782849600003,
       "symbol": "BANUSDT",
-      "biaya_tahunan_long": 0.0756001302587177
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1142,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.05670009769403827
     },
     {
       "baris": 6989,
@@ -1546,6 +1922,11 @@
       "awal": 1581580800000,
       "akhir": 1782835200005,
       "symbol": "BATUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2179,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.13345251161825727
     },
     {
@@ -1566,6 +1947,11 @@
       "awal": 1715616000000,
       "akhir": 1782849600003,
       "symbol": "BBUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1306,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.019057460676804444
     },
     {
@@ -1586,6 +1972,11 @@
       "awal": 1577836800000,
       "akhir": 1782835200005,
       "symbol": "BCHUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2198,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.05373444941002949
     },
     {
@@ -1607,7 +1998,12 @@
       "awal": 1700208000001,
       "akhir": 1782849600003,
       "symbol": "BEAMXUSDT",
-      "biaya_tahunan_long": 0.04139788016730569
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1422,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.062096820250958536
     },
     {
       "baris": 6152,
@@ -1627,6 +2023,11 @@
       "awal": 1605686400006,
       "akhir": 1782835200005,
       "symbol": "BELUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1961,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08248812100942783
     },
     {
@@ -1647,6 +2048,11 @@
       "awal": 1738857600000,
       "akhir": 1782849600003,
       "symbol": "BERAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1073,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.795641172274959
     },
     {
@@ -1667,6 +2073,11 @@
       "awal": 1695888000000,
       "akhir": 1782835200005,
       "symbol": "BICOUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 715,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.09183349480132452
     },
     {
@@ -1687,6 +2098,11 @@
       "awal": 1697126400000,
       "akhir": 1782849600003,
       "symbol": "BIGTIMEUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1446,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.15061937451705026
     },
     {
@@ -1708,7 +2124,12 @@
       "awal": 1735920000000,
       "akhir": 1782849600003,
       "symbol": "BIOUSDT",
-      "biaya_tahunan_long": -0.7604007074428888
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 995,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.4752504421518055
     },
     {
       "baris": 1874,
@@ -1728,6 +2149,11 @@
       "awal": 1667404800019,
       "akhir": 1721347200000,
       "symbol": "BLUEBIRDUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 418,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.04020694506403417
     },
     {
@@ -1750,7 +2176,12 @@
       "awal": 1682611200005,
       "akhir": 1782849600003,
       "symbol": "BLURUSDT",
-      "biaya_tahunan_long": -0.11335197628458497
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 701,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.061398987154150195
     },
     {
       "baris": 7133,
@@ -1771,7 +2202,12 @@
       "awal": 1600272000001,
       "akhir": 1750320000003,
       "symbol": "BLZUSDT",
-      "biaya_tahunan_long": -0.02482116464320762
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 3867,
+      "periode_hilang": 3288,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.03723174696481143
     },
     {
       "baris": 2821,
@@ -1791,6 +2227,11 @@
       "awal": 1742227200000,
       "akhir": 1782849600003,
       "symbol": "BMTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1046,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.03471849464728818
     },
     {
@@ -1811,6 +2252,11 @@
       "awal": 1581321600000,
       "akhir": 1782835200005,
       "symbol": "BNBUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2182,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.0024211188553872605
     },
     {
@@ -1831,6 +2277,11 @@
       "awal": 1609459200002,
       "akhir": 1782835200005,
       "symbol": "BNTUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 862,
+      "periode_hilang": 2501,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.004776234460227279
     },
     {
@@ -1852,7 +2303,12 @@
       "awal": 1710547200000,
       "akhir": 1782849600003,
       "symbol": "BOMEUSDT",
-      "biaya_tahunan_long": 0.05915463004582587
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1352,
+      "periode_hilang": 3,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.0887319450687388
     },
     {
       "baris": 4076,
@@ -1872,6 +2328,11 @@
       "awal": 1724155200000,
       "akhir": 1782849600003,
       "symbol": "BRETTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1227,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08173860147203144
     },
     {
@@ -1894,7 +2355,12 @@
       "awal": 1742486400000,
       "akhir": 1782849600003,
       "symbol": "BROCCOLI714USDT",
-      "biaya_tahunan_long": 0.046595890885402544
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1042,
+      "periode_hilang": 3,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.050478881792519414
     },
     {
       "baris": 3932,
@@ -1916,7 +2382,12 @@
       "awal": 1742486400000,
       "akhir": 1782849600003,
       "symbol": "BROCCOLIF3BUSDT",
-      "biaya_tahunan_long": 0.5265173476250098
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 948,
+      "periode_hilang": 93,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.5703937932604272
     },
     {
       "baris": 2797,
@@ -1936,6 +2407,11 @@
       "awal": 1742572800000,
       "akhir": 1782849600003,
       "symbol": "BRUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1045,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.10823735577404361
     },
     {
@@ -1957,7 +2433,12 @@
       "awal": 1697788800005,
       "akhir": 1782849600003,
       "symbol": "BSVUSDT",
-      "biaya_tahunan_long": -0.014593557805621389
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1444,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.021890336708432084
     },
     {
       "baris": 5507,
@@ -1977,6 +2458,11 @@
       "awal": 1624262400000,
       "akhir": 1782835200005,
       "symbol": "BTCDOMUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1705,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.20004759405302341
     },
     {
@@ -1997,6 +2483,11 @@
       "awal": 1577836800000,
       "akhir": 1782835200005,
       "symbol": "BTCUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2198,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.11923796774125581
     },
     {
@@ -2018,7 +2509,12 @@
       "awal": 1751630400000,
       "akhir": 1782849600003,
       "symbol": "BULLAUSDT",
-      "biaya_tahunan_long": 0.5308043275606641
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 821,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.33175270472541507
     },
     {
       "baris": 2425,
@@ -2039,7 +2535,12 @@
       "awal": 1747929600002,
       "akhir": 1782849600003,
       "symbol": "BUSDT",
-      "biaya_tahunan_long": 0.2182117264329897
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 944,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.32731758964948454
     },
     {
       "baris": 1445,
@@ -2059,6 +2560,11 @@
       "awal": 1599235200006,
       "akhir": 1640822400003,
       "symbol": "BZRXUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 597,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.43983402269896194
     },
     {
@@ -2079,6 +2585,11 @@
       "awal": 1629792000004,
       "akhir": 1782835200005,
       "symbol": "C98USDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1618,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.05303837387582316
     },
     {
@@ -2099,6 +2610,11 @@
       "awal": 1698940800000,
       "akhir": 1782849600003,
       "symbol": "CAKEUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1433,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.0894840727475545
     },
     {
@@ -2120,7 +2636,12 @@
       "awal": 1726675200004,
       "akhir": 1782849600003,
       "symbol": "CATIUSDT",
-      "biaya_tahunan_long": 0.05077238064681727
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1196,
+      "periode_hilang": 6,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.07615857097022591
     },
     {
       "baris": 5213,
@@ -2140,6 +2661,11 @@
       "awal": 1632729600001,
       "akhir": 1782835200005,
       "symbol": "CELOUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1570,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.058384124985612906
     },
     {
@@ -2160,6 +2686,11 @@
       "awal": 1617004800000,
       "akhir": 1782835200005,
       "symbol": "CELRUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1812,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.121996752621983
     },
     {
@@ -2180,6 +2711,11 @@
       "awal": 1730908800000,
       "akhir": 1782849600003,
       "symbol": "CETUSUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1152,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.06105433423897977
     },
     {
@@ -2200,6 +2736,11 @@
       "awal": 1676880000008,
       "akhir": 1782835200005,
       "symbol": "CFXUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 887,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1005715485326087
     },
     {
@@ -2220,6 +2761,11 @@
       "awal": 1734724800000,
       "akhir": 1782849600003,
       "symbol": "CGPTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1114,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.02514268096947938
     },
     {
@@ -2240,6 +2786,11 @@
       "awal": 1724918400001,
       "akhir": 1770364800001,
       "symbol": "CHESSUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 876,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.12806119689578715
     },
     {
@@ -2260,6 +2811,11 @@
       "awal": 1732723200001,
       "akhir": 1782849600003,
       "symbol": "CHILLGUYUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1135,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1475302716748061
     },
     {
@@ -2280,6 +2836,11 @@
       "awal": 1615536000005,
       "akhir": 1782835200005,
       "symbol": "CHRUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1831,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.09741405529259899
     },
     {
@@ -2300,6 +2861,11 @@
       "awal": 1609459200002,
       "akhir": 1782835200005,
       "symbol": "CHZUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1912,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1056985986547085
     },
     {
@@ -2320,6 +2886,11 @@
       "awal": 1677571200018,
       "akhir": 1782835200005,
       "symbol": "CKBUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 876,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.053372537322210076
     },
     {
@@ -2340,6 +2911,11 @@
       "awal": 1593504000001,
       "akhir": 1782835200005,
       "symbol": "COMPUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2093,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.00580635782509506
     },
     {
@@ -2360,6 +2936,11 @@
       "awal": 1736251200001,
       "akhir": 1782849600003,
       "symbol": "COOKIEUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1095,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.040330453924598275
     },
     {
@@ -2381,7 +2962,12 @@
       "awal": 1727712000000,
       "akhir": 1781164800004,
       "symbol": "COSUSDT",
-      "biaya_tahunan_long": -0.5194740585767
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1127,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.32467128661043754
     },
     {
       "baris": 5816,
@@ -2401,6 +2987,11 @@
       "awal": 1615363200006,
       "akhir": 1782835200005,
       "symbol": "COTIUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1834,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.09065515919876206
     },
     {
@@ -2421,6 +3012,11 @@
       "awal": 1730908800000,
       "akhir": 1782849600003,
       "symbol": "COWUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1152,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.043861334571666195
     },
     {
@@ -2441,6 +3037,11 @@
       "awal": 1752148800001,
       "akhir": 1782849600003,
       "symbol": "CROSSUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 828,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1422430166510319
     },
     {
@@ -2461,6 +3062,11 @@
       "awal": 1598947200000,
       "akhir": 1782835200005,
       "symbol": "CRVUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2048,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.02818920263075478
     },
     {
@@ -2482,7 +3088,12 @@
       "awal": 1605772800000,
       "akhir": 1782849600003,
       "symbol": "CTKUSDT",
-      "biaya_tahunan_long": 0.06178733955304256
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1475,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.04634050466478192
     },
     {
       "baris": 5126,
@@ -2502,6 +3113,11 @@
       "awal": 1635235200016,
       "akhir": 1782835200005,
       "symbol": "CTSIUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1532,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.045534235622317606
     },
     {
@@ -2523,7 +3139,12 @@
       "awal": 1752580800000,
       "akhir": 1782849600003,
       "symbol": "CUSDT",
-      "biaya_tahunan_long": -0.24674836455605376
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 800,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.1542177278475336
     },
     {
       "baris": 6149,
@@ -2545,7 +3166,12 @@
       "awal": 1692201600000,
       "akhir": 1782849600003,
       "symbol": "CYBERUSDT",
-      "biaya_tahunan_long": -0.16802549629904975
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1607,
+      "periode_hilang": 159,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.19602974568222473
     },
     {
       "baris": 7016,
@@ -2565,6 +3191,11 @@
       "awal": 1580803200001,
       "akhir": 1782835200005,
       "symbol": "DASHUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2184,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.09132635866590652
     },
     {
@@ -2585,6 +3216,11 @@
       "awal": 1745323200001,
       "akhir": 1782849600003,
       "symbol": "DEEPUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1011,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.19179587210283958
     },
     {
@@ -2605,6 +3241,11 @@
       "awal": 1598515200010,
       "akhir": 1754899200000,
       "symbol": "DEFIUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1691,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1540787585159271
     },
     {
@@ -2625,6 +3266,11 @@
       "awal": 1731672000000,
       "akhir": 1777363200000,
       "symbol": "DEGENUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 999,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1320778098298677
     },
     {
@@ -2646,7 +3292,12 @@
       "awal": 1734105600001,
       "akhir": 1776758400004,
       "symbol": "DEGOUSDT",
-      "biaya_tahunan_long": -0.14548501570093453
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 952,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.09092813481308408
     },
     {
       "baris": 5563,
@@ -2666,6 +3317,11 @@
       "awal": 1616572800000,
       "akhir": 1776758400004,
       "symbol": "DENTUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1741,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.10404456945892505
     },
     {
@@ -2686,6 +3342,11 @@
       "awal": 1735041600000,
       "akhir": 1782849600003,
       "symbol": "DEXEUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1112,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08779242975903616
     },
     {
@@ -2706,6 +3367,11 @@
       "awal": 1735560000000,
       "akhir": 1770364800001,
       "symbol": "DFUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 769,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08810353697270475
     },
     {
@@ -2726,6 +3392,11 @@
       "awal": 1727884800000,
       "akhir": 1782849600003,
       "symbol": "DIAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1178,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.04445218624574271
     },
     {
@@ -2746,6 +3417,11 @@
       "awal": 1613750400008,
       "akhir": 1653638400008,
       "symbol": "DODOUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 609,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.18769651764069264
     },
     {
@@ -2767,7 +3443,12 @@
       "awal": 1691424000000,
       "akhir": 1782849600003,
       "symbol": "DODOXUSDT",
-      "biaya_tahunan_long": 0.08503135403120937
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1644,
+      "periode_hilang": 198,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.12754703104681406
     },
     {
       "baris": 6545,
@@ -2787,6 +3468,11 @@
       "awal": 1594368000001,
       "akhir": 1782835200005,
       "symbol": "DOGEUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2084,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.12614616155844158
     },
     {
@@ -2807,6 +3493,11 @@
       "awal": 1724688000000,
       "akhir": 1782849600003,
       "symbol": "DOGSUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1216,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.03982873674176778
     },
     {
@@ -2828,7 +3519,12 @@
       "awal": 1746057600000,
       "akhir": 1782849600003,
       "symbol": "DOLOUSDT",
-      "biaya_tahunan_long": -0.011566902857142855
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 992,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.017350354285714284
     },
     {
       "baris": 3695,
@@ -2849,7 +3545,12 @@
       "awal": 1746806400000,
       "akhir": 1782849600003,
       "symbol": "DOODUSDT",
-      "biaya_tahunan_long": -0.4298182216400541
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 818,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.2686363885250338
     },
     {
       "baris": 6422,
@@ -2869,6 +3570,11 @@
       "awal": 1597910400000,
       "akhir": 1782835200005,
       "symbol": "DOTUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2056,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.079528271099346
     },
     {
@@ -2890,7 +3596,12 @@
       "awal": 1731081600000,
       "akhir": 1782849600003,
       "symbol": "DRIFTUSDT",
-      "biaya_tahunan_long": -0.6844088400320427
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1131,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.42775552502002673
     },
     {
       "baris": 3201,
@@ -2911,7 +3622,12 @@
       "awal": 1736424000000,
       "akhir": 1781164800004,
       "symbol": "DUSDT",
-      "biaya_tahunan_long": -0.33162142800374883
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1035,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.207263392502343
     },
     {
       "baris": 5480,
@@ -2933,7 +3649,12 @@
       "awal": 1641484800006,
       "akhir": 1782849600003,
       "symbol": "DUSKUSDT",
-      "biaya_tahunan_long": -0.11688523948905111
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1258,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.06331283805656934
     },
     {
       "baris": 5266,
@@ -2953,6 +3674,11 @@
       "awal": 1631203200002,
       "akhir": 1782835200005,
       "symbol": "DYDXUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1595,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07977953952715534
     },
     {
@@ -2973,6 +3699,11 @@
       "awal": 1707292800000,
       "akhir": 1782849600003,
       "symbol": "DYMUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1375,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.13359474145225844
     },
     {
@@ -2993,6 +3724,11 @@
       "awal": 1682697600006,
       "akhir": 1782835200005,
       "symbol": "EDUUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 797,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.06614967727142036
     },
     {
@@ -3013,6 +3749,11 @@
       "awal": 1600012800004,
       "akhir": 1782835200005,
       "symbol": "EGLDUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2032,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.12686959918884863
     },
     {
@@ -3033,6 +3774,11 @@
       "awal": 1727769600000,
       "akhir": 1782849600003,
       "symbol": "EIGENUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1179,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.009071827372549019
     },
     {
@@ -3053,6 +3799,11 @@
       "awal": 1712073600000,
       "akhir": 1782849600003,
       "symbol": "ENAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1338,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.151639177965412
     },
     {
@@ -3075,7 +3826,12 @@
       "awal": 1601366400000,
       "akhir": 1782849600003,
       "symbol": "ENJUSDT",
-      "biaya_tahunan_long": -0.0381797443137255
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1905,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.020680694836601312
     },
     {
       "baris": 5023,
@@ -3095,6 +3851,11 @@
       "awal": 1638201600000,
       "akhir": 1782835200005,
       "symbol": "ENSUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1485,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07439466187537329
     },
     {
@@ -3115,6 +3876,11 @@
       "awal": 1578470400000,
       "akhir": 1782835200005,
       "symbol": "EOSUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2195,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.15913796850782022
     },
     {
@@ -3136,7 +3902,12 @@
       "awal": 1741852800000,
       "akhir": 1782849600003,
       "symbol": "EPICUSDT",
-      "biaya_tahunan_long": 0.04165152307692309
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1046,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.062477284615384626
     },
     {
       "baris": 2177,
@@ -3157,7 +3928,12 @@
       "awal": 1752753600000,
       "akhir": 1782849600003,
       "symbol": "ERAUSDT",
-      "biaya_tahunan_long": -0.6452370060082683
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 800,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.40327312875516763
     },
     {
       "baris": 7073,
@@ -3177,6 +3953,11 @@
       "awal": 1579161600000,
       "akhir": 1782835200005,
       "symbol": "ETCUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2192,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.11171986518450445
     },
     {
@@ -3197,6 +3978,11 @@
       "awal": 1710777600001,
       "akhir": 1782849600003,
       "symbol": "ETHFIUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1348,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.00849226867132868
     },
     {
@@ -3217,6 +4003,11 @@
       "awal": 1577836800000,
       "akhir": 1782835200005,
       "symbol": "ETHUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2198,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.14183512235566795
     },
     {
@@ -3237,6 +4028,11 @@
       "awal": 1701187200000,
       "akhir": 1782849600003,
       "symbol": "ETHWUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1416,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.19086236175277732
     },
     {
@@ -3257,6 +4053,11 @@
       "awal": 1734724800000,
       "akhir": 1782849600003,
       "symbol": "FARTCOINUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1114,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.14594973877917414
     },
     {
@@ -3277,6 +4078,11 @@
       "awal": 1673856000007,
       "akhir": 1782835200005,
       "symbol": "FETUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 937,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.03916318561426685
     },
     {
@@ -3297,6 +4103,11 @@
       "awal": 1744473600000,
       "akhir": 1782849600003,
       "symbol": "FHEUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1022,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.18825136457786115
     },
     {
@@ -3318,7 +4129,12 @@
       "awal": 1726761600001,
       "akhir": 1782849600003,
       "symbol": "FIDAUSDT",
-      "biaya_tahunan_long": -0.4556698013414634
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1189,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.2847936258384146
     },
     {
       "baris": 6251,
@@ -3338,6 +4154,11 @@
       "awal": 1602835200003,
       "akhir": 1782835200005,
       "symbol": "FILUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1994,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.06358307298832187
     },
     {
@@ -3359,7 +4180,12 @@
       "awal": 1726833600000,
       "akhir": 1776240000000,
       "symbol": "FIOUSDT",
-      "biaya_tahunan_long": 0.2322531804166667
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1012,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.1451582377604167
     },
     {
       "baris": 8483,
@@ -3381,7 +4207,12 @@
       "awal": 1601366400000,
       "akhir": 1763712000000,
       "symbol": "FLMUSDT",
-      "biaya_tahunan_long": 0.14164485842946395
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 4048,
+      "periode_hilang": 3315,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.1652523348343746
     },
     {
       "baris": 5733,
@@ -3403,7 +4234,12 @@
       "awal": 1644422400001,
       "akhir": 1782849600003,
       "symbol": "FLOWUSDT",
-      "biaya_tahunan_long": -0.03633705335104454
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1191,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.019682570565149125
     },
     {
       "baris": 3993,
@@ -3423,6 +4259,11 @@
       "awal": 1725350400001,
       "akhir": 1782849600003,
       "symbol": "FLUXUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1206,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.0006227980465815049
     },
     {
@@ -3443,6 +4284,11 @@
       "awal": 1661932800005,
       "akhir": 1721347200000,
       "symbol": "FOOTBALLUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 506,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.07636054651162792
     },
     {
@@ -3464,7 +4310,12 @@
       "awal": 1742371200000,
       "akhir": 1782849600003,
       "symbol": "FORMUSDT",
-      "biaya_tahunan_long": 0.07148910515830666
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1045,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.10723365773745998
     },
     {
       "baris": 5190,
@@ -3484,6 +4335,11 @@
       "awal": 1600876800001,
       "akhir": 1750320000003,
       "symbol": "FTMUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1592,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.18540226479768787
     },
     {
@@ -3506,7 +4362,12 @@
       "awal": 1743422400000,
       "akhir": 1776240000000,
       "symbol": "FUNUSDT",
-      "biaya_tahunan_long": -2.0736692879307728
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 779,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -1.2096404179596174
     },
     {
       "baris": 2549,
@@ -3527,7 +4388,12 @@
       "awal": 1750248000003,
       "akhir": 1782849600003,
       "symbol": "FUSDT",
-      "biaya_tahunan_long": -1.251739487359749
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 851,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.7823371795998431
     },
     {
       "baris": 3247,
@@ -3547,6 +4413,11 @@
       "awal": 1674201600000,
       "akhir": 1767686400000,
       "symbol": "FXSUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 740,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.09474237440714506
     },
     {
@@ -3567,6 +4438,11 @@
       "awal": 1631894400013,
       "akhir": 1782835200005,
       "symbol": "GALAUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1586,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07787453252575352
     },
     {
@@ -3587,6 +4463,11 @@
       "awal": 1651766400005,
       "akhir": 1723708800000,
       "symbol": "GALUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 665,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.06462276362545019
     },
     {
@@ -3609,7 +4490,12 @@
       "awal": 1698163200000,
       "akhir": 1782849600003,
       "symbol": "GASUSDT",
-      "biaya_tahunan_long": -0.23989487570921555
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1434,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.27987735499408484
     },
     {
       "baris": 3005,
@@ -3629,6 +4515,11 @@
       "awal": 1727107200000,
       "akhir": 1770364800001,
       "symbol": "GHSTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 852,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08662616785357738
     },
     {
@@ -3650,7 +4541,12 @@
       "awal": 1708588800001,
       "akhir": 1782849600003,
       "symbol": "GLMUSDT",
-      "biaya_tahunan_long": -0.39746987058367267
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1366,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.596204805875509
     },
     {
       "baris": 5314,
@@ -3672,7 +4568,12 @@
       "awal": 1647273600002,
       "akhir": 1782849600003,
       "symbol": "GMTUSDT",
-      "biaya_tahunan_long": -0.12277964871891378
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1158,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.0665056430560783
     },
     {
       "baris": 3689,
@@ -3692,6 +4593,11 @@
       "awal": 1676620800016,
       "akhir": 1782835200005,
       "symbol": "GMXUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 892,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.06165265262943888
     },
     {
@@ -3712,6 +4618,11 @@
       "awal": 1729785600000,
       "akhir": 1782849600003,
       "symbol": "GOATUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1164,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08815201074626867
     },
     {
@@ -3733,7 +4644,12 @@
       "awal": 1739822400001,
       "akhir": 1782849600003,
       "symbol": "GPSUSDT",
-      "biaya_tahunan_long": -0.48056203710111706
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 999,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.30035127318819815
     },
     {
       "baris": 3595,
@@ -3753,6 +4669,11 @@
       "awal": 1731081600000,
       "akhir": 1782849600003,
       "symbol": "GRASSUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1151,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.023909408762169654
     },
     {
@@ -3773,6 +4694,11 @@
       "awal": 1735833600000,
       "akhir": 1782849600003,
       "symbol": "GRIFFAINUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1101,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.17400226116385914
     },
     {
@@ -3793,6 +4719,11 @@
       "awal": 1608364800018,
       "akhir": 1782835200005,
       "symbol": "GRTUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1927,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.10486637891566267
     },
     {
@@ -3813,6 +4744,11 @@
       "awal": 1623398400007,
       "akhir": 1782835200005,
       "symbol": "GTCUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1716,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07685957275600505
     },
     {
@@ -3833,6 +4769,11 @@
       "awal": 1743436800000,
       "akhir": 1782849600003,
       "symbol": "GUNUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1032,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.19074279886737303
     },
     {
@@ -3854,7 +4795,12 @@
       "awal": 1723737600000,
       "akhir": 1782849600003,
       "symbol": "GUSDT",
-      "biaya_tahunan_long": -0.42559989637545126
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1222,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.26599993523465704
     },
     {
       "baris": 2555,
@@ -3875,7 +4821,12 @@
       "awal": 1746057600000,
       "akhir": 1782849600003,
       "symbol": "HAEDALUSDT",
-      "biaya_tahunan_long": -0.05861389714285714
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 992,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.08792084571428571
     },
     {
       "baris": 5795,
@@ -3895,6 +4846,11 @@
       "awal": 1615968000000,
       "akhir": 1782835200005,
       "symbol": "HBARUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1823,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07963832963761866
     },
     {
@@ -3916,7 +4872,12 @@
       "awal": 1739448000000,
       "akhir": 1782849600003,
       "symbol": "HEIUSDT",
-      "biaya_tahunan_long": 0.011691845865257624
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1069,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.0073074036657860145
     },
     {
       "baris": 3547,
@@ -3936,6 +4897,11 @@
       "awal": 1680710400004,
       "akhir": 1782835200005,
       "symbol": "HFTUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 825,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.04001201621088244
     },
     {
@@ -3957,7 +4923,12 @@
       "awal": 1694851200000,
       "akhir": 1759478400006,
       "symbol": "HIFIUSDT",
-      "biaya_tahunan_long": 0.06388957353874036
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 888,
+      "periode_hilang": 75,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.09583436030811054
     },
     {
       "baris": 3673,
@@ -3977,6 +4948,11 @@
       "awal": 1675411200000,
       "akhir": 1781164800004,
       "symbol": "HIGHUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 894,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.0036512451538252325
     },
     {
@@ -3998,7 +4974,12 @@
       "awal": 1731513600000,
       "akhir": 1775635200000,
       "symbol": "HIPPOUSDT",
-      "biaya_tahunan_long": 0.4882924948162666
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 821,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.3051828092601666
     },
     {
       "baris": 3409,
@@ -4019,7 +5000,12 @@
       "awal": 1734955200000,
       "akhir": 1782849600003,
       "symbol": "HIVEUSDT",
-      "biaya_tahunan_long": -1.160141045702552
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1102,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.7250881535640951
     },
     {
       "baris": 3853,
@@ -4039,6 +5025,11 @@
       "awal": 1727366400000,
       "akhir": 1782849600003,
       "symbol": "HMSTRUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1183,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.038518928393459655
     },
     {
@@ -4060,7 +5051,12 @@
       "awal": 1749556800005,
       "akhir": 1782849600003,
       "symbol": "HOMEUSDT",
-      "biaya_tahunan_long": -1.7022531304177646
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 861,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -1.0639082065111027
     },
     {
       "baris": 3478,
@@ -4080,6 +5076,11 @@
       "awal": 1674201600000,
       "akhir": 1774339200000,
       "symbol": "HOOKUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 828,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1138768138585394
     },
     {
@@ -4100,6 +5101,11 @@
       "awal": 1617091200012,
       "akhir": 1782835200005,
       "symbol": "HOTUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1811,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1231871005038221
     },
     {
@@ -4120,6 +5126,11 @@
       "awal": 1748275200002,
       "akhir": 1782849600003,
       "symbol": "HUMAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 936,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.2347735821740941
     },
     {
@@ -4141,7 +5152,12 @@
       "awal": 1750852800003,
       "akhir": 1782849600003,
       "symbol": "HUSDT",
-      "biaya_tahunan_long": -1.5708301031690672
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 808,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.9817688144806671
     },
     {
       "baris": 2755,
@@ -4162,7 +5178,12 @@
       "awal": 1745337600000,
       "akhir": 1782849600003,
       "symbol": "HYPERUSDT",
-      "biaya_tahunan_long": -0.8512436612994555
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 991,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.5320272883121597
     },
     {
       "baris": 2378,
@@ -4182,6 +5203,11 @@
       "awal": 1748606400006,
       "akhir": 1782849600003,
       "symbol": "HYPEUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 927,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08829405870479394
     },
     {
@@ -4202,6 +5228,11 @@
       "awal": 1751544000001,
       "akhir": 1782849600003,
       "symbol": "ICNTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 849,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.8129167074977001
     },
     {
@@ -4222,6 +5253,11 @@
       "awal": 1661990400012,
       "akhir": 1782835200005,
       "symbol": "ICPUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1123,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.05306958852751966
     },
     {
@@ -4244,7 +5280,12 @@
       "awal": 1600099200000,
       "akhir": 1782849600003,
       "symbol": "ICXUSDT",
-      "biaya_tahunan_long": 0.18163743810975258
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1917,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.09838694564278265
     },
     {
       "baris": 2168,
@@ -4264,6 +5305,11 @@
       "awal": 1751630400000,
       "akhir": 1782849600003,
       "symbol": "IDOLUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 846,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.17931176540590407
     },
     {
@@ -4286,7 +5332,12 @@
       "awal": 1679558400001,
       "akhir": 1782849600003,
       "symbol": "IDUSDT",
-      "biaya_tahunan_long": -0.2439888820567449
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 807,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.13216064444740347
     },
     {
       "baris": 5779,
@@ -4307,7 +5358,12 @@
       "awal": 1699632000000,
       "akhir": 1782849600003,
       "symbol": "ILVUSDT",
-      "biaya_tahunan_long": 0.03139225606506317
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1426,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.047088384097594756
     },
     {
       "baris": 7779,
@@ -4328,7 +5384,12 @@
       "awal": 1644566400009,
       "akhir": 1782849600003,
       "symbol": "IMXUSDT",
-      "biaya_tahunan_long": -0.0028198326263015744
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 3271,
+      "periode_hilang": 1825,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.004229748939452362
     },
     {
       "baris": 2701,
@@ -4349,7 +5410,12 @@
       "awal": 1744790400000,
       "akhir": 1782849600003,
       "symbol": "INITUSDT",
-      "biaya_tahunan_long": -0.16096143567567564
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1013,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.10060089729729728
     },
     {
       "baris": 4243,
@@ -4369,6 +5435,11 @@
       "awal": 1660665600000,
       "akhir": 1782835200005,
       "symbol": "INJUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1146,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.018407326785293422
     },
     {
@@ -4389,6 +5460,11 @@
       "awal": 1582272000000,
       "akhir": 1782835200005,
       "symbol": "IOSTUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2177,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07362514150035894
     },
     {
@@ -4409,6 +5485,11 @@
       "awal": 1581494400001,
       "akhir": 1782835200005,
       "symbol": "IOTAUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2180,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1105190844894165
     },
     {
@@ -4429,6 +5510,11 @@
       "awal": 1628697600000,
       "akhir": 1782835200005,
       "symbol": "IOTXUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1635,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.06601037000747245
     },
     {
@@ -4449,6 +5535,11 @@
       "awal": 1718121600000,
       "akhir": 1782849600003,
       "symbol": "IOUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1283,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.16160143982202443
     },
     {
@@ -4471,7 +5562,12 @@
       "awal": 1739462400001,
       "akhir": 1782633600013,
       "symbol": "IPUSDT",
-      "biaya_tahunan_long": -0.5085118657154558
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 989,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.550887854525077
     },
     {
       "baris": 4601,
@@ -4491,6 +5587,11 @@
       "awal": 1650355200031,
       "akhir": 1782835200005,
       "symbol": "JASMYUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1294,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.009181642827646169
     },
     {
@@ -4513,7 +5614,12 @@
       "awal": 1743004800001,
       "akhir": 1782849600003,
       "symbol": "JELLYJELLYUSDT",
-      "biaya_tahunan_long": 0.22926949779745437
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1036,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.24837528928057556
     },
     {
       "baris": 3571,
@@ -4533,6 +5639,11 @@
       "awal": 1680019200013,
       "akhir": 1782835200005,
       "symbol": "JOEUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 834,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.058904701680201635
     },
     {
@@ -4553,6 +5664,11 @@
       "awal": 1745841600000,
       "akhir": 1782849600003,
       "symbol": "JSTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 997,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.17220508552529185
     },
     {
@@ -4573,6 +5689,11 @@
       "awal": 1702036800000,
       "akhir": 1782849600003,
       "symbol": "JTOUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1413,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.007785965110477551
     },
     {
@@ -4593,6 +5714,11 @@
       "awal": 1706760000000,
       "akhir": 1782849600003,
       "symbol": "JUPUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1379,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.007138231226343688
     },
     {
@@ -4613,6 +5739,11 @@
       "awal": 1733328000000,
       "akhir": 1782849600003,
       "symbol": "KAIAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1130,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.027223120093050317
     },
     {
@@ -4633,6 +5764,11 @@
       "awal": 1740067200000,
       "akhir": 1782849600003,
       "symbol": "KAITOUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1063,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.5983839607876136
     },
     {
@@ -4654,7 +5790,12 @@
       "awal": 1700150400001,
       "akhir": 1782849600003,
       "symbol": "KASUSDT",
-      "biaya_tahunan_long": 0.1278266334726576
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1424,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.1917399502089864
     },
     {
       "baris": 7937,
@@ -4676,7 +5817,12 @@
       "awal": 1595923200001,
       "akhir": 1782849600003,
       "symbol": "KAVAUSDT",
-      "biaya_tahunan_long": 0.0022702180013762165
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1812,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.0012297014174121172
     },
     {
       "baris": 2653,
@@ -4696,6 +5842,11 @@
       "awal": 1744646400000,
       "akhir": 1782849600003,
       "symbol": "KERNELUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1021,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.6458766408217111
     },
     {
@@ -4716,6 +5867,11 @@
       "awal": 1734724800000,
       "akhir": 1782849600003,
       "symbol": "KMNOUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1114,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.08847200924596049
     },
     {
@@ -4736,6 +5892,11 @@
       "awal": 1592812800000,
       "akhir": 1782835200005,
       "symbol": "KNCUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2101,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.060768072874677975
     },
     {
@@ -4756,6 +5917,11 @@
       "awal": 1733846400000,
       "akhir": 1782849600003,
       "symbol": "KOMAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1123,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.43941780458419044
     },
     {
@@ -4776,6 +5942,11 @@
       "awal": 1602662400000,
       "akhir": 1782835200005,
       "symbol": "KSMUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1997,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.0786288716797187
     },
     {
@@ -4798,7 +5969,12 @@
       "awal": 1749110400000,
       "akhir": 1782849600003,
       "symbol": "LAUSDT",
-      "biaya_tahunan_long": -0.6291546501201923
+      "langkah_teramati_ms": 3600000,
+      "jam_teramati": 1.0,
+      "celah_teramati": 2629,
+      "periode_hilang": 5277,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -2.7263368171875
     },
     {
       "baris": 5142,
@@ -4820,7 +5996,12 @@
       "awal": 1739289600000,
       "akhir": 1782849600003,
       "symbol": "LAYERUSDT",
-      "biaya_tahunan_long": -0.9889149689614934
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 790,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.5768670652275378
     },
     {
       "baris": 4133,
@@ -4840,6 +6021,11 @@
       "awal": 1663833600000,
       "akhir": 1782835200005,
       "symbol": "LDOUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1096,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08420472372368741
     },
     {
@@ -4860,6 +6046,11 @@
       "awal": 1680163200000,
       "akhir": 1756886400002,
       "symbol": "LEVERUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 503,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.10958550039399627
     },
     {
@@ -4880,6 +6071,11 @@
       "awal": 1616140800001,
       "akhir": 1750320000003,
       "symbol": "LINAUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1396,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.06485570565450646
     },
     {
@@ -4900,6 +6096,11 @@
       "awal": 1579248000000,
       "akhir": 1782835200005,
       "symbol": "LINKUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2192,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.14019034714285714
     },
     {
@@ -4920,6 +6121,11 @@
       "awal": 1718899200000,
       "akhir": 1782849600003,
       "symbol": "LISTAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1276,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.055958657104255814
     },
     {
@@ -4941,7 +6147,12 @@
       "awal": 1613635200000,
       "akhir": 1782849600003,
       "symbol": "LITUSDT",
-      "biaya_tahunan_long": 0.1735817236864479
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1433,
+      "periode_hilang": 562,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.13018629276483593
     },
     {
       "baris": 8967,
@@ -4963,7 +6174,12 @@
       "awal": 1636617600012,
       "akhir": 1782849600003,
       "symbol": "LPTUSDT",
-      "biaya_tahunan_long": -0.3682763719587205
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 3409,
+      "periode_hilang": 2077,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.3989660696219472
     },
     {
       "baris": 3628,
@@ -4983,6 +6199,11 @@
       "awal": 1678377600002,
       "akhir": 1782835200005,
       "symbol": "LQTYUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 860,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.05988723415104742
     },
     {
@@ -5005,7 +6226,12 @@
       "awal": 1603094400000,
       "akhir": 1774339200000,
       "symbol": "LRCUSDT",
-      "biaya_tahunan_long": 0.03574343085236588
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1769,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.019361025045031517
     },
     {
       "baris": 6262,
@@ -5026,7 +6252,12 @@
       "awal": 1706198400000,
       "akhir": 1782849600003,
       "symbol": "LSKUSDT",
-      "biaya_tahunan_long": -0.4344783457042479
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1259,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.27154896606515494
     },
     {
       "baris": 7094,
@@ -5046,6 +6277,11 @@
       "awal": 1578556800000,
       "akhir": 1782835200005,
       "symbol": "LTCUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2194,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.15139126712714973
     },
     {
@@ -5066,6 +6302,11 @@
       "awal": 1734523200000,
       "akhir": 1782849600003,
       "symbol": "LUMIAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1116,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.0645764895411204
     },
     {
@@ -5088,7 +6329,12 @@
       "awal": 1662768000003,
       "akhir": 1782849600003,
       "symbol": "LUNA2USDT",
-      "biaya_tahunan_long": -0.07593715405358682
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 882,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.04113262511235953
     },
     {
       "baris": 1410,
@@ -5108,6 +6354,11 @@
       "awal": 1611820800000,
       "akhir": 1652400000014,
       "symbol": "LUNAUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 619,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.2211402279787234
     },
     {
@@ -5129,7 +6380,12 @@
       "awal": 1674489600016,
       "akhir": 1782849600003,
       "symbol": "MAGICUSDT",
-      "biaya_tahunan_long": -0.16133774076558802
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 432,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.12100330557419102
     },
     {
       "baris": 5801,
@@ -5149,6 +6405,11 @@
       "awal": 1615795200016,
       "akhir": 1782835200005,
       "symbol": "MANAUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1826,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.0739291165919669
     },
     {
@@ -5169,6 +6430,11 @@
       "awal": 1705593600000,
       "akhir": 1782849600003,
       "symbol": "MANTAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1387,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.016511714203168684
     },
     {
@@ -5191,7 +6457,12 @@
       "awal": 1629964800016,
       "akhir": 1782849600003,
       "symbol": "MASKUSDT",
-      "biaya_tahunan_long": 0.0318758087239819
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1177,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.017266063058823528
     },
     {
       "baris": 6233,
@@ -5211,6 +6482,11 @@
       "awal": 1603353600000,
       "akhir": 1782835200005,
       "symbol": "MATICUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1988,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.14646716135087437
     },
     {
@@ -5231,6 +6507,11 @@
       "awal": 1708516800000,
       "akhir": 1782849600003,
       "symbol": "MAVIAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1368,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1829860185005812
     },
     {
@@ -5251,6 +6532,11 @@
       "awal": 1687968000000,
       "akhir": 1782835200005,
       "symbol": "MAVUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 741,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.04278068626707134
     },
     {
@@ -5272,7 +6558,12 @@
       "awal": 1724846400000,
       "akhir": 1781164800004,
       "symbol": "MBOXUSDT",
-      "biaya_tahunan_long": 0.0029553130618401374
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1166,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.001847070663650086
     },
     {
       "baris": 3158,
@@ -5292,6 +6583,11 @@
       "awal": 1737374400002,
       "akhir": 1782849600003,
       "symbol": "MELANIAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1085,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.1977930885370488
     },
     {
@@ -5312,6 +6608,11 @@
       "awal": 1699027200000,
       "akhir": 1782849600003,
       "symbol": "MEMEUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1433,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.01771983891084006
     },
     {
@@ -5333,7 +6634,12 @@
       "awal": 1748520000001,
       "akhir": 1782849600003,
       "symbol": "MERLUSDT",
-      "biaya_tahunan_long": -0.7320508662397618
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 890,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.45753179139985106
     },
     {
       "baris": 5045,
@@ -5354,7 +6660,12 @@
       "awal": 1710172800000,
       "akhir": 1782849600003,
       "symbol": "METISUSDT",
-      "biaya_tahunan_long": 0.03580659984142716
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1355,
+      "periode_hilang": 3,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.05370989976214074
     },
     {
       "baris": 4646,
@@ -5376,7 +6687,12 @@
       "awal": 1733846400000,
       "akhir": 1782849600003,
       "symbol": "MEUSDT",
-      "biaya_tahunan_long": -0.45629927276399884
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 960,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.4943242121609987
     },
     {
       "baris": 4459,
@@ -5396,6 +6712,11 @@
       "awal": 1718640000000,
       "akhir": 1782849600003,
       "symbol": "MEWUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1279,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.024614450728862983
     },
     {
@@ -5416,6 +6737,11 @@
       "awal": 1675411200000,
       "akhir": 1782835200005,
       "symbol": "MINAUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 914,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.02314354551058697
     },
     {
@@ -5436,6 +6762,11 @@
       "awal": 1597305600000,
       "akhir": 1757318400000,
       "symbol": "MKRUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1734,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.15129170457980923
     },
     {
@@ -5456,6 +6787,11 @@
       "awal": 1743422400000,
       "akhir": 1779177600001,
       "symbol": "MLNUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 938,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.0461749685990338
     },
     {
@@ -5476,6 +6812,11 @@
       "awal": 1734350400000,
       "akhir": 1782849600003,
       "symbol": "MOCAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1116,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.22484086915083137
     },
     {
@@ -5496,6 +6837,11 @@
       "awal": 1729857600000,
       "akhir": 1782849600003,
       "symbol": "MOODENGUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1163,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.12042685622282609
     },
     {
@@ -5516,6 +6862,11 @@
       "awal": 1732723200001,
       "akhir": 1782849600003,
       "symbol": "MORPHOUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1135,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.00220910666475153
     },
     {
@@ -5537,7 +6888,12 @@
       "awal": 1733760000001,
       "akhir": 1782849600003,
       "symbol": "MOVEUSDT",
-      "biaya_tahunan_long": -1.580871953137881
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1118,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.9880449707111756
     },
     {
       "baris": 5503,
@@ -5557,6 +6913,11 @@
       "awal": 1703606400000,
       "akhir": 1782849600003,
       "symbol": "MOVRUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1401,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.05760772117027077
     },
     {
@@ -5578,7 +6939,12 @@
       "awal": 1617120000001,
       "akhir": 1782835200005,
       "symbol": "MTLUSDT",
-      "biaya_tahunan_long": -0.12693584334838484
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1810,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.09520188251128862
     },
     {
       "baris": 2821,
@@ -5598,6 +6964,11 @@
       "awal": 1742227200000,
       "akhir": 1782849600003,
       "symbol": "MUBARAKUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1046,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07139706646579227
     },
     {
@@ -5619,7 +6990,12 @@
       "awal": 1751889600000,
       "akhir": 1782849600003,
       "symbol": "MUSDT",
-      "biaya_tahunan_long": -1.2210900292987013
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 716,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.7631812683116882
     },
     {
       "baris": 3715,
@@ -5640,7 +7016,12 @@
       "awal": 1709625600000,
       "akhir": 1763107200000,
       "symbol": "MYROUSDT",
-      "biaya_tahunan_long": 0.1854995827725437
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 820,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.2782493741588155
     },
     {
       "baris": 3731,
@@ -5661,7 +7042,12 @@
       "awal": 1750248000003,
       "akhir": 1782849600003,
       "symbol": "MYXUSDT",
-      "biaya_tahunan_long": -2.135795956258376
+      "langkah_teramati_ms": 3600000,
+      "jam_teramati": 1.0,
+      "celah_teramati": 2535,
+      "periode_hilang": 5326,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -5.33948989064594
     },
     {
       "baris": 6256,
@@ -5681,6 +7067,11 @@
       "awal": 1602691200001,
       "akhir": 1782835200005,
       "symbol": "NEARUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1996,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.10579181470588234
     },
     {
@@ -5701,6 +7092,11 @@
       "awal": 1726488000000,
       "akhir": 1782849600003,
       "symbol": "NEIROUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1195,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.06554309103219214
     },
     {
@@ -5721,6 +7117,11 @@
       "awal": 1581926400000,
       "akhir": 1782835200005,
       "symbol": "NEOUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2179,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.13664247925326073
     },
     {
@@ -5742,7 +7143,12 @@
       "awal": 1750348800000,
       "akhir": 1782849600003,
       "symbol": "NEWTUSDT",
-      "biaya_tahunan_long": -0.7350004994570472
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 821,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.4593753121606545
     },
     {
       "baris": 5497,
@@ -5762,6 +7168,11 @@
       "awal": 1703692800000,
       "akhir": 1782849600003,
       "symbol": "NFPUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1400,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.11637922943423687
     },
     {
@@ -5783,7 +7194,12 @@
       "awal": 1742803200000,
       "akhir": 1782849600003,
       "symbol": "NILUSDT",
-      "biaya_tahunan_long": 0.02550810640287771
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1042,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.038262159604316566
     },
     {
       "baris": 6169,
@@ -5804,7 +7220,12 @@
       "awal": 1617955200004,
       "akhir": 1770364800001,
       "symbol": "NKNUSDT",
-      "biaya_tahunan_long": 0.05414995396336523
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1305,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.040612465472523916
     },
     {
       "baris": 6318,
@@ -5826,7 +7247,12 @@
       "awal": 1687334400000,
       "akhir": 1782849600003,
       "symbol": "NMRUSDT",
-      "biaya_tahunan_long": -0.24926827492877493
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1778,
+      "periode_hilang": 332,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.2908129874169041
     },
     {
       "baris": 4651,
@@ -5846,6 +7272,11 @@
       "awal": 1715875200000,
       "akhir": 1782849600003,
       "symbol": "NOTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1305,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.029193095527843483
     },
     {
@@ -5867,7 +7298,12 @@
       "awal": 1699948800000,
       "akhir": 1774339200000,
       "symbol": "NTRNUSDT",
-      "biaya_tahunan_long": 0.06801737553232676
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1200,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.10202606329849014
     },
     {
       "baris": 2469,
@@ -5887,6 +7323,11 @@
       "awal": 1747296000003,
       "akhir": 1782849600003,
       "symbol": "NXPCUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 961,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.07184278590522479
     },
     {
@@ -5909,7 +7350,12 @@
       "awal": 1617264000011,
       "akhir": 1782849600003,
       "symbol": "OGNUSDT",
-      "biaya_tahunan_long": -0.044949008323812614
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1697,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.02434737950873183
     },
     {
       "baris": 2486,
@@ -5929,6 +7375,11 @@
       "awal": 1747051200000,
       "akhir": 1782849600003,
       "symbol": "OGUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 969,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -6.190317779565174e-05
     },
     {
@@ -5950,7 +7401,12 @@
       "awal": 1593561600002,
       "akhir": 1750320000003,
       "symbol": "OMGUSDT",
-      "biaya_tahunan_long": 0.16507745982378857
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1667,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.10317341238986785
     },
     {
       "baris": 4623,
@@ -5972,7 +7428,12 @@
       "awal": 1707811200000,
       "akhir": 1771833600000,
       "symbol": "OMUSDT",
-      "biaya_tahunan_long": -0.48903690217141715
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1052,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.5297899773523685
     },
     {
       "baris": 5353,
@@ -5992,6 +7453,11 @@
       "awal": 1705766400000,
       "akhir": 1782849600003,
       "symbol": "ONDOUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1385,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.05998459093965999
     },
     {
@@ -6012,6 +7478,11 @@
       "awal": 1616054400000,
       "akhir": 1782835200005,
       "symbol": "ONEUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1822,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08429765052658843
     },
     {
@@ -6032,6 +7503,11 @@
       "awal": 1701100800000,
       "akhir": 1782849600003,
       "symbol": "ONGUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1416,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.2776048011978158
     },
     {
@@ -6054,7 +7530,12 @@
       "awal": 1581408000000,
       "akhir": 1782849600003,
       "symbol": "ONTUSDT",
-      "biaya_tahunan_long": -0.004596469926931673
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1980,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.002489754543754656
     },
     {
       "baris": 4472,
@@ -6074,6 +7555,11 @@
       "awal": 1654070400011,
       "akhir": 1782835200005,
       "symbol": "OPUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1240,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07072255589221826
     },
     {
@@ -6096,7 +7582,12 @@
       "awal": 1733500800000,
       "akhir": 1782849600003,
       "symbol": "ORCAUSDT",
-      "biaya_tahunan_long": -1.5166182594504256
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 991,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.884693984679415
     },
     {
       "baris": 5797,
@@ -6116,6 +7607,11 @@
       "awal": 1699372800000,
       "akhir": 1782849600003,
       "symbol": "ORDIUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1428,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1261216542176988
     },
     {
@@ -6136,6 +7632,11 @@
       "awal": 1691683200000,
       "akhir": 1776240000000,
       "symbol": "OXTUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 642,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.036172834729315644
     },
     {
@@ -6156,6 +7657,11 @@
       "awal": 1742918400000,
       "akhir": 1782849600003,
       "symbol": "PARTIUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1040,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.28147709080418315
     },
     {
@@ -6177,7 +7683,12 @@
       "awal": 1743062400001,
       "akhir": 1782849600003,
       "symbol": "PAXGUSDT",
-      "biaya_tahunan_long": 0.03164175620702136
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1036,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.047462634310532034
     },
     {
       "baris": 3214,
@@ -6197,6 +7708,11 @@
       "awal": 1690300800000,
       "akhir": 1782835200005,
       "symbol": "PENDLEUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 735,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.0774876307093964
     },
     {
@@ -6218,7 +7734,12 @@
       "awal": 1734451200000,
       "akhir": 1782849600003,
       "symbol": "PENGUUSDT",
-      "biaya_tahunan_long": -0.007720906575423977
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1116,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.011581359863135965
     },
     {
       "baris": 4951,
@@ -6238,6 +7759,11 @@
       "awal": 1640275200000,
       "akhir": 1782835200005,
       "symbol": "PEOPLEUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1455,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08118278467986267
     },
     {
@@ -6259,7 +7785,12 @@
       "awal": 1677859200000,
       "akhir": 1763712000000,
       "symbol": "PERPUSDT",
-      "biaya_tahunan_long": 0.056332397355996225
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1594,
+      "periode_hilang": 668,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.08449859603399433
     },
     {
       "baris": 3284,
@@ -6279,6 +7810,11 @@
       "awal": 1735560000000,
       "akhir": 1782849600003,
       "symbol": "PHAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1106,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.14050999320950058
     },
     {
@@ -6299,6 +7835,11 @@
       "awal": 1676476800005,
       "akhir": 1779177600001,
       "symbol": "PHBUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 849,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1095387102607233
     },
     {
@@ -6320,7 +7861,12 @@
       "awal": 1737720000001,
       "akhir": 1782849600003,
       "symbol": "PIPPINUSDT",
-      "biaya_tahunan_long": -1.114481573840304
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 904,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.6965509836501901
     },
     {
       "baris": 5212,
@@ -6341,7 +7887,12 @@
       "awal": 1708358400000,
       "akhir": 1782849600003,
       "symbol": "PIXELUSDT",
-      "biaya_tahunan_long": -0.049442381212586324
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1363,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.030901488257866455
     },
     {
       "baris": 3425,
@@ -6362,7 +7913,12 @@
       "awal": 1742572800000,
       "akhir": 1782849600003,
       "symbol": "PLUMEUSDT",
-      "biaya_tahunan_long": -0.19990819256058392
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 962,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.12494262035036495
     },
     {
       "baris": 3577,
@@ -6382,6 +7938,11 @@
       "awal": 1731340800000,
       "akhir": 1782849600003,
       "symbol": "PNUTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1150,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.05193224081632653
     },
     {
@@ -6402,6 +7963,11 @@
       "awal": 1726243200001,
       "akhir": 1782849600003,
       "symbol": "POLUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1197,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.014230353701348255
     },
     {
@@ -6424,7 +7990,12 @@
       "awal": 1698163200000,
       "akhir": 1782849600003,
       "symbol": "POLYXUSDT",
-      "biaya_tahunan_long": -0.1741617325716933
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1427,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.18867521028600104
     },
     {
       "baris": 4063,
@@ -6444,6 +8015,11 @@
       "awal": 1724342400008,
       "akhir": 1782849600003,
       "symbol": "POPCATUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1222,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.11699467804577898
     },
     {
@@ -6464,6 +8040,11 @@
       "awal": 1709222400000,
       "akhir": 1782849600003,
       "symbol": "PORTALUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1359,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.006640077430080211
     },
     {
@@ -6485,7 +8066,12 @@
       "awal": 1698336000000,
       "akhir": 1782849600003,
       "symbol": "POWRUSDT",
-      "biaya_tahunan_long": -0.03724126598500343
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1438,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.05586189897750514
     },
     {
       "baris": 2696,
@@ -6506,7 +8092,12 @@
       "awal": 1744358400000,
       "akhir": 1782849600003,
       "symbol": "PROMPTUSDT",
-      "biaya_tahunan_long": -0.08334417364985161
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1022,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.05209010853115725
     },
     {
       "baris": 3187,
@@ -6526,6 +8117,11 @@
       "awal": 1736956800000,
       "akhir": 1782849600003,
       "symbol": "PROMUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1090,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.021767782271728882
     },
     {
@@ -6547,7 +8143,12 @@
       "awal": 1749024000000,
       "akhir": 1775635200000,
       "symbol": "PUFFERUSDT",
-      "biaya_tahunan_long": -0.09653739513250405
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 723,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.14480609269875608
     },
     {
       "baris": 2299,
@@ -6567,6 +8168,11 @@
       "awal": 1749744000001,
       "akhir": 1782849600003,
       "symbol": "PUMPBTCUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 895,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.19033109960852546
     },
     {
@@ -6587,6 +8193,11 @@
       "awal": 1744473600000,
       "akhir": 1782849600003,
       "symbol": "PUMPUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 969,
+      "periode_hilang": 126,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.10762860188976377
     },
     {
@@ -6607,6 +8218,11 @@
       "awal": 1746014400001,
       "akhir": 1782849600003,
       "symbol": "PUNDIXUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 993,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.13984859706802186
     },
     {
@@ -6627,6 +8243,11 @@
       "awal": 1700668800000,
       "akhir": 1782849600003,
       "symbol": "PYTHUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1421,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.0571298319782723
     },
     {
@@ -6647,6 +8268,11 @@
       "awal": 1666252800013,
       "akhir": 1782835200005,
       "symbol": "QNTUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1055,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.029015477130155592
     },
     {
@@ -6667,6 +8293,11 @@
       "awal": 1583020800000,
       "akhir": 1782835200005,
       "symbol": "QTUMUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2171,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.09240326113272804
     },
     {
@@ -6687,6 +8318,11 @@
       "awal": 1723737600000,
       "akhir": 1782849600003,
       "symbol": "RAREUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1230,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.5214134615590742
     },
     {
@@ -6708,7 +8344,12 @@
       "awal": 1733846400000,
       "akhir": 1782849600003,
       "symbol": "RAYSOLUSDT",
-      "biaya_tahunan_long": 0.03218857575757576
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1124,
+      "periode_hilang": 5,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.048282863636363645
     },
     {
       "baris": 3311,
@@ -6729,7 +8370,12 @@
       "awal": 1680624000008,
       "akhir": 1774339200000,
       "symbol": "RDNTUSDT",
-      "biaya_tahunan_long": -0.09398078058995268
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 722,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.05286418908184838
     },
     {
       "baris": 3286,
@@ -6751,7 +8397,12 @@
       "awal": 1741276800000,
       "akhir": 1782849600003,
       "symbol": "REDUSDT",
-      "biaya_tahunan_long": -0.5800636604990871
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 999,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.6284022988740109
     },
     {
       "baris": 5473,
@@ -6772,7 +8423,12 @@
       "awal": 1613980800002,
       "akhir": 1750320000003,
       "symbol": "REEFUSDT",
-      "biaya_tahunan_long": 0.07172565982093915
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1277,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.05379424486570436
     },
     {
       "baris": 4226,
@@ -6792,6 +8448,11 @@
       "awal": 1721995200000,
       "akhir": 1782849600003,
       "symbol": "RENDERUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1244,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.04173862752011359
     },
     {
@@ -6812,6 +8473,11 @@
       "awal": 1602576000000,
       "akhir": 1750320000003,
       "symbol": "RENUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1573,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.13911164687195476
     },
     {
@@ -6833,7 +8499,12 @@
       "awal": 1749556800005,
       "akhir": 1782849600003,
       "symbol": "RESOLVUSDT",
-      "biaya_tahunan_long": -1.231303229213338
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 795,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.7695645182583362
     },
     {
       "baris": 4747,
@@ -6853,6 +8524,11 @@
       "awal": 1714492800000,
       "akhir": 1782849600003,
       "symbol": "REZUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1315,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.38842824046766383
     },
     {
@@ -6874,7 +8550,12 @@
       "awal": 1697875200000,
       "akhir": 1782849600003,
       "symbol": "RIFUSDT",
-      "biaya_tahunan_long": 0.03033712718644068
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1444,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.045505690779661025
     },
     {
       "baris": 6482,
@@ -6894,6 +8575,11 @@
       "awal": 1596182400001,
       "akhir": 1782835200005,
       "symbol": "RLCUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2071,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07472016808083924
     },
     {
@@ -6914,6 +8600,11 @@
       "awal": 1675411200000,
       "akhir": 1723708800000,
       "symbol": "RNDRUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 305,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.11850484800357569
     },
     {
@@ -6935,7 +8626,12 @@
       "awal": 1707148800000,
       "akhir": 1782849600003,
       "symbol": "RONINUSDT",
-      "biaya_tahunan_long": -0.1277597657469077
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1377,
+      "periode_hilang": 3,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.19163964862036154
     },
     {
       "baris": 4931,
@@ -6955,6 +8651,11 @@
       "awal": 1640851200001,
       "akhir": 1782835200005,
       "symbol": "ROSEUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1446,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.050010279953356315
     },
     {
@@ -6976,7 +8677,12 @@
       "awal": 1725897600001,
       "akhir": 1782849600003,
       "symbol": "RPLUSDT",
-      "biaya_tahunan_long": -0.1157882466239527
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1189,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.07236765413997044
     },
     {
       "baris": 6242,
@@ -6996,6 +8702,11 @@
       "awal": 1603094400000,
       "akhir": 1782835200005,
       "symbol": "RSRUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1991,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07620280950817045
     },
     {
@@ -7016,6 +8727,11 @@
       "awal": 1599206400000,
       "akhir": 1782835200005,
       "symbol": "RUNEUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2044,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07557736190214835
     },
     {
@@ -7038,7 +8754,12 @@
       "awal": 1614067200006,
       "akhir": 1782849600003,
       "symbol": "RVNUSDT",
-      "biaya_tahunan_long": 0.12030502508648307
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1409,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.06516522192184498
     },
     {
       "baris": 3679,
@@ -7058,6 +8779,11 @@
       "awal": 1729872000000,
       "akhir": 1782849600003,
       "symbol": "SAFEUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1163,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.14511757901603697
     },
     {
@@ -7079,7 +8805,12 @@
       "awal": 1712620800000,
       "akhir": 1782849600003,
       "symbol": "SAGAUSDT",
-      "biaya_tahunan_long": 0.03583770315832651
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1335,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.05375655473748977
     },
     {
       "baris": 3051,
@@ -7100,7 +8831,12 @@
       "awal": 1750939200005,
       "akhir": 1782849600003,
       "symbol": "SAHARAUSDT",
-      "biaya_tahunan_long": -1.3070420161258602
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 748,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.8169012600786627
     },
     {
       "baris": 5948,
@@ -7120,6 +8856,11 @@
       "awal": 1611561600012,
       "akhir": 1782835200005,
       "symbol": "SANDUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1883,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.10734632940484197
     },
     {
@@ -7140,6 +8881,11 @@
       "awal": 1730131200000,
       "akhir": 1782849600003,
       "symbol": "SANTOSUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1160,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08738870478011473
     },
     {
@@ -7160,6 +8906,11 @@
       "awal": 1732190400000,
       "akhir": 1782849600003,
       "symbol": "SCRTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1140,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.028485164411597496
     },
     {
@@ -7180,6 +8931,11 @@
       "awal": 1729598400000,
       "akhir": 1782849600003,
       "symbol": "SCRUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1166,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08106284407787995
     },
     {
@@ -7200,6 +8956,11 @@
       "awal": 1692201600000,
       "akhir": 1782835200005,
       "symbol": "SEIUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 723,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.050954071886912325
     },
     {
@@ -7220,6 +8981,11 @@
       "awal": 1614153600016,
       "akhir": 1782835200005,
       "symbol": "SFPUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1847,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.12610211036189828
     },
     {
@@ -7240,6 +9006,11 @@
       "awal": 1739822400001,
       "akhir": 1782849600003,
       "symbol": "SHELLUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1063,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.043555838453815256
     },
     {
@@ -7261,7 +9032,12 @@
       "awal": 1745841600000,
       "akhir": 1782849600003,
       "symbol": "SIGNUSDT",
-      "biaya_tahunan_long": -0.4484553508758421
+      "langkah_teramati_ms": 3600000,
+      "jam_teramati": 1.0,
+      "celah_teramati": 2832,
+      "periode_hilang": 6125,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -1.1211383771896053
     },
     {
       "baris": 3267,
@@ -7283,7 +9059,12 @@
       "awal": 1742486400000,
       "akhir": 1782849600003,
       "symbol": "SIRENUSDT",
-      "biaya_tahunan_long": -0.1997700890866709
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 990,
+      "periode_hilang": 6,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.21641759651056014
     },
     {
       "baris": 6932,
@@ -7305,7 +9086,12 @@
       "awal": 1607414400003,
       "akhir": 1782849600003,
       "symbol": "SKLUSDT",
-      "biaya_tahunan_long": 0.05464924483554529
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1701,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.029601674285920365
     },
     {
       "baris": 2480,
@@ -7325,6 +9111,11 @@
       "awal": 1747137600000,
       "akhir": 1782849600003,
       "symbol": "SKYAIUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 967,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.40917525532258064
     },
     {
@@ -7345,6 +9136,11 @@
       "awal": 1597392000000,
       "akhir": 1782835200005,
       "symbol": "SNXUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2060,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07168694140527951
     },
     {
@@ -7367,7 +9163,12 @@
       "awal": 1600012800004,
       "akhir": 1782835200005,
       "symbol": "SOLUSDT",
-      "biaya_tahunan_long": 0.0013205016233766224
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2019,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.0007702926136363631
     },
     {
       "baris": 3175,
@@ -7387,6 +9188,11 @@
       "awal": 1737129600008,
       "akhir": 1782849600003,
       "symbol": "SOLVUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1088,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.04893422910236222
     },
     {
@@ -7407,6 +9213,11 @@
       "awal": 1736323200000,
       "akhir": 1782849600003,
       "symbol": "SONICUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1092,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.5242652454967502
     },
     {
@@ -7429,7 +9240,12 @@
       "awal": 1747987200000,
       "akhir": 1782849600003,
       "symbol": "SOONUSDT",
-      "biaya_tahunan_long": -0.7110874915141285
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 799,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.7703447824736392
     },
     {
       "baris": 3553,
@@ -7450,7 +9266,12 @@
       "awal": 1748448000002,
       "akhir": 1782849600003,
       "symbol": "SOPHUSDT",
-      "biaya_tahunan_long": -0.6567412976977203
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 773,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.4104633110610752
     },
     {
       "baris": 4180,
@@ -7470,6 +9291,11 @@
       "awal": 1662480000028,
       "akhir": 1782835200005,
       "symbol": "SPELLUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1113,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.12768047885167463
     },
     {
@@ -7490,6 +9316,11 @@
       "awal": 1750161600001,
       "akhir": 1782849600003,
       "symbol": "SPKUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 886,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.3725181220704847
     },
     {
@@ -7510,6 +9341,11 @@
       "awal": 1733846400000,
       "akhir": 1782849600003,
       "symbol": "SPXUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1123,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.010724558066412001
     },
     {
@@ -7531,7 +9367,12 @@
       "awal": 1749643200007,
       "akhir": 1782849600003,
       "symbol": "SQDUSDT",
-      "biaya_tahunan_long": -0.7928878163770251
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 846,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.49555488523564073
     },
     {
       "baris": 3671,
@@ -7551,6 +9392,11 @@
       "awal": 1677139200005,
       "akhir": 1782835200005,
       "symbol": "SSVUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 883,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.10425026097793517
     },
     {
@@ -7572,7 +9418,12 @@
       "awal": 1699459200000,
       "akhir": 1782849600003,
       "symbol": "STEEMUSDT",
-      "biaya_tahunan_long": -0.7645453303340608
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1408,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.47784083145878803
     },
     {
       "baris": 4351,
@@ -7594,7 +9445,12 @@
       "awal": 1661443200004,
       "akhir": 1782849600003,
       "symbol": "STGUSDT",
-      "biaya_tahunan_long": -0.22406482344995846
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1113,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.12136844603539415
     },
     {
       "baris": 6519,
@@ -7616,7 +9472,12 @@
       "awal": 1616400000001,
       "akhir": 1750320000003,
       "symbol": "STMXUSDT",
-      "biaya_tahunan_long": -0.05022708489908618
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 3359,
+      "periode_hilang": 2795,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.05859826571560054
     },
     {
       "baris": 7029,
@@ -7638,7 +9499,12 @@
       "awal": 1600185600003,
       "akhir": 1782849600003,
       "symbol": "STORJUSDT",
-      "biaya_tahunan_long": 0.05018310044321875
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1829,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.027182512740076818
     },
     {
       "baris": 2787,
@@ -7659,7 +9525,12 @@
       "awal": 1744473600000,
       "akhir": 1782849600003,
       "symbol": "STOUSDT",
-      "biaya_tahunan_long": -0.25428589606027985
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1003,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.15892868503767488
     },
     {
       "baris": 5167,
@@ -7680,7 +9551,12 @@
       "awal": 1708444800000,
       "akhir": 1782849600003,
       "symbol": "STRKUSDT",
-      "biaya_tahunan_long": 0.02333813532030192
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1368,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.03500720298045288
     },
     {
       "baris": 3677,
@@ -7700,6 +9576,11 @@
       "awal": 1676966400004,
       "akhir": 1782835200005,
       "symbol": "STXUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 886,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.07385141883328801
     },
     {
@@ -7720,6 +9601,11 @@
       "awal": 1683129600011,
       "akhir": 1782835200005,
       "symbol": "SUIUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 788,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.055047306887092126
     },
     {
@@ -7740,6 +9626,11 @@
       "awal": 1724342400008,
       "akhir": 1782849600003,
       "symbol": "SUNUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1222,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.009862486857002209
     },
     {
@@ -7761,7 +9652,12 @@
       "awal": 1701014400000,
       "akhir": 1782849600003,
       "symbol": "SUPERUSDT",
-      "biaya_tahunan_long": -0.4107224123498359
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1243,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.25670150771864747
     },
     {
       "baris": 3182,
@@ -7781,6 +9677,11 @@
       "awal": 1737028800000,
       "akhir": 1782849600003,
       "symbol": "SUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1090,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.021240866436203654
     },
     {
@@ -7801,6 +9702,11 @@
       "awal": 1599206400000,
       "akhir": 1782835200005,
       "symbol": "SUSHIUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2044,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.12929719647953583
     },
     {
@@ -7821,6 +9727,11 @@
       "awal": 1736265600008,
       "akhir": 1782849600003,
       "symbol": "SWARMSUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1094,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.2829358754559505
     },
     {
@@ -7841,6 +9752,11 @@
       "awal": 1595318400001,
       "akhir": 1764921600000,
       "symbol": "SXPUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1850,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.12126183746179968
     },
     {
@@ -7862,7 +9778,12 @@
       "awal": 1746172800000,
       "akhir": 1782849600003,
       "symbol": "SXTUSDT",
-      "biaya_tahunan_long": -0.07984851778563015
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 990,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.11977277667844523
     },
     {
       "baris": 4099,
@@ -7882,6 +9803,11 @@
       "awal": 1723824000000,
       "akhir": 1782849600003,
       "symbol": "SYNUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1229,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.11226739812149304
     },
     {
@@ -7903,7 +9829,12 @@
       "awal": 1746547200000,
       "akhir": 1782849600003,
       "symbol": "SYRUPUSDT",
-      "biaya_tahunan_long": -0.023013431123461686
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 981,
+      "periode_hilang": 3,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.03452014668519253
     },
     {
       "baris": 3828,
@@ -7924,7 +9855,12 @@
       "awal": 1724054400000,
       "akhir": 1779177600001,
       "symbol": "SYSUSDT",
-      "biaya_tahunan_long": 0.014172591483803572
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1134,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.021258887225705358
     },
     {
       "baris": 2102,
@@ -7944,6 +9880,11 @@
       "awal": 1752580800000,
       "akhir": 1782849600003,
       "symbol": "TACUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 814,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.29336623215984775
     },
     {
@@ -7964,6 +9905,11 @@
       "awal": 1712851200000,
       "akhir": 1782849600003,
       "symbol": "TAOUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1330,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.030811831289858062
     },
     {
@@ -7984,6 +9930,11 @@
       "awal": 1753084800000,
       "akhir": 1782849600003,
       "symbol": "TAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 804,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.2929831690856314
     },
     {
@@ -8004,6 +9955,11 @@
       "awal": 1590508800000,
       "akhir": 1782835200005,
       "symbol": "THETAUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2124,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.08195873345560716
     },
     {
@@ -8024,6 +9980,11 @@
       "awal": 1732723200001,
       "akhir": 1782849600003,
       "symbol": "THEUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1135,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.0018985116920425395
     },
     {
@@ -8044,6 +10005,11 @@
       "awal": 1698782400000,
       "akhir": 1782849600003,
       "symbol": "TIAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1435,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.027910030729701954
     },
     {
@@ -8066,7 +10032,12 @@
       "awal": 1677628800016,
       "akhir": 1782849600003,
       "symbol": "TLMUSDT",
-      "biaya_tahunan_long": 0.07234759663116176
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 751,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.039188281508545954
     },
     {
       "baris": 5667,
@@ -8087,7 +10058,12 @@
       "awal": 1712606400001,
       "akhir": 1782849600003,
       "symbol": "TNSRUSDT",
-      "biaya_tahunan_long": -0.4663939068713605
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1231,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.2914961917946003
     },
     {
       "baris": 4577,
@@ -8107,6 +10083,11 @@
       "awal": 1699027200000,
       "akhir": 1764921600000,
       "symbol": "TOKENUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 946,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.17905293585317894
     },
     {
@@ -8127,6 +10108,11 @@
       "awal": 1602489600000,
       "akhir": 1723708800000,
       "symbol": "TOMOUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1390,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.16725657869358668
     },
     {
@@ -8148,7 +10134,12 @@
       "awal": 1709280000000,
       "akhir": 1782201600005,
       "symbol": "TONUSDT",
-      "biaya_tahunan_long": 0.037962441982622434
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1341,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.056943662973933655
     },
     {
       "baris": 9357,
@@ -8169,7 +10160,12 @@
       "awal": 1599120000004,
       "akhir": 1782849600003,
       "symbol": "TRBUSDT",
-      "biaya_tahunan_long": -0.11368554709842901
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 4849,
+      "periode_hilang": 3403,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.1705283206476435
     },
     {
       "baris": 3169,
@@ -8189,6 +10185,11 @@
       "awal": 1737216000000,
       "akhir": 1782849600003,
       "symbol": "TRUMPUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1086,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.17396951577784792
     },
     {
@@ -8209,6 +10210,11 @@
       "awal": 1678118400000,
       "akhir": 1776758400004,
       "symbol": "TRUUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 790,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.029807293520140117
     },
     {
@@ -8229,6 +10235,11 @@
       "awal": 1579075200000,
       "akhir": 1782835200005,
       "symbol": "TRXUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2192,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.03618169998586772
     },
     {
@@ -8249,6 +10260,11 @@
       "awal": 1739116800000,
       "akhir": 1782849600003,
       "symbol": "TSTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1073,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.09108347731313798
     },
     {
@@ -8269,6 +10285,11 @@
       "awal": 1717084800000,
       "akhir": 1782849600003,
       "symbol": "TURBOUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1295,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.09888658962119555
     },
     {
@@ -8291,7 +10312,12 @@
       "awal": 1675209600013,
       "akhir": 1782849600003,
       "symbol": "TUSDT",
-      "biaya_tahunan_long": -0.18374202811711257
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 421,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.10718284973498234
     },
     {
       "baris": 2804,
@@ -8311,6 +10337,11 @@
       "awal": 1742472000000,
       "akhir": 1782849600003,
       "symbol": "TUTUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1045,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.05494756080599148
     },
     {
@@ -8332,7 +10363,12 @@
       "awal": 1698998400000,
       "akhir": 1782849600003,
       "symbol": "TWTUSDT",
-      "biaya_tahunan_long": 0.08216000037787702
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1434,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.12324000056681553
     },
     {
       "baris": 6124,
@@ -8353,7 +10389,12 @@
       "awal": 1683619200000,
       "akhir": 1782849600003,
       "symbol": "UMAUSDT",
-      "biaya_tahunan_long": -0.0705442628347485
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 2153,
+      "periode_hilang": 768,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.10581639425212276
     },
     {
       "baris": 6338,
@@ -8373,6 +10414,11 @@
       "awal": 1600329600012,
       "akhir": 1782835200005,
       "symbol": "UNIUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2026,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.14358430756547808
     },
     {
@@ -8393,6 +10439,11 @@
       "awal": 1678665600010,
       "akhir": 1782835200005,
       "symbol": "USDCUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 855,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.0009050184079602004
     },
     {
@@ -8414,7 +10465,12 @@
       "awal": 1701072000001,
       "akhir": 1782849600003,
       "symbol": "USTCUSDT",
-      "biaya_tahunan_long": 0.057504383339203956
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1417,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.08625657500880593
     },
     {
       "baris": 3355,
@@ -8434,6 +10490,11 @@
       "awal": 1734537600000,
       "akhir": 1782849600003,
       "symbol": "USUALUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1116,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.2869286693293592
     },
     {
@@ -8454,6 +10515,11 @@
       "awal": 1734364800000,
       "akhir": 1782849600003,
       "symbol": "VANAUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1116,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.4498426185031186
     },
     {
@@ -8475,7 +10541,12 @@
       "awal": 1710345600000,
       "akhir": 1782849600003,
       "symbol": "VANRYUSDT",
-      "biaya_tahunan_long": 0.027494960675273086
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1352,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.04124244101290963
     },
     {
       "baris": 3385,
@@ -8496,7 +10567,12 @@
       "awal": 1734105600001,
       "akhir": 1782849600003,
       "symbol": "VELODROMEUSDT",
-      "biaya_tahunan_long": 0.026791396809453485
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1118,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.04018709521418023
     },
     {
       "baris": 2102,
@@ -8516,6 +10592,11 @@
       "awal": 1752580800000,
       "akhir": 1782849600003,
       "symbol": "VELVETUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 814,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.29725608682207416
     },
     {
@@ -8536,6 +10617,11 @@
       "awal": 1581667200000,
       "akhir": 1782835200005,
       "symbol": "VETUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2179,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.15828886921700547
     },
     {
@@ -8557,7 +10643,12 @@
       "awal": 1741809600000,
       "akhir": 1782849600003,
       "symbol": "VICUSDT",
-      "biaya_tahunan_long": -0.5476084014145383
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1019,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.3422552508840864
     },
     {
       "baris": 2754,
@@ -8577,6 +10668,11 @@
       "awal": 1737720000001,
       "akhir": 1777363200000,
       "symbol": "VINEUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 936,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.02010227559912851
     },
     {
@@ -8597,6 +10693,11 @@
       "awal": 1733846400000,
       "akhir": 1782849600003,
       "symbol": "VIRTUALUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1123,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.043142845548045844
     },
     {
@@ -8617,6 +10718,11 @@
       "awal": 1737547200000,
       "akhir": 1782849600003,
       "symbol": "VTHOUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1084,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.33183794008264467
     },
     {
@@ -8638,7 +10744,12 @@
       "awal": 1738137600000,
       "akhir": 1782849600003,
       "symbol": "VVVUSDT",
-      "biaya_tahunan_long": -0.23091299813204505
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1079,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.3463694971980676
     },
     {
       "baris": 2761,
@@ -8658,6 +10769,11 @@
       "awal": 1743091200002,
       "akhir": 1782849600003,
       "symbol": "WALUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1035,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.4942200523723288
     },
     {
@@ -8680,7 +10796,12 @@
       "awal": 1697616000000,
       "akhir": 1782849600003,
       "symbol": "WAXPUSDT",
-      "biaya_tahunan_long": -0.034267268053691284
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1439,
+      "periode_hilang": 2,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.03712287372483222
     },
     {
       "baris": 3515,
@@ -8701,7 +10822,12 @@
       "awal": 1744718400000,
       "akhir": 1782849600003,
       "symbol": "WCTUSDT",
-      "biaya_tahunan_long": -0.4618199128762447
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 904,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.2886374455476529
     },
     {
       "baris": 5365,
@@ -8721,6 +10847,11 @@
       "awal": 1705593600000,
       "akhir": 1782849600003,
       "symbol": "WIFUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1387,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1131062340167754
     },
     {
@@ -8741,6 +10872,11 @@
       "awal": 1690214400000,
       "akhir": 1782835200005,
       "symbol": "WLDUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 735,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.04268272558284117
     },
     {
@@ -8761,6 +10897,11 @@
       "awal": 1649347200000,
       "akhir": 1782835200005,
       "symbol": "WOOUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1313,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.06098656352459018
     },
     {
@@ -8781,6 +10922,11 @@
       "awal": 1712160000000,
       "akhir": 1782849600003,
       "symbol": "WUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1338,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.043470844204522324
     },
     {
@@ -8801,6 +10947,11 @@
       "awal": 1704816000000,
       "akhir": 1782849600003,
       "symbol": "XAIUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1393,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.04437805654179739
     },
     {
@@ -8821,6 +10972,11 @@
       "awal": 1579449600000,
       "akhir": 1782835200005,
       "symbol": "XLMUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2191,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.14296684948322244
     },
     {
@@ -8841,6 +10997,11 @@
       "awal": 1580515200000,
       "akhir": 1782835200005,
       "symbol": "XMRUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2185,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.12699928134073443
     },
     {
@@ -8861,6 +11022,11 @@
       "awal": 1578297600000,
       "akhir": 1782835200005,
       "symbol": "XRPUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2196,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.15001252418696326
     },
     {
@@ -8883,7 +11049,12 @@
       "awal": 1580803200001,
       "akhir": 1782849600003,
       "symbol": "XTZUSDT",
-      "biaya_tahunan_long": 0.2015848596560281
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1799,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.10919179898034855
     },
     {
       "baris": 3291,
@@ -8904,7 +11075,12 @@
       "awal": 1688486400000,
       "akhir": 1782835200005,
       "symbol": "XVGUSDT",
-      "biaya_tahunan_long": -0.06846077970221816
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 738,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.051345584776663615
     },
     {
       "baris": 3527,
@@ -8924,6 +11100,11 @@
       "awal": 1681286400008,
       "akhir": 1782835200005,
       "symbol": "XVSUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 816,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.060622068670258
     },
     {
@@ -8944,6 +11125,11 @@
       "awal": 1599120000004,
       "akhir": 1649923200000,
       "symbol": "YFIIUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 743,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.18118681478753537
     },
     {
@@ -8964,6 +11150,11 @@
       "awal": 1598860800001,
       "akhir": 1782835200005,
       "symbol": "YFIUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2048,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.12565630252778212
     },
     {
@@ -8986,7 +11177,12 @@
       "awal": 1691164800000,
       "akhir": 1782849600003,
       "symbol": "YGGUSDT",
-      "biaya_tahunan_long": 0.0394040062560778
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1650,
+      "periode_hilang": 204,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.04597134063209077
     },
     {
       "baris": 7016,
@@ -9006,6 +11202,11 @@
       "awal": 1580803200001,
       "akhir": 1782835200005,
       "symbol": "ZECUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 2184,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.11407506014110605
     },
     {
@@ -9026,6 +11227,11 @@
       "awal": 1606204800000,
       "akhir": 1782835200005,
       "symbol": "ZENUSDT",
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1953,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.1696010029426149
     },
     {
@@ -9046,6 +11252,11 @@
       "awal": 1735833600000,
       "akhir": 1782849600003,
       "symbol": "ZEREBROUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1101,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": 0.23292467062787134
     },
     {
@@ -9067,7 +11278,12 @@
       "awal": 1706860800000,
       "akhir": 1782849600003,
       "symbol": "ZETAUSDT",
-      "biaya_tahunan_long": -0.034168711730149695
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1378,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.05125306759522455
     },
     {
       "baris": 7226,
@@ -9089,7 +11305,12 @@
       "awal": 1592380800007,
       "akhir": 1782849600003,
       "symbol": "ZILUSDT",
-      "biaya_tahunan_long": 0.12859882079243756
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1944,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.06965769459590368
     },
     {
       "baris": 2124,
@@ -9110,7 +11331,12 @@
       "awal": 1747137600000,
       "akhir": 1777449600011,
       "symbol": "ZKJUSDT",
-      "biaya_tahunan_long": -0.13126376632768352
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 821,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.08203985395480219
     },
     {
       "baris": 4505,
@@ -9131,7 +11357,12 @@
       "awal": 1718625600000,
       "akhir": 1782849600003,
       "symbol": "ZKUSDT",
-      "biaya_tahunan_long": -0.07003494190455048
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1274,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": -0.04377183869034405
     },
     {
       "baris": 4441,
@@ -9151,6 +11382,11 @@
       "awal": 1718899200000,
       "akhir": 1782849600003,
       "symbol": "ZROUSDT",
+      "langkah_teramati_ms": 14400000,
+      "jam_teramati": 4.0,
+      "celah_teramati": 1276,
+      "periode_hilang": 1,
+      "kolom_cocok_teramati": true,
       "biaya_tahunan_long": -0.09845884944832245
     },
     {
@@ -9173,7 +11409,12 @@
       "awal": 1592985600000,
       "akhir": 1782849600003,
       "symbol": "ZRXUSDT",
-      "biaya_tahunan_long": 0.12678831256664128
+      "langkah_teramati_ms": 28800000,
+      "jam_teramati": 8.0,
+      "celah_teramati": 1899,
+      "periode_hilang": 0,
+      "kolom_cocok_teramati": true,
+      "biaya_tahunan_long": 0.06867700264026402
     }
   ]
 }
