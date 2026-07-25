@@ -18,7 +18,14 @@ from lux.validate import (
 )
 
 STEP = 3_600_000
-AWAL = 1_600_000_000_000 - (1_600_000_000_000 % STEP)
+HARI = 86_400_000
+
+# Titik awal WAJIB selaras batas hari UTC, bukan sekadar selaras interval.
+# Versi pertama pengujian ini hanya menyelaraskan ke STEP, sehingga 24 bar
+# terbelah menjadi dua hari parsial dan mediannya keluar 12.000, bukan 24.000.
+# Yang salah bingkai ujinya; fungsi produksinya memang mengelompokkan menurut
+# hari UTC yang sebenarnya, dan itulah perilaku yang diinginkan.
+AWAL = 1_600_000_000_000 - (1_600_000_000_000 % HARI)
 
 
 def bingkai(n: int = 24, **ubah) -> pd.DataFrame:
@@ -36,6 +43,12 @@ def bingkai(n: int = 24, **ubah) -> pd.DataFrame:
     for kolom, nilai in ubah.items():
         df[kolom] = nilai
     return df
+
+
+def test_titik_awal_uji_selaras_batas_hari():
+    """Menjaga agar bingkai uji tidak diam-diam kembali tidak selaras hari."""
+    assert AWAL % HARI == 0
+    assert HARI % STEP == 0
 
 
 def test_seri_bersih_lulus():
@@ -154,6 +167,25 @@ def test_median_tahan_terhadap_satu_hari_ekstrem():
     df.loc[df.index[:24], "quote_volume"] = 10_000_000.0
     median = median_quote_volume_harian(df, "1h")
     assert median == pytest.approx(24_000.0)
+
+
+def test_rata_rata_akan_tertipu_padahal_median_tidak():
+    """Menunjukkan alasan memilih median, bukan sekadar menyatakannya."""
+    df = bingkai(72)
+    df.loc[df.index[:24], "quote_volume"] = 10_000_000.0
+    per_hari = (df["open_time"] // 86_400_000).astype("int64")
+    harian = df.groupby(per_hari)["quote_volume"].sum()
+    assert harian.mean() > 1_000_000  # rata-rata lolos ambang likuiditas
+    assert harian.median() == pytest.approx(24_000.0)  # median menolaknya
+
+
+def test_hari_parsial_tidak_dianggap_hari_penuh():
+    """Simbol yang baru listing tengah hari tidak boleh dinilai dari hari itu."""
+    df = bingkai(30)  # satu hari penuh + 6 jam
+    per_hari = (df["open_time"] // 86_400_000).astype("int64")
+    assert per_hari.nunique() == 2
+    median = median_quote_volume_harian(df, "1h")
+    assert median == pytest.approx(15_000.0)  # rata dua nilai: 24.000 dan 6.000
 
 
 def test_simbol_wajar_dinyatakan_layak():

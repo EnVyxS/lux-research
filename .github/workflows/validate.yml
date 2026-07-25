@@ -5,6 +5,11 @@ name: validate
 #
 # Ambang ditulis sebelum data dilihat. Jumlah simbol yang lolos dicatat apa pun
 # hasilnya, termasuk bila jauh lebih kecil dari 790.
+#
+# Percobaan 2. Percobaan 1 mati di gerbang pengujian dalam 23 detik karena
+# bingkai uji sintetis tidak selaras batas hari UTC. Fungsi produksinya benar;
+# yang keliru asumsi pengujiannya. Tanpa gerbang itu, kegagalan baru muncul
+# setelah 550 MB terunduh.
 
 on:
   workflow_dispatch:
