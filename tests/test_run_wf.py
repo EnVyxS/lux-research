@@ -194,4 +194,3 @@ def test_hasil_pool_menerima_ekuitas_satu_titik():
     """Bentuk yang dipakai orkestrator untuk gerbang lintas simbol."""
     h = Hasil(symbol="POOL", perdagangan=[trade("A", 0, 1)], ekuitas=np.array([10000.0]))
     assert h.jumlah_trade == 1
-}
