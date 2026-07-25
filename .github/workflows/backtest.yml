@@ -9,6 +9,11 @@ name: backtest
 # dan menolak isi yang berbeda; memasukkan sha commit ke dalamnya akan membuat
 # setiap run berikutnya mati karena isinya tidak lagi sama dengan yang
 # terdaftar. Sha run tetap terekam di riwayat Actions.
+#
+# Log dikomit balik apa pun hasilnya. Tanpa itu, kegagalan hanya terbaca lewat
+# antarmuka Actions, dan pihak yang menjalankan riset ini tidak selalu punya
+# akses ke sana. Kegagalan yang tidak terbaca akan ditebak, dan tebakan tentang
+# penyebab kegagalan hampir selalu meleset.
 
 on:
   workflow_dispatch:
@@ -42,38 +47,67 @@ jobs:
       - name: Pasang dependensi
         run: pip install -r requirements.txt pytest
 
-      # Gerbang pra-terbang. Sudah tujuh kali mencegah unduhan ratusan MB yang
+      # Gerbang pra-terbang. Sudah tujuh kali mencegah pekerjaan panjang yang
       # sia-sia karena cacat yang tertangkap dalam hitungan detik.
       - name: Uji dulu, baru unduh
         env:
           PYTHONPATH: .
         run: python -m pytest tests -q
 
+      # Impor diuji sebelum aset diunduh. Dependensi yang hilang harus ketahuan
+      # dalam dua detik, bukan sesudah ratusan megabita berpindah.
+      - name: Periksa impor modul jalan
+        env:
+          PYTHONPATH: .
+        run: |
+          python -c "import yaml, pandas, pyarrow; print('impor pihak ketiga siap')"
+          python -c "import lux.backtest.run_wf as m; print('run_wf siap', m.POLA_DILARANG)"
+
       - name: Unduh aset
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release download "$TAG" -p 'ohlcv_1h_*.parquet' -D aset
+          gh release download "$TAG" -p 'ohlcv_1h_shard*.parquet' -D aset
           gh release download "$TAG" -p 'funding_shard*.parquet' -D aset
-          ls -la aset | head -30
+          ls -la aset
 
       - name: Jalankan walk-forward
+        id: jalan
         env:
           PYTHONPATH: .
         run: |
+          set -o pipefail
+          mkdir -p logs
           python -m lux.backtest.run_wf \
             --dir aset \
             --interval 1h \
             --universe reports/universe_layak.json \
             --limit "${{ github.event.inputs.limit || 40 }}" \
             --ulangan "${{ github.event.inputs.ulangan || 100 }}" \
-            --out reports
+            --out reports 2>&1 | tee logs/backtest.log
+
+      - name: Salin log ke laporan
+        if: always()
+        run: |
+          mkdir -p reports logs
+          {
+            echo "# Log run backtest"
+            echo
+            echo "Commit: \`${GITHUB_SHA}\`"
+            echo "Status langkah jalan: \`${{ steps.jalan.outcome }}\`"
+            echo
+            echo '```'
+            tail -c 60000 logs/backtest.log 2>/dev/null || echo "(tidak ada log; kegagalan terjadi sebelum langkah jalan)"
+            echo '```'
+          } > reports/backtest_log.md
 
       - name: Commit laporan kembali ke repo
+        if: always()
         run: |
           git config user.name "lux-backtest"
           git config user.email "actions@github.com"
-          git add reports/ hipotesis/
+          git add reports || true
+          git add hipotesis || true
           git diff --cached --quiet && exit 0
           git commit -m "chore(backtest): laporan run ${GITHUB_RUN_ID} [skip ci]"
           git pull --rebase --autostash origin main

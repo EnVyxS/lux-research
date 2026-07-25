@@ -1,2 +1,6 @@
 pandas==2.2.3
 pyarrow==17.0.0
+# pyyaml dipasang di sini, bukan di masing-masing workflow. Ia sempat hanya ada
+# di sebagian workflow, sehingga lux.backtest.run_wf mati saat membaca config
+# justru setelah aset selesai diunduh.
+pyyaml==6.0.2
