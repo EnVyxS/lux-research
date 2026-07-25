@@ -1,18 +1,9 @@
 # Laporan pengujian
 
-Commit: `7a0c416d5de6ae47473bcb83e3416081c04de7f1`
-Kode keluar: `1`
+Commit: `22c2236c45ba1a9bc95e0e77ee3dd816e6161ce9`
+Kode keluar: `0`
 
 ```
-...........F..                                                           [100%]
-=================================== FAILURES ===================================
-______________ test_stop_sangat_sempit_membuat_strategi_mustahil _______________
-tests/test_costs.py:85: in test_stop_sangat_sempit_membuat_strategi_mustahil
-    assert winrate_impas(2.0, biaya) > 1.0
-E   assert 1.0 > 1.0
-E    +  where 1.0 = winrate_impas(2.0, 2.0)
-=========================== short test summary info ============================
-FAILED tests/test_costs.py::test_stop_sangat_sempit_membuat_strategi_mustahil - assert 1.0 > 1.0
- +  where 1.0 = winrate_impas(2.0, 2.0)
-1 failed, 13 passed in 0.04s
+................                                                         [100%]
+16 passed in 0.03s
 ```
