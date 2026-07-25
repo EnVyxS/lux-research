@@ -1,5 +1,15 @@
 name: backtest
 
+# Catatan urutan dorongan: workflow yang memicu dirinya sendiri harus didorong
+# SESUDAH seluruh modul yang dipanggilnya ada di repo. Berkas ini pernah
+# didorong lebih dulu, sehingga run pertamanya berjalan ketika
+# lux/backtest/run_wf.py belum ada.
+#
+# --komit sengaja TIDAK diteruskan. Pendaftaran hipotesis bersifat sekali-tulis
+# dan menolak isi yang berbeda; memasukkan sha commit ke dalamnya akan membuat
+# setiap run berikutnya mati karena isinya tidak lagi sama dengan yang
+# terdaftar. Sha run tetap terekam di riwayat Actions.
+
 on:
   workflow_dispatch:
     inputs:
@@ -32,7 +42,7 @@ jobs:
       - name: Pasang dependensi
         run: pip install -r requirements.txt pytest
 
-      # Gerbang pra-terbang. Sudah enam kali mencegah unduhan ratusan MB yang
+      # Gerbang pra-terbang. Sudah tujuh kali mencegah unduhan ratusan MB yang
       # sia-sia karena cacat yang tertangkap dalam hitungan detik.
       - name: Uji dulu, baru unduh
         env:
