@@ -1,0 +1,83 @@
+{
+  "ok": true,
+  "total_symbols_pernah_ada": 937,
+  "contoh_20": [
+    "0GUSDT",
+    "1000000BOBUSDT",
+    "1000000MOGUSDT",
+    "1000BONKUSDC",
+    "1000BONKUSDT",
+    "1000BTTCUSDT",
+    "1000CATUSDT",
+    "1000CHEEMSUSDT",
+    "1000FLOKIUSDT",
+    "1000LUNCBUSD",
+    "1000LUNCUSDT",
+    "1000PEPEUSDC",
+    "1000PEPEUSDT",
+    "1000RATSUSDT",
+    "1000SATSUSDT",
+    "1000SHIBBUSD",
+    "1000SHIBUSDC",
+    "1000SHIBUSDT",
+    "1000WHYUSDT",
+    "1000XECUSDT"
+  ],
+  "probe_delisted": {
+    "SRMUSDT": {
+      "ada": true,
+      "jumlah_bulan": 45,
+      "pertama": "SRMUSDT-1h-2020-09.zip",
+      "terakhir": "SRMUSDT-1h-2024-05.zip"
+    },
+    "FTTUSDT": {
+      "ada": true,
+      "jumlah_bulan": 51,
+      "pertama": "FTTUSDT-1h-2022-04.zip",
+      "terakhir": "FTTUSDT-1h-2026-06.zip"
+    },
+    "COCOSUSDT": {
+      "ada": true,
+      "jumlah_bulan": 16,
+      "pertama": "COCOSUSDT-1h-2023-02.zip",
+      "terakhir": "COCOSUSDT-1h-2024-05.zip"
+    },
+    "BTSUSDT": {
+      "ada": true,
+      "jumlah_bulan": 40,
+      "pertama": "BTSUSDT-1h-2021-02.zip",
+      "terakhir": "BTSUSDT-1h-2024-05.zip"
+    },
+    "SCUSDT": {
+      "ada": true,
+      "jumlah_bulan": 63,
+      "pertama": "SCUSDT-1h-2021-04.zip",
+      "terakhir": "SCUSDT-1h-2026-06.zip"
+    },
+    "RAYUSDT": {
+      "ada": true,
+      "jumlah_bulan": 59,
+      "pertama": "RAYUSDT-1h-2021-08.zip",
+      "terakhir": "RAYUSDT-1h-2026-06.zip"
+    },
+    "HNTUSDT": {
+      "ada": true,
+      "jumlah_bulan": 45,
+      "pertama": "HNTUSDT-1h-2020-09.zip",
+      "terakhir": "HNTUSDT-1h-2024-05.zip"
+    },
+    "TOMOUSDT": {
+      "ada": true,
+      "jumlah_bulan": 44,
+      "pertama": "TOMOUSDT-1h-2020-10.zip",
+      "terakhir": "TOMOUSDT-1h-2024-05.zip"
+    },
+    "CVCUSDT": {
+      "ada": true,
+      "jumlah_bulan": 68,
+      "pertama": "CVCUSDT-1h-2020-11.zip",
+      "terakhir": "CVCUSDT-1h-2026-06.zip"
+    }
+  },
+  "btcusdt_1h_bulan": 78
+}

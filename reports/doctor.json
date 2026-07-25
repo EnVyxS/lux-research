@@ -1,29 +1,27 @@
 {
-  "run_id": "30161543831",
-  "commit": "b8722a5d70687367620b84df9bda076eb38d88a9",
-  "waktu_utc": "2026-07-25T14:23:36Z",
+  "run_id": "30161624965",
+  "commit": "f5de07aa561fe128dfc9c369b2888ce6af82db5d",
+  "waktu_utc": "2026-07-25T14:26:14Z",
   "runner": {
     "vcpu": 4,
     "ram_gb": 15,
     "disk_avail_gb": 88,
-    "cpu_model": "AMD EPYC 7763 64-Core Processor"
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor"
   },
   "cdn": {
     "head_http": "200",
     "download_bytes": 38890,
-    "download_seconds": 0.406569,
-    "checksum_ok": false,
+    "download_seconds": 0.923196,
+    "checksum_ok": true,
     "csv_bytes": 91706,
     "csv_rows": 745,
-    "zip_ratio": 2.36
-  },
-  "s3_listing": {
-    "http": "200",
-    "ok": true
+    "zip_ratio": 2.36,
+    "big_file_bytes": 1898532,
+    "big_file_seconds": 1.390325,
+    "throughput_mib_per_s": 1.30
   },
   "exchange_info": {
     "http": "451",
     "symbols": null
-  },
-  "delisted_probe": " SRMUSDT=200 FTTUSDT=404 COCOSUSDT=404"
+  }
 }
