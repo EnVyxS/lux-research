@@ -1,0 +1,4474 @@
+{
+  "hasil": [
+    {
+      "symbol": "1000000BOBUSDT",
+      "bar_awal": 9952,
+      "bar_sisa": 9952,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1000000MOGUSDT",
+      "bar_awal": 14988,
+      "bar_sisa": 14988,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1000BONKUSDT",
+      "bar_awal": 23410,
+      "bar_sisa": 23410,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.271678769756514e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1000CATUSDT",
+      "bar_awal": 15396,
+      "bar_sisa": 15396,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.495193556767992e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1000CHEEMSUSDT",
+      "bar_awal": 14557,
+      "bar_sisa": 14557,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1000FLOKIUSDT",
+      "bar_awal": 28208,
+      "bar_sisa": 28208,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.545093590470789e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1000LUNCUSDT",
+      "bar_awal": 33947,
+      "bar_sisa": 33947,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.945768403688102e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1000PEPEUSDT",
+      "bar_awal": 28232,
+      "bar_sisa": 28232,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.5420799093227545e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1000RATSUSDT",
+      "bar_awal": 22858,
+      "bar_sisa": 22858,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.374835943652113e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1000SATSUSDT",
+      "bar_awal": 22930,
+      "bar_sisa": 22930,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.361098996947231e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1000SHIBUSDT",
+      "bar_awal": 45631,
+      "bar_sisa": 45631,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.191492625627315e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1000WHYUSDT",
+      "bar_awal": 14557,
+      "bar_sisa": 11446,
+      "dipangkas": 3111,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1773734400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1000XECUSDT",
+      "bar_awal": 42525,
+      "bar_sisa": 42525,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.3515579071134628e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1INCHUSDT",
+      "bar_awal": 48902,
+      "bar_sisa": 48902,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.0449061388082287e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "1MBABYDOGEUSDT",
+      "bar_awal": 16237,
+      "bar_sisa": 16237,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.158773172384061e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "bar_awal": 50585,
+      "bar_sisa": 50585,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.9768706138183257e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ACEUSDT",
+      "bar_awal": 22790,
+      "bar_sisa": 22790,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.3878894251864855e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ACHUSDT",
+      "bar_awal": 29962,
+      "bar_sisa": 29962,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.3375609104866166e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ACTUSDT",
+      "bar_awal": 14892,
+      "bar_sisa": 14892,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ACXUSDT",
+      "bar_awal": 14289,
+      "bar_sisa": 14289,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ADAUSDT",
+      "bar_awal": 56800,
+      "bar_sisa": 56800,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7605633802816902e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AERGOUSDT",
+      "bar_awal": 16345,
+      "bar_sisa": 16345,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.028816151728357296,
+      "akhir_ms": 1784847600000,
+      "layak": false,
+      "alasan": "blok datar 470 bar di tengah riwayat, tidak dapat dipangkas tanpa menyambung dua periode terpisah"
+    },
+    {
+      "symbol": "AEROUSDT",
+      "bar_awal": 14338,
+      "bar_sisa": 14338,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AEVOUSDT",
+      "bar_awal": 20723,
+      "bar_sisa": 20723,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.825556145345751e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AGLDUSDT",
+      "bar_awal": 26206,
+      "bar_sisa": 26206,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.815920018316416e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AGTUSDT",
+      "bar_awal": 10334,
+      "bar_sisa": 10334,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AINUSDT",
+      "bar_awal": 9110,
+      "bar_sisa": 9110,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AIOTUSDT",
+      "bar_awal": 10812,
+      "bar_sisa": 10812,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AIUSDT",
+      "bar_awal": 22284,
+      "bar_sisa": 20183,
+      "dipangkas": 2101,
+      "rasio_datar_sisa": 4.954664816925135e-05,
+      "akhir_ms": 1777370400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AIXBTUSDT",
+      "bar_awal": 13950,
+      "bar_sisa": 13950,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AKROUSDT",
+      "bar_awal": 11835,
+      "bar_sisa": 11835,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.00025348542458808617,
+      "akhir_ms": 1653642000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AKTUSDT",
+      "bar_awal": 14725,
+      "bar_sisa": 14725,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ALCHUSDT",
+      "bar_awal": 13525,
+      "bar_sisa": 13525,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ALGOUSDT",
+      "bar_awal": 53511,
+      "bar_sisa": 53511,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.8687746444656237e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ALICEUSDT",
+      "bar_awal": 46965,
+      "bar_sisa": 46965,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.1292451825827744e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ALPHAUSDT",
+      "bar_awal": 49673,
+      "bar_sisa": 42363,
+      "dipangkas": 7310,
+      "rasio_datar_sisa": 2.3605504803720226e-05,
+      "akhir_ms": 1758618000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ALPINEUSDT",
+      "bar_awal": 10671,
+      "bar_sisa": 10671,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ALTUSDT",
+      "bar_awal": 21874,
+      "bar_sisa": 21874,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.571637560574198e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ANIMEUSDT",
+      "bar_awal": 13135,
+      "bar_sisa": 13135,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ANKRUSDT",
+      "bar_awal": 48137,
+      "bar_sisa": 48137,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.0774040758667967e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ANTUSDT",
+      "bar_awal": 21196,
+      "bar_sisa": 19829,
+      "dipangkas": 1367,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1711958400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "APEUSDT",
+      "bar_awal": 38169,
+      "bar_sisa": 38169,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.6199271660247846e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "API3USDT",
+      "bar_awal": 38733,
+      "bar_sisa": 38733,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.581777812201482e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "APTUSDT",
+      "bar_awal": 32998,
+      "bar_sisa": 32998,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.0304866961634037e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ARBUSDT",
+      "bar_awal": 29265,
+      "bar_sisa": 29265,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.4170510849137196e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ARCUSDT",
+      "bar_awal": 13283,
+      "bar_sisa": 13283,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ARKMUSDT",
+      "bar_awal": 26230,
+      "bar_sisa": 26230,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.812428516965307e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ARKUSDT",
+      "bar_awal": 24944,
+      "bar_sisa": 24944,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.008980115458627e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ARPAUSDT",
+      "bar_awal": 41757,
+      "bar_sisa": 41757,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.394808056134301e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ARUSDT",
+      "bar_awal": 42261,
+      "bar_sisa": 42261,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.366247840798845e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ASRUSDT",
+      "bar_awal": 10671,
+      "bar_sisa": 10671,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ASTRUSDT",
+      "bar_awal": 30166,
+      "bar_sisa": 30166,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.314990386527879e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ATAUSDT",
+      "bar_awal": 42933,
+      "bar_sisa": 41334,
+      "dipangkas": 1599,
+      "rasio_datar_sisa": 4.83863163497363e-05,
+      "akhir_ms": 1779177600000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ATHUSDT",
+      "bar_awal": 11481,
+      "bar_sisa": 11481,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ATOMUSDT",
+      "bar_awal": 56628,
+      "bar_sisa": 56628,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7659108568199476e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AUCTIONUSDT",
+      "bar_awal": 22859,
+      "bar_sisa": 22859,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.3746445601294894e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AUDIOUSDT",
+      "bar_awal": 24317,
+      "bar_sisa": 24030,
+      "dipangkas": 287,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1715846400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AUSDT",
+      "bar_awal": 10144,
+      "bar_sisa": 10144,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AVAAIUSDT",
+      "bar_awal": 13283,
+      "bar_sisa": 13283,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AVAUSDT",
+      "bar_awal": 14123,
+      "bar_sisa": 14123,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AVAXUSDT",
+      "bar_awal": 51137,
+      "bar_sisa": 51137,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.955531220055928e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AWEUSDT",
+      "bar_awal": 10312,
+      "bar_sisa": 10312,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AXLUSDT",
+      "bar_awal": 21009,
+      "bar_sisa": 21009,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.759864819839116e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "AXSUSDT",
+      "bar_awal": 49745,
+      "bar_sisa": 49745,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.010252286661976e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "B2USDT",
+      "bar_awal": 10667,
+      "bar_sisa": 10667,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "B3USDT",
+      "bar_awal": 12637,
+      "bar_sisa": 10534,
+      "dipangkas": 2103,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1777363200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BABYUSDT",
+      "bar_awal": 11411,
+      "bar_sisa": 11411,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BAKEUSDT",
+      "bar_awal": 45425,
+      "bar_sisa": 38354,
+      "dipangkas": 7071,
+      "rasio_datar_sisa": 2.6072899827918862e-05,
+      "akhir_ms": 1759478400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BALUSDT",
+      "bar_awal": 51665,
+      "bar_sisa": 40467,
+      "dipangkas": 11198,
+      "rasio_datar_sisa": 2.4711493315541057e-05,
+      "akhir_ms": 1744621200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BANANAS31USDT",
+      "bar_awal": 11751,
+      "bar_sisa": 11751,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BANANAUSDT",
+      "bar_awal": 17014,
+      "bar_sisa": 17014,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.877512636652169e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BANDUSDT",
+      "bar_awal": 52481,
+      "bar_sisa": 52481,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.9054514967321506e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BANKUSDT",
+      "bar_awal": 11094,
+      "bar_sisa": 11094,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BANUSDT",
+      "bar_awal": 14725,
+      "bar_sisa": 14725,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BATUSDT",
+      "bar_awal": 56488,
+      "bar_sisa": 56488,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7702874946891374e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BBUSDT",
+      "bar_awal": 19260,
+      "bar_sisa": 19260,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.1921079958463136e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BCHUSDT",
+      "bar_awal": 57552,
+      "bar_sisa": 57552,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7375590770086183e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BEAMXUSDT",
+      "bar_awal": 23531,
+      "bar_sisa": 23531,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.249713144362756e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BELUSDT",
+      "bar_awal": 49793,
+      "bar_sisa": 49793,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.008314421705862e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BERAUSDT",
+      "bar_awal": 12801,
+      "bar_sisa": 12801,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BICOUSDT",
+      "bar_awal": 24732,
+      "bar_sisa": 24732,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.0433446546983666e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BIGTIMEUSDT",
+      "bar_awal": 24394,
+      "bar_sisa": 24394,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.099368697220628e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BIOUSDT",
+      "bar_awal": 13620,
+      "bar_sisa": 13620,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BLUEBIRDUSDT",
+      "bar_awal": 13748,
+      "bar_sisa": 12237,
+      "dipangkas": 1511,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1711440000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BLURUSDT",
+      "bar_awal": 28404,
+      "bar_sisa": 28404,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.520630897056752e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BLZUSDT",
+      "bar_awal": 51281,
+      "bar_sisa": 37394,
+      "dipangkas": 13887,
+      "rasio_datar_sisa": 5.3484516232550676e-05,
+      "akhir_ms": 1734940800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BMTUSDT",
+      "bar_awal": 11867,
+      "bar_sisa": 11867,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BNBUSDT",
+      "bar_awal": 56560,
+      "bar_sisa": 56560,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.768033946251768e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BNTUSDT",
+      "bar_awal": 25908,
+      "bar_sisa": 25908,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.85981164119191e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BOMEUSDT",
+      "bar_awal": 20652,
+      "bar_sisa": 20652,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.84214603912454e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BRETTUSDT",
+      "bar_awal": 16886,
+      "bar_sisa": 16886,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.922065616487031e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BROCCOLI714USDT",
+      "bar_awal": 11775,
+      "bar_sisa": 11775,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BROCCOLIF3BUSDT",
+      "bar_awal": 11775,
+      "bar_sisa": 11775,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BRUSDT",
+      "bar_awal": 11772,
+      "bar_sisa": 11772,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BSVUSDT",
+      "bar_awal": 24204,
+      "bar_sisa": 24204,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.1315485043794416e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BTCDOMUSDT",
+      "bar_awal": 44637,
+      "bar_sisa": 44637,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.2402939265631652e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BTCUSDT",
+      "bar_awal": 57552,
+      "bar_sisa": 57552,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7375590770086183e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BULLAUSDT",
+      "bar_awal": 9255,
+      "bar_sisa": 9255,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BUSDT",
+      "bar_awal": 10280,
+      "bar_sisa": 10280,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "BZRXUSDT",
+      "bar_awal": 11280,
+      "bar_sisa": 11280,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 8.865248226950355e-05,
+      "akhir_ms": 1639879200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "C98USDT",
+      "bar_awal": 43101,
+      "bar_sisa": 43101,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.320131783485302e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CAKEUSDT",
+      "bar_awal": 23892,
+      "bar_sisa": 23892,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.1855014230704836e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CATIUSDT",
+      "bar_awal": 16141,
+      "bar_sisa": 16141,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.195403010965863e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CELOUSDT",
+      "bar_awal": 42285,
+      "bar_sisa": 42285,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.3649048125812936e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CELRUSDT",
+      "bar_awal": 46649,
+      "bar_sisa": 46649,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.1436686745696584e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CETUSUSDT",
+      "bar_awal": 15010,
+      "bar_sisa": 15010,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CFXUSDT",
+      "bar_awal": 30010,
+      "bar_sisa": 30010,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.3322225924691766e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CGPTUSDT",
+      "bar_awal": 13949,
+      "bar_sisa": 13949,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CHESSUSDT",
+      "bar_awal": 16673,
+      "bar_sisa": 12627,
+      "dipangkas": 4046,
+      "rasio_datar_sisa": 7.919537499010058e-05,
+      "akhir_ms": 1770368400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CHILLGUYUSDT",
+      "bar_awal": 14506,
+      "bar_sisa": 14506,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CHRUSDT",
+      "bar_awal": 47057,
+      "bar_sisa": 47057,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.125082346940944e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CHZUSDT",
+      "bar_awal": 48257,
+      "bar_sisa": 48257,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.0722382245062892e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CKBUSDT",
+      "bar_awal": 29820,
+      "bar_sisa": 29820,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.35345405767941e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "COMPUSDT",
+      "bar_awal": 53175,
+      "bar_sisa": 53175,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.8805829807240245e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "COOKIEUSDT",
+      "bar_awal": 13525,
+      "bar_sisa": 13525,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "COSUSDT",
+      "bar_awal": 15899,
+      "bar_sisa": 14852,
+      "dipangkas": 1047,
+      "rasio_datar_sisa": 6.733099919202801e-05,
+      "akhir_ms": 1781164800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "COTIUSDT",
+      "bar_awal": 47105,
+      "bar_sisa": 47105,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.1229168878038425e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "COWUSDT",
+      "bar_awal": 15011,
+      "bar_sisa": 15011,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CROSSUSDT",
+      "bar_awal": 9110,
+      "bar_sisa": 9110,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CRVUSDT",
+      "bar_awal": 51665,
+      "bar_sisa": 51665,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.9355463079454177e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CTKUSDT",
+      "bar_awal": 49759,
+      "bar_sisa": 49759,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.18987519845656062,
+      "akhir_ms": 1784934000000,
+      "layak": false,
+      "alasan": "blok datar 9447 bar di tengah riwayat, tidak dapat dipangkas tanpa menyambung dua periode terpisah"
+    },
+    {
+      "symbol": "CTSIUSDT",
+      "bar_awal": 41589,
+      "bar_sisa": 41589,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.4044819543629326e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CUSDT",
+      "bar_awal": 8991,
+      "bar_sisa": 8991,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "CYBERUSDT",
+      "bar_awal": 25644,
+      "bar_sisa": 25644,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.899547652472313e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DASHUSDT",
+      "bar_awal": 56704,
+      "bar_sisa": 56704,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7635440180586906e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DEEPUSDT",
+      "bar_awal": 11008,
+      "bar_sisa": 11008,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DEFIUSDT",
+      "bar_awal": 51761,
+      "bar_sisa": 43418,
+      "dipangkas": 8343,
+      "rasio_datar_sisa": 4.606384448846101e-05,
+      "akhir_ms": 1754899200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DEGENUSDT",
+      "bar_awal": 14797,
+      "bar_sisa": 12695,
+      "dipangkas": 2102,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1777366800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DEGOUSDT",
+      "bar_awal": 14123,
+      "bar_sisa": 11852,
+      "dipangkas": 2271,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1776758400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DENTUSDT",
+      "bar_awal": 46772,
+      "bar_sisa": 44502,
+      "dipangkas": 2270,
+      "rasio_datar_sisa": 2.247090018426138e-05,
+      "akhir_ms": 1776762000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DEXEUSDT",
+      "bar_awal": 13861,
+      "bar_sisa": 13861,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DFUSDT",
+      "bar_awal": 13717,
+      "bar_sisa": 9670,
+      "dipangkas": 4047,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1770364800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DIAUSDT",
+      "bar_awal": 15852,
+      "bar_sisa": 15852,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.308352258390108e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DODOUSDT",
+      "bar_awal": 11085,
+      "bar_sisa": 11085,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.00018042399639152008,
+      "akhir_ms": 1653642000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DODOXUSDT",
+      "bar_awal": 25956,
+      "bar_sisa": 25956,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.852673755586377e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "bar_awal": 52935,
+      "bar_sisa": 52935,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.8891092849721356e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DOGSUSDT",
+      "bar_awal": 16740,
+      "bar_sisa": 16740,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.973715651135006e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DOLOUSDT",
+      "bar_awal": 10797,
+      "bar_sisa": 10797,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DOODUSDT",
+      "bar_awal": 10595,
+      "bar_sisa": 10595,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DOTUSDT",
+      "bar_awal": 51905,
+      "bar_sisa": 51905,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.926596666987766e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DRIFTUSDT",
+      "bar_awal": 14961,
+      "bar_sisa": 14961,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DUSDT",
+      "bar_awal": 13478,
+      "bar_sisa": 12432,
+      "dipangkas": 1046,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1781168400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DUSKUSDT",
+      "bar_awal": 39837,
+      "bar_sisa": 39837,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.5102291839244924e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DYDXUSDT",
+      "bar_awal": 42693,
+      "bar_sisa": 42693,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.3423043590284122e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "DYMUSDT",
+      "bar_awal": 21569,
+      "bar_sisa": 21569,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.63628355510223e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "EDUUSDT",
+      "bar_awal": 28356,
+      "bar_sisa": 28356,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.5265904923120326e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "EGLDUSDT",
+      "bar_awal": 51353,
+      "bar_sisa": 51353,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.94730590228419e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "EIGENUSDT",
+      "bar_awal": 15882,
+      "bar_sisa": 15882,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.29643621710112e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ENAUSDT",
+      "bar_awal": 20244,
+      "bar_sisa": 20244,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.939735230191662e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ENJUSDT",
+      "bar_awal": 50993,
+      "bar_sisa": 50993,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.961053477928343e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ENSUSDT",
+      "bar_awal": 40749,
+      "bar_sisa": 40749,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.454047952096984e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "EOSUSDT",
+      "bar_awal": 47042,
+      "bar_sisa": 47042,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.251519918370818e-05,
+      "akhir_ms": 1747818000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "EPICUSDT",
+      "bar_awal": 11968,
+      "bar_sisa": 11968,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ERAUSDT",
+      "bar_awal": 8937,
+      "bar_sisa": 8937,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ETCUSDT",
+      "bar_awal": 57160,
+      "bar_sisa": 57160,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7494751574527642e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ETHFIUSDT",
+      "bar_awal": 20601,
+      "bar_sisa": 20601,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.854133294500267e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ETHUSDT",
+      "bar_awal": 57552,
+      "bar_sisa": 57552,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7375590770086183e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ETHWUSDT",
+      "bar_awal": 23268,
+      "bar_sisa": 23268,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.2977479800584495e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FARTCOINUSDT",
+      "bar_awal": 13950,
+      "bar_sisa": 13950,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FETUSDT",
+      "bar_awal": 30838,
+      "bar_sisa": 30838,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.2427524482780983e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FHEUSDT",
+      "bar_awal": 11241,
+      "bar_sisa": 11241,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FIDAUSDT",
+      "bar_awal": 16164,
+      "bar_sisa": 16164,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.186587478346944e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FILUSDT",
+      "bar_awal": 50466,
+      "bar_sisa": 50466,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.9815321206356756e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FIOUSDT",
+      "bar_awal": 16141,
+      "bar_sisa": 13726,
+      "dipangkas": 2415,
+      "rasio_datar_sisa": 7.285443683520327e-05,
+      "akhir_ms": 1776240000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FLMUSDT",
+      "bar_awal": 50873,
+      "bar_sisa": 44978,
+      "dipangkas": 5895,
+      "rasio_datar_sisa": 2.2233091733736494e-05,
+      "akhir_ms": 1763712000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FLOWUSDT",
+      "bar_awal": 38901,
+      "bar_sisa": 38901,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.57062800442148e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FLUXUSDT",
+      "bar_awal": 16553,
+      "bar_sisa": 16553,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.041200990756963e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FOOTBALLUSDT",
+      "bar_awal": 15245,
+      "bar_sisa": 13734,
+      "dipangkas": 1511,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1711440000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FORMUSDT",
+      "bar_awal": 11824,
+      "bar_sisa": 11824,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FTMUSDT",
+      "bar_awal": 50993,
+      "bar_sisa": 37443,
+      "dipangkas": 13550,
+      "rasio_datar_sisa": 2.6707261704457442e-05,
+      "akhir_ms": 1736154000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FUNUSDT",
+      "bar_awal": 11536,
+      "bar_sisa": 9121,
+      "dipangkas": 2415,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1776240000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FUSDT",
+      "bar_awal": 9636,
+      "bar_sisa": 9636,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "FXSUSDT",
+      "bar_awal": 30765,
+      "bar_sisa": 25974,
+      "dipangkas": 4791,
+      "rasio_datar_sisa": 3.85000385000385e-05,
+      "akhir_ms": 1767686400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GALAUSDT",
+      "bar_awal": 42501,
+      "bar_sisa": 42501,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.3528858144514246e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GALUSDT",
+      "bar_awal": 19601,
+      "bar_sisa": 19148,
+      "dipangkas": 453,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1720688400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GASUSDT",
+      "bar_awal": 24094,
+      "bar_sisa": 24094,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.1504108906781774e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GHSTUSDT",
+      "bar_awal": 16067,
+      "bar_sisa": 12020,
+      "dipangkas": 4047,
+      "rasio_datar_sisa": 8.319467554076539e-05,
+      "akhir_ms": 1770364800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GLMUSDT",
+      "bar_awal": 21206,
+      "bar_sisa": 21206,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.7156465151372254e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GMTUSDT",
+      "bar_awal": 38180,
+      "bar_sisa": 38180,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.6191723415400734e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GMXUSDT",
+      "bar_awal": 30082,
+      "bar_sisa": 30082,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.3242470580413535e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GOATUSDT",
+      "bar_awal": 15323,
+      "bar_sisa": 15323,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.52613717940351e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GPSUSDT",
+      "bar_awal": 12535,
+      "bar_sisa": 12535,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GRASSUSDT",
+      "bar_awal": 14961,
+      "bar_sisa": 14961,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GRIFFAINUSDT",
+      "bar_awal": 13643,
+      "bar_sisa": 13643,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GRTUSDT",
+      "bar_awal": 48929,
+      "bar_sisa": 48929,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.0437777187353103e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GTCUSDT",
+      "bar_awal": 44757,
+      "bar_sisa": 44757,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.2342873740420493e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GUNUSDT",
+      "bar_awal": 11531,
+      "bar_sisa": 11531,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "GUSDT",
+      "bar_awal": 17004,
+      "bar_sisa": 17004,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.8809691837214774e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HAEDALUSDT",
+      "bar_awal": 10797,
+      "bar_sisa": 10797,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HBARUSDT",
+      "bar_awal": 46817,
+      "bar_sisa": 46817,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.135976247944123e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HEIUSDT",
+      "bar_awal": 12639,
+      "bar_sisa": 12639,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HFTUSDT",
+      "bar_awal": 28932,
+      "bar_sisa": 28932,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.456380478363058e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HIFIUSDT",
+      "bar_awal": 25018,
+      "bar_sisa": 17948,
+      "dipangkas": 7070,
+      "rasio_datar_sisa": 5.571651437486071e-05,
+      "akhir_ms": 1759482000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HIGHUSDT",
+      "bar_awal": 30334,
+      "bar_sisa": 29288,
+      "dipangkas": 1046,
+      "rasio_datar_sisa": 3.4143676591095326e-05,
+      "akhir_ms": 1781168400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HIPPOUSDT",
+      "bar_awal": 14844,
+      "bar_sisa": 12262,
+      "dipangkas": 2582,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1775638800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HIVEUSDT",
+      "bar_awal": 13885,
+      "bar_sisa": 13885,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HMSTRUSDT",
+      "bar_awal": 15996,
+      "bar_sisa": 15996,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.251562890722681e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HOMEUSDT",
+      "bar_awal": 9829,
+      "bar_sisa": 9829,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HOOKUSDT",
+      "bar_awal": 30693,
+      "bar_sisa": 27751,
+      "dipangkas": 2942,
+      "rasio_datar_sisa": 3.6034737486937405e-05,
+      "akhir_ms": 1774342800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HOTUSDT",
+      "bar_awal": 46505,
+      "bar_sisa": 46505,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.1503064186646596e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HUMAUSDT",
+      "bar_awal": 10187,
+      "bar_sisa": 10187,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HUSDT",
+      "bar_awal": 9471,
+      "bar_sisa": 9471,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HYPERUSDT",
+      "bar_awal": 11003,
+      "bar_sisa": 11003,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "HYPEUSDT",
+      "bar_awal": 10094,
+      "bar_sisa": 10094,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ICNTUSDT",
+      "bar_awal": 9275,
+      "bar_sisa": 9275,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ICPUSDT",
+      "bar_awal": 44995,
+      "bar_sisa": 44995,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.04407156350705634,
+      "akhir_ms": 1784934000000,
+      "layak": false,
+      "alasan": "blok datar 1982 bar di tengah riwayat, tidak dapat dipangkas tanpa menyambung dua periode terpisah"
+    },
+    {
+      "symbol": "ICXUSDT",
+      "bar_awal": 51330,
+      "bar_sisa": 51330,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.948178453146308e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "IDOLUSDT",
+      "bar_awal": 9255,
+      "bar_sisa": 9255,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "IDUSDT",
+      "bar_awal": 29266,
+      "bar_sisa": 29266,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.4169343265222444e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ILVUSDT",
+      "bar_awal": 23696,
+      "bar_sisa": 23696,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.220121539500338e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "IMXUSDT",
+      "bar_awal": 38877,
+      "bar_sisa": 38877,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.5722149342799085e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "INITUSDT",
+      "bar_awal": 11154,
+      "bar_sisa": 11154,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "INJUSDT",
+      "bar_awal": 34510,
+      "bar_sisa": 34510,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.8977108084613156e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "IOSTUSDT",
+      "bar_awal": 56296,
+      "bar_sisa": 56296,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7763251385533608e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "IOTAUSDT",
+      "bar_awal": 56392,
+      "bar_sisa": 56392,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7733011774719818e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "IOTXUSDT",
+      "bar_awal": 43389,
+      "bar_sisa": 43389,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.3047316140035494e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "IOUSDT",
+      "bar_awal": 18562,
+      "bar_sisa": 18562,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.3873505010235965e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "IPUSDT",
+      "bar_awal": 12631,
+      "bar_sisa": 11993,
+      "dipangkas": 638,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1782637200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "JASMYUSDT",
+      "bar_awal": 37365,
+      "bar_sisa": 37365,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.6763013515321824e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "JELLYJELLYUSDT",
+      "bar_awal": 11648,
+      "bar_sisa": 11648,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "JOEUSDT",
+      "bar_awal": 29124,
+      "bar_sisa": 29124,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.4335942864991075e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "JSTUSDT",
+      "bar_awal": 10863,
+      "bar_sisa": 10863,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "JTOUSDT",
+      "bar_awal": 23030,
+      "bar_sisa": 23030,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.342162396873643e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "JUPUSDT",
+      "bar_awal": 21726,
+      "bar_sisa": 21726,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.602780079167817e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "KAIAUSDT",
+      "bar_awal": 14338,
+      "bar_sisa": 14338,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "KAITOUSDT",
+      "bar_awal": 12467,
+      "bar_sisa": 12467,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "KASUSDT",
+      "bar_awal": 23542,
+      "bar_sisa": 23542,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.247727465805794e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "KAVAUSDT",
+      "bar_awal": 52505,
+      "bar_sisa": 52505,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.9045805161413197e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "KERNELUSDT",
+      "bar_awal": 11196,
+      "bar_sisa": 11196,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "KMNOUSDT",
+      "bar_awal": 13949,
+      "bar_sisa": 13949,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "KNCUSDT",
+      "bar_awal": 53248,
+      "bar_sisa": 53248,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.8780048076923078e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "KOMAUSDT",
+      "bar_awal": 14196,
+      "bar_sisa": 14196,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "KSMUSDT",
+      "bar_awal": 50513,
+      "bar_sisa": 50513,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.979688397046305e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LAUSDT",
+      "bar_awal": 9951,
+      "bar_sisa": 9951,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LAYERUSDT",
+      "bar_awal": 12681,
+      "bar_sisa": 12681,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LDOUSDT",
+      "bar_awal": 33636,
+      "bar_sisa": 33636,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.9730051135687954e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LEVERUSDT",
+      "bar_awal": 29100,
+      "bar_sisa": 21309,
+      "dipangkas": 7791,
+      "rasio_datar_sisa": 4.692852785208128e-05,
+      "akhir_ms": 1756886400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LINAUSDT",
+      "bar_awal": 46769,
+      "bar_sisa": 35139,
+      "dipangkas": 11630,
+      "rasio_datar_sisa": 2.845840803665443e-05,
+      "akhir_ms": 1743066000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LINKUSDT",
+      "bar_awal": 57136,
+      "bar_sisa": 57136,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7502100252030245e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LISTAUSDT",
+      "bar_awal": 18348,
+      "bar_sisa": 18348,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.450185306300414e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LITUSDT",
+      "bar_awal": 47448,
+      "bar_sisa": 47448,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.16474877760917214,
+      "akhir_ms": 1784934000000,
+      "layak": false,
+      "alasan": "blok datar 7815 bar di tengah riwayat, tidak dapat dipangkas tanpa menyambung dua periode terpisah"
+    },
+    {
+      "symbol": "LPTUSDT",
+      "bar_awal": 41205,
+      "bar_sisa": 41205,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.4268899405411966e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LQTYUSDT",
+      "bar_awal": 29580,
+      "bar_sisa": 29580,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.380662609871535e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LRCUSDT",
+      "bar_awal": 50393,
+      "bar_sisa": 47450,
+      "dipangkas": 2943,
+      "rasio_datar_sisa": 4.214963119072708e-05,
+      "akhir_ms": 1774339200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LSKUSDT",
+      "bar_awal": 21874,
+      "bar_sisa": 21874,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.571637560574198e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LTCUSDT",
+      "bar_awal": 57208,
+      "bar_sisa": 57208,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7480072717102503e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LUMIAUSDT",
+      "bar_awal": 14005,
+      "bar_sisa": 14005,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LUNA2USDT",
+      "bar_awal": 33933,
+      "bar_sisa": 33933,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.9469837621194707e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "LUNAUSDT",
+      "bar_awal": 11160,
+      "bar_sisa": 11160,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0013440860215053765,
+      "akhir_ms": 1652421600000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MAGICUSDT",
+      "bar_awal": 30645,
+      "bar_sisa": 30645,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.26317506934247e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MANAUSDT",
+      "bar_awal": 46865,
+      "bar_sisa": 46865,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.133788541555532e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MANTAUSDT",
+      "bar_awal": 22042,
+      "bar_sisa": 22042,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.536793394428818e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MASKUSDT",
+      "bar_awal": 42909,
+      "bar_sisa": 42909,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.3305134121046867e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MATICUSDT",
+      "bar_awal": 34083,
+      "bar_sisa": 33914,
+      "dipangkas": 169,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1725436800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MAVIAUSDT",
+      "bar_awal": 21213,
+      "bar_sisa": 21213,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.11271390185263754,
+      "akhir_ms": 1784934000000,
+      "layak": false,
+      "alasan": "blok datar 2390 bar di tengah riwayat, tidak dapat dipangkas tanpa menyambung dua periode terpisah"
+    },
+    {
+      "symbol": "MAVUSDT",
+      "bar_awal": 26916,
+      "bar_sisa": 26916,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.715262297518205e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MBOXUSDT",
+      "bar_awal": 16695,
+      "bar_sisa": 15648,
+      "dipangkas": 1047,
+      "rasio_datar_sisa": 6.390593047034765e-05,
+      "akhir_ms": 1781164800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MELANIAUSDT",
+      "bar_awal": 13215,
+      "bar_sisa": 13215,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MEMEUSDT",
+      "bar_awal": 23868,
+      "bar_sisa": 23868,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.1897100720630135e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MERLUSDT",
+      "bar_awal": 10120,
+      "bar_sisa": 10120,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "METISUSDT",
+      "bar_awal": 20752,
+      "bar_sisa": 20752,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.818812644564379e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MEUSDT",
+      "bar_awal": 14191,
+      "bar_sisa": 14191,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MEWUSDT",
+      "bar_awal": 18418,
+      "bar_sisa": 18418,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.42947116950809e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MINAUSDT",
+      "bar_awal": 30325,
+      "bar_sisa": 30325,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.2976092333058534e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MKRUSDT",
+      "bar_awal": 52001,
+      "bar_sisa": 44330,
+      "dipangkas": 7671,
+      "rasio_datar_sisa": 2.2558087074216106e-05,
+      "akhir_ms": 1757318400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MLNUSDT",
+      "bar_awal": 11536,
+      "bar_sisa": 9938,
+      "dipangkas": 1598,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1779181200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MOCAUSDT",
+      "bar_awal": 14053,
+      "bar_sisa": 14053,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MOODENGUSDT",
+      "bar_awal": 15302,
+      "bar_sisa": 15302,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.535093451836362e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MORPHOUSDT",
+      "bar_awal": 14506,
+      "bar_sisa": 14506,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MOVEUSDT",
+      "bar_awal": 14218,
+      "bar_sisa": 14218,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MOVRUSDT",
+      "bar_awal": 22596,
+      "bar_sisa": 22596,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.42556204637989e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MTLUSDT",
+      "bar_awal": 46601,
+      "bar_sisa": 46601,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.145876697924937e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MUBARAKUSDT",
+      "bar_awal": 11867,
+      "bar_sisa": 11867,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MUSDT",
+      "bar_awal": 9183,
+      "bar_sisa": 9183,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MYROUSDT",
+      "bar_awal": 20920,
+      "bar_sisa": 14857,
+      "dipangkas": 6063,
+      "rasio_datar_sisa": 6.730833950326445e-05,
+      "akhir_ms": 1763107200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "MYXUSDT",
+      "bar_awal": 9636,
+      "bar_sisa": 9636,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "NEARUSDT",
+      "bar_awal": 50488,
+      "bar_sisa": 50488,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.980668673744256e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "NEIROUSDT",
+      "bar_awal": 16237,
+      "bar_sisa": 16237,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.158773172384061e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "NEOUSDT",
+      "bar_awal": 56392,
+      "bar_sisa": 56392,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7733011774719818e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "NEWTUSDT",
+      "bar_awal": 9610,
+      "bar_sisa": 9610,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "NFPUSDT",
+      "bar_awal": 22571,
+      "bar_sisa": 22029,
+      "dipangkas": 542,
+      "rasio_datar_sisa": 4.5394706977166465e-05,
+      "akhir_ms": 1782982800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "NILUSDT",
+      "bar_awal": 11699,
+      "bar_sisa": 11699,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "NKNUSDT",
+      "bar_awal": 46385,
+      "bar_sisa": 42339,
+      "dipangkas": 4046,
+      "rasio_datar_sisa": 2.3618885660974514e-05,
+      "akhir_ms": 1770368400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "NMRUSDT",
+      "bar_awal": 27084,
+      "bar_sisa": 27084,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.692216806970905e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "NOTUSDT",
+      "bar_awal": 19186,
+      "bar_sisa": 19186,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.212133847597206e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "NTRNUSDT",
+      "bar_awal": 23604,
+      "bar_sisa": 20662,
+      "dipangkas": 2942,
+      "rasio_datar_sisa": 4.839802536056529e-05,
+      "akhir_ms": 1774342800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "NXPCUSDT",
+      "bar_awal": 10458,
+      "bar_sisa": 10458,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "OGNUSDT",
+      "bar_awal": 46457,
+      "bar_sisa": 46457,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.1525281443054868e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "OGUSDT",
+      "bar_awal": 10527,
+      "bar_sisa": 10527,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "OMGUSDT",
+      "bar_awal": 53007,
+      "bar_sisa": 40056,
+      "dipangkas": 12951,
+      "rasio_datar_sisa": 2.4965048931495905e-05,
+      "akhir_ms": 1738310400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "OMUSDT",
+      "bar_awal": 21418,
+      "bar_sisa": 17780,
+      "dipangkas": 3638,
+      "rasio_datar_sisa": 5.62429696287964e-05,
+      "akhir_ms": 1771837200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ONDOUSDT",
+      "bar_awal": 21995,
+      "bar_sisa": 21995,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.546487838145033e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ONEUSDT",
+      "bar_awal": 46793,
+      "bar_sisa": 46793,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.1370717842412327e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ONGUSDT",
+      "bar_awal": 23291,
+      "bar_sisa": 23291,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.2935039285560944e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ONTUSDT",
+      "bar_awal": 56536,
+      "bar_sisa": 56536,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7687844912975805e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "OPUSDT",
+      "bar_awal": 36346,
+      "bar_sisa": 36346,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.7513343971826336e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ORCAUSDT",
+      "bar_awal": 14289,
+      "bar_sisa": 14289,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ORDIUSDT",
+      "bar_awal": 23772,
+      "bar_sisa": 23772,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.2066296483257616e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "OXTUSDT",
+      "bar_awal": 25884,
+      "bar_sisa": 23470,
+      "dipangkas": 2414,
+      "rasio_datar_sisa": 4.2607584149978694e-05,
+      "akhir_ms": 1776243600000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PARTIUSDT",
+      "bar_awal": 11675,
+      "bar_sisa": 11675,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PAXGUSDT",
+      "bar_awal": 11630,
+      "bar_sisa": 11630,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PENDLEUSDT",
+      "bar_awal": 26230,
+      "bar_sisa": 26230,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.812428516965307e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PENGUUSDT",
+      "bar_awal": 14024,
+      "bar_sisa": 14024,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PEOPLEUSDT",
+      "bar_awal": 40052,
+      "bar_sisa": 40052,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.496754219514631e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PERPUSDT",
+      "bar_awal": 29676,
+      "bar_sisa": 23781,
+      "dipangkas": 5895,
+      "rasio_datar_sisa": 4.205037635086834e-05,
+      "akhir_ms": 1763712000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PHAUSDT",
+      "bar_awal": 13717,
+      "bar_sisa": 13717,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PHBUSDT",
+      "bar_awal": 30106,
+      "bar_sisa": 28508,
+      "dipangkas": 1598,
+      "rasio_datar_sisa": 3.507787287778869e-05,
+      "akhir_ms": 1779181200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PIPPINUSDT",
+      "bar_awal": 13118,
+      "bar_sisa": 13118,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PIXELUSDT",
+      "bar_awal": 21273,
+      "bar_sisa": 21273,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.70079443425939e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PLUMEUSDT",
+      "bar_awal": 11771,
+      "bar_sisa": 11771,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PNUTUSDT",
+      "bar_awal": 14892,
+      "bar_sisa": 14892,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "POLUSDT",
+      "bar_awal": 16308,
+      "bar_sisa": 16308,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.13195977434388e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "POLYXUSDT",
+      "bar_awal": 24094,
+      "bar_sisa": 24094,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.1504108906781774e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "POPCATUSDT",
+      "bar_awal": 16835,
+      "bar_sisa": 16835,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.94000594000594e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PORTALUSDT",
+      "bar_awal": 21033,
+      "bar_sisa": 21033,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.754433509247373e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "POWRUSDT",
+      "bar_awal": 24046,
+      "bar_sisa": 24046,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.158695832986775e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PROMPTUSDT",
+      "bar_awal": 11274,
+      "bar_sisa": 11274,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PROMUSDT",
+      "bar_awal": 13332,
+      "bar_sisa": 13332,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PUFFERUSDT",
+      "bar_awal": 9976,
+      "bar_sisa": 7394,
+      "dipangkas": 2582,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1775638800000,
+      "layak": false,
+      "alasan": "riwayat tersisa 7394 bar, di bawah 8760"
+    },
+    {
+      "symbol": "PUMPBTCUSDT",
+      "bar_awal": 9758,
+      "bar_sisa": 9758,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PUMPUSDT",
+      "bar_awal": 11235,
+      "bar_sisa": 11235,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.056875834445927906,
+      "akhir_ms": 1784934000000,
+      "layak": false,
+      "alasan": "blok datar 639 bar di tengah riwayat, tidak dapat dipangkas tanpa menyambung dua periode terpisah"
+    },
+    {
+      "symbol": "PUNDIXUSDT",
+      "bar_awal": 10814,
+      "bar_sisa": 10814,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "PYTHUSDT",
+      "bar_awal": 23410,
+      "bar_sisa": 23410,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.271678769756514e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "QNTUSDT",
+      "bar_awal": 32974,
+      "bar_sisa": 32974,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.032692424334324e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "QTUMUSDT",
+      "bar_awal": 56320,
+      "bar_sisa": 56320,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7755681818181817e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RAREUSDT",
+      "bar_awal": 17003,
+      "bar_sisa": 17003,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.881315062047874e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RAYSOLUSDT",
+      "bar_awal": 14196,
+      "bar_sisa": 14196,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RDNTUSDT",
+      "bar_awal": 28956,
+      "bar_sisa": 26014,
+      "dipangkas": 2942,
+      "rasio_datar_sisa": 3.844083954793573e-05,
+      "akhir_ms": 1774342800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "REDUSDT",
+      "bar_awal": 12128,
+      "bar_sisa": 12128,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "REEFUSDT",
+      "bar_awal": 47489,
+      "bar_sisa": 34323,
+      "dipangkas": 13166,
+      "rasio_datar_sisa": 2.9134982373335666e-05,
+      "akhir_ms": 1737536400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RENDERUSDT",
+      "bar_awal": 17486,
+      "bar_sisa": 17486,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.7188608029280565e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RENUSDT",
+      "bar_awal": 50657,
+      "bar_sisa": 36291,
+      "dipangkas": 14366,
+      "rasio_datar_sisa": 2.7555041194786585e-05,
+      "akhir_ms": 1733216400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RESOLVUSDT",
+      "bar_awal": 9827,
+      "bar_sisa": 9827,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "REZUSDT",
+      "bar_awal": 19570,
+      "bar_sisa": 19570,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.109862033725089e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RIFUSDT",
+      "bar_awal": 24180,
+      "bar_sisa": 24180,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.1356492969396195e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RLCUSDT",
+      "bar_awal": 52313,
+      "bar_sisa": 52313,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.9115707376751476e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RNDRUSDT",
+      "bar_awal": 13037,
+      "bar_sisa": 12703,
+      "dipangkas": 334,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1721116800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RONINUSDT",
+      "bar_awal": 21596,
+      "bar_sisa": 21596,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.630487127245786e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ROSEUSDT",
+      "bar_awal": 39885,
+      "bar_sisa": 39885,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.5072082236429736e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RPLUSDT",
+      "bar_awal": 16404,
+      "bar_sisa": 16404,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.0960741282614e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RSRUSDT",
+      "bar_awal": 50393,
+      "bar_sisa": 50393,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.9844025955985952e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RUNEUSDT",
+      "bar_awal": 51593,
+      "bar_sisa": 51593,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.938247436667765e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "RVNUSDT",
+      "bar_awal": 47345,
+      "bar_sisa": 47345,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.1121554546414617e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SAFEUSDT",
+      "bar_awal": 15300,
+      "bar_sisa": 15300,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.535947712418301e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SAGAUSDT",
+      "bar_awal": 20078,
+      "bar_sisa": 20078,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.980575754557227e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SAHARAUSDT",
+      "bar_awal": 9444,
+      "bar_sisa": 9444,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SANDUSDT",
+      "bar_awal": 48041,
+      "bar_sisa": 48041,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.0815553381486647e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SANTOSUSDT",
+      "bar_awal": 15226,
+      "bar_sisa": 15226,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.567713122290818e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SCRTUSDT",
+      "bar_awal": 14653,
+      "bar_sisa": 14653,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SCRUSDT",
+      "bar_awal": 15374,
+      "bar_sisa": 15374,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 6.504488096786782e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SEIUSDT",
+      "bar_awal": 25750,
+      "bar_sisa": 25750,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.883495145631068e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SFPUSDT",
+      "bar_awal": 47441,
+      "bar_sisa": 47441,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.1078813684365844e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SHELLUSDT",
+      "bar_awal": 12535,
+      "bar_sisa": 12535,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SIGNUSDT",
+      "bar_awal": 10861,
+      "bar_sisa": 10861,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SIRENUSDT",
+      "bar_awal": 11751,
+      "bar_sisa": 11751,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SKLUSDT",
+      "bar_awal": 49193,
+      "bar_sisa": 49193,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.0328095460736283e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SKYAIUSDT",
+      "bar_awal": 10503,
+      "bar_sisa": 10503,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SNXUSDT",
+      "bar_awal": 52097,
+      "bar_sisa": 52097,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.919496324164539e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SOLUSDT",
+      "bar_awal": 51233,
+      "bar_sisa": 51233,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.9518669607479553e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SOLVUSDT",
+      "bar_awal": 13284,
+      "bar_sisa": 13284,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SONICUSDT",
+      "bar_awal": 13505,
+      "bar_sisa": 13505,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SOONUSDT",
+      "bar_awal": 10264,
+      "bar_sisa": 10264,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SOPHUSDT",
+      "bar_awal": 10139,
+      "bar_sisa": 10139,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SPELLUSDT",
+      "bar_awal": 34020,
+      "bar_sisa": 34020,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.9394473838918284e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SPKUSDT",
+      "bar_awal": 9663,
+      "bar_sisa": 9663,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SPXUSDT",
+      "bar_awal": 14196,
+      "bar_sisa": 14196,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SQDUSDT",
+      "bar_awal": 9804,
+      "bar_sisa": 9804,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SSVUSDT",
+      "bar_awal": 29916,
+      "bar_sisa": 29916,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.342692873378794e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "STEEMUSDT",
+      "bar_awal": 23746,
+      "bar_sisa": 23746,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.21123557651815e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "STGUSDT",
+      "bar_awal": 34308,
+      "bar_sisa": 34308,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.9147720648245306e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "STMXUSDT",
+      "bar_awal": 46817,
+      "bar_sisa": 34371,
+      "dipangkas": 12446,
+      "rasio_datar_sisa": 2.909429460882721e-05,
+      "akhir_ms": 1740128400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "STORJUSDT",
+      "bar_awal": 51185,
+      "bar_sisa": 51185,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.9536973722770343e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "STOUSDT",
+      "bar_awal": 11242,
+      "bar_sisa": 11242,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "STRKUSDT",
+      "bar_awal": 21247,
+      "bar_sisa": 21247,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.706546806607992e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "STXUSDT",
+      "bar_awal": 29986,
+      "bar_sisa": 29986,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.334889615153738e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SUIUSDT",
+      "bar_awal": 28280,
+      "bar_sisa": 28280,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.536067892503536e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SUNUSDT",
+      "bar_awal": 16835,
+      "bar_sisa": 16835,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.94000594000594e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SUPERUSDT",
+      "bar_awal": 23315,
+      "bar_sisa": 23315,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.289084280506112e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SUSDT",
+      "bar_awal": 13310,
+      "bar_sisa": 13310,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SUSHIUSDT",
+      "bar_awal": 51473,
+      "bar_sisa": 51473,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.9427661103879704e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SWARMSUSDT",
+      "bar_awal": 13524,
+      "bar_sisa": 13524,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SXPUSDT",
+      "bar_awal": 51399,
+      "bar_sisa": 47113,
+      "dipangkas": 4286,
+      "rasio_datar_sisa": 2.1225564069365145e-05,
+      "akhir_ms": 1764925200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SXTUSDT",
+      "bar_awal": 10768,
+      "bar_sisa": 10768,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SYNUSDT",
+      "bar_awal": 16980,
+      "bar_sisa": 16980,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.889281507656066e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SYRUPUSDT",
+      "bar_awal": 10648,
+      "bar_sisa": 10648,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "SYSUSDT",
+      "bar_awal": 16908,
+      "bar_sisa": 15310,
+      "dipangkas": 1598,
+      "rasio_datar_sisa": 6.531678641410843e-05,
+      "akhir_ms": 1779181200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TACUSDT",
+      "bar_awal": 8990,
+      "bar_sisa": 8990,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TAOUSDT",
+      "bar_awal": 20026,
+      "bar_sisa": 20026,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.993508439029262e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TAUSDT",
+      "bar_awal": 8849,
+      "bar_sisa": 8849,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "THETAUSDT",
+      "bar_awal": 53992,
+      "bar_sisa": 53992,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.8521262409245813e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "THEUSDT",
+      "bar_awal": 14508,
+      "bar_sisa": 14508,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TIAUSDT",
+      "bar_awal": 23934,
+      "bar_sisa": 23934,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.178156597309267e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TLMUSDT",
+      "bar_awal": 43329,
+      "bar_sisa": 43329,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.1465992753121466,
+      "akhir_ms": 1784934000000,
+      "layak": false,
+      "alasan": "blok datar 6351 bar di tengah riwayat, tidak dapat dipangkas tanpa menyambung dua periode terpisah"
+    },
+    {
+      "symbol": "TNSRUSDT",
+      "bar_awal": 20095,
+      "bar_sisa": 20095,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.976362279173924e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TOKENUSDT",
+      "bar_awal": 23865,
+      "bar_sisa": 18307,
+      "dipangkas": 5558,
+      "rasio_datar_sisa": 5.46239143497023e-05,
+      "akhir_ms": 1764925200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TOMOUSDT",
+      "bar_awal": 31777,
+      "bar_sisa": 27074,
+      "dipangkas": 4703,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1699948800000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TONUSDT",
+      "bar_awal": 21012,
+      "bar_sisa": 20254,
+      "dipangkas": 758,
+      "rasio_datar_sisa": 4.937296336526118e-05,
+      "akhir_ms": 1782205200000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TRBUSDT",
+      "bar_awal": 51497,
+      "bar_sisa": 51497,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.9418606909140338e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TRUMPUSDT",
+      "bar_awal": 13259,
+      "bar_sisa": 13259,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TRUUSDT",
+      "bar_awal": 29652,
+      "bar_sisa": 27382,
+      "dipangkas": 2270,
+      "rasio_datar_sisa": 3.652034183039953e-05,
+      "akhir_ms": 1776762000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TRXUSDT",
+      "bar_awal": 57064,
+      "bar_sisa": 57064,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7524183373054815e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TSTUSDT",
+      "bar_awal": 12731,
+      "bar_sisa": 12731,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TURBOUSDT",
+      "bar_awal": 18849,
+      "bar_sisa": 18849,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.305321237200913e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TUSDT",
+      "bar_awal": 30467,
+      "bar_sisa": 30467,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.28223980043982e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TUTUSDT",
+      "bar_awal": 11799,
+      "bar_sisa": 11799,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "TWTUSDT",
+      "bar_awal": 23866,
+      "bar_sisa": 23866,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.1900611748931536e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "UMAUSDT",
+      "bar_awal": 28116,
+      "bar_sisa": 28116,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.556693697538768e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "UNIUSDT",
+      "bar_awal": 51257,
+      "bar_sisa": 51257,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.950953040560314e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "USDCUSDT",
+      "bar_awal": 29527,
+      "bar_sisa": 29527,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.386730788769601e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "USTCUSDT",
+      "bar_awal": 23292,
+      "bar_sisa": 23292,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.29331959471063e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "USUALUSDT",
+      "bar_awal": 14003,
+      "bar_sisa": 14003,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "VANAUSDT",
+      "bar_awal": 14051,
+      "bar_sisa": 14051,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "VANRYUSDT",
+      "bar_awal": 20719,
+      "bar_sisa": 20719,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.8264877648535163e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "VELODROMEUSDT",
+      "bar_awal": 14120,
+      "bar_sisa": 14120,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "VELVETUSDT",
+      "bar_awal": 8991,
+      "bar_sisa": 8991,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "VETUSDT",
+      "bar_awal": 56344,
+      "bar_sisa": 56344,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7748118699417862e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "VICUSDT",
+      "bar_awal": 11983,
+      "bar_sisa": 11983,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "VINEUSDT",
+      "bar_awal": 13118,
+      "bar_sisa": 11017,
+      "dipangkas": 2101,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1777370400000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "VIRTUALUSDT",
+      "bar_awal": 14196,
+      "bar_sisa": 14196,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "VTHOUSDT",
+      "bar_awal": 13167,
+      "bar_sisa": 13167,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "VVVUSDT",
+      "bar_awal": 13000,
+      "bar_sisa": 13000,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "WALUSDT",
+      "bar_awal": 11625,
+      "bar_sisa": 11625,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "WAXPUSDT",
+      "bar_awal": 24250,
+      "bar_sisa": 24250,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.1237113402061855e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "WCTUSDT",
+      "bar_awal": 11173,
+      "bar_sisa": 11173,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "WIFUSDT",
+      "bar_awal": 22042,
+      "bar_sisa": 22042,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.536793394428818e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "WLDUSDT",
+      "bar_awal": 26316,
+      "bar_sisa": 26316,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.799969600243198e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "WOOUSDT",
+      "bar_awal": 37653,
+      "bar_sisa": 37653,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.6558308766897723e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "WUSDT",
+      "bar_awal": 20217,
+      "bar_sisa": 20217,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.946332294603551e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "XAIUSDT",
+      "bar_awal": 22258,
+      "bar_sisa": 22258,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.492766645700422e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "XLMUSDT",
+      "bar_awal": 56944,
+      "bar_sisa": 56944,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7561112672098905e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "XMRUSDT",
+      "bar_awal": 56728,
+      "bar_sisa": 56728,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7627979128472713e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "XRPUSDT",
+      "bar_awal": 57280,
+      "bar_sisa": 57280,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7458100558659216e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "XTZUSDT",
+      "bar_awal": 56656,
+      "bar_sisa": 56656,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.7650381248234963e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "XVGUSDT",
+      "bar_awal": 26772,
+      "bar_sisa": 26772,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.735245779172269e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "XVSUSDT",
+      "bar_awal": 28774,
+      "bar_sisa": 28774,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.475359699728922e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "YFIIUSDT",
+      "bar_awal": 13947,
+      "bar_sisa": 13947,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1649754000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "YFIUSDT",
+      "bar_awal": 51569,
+      "bar_sisa": 51569,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.9391494890341097e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "YGGUSDT",
+      "bar_awal": 26037,
+      "bar_sisa": 26037,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 3.840688251334639e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ZECUSDT",
+      "bar_awal": 56560,
+      "bar_sisa": 56560,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.768033946251768e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ZENUSDT",
+      "bar_awal": 49529,
+      "bar_sisa": 49529,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 2.019019160491833e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ZEREBROUSDT",
+      "bar_awal": 13642,
+      "bar_sisa": 13642,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ZETAUSDT",
+      "bar_awal": 21688,
+      "bar_sisa": 21688,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 4.610844706750277e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ZILUSDT",
+      "bar_awal": 53343,
+      "bar_sisa": 53343,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.8746602178355174e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ZKJUSDT",
+      "bar_awal": 10503,
+      "bar_sisa": 8425,
+      "dipangkas": 2078,
+      "rasio_datar_sisa": 0.0,
+      "akhir_ms": 1777453200000,
+      "layak": false,
+      "alasan": "riwayat tersisa 8425 bar, di bawah 8760"
+    },
+    {
+      "symbol": "ZKUSDT",
+      "bar_awal": 18421,
+      "bar_sisa": 18421,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.428586938819825e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ZROUSDT",
+      "bar_awal": 18346,
+      "bar_sisa": 18346,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 5.450779461462989e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    },
+    {
+      "symbol": "ZRXUSDT",
+      "bar_awal": 53319,
+      "bar_sisa": 53319,
+      "dipangkas": 0,
+      "rasio_datar_sisa": 1.87550404171121e-05,
+      "akhir_ms": 1784934000000,
+      "layak": true,
+      "alasan": ""
+    }
+  ]
+}
