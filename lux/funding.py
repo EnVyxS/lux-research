@@ -1,7 +1,7 @@
 """Ingest funding rate perpetual dari arsip Binance Vision.
 
 Tanpa funding, model biaya perpetual bohong. Biaya transaksi hanya muncul dua
-kali per posisi, sedangkan funding menagih setiap delapan jam selama posisi
+kali per posisi, sedangkan funding menagih setiap beberapa jam selama posisi
 dipegang. Strategi tren yang menahan posisi berhari-hari bisa membayar funding
 berkali lipat dari ongkos masuk-keluarnya.
 
@@ -9,19 +9,10 @@ Bentuk arsipnya berbeda dari klines: tidak ada segmen interval pada path.
 
     data/futures/um/monthly/fundingRate/{SYMBOL}/{SYMBOL}-fundingRate-YYYY-MM.zip
 
-Seluruh pelajaran parser dari ingest klines dipasang di sini sejak awal, bukan
-ditemukan lagi lewat data cacat:
-
-- ``utf-8-sig`` supaya BOM tidak merusak deteksi header;
-- tanpa ``dtype`` ketat, konversi memakai ``errors="coerce"``, supaya satu
-  baris sampah tidak menggagalkan satu bulan penuh;
-- ``header=None`` dengan ``skiprows`` yang dihitung, bukan ``header=0``
-  bersamaan ``skiprows``, yang dulu membuang satu baris tiap berkas;
-- stempel mikrodetik dinormalisasi ke milidetik;
-- berkas tanpa baris data dikembalikan sebagai frame kosong, bukan galat.
-  Bulan tanpa funding memang ada, misalnya saat kontrak baru terdaftar di
-  penghujung bulan, dan satu berkas semacam itu tidak boleh menghapus seluruh
-  riwayat simbolnya.
+Seluruh pelajaran parser dari ingest klines dipasang di sini sejak awal:
+``utf-8-sig`` untuk BOM, tanpa ``dtype`` ketat, ``header=None`` dengan
+``skiprows`` terhitung, normalisasi stempel mikrodetik, dan berkas tanpa baris
+data dikembalikan sebagai frame kosong alih-alih melempar galat.
 """
 
 from __future__ import annotations
@@ -51,6 +42,9 @@ JAM_MS = 3_600_000
 # dibuang, hanya dihitung, karena lonjakan ekstrem memang pernah terjadi dan
 # membuangnya diam-diam berarti menyembunyikan biaya nyata dari backtest.
 AMBANG_EKSTREM = 0.02
+
+# Bila kolom interval kosong sama sekali, delapan jam adalah kisi baku Binance.
+JAM_BAKU = 8.0
 
 
 def frame_kosong() -> pd.DataFrame:
@@ -100,8 +94,8 @@ def baca_zip(path: Path) -> pd.DataFrame:
         )
     except pd.errors.EmptyDataError:
         # Berkas hanya berisi header, atau kosong sama sekali. Ini keadaan sah,
-        # bukan kerusakan, dan harus dikembalikan sebagai frame kosong supaya
-        # bulan-bulan lain pada simbol yang sama tetap terbaca.
+        # bukan kerusakan: kontrak yang baru terdaftar di penghujung bulan wajar
+        # belum punya satu pun peristiwa funding.
         return frame_kosong()
 
     if df.shape[1] >= 3:
@@ -129,6 +123,22 @@ def baca_zip(path: Path) -> pd.DataFrame:
     return df.reset_index(drop=True)
 
 
+def langkah_per_baris(df: pd.DataFrame) -> pd.Series:
+    """Langkah kisi yang diharapkan untuk tiap baris, dalam milidetik.
+
+    Kisi funding **bukan** tetap. Binance memindahkan pasangan volatil ke
+    interval 4 jam, 2 jam, bahkan 1 jam, dan satu simbol dapat berpindah
+    beberapa kali sepanjang hidupnya. Mengasumsikan satu langkah per simbol
+    membuat hampir seluruh riwayat simbol yang pernah berpindah dilaporkan
+    sebagai celah. Itu persis yang terjadi pada putaran pertama: 1.380.741
+    "celah" dari 1.982.017 baris, seluruhnya artefak asumsi.
+    """
+    jam = pd.to_numeric(df["funding_interval_hours"], errors="coerce")
+    modus = jam.mode()
+    isian = float(modus.iloc[0]) if not modus.empty else JAM_BAKU
+    return (jam.fillna(isian) * JAM_MS).astype("int64")
+
+
 def periksa(df: pd.DataFrame) -> dict:
     """Invarian funding. Dilaporkan sebagai jumlah, bukan lulus/gagal saja."""
     if df.empty:
@@ -137,37 +147,49 @@ def periksa(df: pd.DataFrame) -> dict:
             "duplikat": 0,
             "tidak_urut": 0,
             "celah": 0,
+            "peralihan_kisi": 0,
             "positif": 0,
             "negatif": 0,
             "ekstrem": 0,
             "rate_min": None,
             "rate_maks": None,
+            "rate_rerata": None,
             "interval_jam": [],
+            "awal": None,
+            "akhir": None,
         }
 
+    df = df.sort_values("calc_time")
     t = df["calc_time"]
-    beda = t.diff().dropna()
+    beda = t.diff()
 
-    jam = sorted(
-        int(x) for x in pd.unique(df["funding_interval_hours"].dropna()) if x == x
-    )
-    # Kisi funding tidak selalu 8 jam. Sebagian pasangan memakai 4 jam, dan
-    # sebagian pernah berpindah. Karena itu langkah yang diharapkan diambil dari
-    # data, bukan diasumsikan.
-    langkah = int(jam[0]) * JAM_MS if jam else 8 * JAM_MS
+    jam_seri = pd.to_numeric(df["funding_interval_hours"], errors="coerce")
+    langkah = langkah_per_baris(df)
+
+    # Baris tempat kisi berubah tidak boleh dihitung sebagai celah: selisihnya
+    # memang mengikuti kisi lama, bukan kisi baru. Peralihan dilaporkan sebagai
+    # angkanya sendiri supaya jumlahnya dapat diperiksa, bukan disembunyikan.
+    beralih = langkah.ne(langkah.shift()) & langkah.shift().notna()
+
+    sah = beda.notna() & ~beralih
+    celah = int(((beda != langkah) & sah).sum())
 
     r = df["last_funding_rate"]
     return {
         "baris": int(len(df)),
         "duplikat": int(t.duplicated().sum()),
-        "tidak_urut": int((beda < 0).sum()),
-        "celah": int((beda != langkah).sum()),
+        "tidak_urut": int((beda.dropna() < 0).sum()),
+        "celah": celah,
+        "peralihan_kisi": int(beralih.sum()),
         "positif": int((r > 0).sum()),
         "negatif": int((r < 0).sum()),
         "ekstrem": int((r.abs() > AMBANG_EKSTREM).sum()),
         "rate_min": float(r.min()),
         "rate_maks": float(r.max()),
-        "interval_jam": jam,
+        "rate_rerata": float(r.mean()),
+        "interval_jam": sorted(int(x) for x in pd.unique(jam_seri.dropna())),
+        "awal": int(t.iloc[0]),
+        "akhir": int(t.iloc[-1]),
     }
 
 
@@ -205,11 +227,7 @@ def ingest_simbol(symbol: str, tmp: Path) -> tuple[pd.DataFrame, dict]:
 
 
 def muat_simbol_layak(path: Path) -> list[str]:
-    """Funding hanya diambil untuk simbol yang akan diuji.
-
-    Mengambil funding untuk 790 simbol saat hanya 447 yang layak berarti
-    membayar waktu runner untuk data yang tidak akan pernah dipakai.
-    """
+    """Funding hanya diambil untuk simbol yang akan diuji."""
     data = json.loads(path.read_text(encoding="utf-8"))
     return list(data["simbol"])
 
@@ -234,9 +252,11 @@ def gabungkan_laporan(direktori: Path, keluaran: Path) -> dict:
         "duplikat": sum(d["duplikat"] for d in detail),
         "tidak_urut": sum(d["tidak_urut"] for d in detail),
         "celah": sum(d["celah"] for d in detail),
+        "peralihan_kisi": sum(d.get("peralihan_kisi", 0) for d in detail),
         "positif": sum(d["positif"] for d in detail),
         "negatif": sum(d["negatif"] for d in detail),
         "ekstrem": sum(d["ekstrem"] for d in detail),
+        "simbol_berpindah_kisi": sum(1 for d in detail if len(d.get("interval_jam", [])) > 1),
         "sebaran_interval_jam": kisi,
         "simbol_kosong_nama": sorted(d["symbol"] for d in gagal)[:50],
     }
@@ -262,6 +282,8 @@ def gabungkan_laporan(direktori: Path, keluaran: Path) -> dict:
         f"- Baris: **{ringkas['baris']:,}**",
         f"- Duplikat: {ringkas['duplikat']} | Tidak urut: {ringkas['tidak_urut']} | "
         f"Celah kisi: {ringkas['celah']:,}",
+        f"- Peralihan kisi (sah, bukan celah): {ringkas['peralihan_kisi']:,} pada "
+        f"{ringkas['simbol_berpindah_kisi']} simbol",
         f"- Funding positif: {ringkas['positif']:,} "
         f"({pangsa:.1%}) | negatif: {ringkas['negatif']:,}",
         f"- Melebihi {AMBANG_EKSTREM:.0%}: {ringkas['ekstrem']:,} (dicatat, tidak dibuang)",
