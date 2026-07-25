@@ -2,23 +2,23 @@
 
 > **Sesi baru mulai dari sini.** Berkas ini ditulis ulang setiap sesi dan dibatasi ~400 baris. Ia menggantikan kebutuhan membaca Notion atau arsip jurnal. Jika sesuatu tidak tercatat di sini, anggap belum diketahui.
 
-**Diperbarui:** 2026-07-25 21:30 WIB
-**Tahap sekarang:** S2 — Bootstrap, pengukuran runner selesai
-**Tahap berikutnya:** S3 — Universe point-in-time
+**Diperbarui:** 2026-07-25 21:40 WIB
+**Tahap sekarang:** S4 — Ingest Tier B sedang berjalan
+**Tahap berikutnya:** S5 — Validasi data, lalu backfill ekor harian
 
 ---
 
 ## 1. Aturan membaca berkas ini
 
-Dua bagian di bawah dipisahkan dengan sengaja. **Bagian 3 adalah fakta**: setiap barisnya punya bukti yang bisa diperiksa ulang, berupa commit, run ID, atau kutipan dokumentasi. **Bagian 4 adalah asumsi**: belum diukur, dan dilarang diperlakukan sebagai fakta.
+Bagian 3 adalah **fakta**: setiap baris punya bukti yang bisa diperiksa ulang berupa commit, run ID, atau kutipan dokumentasi. Bagian 4 adalah **asumsi**: belum diukur, dan dilarang diperlakukan sebagai fakta.
 
-Memindahkan baris dari Bagian 4 ke Bagian 3 hanya boleh dilakukan setelah ada bukti yang dilampirkan. Ini bukan formalitas — kegagalan riset sebelumnya berakar pada asumsi yang perlahan diperlakukan sebagai kebenaran tanpa pernah diuji.
+Memindahkan baris dari Bagian 4 ke Bagian 3 hanya boleh dilakukan dengan bukti terlampir. Kegagalan riset sebelumnya berakar pada asumsi yang perlahan diperlakukan sebagai kebenaran tanpa pernah diuji.
 
 ---
 
 ## 2. Apa yang sedang dibangun
 
-Sistem trading kuantitatif untuk Binance USD-M Futures, dibangun ulang dari nol. Seluruh pengetahuan dari upaya sebelumnya, termasuk log sinyal bot v8.4, secara sengaja dibuang. Hanya data mentah dan pelajaran metodologis yang dibawa.
+Sistem trading kuantitatif untuk Binance USD-M Futures, dibangun ulang dari nol. Seluruh pengetahuan dari upaya sebelumnya, termasuk log sinyal bot v8.4, sengaja dibuang. Hanya data mentah dan pelajaran metodologis yang dibawa.
 
 Seluruh komputasi berjalan di GitHub Actions. Mesin lokal pengguna tidak sanggup melakukan backtest penuh, dan tidak ada VM cloud karena kendala kartu kredit.
 
@@ -26,125 +26,142 @@ Seluruh komputasi berjalan di GitHub Actions. Mesin lokal pengguna tidak sanggup
 
 ## 3. Fakta terverifikasi
 
-### Kapasitas runner — diukur, bukan diasumsikan
+### Universe — sumber: `reports/universe.json`, 2026-07-25T14:35Z
 
-Sumber: `reports/doctor.json`, run `30161543831`, 2026-07-25.
+| Ukuran | Nilai |
+|---|---|
+| Simbol di arsip (pernah ada) | **937** |
+| Kontrak perpetual | 872 |
+| Kontrak bertanggal (delivery) | 50 |
+| Varian SETTLED | 15 |
+| **Perpetual USDT — universe riset** | **790** |
+| Perpetual USDT masih aktif | 761 |
+| Perpetual USDT sudah delisted | 29 |
+| Baris point-in-time | 21.789 pasangan simbol-bulan |
+| Rentang arsip bulanan | 2020-01 → 2026-06 |
+| Simbol tanpa data 1h | 0 |
+| Simbol dengan lubang arsip | 2, keduanya SETTLED |
 
-| Sumber daya | Nilai terukur | Catatan |
+**Universe riset adalah 790 perpetual USDT**, bukan 937. Kontrak bertanggal seperti `BTCUSDT_240329` dikecualikan karena tidak memakai funding rate dan punya tanggal kedaluwarsa, sehingga model biaya perpetual tidak berlaku padanya. Varian SETTLED dikecualikan karena riwayatnya terpotong.
+
+Dataset lama berisi 528 simbol. Terhadap universe riset 790, artinya **262 simbol perpetual USDT hilang** dari upaya sebelumnya, dan yang hilang bukan sampel acak melainkan simbol yang mati.
+
+**Catatan kejujuran tentang gerbang:** gerbang "harus melebihi 841" membandingkan 937 simbol arsip (semua quote, semua jenis kontrak) terhadap 841 simbol aktif dari snapshot `exchangeInfo` (semua quote). Perbandingan itu tidak sepenuhnya setara populasi. Bukti survivorship yang sesungguhnya bukan angka gerbangnya, melainkan **129 simbol delisted yang hadir di arsip lengkap dengan riwayatnya**, termasuk SRMUSDT sampai 2024-05 dan FTTUSDT sampai 2026-06.
+
+### Ekor arsip — temuan yang mengubah rencana ingest
+
+Hipotesis sebelumnya keliru dan sudah gugur. Saya menduga arsip kehilangan September sampai Desember 2019. Pemeriksaan arsip harian membantahnya:
+
+| Simbol | Hari pertama di arsip harian | Bulan pertama di arsip bulanan |
 |---|---|---|
-| vCPU | 4 | AMD EPYC 7763 |
-| RAM | 15 GB | |
-| **Disk bebas** | **88 GB** | jauh di atas perkiraan 14 GB |
+| BTCUSDT | 2019-12-31 | 2020-01 |
+| ETHUSDT | 2019-12-31 | 2020-01 |
+| BCHUSDT | 2019-12-31 | 2020-01 |
+| XRPUSDT | 2020-01-06 | 2020-01 |
 
-Angka disk mengubah rencana secara material. Anggaran sebelumnya menganggap ~14 GB, yang memaksa ingest dipecah menjadi banyak shard kecil. Dengan 88 GB, seluruh Tier B muat sekaligus, dan bahkan Tier A per-simbol bisa diproses tanpa pemecahan agresif. **Batas 6 jam per job, bukan disk, yang kini menjadi kendala utama.**
+Arsip memang dimulai 2019-12-31, bukan September 2019. Data tiga bulan pertama futures Binance tidak ada di arsip sama sekali, jadi tidak ada yang bisa diselamatkan. Kehilangan di ujung awal hanya **satu hari**.
 
-### Konektivitas sumber data
+Yang justru penting ada di ujung lain: arsip harian mencapai **2026-07-24**, sementara arsip bulanan berhenti di **2026-06**. Ingest yang hanya membaca arsip bulanan akan kehilangan sekitar **24 hari data terbaru**, diam-diam. Ini bukan cacat kecil untuk sistem yang harus diperdagangkan; ini menentukan seberapa mutakhir backtest bisa dibuat. Backfill ekor harian wajib ditambahkan sebelum S5 dinyatakan selesai.
+
+### Kapasitas runner — sumber: `reports/doctor.json`
+
+| Sumber daya | Nilai terukur |
+|---|---|
+| vCPU | 4 |
+| RAM | 15 GB |
+| Disk bebas | **88 GB** |
+| CPU | bervariasi antar run: EPYC 7763 dan EPYC 9V74 |
+
+Disk 88 GB, bukan 14 GB seperti yang diperkirakan. Sharding agresif tidak diperlukan. **Batas 6 jam per job, bukan disk, yang menjadi kendala utama.**
+
+Model CPU berbeda antar run. Setiap tolok ukur berbasis waktu harus mencatat model CPU-nya, atau perbandingan antar run tidak sah.
+
+### Konektivitas
 
 | Temuan | Nilai | Implikasi |
 |---|---|---|
-| CDN `data.binance.vision` | HTTP 200 | jalur unduhan utama berfungsi |
-| Endpoint S3 listing | HTTP 200, mengembalikan `CommonPrefixes` | enumerasi simbol dimungkinkan |
-| **REST `fapi.binance.com/exchangeInfo`** | **HTTP 451** | **diblokir permanen dari runner** |
-| Berkas 1h Jan 2024 | 38.890 byte zip, 91.706 byte CSV, 745 baris | 744 bar + 1 header, bulan lengkap tanpa celah |
-| Rasio kompresi zip | 2,36× | |
+| CDN `data.binance.vision` | 200 | jalur unduhan utama |
+| S3 listing | 200, `CommonPrefixes` | satu-satunya sumber universe |
+| REST `fapi.binance.com` | **451** | diblokir permanen dari runner |
+| Checksum SHA256 | cocok | verifikasi berfungsi |
+| Berkas 1h Jan 2024 | 745 baris = 744 bar + header | bulan lengkap |
 
-**HTTP 451 berarti "Unavailable For Legal Reasons".** Runner GitHub berbasis di Amerika Serikat, dan Binance memblokir yurisdiksi itu. Ini bukan galat sementara dan tidak akan hilang dengan mencoba ulang.
-
-Konsekuensinya mengikat: **universe tidak boleh dibangun dari REST API.** Satu-satunya sumber daftar simbol di dalam runner adalah enumerasi arsip S3. Kebetulan ini justru lebih baik secara metodologis — `exchangeInfo` hanya memuat simbol yang aktif hari ini, sehingga membangun universe darinya akan menanamkan survivorship bias sejak baris pertama. Arsip S3 memuat simbol yang sudah delisted.
-
-Snapshot `exchangeInfo` yang sudah ada di Notion (841 simbol, 2026-07-21) tetap berguna sebagai **referensi metadata** untuk tick size, step size, dan minimum notional, karena diambil dari mesin lokal pengguna yang tidak terblokir.
+HTTP 451 berarti diblokir atas dasar hukum; runner GitHub berbasis di AS. Ini permanen. Snapshot `exchangeInfo` dari mesin lokal pengguna tetap dipakai, tapi hanya sebagai referensi metadata tick size, step size, dan minimum notional.
 
 ### Infrastruktur
 
 | Fakta | Bukti |
 |---|---|
 | Repo `EnVyxS/lux-research` publik | id `1312019687` |
-| Token bisa menulis berkas biasa | commit `7e513be` |
-| Token bisa menulis `.github/workflows/` | commit `4aa7654` |
-| Runner bisa commit balik ke `main` | `reports/doctor.json` ada di repo |
+| Token bisa menulis berkas dan workflow | commit `7e513be`, `4aa7654` |
+| Runner bisa commit balik ke `main` | `reports/` terisi |
 | Menit Actions tak terbatas untuk repo publik | `github.com/pricing` |
-| Job tunggal dibatasi 6 jam keras | dokumentasi limits GitHub |
-| Aset Release dibatasi 2 GB per berkas | diskusi komunitas 146417 |
-| Berkas di dalam git dibatasi 100 MB | dokumentasi berkas besar |
-| Cron mati otomatis setelah 60 hari tanpa aktivitas | dokumentasi disabling workflows |
+| Job dibatasi 6 jam keras | dokumentasi limits GitHub |
+| Aset Release 2 GB per berkas | diskusi komunitas 146417 |
+| Berkas git 100 MB | dokumentasi berkas besar |
+| Cron mati setelah 60 hari tanpa aktivitas | dokumentasi disabling workflows |
 
-### Batas alat yang dimiliki agen
+### Batas alat agen dan solusinya
 
-- Agen **tidak bisa** membuat rilis atau mengunggah aset. Parquet harus diunggah runner lewat `gh release upload`.
-- Agen **tidak bisa** memicu workflow manual. Pemicu satu-satunya adalah push.
-- Agen **tidak bisa** membaca log atau status workflow run. **Solusi yang sudah berjalan: setiap workflow menulis hasilnya ke `reports/` dan meng-commit balik.** Setiap workflow baru wajib mengikuti pola ini, atau hasilnya tidak akan pernah terlihat.
-- Sandbox agen **tidak punya jaringan sama sekali**. Semua pengambilan data terjadi di runner.
-
-### Data yang sudah dimiliki
-
-Hanya ~47 MB yang masih persisten. Sisanya perlu diunduh ulang. Dataset lama berperan sebagai **pembanding validasi silang, bukan sumber kebenaran**.
-
-| Artefak persisten | Cakupan | Ukuran |
-|---|---|---|
-| Index Price Klines 1h | 832 simbol, 2026-06-09 → 07-21 | 17,7 MB |
-| Mark Price Klines 1h | 838 simbol, 2026-06-09 → 07-21 | 16,5 MB |
-| Open Interest 1h | 841 simbol, 2026-06-30 → 07-21 | 6,7 MB |
-| Funding Rate 8h | 841 simbol, 2026-02-04 → 07-21 | 4,0 MB |
-| Metadata Futures | 841 exchangeInfo, snapshot 2026-07-21 | 2,2 MB |
-
-Sumber unduhan: `https://data.binance.vision/data/futures/um/...` — **prefix `data/` wajib**, tanpa itu S3 mengembalikan `NoSuchKey`.
-
-### Anomali survivorship yang belum tuntas
-
-Dataset lama berisi 528 simbol, sementara snapshot `exchangeInfo` mencantumkan 841 simbol aktif. Selisih 313 simbol adalah indikasi kuat survivorship bias pada dataset lama. Universe point-in-time yang dibangun di S3 harus menghasilkan **lebih dari 841 simbol historis**; jika tidak, pembangunan universe itu sendiri yang cacat.
+- Agen **tidak bisa** membuat atau mengunggah rilis. Runner melakukannya lewat `gh release upload`.
+- Agen **tidak bisa** memicu workflow manual. Pemicu satu-satunya adalah push, jadi setiap workflow diberi filter `paths` pada berkasnya sendiri.
+- Agen **tidak bisa** membaca log workflow. **Solusi wajib: setiap workflow menulis hasil ke `reports/` dan meng-commit balik.** Workflow yang tidak mengikuti pola ini hasilnya tidak akan pernah terlihat.
+- Sandbox agen **tidak punya jaringan**. Semua pengambilan data terjadi di runner.
 
 ---
 
 ## 4. Asumsi belum terverifikasi
 
-| Asumsi | Cara memverifikasi | Status |
-|---|---|---|
-| Arsip S3 memuat simbol delisted | probe `universe_probe.json` | sedang diukur |
-| Jumlah simbol historis > 841 | probe `universe_probe.json` | sedang diukur |
-| Throughput unduhan cukup untuk Tier A dalam 6 jam | probe berkas 1m | sedang diukur |
-| Tier B (1h + 4h seluruh universe) ≈ 28 juta baris, ≈0,9 GB | ukur setelah ingest pertama | belum |
-| Rasio CSV ke Parquet+zstd ≈ 9× | ukur setelah ingest pertama | belum |
-| Direktori `metrics/`, `bookTicker/`, `liquidationSnapshot/` tersedia | probe lanjutan | belum |
+| Asumsi | Cara memverifikasi |
+|---|---|
+| Tier B ≈ 28 juta baris, ≈0,9 GB | `reports/ingest_tier_b.json` |
+| Rasio CSV ke Parquet+zstd ≈ 9× | sama |
+| Throughput cukup untuk Tier A dalam 6 jam | ukur dari durasi shard Tier B |
+| Arsip harian punya cakupan simbol setara arsip bulanan | belum diperiksa |
+| `metrics/`, `bookTicker/`, `liquidationSnapshot/` tersedia | belum |
+| Funding rate tersedia untuk seluruh 790 perp | belum |
 
-Catatan: run pertama melaporkan `checksum_ok: false`. **Itu bug milik agen, bukan data rusak** — berkas disimpan dengan nama `probe.zip` sementara berkas `.CHECKSUM` merujuk nama aslinya, sehingga `sha256sum -c` mustahil cocok. Sudah diperbaiki; hasil ulang menunggu.
+Throughput 1,30 MiB/s yang terukur di `doctor.json` **tidak boleh dipakai**. Berkas ujinya hanya 1,9 MB sehingga waktunya didominasi latensi, bukan bandwidth.
 
 ---
 
 ## 5. Penghalang aktif
 
-Tidak ada yang menghentikan pekerjaan saat ini.
+Tidak ada yang menghentikan pekerjaan.
 
-Dibutuhkan dari pengguna, tapi belum memblokir:
-
-1. **Token integrasi Notion** sebagai GitHub Secret `NOTION_TOKEN`, agar runner bisa menulis ke database Run Results dan membangunkan agen pengawas.
-
-Catatan: kebutuhan menjalankan `lux_fetch.ps1 -Phase preflight` di mesin lokal **sudah gugur**. Runner ternyata bisa menjalankan semua probe itu sendiri, jadi mesin lokal tidak lagi berada di jalur kritis.
+Dibutuhkan dari pengguna, belum memblokir: **token integrasi Notion** sebagai GitHub Secret `NOTION_TOKEN`, agar runner dapat menulis ke database Run Results dan membangunkan agen pengawas.
 
 ---
 
 ## 6. Tindakan berikutnya
 
-1. Baca `reports/universe_probe.json` untuk menutup dua asumsi teratas.
-2. Tulis `lux/binance_vision.py` — klien arsip dengan enumerasi S3, unduhan resumable, dan verifikasi checksum wajib.
-3. Bangun universe point-in-time dari arsip. **Gerbang: hasil harus melebihi 841 simbol.** Di bawah itu, berhenti dan selidiki.
-4. Ingest Tier B lebih dulu, bukan Tier A. Volume kecil membuat kesalahan pipeline ketahuan murah.
-5. Validasi terhadap sembilan gerbang mutu sebelum menyentuh Tier A.
+1. Baca `reports/ingest_tier_b.json` setelah ingest selesai. Gerbang: nol duplikat, nol simbol gagal.
+2. **Tambahkan backfill ekor harian** untuk menutup 2026-07-01 sampai hari ini, plus 2019-12-31. Tanpa ini data selalu tertinggal sebulan.
+3. Bandingkan hasil terhadap Dataset G lama sebagai uji silang independen.
+4. Ingest funding rate; tanpa itu model biaya perpetual tidak lengkap.
+5. Baru setelah semua gerbang lulus, pertimbangkan Tier A (1m).
 
 ---
 
 ## 7. Pengawasan otonom
 
-Agen **LUX Gatekeeper** aktif di Notion. Ia terpicu ketika runner membuat baris baru di database Run Results, lalu menilai hasil terhadap sembilan gerbang mutu: forward-fill, buy-and-hold, entry acak, lookahead, invariant risiko, funding, overlap, checksum, dan survivorship.
+Agen **LUX Gatekeeper** aktif di Notion. Terpicu saat runner membuat baris di database Run Results, menilai hasil terhadap sembilan gerbang mutu: forward-fill, buy-and-hold, entry acak, lookahead, invariant risiko, funding, overlap, checksum, survivorship.
 
-Gatekeeper sudah diuji dengan baris sintetis bercacat. Ia menolak baris itu, mengidentifikasi kedua cacat dengan benar, dan menolak mengeluarkan perintah lanjutan.
+Sudah diuji dengan baris sintetis bercacat; menolak dengan benar dan menolak mengeluarkan perintah lanjutan.
 
-**Ketika verdict Ditolak, pipeline berhenti.** Agen tidak boleh melanjutkan ke tahap berikutnya.
+**Verdict Ditolak menghentikan pipeline.**
 
 ---
 
-## 8. Arsip
+## 8. Peta repo
 
-- `reports/` — keluaran mesin dari setiap workflow run. Sumber bukti untuk Bagian 3.
-- `journal/` — riwayat lengkap per sesi. Baca hanya bagian yang relevan.
-- `decisions/` — ADR. ADR-002 menggantikan bagian penyimpanan pada ADR-001.
-- Notion masih menyimpan Constitution riset dan halaman Pelajaran Metodologis.
+| Path | Isi |
+|---|---|
+| `lux/binance_vision.py` | klien arsip: listing S3, unduhan resumable, verifikasi checksum |
+| `lux/universe.py` | universe point-in-time dan klasifikasi jenis kontrak |
+| `lux/ingest.py` | ingest Tier B dengan validasi per simbol |
+| `lux/summarize.py` | agregasi laporan antar shard |
+| `reference/` | parquet universe |
+| `reports/` | keluaran mesin tiap run, sumber bukti Bagian 3 |
+| `journal/` | riwayat per sesi |
+| `decisions/` | ADR |
