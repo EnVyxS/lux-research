@@ -1,0 +1,2708 @@
+{
+  "interval": "1h",
+  "min_panjang": 24,
+  "simbol_dipindai": 447,
+  "simbol_bermasalah": 69,
+  "letak_terpanjang": {
+    "awal": 0,
+    "tengah": 7,
+    "akhir": 62,
+    "seluruh": 0
+  },
+  "blok_terpanjang_satu_harga": 69,
+  "blok_terpanjang_tanpa_volume": 61,
+  "simbol_yang_datarnya_menggumpal": 69,
+  "simbol": [
+    {
+      "symbol": "RENUSDT",
+      "bar": 50657,
+      "bar_datar": 14367,
+      "rasio_datar": 0.28361332096255204,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 36291,
+        "indeks_akhir": 50656,
+        "panjang": 14366,
+        "mulai_ms": 1733220000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.048,
+        "harga_akhir": 0.048,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7164064196458535,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9999303960464955,
+      "blok": [
+        {
+          "indeks_mulai": 36291,
+          "indeks_akhir": 50656,
+          "panjang": 14366,
+          "mulai_ms": 1733220000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.048,
+          "harga_akhir": 0.048,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7164064196458535,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "BLZUSDT",
+      "bar": 51281,
+      "bar_datar": 13889,
+      "rasio_datar": 0.27084105224157096,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 37394,
+        "indeks_akhir": 51280,
+        "panjang": 13887,
+        "mulai_ms": 1734944400000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.06836,
+        "harga_akhir": 0.06836,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7291979485579454,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9998560011519908,
+      "blok": [
+        {
+          "indeks_mulai": 37394,
+          "indeks_akhir": 51280,
+          "panjang": 13887,
+          "mulai_ms": 1734944400000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.06836,
+          "harga_akhir": 0.06836,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7291979485579454,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "FTMUSDT",
+      "bar": 50993,
+      "bar_datar": 13551,
+      "rasio_datar": 0.26574235679406977,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 37443,
+        "indeks_akhir": 50992,
+        "panjang": 13550,
+        "mulai_ms": 1736157600000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.7702,
+        "harga_akhir": 0.7702,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7342772537407095,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9999262047081396,
+      "blok": [
+        {
+          "indeks_mulai": 37443,
+          "indeks_akhir": 50992,
+          "panjang": 13550,
+          "mulai_ms": 1736157600000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.7702,
+          "harga_akhir": 0.7702,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7342772537407095,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "REEFUSDT",
+      "bar": 47489,
+      "bar_datar": 13167,
+      "rasio_datar": 0.27726420855355977,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 34323,
+        "indeks_akhir": 47488,
+        "panjang": 13166,
+        "mulai_ms": 1737540000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.00088,
+        "harga_akhir": 0.00088,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7227568489544948,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9999240525556315,
+      "blok": [
+        {
+          "indeks_mulai": 34323,
+          "indeks_akhir": 47488,
+          "panjang": 13166,
+          "mulai_ms": 1737540000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.00088,
+          "harga_akhir": 0.00088,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7227568489544948,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "OMGUSDT",
+      "bar": 53007,
+      "bar_datar": 12952,
+      "rasio_datar": 0.2443450864980097,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 40056,
+        "indeks_akhir": 53006,
+        "panjang": 12951,
+        "mulai_ms": 1738314000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.291,
+        "harga_akhir": 0.291,
+        "volume_total": 5536.3,
+        "count_total": 3.0,
+        "posisi_frac": 0.7556737789348577,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.999922791846819,
+      "blok": [
+        {
+          "indeks_mulai": 40056,
+          "indeks_akhir": 53006,
+          "panjang": 12951,
+          "mulai_ms": 1738314000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.291,
+          "harga_akhir": 0.291,
+          "volume_total": 5536.3,
+          "count_total": 3.0,
+          "posisi_frac": 0.7556737789348577,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "STMXUSDT",
+      "bar": 46817,
+      "bar_datar": 12447,
+      "rasio_datar": 0.265864963581605,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 34371,
+        "indeks_akhir": 46816,
+        "panjang": 12446,
+        "mulai_ms": 1740132000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.00388,
+        "harga_akhir": 0.00388,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7341563961808745,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9999196593556681,
+      "blok": [
+        {
+          "indeks_mulai": 34371,
+          "indeks_akhir": 46816,
+          "panjang": 12446,
+          "mulai_ms": 1740132000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.00388,
+          "harga_akhir": 0.00388,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7341563961808745,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "LINAUSDT",
+      "bar": 46769,
+      "bar_datar": 11631,
+      "rasio_datar": 0.24869037182749257,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 35139,
+        "indeks_akhir": 46768,
+        "panjang": 11630,
+        "mulai_ms": 1743069600000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.000742,
+        "harga_akhir": 0.000742,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7513310098569566,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9999140228699166,
+      "blok": [
+        {
+          "indeks_mulai": 35139,
+          "indeks_akhir": 46768,
+          "panjang": 11630,
+          "mulai_ms": 1743069600000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.000742,
+          "harga_akhir": 0.000742,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7513310098569566,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "BALUSDT",
+      "bar": 51665,
+      "bar_datar": 11199,
+      "rasio_datar": 0.21676183102680732,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 40467,
+        "indeks_akhir": 51664,
+        "panjang": 11198,
+        "mulai_ms": 1744624800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.829,
+        "harga_akhir": 0.829,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7832575244362722,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9999107063130637,
+      "blok": [
+        {
+          "indeks_mulai": 40467,
+          "indeks_akhir": 51664,
+          "panjang": 11198,
+          "mulai_ms": 1744624800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.829,
+          "harga_akhir": 0.829,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7832575244362722,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "CTKUSDT",
+      "bar": 49759,
+      "bar_datar": 9448,
+      "rasio_datar": 0.18987519845656062,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "tengah",
+      "terpanjang": {
+        "indeks_mulai": 29498,
+        "indeks_akhir": 38944,
+        "panjang": 9447,
+        "mulai_ms": 1711962000000,
+        "akhir_ms": 1745967600000,
+        "harga_unik": 1,
+        "harga_awal": 1.0106,
+        "harga_akhir": 1.0106,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.5928173797704938,
+        "posisi_akhir_frac": 0.782672481360156
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9998941574936494,
+      "blok": [
+        {
+          "indeks_mulai": 29498,
+          "indeks_akhir": 38944,
+          "panjang": 9447,
+          "mulai_ms": 1711962000000,
+          "akhir_ms": 1745967600000,
+          "harga_unik": 1,
+          "harga_awal": 1.0106,
+          "harga_akhir": 1.0106,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.5928173797704938,
+          "posisi_akhir_frac": 0.782672481360156
+        }
+      ]
+    },
+    {
+      "symbol": "DEFIUSDT",
+      "bar": 51761,
+      "bar_datar": 8345,
+      "rasio_datar": 0.16122176928575568,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 43418,
+        "indeks_akhir": 51760,
+        "panjang": 8343,
+        "mulai_ms": 1754902800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 930.0,
+        "harga_akhir": 930.0,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8388168698440911,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9997603355302577,
+      "blok": [
+        {
+          "indeks_mulai": 43418,
+          "indeks_akhir": 51760,
+          "panjang": 8343,
+          "mulai_ms": 1754902800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 930.0,
+          "harga_akhir": 930.0,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8388168698440911,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "LITUSDT",
+      "bar": 47448,
+      "bar_datar": 7817,
+      "rasio_datar": 0.16474877760917214,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "tengah",
+      "terpanjang": {
+        "indeks_mulai": 34514,
+        "indeks_akhir": 42328,
+        "panjang": 7815,
+        "mulai_ms": 1738314000000,
+        "akhir_ms": 1766444400000,
+        "harga_unik": 1,
+        "harga_awal": 0.592,
+        "harga_akhir": 0.592,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.727406845388636,
+        "posisi_akhir_frac": 0.8921134715899511
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9997441473711143,
+      "blok": [
+        {
+          "indeks_mulai": 34514,
+          "indeks_akhir": 42328,
+          "panjang": 7815,
+          "mulai_ms": 1738314000000,
+          "akhir_ms": 1766444400000,
+          "harga_unik": 1,
+          "harga_awal": 0.592,
+          "harga_akhir": 0.592,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.727406845388636,
+          "posisi_akhir_frac": 0.8921134715899511
+        }
+      ]
+    },
+    {
+      "symbol": "LEVERUSDT",
+      "bar": 29100,
+      "bar_datar": 7792,
+      "rasio_datar": 0.267766323024055,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 21309,
+        "indeks_akhir": 29099,
+        "panjang": 7791,
+        "mulai_ms": 1756890000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0001125,
+        "harga_akhir": 0.0001125,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7322680412371134,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9998716632443532,
+      "blok": [
+        {
+          "indeks_mulai": 21309,
+          "indeks_akhir": 29099,
+          "panjang": 7791,
+          "mulai_ms": 1756890000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0001125,
+          "harga_akhir": 0.0001125,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7322680412371134,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "MKRUSDT",
+      "bar": 52001,
+      "bar_datar": 7672,
+      "rasio_datar": 0.147535624314917,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 44330,
+        "indeks_akhir": 52000,
+        "panjang": 7671,
+        "mulai_ms": 1757322000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 1650.1,
+        "harga_akhir": 1650.1,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8524836060844984,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9998696558915537,
+      "blok": [
+        {
+          "indeks_mulai": 44330,
+          "indeks_akhir": 52000,
+          "panjang": 7671,
+          "mulai_ms": 1757322000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 1650.1,
+          "harga_akhir": 1650.1,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8524836060844984,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALPHAUSDT",
+      "bar": 49673,
+      "bar_datar": 7311,
+      "rasio_datar": 0.14718257403418356,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 42363,
+        "indeks_akhir": 49672,
+        "panjang": 7310,
+        "mulai_ms": 1758621600000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.02027,
+        "harga_akhir": 0.02027,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8528375576268797,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9998632198057721,
+      "blok": [
+        {
+          "indeks_mulai": 42363,
+          "indeks_akhir": 49672,
+          "panjang": 7310,
+          "mulai_ms": 1758621600000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.02027,
+          "harga_akhir": 0.02027,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8528375576268797,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "BAKEUSDT",
+      "bar": 45425,
+      "bar_datar": 7072,
+      "rasio_datar": 0.15568519537699504,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 38354,
+        "indeks_akhir": 45424,
+        "panjang": 7071,
+        "mulai_ms": 1759482000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0249,
+        "harga_akhir": 0.0249,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8443368189323059,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9998585972850679,
+      "blok": [
+        {
+          "indeks_mulai": 38354,
+          "indeks_akhir": 45424,
+          "panjang": 7071,
+          "mulai_ms": 1759482000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0249,
+          "harga_akhir": 0.0249,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8443368189323059,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "HIFIUSDT",
+      "bar": 25018,
+      "bar_datar": 7071,
+      "rasio_datar": 0.2826365017187625,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 17948,
+        "indeks_akhir": 25017,
+        "panjang": 7070,
+        "mulai_ms": 1759485600000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0939,
+        "harga_akhir": 0.0939,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7174034695019585,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9998585772875124,
+      "blok": [
+        {
+          "indeks_mulai": 17948,
+          "indeks_akhir": 25017,
+          "panjang": 7070,
+          "mulai_ms": 1759485600000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0939,
+          "harga_akhir": 0.0939,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7174034695019585,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "TLMUSDT",
+      "bar": 43329,
+      "bar_datar": 6352,
+      "rasio_datar": 0.1465992753121466,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "tengah",
+      "terpanjang": {
+        "indeks_mulai": 7878,
+        "indeks_akhir": 14228,
+        "panjang": 6351,
+        "mulai_ms": 1654765200000,
+        "akhir_ms": 1677625200000,
+        "harga_unik": 1,
+        "harga_awal": 0.0347,
+        "harga_akhir": 0.0347,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.18181818181818182,
+        "posisi_akhir_frac": 0.3283943778993284
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9998425692695214,
+      "blok": [
+        {
+          "indeks_mulai": 7878,
+          "indeks_akhir": 14228,
+          "panjang": 6351,
+          "mulai_ms": 1654765200000,
+          "akhir_ms": 1677625200000,
+          "harga_unik": 1,
+          "harga_awal": 0.0347,
+          "harga_akhir": 0.0347,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.18181818181818182,
+          "posisi_akhir_frac": 0.3283943778993284
+        }
+      ]
+    },
+    {
+      "symbol": "MYROUSDT",
+      "bar": 20920,
+      "bar_datar": 6064,
+      "rasio_datar": 0.2898661567877629,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 14857,
+        "indeks_akhir": 20919,
+        "panjang": 6063,
+        "mulai_ms": 1763110800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.01001,
+        "harga_akhir": 0.01001,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7101816443594646,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9998350923482849,
+      "blok": [
+        {
+          "indeks_mulai": 14857,
+          "indeks_akhir": 20919,
+          "panjang": 6063,
+          "mulai_ms": 1763110800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.01001,
+          "harga_akhir": 0.01001,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7101816443594646,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "FLMUSDT",
+      "bar": 50873,
+      "bar_datar": 5896,
+      "rasio_datar": 0.11589644801761248,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 44978,
+        "indeks_akhir": 50872,
+        "panjang": 5895,
+        "mulai_ms": 1763715600000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0082,
+        "harga_akhir": 0.0082,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8841232087747921,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9998303934871099,
+      "blok": [
+        {
+          "indeks_mulai": 44978,
+          "indeks_akhir": 50872,
+          "panjang": 5895,
+          "mulai_ms": 1763715600000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0082,
+          "harga_akhir": 0.0082,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8841232087747921,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "PERPUSDT",
+      "bar": 29676,
+      "bar_datar": 5896,
+      "rasio_datar": 0.1986790672597385,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 23781,
+        "indeks_akhir": 29675,
+        "panjang": 5895,
+        "mulai_ms": 1763715600000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0781,
+        "harga_akhir": 0.0781,
+        "volume_total": 3.5,
+        "count_total": 1.0,
+        "posisi_frac": 0.8013546300040437,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9998303934871099,
+      "blok": [
+        {
+          "indeks_mulai": 23781,
+          "indeks_akhir": 29675,
+          "panjang": 5895,
+          "mulai_ms": 1763715600000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0781,
+          "harga_akhir": 0.0781,
+          "volume_total": 3.5,
+          "count_total": 1.0,
+          "posisi_frac": 0.8013546300040437,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "TOKENUSDT",
+      "bar": 23865,
+      "bar_datar": 5559,
+      "rasio_datar": 0.2329352608422376,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 18307,
+        "indeks_akhir": 23864,
+        "panjang": 5558,
+        "mulai_ms": 1764928800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.003817,
+        "harga_akhir": 0.003817,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7671066415252462,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9998201115308508,
+      "blok": [
+        {
+          "indeks_mulai": 18307,
+          "indeks_akhir": 23864,
+          "panjang": 5558,
+          "mulai_ms": 1764928800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.003817,
+          "harga_akhir": 0.003817,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7671066415252462,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "FXSUSDT",
+      "bar": 30765,
+      "bar_datar": 4792,
+      "rasio_datar": 0.1557614171948643,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 25974,
+        "indeks_akhir": 30764,
+        "panjang": 4791,
+        "mulai_ms": 1767690000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.6483,
+        "harga_akhir": 0.6483,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8442710872745003,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9997913188647746,
+      "blok": [
+        {
+          "indeks_mulai": 25974,
+          "indeks_akhir": 30764,
+          "panjang": 4791,
+          "mulai_ms": 1767690000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.6483,
+          "harga_akhir": 0.6483,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8442710872745003,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "TOMOUSDT",
+      "bar": 31777,
+      "bar_datar": 4703,
+      "rasio_datar": 0.1480001258772068,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 27074,
+        "indeks_akhir": 31776,
+        "panjang": 4703,
+        "mulai_ms": 1699952400000,
+        "akhir_ms": 1716879600000,
+        "harga_unik": 1,
+        "harga_awal": 1.2792,
+        "harga_akhir": 1.2792,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8519998741227932,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 27074,
+          "indeks_akhir": 31776,
+          "panjang": 4703,
+          "mulai_ms": 1699952400000,
+          "akhir_ms": 1716879600000,
+          "harga_unik": 1,
+          "harga_awal": 1.2792,
+          "harga_akhir": 1.2792,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8519998741227932,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "SXPUSDT",
+      "bar": 51399,
+      "bar_datar": 4287,
+      "rasio_datar": 0.08340629195120527,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 47113,
+        "indeks_akhir": 51398,
+        "panjang": 4286,
+        "mulai_ms": 1764928800000,
+        "akhir_ms": 1780354800000,
+        "harga_unik": 1,
+        "harga_awal": 0.0656,
+        "harga_akhir": 0.0656,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9166131636802273,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.999766736645673,
+      "blok": [
+        {
+          "indeks_mulai": 47113,
+          "indeks_akhir": 51398,
+          "panjang": 4286,
+          "mulai_ms": 1764928800000,
+          "akhir_ms": 1780354800000,
+          "harga_unik": 1,
+          "harga_awal": 0.0656,
+          "harga_akhir": 0.0656,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9166131636802273,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "DFUSDT",
+      "bar": 13717,
+      "bar_datar": 4047,
+      "rasio_datar": 0.2950353575854779,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 9670,
+        "indeks_akhir": 13716,
+        "panjang": 4047,
+        "mulai_ms": 1770368400000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.00423,
+        "harga_akhir": 0.00423,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7049646424145222,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 9670,
+          "indeks_akhir": 13716,
+          "panjang": 4047,
+          "mulai_ms": 1770368400000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.00423,
+          "harga_akhir": 0.00423,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7049646424145222,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "GHSTUSDT",
+      "bar": 16067,
+      "bar_datar": 4048,
+      "rasio_datar": 0.2519449803945976,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 12020,
+        "indeks_akhir": 16066,
+        "panjang": 4047,
+        "mulai_ms": 1770368400000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0834,
+        "harga_akhir": 0.0834,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7481172589780295,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9997529644268774,
+      "blok": [
+        {
+          "indeks_mulai": 12020,
+          "indeks_akhir": 16066,
+          "panjang": 4047,
+          "mulai_ms": 1770368400000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0834,
+          "harga_akhir": 0.0834,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7481172589780295,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "CHESSUSDT",
+      "bar": 16673,
+      "bar_datar": 4047,
+      "rasio_datar": 0.24272776344988906,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 12627,
+        "indeks_akhir": 16672,
+        "panjang": 4046,
+        "mulai_ms": 1770372000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.01865,
+        "harga_akhir": 0.01865,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7573322137587717,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9997529033852236,
+      "blok": [
+        {
+          "indeks_mulai": 12627,
+          "indeks_akhir": 16672,
+          "panjang": 4046,
+          "mulai_ms": 1770372000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.01865,
+          "harga_akhir": 0.01865,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7573322137587717,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "NKNUSDT",
+      "bar": 46385,
+      "bar_datar": 4047,
+      "rasio_datar": 0.08724803276921418,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 42339,
+        "indeks_akhir": 46384,
+        "panjang": 4046,
+        "mulai_ms": 1770372000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.00554,
+        "harga_akhir": 0.00554,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.912773525924329,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9997529033852236,
+      "blok": [
+        {
+          "indeks_mulai": 42339,
+          "indeks_akhir": 46384,
+          "panjang": 4046,
+          "mulai_ms": 1770372000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.00554,
+          "harga_akhir": 0.00554,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.912773525924329,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "OMUSDT",
+      "bar": 21418,
+      "bar_datar": 3639,
+      "rasio_datar": 0.16990381921748063,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 17780,
+        "indeks_akhir": 21417,
+        "panjang": 3638,
+        "mulai_ms": 1771840800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.06773,
+        "harga_akhir": 0.06773,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8301428704827715,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9997251992305578,
+      "blok": [
+        {
+          "indeks_mulai": 17780,
+          "indeks_akhir": 21417,
+          "panjang": 3638,
+          "mulai_ms": 1771840800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.06773,
+          "harga_akhir": 0.06773,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8301428704827715,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000WHYUSDT",
+      "bar": 14557,
+      "bar_datar": 3111,
+      "rasio_datar": 0.21371161640447894,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 11446,
+        "indeks_akhir": 14556,
+        "panjang": 3111,
+        "mulai_ms": 1773738000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 3.4e-06,
+        "harga_akhir": 3.4e-06,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.786288383595521,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 11446,
+          "indeks_akhir": 14556,
+          "panjang": 3111,
+          "mulai_ms": 1773738000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 3.4e-06,
+          "harga_akhir": 3.4e-06,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.786288383595521,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "LRCUSDT",
+      "bar": 50393,
+      "bar_datar": 2945,
+      "rasio_datar": 0.05844065644037862,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 47450,
+        "indeks_akhir": 50392,
+        "panjang": 2943,
+        "mulai_ms": 1774342800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.02369,
+        "harga_akhir": 0.02369,
+        "volume_total": 113101.0,
+        "count_total": 3.0,
+        "posisi_frac": 0.9415990316115334,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.999320882852292,
+      "blok": [
+        {
+          "indeks_mulai": 47450,
+          "indeks_akhir": 50392,
+          "panjang": 2943,
+          "mulai_ms": 1774342800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.02369,
+          "harga_akhir": 0.02369,
+          "volume_total": 113101.0,
+          "count_total": 3.0,
+          "posisi_frac": 0.9415990316115334,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "HOOKUSDT",
+      "bar": 30693,
+      "bar_datar": 2943,
+      "rasio_datar": 0.09588505522431826,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 27751,
+        "indeks_akhir": 30692,
+        "panjang": 2942,
+        "mulai_ms": 1774346400000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0132,
+        "harga_akhir": 0.0132,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9041475254944124,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9996602106693849,
+      "blok": [
+        {
+          "indeks_mulai": 27751,
+          "indeks_akhir": 30692,
+          "panjang": 2942,
+          "mulai_ms": 1774346400000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0132,
+          "harga_akhir": 0.0132,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9041475254944124,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "NTRNUSDT",
+      "bar": 23604,
+      "bar_datar": 2943,
+      "rasio_datar": 0.12468225724453483,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 20662,
+        "indeks_akhir": 23603,
+        "panjang": 2942,
+        "mulai_ms": 1774346400000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.00522,
+        "harga_akhir": 0.00522,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8753601084561938,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9996602106693849,
+      "blok": [
+        {
+          "indeks_mulai": 20662,
+          "indeks_akhir": 23603,
+          "panjang": 2942,
+          "mulai_ms": 1774346400000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.00522,
+          "harga_akhir": 0.00522,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8753601084561938,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "RDNTUSDT",
+      "bar": 28956,
+      "bar_datar": 2943,
+      "rasio_datar": 0.1016369664318276,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 26014,
+        "indeks_akhir": 28955,
+        "panjang": 2942,
+        "mulai_ms": 1774346400000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.005899,
+        "harga_akhir": 0.005899,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.898397568724962,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9996602106693849,
+      "blok": [
+        {
+          "indeks_mulai": 26014,
+          "indeks_akhir": 28955,
+          "panjang": 2942,
+          "mulai_ms": 1774346400000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.005899,
+          "harga_akhir": 0.005899,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.898397568724962,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "HIPPOUSDT",
+      "bar": 14844,
+      "bar_datar": 2582,
+      "rasio_datar": 0.17394233360280248,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 12262,
+        "indeks_akhir": 14843,
+        "panjang": 2582,
+        "mulai_ms": 1775642400000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0001965,
+        "harga_akhir": 0.0001965,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8260576663971976,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 12262,
+          "indeks_akhir": 14843,
+          "panjang": 2582,
+          "mulai_ms": 1775642400000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0001965,
+          "harga_akhir": 0.0001965,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8260576663971976,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "PUFFERUSDT",
+      "bar": 9976,
+      "bar_datar": 2582,
+      "rasio_datar": 0.2588211708099439,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 7394,
+        "indeks_akhir": 9975,
+        "panjang": 2582,
+        "mulai_ms": 1775642400000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.02723,
+        "harga_akhir": 0.02723,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.7411788291900562,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 7394,
+          "indeks_akhir": 9975,
+          "panjang": 2582,
+          "mulai_ms": 1775642400000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.02723,
+          "harga_akhir": 0.02723,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.7411788291900562,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "FIOUSDT",
+      "bar": 16141,
+      "bar_datar": 2416,
+      "rasio_datar": 0.14968093674493527,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 13726,
+        "indeks_akhir": 16140,
+        "panjang": 2415,
+        "mulai_ms": 1776243600000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.002699,
+        "harga_akhir": 0.002699,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8503810172851743,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9995860927152318,
+      "blok": [
+        {
+          "indeks_mulai": 13726,
+          "indeks_akhir": 16140,
+          "panjang": 2415,
+          "mulai_ms": 1776243600000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.002699,
+          "harga_akhir": 0.002699,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8503810172851743,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "FUNUSDT",
+      "bar": 11536,
+      "bar_datar": 2415,
+      "rasio_datar": 0.20934466019417475,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 9121,
+        "indeks_akhir": 11535,
+        "panjang": 2415,
+        "mulai_ms": 1776243600000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.000514,
+        "harga_akhir": 0.000514,
+        "volume_total": 18044836.0,
+        "count_total": 4.0,
+        "posisi_frac": 0.7906553398058253,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 9121,
+          "indeks_akhir": 11535,
+          "panjang": 2415,
+          "mulai_ms": 1776243600000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.000514,
+          "harga_akhir": 0.000514,
+          "volume_total": 18044836.0,
+          "count_total": 4.0,
+          "posisi_frac": 0.7906553398058253,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "OXTUSDT",
+      "bar": 25884,
+      "bar_datar": 2415,
+      "rasio_datar": 0.09330088085303663,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 23470,
+        "indeks_akhir": 25883,
+        "panjang": 2414,
+        "mulai_ms": 1776247200000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.01089,
+        "harga_akhir": 0.01089,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9067377530520785,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9995859213250518,
+      "blok": [
+        {
+          "indeks_mulai": 23470,
+          "indeks_akhir": 25883,
+          "panjang": 2414,
+          "mulai_ms": 1776247200000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.01089,
+          "harga_akhir": 0.01089,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9067377530520785,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "MAVIAUSDT",
+      "bar": 21213,
+      "bar_datar": 2391,
+      "rasio_datar": 0.11271390185263754,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "tengah",
+      "terpanjang": {
+        "indeks_mulai": 7176,
+        "indeks_akhir": 9565,
+        "panjang": 2390,
+        "mulai_ms": 1734343200000,
+        "akhir_ms": 1742943600000,
+        "harga_unik": 1,
+        "harga_awal": 1.4929,
+        "harga_akhir": 1.4929,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.33828312827040025,
+        "posisi_akhir_frac": 0.45094988921887524
+      },
+      "porsi_datar_di_blok_terpanjang": 0.999581764951903,
+      "blok": [
+        {
+          "indeks_mulai": 7176,
+          "indeks_akhir": 9565,
+          "panjang": 2390,
+          "mulai_ms": 1734343200000,
+          "akhir_ms": 1742943600000,
+          "harga_unik": 1,
+          "harga_awal": 1.4929,
+          "harga_akhir": 1.4929,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.33828312827040025,
+          "posisi_akhir_frac": 0.45094988921887524
+        }
+      ]
+    },
+    {
+      "symbol": "DEGOUSDT",
+      "bar": 14123,
+      "bar_datar": 2271,
+      "rasio_datar": 0.16080152942009487,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 11852,
+        "indeks_akhir": 14122,
+        "panjang": 2271,
+        "mulai_ms": 1776762000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.1466,
+        "harga_akhir": 0.1466,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8391984705799052,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 11852,
+          "indeks_akhir": 14122,
+          "panjang": 2271,
+          "mulai_ms": 1776762000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.1466,
+          "harga_akhir": 0.1466,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8391984705799052,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "DENTUSDT",
+      "bar": 46772,
+      "bar_datar": 2271,
+      "rasio_datar": 0.04855469084067391,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 44502,
+        "indeks_akhir": 46771,
+        "panjang": 2270,
+        "mulai_ms": 1776765600000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0001186,
+        "harga_akhir": 0.0001186,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9514666894723339,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9995596653456627,
+      "blok": [
+        {
+          "indeks_mulai": 44502,
+          "indeks_akhir": 46771,
+          "panjang": 2270,
+          "mulai_ms": 1776765600000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0001186,
+          "harga_akhir": 0.0001186,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9514666894723339,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "TRUUSDT",
+      "bar": 29652,
+      "bar_datar": 2271,
+      "rasio_datar": 0.07658842573856738,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 27382,
+        "indeks_akhir": 29651,
+        "panjang": 2270,
+        "mulai_ms": 1776765600000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.005252,
+        "harga_akhir": 0.005252,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9234452987994064,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9995596653456627,
+      "blok": [
+        {
+          "indeks_mulai": 27382,
+          "indeks_akhir": 29651,
+          "panjang": 2270,
+          "mulai_ms": 1776765600000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.005252,
+          "harga_akhir": 0.005252,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9234452987994064,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "B3USDT",
+      "bar": 12637,
+      "bar_datar": 2103,
+      "rasio_datar": 0.1664160797657672,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 10534,
+        "indeks_akhir": 12636,
+        "panjang": 2103,
+        "mulai_ms": 1777366800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0002605,
+        "harga_akhir": 0.0002605,
+        "volume_total": 23328.0,
+        "count_total": 10.0,
+        "posisi_frac": 0.8335839202342328,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 10534,
+          "indeks_akhir": 12636,
+          "panjang": 2103,
+          "mulai_ms": 1777366800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0002605,
+          "harga_akhir": 0.0002605,
+          "volume_total": 23328.0,
+          "count_total": 10.0,
+          "posisi_frac": 0.8335839202342328,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "DEGENUSDT",
+      "bar": 14797,
+      "bar_datar": 2102,
+      "rasio_datar": 0.14205582212610665,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 12695,
+        "indeks_akhir": 14796,
+        "panjang": 2102,
+        "mulai_ms": 1777370400000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0006713,
+        "harga_akhir": 0.0006713,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8579441778738933,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 12695,
+          "indeks_akhir": 14796,
+          "panjang": 2102,
+          "mulai_ms": 1777370400000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0006713,
+          "harga_akhir": 0.0006713,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8579441778738933,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "AIUSDT",
+      "bar": 22284,
+      "bar_datar": 2102,
+      "rasio_datar": 0.09432776880272842,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 20183,
+        "indeks_akhir": 22283,
+        "panjang": 2101,
+        "mulai_ms": 1777374000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.01716,
+        "harga_akhir": 0.01716,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9057171064440854,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9995242626070409,
+      "blok": [
+        {
+          "indeks_mulai": 20183,
+          "indeks_akhir": 22283,
+          "panjang": 2101,
+          "mulai_ms": 1777374000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.01716,
+          "harga_akhir": 0.01716,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9057171064440854,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "VINEUSDT",
+      "bar": 13118,
+      "bar_datar": 2101,
+      "rasio_datar": 0.16016161000152462,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 11017,
+        "indeks_akhir": 13117,
+        "panjang": 2101,
+        "mulai_ms": 1777374000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.01575,
+        "harga_akhir": 0.01575,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8398383899984754,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 11017,
+          "indeks_akhir": 13117,
+          "panjang": 2101,
+          "mulai_ms": 1777374000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.01575,
+          "harga_akhir": 0.01575,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8398383899984754,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "ZKJUSDT",
+      "bar": 10503,
+      "bar_datar": 2078,
+      "rasio_datar": 0.19784823383795105,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 8425,
+        "indeks_akhir": 10502,
+        "panjang": 2078,
+        "mulai_ms": 1777456800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.01673,
+        "harga_akhir": 0.01673,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.802151766162049,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 8425,
+          "indeks_akhir": 10502,
+          "panjang": 2078,
+          "mulai_ms": 1777456800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.01673,
+          "harga_akhir": 0.01673,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.802151766162049,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "ICPUSDT",
+      "bar": 44995,
+      "bar_datar": 1983,
+      "rasio_datar": 0.04407156350705634,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "tengah",
+      "terpanjang": {
+        "indeks_mulai": 9487,
+        "indeks_akhir": 11468,
+        "panjang": 1982,
+        "mulai_ms": 1654855200000,
+        "akhir_ms": 1661986800000,
+        "harga_unik": 1,
+        "harga_awal": 6.44,
+        "harga_akhir": 6.44,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.21084564951661297,
+        "posisi_akhir_frac": 0.2548949883320369
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9994957135653051,
+      "blok": [
+        {
+          "indeks_mulai": 9487,
+          "indeks_akhir": 11468,
+          "panjang": 1982,
+          "mulai_ms": 1654855200000,
+          "akhir_ms": 1661986800000,
+          "harga_unik": 1,
+          "harga_awal": 6.44,
+          "harga_akhir": 6.44,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.21084564951661297,
+          "posisi_akhir_frac": 0.2548949883320369
+        }
+      ]
+    },
+    {
+      "symbol": "ATAUSDT",
+      "bar": 42933,
+      "bar_datar": 1601,
+      "rasio_datar": 0.037290662194582255,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 41334,
+        "indeks_akhir": 42932,
+        "panjang": 1599,
+        "mulai_ms": 1779181200000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.00428,
+        "harga_akhir": 0.00428,
+        "volume_total": 999.0,
+        "count_total": 1.0,
+        "posisi_frac": 0.9627559220180281,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9987507807620237,
+      "blok": [
+        {
+          "indeks_mulai": 41334,
+          "indeks_akhir": 42932,
+          "panjang": 1599,
+          "mulai_ms": 1779181200000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.00428,
+          "harga_akhir": 0.00428,
+          "volume_total": 999.0,
+          "count_total": 1.0,
+          "posisi_frac": 0.9627559220180281,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "MLNUSDT",
+      "bar": 11536,
+      "bar_datar": 1598,
+      "rasio_datar": 0.13852288488210818,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 9938,
+        "indeks_akhir": 11535,
+        "panjang": 1598,
+        "mulai_ms": 1779184800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 2.272,
+        "harga_akhir": 2.272,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8614771151178918,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 9938,
+          "indeks_akhir": 11535,
+          "panjang": 1598,
+          "mulai_ms": 1779184800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 2.272,
+          "harga_akhir": 2.272,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8614771151178918,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "PHBUSDT",
+      "bar": 30106,
+      "bar_datar": 1599,
+      "rasio_datar": 0.05311233641134658,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 28508,
+        "indeks_akhir": 30105,
+        "panjang": 1598,
+        "mulai_ms": 1779184800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0554,
+        "harga_akhir": 0.0554,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9469208795588919,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9993746091307066,
+      "blok": [
+        {
+          "indeks_mulai": 28508,
+          "indeks_akhir": 30105,
+          "panjang": 1598,
+          "mulai_ms": 1779184800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0554,
+          "harga_akhir": 0.0554,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9469208795588919,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "SYSUSDT",
+      "bar": 16908,
+      "bar_datar": 1599,
+      "rasio_datar": 0.09457061745919092,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 15310,
+        "indeks_akhir": 16907,
+        "panjang": 1598,
+        "mulai_ms": 1779184800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.00405,
+        "harga_akhir": 0.00405,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9054885261414715,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9993746091307066,
+      "blok": [
+        {
+          "indeks_mulai": 15310,
+          "indeks_akhir": 16907,
+          "panjang": 1598,
+          "mulai_ms": 1779184800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.00405,
+          "harga_akhir": 0.00405,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9054885261414715,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "BLUEBIRDUSDT",
+      "bar": 13748,
+      "bar_datar": 1511,
+      "rasio_datar": 0.1099068955484434,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 12237,
+        "indeks_akhir": 13747,
+        "panjang": 1511,
+        "mulai_ms": 1711443600000,
+        "akhir_ms": 1716879600000,
+        "harga_unik": 1,
+        "harga_awal": 16.81,
+        "harga_akhir": 16.81,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.8900931044515565,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 12237,
+          "indeks_akhir": 13747,
+          "panjang": 1511,
+          "mulai_ms": 1711443600000,
+          "akhir_ms": 1716879600000,
+          "harga_unik": 1,
+          "harga_awal": 16.81,
+          "harga_akhir": 16.81,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.8900931044515565,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "FOOTBALLUSDT",
+      "bar": 15245,
+      "bar_datar": 1511,
+      "rasio_datar": 0.09911446375860938,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 13734,
+        "indeks_akhir": 15244,
+        "panjang": 1511,
+        "mulai_ms": 1711443600000,
+        "akhir_ms": 1716879600000,
+        "harga_unik": 1,
+        "harga_awal": 633.48,
+        "harga_akhir": 633.48,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9008855362413907,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 13734,
+          "indeks_akhir": 15244,
+          "panjang": 1511,
+          "mulai_ms": 1711443600000,
+          "akhir_ms": 1716879600000,
+          "harga_unik": 1,
+          "harga_awal": 633.48,
+          "harga_akhir": 633.48,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9008855362413907,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "ANTUSDT",
+      "bar": 21196,
+      "bar_datar": 1367,
+      "rasio_datar": 0.06449330062275901,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 19829,
+        "indeks_akhir": 21195,
+        "panjang": 1367,
+        "mulai_ms": 1711962000000,
+        "akhir_ms": 1716879600000,
+        "harga_unik": 1,
+        "harga_awal": 8.915,
+        "harga_akhir": 8.915,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.935506699377241,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 19829,
+          "indeks_akhir": 21195,
+          "panjang": 1367,
+          "mulai_ms": 1711962000000,
+          "akhir_ms": 1716879600000,
+          "harga_unik": 1,
+          "harga_awal": 8.915,
+          "harga_akhir": 8.915,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.935506699377241,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "COSUSDT",
+      "bar": 15899,
+      "bar_datar": 1048,
+      "rasio_datar": 0.06591609535190893,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 14852,
+        "indeks_akhir": 15898,
+        "panjang": 1047,
+        "mulai_ms": 1781168400000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.000485,
+        "harga_akhir": 0.000485,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9341468016856406,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9990458015267175,
+      "blok": [
+        {
+          "indeks_mulai": 14852,
+          "indeks_akhir": 15898,
+          "panjang": 1047,
+          "mulai_ms": 1781168400000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.000485,
+          "harga_akhir": 0.000485,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9341468016856406,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "MBOXUSDT",
+      "bar": 16695,
+      "bar_datar": 1048,
+      "rasio_datar": 0.06277328541479485,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 15648,
+        "indeks_akhir": 16694,
+        "panjang": 1047,
+        "mulai_ms": 1781168400000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0051,
+        "harga_akhir": 0.0051,
+        "volume_total": 1491.0,
+        "count_total": 235.0,
+        "posisi_frac": 0.9372866127583108,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9990458015267175,
+      "blok": [
+        {
+          "indeks_mulai": 15648,
+          "indeks_akhir": 16694,
+          "panjang": 1047,
+          "mulai_ms": 1781168400000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0051,
+          "harga_akhir": 0.0051,
+          "volume_total": 1491.0,
+          "count_total": 235.0,
+          "posisi_frac": 0.9372866127583108,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "DUSDT",
+      "bar": 13478,
+      "bar_datar": 1046,
+      "rasio_datar": 0.07760795370232972,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 12432,
+        "indeks_akhir": 13477,
+        "panjang": 1046,
+        "mulai_ms": 1781172000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.005192,
+        "harga_akhir": 0.005192,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9223920462976702,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 12432,
+          "indeks_akhir": 13477,
+          "panjang": 1046,
+          "mulai_ms": 1781172000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.005192,
+          "harga_akhir": 0.005192,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9223920462976702,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "HIGHUSDT",
+      "bar": 30334,
+      "bar_datar": 1047,
+      "rasio_datar": 0.034515724929122436,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 29288,
+        "indeks_akhir": 30333,
+        "panjang": 1046,
+        "mulai_ms": 1781172000000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0478,
+        "harga_akhir": 0.0478,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9655172413793104,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9990448901623686,
+      "blok": [
+        {
+          "indeks_mulai": 29288,
+          "indeks_akhir": 30333,
+          "panjang": 1046,
+          "mulai_ms": 1781172000000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0478,
+          "harga_akhir": 0.0478,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9655172413793104,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "TONUSDT",
+      "bar": 21012,
+      "bar_datar": 759,
+      "rasio_datar": 0.03612221587664192,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 20254,
+        "indeks_akhir": 21011,
+        "panjang": 758,
+        "mulai_ms": 1782208800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 1.5901,
+        "harga_akhir": 1.5901,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.963925375975633,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9986824769433466,
+      "blok": [
+        {
+          "indeks_mulai": 20254,
+          "indeks_akhir": 21011,
+          "panjang": 758,
+          "mulai_ms": 1782208800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 1.5901,
+          "harga_akhir": 1.5901,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.963925375975633,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "PUMPUSDT",
+      "bar": 11235,
+      "bar_datar": 639,
+      "rasio_datar": 0.056875834445927906,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "tengah",
+      "terpanjang": {
+        "indeks_mulai": 1483,
+        "indeks_akhir": 2121,
+        "panjang": 639,
+        "mulai_ms": 1749805200000,
+        "akhir_ms": 1752102000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0471,
+        "harga_akhir": 0.0471,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.13199821984868715,
+        "posisi_akhir_frac": 0.18887405429461504
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 1483,
+          "indeks_akhir": 2121,
+          "panjang": 639,
+          "mulai_ms": 1749805200000,
+          "akhir_ms": 1752102000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0471,
+          "harga_akhir": 0.0471,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.13199821984868715,
+          "posisi_akhir_frac": 0.18887405429461504
+        }
+      ]
+    },
+    {
+      "symbol": "IPUSDT",
+      "bar": 12631,
+      "bar_datar": 638,
+      "rasio_datar": 0.05051064840471855,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 11993,
+        "indeks_akhir": 12630,
+        "panjang": 638,
+        "mulai_ms": 1782640800000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.3105,
+        "harga_akhir": 0.3105,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9494893515952815,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 11993,
+          "indeks_akhir": 12630,
+          "panjang": 638,
+          "mulai_ms": 1782640800000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.3105,
+          "harga_akhir": 0.3105,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9494893515952815,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "NFPUSDT",
+      "bar": 22571,
+      "bar_datar": 543,
+      "rasio_datar": 0.02405741881174959,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 22029,
+        "indeks_akhir": 22570,
+        "panjang": 542,
+        "mulai_ms": 1782986400000,
+        "akhir_ms": 1784934000000,
+        "harga_unik": 1,
+        "harga_awal": 0.007568,
+        "harga_akhir": 0.007568,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.975986885826946,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 0.998158379373849,
+      "blok": [
+        {
+          "indeks_mulai": 22029,
+          "indeks_akhir": 22570,
+          "panjang": 542,
+          "mulai_ms": 1782986400000,
+          "akhir_ms": 1784934000000,
+          "harga_unik": 1,
+          "harga_awal": 0.007568,
+          "harga_akhir": 0.007568,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.975986885826946,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "AERGOUSDT",
+      "bar": 16345,
+      "bar_datar": 471,
+      "rasio_datar": 0.028816151728357296,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "tengah",
+      "terpanjang": {
+        "indeks_mulai": 4750,
+        "indeks_akhir": 5219,
+        "panjang": 470,
+        "mulai_ms": 1743069600000,
+        "akhir_ms": 1744758000000,
+        "harga_unik": 1,
+        "harga_awal": 0.0667,
+        "harga_akhir": 0.0667,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.2906087488528602,
+        "posisi_akhir_frac": 0.3193637197919853
+      },
+      "porsi_datar_di_blok_terpanjang": 0.9978768577494692,
+      "blok": [
+        {
+          "indeks_mulai": 4750,
+          "indeks_akhir": 5219,
+          "panjang": 470,
+          "mulai_ms": 1743069600000,
+          "akhir_ms": 1744758000000,
+          "harga_unik": 1,
+          "harga_awal": 0.0667,
+          "harga_akhir": 0.0667,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.2906087488528602,
+          "posisi_akhir_frac": 0.3193637197919853
+        }
+      ]
+    },
+    {
+      "symbol": "GALUSDT",
+      "bar": 19601,
+      "bar_datar": 453,
+      "rasio_datar": 0.023111065761950923,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 19148,
+        "indeks_akhir": 19600,
+        "panjang": 453,
+        "mulai_ms": 1720692000000,
+        "akhir_ms": 1722319200000,
+        "harga_unik": 1,
+        "harga_awal": 2.475,
+        "harga_akhir": 2.475,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9768889342380491,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 19148,
+          "indeks_akhir": 19600,
+          "panjang": 453,
+          "mulai_ms": 1720692000000,
+          "akhir_ms": 1722319200000,
+          "harga_unik": 1,
+          "harga_awal": 2.475,
+          "harga_akhir": 2.475,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9768889342380491,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "RNDRUSDT",
+      "bar": 13037,
+      "bar_datar": 334,
+      "rasio_datar": 0.025619390964178874,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 12703,
+        "indeks_akhir": 13036,
+        "panjang": 334,
+        "mulai_ms": 1721120400000,
+        "akhir_ms": 1722319200000,
+        "harga_unik": 1,
+        "harga_awal": 6.6161,
+        "harga_akhir": 6.6161,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.9743806090358211,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 12703,
+          "indeks_akhir": 13036,
+          "panjang": 334,
+          "mulai_ms": 1721120400000,
+          "akhir_ms": 1722319200000,
+          "harga_unik": 1,
+          "harga_awal": 6.6161,
+          "harga_akhir": 6.6161,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.9743806090358211,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "AUDIOUSDT",
+      "bar": 24317,
+      "bar_datar": 287,
+      "rasio_datar": 0.011802442735534812,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 24030,
+        "indeks_akhir": 24316,
+        "panjang": 287,
+        "mulai_ms": 1715850000000,
+        "akhir_ms": 1716879600000,
+        "harga_unik": 1,
+        "harga_awal": 0.1632,
+        "harga_akhir": 0.1632,
+        "volume_total": 90.0,
+        "count_total": 1.0,
+        "posisi_frac": 0.9881975572644652,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 24030,
+          "indeks_akhir": 24316,
+          "panjang": 287,
+          "mulai_ms": 1715850000000,
+          "akhir_ms": 1716879600000,
+          "harga_unik": 1,
+          "harga_awal": 0.1632,
+          "harga_akhir": 0.1632,
+          "volume_total": 90.0,
+          "count_total": 1.0,
+          "posisi_frac": 0.9881975572644652,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    },
+    {
+      "symbol": "MATICUSDT",
+      "bar": 34083,
+      "bar_datar": 169,
+      "rasio_datar": 0.004958483701552094,
+      "jumlah_blok": 1,
+      "letak_terpanjang": "akhir",
+      "terpanjang": {
+        "indeks_mulai": 33914,
+        "indeks_akhir": 34082,
+        "panjang": 169,
+        "mulai_ms": 1725440400000,
+        "akhir_ms": 1726045200000,
+        "harga_unik": 1,
+        "harga_awal": 0.3846,
+        "harga_akhir": 0.3846,
+        "volume_total": 0.0,
+        "count_total": 0.0,
+        "posisi_frac": 0.995041516298448,
+        "posisi_akhir_frac": 1.0
+      },
+      "porsi_datar_di_blok_terpanjang": 1.0,
+      "blok": [
+        {
+          "indeks_mulai": 33914,
+          "indeks_akhir": 34082,
+          "panjang": 169,
+          "mulai_ms": 1725440400000,
+          "akhir_ms": 1726045200000,
+          "harga_unik": 1,
+          "harga_awal": 0.3846,
+          "harga_akhir": 0.3846,
+          "volume_total": 0.0,
+          "count_total": 0.0,
+          "posisi_frac": 0.995041516298448,
+          "posisi_akhir_frac": 1.0
+        }
+      ]
+    }
+  ]
+}

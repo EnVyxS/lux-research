@@ -1,23 +1,3 @@
-# Log run diagnostik bar datar
-
-Commit: `9be53da3852377f48e5e18caefd58d48bf89ad93`
-Status langkah jalan: `success`
-
-```
-universe layak 447, dipindai 447
-  dibaca ohlcv_1h_shard00.parquet
-  dibaca ohlcv_1h_shard01.parquet
-  dibaca ohlcv_1h_shard02.parquet
-  dibaca ohlcv_1h_shard03.parquet
-  dibaca ohlcv_1h_shard04.parquet
-  dibaca ohlcv_1h_shard05.parquet
-  dibaca ohlcv_1h_shard06.parquet
-  dibaca ohlcv_1h_shard07.parquet
-  dibaca ohlcv_1h_tail_shard00.parquet
-  dibaca ohlcv_1h_tail_shard01.parquet
-  dibaca ohlcv_1h_tail_shard02.parquet
-  dibaca ohlcv_1h_tail_shard03.parquet
-447 simbol dimuat
 # Diagnostik blok bar datar
 
 Bar datar yang tersebar adalah sifat pasar. Bar datar yang menggumpal dalam satu blok bersambung adalah peristiwa, dan peristiwa punya tanggal.
@@ -65,4 +45,3 @@ Bar datar yang tersebar adalah sifat pasar. Bar datar yang menggumpal dalam satu
 | OMUSDT | 21,418 | 0.1699 | 1 | 3,638 | 1.000 | akhir | 2026-02-23 | 2026-07-24 | 1 | 0 | 0 |
 | 1000WHYUSDT | 14,557 | 0.2137 | 1 | 3,111 | 1.000 | akhir | 2026-03-17 | 2026-07-24 | 1 | 0 | 0 |
 
-```
