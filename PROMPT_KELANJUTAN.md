@@ -1,77 +1,111 @@
-# Prompt kelanjutan
+# Prompt kelanjutan riset LUX
 
-Salin seluruh blok di bawah ke percakapan baru bila sesi terputus atau konteks
-penuh. Berkas ini diperbarui setiap kali posisi riset berubah signifikan.
+Kalimat pembuka sesi baru: **"Baca `STATE.md` dan `PROMPT_KELANJUTAN.md` di repo
+`EnVyxS/lux-research`, lalu lanjutkan."**
 
----
+## Konteks singkat
 
-Lanjutkan riset LUX. Jangan memulai dari nol dan jangan mengulang pekerjaan
-yang sudah selesai.
+Membangun sistem trading kuantitatif dari nol dengan disiplin pra-registrasi.
+Seluruh komputasi berjalan di GitHub Actions (repo publik, menit tak terbatas);
+sandbox agen tidak punya jaringan. Data mentah dari `data.binance.vision`
+(prefix `data/` wajib), disimpan sebagai Parquet di GitHub Release `tier-b-v1`.
 
-**Langkah pertama yang wajib:** baca `STATE.md` di repositori GitHub
-`EnVyxS/lux-research` (publik). Berkas itu adalah jurnal tunggal dan satu-satunya
-sumber kebenaran tentang posisi riset. Jangan membaca `journal/` secara utuh.
+Tidak ada tool MCP untuk membaca log atau status run. Karena itu setiap workflow
+mengomit lognya sendiri kembali ke `reports/` dengan `if: always()`. Cara memicu
+run dari MCP hanya satu: menyunting berkas workflow itu sendiri.
 
-## Konteks
+## Keadaan data
 
-Saya membangun sistem trading kuantitatif untuk Binance USD-M Futures dari nol.
-Seluruh pengetahuan dari upaya sebelumnya, termasuk log sinyal bot v8.4, sengaja
-dibuang karena tercemar survivorship bias dan overfitting. Hanya data mentah dan
-pelajaran metodologis yang dibawa.
+| Aset | Nilai |
+|---|---|
+| OHLCV 1h | 14.545.679 baris, 790 simbol |
+| OHLCV 4h | 3.636.733 baris (validasi 4h BELUM dijalankan) |
+| Funding | 1.982.017 baris, 447 simbol |
+| Universe layak lama | 447 |
+| **Universe layak v2 (ADR-003)** | **438** — `reports/universe_layak_v2.json` |
 
-Mesin lokal saya tidak sanggup melakukan backtest penuh, dan saya tidak bisa
-menyewa VM cloud karena kendala kartu kredit. Karena itu **seluruh komputasi
-berjalan di GitHub Actions**, dan repositori GitHub adalah tempat penyimpanan
-data sekaligus jurnal riset.
+## Temuan terbesar sampai kini: ekor datar simbol mati
 
-## Batas alat yang harus dipahami sejak awal
+Diagnostik `lux/diag_datar.py` (run `30170633590`) membuktikan 62 dari 447
+simbol layak berakhir dengan blok bar datar **berharga tunggal** yang membentang
+sampai bar terakhir dataset (2026-07-24). RENUSDT beku sejak 2024-12-03
+sepanjang 14.366 bar. 69 dari 69 blok berharga satu nilai; 61 bervolume nol;
+0 berada di awal riwayat. Tafsiran padding pra-listing dan pasar tidak likuid
+keduanya tertutup: **harga terakhir simbol mati disalin sampai ujung dataset.**
 
-- Sandbox agen **tidak punya akses jaringan**. Semua pengambilan data terjadi di
-  runner GitHub Actions.
-- Agen **tidak bisa membaca log workflow**. Solusinya sudah berjalan dan wajib
-  diikuti setiap workflow baru: **tulis hasil ke `reports/` lalu commit balik ke
-  repo**, agen membacanya lewat API biasa.
-- Agen **tidak bisa memicu workflow secara manual**. Setiap workflow diberi
-  filter `paths` pada berkasnya sendiri, sehingga push ke berkas itu memicunya.
-- Agen **tidak bisa membuat atau mengunggah rilis**. Runner melakukannya lewat
-  `gh release upload`.
-- REST `fapi.binance.com` mengembalikan **HTTP 451** dari runner GitHub. Jangan
-  pernah menaruhnya di jalur kritis.
+Akibat terpenting bukan bar palsu yang dapat diperdagangkan, melainkan bahwa
+**gerbang survivorship kehilangan kemampuannya untuk gagal**, karena simbol mati
+dikenali dari stempel bar terakhirnya dan stempel itu palsu.
 
-## Yang sudah selesai
+Pemangkasan (`lux/potong_ekor.py`, run `30170823380`) atas seluruh 790 simbol:
 
-1. Repositori `EnVyxS/lux-research` dibuat, izin tulis penuh terverifikasi
-   termasuk `.github/workflows/`.
-2. Kapasitas runner terukur: 4 vCPU, 15 GB RAM, **88 GB disk**. Batas 6 jam per
-   job adalah kendala utama, bukan disk.
-3. Universe point-in-time dibangun dari arsip S3, bukan dari `exchangeInfo`:
-   **937 simbol pernah ada**, terdiri dari 872 perpetual, 50 kontrak bertanggal,
-   15 varian SETTLED. **Universe riset = 790 perpetual USDT.** Dataset lama hanya
-   punya 528, jadi 262 simbol hilang.
-4. Klien arsip `lux/binance_vision.py` dengan listing S3, unduhan resumable, dan
-   verifikasi checksum SHA256.
-5. Ingest Tier B (1h dan 4h) dan backfill ekor harian sudah ditulis.
-6. Agen pengawas **LUX Gatekeeper** aktif di Notion, sudah diuji dan lulus.
+| Ukuran | Nilai |
+|---|---|
+| Simbol berekor datar | **141 dari 790** (bukan 29 seperti dugaan lama) |
+| Total bar dipangkas | **1.081.920** (7,4% dari seluruh bar 1h) |
+| Kandidat layak 447 -> | **438 layak, 9 ditolak** |
+| Rasio bar datar sesudah pangkas | hampir seluruhnya **0,0000** |
 
-## Yang masih harus dikerjakan
+Rasio sisa yang jatuh ke nol adalah konfirmasi terkuat: bar datar itu memang
+**hanya** ada di ekor, tidak tersebar di riwayat nyata.
 
-1. Baca `reports/ingest_tier_b.json`. Gerbang: nol duplikat, nol simbol gagal.
-2. Jalankan backfill ekor harian. Arsip bulanan berhenti di 2026-06 sementara
-   arsip harian mencapai 2026-07-24, jadi tanpa backfill data selalu tertinggal
-   sebulan.
-3. Uji silang hasil terhadap Dataset G lama sebagai pembanding independen.
-4. Ingest funding rate. Tanpa itu model biaya perpetual tidak lengkap.
-5. Tulis mesin backtest beserta sembilan gerbang mutu.
-6. Pra-registrasi eksperimen sebelum menjalankannya.
+Sembilan yang ditolak: tujuh karena blok datar di tengah riwayat (tidak dapat
+dipangkas tanpa menyambung dua periode terpisah — 9447, 7815, 6351, 2390, 1982,
+639, 470 bar) dan dua karena riwayat tersisa di bawah 8.760 bar (7.394 dan
+8.425).
 
-## Cara saya ingin Anda bekerja
+## PEKERJAAN BERIKUTNYA (urutan wajib)
 
-- Ketika saya menulis **"lanjut"**, teruskan langsung dari titik terakhir tanpa
-  meminta konfirmasi dan tanpa mengulang penjelasan.
-- Pisahkan **fakta terverifikasi** dari **asumsi**. Asumsi hanya naik menjadi
-  fakta bila ada bukti terlampir berupa commit, run ID, atau kutipan sumber.
-- Katakan bila saya salah, dan katakan bila Anda sendiri salah. Riset ini gagal
-  sebelumnya justru karena asumsi yang tidak pernah diuji.
-- Perbarui `STATE.md` setiap kali posisi riset berubah, dan tambahkan entri baru
-  di `journal/` untuk tiap sesi.
-- Sebelum konteks penuh, perbarui berkas `PROMPT_KELANJUTAN.md` ini.
+1. **Sambungkan hasil ADR-003 ke orkestrator `lux/backtest/run_wf.py`:**
+   - `muat_ohlcv` memanggil `lux.potong_ekor.potong` per simbol saat muat
+   - `akhir_per_simbol` membaca `reports/akhir_sejati.json`, bukan stempel bar
+     terakhir mentah (inilah inti perbaikan survivorship)
+   - CLI `--universe` diarahkan ke `reports/universe_layak_v2.json`
+   - Tambah uji yang membuktikan simbol berekor palsu kini terhitung mati
+2. **Jalankan ulang H-001 dari awal** atas universe v2. Hasil run pilot pertama
+   sampai keempat **tidak dapat dibandingkan** dengannya karena datanya berbeda.
+3. **Tindak lanjut `invarian_risiko`** — penyebabnya **funding, bukan fee**
+   (terburuk −2,585R: `transaksi_R` 0,026 vs `funding_R` 1,545 pada posisi 130
+   jam). Opsi sah = saringan kelayakan perdagangan yang didaftarkan sebagai
+   **H-002** (batas umur posisi, atau batas funding terproyeksi terhadap R, atau
+   menolak simbol bercarry ekstrem seperti AERGOUSDT −102,6%/tahun).
+   **Bukan** pelonggaran ambang gerbang, **bukan** penyuntingan kriteria H-001.
+4. **Gerbang `checksum`** perlu satu run lagi agar benar-benar membandingkan.
+5. `config/lux.yaml`: ganti `funding_interval_jam: 8` jadi rujukan jadwal per
+   simbol; sesuaikan docstring `lux/costs.py`.
+6. Perketat `gerbang_lulus` di `lux/funding.py` (celah dan jitter ikut menilai).
+7. Validasi interval 4h (baru 1h yang dijalankan).
+8. STATE v7; salin ADR-001 & ADR-002 ke `decisions/`; `Makefile`;
+   `docs/PIPELINE.md`; `lux/manifest.py`; pelapor Notion (`NOTION_TOKEN`).
+9. Tier A (1m) hanya setelah seluruh gerbang Tier B lulus — perkiraan >=24 shard.
+
+## Hasil H-001 terakhir (run pilot keempat, `30170073890`) — SUDAH USANG
+
+**DITOLAK**: ekspektasi 0,0317R < 0,05R. 19.060 perdagangan, 604,26R, 208/359
+jendela positif. Gerbang gagal: `forward_fill`, `invarian_risiko`, `checksum`.
+Angka ini dihitung atas data yang memuat ekor palsu, jadi **tidak boleh dikutip
+lagi** setelah ADR-003 disambungkan.
+
+## Aturan kerja yang sudah dibayar mahal
+
+- **Gerbang pra-terbang `pytest` sebelum langkah unduh.** Sudah sepuluh kali
+  menghentikan run dalam hitungan detik alih-alih membakar unduhan ratusan MB.
+- **Workflow yang memicu dirinya sendiri harus didorong SESUDAH seluruh modul
+  yang dipanggilnya.**
+- **Hijau bukan berarti berhasil.** Selalu baca laporan yang dikomit balik.
+- **Sha berkas basi segera setelah `push_files` menyentuhnya.**
+- **Penjelasan yang membuat anomali terasa wajar harus dicurigai lebih keras
+  daripada anomalinya sendiri.** Aturan inilah yang menolak menerima deret
+  7.310 bar sebagai "pasar sepi" dan berujung pada ADR-003.
+- **Durasi run tidak boleh dipakai sebagai bukti diagnosis** — perkiraan sudah
+  meleset berkali-kali di kedua arah.
+- **Keputusan metodologis ditulis dan dikomit sebelum kodenya ada** (ADR-003
+  adalah contohnya), supaya aturan tidak terbentuk mengikuti hasil.
+- Ambang pra-registrasi **tidak boleh** diubah setelah melihat hasil.
+
+## Angka yang DILARANG dikutip
+
+Seluruh hasil ingest putaran 1 (14.076.257 baris 1h, 17.169 celah, rasio 4,014)
+dan metrik celah funding putaran 1–4 (1.380.741 · 1.193.209 · 587.131 ·
+266.612). Angka sah: **14.545.679 baris, 112 celah, rasio 3,9996**; funding
+**3 celah sejati, jitter maks 47 ms**.
