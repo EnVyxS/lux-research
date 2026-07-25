@@ -7,9 +7,10 @@ panjang blok melainkan **sebabnya**.
 
 Tiga penanda di sini memisahkan tiga sebab yang berbeda konsekuensinya:
 
-- **Letak** (``posisi_frac``). Blok yang menempel di awal riwayat hampir selalu
-  padding: bar yang dibuat sebelum simbolnya benar-benar diperdagangkan. Blok di
-  tengah riwayat berarti feed berhenti sementara, dan itu masalah lain.
+- **Letak**. Blok yang menempel di awal riwayat hampir selalu padding: bar yang
+  dibuat sebelum simbolnya benar-benar diperdagangkan. Blok yang menempel di
+  akhir riwayat berarti feed berhenti dan tidak pernah hidup lagi. Blok di
+  tengah berarti feed sempat berhenti lalu pulih, dan itu masalah ketiga lagi.
 - **Jumlah harga unik**. Satu harga sepanjang blok berarti nilai terakhir
   disalin berulang; harga yang tetap melangkah meski tiap barnya datar berarti
   pasarnya nyata tetapi bertransaksi jarang. Yang pertama data palsu, yang kedua
@@ -85,6 +86,10 @@ def blok_datar(df: pd.DataFrame, min_panjang: int = 2) -> list[dict]:
     Definisi bar datar sama persis dengan gerbangnya: keempat harga sama. Ia
     tidak diimpor dari sana melainkan diulang, karena gerbang mengembalikan satu
     angka sedangkan yang dibutuhkan di sini adalah batas tiap bloknya.
+
+    Dua pecahan posisi dilaporkan, bukan satu. Blok panjang menempati wilayah,
+    bukan titik, dan satu pecahan tidak dapat membedakan blok yang berhenti di
+    tengah dari blok yang berlanjut sampai bar terakhir.
     """
     n = len(df)
     if n == 0:
@@ -124,24 +129,40 @@ def blok_datar(df: pd.DataFrame, min_panjang: int = 2) -> list[dict]:
                 "volume_total": float(np.nansum(vol[a : b + 1])),
                 "count_total": float(np.nansum(cnt[a : b + 1])),
                 "posisi_frac": float(a / n),
+                "posisi_akhir_frac": float((b + 1) / n),
             }
         )
     keluar.sort(key=lambda r: -r["panjang"])
     return keluar
 
 
-def letak(posisi_frac: float, batas: float = 0.02) -> str:
-    """Nama letak blok, supaya laporan dapat dibaca tanpa menafsirkan pecahan.
+def letak(mulai_frac: float, akhir_frac: float, batas: float = 0.02) -> str:
+    """Nama letak blok, dinilai dari kedua ujungnya.
 
-    Ambang 2% dipakai untuk "awal" karena padding pra-listing selalu menempel
-    persis di indeks nol; blok yang mulai setelah 2% riwayat sudah berlalu bukan
-    padding, apa pun sebabnya.
+    Menilai dari titik mulai saja adalah cacat versi pertama modul ini, dan
+    cacatnya justru menyembunyikan kasus terpenting: blok yang berakhir di bar
+    terakhir adalah feed yang mati dan tidak pernah hidup lagi, tetapi bila blok
+    itu panjang maka titik mulainya jatuh jauh dari ujung dan ia akan disebut
+    "tengah". Semakin parah kerusakannya, semakin besar peluangnya lolos.
+
+    Ambang 2% dipakai karena padding pra-listing menempel persis di indeks nol
+    dan feed mati menempel persis di indeks terakhir; blok yang berhenti sebelum
+    itu memang berbeda jenisnya.
     """
-    if posisi_frac <= batas:
+    awal = mulai_frac <= batas
+    akhir = akhir_frac >= 1.0 - batas
+    if awal and akhir:
+        return "seluruh"
+    if awal:
         return "awal"
-    if posisi_frac >= 1.0 - batas:
+    if akhir:
         return "akhir"
     return "tengah"
+
+
+def letak_blok(blok: dict, batas: float = 0.02) -> str:
+    """Letak sebuah blok apa adanya, supaya pemanggil tidak perlu tahu nama kuncinya."""
+    return letak(blok["posisi_frac"], blok["posisi_akhir_frac"], batas)
 
 
 def tanggal(ms: int) -> str:
@@ -161,6 +182,7 @@ def ringkas_simbol(symbol: str, df: pd.DataFrame, min_panjang: int) -> dict | No
         "bar_datar": semua_datar,
         "rasio_datar": float(semua_datar / len(df)) if len(df) else 0.0,
         "jumlah_blok": len(blok),
+        "letak_terpanjang": letak_blok(terpanjang),
         "terpanjang": terpanjang,
         "porsi_datar_di_blok_terpanjang": (
             float(terpanjang["panjang"] / semua_datar) if semua_datar else 0.0
@@ -210,20 +232,24 @@ def main(argv: list[str] | None = None) -> int:
             baris.append(r)
     baris.sort(key=lambda r: -r["terpanjang"]["panjang"])
 
-    n_awal = sum(1 for r in baris if letak(r["terpanjang"]["posisi_frac"]) == "awal")
-    n_tengah = sum(1 for r in baris if letak(r["terpanjang"]["posisi_frac"]) == "tengah")
-    n_akhir = sum(1 for r in baris if letak(r["terpanjang"]["posisi_frac"]) == "akhir")
+    hitung_letak = {"awal": 0, "tengah": 0, "akhir": 0, "seluruh": 0}
+    for r in baris:
+        hitung_letak[r["letak_terpanjang"]] += 1
     n_beku = sum(1 for r in baris if r["terpanjang"]["harga_unik"] == 1)
     n_tanpa_volume = sum(1 for r in baris if r["terpanjang"]["volume_total"] == 0.0)
+    n_menggumpal = sum(
+        1 for r in baris if r["porsi_datar_di_blok_terpanjang"] >= 0.9
+    )
 
     isi = {
         "interval": a.interval,
         "min_panjang": a.min_panjang,
         "simbol_dipindai": len(bingkai),
         "simbol_bermasalah": len(baris),
-        "letak_terpanjang": {"awal": n_awal, "tengah": n_tengah, "akhir": n_akhir},
+        "letak_terpanjang": hitung_letak,
         "blok_terpanjang_satu_harga": n_beku,
         "blok_terpanjang_tanpa_volume": n_tanpa_volume,
+        "simbol_yang_datarnya_menggumpal": n_menggumpal,
         "simbol": baris,
     }
     out = Path(a.out)
@@ -241,10 +267,13 @@ def main(argv: list[str] | None = None) -> int:
         f"- Interval: **{a.interval}** \u00b7 ambang blok: **{a.min_panjang} bar**",
         f"- Simbol dipindai: **{len(bingkai):,}**",
         f"- Simbol dengan blok melewati ambang: **{len(baris):,}**",
-        f"- Letak blok terpanjang: awal **{n_awal}**, tengah **{n_tengah}**, "
-        f"akhir **{n_akhir}**",
+        f"- Letak blok terpanjang: awal **{hitung_letak['awal']}**, "
+        f"tengah **{hitung_letak['tengah']}**, akhir **{hitung_letak['akhir']}**, "
+        f"seluruh riwayat **{hitung_letak['seluruh']}**",
         f"- Blok terpanjang yang harganya persis satu nilai: **{n_beku}**",
         f"- Blok terpanjang yang volumenya nol: **{n_tanpa_volume}**",
+        f"- Simbol yang 90% atau lebih bar datarnya ada dalam satu blok: "
+        f"**{n_menggumpal}**",
         "",
         "## Tiga puluh blok terpanjang",
         "",
@@ -258,7 +287,7 @@ def main(argv: list[str] | None = None) -> int:
             f"| {r['symbol']} | {r['bar']:,} | {r['rasio_datar']:.4f} | "
             f"{r['jumlah_blok']} | {b['panjang']:,} | "
             f"{r['porsi_datar_di_blok_terpanjang']:.3f} | "
-            f"{letak(b['posisi_frac'])} | {tanggal(b['mulai_ms'])} | "
+            f"{r['letak_terpanjang']} | {tanggal(b['mulai_ms'])} | "
             f"{tanggal(b['akhir_ms'])} | {b['harga_unik']:,} | "
             f"{b['volume_total']:,.0f} | {b['count_total']:,.0f} |"
         )
