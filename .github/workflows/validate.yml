@@ -6,10 +6,12 @@ name: validate
 # Ambang ditulis sebelum data dilihat. Jumlah simbol yang lolos dicatat apa pun
 # hasilnya, termasuk bila jauh lebih kecil dari 790.
 #
-# Percobaan 2. Percobaan 1 mati di gerbang pengujian dalam 23 detik karena
-# bingkai uji sintetis tidak selaras batas hari UTC. Fungsi produksinya benar;
-# yang keliru asumsi pengujiannya. Tanpa gerbang itu, kegagalan baru muncul
-# setelah 550 MB terunduh.
+# Percobaan 3. Percobaan 1 mati di gerbang pengujian (bingkai uji tidak selaras
+# batas hari UTC). Percobaan 2 berjalan penuh tetapi membaca aset `_retry`
+# pra-perbaikan parser yang masih tertinggal di Release, sehingga tiga simbol
+# non-ASCII terhitung dua kali: 12.593 baris berlebih, tepat sama dengan isi
+# aset usang itu. Kini aset tersebut dihapus dari Release sekaligus disaring
+# di dalam kode.
 
 on:
   workflow_dispatch:
@@ -41,6 +43,22 @@ jobs:
         env:
           PYTHONPATH: .
         run: python -m pytest tests -q
+
+      - name: Hapus aset usang dari release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          usang=$(gh release view "$TAG" --json assets \
+            --jq '.assets[].name | select(test("_retry"))' || true)
+          if [ -z "$usang" ]; then
+            echo "tidak ada aset usang"
+          else
+            echo "$usang" | while read -r nama; do
+              echo "menghapus $nama"
+              gh release delete-asset "$TAG" "$nama" -y
+            done
+          fi
 
       - name: Unduh aset Parquet 1h dari release
         env:

@@ -3,7 +3,7 @@
 Dipanggil dari runner, bukan dari sandbox agen, karena berkasnya ratusan MB.
 
 Keluaran sengaja mencatat **alasan** setiap penolakan, bukan hanya jumlahnya.
-Laporan yang hanya menyebut "624 simbol lolos" tidak bisa didiagnosis, dan
+Laporan yang hanya menyebut "447 simbol lolos" tidak bisa didiagnosis, dan
 angka yang tidak bisa didiagnosis pernah membuat riset ini kehilangan dua
 putaran penuh.
 
@@ -29,6 +29,23 @@ from lux.validate import (
     rasio_bar_datar,
 )
 
+# Aset yang tidak boleh ikut dibaca. `_retry` adalah keluaran tambalan sebelum
+# cacat parser header diperbaiki; simbolnya kini tercakup penuh oleh ingest
+# normal. Membiarkannya ikut terbaca membuat tiga simbol terhitung dua kali dan
+# muncul sebagai 12.593 "duplikat waktu" yang tampak seperti data rusak.
+POLA_DILARANG = ("_retry",)
+
+
+def pilih_berkas(direktori: Path, interval: str) -> list[Path]:
+    """Memilih berkas yang sah dibaca, dan menolak sisa aset usang.
+
+    Penyaringan dilakukan di sini, bukan pada pola unduhan, supaya aturannya
+    dapat diuji tanpa jaringan dan tidak diam-diam berubah saat workflow
+    disunting.
+    """
+    semua = sorted(direktori.glob(f"ohlcv_{interval}_*.parquet"))
+    return [p for p in semua if not any(t in p.name for t in POLA_DILARANG)]
+
 
 def muat_ambang(path: Path) -> AmbangKelayakan:
     """Membaca ambang dari config. Gagal keras bila config tidak terbaca.
@@ -48,16 +65,23 @@ def muat_ambang(path: Path) -> AmbangKelayakan:
     )
 
 
-def muat_semua(direktori: Path, interval: str) -> pd.DataFrame:
-    """Menggabungkan seluruh shard, termasuk ekor harian.
+def muat_semua(direktori: Path, interval: str) -> tuple[pd.DataFrame, list[str]]:
+    """Menggabungkan seluruh shard yang sah, termasuk ekor harian.
 
     Satu simbol bisa tersebar di berkas bulanan dan berkas ekor dengan nomor
     shard berbeda, karena jumlah shard kedua tahap tidak sama. Karena itu
     penggabungan harus dilakukan atas seluruh berkas, bukan per shard.
     """
-    berkas = sorted(direktori.glob(f"ohlcv_{interval}_*.parquet"))
+    berkas = pilih_berkas(direktori, interval)
     if not berkas:
-        raise SystemExit(f"tidak ada berkas ohlcv_{interval}_*.parquet di {direktori}")
+        raise SystemExit(f"tidak ada berkas ohlcv_{interval}_*.parquet sah di {direktori}")
+    diabaikan = [
+        p.name
+        for p in sorted(direktori.glob(f"ohlcv_{interval}_*.parquet"))
+        if p not in berkas
+    ]
+    for nama in diabaikan:
+        print(f"  DIABAIKAN (aset usang): {nama}", flush=True)
     bagian = []
     for p in berkas:
         df = pd.read_parquet(p)
@@ -65,7 +89,7 @@ def muat_semua(direktori: Path, interval: str) -> pd.DataFrame:
         print(f"  dibaca {p.name}: {len(df):,} baris", flush=True)
     gabung = pd.concat(bagian, ignore_index=True)
     gabung["symbol"] = gabung["symbol"].astype(str)
-    return gabung
+    return gabung, diabaikan
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -84,7 +108,7 @@ def main(argv: list[str] | None = None) -> int:
         flush=True,
     )
 
-    df = muat_semua(Path(a.dir), a.interval)
+    df, diabaikan = muat_semua(Path(a.dir), a.interval)
     print(f"total {len(df):,} baris, {df['symbol'].nunique()} simbol", flush=True)
 
     hasil: list[dict] = []
@@ -113,6 +137,7 @@ def main(argv: list[str] | None = None) -> int:
 
     ringkas = {
         "interval": a.interval,
+        "berkas_diabaikan": diabaikan,
         "total_simbol": len(hasil),
         "total_baris": int(len(df)),
         "integritas_gagal": len(integritas_gagal),
@@ -120,6 +145,7 @@ def main(argv: list[str] | None = None) -> int:
         "tidak_layak": len(tidak_layak),
         "sebab_penolakan": dict(sebab),
         "total_celah": int(sum(h["celah"] for h in hasil)),
+        "total_duplikat": int(sum(h["duplikat_waktu"] for h in hasil)),
         "gerbang_integritas_lulus": len(integritas_gagal) == 0,
     }
 
@@ -154,12 +180,22 @@ def main(argv: list[str] | None = None) -> int:
         "## Integritas",
         "",
         f"- Simbol dengan pelanggaran fatal: **{ringkas['integritas_gagal']}**",
-        f"- Total celah (bukan pelanggaran; perdagangan memang pernah berhenti): {ringkas['total_celah']:,}",
+        f"- Total duplikat waktu: {ringkas['total_duplikat']:,}",
+        f"- Total celah (bukan pelanggaran; perdagangan memang pernah berhenti): "
+        f"{ringkas['total_celah']:,}",
+    ]
+    if diabaikan:
+        baris_md += ["", f"- Berkas usang yang sengaja diabaikan: {', '.join(diabaikan)}"]
+
+    baris_md += [
         "",
         "## Kelayakan universe backtest",
         "",
         f"- **Layak: {ringkas['layak']} dari {ringkas['total_simbol']}**",
         f"- Ditolak: {ringkas['tidak_layak']}",
+        "",
+        "Satu simbol dapat ditolak oleh lebih dari satu sebab, jadi kolom di bawah",
+        "tidak dimaksudkan berjumlah sama dengan total penolakan.",
         "",
         "| Sebab penolakan | Simbol |",
         "|---|---|",
@@ -172,7 +208,8 @@ def main(argv: list[str] | None = None) -> int:
             "",
             "## Simbol yang gagal integritas",
             "",
-            "| Simbol | Duplikat | Tidak urut | Luar kisi | High<max | Low>min | Harga\u22640 | Kosong |",
+            "| Simbol | Duplikat | Tidak urut | Luar kisi | High<max | Low>min | "
+            "Harga\u22640 | Kosong |",
             "|---|---|---|---|---|---|---|---|",
         ]
         for h in integritas_gagal[:50]:
@@ -194,6 +231,20 @@ def main(argv: list[str] | None = None) -> int:
         baris_md.append(
             f"| {h['symbol']} | {h['baris']:,} | {h['median_quote_harian']:,.0f} | "
             f"{'ya' if h['layak'] else 'tidak'} |"
+        )
+
+    terpanjang = sorted(hasil, key=lambda h: -h["baris"])[:10]
+    baris_md += [
+        "",
+        "## Sepuluh simbol dengan riwayat terpanjang",
+        "",
+        "| Simbol | Bar | Median quote harian | Celah | Layak |",
+        "|---|---|---|---|---|",
+    ]
+    for h in terpanjang:
+        baris_md.append(
+            f"| {h['symbol']} | {h['baris']:,} | {h['median_quote_harian']:,.0f} | "
+            f"{h['celah']} | {'ya' if h['layak'] else 'tidak'} |"
         )
 
     (out / f"validate_{a.interval}.md").write_text("\n".join(baris_md) + "\n", encoding="utf-8")
