@@ -1,0 +1,34 @@
+{
+  "id": "H-005",
+  "pernyataan": "Menunda entri sampai harga kembali menyentuh level Donchian 55 yang baru ditembus lalu menutup di sisi penembusan menghasilkan ekspektasi positif setelah biaya nyata, pada kerangka eksekusi yang sama persis dengan H-002.",
+  "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)",
+  "ruang_parameter": {
+    "jendela_retest": [
+      6,
+      12,
+      24
+    ],
+    "lookback": [
+      55
+    ],
+    "maks_umur_bar": [
+      168
+    ],
+    "maks_carry_R": [
+      0.25
+    ],
+    "jendela_carry_hari": [
+      30
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.0167,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-25T21:27:54+00:00",
+  "komit": "",
+  "jumlah_kombinasi": 3,
+  "sidik": "9c4b6324e79569ebe955c689ab128182c7cafe2e3381ec04c5acc7f2b5ff8d14"
+}

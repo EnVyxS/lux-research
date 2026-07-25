@@ -1,0 +1,37 @@
+{
+  "id": "H-004",
+  "pernyataan": "Penembusan Donchian yang hanya diperdagangkan saat ADX(14) berada di 30 atau lebih menghasilkan ekspektasi positif setelah biaya nyata, pada kerangka eksekusi yang sama persis dengan H-002.",
+  "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)",
+  "ruang_parameter": {
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "adx_min": [
+      30.0
+    ],
+    "adx_periode": [
+      14
+    ],
+    "maks_umur_bar": [
+      168
+    ],
+    "maks_carry_R": [
+      0.25
+    ],
+    "jendela_carry_hari": [
+      30
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.0167,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-25T21:27:54+00:00",
+  "komit": "",
+  "jumlah_kombinasi": 3,
+  "sidik": "98d6a5e15b2cc08bee5623962451df64f09d2f3df91a9727cf9c21c889c942de"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "H-006",
+  "pernyataan": "Sapuan likuiditas — sumbu yang menembus ekstrem N bar sebelumnya lalu ditutup kembali ke dalam rentang, diperdagangkan berlawanan arah sapuan — menghasilkan ekspektasi positif setelah biaya nyata, pada kerangka eksekusi yang sama persis dengan H-002.",
+  "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)",
+  "ruang_parameter": {
+    "jendela": [
+      20,
+      50,
+      100
+    ],
+    "maks_umur_bar": [
+      168
+    ],
+    "maks_carry_R": [
+      0.25
+    ],
+    "jendela_carry_hari": [
+      30
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.0167,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-25T21:27:54+00:00",
+  "komit": "",
+  "jumlah_kombinasi": 3,
+  "sidik": "e503a9a833182b258b0499593f1c8519f22553ceb5a2f026af80c6bc9f1976c4"
+}

@@ -1,0 +1,71 @@
+{
+  "ambang_p_bonferroni": 0.0167,
+  "jumlah_percobaan": 3,
+  "hasil": [
+    {
+      "id": "H-004",
+      "nama": "h004_adx",
+      "sidik": "98d6a5e15b2cc08b",
+      "ekspektasi_R": -0.018183920344457614,
+      "total_R": -143.6347868008707,
+      "trade": 7899,
+      "jendela_positif": 154,
+      "jumlah_jendela": 356,
+      "p_entri_acak": 0.009900990099009901,
+      "gerbang_gagal": [],
+      "lulus": false,
+      "alasan": [
+        "ekspektasi -0.0182R < 0.05R",
+        "jendela positif 0.43 < 0.5"
+      ],
+      "rerata_transaksi_R": 0.03133882158280285,
+      "detik": 27.3
+    },
+    {
+      "id": "H-005",
+      "nama": "h005_retest",
+      "sidik": "9c4b6324e79569eb",
+      "ekspektasi_R": -0.03571355152313172,
+      "total_R": -435.4910472730682,
+      "trade": 12194,
+      "jendela_positif": 151,
+      "jumlah_jendela": 356,
+      "p_entri_acak": 0.039603960396039604,
+      "gerbang_gagal": [
+        "invarian_risiko"
+      ],
+      "lulus": false,
+      "alasan": [
+        "ekspektasi -0.0357R < 0.05R",
+        "p entri acak 0.0396 > 0.0167",
+        "jendela positif 0.42 < 0.5"
+      ],
+      "rerata_transaksi_R": 0.033915207540620204,
+      "detik": 37.0
+    },
+    {
+      "id": "H-006",
+      "nama": "h006_smc",
+      "sidik": "e503a9a833182b25",
+      "ekspektasi_R": -0.13448663469274041,
+      "total_R": -2741.510048211513,
+      "trade": 20385,
+      "jendela_positif": 76,
+      "jumlah_jendela": 356,
+      "p_entri_acak": 1.0,
+      "gerbang_gagal": [
+        "entri_acak",
+        "invarian_risiko"
+      ],
+      "lulus": false,
+      "alasan": [
+        "ekspektasi -0.1345R < 0.05R",
+        "p entri acak 1.0000 > 0.0167",
+        "jendela positif 0.21 < 0.5"
+      ],
+      "rerata_transaksi_R": 0.033623277710862834,
+      "detik": 29.5
+    }
+  ],
+  "detik": 97.8
+}
