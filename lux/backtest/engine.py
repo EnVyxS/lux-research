@@ -32,6 +32,20 @@ dan cacat itu tertangkap oleh sebuah pengujian yang sebenarnya sedang menguji
 hal lain. Membuang posisi terbuka bukan kelalaian netral: posisi yang belum
 ditutup cenderung yang sedang merugi, karena yang menguntungkan lebih dulu
 menyentuh target. Menghilangkannya berarti menghapus kerugian dari catatan.
+
+**ADR-004 menambahkan dua saringan yang seluruhnya bawaan MATI.** Keduanya
+hanya menyala bila diminta secara eksplisit lewat ``Konfig``:
+
+- ``maks_umur_bar`` menutup posisi yang terlalu lama dipegang, pada pembukaan
+  bar berikutnya. Pemeriksaan umur dilakukan **sebelum** stop dan target bar
+  itu diuji, karena pembukaan bar mendahului pergerakan intrabar. Urutan
+  sebaliknya akan memberi posisi satu bar gratis untuk menyentuh target.
+- ``maks_carry_R`` membatalkan entri yang ongkos funding terproyeksinya
+  melebihi ambang. Proyeksi hanya membaca masa lalu; lihat
+  ``lux.funding_model.carry_terproyeksi_R``.
+
+Selama kedua nilai itu nol, mesin berperilaku persis seperti sebelum ADR-004,
+dan itu dikunci oleh pengujian, bukan diandaikan.
 """
 
 from __future__ import annotations
@@ -41,7 +55,7 @@ from dataclasses import dataclass, field
 import numpy as np
 import pandas as pd
 
-from lux.funding_model import Jadwal
+from lux.funding_model import HARI_MS, Jadwal, carry_terproyeksi_R
 
 
 @dataclass(frozen=True)
@@ -56,6 +70,11 @@ class Konfig:
     imbalan_R: float = 2.0
     modal_awal: float = 10_000.0
     izinkan_short: bool = True
+    # ADR-004. Nol berarti mati. Jangan mengubah nilai bawaan ini: hasil H-001b
+    # hanya dapat diulang selama mesin bawaannya tidak menyaring apa pun.
+    maks_umur_bar: int = 0
+    maks_carry_R: float = 0.0
+    jendela_carry_hari: int = 30
 
     def __post_init__(self) -> None:
         if self.atr_periode < 2:
@@ -68,6 +87,12 @@ class Konfig:
             raise ValueError("imbalan_R harus positif")
         if self.modal_awal <= 0:
             raise ValueError("modal_awal harus positif")
+        if self.maks_umur_bar < 0:
+            raise ValueError("maks_umur_bar tidak boleh negatif")
+        if self.maks_carry_R < 0:
+            raise ValueError("maks_carry_R tidak boleh negatif")
+        if self.jendela_carry_hari <= 0:
+            raise ValueError("jendela_carry_hari harus positif")
 
 
 @dataclass(frozen=True)
@@ -210,6 +235,40 @@ def _catat(
     )
 
 
+def _boleh_masuk(
+    k: Konfig,
+    jadwal: Jadwal | None,
+    arah: int,
+    masuk_ms: int,
+    stop_pecahan: float,
+    interval_ms: int,
+) -> bool:
+    """Saringan carry terproyeksi (ADR-004). Mati bila ``maks_carry_R`` nol.
+
+    Bila saringan menyala tetapi jadwal funding tidak ada, entri **ditolak**.
+    Menganggap simbol tanpa jadwal berbiaya nol adalah bentuk kelalaian yang
+    menyamar sebagai kelulusan, dan justru pada saringan biaya kelalaian itu
+    paling menguntungkan hasil.
+    """
+    if k.maks_carry_R <= 0:
+        return True
+    if k.maks_umur_bar <= 0:
+        raise ValueError("saringan carry menuntut maks_umur_bar yang positif")
+    if interval_ms <= 0:
+        raise ValueError("jarak antar bar tidak diketahui; saringan carry tidak sah")
+    if jadwal is None:
+        return False
+    proyeksi = carry_terproyeksi_R(
+        jadwal,
+        arah=arah,
+        masuk_ms=masuk_ms,
+        umur_ms=k.maks_umur_bar * interval_ms,
+        stop_pecahan=stop_pecahan,
+        jendela_ms=k.jendela_carry_hari * HARI_MS,
+    )
+    return proyeksi <= k.maks_carry_R
+
+
 def jalankan(
     df: pd.DataFrame,
     sinyal: np.ndarray,
@@ -245,6 +304,9 @@ def jalankan(
     a = atr(h, l, c, k.atr_periode)
 
     n = len(df)
+    # Jarak antar bar diukur dari datanya sendiri, bukan dari nama interval.
+    # Nama interval bisa berbohong; stempel waktu tidak.
+    interval_ms = int(np.median(np.diff(waktu))) if n > 1 else 0
     ekuitas = np.empty(n, dtype="float64")
     modal = k.modal_awal
     perdagangan: list[Perdagangan] = []
@@ -252,12 +314,34 @@ def jalankan(
     arah = 0
     harga_masuk = 0.0
     masuk_ms = 0
+    masuk_idx = 0
     ukuran = 0.0
     jarak_stop = 0.0
     stop = 0.0
     target = 0.0
 
     for t in range(n):
+        # ADR-004: umur diperiksa lebih dulu karena pembukaan bar mendahului
+        # pergerakan intrabar. Memeriksanya sesudah stop dan target akan
+        # memberi posisi satu bar gratis untuk menyentuh target.
+        if arah != 0 and k.maks_umur_bar > 0 and (t - masuk_idx) >= k.maks_umur_bar:
+            p = _catat(
+                symbol,
+                arah,
+                masuk_ms,
+                harga_masuk,
+                ukuran,
+                jarak_stop,
+                _harga_eksekusi(o[t], arah, False, k.slippage),
+                int(waktu[t]),
+                "umur",
+                k.fee,
+                jadwal,
+            )
+            perdagangan.append(p)
+            modal += p.laba
+            arah = 0
+
         if arah != 0:
             kena_stop = l[t] <= stop if arah == 1 else h[t] >= stop
             kena_target = h[t] >= target if arah == 1 else l[t] <= target
@@ -289,10 +373,17 @@ def jalankan(
                 if np.isfinite(atr_t) and atr_t > 0:
                     jarak = k.atr_pengali_stop * atr_t
                     masuk = _harga_eksekusi(o[t], s, True, k.slippage)
-                    if jarak > 0 and masuk > 0:
+                    if (
+                        jarak > 0
+                        and masuk > 0
+                        and _boleh_masuk(
+                            k, jadwal, s, int(waktu[t]), jarak / masuk, interval_ms
+                        )
+                    ):
                         arah = s
                         harga_masuk = masuk
                         masuk_ms = int(waktu[t])
+                        masuk_idx = t
                         jarak_stop = jarak
                         ukuran = (modal * k.risiko_per_trade) / jarak
                         stop = masuk - s * jarak

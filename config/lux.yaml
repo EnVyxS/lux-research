@@ -7,7 +7,7 @@
 #
 # Setiap perubahan pada berkas ini WAJIB tercatat di journal/ beserta alasannya.
 
-versi: 1
+versi: 2
 
 universe:
   quote: USDT
@@ -29,12 +29,26 @@ biaya:
   # Asumsi pesimistis adalah satu-satunya asumsi yang aman soal biaya.
   fee_efektif: 0.0005
   slippage: 0.0005
-  funding_interval_jam: 8
+  # Kunci `funding_interval_jam: 8` DIHAPUS pada 2026-07-26. Kisi tetap delapan
+  # jam terbukti salah untuk mayoritas universe: 269 dari 447 simbol layak
+  # berkisi empat jam dan 295 simbol hidup di lebih dari satu rezim kisi
+  # (reports/funding_check.md @ 0448a67). Pembagi tetap menagih setengah dari
+  # yang seharusnya, dan karena 79,1% periode funding bernilai positif,
+  # kekurangan tagihan itu langsung menjadi keuntungan palsu bagi strategi yang
+  # condong long. Jalur backtest menjumlahkan peristiwa penagihan nyata lewat
+  # lux/funding_model.py.
+  funding_dari_jadwal_nyata: true
 
 risiko:
   atr_periode: 14
   atr_pengali_stop: 2.0
   risiko_per_trade: 0.005
+  # ADR-004, dipakai HANYA oleh hipotesis H-002 (lux/backtest/run_h002.py).
+  # run_wf.py yang menjalankan H-001b tidak membaca ketiga kunci ini, sehingga
+  # hasil H-001b tetap dapat diulang persis.
+  maks_umur_bar: 168        # tujuh hari pada bar 1 jam
+  maks_carry_R: 0.25        # seperempat risiko yang dipertaruhkan
+  jendela_carry_hari: 30
 
 validasi:
   seed: 42
