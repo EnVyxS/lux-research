@@ -1,8 +1,8 @@
 {
   "hipotesis": {
-    "id": "H-001",
+    "id": "H-001b",
     "pernyataan": "Penembusan Donchian pada penutupan bar 1 jam menghasilkan ekspektasi positif setelah fee, slippage, dan funding nyata, pada perp USDT yang lolos ambang kelayakan, dinilai hanya di luar sampel.",
-    "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak 447 simbol",
+    "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)",
     "ruang_parameter": {
       "lookback": [
         20,
@@ -16,10 +16,10 @@
       "maks_p_entri_acak": 0.05,
       "min_jendela_positif_rasio": 0.5
     },
-    "dibuat_utc": "2026-07-25T18:40:16+00:00",
+    "dibuat_utc": "2026-07-25T19:34:57+00:00",
     "komit": "",
     "jumlah_kombinasi": 3,
-    "sidik": "f172b1ba07f257178e1b00924e235fd577aea97916116e2752f192139e7f53db"
+    "sidik": "e458f4c82abf673510f3af46ea86ba5a9a38545ebbc55313c26eb11b2711e596"
   },
   "parameter_run": {
     "interval": "1h",
@@ -41,22 +41,22 @@
       "1000RATSUSDT",
       "1000SATSUSDT"
     ],
-    "simbol_mati_di_universe": 15
+    "simbol_mati_di_universe": 64
   },
   "gabungan": {
     "jumlah_simbol": 40,
-    "jumlah_jendela": 359,
+    "jumlah_jendela": 356,
     "jendela_positif": 208,
-    "jumlah_trade_luar_sampel": 19060,
-    "total_R": 604.2635452881991,
-    "ekspektasi_R": 0.031703229028761756
+    "jumlah_trade_luar_sampel": 19093,
+    "total_R": 589.1692004511272,
+    "ekspektasi_R": 0.030857864162317453
   },
   "diagnosa_biaya": {
-    "jumlah": 19060,
-    "rerata_transaksi_R": 0.03424944244020956,
-    "rerata_funding_R": 0.0012308753298671748,
-    "rerata_stop_frac": 0.03582275733915794,
-    "trade_biaya_lebih_1R": 2,
+    "jumlah": 19093,
+    "rerata_transaksi_R": 0.03434066055484234,
+    "rerata_funding_R": 0.001446581590609118,
+    "rerata_stop_frac": 0.03567617454462536,
+    "trade_biaya_lebih_1R": 1,
     "terburuk": [
       {
         "symbol": "ANIMEUSDT",
@@ -69,46 +69,6 @@
         "alasan": "stop"
       },
       {
-        "symbol": "AERGOUSDT",
-        "R": -2.276225415760831,
-        "kotor_R": -1.0214150886751485,
-        "transaksi_R": 0.0423408848946501,
-        "funding_R": 1.2124694421910323,
-        "stop_frac": 0.023906185996424627,
-        "jam": 76.0,
-        "alasan": "stop"
-      },
-      {
-        "symbol": "AERGOUSDT",
-        "R": -1.4979299420450638,
-        "kotor_R": -1.0425341813766895,
-        "transaksi_R": 0.08554709566268773,
-        "funding_R": 0.36984866500568664,
-        "stop_frac": 0.011618671112234845,
-        "jam": 34.0,
-        "alasan": "stop"
-      },
-      {
-        "symbol": "AERGOUSDT",
-        "R": -1.479468059120915,
-        "kotor_R": -1.0193061740724214,
-        "transaksi_R": 0.038122001231878574,
-        "funding_R": 0.4220398838166149,
-        "stop_frac": 0.026587013290132116,
-        "jam": 174.0,
-        "alasan": "stop"
-      },
-      {
-        "symbol": "AERGOUSDT",
-        "R": -1.4682637170323927,
-        "kotor_R": -1.0068120988205378,
-        "transaksi_R": 0.013127603690486421,
-        "funding_R": 0.44832401452136844,
-        "stop_frac": 0.07921295502743371,
-        "jam": 62.0,
-        "alasan": "stop"
-      },
-      {
         "symbol": "ACEUSDT",
         "R": -1.4363730413945144,
         "kotor_R": -1.0225053066426648,
@@ -116,16 +76,6 @@
         "funding_R": 0.36934586881319265,
         "stop_frac": 0.022721791980417762,
         "jam": 96.0,
-        "alasan": "stop"
-      },
-      {
-        "symbol": "AERGOUSDT",
-        "R": -1.422568726855396,
-        "kotor_R": -1.0074812726416555,
-        "transaksi_R": 0.014466285919631686,
-        "funding_R": 0.4006211682941087,
-        "stop_frac": 0.07162017953813045,
-        "jam": 79.0,
         "alasan": "stop"
       },
       {
@@ -157,30 +107,78 @@
         "stop_frac": 0.058084708417394215,
         "jam": 196.0,
         "alasan": "stop"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "R": -1.3405742406497876,
+        "kotor_R": -1.011469638768665,
+        "transaksi_R": 0.023433542717947547,
+        "funding_R": 0.305671059163175,
+        "stop_frac": 0.04177235501115518,
+        "jam": 117.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "ACEUSDT",
+        "R": -1.2955719261889527,
+        "kotor_R": -1.0140791119803152,
+        "transaksi_R": 0.027665263516618164,
+        "funding_R": 0.2538275506920195,
+        "stop_frac": 0.03682125905765143,
+        "jam": 42.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "ACTUSDT",
+        "R": -1.2951908510824128,
+        "kotor_R": -1.0112166155498035,
+        "transaksi_R": 0.021938839407382366,
+        "funding_R": 0.2620353961252269,
+        "stop_frac": 0.046656521144789714,
+        "jam": 16.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "1000WHYUSDT",
+        "R": -1.2934197742880678,
+        "kotor_R": -1.0058062366834144,
+        "transaksi_R": 0.012109570248488553,
+        "funding_R": 0.2755039673561649,
+        "stop_frac": 0.07928658962562533,
+        "jam": 41.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "1000WHYUSDT",
+        "R": -1.2903206254549202,
+        "kotor_R": -1.0151178664610272,
+        "transaksi_R": 0.030728173988829065,
+        "funding_R": 0.24447458500506383,
+        "stop_frac": 0.03201461616076795,
+        "jam": 39.0,
+        "alasan": "stop"
       }
     ]
   },
   "gerbang": {
     "semua_lulus": false,
     "gerbang_gagal": [
-      "forward_fill",
-      "invarian_risiko",
-      "checksum"
+      "invarian_risiko"
     ],
     "rincian": [
       {
         "nama": "forward_fill",
-        "lulus": false,
-        "nilai": 0.21371161640447894,
+        "lulus": true,
+        "nilai": 0.00025348542458808617,
         "ambang": 0.3,
-        "catatan": "4 dari 40 simbol gagal — 1000WHYUSDT (rasio bar datar 0.2137, deret terpanjang 3111 bar); AERGOUSDT (rasio bar datar 0.0288, deret terpanjang 470 bar); AIUSDT (rasio bar datar 0.0943, deret terpanjang 2101 bar); ALPHAUSDT (rasio bar datar 0.1472, deret terpanjang 7310 bar)"
+        "catatan": "0 dari 40 simbol gagal"
       },
       {
         "nama": "buy_and_hold",
         "lulus": true,
-        "nilai": 0.8006559324296185,
+        "nilai": 0.7896899730455096,
         "ambang": 0.0,
-        "catatan": "median selisih 0.8007; unggul di 36/40 simbol"
+        "catatan": "median selisih 0.7897; unggul di 35/40 simbol"
       },
       {
         "nama": "entri_acak",
@@ -201,14 +199,14 @@
         "lulus": false,
         "nilai": -2.585270890002368,
         "ambang": -1.5,
-        "catatan": "kerugian terburuk -2.585R dari 19060 perdagangan"
+        "catatan": "kerugian terburuk -2.585R dari 19093 perdagangan"
       },
       {
         "nama": "funding",
         "lulus": true,
-        "nilai": 11238.25463530013,
+        "nilai": 10414.517455261366,
         "ambang": 0.0,
-        "catatan": "total funding mutlak 11238.254635 atas 19060 trade"
+        "catatan": "total funding mutlak 10414.517455 atas 19093 trade"
       },
       {
         "nama": "overlap",
@@ -219,24 +217,24 @@
       },
       {
         "nama": "checksum",
-        "lulus": false,
-        "nilai": null,
-        "ambang": null,
-        "catatan": "tidak dapat dinilai: manifest baru ditulis pada run ini; run berikutnya akan membandingkannya"
+        "lulus": true,
+        "nilai": 0.0,
+        "ambang": 0.0,
+        "catatan": "hilang 0, asing 0, tidak cocok 0"
       },
       {
         "nama": "survivorship",
         "lulus": true,
-        "nilai": 0.745,
+        "nilai": 0.85546875,
         "ambang": 0.5,
-        "catatan": "porsi delisted diuji 0.0250 vs universe 0.0336"
+        "catatan": "porsi delisted diuji 0.1250 vs universe 0.1461"
       }
     ]
   },
   "putusan": {
     "lulus": false,
     "alasan": [
-      "ekspektasi 0.0317R < 0.05R"
+      "ekspektasi 0.0309R < 0.05R"
     ]
   },
   "per_simbol": [
@@ -625,20 +623,17 @@
     },
     {
       "symbol": "1000WHYUSDT",
-      "bar": 14557,
-      "jendela": 4,
-      "trade": 162,
-      "total_R": 10.0315,
-      "ekspektasi_R": 0.06192,
+      "bar": 11446,
+      "jendela": 3,
+      "trade": 153,
+      "total_R": 11.253,
+      "ekspektasi_R": 0.07355,
       "parameter": [
         {
           "lookback": 20
         },
         {
           "lookback": 55
-        },
-        {
-          "lookback": 20
         },
         {
           "lookback": 20
@@ -1078,31 +1073,6 @@
       ]
     },
     {
-      "symbol": "AERGOUSDT",
-      "bar": 16345,
-      "jendela": 5,
-      "trade": 274,
-      "total_R": -24.2848,
-      "ekspektasi_R": -0.08863,
-      "parameter": [
-        {
-          "lookback": 20
-        },
-        {
-          "lookback": 20
-        },
-        {
-          "lookback": 20
-        },
-        {
-          "lookback": 20
-        },
-        {
-          "lookback": 100
-        }
-      ]
-    },
-    {
       "symbol": "AEROUSDT",
       "bar": 14338,
       "jendela": 4,
@@ -1245,11 +1215,11 @@
     },
     {
       "symbol": "AIUSDT",
-      "bar": 22284,
-      "jendela": 8,
-      "trade": 319,
-      "total_R": 45.5745,
-      "ekspektasi_R": 0.14287,
+      "bar": 20183,
+      "jendela": 7,
+      "trade": 299,
+      "total_R": 42.2831,
+      "ekspektasi_R": 0.14142,
       "parameter": [
         {
           "lookback": 55
@@ -1271,9 +1241,6 @@
         },
         {
           "lookback": 100
-        },
-        {
-          "lookback": 20
         }
       ]
     },
@@ -1507,11 +1474,11 @@
     },
     {
       "symbol": "ALPHAUSDT",
-      "bar": 49673,
-      "jendela": 20,
-      "trade": 919,
-      "total_R": 47.8181,
-      "ekspektasi_R": 0.05203,
+      "bar": 42363,
+      "jendela": 17,
+      "trade": 881,
+      "total_R": 51.2974,
+      "ekspektasi_R": 0.05823,
       "parameter": [
         {
           "lookback": 100
@@ -1557,15 +1524,6 @@
         },
         {
           "lookback": 100
-        },
-        {
-          "lookback": 20
-        },
-        {
-          "lookback": 20
-        },
-        {
-          "lookback": 20
         },
         {
           "lookback": 20
@@ -1716,7 +1674,38 @@
           "lookback": 20
         }
       ]
+    },
+    {
+      "symbol": "ANTUSDT",
+      "bar": 19829,
+      "jendela": 7,
+      "trade": 374,
+      "total_R": -40.7887,
+      "ekspektasi_R": -0.10906,
+      "parameter": [
+        {
+          "lookback": 20
+        },
+        {
+          "lookback": 55
+        },
+        {
+          "lookback": 55
+        },
+        {
+          "lookback": 55
+        },
+        {
+          "lookback": 100
+        },
+        {
+          "lookback": 20
+        },
+        {
+          "lookback": 20
+        }
+      ]
     }
   ],
-  "detik": 29.9
+  "detik": 28.3
 }
