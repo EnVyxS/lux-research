@@ -29,11 +29,8 @@ name: backtest
 # survivorship menggunakan tanggal kematian sejati simbol, bukan stempel bar
 # terakhir mentah yang untuk simbol mati sama dengan tanggal ujung dataset.
 #
-# Re-trigger #2: ID hipotesis diganti H-001b (6139980). H-001 ditolak
-# praregistrasi karena dataset lama (447 simbol tercemar padding ekor datar)
-# sudah terkunci dan tidak dapat diubah. H-001b adalah hipotesis aktif dengan
-# dataset bersih ADR-003 (438 simbol). Run sebelumnya (backtest #7) gagal di
-# langkah jalan karena ID masih H-001.
+# Pemicu run ini: H-001.json lama dihapus (blocker praregistrasi sekali-tulis).
+# H-001 akan didaftar ulang dengan dataset universe_layak_v2 438 simbol.
 
 on:
   workflow_dispatch:
@@ -67,7 +64,7 @@ jobs:
       - name: Pasang dependensi
         run: pip install -r requirements.txt pytest
 
-      # Gerbang pra-terbang. Sudah sembilan kali mencegah pekerjaan panjang yang
+      # Gerbang pra-terbang. Sudah delapan kali mencegah pekerjaan panjang yang
       # sia-sia karena cacat yang tertangkap dalam hitungan detik.
       - name: Uji dulu, baru unduh
         env:
