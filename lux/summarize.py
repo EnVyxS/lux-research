@@ -1,8 +1,10 @@
-"""Menggabungkan laporan per shard menjadi satu laporan ingest.
+"""Menggabungkan laporan per shard menjadi satu laporan.
 
 Dijalankan sebagai job terpisah setelah semua shard selesai. Alasannya bukan
 kerapian: delapan job yang meng-commit ke branch yang sama secara bersamaan
 akan saling menimpa. Satu job agregasi menghapus balapan itu sepenuhnya.
+
+Pemakaian: python -m lux.summarize <direktori_shard> [nama_keluaran]
 """
 
 from __future__ import annotations
@@ -15,6 +17,7 @@ from pathlib import Path
 
 def main() -> int:
     sumber = Path(sys.argv[1] if len(sys.argv) > 1 else "shards")
+    nama = sys.argv[2] if len(sys.argv) > 2 else "ingest_tier_b"
     Path("reports").mkdir(exist_ok=True)
 
     ringkasan_shard = [
@@ -27,42 +30,22 @@ def main() -> int:
     total: dict[str, dict] = {}
     for r in ringkasan_shard:
         for interval, d in r["interval"].items():
-            t = total.setdefault(
-                interval,
-                {
-                    "baris": 0,
-                    "simbol_berhasil": 0,
-                    "simbol_gagal": 0,
-                    "total_bar_hilang": 0,
-                    "total_duplikat": 0,
-                    "total_celah_kisi": 0,
-                    "simbol_bermasalah": 0,
-                    "bytes": 0,
-                    "detik_maks": 0,
-                },
-            )
-            for k in (
-                "baris",
-                "simbol_berhasil",
-                "simbol_gagal",
-                "total_bar_hilang",
-                "total_duplikat",
-                "total_celah_kisi",
-                "simbol_bermasalah",
-                "bytes",
-            ):
-                t[k] += d.get(k, 0)
-            t["detik_maks"] = max(t["detik_maks"], d.get("detik", 0))
+            t = total.setdefault(interval, {})
+            for k, v in d.items():
+                if isinstance(v, (int, float)) and k != "detik":
+                    t[k] = t.get(k, 0) + v
+            t["detik_maks"] = max(t.get("detik_maks", 0), d.get("detik", 0))
 
-    # Gerbang mutu tahap ingest. Gagal berarti pipeline berhenti, bukan
-    # dilanjutkan dengan catatan kecil di bawah tabel.
-    gerbang = {}
-    for interval, t in total.items():
-        gerbang[interval] = {
-            "tidak_ada_duplikat": t["total_duplikat"] == 0,
-            "tidak_ada_simbol_gagal": t["simbol_gagal"] == 0,
-            "ada_baris": t["baris"] > 0,
+    # Gerbang mutu. Gagal berarti pipeline berhenti, bukan dilanjutkan dengan
+    # catatan kecil di bawah tabel.
+    gerbang = {
+        interval: {
+            "tidak_ada_duplikat": t.get("total_duplikat", 0) == 0,
+            "tidak_ada_simbol_gagal": t.get("simbol_gagal", 0) == 0,
+            "ada_baris": t.get("baris", 0) > 0,
         }
+        for interval, t in total.items()
+    }
 
     hasil = {
         "waktu_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -73,20 +56,21 @@ def main() -> int:
         "per_shard": ringkasan_shard,
     }
 
-    Path("reports/ingest_tier_b.json").write_text(
+    Path(f"reports/{nama}.json").write_text(
         json.dumps(hasil, indent=2, ensure_ascii=False, default=str)
     )
 
-    baris = ["# Laporan ingest Tier B", "", f"Digabung dari {len(ringkasan_shard)} shard.", ""]
-    baris += ["| Interval | Baris | Simbol OK | Simbol gagal | Bar hilang | Celah kisi | Ukuran |", "|---|---|---|---|---|---|---|"]
+    baris = [f"# Laporan {nama}", "", f"Digabung dari {len(ringkasan_shard)} shard.", ""]
+    baris.append("| Interval | Baris | Simbol OK | Gagal | Duplikat | Celah kisi | Ukuran |")
+    baris.append("|---|---|---|---|---|---|---|")
     for interval, t in sorted(total.items()):
         baris.append(
-            f"| {interval} | {t['baris']:,} | {t['simbol_berhasil']} | "
-            f"{t['simbol_gagal']} | {t['total_bar_hilang']:,} | "
-            f"{t['total_celah_kisi']:,} | {t['bytes'] / 1048576:.1f} MB |"
+            f"| {interval} | {t.get('baris', 0):,} | {t.get('simbol_berhasil', 0)} | "
+            f"{t.get('simbol_gagal', 0)} | {t.get('total_duplikat', 0):,} | "
+            f"{t.get('total_celah_kisi', 0):,} | {t.get('bytes', 0) / 1048576:.1f} MB |"
         )
     baris += ["", f"Semua gerbang lulus: **{hasil['semua_gerbang_lulus']}**", ""]
-    Path("reports/ingest_tier_b.md").write_text(chr(10).join(baris))
+    Path(f"reports/{nama}.md").write_text(chr(10).join(baris))
 
     print(json.dumps({k: v for k, v in hasil.items() if k != "per_shard"}, indent=2))
     return 0
