@@ -16,6 +16,11 @@ name: backtest
 # kumpulan data yang bukan kumpulan data yang divalidasi. Aset '_retry' tetap
 # tersaring di dalam kode, bukan lewat pola unduh.
 #
+# Manifes sekali-tulis yang terbentuk pada run berpola sempit itu sudah dihapus
+# dari repo. Gerbang checksum-lah yang menemukannya, dengan melaporkan empat
+# aset asing. Bila gerbang itu kembali berbunyi, yang pertama harus dicurigai
+# adalah perbedaan kumpulan berkas, bukan kerusakan aset.
+#
 # Log dikomit balik apa pun hasilnya. Kegagalan yang tidak terbaca akan ditebak,
 # dan tebakan tentang penyebab kegagalan hampir selalu meleset.
 
