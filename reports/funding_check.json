@@ -6,11 +6,11 @@
     "di_luar_universe": [],
     "duplikat": 0,
     "tidak_urut": 0,
-    "celah_menurut_kolom": 1193209,
-    "celah_teramati": 587131,
-    "periode_hilang": 41184,
-    "simbol_dengan_celah": 447,
-    "simbol_kolom_tidak_cocok": 0,
+    "celah": 266612,
+    "periode_hilang": 10720,
+    "jarak_tidak_selaras": 22,
+    "simbol_dengan_celah": 202,
+    "simbol_berbilang_rezim": 295,
     "positif": 1563845,
     "negatif": 413944,
     "ekstrem": 85,
@@ -18,12 +18,6 @@
       "1.0": 3,
       "4.0": 267,
       "8.0": 177
-    },
-    "kisi_dideklarasi": {
-      "1": 96,
-      "2": 14,
-      "4": 304,
-      "8": 244
     },
     "awal": 1577836800000,
     "akhir": 1782849600003,
@@ -51,9 +45,13 @@
       "symbol": "1000000BOBUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 913,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.6010847667093469
     },
     {
@@ -76,9 +74,13 @@
       "symbol": "1000000MOGUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1151,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.1112339922521522
     },
     {
@@ -101,9 +103,13 @@
       "symbol": "1000BONKUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1421,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.09336504932538986
     },
     {
@@ -126,9 +132,13 @@
       "symbol": "1000CATUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1166,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.08274917069943291
     },
     {
@@ -151,9 +161,13 @@
       "symbol": "1000CHEEMSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1136,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.1262482663136806
     },
     {
@@ -178,7 +192,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 786,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.0021186284452808404
     },
     {
@@ -203,7 +220,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1110,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.04208624230400384
     },
     {
@@ -228,7 +248,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 787,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.08984525996528782
     },
     {
@@ -251,9 +274,13 @@
       "symbol": "1000RATSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1411,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.4318650820973245
     },
     {
@@ -276,9 +303,13 @@
       "symbol": "1000SATSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1412,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.13730436856989442
     },
     {
@@ -303,7 +334,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1759,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.03475302717507102
     },
     {
@@ -326,9 +360,12 @@
       "symbol": "1000WHYUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 892,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4
+      ],
       "biaya_tahunan_long": 0.6074074882599579
     },
     {
@@ -353,7 +390,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1586,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": -0.04566878050734311
     },
     {
@@ -378,7 +418,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1921,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.08338632941225167
     },
     {
@@ -401,9 +444,13 @@
       "symbol": "1MBABYDOGEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1195,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.03412720531425653
     },
     {
@@ -428,7 +475,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1994,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.1465596294912814
     },
     {
@@ -452,9 +502,14 @@
       "symbol": "ACEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1382,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.029479685448862643
     },
     {
@@ -479,7 +534,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 884,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.037714085968971155
     },
     {
@@ -502,9 +560,13 @@
       "symbol": "ACTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1150,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.03121169387755102
     },
     {
@@ -527,9 +589,13 @@
       "symbol": "ACXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1127,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.058368542048438894
     },
     {
@@ -554,7 +620,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2191,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.138236047947048
     },
     {
@@ -578,9 +647,14 @@
       "symbol": "AERGOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1184,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -1.025713833958021
     },
     {
@@ -603,9 +677,13 @@
       "symbol": "AEROUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1130,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.17607571343413783
     },
     {
@@ -628,9 +706,13 @@
       "symbol": "AEVOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1352,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.03153740490566037
     },
     {
@@ -655,7 +737,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 733,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": -0.08467206224648986
     },
     {
@@ -678,9 +763,13 @@
       "symbol": "AGTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 947,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.4029193529532404
     },
     {
@@ -703,9 +792,13 @@
       "symbol": "AINUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 828,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.30177391590056285
     },
     {
@@ -728,9 +821,13 @@
       "symbol": "AIOTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 992,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.1884479754790771
     },
     {
@@ -753,9 +850,12 @@
       "symbol": "AIUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1248,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4
+      ],
       "biaya_tahunan_long": 0.1252518256888008
     },
     {
@@ -778,9 +878,13 @@
       "symbol": "AIXBTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1114,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.031642616696588854
     },
     {
@@ -805,7 +909,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 646,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.30193936925675674
     },
     {
@@ -828,9 +935,13 @@
       "symbol": "AKTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1143,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.10632720653280545
     },
     {
@@ -853,9 +964,13 @@
       "symbol": "ALCHUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1095,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.26096466359703335
     },
     {
@@ -880,7 +995,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2122,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.1410973252588924
     },
     {
@@ -907,7 +1025,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1698,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.06898584393063585
     },
     {
@@ -932,7 +1055,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1642,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.17981099000188822
     },
     {
@@ -955,9 +1081,13 @@
       "symbol": "ALPINEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 981,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.0467486066217288
     },
     {
@@ -980,9 +1110,13 @@
       "symbol": "ALTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1383,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.010350738981777189
     },
     {
@@ -1006,9 +1140,14 @@
       "symbol": "ANIMEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1041,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.5566008339672323
     },
     {
@@ -1035,7 +1174,13 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1776,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.03133609114748887
     },
     {
@@ -1060,7 +1205,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 831,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.050977949465240646
     },
     {
@@ -1085,7 +1233,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1341,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": -0.06150424615875718
     },
     {
@@ -1110,9 +1261,14 @@
       "symbol": "API3USDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 3162,
-      "periode_hilang": 1794,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 659,
+      "periode_hilang": 659,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.35992491863979853
     },
     {
@@ -1137,7 +1293,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1058,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": -0.01477356767390232
     },
     {
@@ -1162,7 +1321,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 840,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.09240672641483133
     },
     {
@@ -1185,9 +1347,13 @@
       "symbol": "ARCUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1088,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.3995913178582677
     },
     {
@@ -1212,7 +1378,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 733,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07751411474438902
     },
     {
@@ -1239,7 +1408,13 @@
       "jam_teramati": 8.0,
       "celah_teramati": 196,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.20164668333333335
     },
     {
@@ -1264,7 +1439,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1542,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": -0.024128117573343693
     },
     {
@@ -1289,7 +1467,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1570,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.08746880164972184
     },
     {
@@ -1312,9 +1493,13 @@
       "symbol": "ASRUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 981,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.02917393477398891
     },
     {
@@ -1339,7 +1524,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 900,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.01938176627938395
     },
     {
@@ -1364,7 +1552,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1563,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07858437998065763
     },
     {
@@ -1387,9 +1578,13 @@
       "symbol": "ATHUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1029,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.1635255319266055
     },
     {
@@ -1414,7 +1609,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2183,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.10200824559138251
     },
     {
@@ -1438,9 +1636,15 @@
       "symbol": "AUCTIONUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1405,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.2785139908897176
     },
     {
@@ -1465,7 +1669,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1007,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07275172117370893
     },
     {
@@ -1489,9 +1696,13 @@
       "symbol": "AUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 932,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.07029359598494354
     },
     {
@@ -1514,9 +1725,13 @@
       "symbol": "AVAAIUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1088,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.2555526726614173
     },
     {
@@ -1539,9 +1754,13 @@
       "symbol": "AVAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1118,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.06629277509601184
     },
     {
@@ -1566,7 +1785,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2018,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.06967736493198355
     },
     {
@@ -1590,9 +1812,13 @@
       "symbol": "AWEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 946,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.5991089297163994
     },
     {
@@ -1616,9 +1842,14 @@
       "symbol": "AXLUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1266,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.24385512109711918
     },
     {
@@ -1645,7 +1876,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1780,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.275774088320577
     },
     {
@@ -1668,9 +1904,13 @@
       "symbol": "B2USDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 981,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.24898155172550573
     },
     {
@@ -1694,9 +1934,13 @@
       "symbol": "B3USDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 919,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4
+      ],
       "biaya_tahunan_long": -0.09667357042889389
     },
     {
@@ -1720,9 +1964,14 @@
       "symbol": "BABYUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1024,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.27396175034482756
     },
     {
@@ -1747,7 +1996,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1444,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.11789755385818561
     },
     {
@@ -1772,7 +2024,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1623,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": -0.02819649786950732
     },
     {
@@ -1796,9 +2051,13 @@
       "symbol": "BANANAS31USDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1048,
-      "periode_hilang": 6,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 1,
+      "periode_hilang": 1,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.07000215246604718
     },
     {
@@ -1823,9 +2082,14 @@
       "symbol": "BANANAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1208,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.16648539767769177
     },
     {
@@ -1850,7 +2114,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2073,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.10536855386097412
     },
     {
@@ -1873,9 +2140,13 @@
       "symbol": "BANKUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1017,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.08752393333333333
     },
     {
@@ -1899,9 +2170,14 @@
       "symbol": "BANUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1142,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.05670009769403827
     },
     {
@@ -1926,7 +2202,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2179,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.13345251161825727
     },
     {
@@ -1949,9 +2228,13 @@
       "symbol": "BBUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1306,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.019057460676804444
     },
     {
@@ -1976,7 +2259,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2198,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.05373444941002949
     },
     {
@@ -2000,9 +2286,13 @@
       "symbol": "BEAMXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1422,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.062096820250958536
     },
     {
@@ -2027,7 +2317,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1961,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.08248812100942783
     },
     {
@@ -2050,9 +2343,13 @@
       "symbol": "BERAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1073,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.795641172274959
     },
     {
@@ -2077,7 +2374,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 715,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.09183349480132452
     },
     {
@@ -2100,9 +2400,13 @@
       "symbol": "BIGTIMEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1446,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.15061937451705026
     },
     {
@@ -2126,9 +2430,15 @@
       "symbol": "BIOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 995,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.4752504421518055
     },
     {
@@ -2153,7 +2463,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 418,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.04020694506403417
     },
     {
@@ -2180,7 +2493,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 701,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.061398987154150195
     },
     {
@@ -2204,9 +2522,13 @@
       "symbol": "BLZUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 3867,
-      "periode_hilang": 3288,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 1310,
+      "periode_hilang": 1310,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.03723174696481143
     },
     {
@@ -2229,9 +2551,13 @@
       "symbol": "BMTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1046,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.03471849464728818
     },
     {
@@ -2256,7 +2582,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2182,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": -0.0024211188553872605
     },
     {
@@ -2281,7 +2610,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 862,
       "periode_hilang": 2501,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.004776234460227279
     },
     {
@@ -2305,9 +2637,13 @@
       "symbol": "BOMEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1352,
-      "periode_hilang": 3,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.0887319450687388
     },
     {
@@ -2330,9 +2666,13 @@
       "symbol": "BRETTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1227,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.08173860147203144
     },
     {
@@ -2357,9 +2697,14 @@
       "symbol": "BROCCOLI714USDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1042,
-      "periode_hilang": 3,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.050478881792519414
     },
     {
@@ -2384,9 +2729,14 @@
       "symbol": "BROCCOLIF3BUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 948,
-      "periode_hilang": 93,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 13,
+      "periode_hilang": 13,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.5703937932604272
     },
     {
@@ -2409,9 +2759,13 @@
       "symbol": "BRUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1045,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.10823735577404361
     },
     {
@@ -2435,9 +2789,13 @@
       "symbol": "BSVUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1444,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.021890336708432084
     },
     {
@@ -2462,7 +2820,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1705,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.20004759405302341
     },
     {
@@ -2487,7 +2848,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2198,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.11923796774125581
     },
     {
@@ -2511,9 +2875,15 @@
       "symbol": "BULLAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 821,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.33175270472541507
     },
     {
@@ -2537,9 +2907,13 @@
       "symbol": "BUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 944,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.32731758964948454
     },
     {
@@ -2564,7 +2938,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 597,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.43983402269896194
     },
     {
@@ -2589,7 +2966,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1618,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.05303837387582316
     },
     {
@@ -2612,9 +2992,13 @@
       "symbol": "CAKEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1433,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.0894840727475545
     },
     {
@@ -2638,9 +3022,13 @@
       "symbol": "CATIUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1196,
-      "periode_hilang": 6,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 2,
+      "periode_hilang": 2,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.07615857097022591
     },
     {
@@ -2665,7 +3053,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1570,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.058384124985612906
     },
     {
@@ -2690,7 +3081,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1812,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.121996752621983
     },
     {
@@ -2713,9 +3107,13 @@
       "symbol": "CETUSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1152,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.06105433423897977
     },
     {
@@ -2740,7 +3138,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 887,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.1005715485326087
     },
     {
@@ -2763,9 +3164,13 @@
       "symbol": "CGPTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1114,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.02514268096947938
     },
     {
@@ -2788,9 +3193,12 @@
       "symbol": "CHESSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 876,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4
+      ],
       "biaya_tahunan_long": 0.12806119689578715
     },
     {
@@ -2813,9 +3221,13 @@
       "symbol": "CHILLGUYUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1135,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.1475302716748061
     },
     {
@@ -2840,7 +3252,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1831,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.09741405529259899
     },
     {
@@ -2865,7 +3280,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1912,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.1056985986547085
     },
     {
@@ -2890,7 +3308,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 876,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.053372537322210076
     },
     {
@@ -2915,7 +3336,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2093,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": -0.00580635782509506
     },
     {
@@ -2938,9 +3362,13 @@
       "symbol": "COOKIEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1095,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.040330453924598275
     },
     {
@@ -2964,9 +3392,14 @@
       "symbol": "COSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1127,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        2,
+        4
+      ],
       "biaya_tahunan_long": -0.32467128661043754
     },
     {
@@ -2991,7 +3424,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1834,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.09065515919876206
     },
     {
@@ -3014,9 +3450,13 @@
       "symbol": "COWUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1152,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.043861334571666195
     },
     {
@@ -3039,9 +3479,13 @@
       "symbol": "CROSSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 828,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.1422430166510319
     },
     {
@@ -3066,7 +3510,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2048,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.02818920263075478
     },
     {
@@ -3092,7 +3539,11 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1475,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.04634050466478192
     },
     {
@@ -3117,7 +3568,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1532,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.045534235622317606
     },
     {
@@ -3141,9 +3595,15 @@
       "symbol": "CUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 800,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.1542177278475336
     },
     {
@@ -3168,9 +3628,14 @@
       "symbol": "CYBERUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1607,
-      "periode_hilang": 159,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 9,
+      "periode_hilang": 9,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.19602974568222473
     },
     {
@@ -3195,7 +3660,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2184,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.09132635866590652
     },
     {
@@ -3218,9 +3686,13 @@
       "symbol": "DEEPUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1011,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.19179587210283958
     },
     {
@@ -3245,7 +3717,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1691,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.1540787585159271
     },
     {
@@ -3268,9 +3743,12 @@
       "symbol": "DEGENUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 999,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4
+      ],
       "biaya_tahunan_long": 0.1320778098298677
     },
     {
@@ -3294,9 +3772,13 @@
       "symbol": "DEGOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 952,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4
+      ],
       "biaya_tahunan_long": -0.09092813481308408
     },
     {
@@ -3321,7 +3803,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1741,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.10404456945892505
     },
     {
@@ -3344,9 +3829,13 @@
       "symbol": "DEXEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1112,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.08779242975903616
     },
     {
@@ -3369,9 +3858,12 @@
       "symbol": "DFUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 769,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4
+      ],
       "biaya_tahunan_long": 0.08810353697270475
     },
     {
@@ -3394,9 +3886,13 @@
       "symbol": "DIAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1178,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.04445218624574271
     },
     {
@@ -3421,7 +3917,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 609,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.18769651764069264
     },
     {
@@ -3445,9 +3944,13 @@
       "symbol": "DODOXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1644,
-      "periode_hilang": 198,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 14,
+      "periode_hilang": 14,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.12754703104681406
     },
     {
@@ -3472,7 +3975,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2084,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.12614616155844158
     },
     {
@@ -3495,9 +4001,13 @@
       "symbol": "DOGSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1216,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.03982873674176778
     },
     {
@@ -3521,9 +4031,13 @@
       "symbol": "DOLOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 992,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.017350354285714284
     },
     {
@@ -3547,9 +4061,14 @@
       "symbol": "DOODUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 818,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.2686363885250338
     },
     {
@@ -3574,7 +4093,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2056,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.079528271099346
     },
     {
@@ -3598,9 +4120,14 @@
       "symbol": "DRIFTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1131,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.42775552502002673
     },
     {
@@ -3624,9 +4151,13 @@
       "symbol": "DUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1035,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4
+      ],
       "biaya_tahunan_long": -0.207263392502343
     },
     {
@@ -3653,7 +4184,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1258,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.06331283805656934
     },
     {
@@ -3678,7 +4214,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1595,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07977953952715534
     },
     {
@@ -3701,9 +4240,13 @@
       "symbol": "DYMUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1375,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.13359474145225844
     },
     {
@@ -3728,7 +4271,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 797,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.06614967727142036
     },
     {
@@ -3753,7 +4299,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2032,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.12686959918884863
     },
     {
@@ -3776,9 +4325,13 @@
       "symbol": "EIGENUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1179,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.009071827372549019
     },
     {
@@ -3801,9 +4354,13 @@
       "symbol": "ENAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1338,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.151639177965412
     },
     {
@@ -3830,7 +4387,13 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1905,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.020680694836601312
     },
     {
@@ -3855,7 +4418,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1485,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07439466187537329
     },
     {
@@ -3880,7 +4446,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2195,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.15913796850782022
     },
     {
@@ -3904,9 +4473,13 @@
       "symbol": "EPICUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1046,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.062477284615384626
     },
     {
@@ -3930,9 +4503,14 @@
       "symbol": "ERAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 800,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.40327312875516763
     },
     {
@@ -3957,7 +4535,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2192,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.11171986518450445
     },
     {
@@ -3980,9 +4561,13 @@
       "symbol": "ETHFIUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1348,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.00849226867132868
     },
     {
@@ -4007,7 +4592,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2198,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.14183512235566795
     },
     {
@@ -4030,9 +4618,13 @@
       "symbol": "ETHWUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1416,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.19086236175277732
     },
     {
@@ -4055,9 +4647,13 @@
       "symbol": "FARTCOINUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1114,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.14594973877917414
     },
     {
@@ -4082,7 +4678,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 937,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.03916318561426685
     },
     {
@@ -4105,9 +4704,13 @@
       "symbol": "FHEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1022,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.18825136457786115
     },
     {
@@ -4131,9 +4734,15 @@
       "symbol": "FIDAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1189,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.2847936258384146
     },
     {
@@ -4158,7 +4767,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1994,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.06358307298832187
     },
     {
@@ -4182,9 +4794,13 @@
       "symbol": "FIOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1012,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4
+      ],
       "biaya_tahunan_long": 0.1451582377604167
     },
     {
@@ -4209,9 +4825,14 @@
       "symbol": "FLMUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 4048,
-      "periode_hilang": 3315,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 1298,
+      "periode_hilang": 1298,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.1652523348343746
     },
     {
@@ -4238,7 +4859,13 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1191,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.019682570565149125
     },
     {
@@ -4261,9 +4888,13 @@
       "symbol": "FLUXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1206,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.0006227980465815049
     },
     {
@@ -4288,7 +4919,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 506,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": -0.07636054651162792
     },
     {
@@ -4312,9 +4946,13 @@
       "symbol": "FORMUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1045,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.10723365773745998
     },
     {
@@ -4339,7 +4977,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1592,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.18540226479768787
     },
     {
@@ -4364,9 +5005,14 @@
       "symbol": "FUNUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 779,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4
+      ],
       "biaya_tahunan_long": -1.2096404179596174
     },
     {
@@ -4390,9 +5036,14 @@
       "symbol": "FUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 851,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.7823371795998431
     },
     {
@@ -4417,7 +5068,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 740,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.09474237440714506
     },
     {
@@ -4442,7 +5096,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1586,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07787453252575352
     },
     {
@@ -4467,7 +5124,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 665,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.06462276362545019
     },
     {
@@ -4492,9 +5152,14 @@
       "symbol": "GASUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1434,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.27987735499408484
     },
     {
@@ -4517,9 +5182,12 @@
       "symbol": "GHSTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 852,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4
+      ],
       "biaya_tahunan_long": 0.08662616785357738
     },
     {
@@ -4543,9 +5211,13 @@
       "symbol": "GLMUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1366,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.596204805875509
     },
     {
@@ -4572,7 +5244,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1158,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.0665056430560783
     },
     {
@@ -4597,7 +5274,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 892,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.06165265262943888
     },
     {
@@ -4620,9 +5300,13 @@
       "symbol": "GOATUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1164,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.08815201074626867
     },
     {
@@ -4646,9 +5330,15 @@
       "symbol": "GPSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 999,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.30035127318819815
     },
     {
@@ -4671,9 +5361,13 @@
       "symbol": "GRASSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1151,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.023909408762169654
     },
     {
@@ -4696,9 +5390,13 @@
       "symbol": "GRIFFAINUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1101,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.17400226116385914
     },
     {
@@ -4723,7 +5421,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1927,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.10486637891566267
     },
     {
@@ -4748,7 +5449,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1716,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07685957275600505
     },
     {
@@ -4771,9 +5475,13 @@
       "symbol": "GUNUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1032,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.19074279886737303
     },
     {
@@ -4797,9 +5505,15 @@
       "symbol": "GUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1222,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.26599993523465704
     },
     {
@@ -4823,9 +5537,13 @@
       "symbol": "HAEDALUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 992,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.08792084571428571
     },
     {
@@ -4850,7 +5568,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1823,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07963832963761866
     },
     {
@@ -4874,9 +5595,15 @@
       "symbol": "HEIUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1069,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.0073074036657860145
     },
     {
@@ -4901,7 +5628,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 825,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.04001201621088244
     },
     {
@@ -4925,9 +5655,13 @@
       "symbol": "HIFIUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 888,
-      "periode_hilang": 75,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 5,
+      "periode_hilang": 5,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.09583436030811054
     },
     {
@@ -4952,7 +5686,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 894,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.0036512451538252325
     },
     {
@@ -4976,9 +5713,13 @@
       "symbol": "HIPPOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 821,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4
+      ],
       "biaya_tahunan_long": 0.3051828092601666
     },
     {
@@ -5002,9 +5743,15 @@
       "symbol": "HIVEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1102,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.7250881535640951
     },
     {
@@ -5027,9 +5774,13 @@
       "symbol": "HMSTRUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1183,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.038518928393459655
     },
     {
@@ -5053,9 +5804,14 @@
       "symbol": "HOMEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 861,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -1.0639082065111027
     },
     {
@@ -5080,7 +5836,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 828,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.1138768138585394
     },
     {
@@ -5105,7 +5864,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1811,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.1231871005038221
     },
     {
@@ -5128,9 +5890,13 @@
       "symbol": "HUMAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 936,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.2347735821740941
     },
     {
@@ -5154,9 +5920,15 @@
       "symbol": "HUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 808,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.9817688144806671
     },
     {
@@ -5180,9 +5952,14 @@
       "symbol": "HYPERUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 991,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.5320272883121597
     },
     {
@@ -5205,9 +5982,13 @@
       "symbol": "HYPEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 927,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.08829405870479394
     },
     {
@@ -5230,9 +6011,13 @@
       "symbol": "ICNTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 849,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.8129167074977001
     },
     {
@@ -5257,7 +6042,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1123,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.05306958852751966
     },
     {
@@ -5284,7 +6072,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1917,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.09838694564278265
     },
     {
@@ -5307,9 +6100,13 @@
       "symbol": "IDOLUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 846,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.17931176540590407
     },
     {
@@ -5336,7 +6133,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 807,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.13216064444740347
     },
     {
@@ -5360,9 +6162,13 @@
       "symbol": "ILVUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1426,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.047088384097594756
     },
     {
@@ -5386,9 +6192,13 @@
       "symbol": "IMXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 3271,
-      "periode_hilang": 1825,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 676,
+      "periode_hilang": 676,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.004229748939452362
     },
     {
@@ -5412,9 +6222,14 @@
       "symbol": "INITUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1013,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.10060089729729728
     },
     {
@@ -5439,7 +6254,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1146,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": -0.018407326785293422
     },
     {
@@ -5464,7 +6282,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2177,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07362514150035894
     },
     {
@@ -5489,7 +6310,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2180,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.1105190844894165
     },
     {
@@ -5514,7 +6338,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1635,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.06601037000747245
     },
     {
@@ -5537,9 +6364,13 @@
       "symbol": "IOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1283,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.16160143982202443
     },
     {
@@ -5564,9 +6395,14 @@
       "symbol": "IPUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 989,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.550887854525077
     },
     {
@@ -5591,7 +6427,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1294,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.009181642827646169
     },
     {
@@ -5616,9 +6455,14 @@
       "symbol": "JELLYJELLYUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1036,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.24837528928057556
     },
     {
@@ -5643,7 +6487,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 834,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.058904701680201635
     },
     {
@@ -5666,9 +6513,13 @@
       "symbol": "JSTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 997,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.17220508552529185
     },
     {
@@ -5691,9 +6542,13 @@
       "symbol": "JTOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1413,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.007785965110477551
     },
     {
@@ -5716,9 +6571,13 @@
       "symbol": "JUPUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1379,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.007138231226343688
     },
     {
@@ -5741,9 +6600,13 @@
       "symbol": "KAIAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1130,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.027223120093050317
     },
     {
@@ -5766,9 +6629,13 @@
       "symbol": "KAITOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1063,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.5983839607876136
     },
     {
@@ -5792,9 +6659,13 @@
       "symbol": "KASUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1424,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.1917399502089864
     },
     {
@@ -5821,7 +6692,13 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1812,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.0012297014174121172
     },
     {
@@ -5844,9 +6721,13 @@
       "symbol": "KERNELUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1021,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.6458766408217111
     },
     {
@@ -5869,9 +6750,13 @@
       "symbol": "KMNOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1114,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.08847200924596049
     },
     {
@@ -5896,7 +6781,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2101,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.060768072874677975
     },
     {
@@ -5919,9 +6807,13 @@
       "symbol": "KOMAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1123,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.43941780458419044
     },
     {
@@ -5946,7 +6838,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1997,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.0786288716797187
     },
     {
@@ -5971,9 +6866,14 @@
       "symbol": "LAUSDT",
       "langkah_teramati_ms": 3600000,
       "jam_teramati": 1.0,
-      "celah_teramati": 2629,
-      "periode_hilang": 5277,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -2.7263368171875
     },
     {
@@ -5998,9 +6898,15 @@
       "symbol": "LAYERUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 790,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.5768670652275378
     },
     {
@@ -6025,7 +6931,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1096,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.08420472372368741
     },
     {
@@ -6050,7 +6959,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 503,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.10958550039399627
     },
     {
@@ -6075,7 +6987,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1396,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.06485570565450646
     },
     {
@@ -6100,7 +7015,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2192,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.14019034714285714
     },
     {
@@ -6123,9 +7041,13 @@
       "symbol": "LISTAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1276,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.055958657104255814
     },
     {
@@ -6151,7 +7073,11 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1433,
       "periode_hilang": 562,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.13018629276483593
     },
     {
@@ -6176,9 +7102,14 @@
       "symbol": "LPTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 3409,
-      "periode_hilang": 2077,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 794,
+      "periode_hilang": 794,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.3989660696219472
     },
     {
@@ -6203,7 +7134,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 860,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.05988723415104742
     },
     {
@@ -6230,7 +7164,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1769,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.019361025045031517
     },
     {
@@ -6254,9 +7193,14 @@
       "symbol": "LSKUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1259,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.27154896606515494
     },
     {
@@ -6281,7 +7225,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2194,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.15139126712714973
     },
     {
@@ -6304,9 +7251,13 @@
       "symbol": "LUMIAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1116,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.0645764895411204
     },
     {
@@ -6333,7 +7284,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 882,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.04113262511235953
     },
     {
@@ -6358,7 +7314,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 619,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.2211402279787234
     },
     {
@@ -6384,7 +7343,11 @@
       "jam_teramati": 8.0,
       "celah_teramati": 432,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.12100330557419102
     },
     {
@@ -6409,7 +7372,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1826,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.0739291165919669
     },
     {
@@ -6432,9 +7398,13 @@
       "symbol": "MANTAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1387,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.016511714203168684
     },
     {
@@ -6461,7 +7431,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1177,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.017266063058823528
     },
     {
@@ -6486,7 +7461,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1988,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.14646716135087437
     },
     {
@@ -6509,9 +7487,13 @@
       "symbol": "MAVIAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1368,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.1829860185005812
     },
     {
@@ -6536,7 +7518,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 741,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.04278068626707134
     },
     {
@@ -6560,9 +7545,13 @@
       "symbol": "MBOXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1166,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4
+      ],
       "biaya_tahunan_long": 0.001847070663650086
     },
     {
@@ -6585,9 +7574,13 @@
       "symbol": "MELANIAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1085,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.1977930885370488
     },
     {
@@ -6610,9 +7603,13 @@
       "symbol": "MEMEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1433,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.01771983891084006
     },
     {
@@ -6636,9 +7633,15 @@
       "symbol": "MERLUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 890,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.45753179139985106
     },
     {
@@ -6662,9 +7665,13 @@
       "symbol": "METISUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1355,
-      "periode_hilang": 3,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.05370989976214074
     },
     {
@@ -6689,9 +7696,15 @@
       "symbol": "MEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 960,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.4943242121609987
     },
     {
@@ -6714,9 +7727,13 @@
       "symbol": "MEWUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1279,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.024614450728862983
     },
     {
@@ -6741,7 +7758,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 914,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.02314354551058697
     },
     {
@@ -6766,7 +7786,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1734,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.15129170457980923
     },
     {
@@ -6789,9 +7812,12 @@
       "symbol": "MLNUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 938,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4
+      ],
       "biaya_tahunan_long": -0.0461749685990338
     },
     {
@@ -6814,9 +7840,13 @@
       "symbol": "MOCAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1116,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.22484086915083137
     },
     {
@@ -6839,9 +7869,13 @@
       "symbol": "MOODENGUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1163,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.12042685622282609
     },
     {
@@ -6864,9 +7898,13 @@
       "symbol": "MORPHOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1135,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.00220910666475153
     },
     {
@@ -6890,9 +7928,14 @@
       "symbol": "MOVEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1118,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.9880449707111756
     },
     {
@@ -6915,9 +7958,13 @@
       "symbol": "MOVRUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1401,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.05760772117027077
     },
     {
@@ -6943,7 +7990,11 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1810,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.09520188251128862
     },
     {
@@ -6966,9 +8017,13 @@
       "symbol": "MUBARAKUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1046,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.07139706646579227
     },
     {
@@ -6992,9 +8047,14 @@
       "symbol": "MUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 716,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.7631812683116882
     },
     {
@@ -7018,9 +8078,12 @@
       "symbol": "MYROUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 820,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4
+      ],
       "biaya_tahunan_long": 0.2782493741588155
     },
     {
@@ -7044,9 +8107,14 @@
       "symbol": "MYXUSDT",
       "langkah_teramati_ms": 3600000,
       "jam_teramati": 1.0,
-      "celah_teramati": 2535,
-      "periode_hilang": 5326,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -5.33948989064594
     },
     {
@@ -7071,7 +8139,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1996,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.10579181470588234
     },
     {
@@ -7094,9 +8165,13 @@
       "symbol": "NEIROUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1195,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.06554309103219214
     },
     {
@@ -7121,7 +8196,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2179,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.13664247925326073
     },
     {
@@ -7145,9 +8223,14 @@
       "symbol": "NEWTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 821,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.4593753121606545
     },
     {
@@ -7170,9 +8253,13 @@
       "symbol": "NFPUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1400,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.11637922943423687
     },
     {
@@ -7196,9 +8283,13 @@
       "symbol": "NILUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1042,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.038262159604316566
     },
     {
@@ -7224,7 +8315,11 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1305,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.040612465472523916
     },
     {
@@ -7249,9 +8344,14 @@
       "symbol": "NMRUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1778,
-      "periode_hilang": 332,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 29,
+      "periode_hilang": 29,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.2908129874169041
     },
     {
@@ -7274,9 +8374,13 @@
       "symbol": "NOTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1305,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.029193095527843483
     },
     {
@@ -7300,9 +8404,13 @@
       "symbol": "NTRNUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1200,
+      "celah_teramati": 1,
       "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.10202606329849014
     },
     {
@@ -7325,9 +8433,13 @@
       "symbol": "NXPCUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 961,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.07184278590522479
     },
     {
@@ -7354,7 +8466,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1697,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.02434737950873183
     },
     {
@@ -7377,9 +8494,13 @@
       "symbol": "OGUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 969,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -6.190317779565174e-05
     },
     {
@@ -7405,7 +8526,11 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1667,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        2,
+        8
+      ],
       "biaya_tahunan_long": 0.10317341238986785
     },
     {
@@ -7430,9 +8555,14 @@
       "symbol": "OMUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1052,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.5297899773523685
     },
     {
@@ -7455,9 +8585,13 @@
       "symbol": "ONDOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1385,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.05998459093965999
     },
     {
@@ -7482,7 +8616,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1822,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.08429765052658843
     },
     {
@@ -7505,9 +8642,13 @@
       "symbol": "ONGUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1416,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.2776048011978158
     },
     {
@@ -7534,7 +8675,13 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1980,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.002489754543754656
     },
     {
@@ -7559,7 +8706,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1240,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07072255589221826
     },
     {
@@ -7584,9 +8734,15 @@
       "symbol": "ORCAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 991,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.884693984679415
     },
     {
@@ -7609,9 +8765,13 @@
       "symbol": "ORDIUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1428,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.1261216542176988
     },
     {
@@ -7636,7 +8796,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 642,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.036172834729315644
     },
     {
@@ -7659,9 +8822,13 @@
       "symbol": "PARTIUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1040,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.28147709080418315
     },
     {
@@ -7685,9 +8852,13 @@
       "symbol": "PAXGUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1036,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.047462634310532034
     },
     {
@@ -7712,7 +8883,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 735,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.0774876307093964
     },
     {
@@ -7736,9 +8910,13 @@
       "symbol": "PENGUUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1116,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.011581359863135965
     },
     {
@@ -7763,7 +8941,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1455,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.08118278467986267
     },
     {
@@ -7787,9 +8968,13 @@
       "symbol": "PERPUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1594,
-      "periode_hilang": 668,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 158,
+      "periode_hilang": 158,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.08449859603399433
     },
     {
@@ -7812,9 +8997,13 @@
       "symbol": "PHAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1106,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.14050999320950058
     },
     {
@@ -7839,7 +9028,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 849,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.1095387102607233
     },
     {
@@ -7863,9 +9055,15 @@
       "symbol": "PIPPINUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 904,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.6965509836501901
     },
     {
@@ -7889,9 +9087,14 @@
       "symbol": "PIXELUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1363,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.030901488257866455
     },
     {
@@ -7915,9 +9118,14 @@
       "symbol": "PLUMEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 962,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.12494262035036495
     },
     {
@@ -7940,9 +9148,13 @@
       "symbol": "PNUTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1150,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.05193224081632653
     },
     {
@@ -7965,9 +9177,13 @@
       "symbol": "POLUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1197,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.014230353701348255
     },
     {
@@ -7992,9 +9208,14 @@
       "symbol": "POLYXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1427,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.18867521028600104
     },
     {
@@ -8017,9 +9238,13 @@
       "symbol": "POPCATUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1222,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.11699467804577898
     },
     {
@@ -8042,9 +9267,13 @@
       "symbol": "PORTALUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1359,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.006640077430080211
     },
     {
@@ -8068,9 +9297,13 @@
       "symbol": "POWRUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1438,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.05586189897750514
     },
     {
@@ -8094,9 +9327,15 @@
       "symbol": "PROMPTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1022,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.05209010853115725
     },
     {
@@ -8119,9 +9358,13 @@
       "symbol": "PROMUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1090,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.021767782271728882
     },
     {
@@ -8145,9 +9388,12 @@
       "symbol": "PUFFERUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 723,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4
+      ],
       "biaya_tahunan_long": -0.14480609269875608
     },
     {
@@ -8170,9 +9416,13 @@
       "symbol": "PUMPBTCUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 895,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.19033109960852546
     },
     {
@@ -8195,9 +9445,13 @@
       "symbol": "PUMPUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 969,
-      "periode_hilang": 126,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 1,
+      "periode_hilang": 125,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.10762860188976377
     },
     {
@@ -8220,9 +9474,13 @@
       "symbol": "PUNDIXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 993,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.13984859706802186
     },
     {
@@ -8245,9 +9503,13 @@
       "symbol": "PYTHUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1421,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.0571298319782723
     },
     {
@@ -8272,7 +9534,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1055,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.029015477130155592
     },
     {
@@ -8297,7 +9562,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2171,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.09240326113272804
     },
     {
@@ -8320,9 +9588,13 @@
       "symbol": "RAREUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1230,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.5214134615590742
     },
     {
@@ -8346,9 +9618,13 @@
       "symbol": "RAYSOLUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1124,
-      "periode_hilang": 5,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 1,
+      "periode_hilang": 1,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.048282863636363645
     },
     {
@@ -8374,7 +9650,11 @@
       "jam_teramati": 8.0,
       "celah_teramati": 722,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        8
+      ],
       "biaya_tahunan_long": -0.05286418908184838
     },
     {
@@ -8399,9 +9679,14 @@
       "symbol": "REDUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 999,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.6284022988740109
     },
     {
@@ -8427,7 +9712,11 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1277,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.05379424486570436
     },
     {
@@ -8450,9 +9739,13 @@
       "symbol": "RENDERUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1244,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.04173862752011359
     },
     {
@@ -8477,7 +9770,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1573,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.13911164687195476
     },
     {
@@ -8501,9 +9797,14 @@
       "symbol": "RESOLVUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 795,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.7695645182583362
     },
     {
@@ -8526,9 +9827,13 @@
       "symbol": "REZUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1315,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.38842824046766383
     },
     {
@@ -8552,9 +9857,13 @@
       "symbol": "RIFUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1444,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.045505690779661025
     },
     {
@@ -8579,7 +9888,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2071,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07472016808083924
     },
     {
@@ -8604,7 +9916,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 305,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.11850484800357569
     },
     {
@@ -8628,9 +9943,13 @@
       "symbol": "RONINUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1377,
-      "periode_hilang": 3,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 1,
+      "periode_hilang": 1,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.19163964862036154
     },
     {
@@ -8655,7 +9974,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1446,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.050010279953356315
     },
     {
@@ -8679,9 +10001,14 @@
       "symbol": "RPLUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1189,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.07236765413997044
     },
     {
@@ -8706,7 +10033,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1991,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07620280950817045
     },
     {
@@ -8731,7 +10061,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2044,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07557736190214835
     },
     {
@@ -8758,7 +10091,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1409,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.06516522192184498
     },
     {
@@ -8781,9 +10119,13 @@
       "symbol": "SAFEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1163,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.14511757901603697
     },
     {
@@ -8807,9 +10149,13 @@
       "symbol": "SAGAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1335,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 1,
+      "periode_hilang": 1,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.05375655473748977
     },
     {
@@ -8833,9 +10179,14 @@
       "symbol": "SAHARAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 748,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.8169012600786627
     },
     {
@@ -8860,7 +10211,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1883,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.10734632940484197
     },
     {
@@ -8883,9 +10237,13 @@
       "symbol": "SANTOSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1160,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.08738870478011473
     },
     {
@@ -8908,9 +10266,13 @@
       "symbol": "SCRTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1140,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.028485164411597496
     },
     {
@@ -8933,9 +10295,13 @@
       "symbol": "SCRUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1166,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.08106284407787995
     },
     {
@@ -8960,7 +10326,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 723,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": -0.050954071886912325
     },
     {
@@ -8985,7 +10354,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1847,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.12610211036189828
     },
     {
@@ -9008,9 +10380,13 @@
       "symbol": "SHELLUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1063,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.043555838453815256
     },
     {
@@ -9034,9 +10410,15 @@
       "symbol": "SIGNUSDT",
       "langkah_teramati_ms": 3600000,
       "jam_teramati": 1.0,
-      "celah_teramati": 2832,
-      "periode_hilang": 6125,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -1.1211383771896053
     },
     {
@@ -9061,9 +10443,14 @@
       "symbol": "SIRENUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 990,
-      "periode_hilang": 6,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 1,
+      "periode_hilang": 1,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.21641759651056014
     },
     {
@@ -9090,7 +10477,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1701,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.029601674285920365
     },
     {
@@ -9113,9 +10505,13 @@
       "symbol": "SKYAIUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 967,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.40917525532258064
     },
     {
@@ -9140,7 +10536,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2060,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07168694140527951
     },
     {
@@ -9167,7 +10566,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2019,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.0007702926136363631
     },
     {
@@ -9190,9 +10594,13 @@
       "symbol": "SOLVUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1088,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.04893422910236222
     },
     {
@@ -9215,9 +10623,13 @@
       "symbol": "SONICUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1092,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.5242652454967502
     },
     {
@@ -9242,9 +10654,15 @@
       "symbol": "SOONUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 799,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.7703447824736392
     },
     {
@@ -9268,9 +10686,14 @@
       "symbol": "SOPHUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 773,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.4104633110610752
     },
     {
@@ -9295,7 +10718,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1113,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": -0.12768047885167463
     },
     {
@@ -9318,9 +10744,13 @@
       "symbol": "SPKUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 886,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.3725181220704847
     },
     {
@@ -9343,9 +10773,13 @@
       "symbol": "SPXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1123,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.010724558066412001
     },
     {
@@ -9369,9 +10803,15 @@
       "symbol": "SQDUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 846,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.49555488523564073
     },
     {
@@ -9396,7 +10836,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 883,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.10425026097793517
     },
     {
@@ -9420,9 +10863,14 @@
       "symbol": "STEEMUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1408,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.47784083145878803
     },
     {
@@ -9449,7 +10897,13 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1113,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.12136844603539415
     },
     {
@@ -9474,9 +10928,14 @@
       "symbol": "STMXUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 3359,
-      "periode_hilang": 2795,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 1106,
+      "periode_hilang": 1106,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.05859826571560054
     },
     {
@@ -9503,7 +10962,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1829,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.027182512740076818
     },
     {
@@ -9527,9 +10991,14 @@
       "symbol": "STOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1003,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 2,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.15892868503767488
     },
     {
@@ -9553,9 +11022,13 @@
       "symbol": "STRKUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1368,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.03500720298045288
     },
     {
@@ -9580,7 +11053,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 886,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.07385141883328801
     },
     {
@@ -9605,7 +11081,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 788,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.055047306887092126
     },
     {
@@ -9628,9 +11107,13 @@
       "symbol": "SUNUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1222,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.009862486857002209
     },
     {
@@ -9654,9 +11137,14 @@
       "symbol": "SUPERUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1243,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.25670150771864747
     },
     {
@@ -9679,9 +11167,13 @@
       "symbol": "SUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1090,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.021240866436203654
     },
     {
@@ -9706,7 +11198,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2044,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.12929719647953583
     },
     {
@@ -9729,9 +11224,13 @@
       "symbol": "SWARMSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1094,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.2829358754559505
     },
     {
@@ -9756,7 +11255,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1850,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.12126183746179968
     },
     {
@@ -9780,9 +11282,13 @@
       "symbol": "SXTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 990,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.11977277667844523
     },
     {
@@ -9805,9 +11311,13 @@
       "symbol": "SYNUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1229,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.11226739812149304
     },
     {
@@ -9831,9 +11341,13 @@
       "symbol": "SYRUPUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 981,
-      "periode_hilang": 3,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 1,
+      "periode_hilang": 1,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.03452014668519253
     },
     {
@@ -9857,9 +11371,13 @@
       "symbol": "SYSUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1134,
+      "celah_teramati": 1,
       "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.021258887225705358
     },
     {
@@ -9882,9 +11400,13 @@
       "symbol": "TACUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 814,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.29336623215984775
     },
     {
@@ -9907,9 +11429,13 @@
       "symbol": "TAOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1330,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.030811831289858062
     },
     {
@@ -9932,9 +11458,13 @@
       "symbol": "TAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 804,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.2929831690856314
     },
     {
@@ -9959,7 +11489,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2124,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.08195873345560716
     },
     {
@@ -9982,9 +11515,13 @@
       "symbol": "THEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1135,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.0018985116920425395
     },
     {
@@ -10007,9 +11544,13 @@
       "symbol": "TIAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1435,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.027910030729701954
     },
     {
@@ -10036,7 +11577,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 751,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.039188281508545954
     },
     {
@@ -10060,9 +11606,14 @@
       "symbol": "TNSRUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1231,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.2914961917946003
     },
     {
@@ -10085,9 +11636,12 @@
       "symbol": "TOKENUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 946,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4
+      ],
       "biaya_tahunan_long": 0.17905293585317894
     },
     {
@@ -10112,7 +11666,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1390,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.16725657869358668
     },
     {
@@ -10136,9 +11693,13 @@
       "symbol": "TONUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1341,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.056943662973933655
     },
     {
@@ -10162,9 +11723,13 @@
       "symbol": "TRBUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 4849,
-      "periode_hilang": 3403,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 1332,
+      "periode_hilang": 1332,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.1705283206476435
     },
     {
@@ -10187,9 +11752,13 @@
       "symbol": "TRUMPUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1086,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.17396951577784792
     },
     {
@@ -10214,7 +11783,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 790,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.029807293520140117
     },
     {
@@ -10239,7 +11811,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2192,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.03618169998586772
     },
     {
@@ -10262,9 +11837,13 @@
       "symbol": "TSTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1073,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.09108347731313798
     },
     {
@@ -10287,9 +11866,13 @@
       "symbol": "TURBOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1295,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.09888658962119555
     },
     {
@@ -10316,7 +11899,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 421,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.10718284973498234
     },
     {
@@ -10339,9 +11927,13 @@
       "symbol": "TUTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1045,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.05494756080599148
     },
     {
@@ -10365,9 +11957,13 @@
       "symbol": "TWTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1434,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.12324000056681553
     },
     {
@@ -10391,9 +11987,13 @@
       "symbol": "UMAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 2153,
-      "periode_hilang": 768,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 102,
+      "periode_hilang": 102,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.10581639425212276
     },
     {
@@ -10418,7 +12018,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2026,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.14358430756547808
     },
     {
@@ -10443,7 +12046,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 855,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.0009050184079602004
     },
     {
@@ -10467,9 +12073,13 @@
       "symbol": "USTCUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1417,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.08625657500880593
     },
     {
@@ -10492,9 +12102,13 @@
       "symbol": "USUALUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1116,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.2869286693293592
     },
     {
@@ -10517,9 +12131,13 @@
       "symbol": "VANAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1116,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.4498426185031186
     },
     {
@@ -10543,9 +12161,13 @@
       "symbol": "VANRYUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1352,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.04124244101290963
     },
     {
@@ -10569,9 +12191,13 @@
       "symbol": "VELODROMEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1118,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.04018709521418023
     },
     {
@@ -10594,9 +12220,13 @@
       "symbol": "VELVETUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 814,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.29725608682207416
     },
     {
@@ -10621,7 +12251,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2179,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.15828886921700547
     },
     {
@@ -10645,9 +12278,14 @@
       "symbol": "VICUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1019,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.3422552508840864
     },
     {
@@ -10670,9 +12308,12 @@
       "symbol": "VINEUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 936,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4
+      ],
       "biaya_tahunan_long": -0.02010227559912851
     },
     {
@@ -10695,9 +12336,13 @@
       "symbol": "VIRTUALUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1123,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.043142845548045844
     },
     {
@@ -10720,9 +12365,13 @@
       "symbol": "VTHOUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1084,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.33183794008264467
     },
     {
@@ -10746,9 +12395,13 @@
       "symbol": "VVVUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1079,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.3463694971980676
     },
     {
@@ -10771,9 +12424,13 @@
       "symbol": "WALUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1035,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.4942200523723288
     },
     {
@@ -10798,9 +12455,14 @@
       "symbol": "WAXPUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1439,
-      "periode_hilang": 2,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.03712287372483222
     },
     {
@@ -10824,9 +12486,14 @@
       "symbol": "WCTUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 904,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.2886374455476529
     },
     {
@@ -10849,9 +12516,13 @@
       "symbol": "WIFUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1387,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.1131062340167754
     },
     {
@@ -10876,7 +12547,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 735,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.04268272558284117
     },
     {
@@ -10901,7 +12575,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1313,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.06098656352459018
     },
     {
@@ -10924,9 +12601,13 @@
       "symbol": "WUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1338,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.043470844204522324
     },
     {
@@ -10949,9 +12630,13 @@
       "symbol": "XAIUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1393,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.04437805654179739
     },
     {
@@ -10976,7 +12661,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2191,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.14296684948322244
     },
     {
@@ -11001,7 +12689,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2185,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.12699928134073443
     },
     {
@@ -11026,7 +12717,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2196,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.15001252418696326
     },
     {
@@ -11053,7 +12747,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1799,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.10919179898034855
     },
     {
@@ -11079,7 +12778,11 @@
       "jam_teramati": 8.0,
       "celah_teramati": 738,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.051345584776663615
     },
     {
@@ -11104,7 +12807,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 816,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.060622068670258
     },
     {
@@ -11129,7 +12835,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 743,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.18118681478753537
     },
     {
@@ -11154,7 +12863,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2048,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.12565630252778212
     },
     {
@@ -11179,9 +12891,14 @@
       "symbol": "YGGUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1650,
-      "periode_hilang": 204,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 17,
+      "periode_hilang": 17,
+      "jarak_tidak_selaras": 1,
+      "rezim_kisi": [
+        2,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.04597134063209077
     },
     {
@@ -11206,7 +12923,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 2184,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.11407506014110605
     },
     {
@@ -11231,7 +12951,10 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1953,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        8
+      ],
       "biaya_tahunan_long": 0.1696010029426149
     },
     {
@@ -11254,9 +12977,13 @@
       "symbol": "ZEREBROUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1101,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.23292467062787134
     },
     {
@@ -11280,9 +13007,13 @@
       "symbol": "ZETAUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1378,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.05125306759522455
     },
     {
@@ -11309,7 +13040,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1944,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.06965769459590368
     },
     {
@@ -11333,9 +13069,13 @@
       "symbol": "ZKJUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 821,
+      "celah_teramati": 0,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4
+      ],
       "biaya_tahunan_long": -0.08203985395480219
     },
     {
@@ -11359,9 +13099,14 @@
       "symbol": "ZKUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1274,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.04377183869034405
     },
     {
@@ -11384,9 +13129,13 @@
       "symbol": "ZROUSDT",
       "langkah_teramati_ms": 14400000,
       "jam_teramati": 4.0,
-      "celah_teramati": 1276,
-      "periode_hilang": 1,
-      "kolom_cocok_teramati": true,
+      "celah_teramati": 0,
+      "periode_hilang": 0,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        4,
+        8
+      ],
       "biaya_tahunan_long": -0.09845884944832245
     },
     {
@@ -11413,7 +13162,12 @@
       "jam_teramati": 8.0,
       "celah_teramati": 1899,
       "periode_hilang": 0,
-      "kolom_cocok_teramati": true,
+      "jarak_tidak_selaras": 0,
+      "rezim_kisi": [
+        1,
+        4,
+        8
+      ],
       "biaya_tahunan_long": 0.06867700264026402
     }
   ]
