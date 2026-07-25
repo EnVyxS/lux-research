@@ -1,0 +1,31 @@
+{
+  "id": "H-002",
+  "pernyataan": "Penembusan Donchian pada penutupan bar 1 jam menghasilkan ekspektasi positif setelah fee, slippage, dan funding nyata, bila posisi dibatasi umurnya dan entri dengan carry funding terproyeksi berlebihan ditolak, pada perp USDT yang lolos ambang kelayakan, dinilai hanya di luar sampel.",
+  "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)",
+  "ruang_parameter": {
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "maks_umur_bar": [
+      168
+    ],
+    "maks_carry_R": [
+      0.25
+    ],
+    "jendela_carry_hari": [
+      30
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.05,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-25T20:58:11+00:00",
+  "komit": "",
+  "jumlah_kombinasi": 3,
+  "sidik": "16fb57692a6f08880ba9a86ccbb775036f4fa244f63784cff9545354da4187ee"
+}
