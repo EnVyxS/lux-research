@@ -1,6 +1,6 @@
 """Klien arsip data.binance.vision.
 
-Tiga aturan yang tidak boleh dilanggar, semuanya lahir dari kesalahan nyata:
+Empat aturan yang tidak boleh dilanggar, semuanya lahir dari kesalahan nyata:
 
 1. Prefix ``data/`` WAJIB. Tanpa itu S3 mengembalikan ``NoSuchKey``. Kesalahan
    ini pernah terjadi dan menghabiskan satu putaran penuh.
@@ -9,6 +9,12 @@ Tiga aturan yang tidak boleh dilanggar, semuanya lahir dari kesalahan nyata:
    Kesalahan ini juga pernah terjadi dan sempat terbaca sebagai data rusak.
 3. REST ``fapi.binance.com`` mengembalikan HTTP 451 dari runner GitHub. Jangan
    pernah menaruhnya di jalur kritis. Arsip S3 adalah satu-satunya sumber.
+4. Nama simbol WAJIB di-percent-encode saat menyusun URL CDN. Binance pernah
+   mencatatkan perpetual dengan nama berhuruf Han seperti ``龙虾USDT``, dan
+   ``urllib`` menolak URL dengan karakter non-ASCII. Listing S3 tetap lolos
+   karena parameternya sudah dienkode oleh ``urlencode``, sehingga simbolnya
+   muncul di universe namun setiap unduhannya gagal. Kegagalan asimetris
+   semacam ini tampak seperti data hilang padahal murni cacat klien.
 """
 
 from __future__ import annotations
@@ -26,6 +32,15 @@ ROOT = "data/futures/um"
 NS = {"s3": "http://s3.amazonaws.com/doc/2006-03-01/"}
 
 _UA = {"User-Agent": "lux-research/0.1 (riset kuantitatif)"}
+
+
+def seg(teks: str) -> str:
+    """Percent-encode satu segmen path URL.
+
+    ``safe=""`` disengaja: nama simbol tidak boleh mengandung pemisah path,
+    jadi setiap karakter istimewa memang harus dienkode.
+    """
+    return urllib.parse.quote(teks, safe="")
 
 
 def _get(url: str, timeout: int = 90, retries: int = 5) -> bytes:
@@ -104,8 +119,28 @@ def list_months(symbol: str, interval: str, kind: str = "klines") -> list[str]:
     return sorted(bulan)
 
 
+def list_days(symbol: str, interval: str, kind: str = "klines") -> list[str]:
+    """Tanggal yang tersedia di arsip harian, format ``YYYY-MM-DD``."""
+    base = f"{ROOT}/daily/{kind}/{symbol}/{interval}/"
+    hari = set()
+    for key in list_keys(base):
+        nama = key.rsplit("/", 1)[-1]
+        if not nama.endswith(".zip"):
+            continue
+        bagian = nama[:-4].split("-")
+        if len(bagian) >= 3:
+            hari.add(f"{bagian[-3]}-{bagian[-2]}-{bagian[-1]}")
+    return sorted(hari)
+
+
 def klines_url(symbol: str, interval: str, month: str, kind: str = "klines") -> str:
-    return f"{CDN}/{ROOT}/monthly/{kind}/{symbol}/{interval}/{symbol}-{interval}-{month}.zip"
+    s = seg(symbol)
+    return f"{CDN}/{ROOT}/monthly/{kind}/{s}/{interval}/{s}-{interval}-{month}.zip"
+
+
+def daily_klines_url(symbol: str, interval: str, day: str, kind: str = "klines") -> str:
+    s = seg(symbol)
+    return f"{CDN}/{ROOT}/daily/{kind}/{s}/{interval}/{s}-{interval}-{day}.zip"
 
 
 def _sha256(path: Path) -> str:
@@ -136,7 +171,9 @@ def download(url: str, dest_dir: str | Path, verify_checksum: bool = True) -> Pa
     """
     dest_dir = Path(dest_dir)
     dest_dir.mkdir(parents=True, exist_ok=True)
-    dest = dest_dir / url.rsplit("/", 1)[-1]
+    # Nama berkas dikembalikan ke bentuk aslinya agar direktori sementara tetap
+    # terbaca manusia saat menelusuri kegagalan.
+    dest = dest_dir / urllib.parse.unquote(url.rsplit("/", 1)[-1])
 
     if dest.exists():
         if not verify_checksum or verify(dest, url):

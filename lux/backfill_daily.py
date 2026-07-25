@@ -31,33 +31,13 @@ from lux import binance_vision as bv
 from lux.ingest import SIMPAN, STEP_MS, baca_zip, muat_universe
 
 
-def daily_url(symbol: str, interval: str, tanggal: str) -> str:
-    return (
-        f"{bv.CDN}/{bv.ROOT}/daily/klines/{symbol}/{interval}/"
-        f"{symbol}-{interval}-{tanggal}.zip"
-    )
-
-
-def tanggal_harian(symbol: str, interval: str) -> list[str]:
-    prefix = f"{bv.ROOT}/daily/klines/{symbol}/{interval}/"
-    hasil = []
-    for k in bv.list_keys(prefix):
-        nama = k.rsplit("/", 1)[-1]
-        if not nama.endswith(".zip"):
-            continue
-        bagian = nama[:-4].split("-")
-        if len(bagian) >= 3:
-            hasil.append(f"{bagian[-3]}-{bagian[-2]}-{bagian[-1]}")
-    return sorted(set(hasil))
-
-
 def backfill_simbol(symbol: str, interval: str, tmp: Path) -> tuple[pd.DataFrame, dict]:
     mulai = time.time()
     catatan = {"symbol": symbol, "interval": interval}
 
     try:
         bulanan = set(bv.list_months(symbol, interval))
-        harian = tanggal_harian(symbol, interval)
+        harian = bv.list_days(symbol, interval)
     except Exception as exc:  # noqa: BLE001
         catatan["error"] = f"listing gagal: {exc}"
         return pd.DataFrame(), catatan
@@ -73,9 +53,9 @@ def backfill_simbol(symbol: str, interval: str, tmp: Path) -> tuple[pd.DataFrame
 
     bagian, gagal = [], []
     for t in perlu:
-        url = daily_url(symbol, interval, t)
+        url = bv.daily_klines_url(symbol, interval, t)
         try:
-            path = bv.download(url, tmp / symbol / interval)
+            path = bv.download(url, tmp / bv.seg(symbol) / interval)
             bagian.append(baca_zip(path))
             path.unlink(missing_ok=True)
         except Exception as exc:  # noqa: BLE001
