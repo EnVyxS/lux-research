@@ -1,41 +1,12 @@
 # Laporan pengujian
 
-Commit: `daee7a89687b8d5ed7f549278f4b72364021b491`
-Kode keluar: `2`
+Commit: `a93c0482ce1da7debdacf47a6522957af2b8d3a8`
+Kode keluar: `0`
 
 ```
-
-==================================== ERRORS ====================================
-____________________ ERROR collecting tests/test_run_wf.py _____________________
-/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule
-    mod = import_path(
-/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path
-    importlib.import_module(module_name)
-/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/importlib/__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<frozen importlib._bootstrap>:1387: in _gcd_import
-    ???
-<frozen importlib._bootstrap>:1360: in _find_and_load
-    ???
-<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
-    ???
-<frozen importlib._bootstrap>:935: in _load_unlocked
-    ???
-/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:179: in exec_module
-    source_stat, co = _rewrite_test(fn, self.config)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:348: in _rewrite_test
-    tree = ast.parse(source, filename=strfn)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/ast.py:52: in parse
-    return compile(source, filename, mode, flags,
-E     File "/home/runner/work/lux-research/lux-research/tests/test_run_wf.py", line 197
-E       }
-E       ^
-E   SyntaxError: unmatched '}'
-=========================== short test summary info ============================
-ERROR tests/test_run_wf.py
-!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-1 error in 1.71s
+........................................................................ [ 32%]
+........................................................................ [ 64%]
+........................................................................ [ 96%]
+........                                                                 [100%]
+224 passed in 1.07s
 ```
