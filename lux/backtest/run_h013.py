@@ -27,8 +27,8 @@ Rancangannya faktorial 2x2 (ADR-015 bagian B), dan yang dibandingkan adalah
 - **Sumbangan geometri = SS − SH.**
 - **Interaksi = (SS − AS) − (SH − AH).**
 
-EMPAT HAL YANG WAJIB DIKETAHUI SEBELUM MEMBACA HASILNYA
--------------------------------------------------------
+LIMA HAL YANG WAJIB DIKETAHUI SEBELUM MEMBACA HASILNYA
+------------------------------------------------------
 **1. Tripwire dataset DIBALIK di sini.** ``run_h010`` dan ``run_h012`` menuntut
 dataset identik dengan H-002. Modul ini menuntut yang sebaliknya: dataset wajib
 **berbeda** dan wajib menyebut ``4h``. H-013 berjalan pada kerangka 4h dengan
@@ -41,12 +41,20 @@ yang benar untuk 1h dan berarti **28 hari** pada 4h. Sel stop-target memakai
 ``bar_dari_hari(7, "4h")`` = **42**, sel horizon memakai **48** dari ADR-015.
 Tanpa itu, SS − SH akan mengukur panjang pegangan alih-alih ada-tidaknya target.
 
-**3. ``imbalan_R`` dibekukan 2.0 di keempat sel (ADR-022).** Pada sel tanpa target
+**3. Jendela walk-forward juga satuan waktu (ADR-023).** ``panjang_latih``,
+``panjang_uji``, dan ``embargo`` diturunkan dari 180, 90, dan 7 hari lewat
+``lux.kerangka``. Memakai bawaan 1h apa adanya menuntut 6.848 bar 4h — sekitar 3,1
+tahun — sehingga hampir tidak ada simbol yang menghasilkan satu jendela pun, dan
+kegagalannya **sunyi**: laporan tetap terbentuk dan hanya berbunyi "tidak dapat
+dinilai". ``pemanasan`` sengaja **tidak** dikonversi; ia kebutuhan bar milik
+indikator, bukan satuan waktu.
+
+**4. ``imbalan_R`` dibekukan 2.0 di keempat sel (ADR-022).** Pada sel tanpa target
 ia tidak berpengaruh, sehingga melombakannya berarti memberi sel bertarget dua
 belas kesempatan memilih melawan tiga — keuntungan gratis yang arahnya persis
 mendukung kesimpulan yang paling menyenangkan.
 
-**4. ``lookahead`` dan ``entri_acak`` DIJAMIN gagal pada sel AS dan AH (ADR-021).**
+**5. ``lookahead`` dan ``entri_acak`` DIJAMIN gagal pada sel AS dan AH (ADR-021).**
 Permutasi bergantung panjang array, sedangkan gerbang lookahead memotong data lalu
 menuntut sinyal awal tidak berubah. Menurut aturan 36 itu konsekuensi konstruksi,
 bukan ramalan, dan haram dilaporkan sebagai temuan. Sebelas gerbang tetap dinilai
@@ -110,6 +118,18 @@ H_BAR = 48
 # 28 hari; memakainya akan membuat SS - SH mengukur panjang pegangan.
 UMUR_SEL_STOP = bar_dari_hari(7, "4h")
 
+# ADR-023. Maksud sesungguhnya dari bawaan Opsi 4320/2160/168, dinyatakan dalam
+# satuan yang tidak bergantung interval.
+HARI_LATIH = 180
+HARI_UJI = 90
+HARI_EMBARGO = 7
+
+# TIDAK dikonversi, dan ketidaksimetrisan itu disengaja: pemanasan adalah
+# kebutuhan BAR milik indikator (lookback terbesar 100 ditambah ATR 14), bukan
+# rentang waktu. Mengonversinya "demi keseragaman" akan menyisakan 50 bar pada 4h
+# dan membuat lookback 100 mustahil dihitung.
+PEMANASAN = 200
+
 # ADR-021. Seed yang sama dengan gerbang_entri_acak, dan pengacakan yang sama.
 SEED_PERMUTASI = 42
 
@@ -144,6 +164,33 @@ RAMALAN = {
         "keunggulan geometri di atas sinyal nol"
     ),
 }
+
+
+def jendela_bar(interval: str) -> dict:
+    """Panjang jendela walk-forward dalam bar, diturunkan dari hari (ADR-023).
+
+    Pada 1h hasilnya wajib identik dengan bawaan ``Opsi`` — 4320, 2160, 168 —
+    supaya dua belas laporan yang sudah dikomit tetap dapat diulang. Pada 4h
+    ketiganya menyusut seperempat, sebab yang dimaksud memang rentang waktu dan
+    bukan jumlah bar.
+
+    ``pemanasan`` tidak ada di sini dengan sengaja; ia bukan satuan waktu.
+    """
+    return {
+        "panjang_latih": bar_dari_hari(HARI_LATIH, interval),
+        "panjang_uji": bar_dari_hari(HARI_UJI, interval),
+        "embargo": bar_dari_hari(HARI_EMBARGO, interval),
+    }
+
+
+def bar_dibutuhkan(interval: str) -> int:
+    """Bar minimum agar satu jendela walk-forward dapat terbentuk.
+
+    Dihitung, bukan diperkirakan, sebab inilah angka yang menentukan apakah run
+    menghasilkan perdagangan atau menghasilkan laporan kosong yang tampak rapi.
+    """
+    j = jendela_bar(interval)
+    return PEMANASAN + j["panjang_latih"] + j["embargo"] + j["panjang_uji"]
 
 
 def pakai_target_sel(sel: str) -> bool:
@@ -258,6 +305,9 @@ def hipotesis_h013(sel: str, konfig: Konfig, komit: str = "") -> Hipotesis:
             "pakai_target": [pakai],
             "sinyal_dipermutasi": [acak],
             "maks_umur_bar": [umur_sel(sel)],
+            # ADR-023. Ikut ke dalam sidik, sebab mengubah panjang jendela
+            # mengubah arti seluruh perbandingan.
+            "jendela_hari": [HARI_LATIH, HARI_UJI, HARI_EMBARGO],
             KUNCI_TERLARANG: [AMBANG_CARRY_KERAS],
             "atr_pengali_stop": [konfig.atr_pengali_stop],
             "maks_carry_R": [konfig.maks_carry_R],
@@ -444,6 +494,24 @@ def main(argv: list[str] | None = None) -> int:
             f"dari config ({konfig.maks_umur_bar} bar = 28 hari pada 4h)"
         )
 
+    # ADR-023. Jendela 1h wajib tidak bergeser sedikit pun, dan jendela 4h wajib
+    # cukup pendek untuk menghasilkan sedikitnya satu jendela di atas lantai
+    # kelayakan. Keduanya dihitung di sini, bukan dipercaya.
+    j1 = jendela_bar("1h")
+    if (j1["panjang_latih"], j1["panjang_uji"], j1["embargo"]) != (4320, 2160, 168):
+        raise ValueError(
+            f"jendela 1h bergeser dari bawaan Opsi: {j1}; dua belas laporan "
+            "yang sudah dikomit tidak lagi dapat diulang"
+        )
+
+    jen = jendela_bar(a.interval)
+    butuh = bar_dibutuhkan(a.interval)
+    if butuh >= bar_dibutuhkan("1h"):
+        raise ValueError(
+            f"jendela {a.interval} menuntut {butuh} bar, tidak lebih sedikit "
+            "daripada 1h; konversi ADR-023 tidak berjalan"
+        )
+
     opsi = Opsi(
         dir_aset=Path(a.dir),
         out=Path(a.out),
@@ -451,6 +519,10 @@ def main(argv: list[str] | None = None) -> int:
         universe=Path(a.universe),
         akhir_sejati=Path(a.akhir_sejati),
         limit=a.limit,
+        panjang_latih=jen["panjang_latih"],
+        panjang_uji=jen["panjang_uji"],
+        embargo=jen["embargo"],
+        pemanasan=PEMANASAN,
         ulangan=a.ulangan,
         min_median_stop_frac=a.min_median_stop_frac,
     )
@@ -460,6 +532,18 @@ def main(argv: list[str] | None = None) -> int:
     print(
         f"batas umur: sel stop {UMUR_SEL_STOP} bar 4h = 7 hari, "
         f"sel horizon {H_BAR} bar 4h (config {konfig.maks_umur_bar} TIDAK dipakai)",
+        flush=True,
+    )
+    print(
+        f"ADR-023 jendela {a.interval}: latih {jen['panjang_latih']} "
+        f"({HARI_LATIH} hari), uji {jen['panjang_uji']} ({HARI_UJI} hari), "
+        f"embargo {jen['embargo']} ({HARI_EMBARGO} hari), "
+        f"pemanasan {PEMANASAN} bar TIDAK dikonversi",
+        flush=True,
+    )
+    print(
+        f"bar dibutuhkan satu jendela: {butuh} "
+        f"(bawaan 1h akan menuntut {bar_dibutuhkan('1h')})",
         flush=True,
     )
     print(f"lantai median stop_frac: {a.min_median_stop_frac}", flush=True)
@@ -476,8 +560,8 @@ def main(argv: list[str] | None = None) -> int:
         "GAGAL pada sel AS dan AH; kelulusan gerbang hanya syarat pada SS",
         flush=True,
     )
-    for nama, isi in RAMALAN.items():
-        print(f"  ramalan {nama}: {isi}", flush=True)
+    for nama, isi_ramalan in RAMALAN.items():
+        print(f"  ramalan {nama}: {isi_ramalan}", flush=True)
 
     ktx = muat_konteks(opsi, konfig)
 
@@ -496,6 +580,14 @@ def main(argv: list[str] | None = None) -> int:
         hasil_sel[sel] = jalankan_spek(
             spek_sel(sel, dasar_sel, a.komit), ktx, dasar_sel, opsi
         )
+        # Dicetak SEBELUM ekspektasi ditafsirkan: nol jendela berarti cacat
+        # konfigurasi, bukan temuan tentang sinyal (ADR-023 keputusan 4).
+        print(
+            f"sel {sel}: {hasil_sel[sel]['jumlah_jendela']} jendela, "
+            f"{hasil_sel[sel]['trade']} trade luar sampel "
+            f"(ambang ternilai {MIN_TRADE_SEL})",
+            flush=True,
+        )
 
     ringkas = kontribusi(
         {s: hasil_sel[s]["ekspektasi_R"] for s in NAMA_SEL},
@@ -512,6 +604,8 @@ def main(argv: list[str] | None = None) -> int:
                 "ekspektasi_R": hasil_sel[s]["ekspektasi_R"],
                 "total_R": hasil_sel[s]["total_R"],
                 "trade": hasil_sel[s]["trade"],
+                "jumlah_jendela": hasil_sel[s]["jumlah_jendela"],
+                "jendela_positif": hasil_sel[s]["jendela_positif"],
                 "p_entri_acak": hasil_sel[s]["p_entri_acak"],
                 "gerbang_gagal": hasil_sel[s]["gerbang_gagal"],
                 "alasan_keluar": hasil_sel[s]["alasan_keluar"],
@@ -530,6 +624,9 @@ def main(argv: list[str] | None = None) -> int:
             "seed_permutasi": SEED_PERMUTASI,
             "ulangan": a.ulangan,
             "min_median_stop_frac": a.min_median_stop_frac,
+            "jendela_bar": jen,
+            "pemanasan_bar": PEMANASAN,
+            "bar_dibutuhkan_satu_jendela": butuh,
         },
         "ramalan": RAMALAN,
     }
@@ -554,17 +651,22 @@ def main(argv: list[str] | None = None) -> int:
         "karena permutasi bergantung panjang array (ADR-021). Itu konsekuensi "
         "konstruksi dan bukan temuan tentang data.",
         "",
+        f"Jendela walk-forward diturunkan dari hari (ADR-023): latih "
+        f"{jen['panjang_latih']} bar, uji {jen['panjang_uji']}, embargo "
+        f"{jen['embargo']}, pemanasan {PEMANASAN} bar yang **tidak** dikonversi. "
+        f"Satu jendela menuntut {butuh} bar.",
+        "",
         "## Empat sel",
         "",
-        "| Sel | Sinyal | Target | Umur (bar 4h) | Trade | Ekspektasi R | p acak | Gerbang gagal |",
-        "|---|---|---|---|---|---|---|---|",
+        "| Sel | Sinyal | Target | Umur (bar 4h) | Jendela | Trade | Ekspektasi R | p acak | Gerbang gagal |",
+        "|---|---|---|---|---|---|---|---|---|",
     ]
     for s in NAMA_SEL:
         b = isi["sel"][s]
         md.append(
             f"| {s} | {'permutasi' if b['sinyal_dipermutasi'] else 'sungguhan'} "
             f"| {'ya' if b['pakai_target'] else 'tidak'} "
-            f"| {b['maks_umur_bar']} | {b['trade']:,} "
+            f"| {b['maks_umur_bar']} | {b['jumlah_jendela']:,} | {b['trade']:,} "
             f"| {angka(b['ekspektasi_R'])} | {angka(b['p_entri_acak'], '.4f')} "
             f"| {', '.join(b['gerbang_gagal']) or strip} |"
         )

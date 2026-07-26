@@ -1,9 +1,10 @@
-"""Pengujian modul H-013 (ADR-015 bagian B, ADR-020, ADR-021, ADR-022).
+"""Pengujian modul H-013 (ADR-015 bagian B, ADR-020, ADR-021, ADR-022, ADR-023).
 
-Yang diuji di sini adalah **peta sel dan aritmetika selisih**, bukan hasil
-backtest. Keduanya justru bagian yang paling mudah salah tanpa berbunyi: sel yang
-salah dipetakan tetap menghasilkan empat laporan yang tampak wajar, dan selisih
-yang salah tanda tetap menghasilkan angka yang masuk akal.
+Yang diuji di sini adalah **peta sel, satuan jendela, dan aritmetika selisih**,
+bukan hasil backtest. Ketiganya justru bagian yang paling mudah salah tanpa
+berbunyi: sel yang salah dipetakan tetap menghasilkan empat laporan yang tampak
+wajar, jendela yang salah satuan tetap menghasilkan laporan yang rapi dan kosong,
+dan selisih yang salah tanda tetap menghasilkan angka yang masuk akal.
 
 Tidak ada pengujian di berkas ini yang memuat bar harga atau memanggil strategi.
 Pengacakan diuji lewat ``permutasi_sinyal`` yang berdiri sendiri, persis supaya ia
@@ -12,6 +13,7 @@ dapat diuji tanpa bingkai.
 
 from __future__ import annotations
 
+import dataclasses
 import inspect
 
 import numpy as np
@@ -29,15 +31,21 @@ from lux.backtest.run_h013 import (
     AMBANG_KONTRIBUSI_SINYAL,
     DATASET,
     H_BAR,
+    HARI_EMBARGO,
+    HARI_LATIH,
+    HARI_UJI,
     IMBALAN_BEKU,
     LOOKBACK,
     MIN_TRADE_SEL,
     MIN_ULANGAN,
     NAMA_SEL,
+    PEMANASAN,
     SEED_PERMUTASI,
     UMUR_SEL_STOP,
+    bar_dibutuhkan,
     buat_konfig_sel,
     hipotesis_h013,
+    jendela_bar,
     kandidat,
     kontribusi,
     pakai_target_sel,
@@ -45,6 +53,19 @@ from lux.backtest.run_h013 import (
     sinyal_acak_sel,
     umur_sel,
 )
+from lux.backtest.runner import Opsi
+
+
+def bawaan_opsi(nama: str):
+    """Nilai bawaan yang DIDEKLARASIKAN pada medan ``Opsi``.
+
+    Sengaja tidak membangun instans: yang dijaga adalah bawaan pada definisi
+    medan, bukan nilai pada satu objek yang kebetulan dibangun.
+    """
+    for f in dataclasses.fields(Opsi):
+        if f.name == nama:
+            return f.default
+    raise AssertionError(f"Opsi tidak punya medan {nama}")
 
 
 def test_empat_sel_dan_peta_geometri_serta_sinyal():
@@ -86,6 +107,51 @@ def test_umur_sel_stop_42_dan_horizon_48():
     assert umur_sel("SH") == 48
     assert umur_sel("AH") == 48
     assert UMUR_SEL_STOP != 168
+
+
+def test_jendela_1h_tidak_bergeser_dari_bawaan_opsi():
+    """ADR-023 tidak boleh mengubah arti dua belas laporan yang sudah dikomit.
+
+    Dibandingkan terhadap bawaan ``Opsi`` yang sungguh dipakai H-001b sampai
+    H-012, bukan terhadap angka yang diketik ulang di sini.
+    """
+    j = jendela_bar("1h")
+    assert j["panjang_latih"] == bawaan_opsi("panjang_latih") == 4320
+    assert j["panjang_uji"] == bawaan_opsi("panjang_uji") == 2160
+    assert j["embargo"] == bawaan_opsi("embargo") == 168
+    assert PEMANASAN == bawaan_opsi("pemanasan") == 200
+    # Dan maksud waktunya memang itu: 180, 90, dan 7 hari pada 1h.
+    assert (HARI_LATIH, HARI_UJI, HARI_EMBARGO) == (180, 90, 7)
+
+
+def test_jendela_4h_dikonversi_dan_muat_di_bawah_lantai():
+    """Cacat buta-interval ketujuh: 6.848 bar 4h adalah sekitar 3,1 tahun.
+
+    Dataset 4h hanya sekitar 4.600 bar per simbol dan lantai kelayakannya 2.190
+    bar (`universe.min_bar_4h`), jadi tanpa konversi keempat sel menghasilkan nol
+    jendela dan laporan yang rapi tetapi kosong.
+    """
+    j = jendela_bar("4h")
+    assert j == {"panjang_latih": 1080, "panjang_uji": 540, "embargo": 42}
+    assert bar_dibutuhkan("4h") == 200 + 1080 + 42 + 540 == 1862
+    assert bar_dibutuhkan("1h") == 6848
+    # Muat di bawah lantai kelayakan 4h, sebagai aritmetika dan bukan harapan.
+    assert bar_dibutuhkan("4h") < 2190
+    # Tanpa konversi, kebutuhannya justru melampaui panjang rata-rata simbol 4h.
+    assert bar_dibutuhkan("1h") > 4600
+
+
+def test_pemanasan_tidak_dikonversi():
+    """Ketidaksimetrisan yang disengaja (ADR-023 keputusan 2).
+
+    Pemanasan adalah kebutuhan bar milik indikator: lookback terbesar 100 ditambah
+    ATR 14. Mengonversinya "demi keseragaman" menyisakan 50 bar pada 4h dan
+    membuat lookback 100 mustahil dihitung.
+    """
+    assert PEMANASAN == 200
+    assert "pemanasan" not in jendela_bar("4h")
+    assert "pemanasan" not in jendela_bar("1h")
+    assert PEMANASAN > max(LOOKBACK) + 14
 
 
 def test_buat_konfig_sel_mewarisi_carry_keras_dan_medan_sel():
