@@ -1,48 +1,56 @@
-# Menjalankan H-012 (ADR-014 bagian 8) di GitHub Actions dan MENGOMIT hasilnya
-# balik ke reports/, karena log workflow tidak dapat dibaca dari sandbox dan
-# tidak ada satu pun fungsi Actions yang tersedia. Berkas laporan yang dikomit
-# adalah satu-satunya kanal keluaran yang dapat diaudit.
+# Menjalankan H-013 (ADR-015 bagian B, ADR-020 sampai ADR-023) di GitHub Actions
+# dan MENGOMIT hasilnya balik ke reports/, karena log workflow tidak dapat dibaca
+# dari sandbox dan tidak ada satu pun fungsi Actions yang tersedia. Berkas laporan
+# yang dikomit adalah satu-satunya kanal keluaran yang dapat diaudit.
 #
 # Dipicu lewat filter paths pada berkasnya sendiri. Akibatnya push berkas ini
-# LANGSUNG memulai run, jadi ia selalu dibalik paling akhir, sesudah seluruh
-# modul hijau.
+# LANGSUNG memulai run, jadi ia selalu dibalik paling akhir, sesudah seluruh modul
+# hijau sendiri. Untuk H-013 itu terjadi dua kali: 734 lalu 737 pengujian.
 #
-# H-012 BUKAN "H-010 setelah perbaikan". H-010 tidak direhabilitasi: pada 300
-# permutasi mekanismenya memberi p 0,0631, yakni gagal. Yang diuji di sini
-# adalah pertanyaan baru pada dimensi waktu, di atas semesta yang definisinya
-# diperbaiki lebih dulu oleh lantai median stop_frac 0,004.
+# H-013 BUKAN "H-010 setelah perbaikan", dan bukan pula H-012 yang diulang.
+# Pertanyaannya baru dan belum pernah ditanyakan dalam dua belas hipotesis: apakah
+# SINYALNYA sendiri menyumbang sesuatu. Yang dinilai adalah selisih antar empat sel
+# - SS, SH, AS, AH - bukan kelulusan satu sel. Sel SH, AS, dan AH adalah pembanding
+# dan memang tidak dimaksudkan lulus.
 #
-# --komit sengaja TIDAK diteruskan ke orkestrator: yang mengomit adalah langkah
-# di bawah, sekali, sesudah seluruh berkas hasil ada. Laporan yang dikomit tanpa
-# berkas hasil berarti run GAGAL, bukan run yang laporannya kosong.
+# DUA HAL YANG AKAN TAMPAK SEPERTI KEGAGALAN DAN BUKAN KEGAGALAN:
 #
-# EMPAT KEGAGALAN BERURUTAN, DICATAT KARENA POLANYA SATU DAN SAMA:
+#   1. lookahead dan entri_acak DIJAMIN gagal pada sel AS dan AH. Permutasi
+#      bergantung panjang array, sedangkan gerbang lookahead memotong data lalu
+#      menuntut sinyal awal tidak berubah. Itu konsekuensi konstruksi (ADR-021),
+#      diputuskan sebelum run, dan haram dilaporkan sebagai temuan.
+#
+#   2. invarian_risiko diramalkan jatuh pada sel SH dan AH. Sebabnya jalur umur
+#      mengisi pada harga bar sungguhan sedangkan jalur stop tidak. Itu BUKAN bukti
+#      target lebih baik, dan ambang -1,5R tidak dilonggarkan karenanya.
+#
+# --komit sengaja TIDAK diteruskan ke orkestrator: yang mengomit adalah langkah di
+# bawah, sekali, sesudah seluruh berkas hasil ada. Laporan yang dikomit tanpa
+# backtest_h013_kontribusi.json berarti run GAGAL, bukan hasil yang tak ternilai.
+#
+# EMPAT KEGAGALAN BERURUTAN, DICATAT KARENA POLANYA BELUM KEDALUWARSA:
 #
 #   30198306280 (25s) mati di langkah uji, dan buktinya HILANG karena hanya
-#   logs/backtest.log yang disalin ke reports/ — berkas yang belum pernah ada
-#   bila kegagalannya mendahului langkah jalan. Satu putaran penuh terbuang dan
-#   yang dihasilkannya cuma dugaan yang keliru.
+#   logs/backtest.log yang disalin - berkas yang belum pernah ada bila
+#   kegagalannya mendahului langkah jalan. Satu putaran terbuang dan yang
+#   dihasilkannya cuma dugaan yang keliru.
 #
 #   30198631730 (23s) mati di langkah uji juga: "No module named pytest".
-#   requirements.txt tidak memuat pytest, tests.yml memasangnya terpisah.
-#   Terbaca dalam satu pembacaan berkas karena logs/ sudah disalin seluruhnya.
+#   requirements.txt tidak memuat pytest; tests.yml memasangnya terpisah.
 #
-#   30198840830 (25s) mati di pagar 4: Konfig tidak punya medan fee_efektif.
+#   30198840830 (25s) mati di pagar: Konfig tidak punya medan fee_efektif.
 #   fee_efektif adalah kunci YAML; medan dataclass-nya bernama fee.
 #
-#   30198942815 (32s) LULUS kedelapan pagar, mengunduh 16 berkas 559M, lalu mati
-#   di run_h012.main baris 327 — dengan AttributeError fee_efektif yang sama.
-#   Bug itu tidak pernah hanya milik pagar: ia ada di orkestrator sejak 884d6c8e,
-#   dan pagar 4 MENYALINNYA. Pagar yang disalin dari kode yang dijaganya tidak
-#   menjaga apa pun; ia mengulang asumsi yang sama dua kali. Karena itu
-#   perhitungan biaya kini hidup di run_h012.biaya_bolak_balik_R yang dapat
-#   diuji tanpa dataset, dan pagar 4 memanggil fungsi itu alih-alih menyalin
-#   aritmetikanya.
+#   30198942815 (32s) LULUS kedelapan pagar, mengunduh 16 berkas 559M, lalu mati di
+#   orkestrator dengan AttributeError fee_efektif yang sama. Bug itu tidak pernah
+#   hanya milik pagar: pagar MENYALINNYA dari kode yang dijaganya. Pagar yang
+#   menyalin baris dari kode yang dijaganya tidak menjaga apa pun.
 #
-# Ketiga kegagalan pertama satu kelas: nama atau lingkungan yang DITEBAK
-# alih-alih dibaca. Yang keempat menambahkan kelas kedua: pagar yang menyalin
-# baris dari kode yang dijaganya. Karena itu SETIAP langkah di bawah menulis
-# keluarannya ke logs/ dan seluruh logs/ disalin ke reports/ dengan if: always().
+# Tiga yang pertama satu kelas: nama atau lingkungan yang DITEBAK alih-alih dibaca.
+# Yang keempat kelas kedua: pagar yang menyalin. Karena itu pagar di bawah MEMANGGIL
+# fungsi modul - jendela_bar, bar_dibutuhkan, buat_konfig_sel, permutasi_sinyal -
+# dan setiap langkah menulis keluarannya ke logs/, lalu seluruh logs/ disalin ke
+# reports/ dengan if: always().
 
 name: backtest
 
@@ -53,7 +61,7 @@ on:
         description: "Jumlah simbol; 0 berarti seluruh semesta layak"
         default: "0"
       ulangan:
-        description: "Ulangan permutasi entri acak; H-012 menolak di bawah 300"
+        description: "Ulangan permutasi entri acak; H-013 menolak di bawah 300"
         default: "300"
   push:
     paths:
@@ -98,7 +106,7 @@ jobs:
           python -m pytest tests -q 2>&1 | tee logs/uji.log
 
       - id: impor
-        name: Pagar pra-terbang H-012
+        name: Pagar pra-terbang H-013
         run: |
           set -o pipefail
           python - <<'PY' 2>&1 | tee logs/preflight.log
@@ -106,10 +114,14 @@ jobs:
           import inspect
           from pathlib import Path
 
-          from lux.analisis import periode
-          from lux.backtest import engine, run_h009, run_h010, run_h012, runner
+          import numpy as np
+
+          from lux.backtest import engine, gerbang, run_h009, run_h010, run_h013, runner
           from lux.backtest.run_h002 import muat_konfig_h002
+          from lux.backtest.run_h007 import LOOKBACK as LOOKBACK_H007
+          from lux.backtest.run_h012 import kunci_config
           from lux.degenerasi import AMBANG_BIAYA_MASUK_R, AMBANG_MIN_STOP_FRAC
+          from lux.strategi import breakout_atr
 
           KONFIG = Path("config/lux.yaml")
 
@@ -117,10 +129,8 @@ jobs:
           def bawaan(cls, nama):
               """Nilai bawaan yang DIDEKLARASIKAN pada medan dataclass.
 
-              Sengaja tidak membangun instans. Aturan 9 menjaga nilai bawaan
-              pada definisi medan, bukan nilai pada satu objek yang kebetulan
-              dibangun, dan membangun objek di sini berarti menebak tanda
-              tangan konstruktornya.
+              Sengaja tidak membangun instans. Aturan 9 menjaga nilai bawaan pada
+              definisi medan, bukan nilai pada satu objek yang kebetulan dibangun.
               """
               for f in dataclasses.fields(cls):
                   if f.name == nama:
@@ -128,130 +138,165 @@ jobs:
               raise AssertionError(f"{cls.__name__} tidak punya medan {nama}")
 
 
-          # 1. Mekanisme WAJIB identik dengan H-010/H-009. Bila grid ikut
-          #    bergeser, perubahan hasil tidak dapat dipisahkan dari perubahan
-          #    semesta dan periode, dan H-012 tidak menjawab apa pun.
-          assert run_h012.kandidat_h010 is run_h010.kandidat
-          assert run_h012.buat_konfig_h010 is run_h010.buat_konfig
+          # 1. Mekanisme diimpor TANPA perubahan. Bila sinyal atau konfig ternyata
+          #    salinan, selisih antar sel akan mengukur perbedaan salinan itu.
+          assert run_h013.sinyal_sel("SS") is breakout_atr.sinyal
+          assert run_h013.sinyal_sel("SH") is breakout_atr.sinyal
+          assert run_h013.sinyal_sel("AS") is run_h013.sinyal_acak
           assert run_h010.buat_konfig is run_h009.buat_konfig
-          assert list(run_h012.LOOKBACK_H010) == [20, 55, 100]
-          assert list(run_h012.IMBALAN_H010) == [2.0, 4.0, 6.0, 8.0]
-          assert len(run_h012.kandidat_h010()) == 12
-          for p in run_h012.kandidat_h010():
+          assert "buat_konfig(" in inspect.getsource(run_h013.buat_konfig_sel)
+          assert run_h013.LOOKBACK == list(LOOKBACK_H007)
+          assert len(run_h013.kandidat()) == len(LOOKBACK_H007)
+          assert run_h013.IMBALAN_BEKU in run_h010.JANGKAR
+          assert {p["imbalan_R"] for p in run_h013.kandidat()} == {2.0}
+          for p in run_h013.kandidat():
               assert run_h009.KUNCI_TERLARANG not in p
-              assert "maks_biaya_masuk_R" not in p
-          print("1. mekanisme identik H-010/H-009: OK")
+              assert "pakai_target" not in p and "maks_umur_bar" not in p
+          print("1. mekanisme diimpor tanpa perubahan, imbalan BEKU: OK")
 
-          # 2. Ambang pra-registrasi tidak bergerak, tidak dilonggarkan dan
-          #    tidak pula diperketat.
-          k = run_h012.hipotesis_h012(engine.Konfig()).kriteria
+          # 2. Ambang pra-registrasi tidak bergerak, tidak dilonggarkan dan tidak
+          #    pula diperketat.
+          k = run_h013.hipotesis_h013("SS", engine.Konfig(maks_carry_R=0.25)).kriteria
           assert k.min_ekspektasi_R == 0.05
           assert k.min_trade_luar_sampel == 100
           assert k.maks_p_entri_acak == 0.05
           assert k.min_jendela_positif_rasio == 0.5
-          assert run_h012.BATAS_VOID == 20
-          assert run_h012.PERIODE_TAHAN_TANGGAL == "2026-01-01"
-          assert run_h012.PERIODE_TAHAN_MS == 1767225600000
-          assert run_h012.PERIODE_TAHAN_BULAN == "2026-01"
-          print("2. ambang pra-registrasi dan batas periode: OK")
+          assert run_h013.AMBANG_KONTRIBUSI_SINYAL == 0.020
+          assert run_h013.MIN_ULANGAN == 300
+          assert run_h013.MIN_TRADE_SEL == 100
+          assert run_h013.H_BAR == 48
+          print("2. ambang ADR-015 tidak bergerak: OK")
 
           # 3. Angka kembar. Lantai dan pengaman hidup di config/lux.yaml dan di
           #    lux/degenerasi.py; bila keduanya berselisih, satu di antaranya
           #    digeser tanpa dijurnalkan.
-          kunci = run_h012.kunci_config(KONFIG)
+          kunci = kunci_config(KONFIG)
           assert kunci["min_median_stop_frac"] == AMBANG_MIN_STOP_FRAC == 0.004
           assert kunci["maks_biaya_masuk_R"] == AMBANG_BIAYA_MASUK_R == 0.5
+          dasar = muat_konfig_h002(KONFIG)
+          assert dasar.maks_biaya_masuk_R == AMBANG_BIAYA_MASUK_R
+          assert dasar.maks_carry_R > 0
+          assert dasar.stop_hormati_celah is True
           print("3. angka kembar config <-> degenerasi: OK")
 
-          # 4. Aritmetika yang melahirkan keduanya DIHITUNG, bukan dipercaya
-          #    sebagai label: biaya bolak-balik dibagi lantai harus tepat 0,5R.
-          #
-          #    Fungsi yang dipanggil di sini WAJIB fungsi yang sama dengan yang
-          #    dipakai orkestrator. Versi lama pagar ini menyalin aritmetikanya,
-          #    menyalin pula salah nama medannya, dan karena itu lulus sementara
-          #    run 30198942815 mati pada baris yang setara.
-          dasar = muat_konfig_h002(KONFIG)
-          bolak_balik = run_h012.biaya_bolak_balik_R(dasar)
-          assert abs(bolak_balik - 0.002) < 1e-12, bolak_balik
-          assert abs(bolak_balik / AMBANG_MIN_STOP_FRAC - AMBANG_BIAYA_MASUK_R) < 1e-12
-          assert "biaya_bolak_balik_R(" in inspect.getsource(run_h012.main)
-          print(f"4. {bolak_balik} / {AMBANG_MIN_STOP_FRAC} = {AMBANG_BIAYA_MASUK_R}R: OK")
+          # 4. CACAT BUTA-INTERVAL KETUJUH (ADR-023). Inilah pagar yang mencegah
+          #    run ini menghasilkan empat laporan rapi yang seluruhnya kosong.
+          #    Fungsinya DIPANGGIL, aritmetikanya tidak disalin.
+          j1 = run_h013.jendela_bar("1h")
+          assert j1["panjang_latih"] == bawaan(runner.Opsi, "panjang_latih") == 4320
+          assert j1["panjang_uji"] == bawaan(runner.Opsi, "panjang_uji") == 2160
+          assert j1["embargo"] == bawaan(runner.Opsi, "embargo") == 168
+          assert run_h013.PEMANASAN == bawaan(runner.Opsi, "pemanasan") == 200
+          j4 = run_h013.jendela_bar("4h")
+          assert j4 == {"panjang_latih": 1080, "panjang_uji": 540, "embargo": 42}, j4
+          butuh = run_h013.bar_dibutuhkan("4h")
+          assert butuh == 1862, butuh
+          # Lantai kelayakan 4h dari config; satu jendela WAJIB muat di bawahnya.
+          lantai_4h = kunci.get("min_bar_4h")
+          if lantai_4h is not None:
+              assert butuh < lantai_4h, (butuh, lantai_4h)
+          assert butuh < run_h013.bar_dibutuhkan("1h") == 6848
+          print(f"4. jendela 4h {j4}, satu jendela {butuh} bar (1h 6848): OK")
 
-          # 5. Bawaan mesin dan runner tetap MATI, supaya H-001b sampai H-011
-          #    tetap dapat diulang tanpa satu entri pun tertolak dan tanpa satu
-          #    simbol pun tersaring.
+          # 5. ADR-020. Geometri keluar tidak dilombakan, dan kedua sel sungguh
+          #    berbeda pada dua medan itu saja.
+          assert bawaan(engine.Konfig, "pakai_target") is True
+          medan = [f.name for f in dataclasses.fields(engine.Konfig)]
+          assert medan[-1] == "pakai_target", medan[-3:]
+          params = {"lookback": 20, "imbalan_R": run_h013.IMBALAN_BEKU}
+          k_ss = run_h013.buat_konfig_sel("SS")(params, dasar)
+          k_sh = run_h013.buat_konfig_sel("SH")(params, dasar)
+          assert k_ss.pakai_target is True and k_ss.maks_umur_bar == 42
+          assert k_sh.pakai_target is False and k_sh.maks_umur_bar == 48
+          assert k_ss.maks_carry_realisasi_R == run_h009.AMBANG_CARRY_KERAS
+          assert k_sh.maks_carry_realisasi_R == run_h009.AMBANG_CARRY_KERAS
+          # 168 dari config adalah 28 hari pada 4h dan TIDAK boleh terpakai.
+          assert k_ss.maks_umur_bar != dasar.maks_umur_bar
+          print("5. pakai_target dan batas umur per sel: OK")
+
+          # 6. Bawaan pengaman dan lantai tetap MATI, supaya H-001b sampai H-012
+          #    tetap dapat diulang tanpa satu entri pun tertolak.
           assert bawaan(engine.Konfig, "maks_biaya_masuk_R") == 0.0
           assert bawaan(runner.Opsi, "min_median_stop_frac") == 0.0
           assert bawaan(engine.Hasil, "entri_ditolak_biaya") == 0
-          print("5. bawaan pengaman dan lantai tetap MATI: OK")
+          print("6. bawaan pengaman dan lantai tetap MATI: OK")
 
-          # 6. Sambungannya benar-benar ada. Modul yang hijau sendiri tetapi
-          #    tidak tersambung menghasilkan laporan yang diam-diam kosong, dan
-          #    itu sudah pernah terjadi.
-          src_muat = inspect.getsource(runner.muat_konteks)
-          assert "saring_bingkai" in src_muat
-          assert "min_median_stop_frac" in src_muat
-          src_spek = inspect.getsource(runner.jalankan_spek)
-          for kunci_laporan in (
-              "entri_ditolak_biaya",
-              "entri_ditolak_biaya_per_simbol",
-              "lantai_semesta",
-              "agregat_periode",
-              "maks_biaya_masuk_R",
-              "min_median_stop_frac",
-          ):
-              assert kunci_laporan in src_spek, kunci_laporan
-          print("6. lantai dan agregat periode tersambung di runner: OK")
-
-          # 7. Agregat periode memakai waktu MASUK dan batasnya milik periode
-          #    tahan. Diperiksa pada data buatan, bukan diandaikan.
-          ms = periode.ms_dari_tanggal("2026-01-01")
-          uji = periode.agregat_per_bulan([(ms - 1, 1.0), (ms, -2.0)])
-          assert [b["periode"] for b in uji] == ["2025-12", "2026-01"]
-          assert run_h012.agregat_tahan(uji)["trade"] == 1
-          assert run_h012.agregat_sebelum(uji)["trade"] == 1
-          print("7. batas periode dimiliki periode tahan: OK")
+          # 7. ADR-021. Satu riset, satu mekanisme pengacakan, satu seed - dibaca
+          #    dari tanda tangan gerbang, bukan disalin sebagai angka.
+          seed_gerbang = inspect.signature(
+              gerbang.gerbang_entri_acak
+          ).parameters["seed"].default
+          assert run_h013.SEED_PERMUTASI == seed_gerbang == 42
+          s = np.array([1] * 10 + [-1] * 5 + [0] * 85, dtype="int64")
+          acak = run_h013.permutasi_sinyal(s)
+          assert int((acak == 1).sum()) == 10 and int((acak == -1).sum()) == 5
+          assert not np.array_equal(acak, s)
+          print("7. permutasi memakai seed dan mekanisme gerbang: OK")
 
           # 8. Angka haram tidak boleh menyelinap masuk sebagai pembanding.
-          #    +0,060163R adalah hasil membuang USDCUSDT sesudah melihat
-          #    hasilnya, yaitu tepat perbuatan yang dilarang ADR-013 bagian 8.
-          isi = inspect.getsource(run_h012)
-          for haram in ("0.060163", "0.059546", "0.060168"):
+          #    +0,060163R adalah hasil membuang USDCUSDT sesudah melihat hasilnya.
+          isi = inspect.getsource(run_h013)
+          for haram in ("0.060163", "0.059546", "0.060168", "0.05302836"):
               assert haram not in isi, haram
-          assert run_h012.SEBELUMNYA["h010_p_entri_acak_300_ulangan"] == 0.0631
-          print("8. angka haram tidak dipakai sebagai pembanding: OK")
+          assert run_h013.SKOR_ACAK_TERDAHULU == 0.04661
+          # Dataset WAJIB berbeda dari H-009: tripwire di sini dibalik.
+          assert run_h013.DATASET != run_h009.DATASET
+          assert "4h" in run_h013.DATASET and "1h" not in run_h013.DATASET
+          sidik = {
+              s_: run_h013.hipotesis_h013(s_, dasar).sidik()
+              for s_ in run_h013.NAMA_SEL
+          }
+          assert len(set(sidik.values())) == 4
+          print("8. angka haram tidak dipakai, sidik empat sel berbeda: OK")
 
           print("")
-          print("pagar pra-terbang H-012: LULUS")
+          print("pagar pra-terbang H-013: LULUS")
           print(f"lantai {AMBANG_MIN_STOP_FRAC}, pengaman {AMBANG_BIAYA_MASUK_R}R")
-          print(f"periode tahan sejak {run_h012.PERIODE_TAHAN_TANGGAL} UTC")
-          for nama, isi_ramalan in run_h012.RAMALAN.items():
+          print(f"empat sel {list(run_h013.NAMA_SEL)}, {len(run_h013.kandidat())} kandidat per sel")
+          print(
+              "KONSEKUENSI KONSTRUKSI (bukan temuan): lookahead dan entri_acak "
+              "GAGAL pada sel AS dan AH"
+          )
+          for nama, isi_ramalan in run_h013.RAMALAN.items():
               print(f"  ramalan {nama}: {isi_ramalan}")
           PY
 
+      - id: lantai
+        name: Baca lantai semesta dari config
+        run: |
+          set -o pipefail
+          {
+            LANTAI=$(python -c "from lux.backtest.run_h012 import kunci_config; print(kunci_config('config/lux.yaml')['min_median_stop_frac'])")
+            echo "lantai=${LANTAI}"
+            echo "lantai=${LANTAI}" >> "$GITHUB_OUTPUT"
+          } 2>&1 | tee logs/lantai.log
+
       - id: unduh
-        name: Unduh aset dari rilis
+        name: Unduh aset 4h dari rilis
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -o pipefail
           {
             mkdir -p aset
-            gh release download "$TAG" -D aset -p 'ohlcv_1h_*.parquet' --clobber
+            gh release download "$TAG" -D aset -p 'ohlcv_4h_*.parquet' --clobber
             gh release download "$TAG" -D aset -p 'funding_shard*.parquet' --clobber
             ls -1 aset | wc -l
             du -sh aset
+            echo "--- berkas 4h ---"
+            ls -la aset | grep '4h' || echo "(TIDAK ADA berkas 4h - run akan kosong)"
           } 2>&1 | tee logs/unduh.log
 
       - id: jalan
-        name: Jalankan H-012
+        name: Jalankan H-013 empat sel
         run: |
           set -o pipefail
-          python -m lux.backtest.run_h012 \
+          python -m lux.backtest.run_h013 \
             --dir aset \
-            --interval 1h \
-            --universe reports/universe_layak_v2.json \
-            --akhir-sejati reports/akhir_sejati.json \
+            --interval 4h \
+            --universe reports/universe_layak_v2_4h.json \
+            --akhir-sejati reports/akhir_sejati_4h.json \
+            --min-median-stop-frac "${{ steps.lantai.outputs.lantai }}" \
             --limit "${{ github.event.inputs.limit || '0' }}" \
             --ulangan "${{ github.event.inputs.ulangan || '300' }}" \
             --out reports \
@@ -262,21 +307,25 @@ jobs:
         run: |
           mkdir -p reports logs
           {
-            echo "# Log backtest H-012"
+            echo "# Log backtest H-013"
             echo
             echo "Run: \`${GITHUB_RUN_ID}\`"
             echo "Commit: \`${GITHUB_SHA}\`"
             echo
             echo "## Berkas hasil"
             echo
-            echo 'Laporan yang dikomit tanpa berkas hasil berarti run GAGAL.'
+            echo 'Laporan yang dikomit tanpa backtest_h013_kontribusi.json berarti run GAGAL.'
             echo
             echo '```'
-            ls -l reports/backtest_h012_periode_tertahan.md \
-                  reports/backtest_h012_periode_tertahan.json 2>&1 \
-              || echo "(berkas hasil TIDAK ADA - run GAGAL sebelum selesai)"
+            ls -l reports/backtest_h013_kontribusi.md \
+                  reports/backtest_h013_kontribusi.json 2>&1 \
+              || echo "(ringkasan kontribusi TIDAK ADA - run GAGAL sebelum selesai)"
+            echo
+            echo "--- laporan per sel ---"
+            ls -l reports/backtest_h013_*.json 2>&1 \
+              || echo "(tidak satu sel pun menulis laporan)"
             echo '```'
-            for berkas in deps uji preflight unduh backtest; do
+            for berkas in deps uji preflight lantai unduh backtest; do
               echo
               echo "## logs/${berkas}.log"
               echo
@@ -295,7 +344,7 @@ jobs:
         run: |
           git config user.name lux-backtest
           git config user.email actions@github.com
-          git add reports
+          git add reports hipotesis
           git diff --cached --quiet && echo "tidak ada perubahan" && exit 0
           git commit -m "chore(backtest): laporan run ${GITHUB_RUN_ID} [skip ci]"
           git pull --rebase --autostash origin main
