@@ -2,9 +2,9 @@
 
 > **Sesi baru mulai dari sini.** Berkas ini ditulis ulang setiap sesi. Ia menggantikan kebutuhan membaca Notion atau arsip jurnal. Jika sesuatu tidak tercatat di sini, anggap belum diketahui.
 
-**Diperbarui:** 2026-07-26 12:40 WIB (versi 13)
-**Tahap sekarang:** S12 — **`invarian_risiko` LULUS untuk pertama kalinya.** H-009 ditolak hanya oleh ambang ekspektasi 0,05R
-**Tahap berikutnya:** ADR-010 — gerbang konsentrasi. Fragilitas terbesar sekarang bukan ekor kerugian, melainkan bahwa 10 dari 40 simbol menghasilkan lebih dari 100% laba
+**Diperbarui:** 2026-07-26 13:40 WIB (versi 14)
+**Tahap sekarang:** S12 — H-009 lulus sembilan gerbang, ditolak hanya oleh ambang 0,05R. **ADR-010 ditulis, dan ia menarik klaim konsentrasi milik versi 13 ini sendiri.**
+**Tahap berikutnya:** kodekan gerbang `konsentrasi` (ADR-010), lalu uji apakah ekspektasi bergantung pada umur simbol
 
 ---
 
@@ -27,7 +27,8 @@ Aturan yang lahir dari kesalahan nyata, bukan dari teori:
 11. (S12, ADR-009) **Rerata tidak mengatakan apa pun tentang ekor.** Gerbang yang menilai nilai ekstrem hanya boleh dibantah dengan nilai ekstrem.
 12. (S12, ADR-009) **Batas risiko tidak dilombakan.** Menaruh pengaman ke dalam grid pemilihan berarti menyerahkan keputusan risiko kepada fungsi tujuan yang tidak melihat risiko.
 13. (S12, H-009) **Peristiwa yang terlalu jarang tidak dapat dipilih oleh pemilih dalam sampel, seberapa pun bergunanya.** Pengaman carry menyala 16 kali dari 14.925 perdagangan, yaitu 0,107%. Satu jendela latih tipikal memuat nol atau satu peristiwa semacam itu, jadi pemilih hanya melihat pemenang yang terpotong dan tidak pernah melihat bencana yang dihindari. Kelangkaan, bukan biaya, yang membuat pengaman itu ditolak 334 lawan 22 di H-008.
-14. (S12, H-009) **Ramalan yang salah lebih murah daripada ramalan yang tidak pernah ditulis.** Dua dari tiga ramalan H-009 salah, dan justru dari kesalahan itulah aturan 13 lahir. Ramalan yang tidak ditulis tidak dapat salah, dan karena itu tidak mengajarkan apa pun.
+14. (S12, H-009) **Ramalan yang salah lebih murah daripada ramalan yang tidak pernah ditulis.** Dua dari tiga ramalan H-009 salah, dan justru dari kesalahan itulah aturan 13 lahir.
+15. (S12, ADR-010) **Porsi terhadap nilai bersih bukan ukuran konsentrasi.** Bila ada penyumbang negatif, porsi penyumbang teratas terhadap total bersih hampir pasti melewati 100% tanpa ada konsentrasi sama sekali, karena penyebutnya sudah dikurangi kerugian. Konsentrasi diukur dengan **jackknife** dan dengan penyebut **bruto**. Aturan 8 seharusnya sudah menangkap ini; kekeliruan versi 13 membuktikan aturan yang diketahui tidak otomatis diterapkan.
 
 ---
 
@@ -104,20 +105,45 @@ Yang tetap fakta: pemilih memang mematikannya, **334 dari 356 jendela**, dan itu
 
 Konsekuensinya lebih luas daripada carry: **setiap pengaman yang menargetkan peristiwa langka akan selalu ditolak oleh pemilihan dalam sampel.** Karena itu ADR-009 tetap berlaku bahkan lebih kuat, tetapi alasannya diperbaiki.
 
-### FRAGILITAS BARU YANG TERUKUR — konsentrasi laba, tidak dijaga gerbang mana pun
+### KONSENTRASI LABA — klaim versi 13 DITARIK, ukuran yang benar jauh lebih tenang
 
-Dari `per_simbol` di `reports/backtest_h009_carry_dipatok.json`:
+Versi 13 berkas ini menyatakan sebagai fragilitas terbesar bahwa **"sepuluh dari 40 simbol menghasilkan 101,2% laba dan 30 sisanya merugi"**. Angkanya benar, tafsirannya menyesatkan **secara konstruksi**, dan ADR-010 menariknya. Sebabnya ada di penyebut:
 
-| | Total R | Porsi dari +617,28 |
+| | Jumlah simbol | R |
 |---|---|---|
-| ADAUSDT | 113,30 | 18,4% |
-| AIOTUSDT | 60,09 | 9,7% |
-| **Sepuluh simbol teratas** | **624,89** | **101,2%** |
-| **Tiga puluh simbol sisanya** | **−7,61** | **−1,2%** |
+| Simbol laba | **28** | **+883,62** |
+| Simbol rugi | **12** | **−266,35** |
+| Bersih | 40 | **+617,28** |
 
-**Sepuluh dari 40 simbol menghasilkan lebih dari seluruh laba; 30 sisanya secara agregat merugi.** AIOTUSDT menyumbang 60,09R dari **44 perdagangan** di **2 jendela**, ekspektasi 1,36566R per perdagangan — tiga puluh tiga kali rerata portofolio. Terburuk: ANTUSDT −61,95, ANKRUSDT −53,28, AIXBTUSDT −37,40.
+Porsi 624,89/617,28 mengukur laba sepuluh teratas terhadap penyebut yang sudah dipotong 266,35R kerugian. Statistik itu melewati 100% pada portofolio mana pun yang punya penyumbang negatif, termasuk yang sangat terdiversifikasi. Aturan 15.
 
-**Tidak satu pun dari sembilan gerbang menilai konsentrasi.** `buy_and_hold` menghitung median per simbol dan `survivorship` menghitung porsi delisted; keduanya buta terhadap fakta bahwa keunggulan bertumpu pada beberapa simbol. Sebuah strategi yang keunggulannya lenyap bila dua simbol dibuang bukan strategi, melainkan dua perdagangan yang beruntung. Ini yang harus diukur berikutnya, dan ia **tidak butuh run baru** — datanya sudah dikomit (aturan 9).
+Angka yang tidak menyesatkan, dari `per_simbol` yang sama, dihitung ulang dan diuji silang terhadap agregat yang dikomit (jumlah trade 14.925 tepat, jumlah jendela 356 tepat, jumlah R 617,2769 lawan 617,2774 karena pembulatan empat desimal per simbol):
+
+- **28 dari 40 simbol menguntungkan (70%).**
+- **Median ekspektasi per simbol +0,0325R — positif.** Simbol tipikal untung; keunggulan bukan milik ekor.
+- Kuartil ekspektasi per simbol: −0,0170 · median +0,0325 · +0,1401. Rentang −0,21618 sampai +1,36566.
+- **HHI atas porsi laba bruto 0,0621**, setara **16,1 simbol berbobot sama** dari 28 penyumbang.
+
+**Ukuran yang benar adalah jackknife** — buang penyumbang teratas dan hitung ekspektasi dari nol:
+
+| Dibuang | Simbol terakhir dibuang | Sisa trade | Sisa R | Ekspektasi | Retensi |
+|---|---|---|---|---|---|
+| 0 | — | 14.925 | 617,28 | **+0,041359** | 100% |
+| 1 | ADAUSDT | 14.014 | 503,97 | **+0,035962** | **87,0%** |
+| 2 | ALGOUSDT | 13.037 | 430,22 | +0,033000 | 79,8% |
+| 3 | 1000FLOKIUSDT | 12.648 | 359,46 | +0,028420 | 68,7% |
+| 4 | ALPHAUSDT | 11.966 | 293,64 | +0,024540 | 59,3% |
+| 5 | AIOTUSDT | 11.922 | 233,56 | +0,019590 | 47,4% |
+| 8 | 1000PEPEUSDT | 11.098 | 78,00 | +0,007028 | 17,0% |
+| 10 | — | — | — | **≤ 0** | 0% |
+
+**Membuang simbol terbaik dari empat puluh memangkas 13% ekspektasi. Membuang lima memangkas 53%. Ekspektasi menjadi nol setelah sepuluh dibuang.** Untuk 40 simbol ini kerapuhan **sedang** — bukan bencana seperti yang saya tulis di versi 13, bukan pula kesehatan.
+
+Satu pencilan bertahan sebagai masalah nyata: **AIOTUSDT ekspektasi +1,36566R** atas 44 perdagangan di 2 jendela, 33 kali rerata portofolio; lalu **1000000BOBUSDT +0,43957R** atas 58 perdagangan di 2 jendela. Keduanya bersejarah pendek. Terburuk: AIXBTUSDT −0,21618 · ANTUSDT −0,19240 · ACXUSDT −0,09959.
+
+**Yang secara tegas dilarang oleh ADR-010:** membuang 12 simbol yang merugi menaikkan ekspektasi ke sekitar **0,0752R dan langsung melewati ambang 0,05R.** Itu survivorship bias telanjang — pemilihan berdasarkan hasil yang tidak dapat diketahui di muka, persis cacat yang membuat pengetahuan bot v8.4 dibuang. Angka itu dicatat agar dikenali sebagai jebakan, bukan sasaran.
+
+Gerbang `konsentrasi` sudah didefinisikan dengan lima sub-uji berambang tetap di ADR-010, dan **sengaja tidak diterapkan ke H-009** karena ambangnya ditulis setelah angka H-009 terlihat. Ia **mengikat mulai H-010**. Nilai H-009 bersifat deskriptif: `drop_1_positif` +0,03596 · `drop_5persen_positif` +0,03300 · `retensi_drop_1` 0,8695 · `median_simbol_positif` +0,0325 · `porsi_bruto_teratas` 0,1282.
 
 ### Papan skor sembilan hipotesis
 
@@ -133,7 +159,7 @@ Dari `per_simbol` di `reports/backtest_h009_carry_dipatok.json`:
 | H-008 | pengaman carry dilombakan | 0,04126 | `invarian_risiko` −1,9769 | DITOLAK, pengaman dimatikan pemilih |
 | **H-009** | **pengaman carry dipatok 0,25** | **0,041359** | **tidak ada** | **DITOLAK, hanya oleh ambang 0,05R** |
 
-**Jarak menuju kelayakan sekarang tunggal dan terukur:** 0,05000 − 0,041359 = **0,008641R**, yaitu ekspektasi harus naik **20,9%** tanpa merusak satu pun dari sembilan gerbang.
+**Jarak menuju kelayakan sekarang tunggal dan terukur:** 0,05000 − 0,041359 = **0,008641R**, yaitu ekspektasi harus naik **20,9%** tanpa merusak satu pun gerbang.
 
 **Kesimpulan struktural yang bertahan:** enam percobaan pada sisi masuk menghasilkan nol perbaikan; percobaan pada sisi keluar menghasilkan +28% (H-007) lalu menutup gerbang risiko (H-009). Sisi keluar adalah arah yang punya leverage.
 
@@ -181,7 +207,7 @@ Sumber: `reports/keluarga_adr006.{md,json}`, run `30175665060`, kode `1aedb84`, 
 
 ### MESIN BACKTEST — sembilan gerbang terpasang dan terbukti bisa lulus maupun gagal
 
-`lux/backtest/`: `engine.py`, `gerbang.py`, `walk_forward.py`, `run_wf.py` (H-001b), `run_h002.py`, `run_h003.py`, `runner.py`, `run_keluarga.py`, `run_h007.py`, `run_h008.py`, **`run_h009.py`**. Gerbang: `forward_fill`, `buy_and_hold`, `entri_acak`, `lookahead`, `invarian_risiko`, `funding`, `overlap`, `checksum`, `survivorship`. **Gerbang yang tidak dapat dinilai berarti GAGAL.**
+`lux/backtest/`: `engine.py`, `gerbang.py`, `walk_forward.py`, `run_wf.py` (H-001b), `run_h002.py`, `run_h003.py`, `runner.py`, `run_keluarga.py`, `run_h007.py`, `run_h008.py`, **`run_h009.py`**. Gerbang: `forward_fill`, `buy_and_hold`, `entri_acak`, `lookahead`, `invarian_risiko`, `funding`, `overlap`, `checksum`, `survivorship`. **Gerbang yang tidak dapat dinilai berarti GAGAL.** Gerbang kesepuluh `konsentrasi` sudah diputuskan di ADR-010 tetapi **belum dikodekan**.
 
 Lima alasan keluar: `stop`, `target`, `umur`, `carry`, `akhir_data`. Urutan per bar: umur → carry → stop/target → entri → ekuitas. `ALASAN_TIDAK_SELESAI = ("umur", "akhir_data", "carry")`.
 
@@ -211,6 +237,7 @@ Pra-registrasi bersifat **sekali tulis**; nilai saringan ikut masuk ke sidik hip
 - Sandbox agen **tidak punya jaringan**. Gerbang `pytest` wajib berjalan **sebelum** unduhan.
 - **Commit laporan tanpa berkas hasil berarti run GAGAL, bukan sedang berjalan.**
 - Blob laporan yang tidak berubah berarti **belum ditulis**, bukan berhasil. **SHA blob juga basi begitu ada tulisan** — `push_files` lebih aman daripada `create_or_update_file` untuk penggantian berkas utuh.
+- **Analisis atas laporan yang sudah dikomit dapat dikerjakan di sandbox agen tanpa jaringan.** Jackknife konsentrasi ADR-010 dihitung seluruhnya dari `per_simbol` yang disalin ke sandbox, tanpa satu pun run baru. Aturan 9 terbayar ketiga kalinya.
 
 ### Cacat yang sudah ditutup dan tidak boleh terulang
 
@@ -221,7 +248,8 @@ Pra-registrasi bersifat **sekali tulis**; nilai saringan ikut masuk ke sidik hip
 - **Circular import** `run_wf → potong_ekor → diag_datar → run_wf` (`4b77617`).
 - **S10:** kurung kurawal liar di `tests/test_run_h007.py` (`c48a785`) menjatuhkan pengumpulan pytest; diperbaiki `e81e34e`.
 - **S11:** langkah pra-terbang `backtest.yml` bisu; diperbaiki `245747ee`.
-- **S12:** STATE v11 menaikkan kekeliruan analitis menjadi fakta ("funding bukan penyebab kerugian ekor"). Ditarik di v12, dan jurnal S11 dikoreksi di v13. Penyebabnya memakai rerata untuk menyimpulkan tentang ekor.
+- **S12:** STATE v11 menaikkan kekeliruan analitis menjadi fakta ("funding bukan penyebab kerugian ekor"). Ditarik di v12, jurnal S11 dikoreksi di v13. Penyebabnya memakai rerata untuk menyimpulkan tentang ekor.
+- **S12:** STATE v13 menaikkan artefak aritmetika ("sepuluh simbol menghasilkan 101,2% laba") menjadi fragilitas terbesar dan menaruhnya sebagai tindakan prioritas. Ditarik di ADR-010 dan di v14. Penyebabnya memakai penyebut bersih untuk mengukur konsentrasi. **Dua kekeliruan tafsir dalam satu sesi, keduanya soal membaca sebaran.**
 
 ---
 
@@ -229,7 +257,7 @@ Pra-registrasi bersifat **sekali tulis**; nilai saringan ikut masuk ke sidik hip
 
 | Asumsi | Cara memverifikasi |
 |---|---|
-| Keunggulan bertahan bila simbol penyumbang terbesar dibuang | ADR-010, hitung ulang dari `per_simbol` yang sudah dikomit |
+| Ekspektasi bergantung pada **umur simbol**: simbol muda lebih menguntungkan, sehingga sebagian keunggulan berasal dari fase yang tidak terulang | bandingkan ekspektasi per simbol terhadap panjang riwayat pada jendela uji, dari `per_simbol` yang sudah dikomit |
 | Keunggulan kelanjutan membesar pada horizon lebih panjang (4h) | jalankan hipotesis baru pada 4h setelah validasi 4h |
 | Funding sebagai **sinyal** memuat informasi arah, bukan hanya biaya | uji hipotesis berbasis funding, belum pernah dilakukan |
 | Integritas 4h sama bersihnya dengan 1h | jalankan `validate.yml` untuk interval 4h |
@@ -245,13 +273,15 @@ Pra-registrasi bersifat **sekali tulis**; nilai saringan ikut masuk ke sidik hip
 
 - "Pengaman carry yang dipatok menyala membuat `invarian_risiko` lulus" — **BENAR, terukur.** −1,9769 → −1,2698.
 - "Biaya menjaga risiko memakan ekspektasi" — **SALAH.** Biayanya nol dalam batas derau.
+- "Keunggulan bertahan bila simbol penyumbang terbesar dibuang" — **BENAR, terukur.** Retensi drop-1 87,0%, ekspektasi tetap +0,03596R. Tetapi runtuh setelah sepuluh dibuang.
 - "Kerugian ekor berasal dari keluar di pembukaan bar yang menganga" — **salah.** Kesepuluh perdagangan terburuk beralasan `stop` dengan kotor tepat −1R.
 - "Kerugian ekor berasal dari stop yang sangat rapat" — **salah.** Lebar stop terburuk 2,83% terhadap rerata 3,61%.
 - "Funding bukan penyebab kerugian ekor" (STATE v11) — **ditarik.** Funding menyumbang 46,7% kerugian terburuk.
+- "Laba terkonsentrasi pada sepuluh simbol dan itu fragilitas terbesar" (STATE v13) — **ditarik.** 28 dari 40 simbol untung, median simbol +0,0325R, HHI setara 16,1 simbol.
 
 **Dihapus di S10 karena keliru secara konstruksi:** "keunggulan Donchian berasal dari sedikit perdagangan berekor panjang".
 
-**Angka yang dilarang dikutip:** seluruh hasil ingest putaran 1 (14.076.257 baris 1h, 3.506.060 baris 4h, 17.169 celah, rasio 4,014); metrik celah funding putaran 1–4 (1.380.741 · 1.193.209 · 587.131 · 266.612); seluruh run pilot H-001 termasuk `30170073890`.
+**Angka yang dilarang dikutip:** seluruh hasil ingest putaran 1 (14.076.257 baris 1h, 3.506.060 baris 4h, 17.169 celah, rasio 4,014); metrik celah funding putaran 1–4 (1.380.741 · 1.193.209 · 587.131 · 266.612); seluruh run pilot H-001 termasuk `30170073890`; **porsi "101,2%" sebagai bukti konsentrasi.**
 
 ---
 
@@ -265,23 +295,25 @@ Dibutuhkan dari pengguna, belum memblokir: **token integrasi Notion** sebagai Gi
 
 ## 6. Tindakan berikutnya
 
-1. **ADR-010 — gerbang konsentrasi.** Sepuluh dari 40 simbol menghasilkan 101,2% laba dan 30 sisanya merugi −7,61R. Ini fragilitas paling besar yang tersisa dan **tidak dijaga satu pun dari sembilan gerbang**. Ukur dari `per_simbol` yang sudah dikomit — **tidak butuh run baru** (aturan 9). Ambang harus ditetapkan sebelum angkanya dihitung, dan bila keunggulan runtuh saat dua simbol teratas dibuang, maka H-007 sampai H-009 harus dibaca ulang sebagai hasil yang bertumpu pada dua simbol.
+1. **Kodekan gerbang `konsentrasi` (ADR-010).** Lima sub-uji berambang tetap: `drop_1_positif` > 0, `drop_5persen_positif` > 0, `retensi_drop_1` ≥ 0,60, `median_simbol_positif` > 0, `porsi_bruto_teratas` ≤ 0,25. Penyebut **wajib laba bruto**. `NAMA_GERBANG` menjadi sepuluh. **Mengikat mulai H-010; vonis H-001b sampai H-009 tidak berubah.** Pengujian wajib: portofolio satu simbol GAGAL, portofolio rata LULUS, portofolio kosong GAGAL bukan lulus diam-diam.
 
-2. **Gerbang funding yang sadar ekor.** Gerbang sekarang menilai total mutlak dan nyaris tidak bergerak (10.253,97 → 10.199,59) sementara ekor berubah dari −1,9769R ke −1,2698R. Ia lulus di kedua keadaan, jadi ia tidak memberi informasi.
+2. **Uji ketergantungan pada umur simbol.** AIOTUSDT +1,36566R dan 1000000BOBUSDT +0,43957R keduanya hanya 2 jendela dan bersejarah pendek. Bila ekspektasi berkorelasi negatif dengan umur, sebagian keunggulan adalah efek pasar baru yang tidak terulang. **Tidak butuh run baru.**
 
-3. **Horizon 4h.** **Prasyarat mutlak: jalankan `validate.yml` untuk 4h.**
+3. **Gerbang funding yang sadar ekor.** Gerbang sekarang menilai total mutlak dan nyaris tidak bergerak (10.253,97 → 10.199,59) sementara ekor berubah dari −1,9769R ke −1,2698R. Ia lulus di kedua keadaan, jadi ia tidak memberi informasi.
 
-4. **Funding sebagai sinyal.** Belum pernah diuji kandungan informasi arahnya. Diperkuat oleh S12: funding terbukti bermagnitudo nyata di ekor, jadi ia bukan sekadar biaya kecil.
+4. **Horizon 4h.** **Prasyarat mutlak: jalankan `validate.yml` untuk 4h.**
 
-**Yang DILARANG:** melombakan ambang pengaman dalam bentuk apa pun; mematok `imbalan_R` ke 4,0; menghitung ulang hipotesis yang sudah divonis; melonggarkan ambang `invarian_risiko` dari −1,5R; **menurunkan ambang ekspektasi 0,05R karena H-009 nyaris mencapainya.**
+5. **Funding sebagai sinyal.** Belum pernah diuji kandungan informasi arahnya. Diperkuat oleh S12: funding terbukti bermagnitudo nyata di ekor.
+
+**Yang DILARANG:** membuang simbol yang merugi dari universe (naik ke ±0,0752R, survivorship bias telanjang); memakai gerbang `konsentrasi` sebagai penyaring simbol; membuang AIOTUSDT karena ekspektasinya tampak mustahil; melombakan ambang pengaman dalam bentuk apa pun; mematok `imbalan_R` ke 4,0; menghitung ulang hipotesis yang sudah divonis; melonggarkan ambang `invarian_risiko` dari −1,5R; **menurunkan ambang ekspektasi 0,05R karena H-009 nyaris mencapainya.**
 
 Sisanya, tidak memblokir:
 
-5. Perbaiki docstring `lux/costs.py` yang masih menyebut pembagi funding 8 jam tetap.
-6. Diff terhadap Dataset G lama (528 simbol). **Satu-satunya butir dari daftar tugas awal pengguna yang benar-benar masih terbuka.**
-7. `lux/manifest.py`, `Makefile`, `docs/PIPELINE.md`; salin ADR-001 dan ADR-002 ke `decisions/`.
-8. Pelapor Notion (`NOTION_TOKEN`).
-9. Tier A (1m) hanya setelah seluruh gerbang Tier B lulus, dengan ≥24 shard.
+6. Perbaiki docstring `lux/costs.py` yang masih menyebut pembagi funding 8 jam tetap.
+7. Diff terhadap Dataset G lama (528 simbol). **Satu-satunya butir dari daftar tugas awal pengguna yang benar-benar masih terbuka.**
+8. `lux/manifest.py`, `Makefile`, `docs/PIPELINE.md`; salin ADR-001 dan ADR-002 ke `decisions/`.
+9. Pelapor Notion (`NOTION_TOKEN`).
+10. Tier A (1m) hanya setelah seluruh gerbang Tier B lulus, dengan ≥24 shard.
 
 ---
 
@@ -313,7 +345,7 @@ Agen **LUX Gatekeeper** aktif di Notion. Terpicu saat runner membuat baris di da
 | `lux/strategi/retest.py` | entri retest, "sniper entry" mekanis (H-005) |
 | `lux/strategi/smc.py` | sapuan likuiditas, bagian SMC yang dapat dikodekan (H-006) |
 | `lux/backtest/engine.py` | mesin eksekusi: stop, target, batas umur, saringan carry, pengaman carry terealisasi |
-| `lux/backtest/gerbang.py` | sembilan gerbang mutu |
+| `lux/backtest/gerbang.py` | sembilan gerbang mutu; `konsentrasi` belum dikodekan |
 | `lux/backtest/walk_forward.py` | pemilihan parameter dalam sampel; konfig per kandidat opsional (ADR-007) |
 | `lux/backtest/run_wf.py` | orkestrator H-001b — **jangan disunting** |
 | `lux/backtest/run_h002.py` | orkestrator H-002 (ADR-004) — dibekukan |
@@ -326,7 +358,7 @@ Agen **LUX Gatekeeper** aktif di Notion. Terpicu saat runner membuat baris di da
 | `tests/` | **444** pengujian tanpa jaringan, wajib hijau sebelum unduhan |
 | `reports/` | keluaran mesin tiap run, sumber bukti Bagian 3 |
 | `hipotesis/` | pendaftaran sekali tulis: `H-001b` … **`H-009`** |
-| `decisions/` | ADR-003 (ekor datar), ADR-004 (carry funding), ADR-005 (pembalikan), ADR-006 (keluarga), ADR-007 (struktur keluar), ADR-008 (pengaman carry keras), ADR-009 (batas risiko bukan parameter) |
+| `decisions/` | ADR-003 (ekor datar), ADR-004 (carry funding), ADR-005 (pembalikan), ADR-006 (keluarga), ADR-007 (struktur keluar), ADR-008 (pengaman carry keras), ADR-009 (batas risiko bukan parameter), **ADR-010 (konsentrasi bukan keunggulan)** |
 | `journal/` | riwayat per sesi |
 
 **Workflow aktif (10):** `tests`, `backtest`, `validate`, `potong_ekor`, `ingest_tier_b`, `backfill_daily`, `funding`, `funding_check`, `universe`, `doctor`. `backtest.yml` sekarang menjalankan `lux.backtest.run_h009`.
