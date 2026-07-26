@@ -6,8 +6,8 @@ penjelasan "satuan R runtuh pada simbol degenerat" tidak dapat menjelaskan
 kelimanya. Sesuatu yang lain sudah bekerja sejak hipotesis pertama.
 
 Modul ini tidak menjalankan mesin dan tidak memuat satu bar pun. Ia membaca
-laporan yang **sudah dikomit** dan membongkar sepuluh perdagangan terburuk
-yang tersimpan di ``diagnosa_biaya.terburuk``. Blok itu adalah keluaran
+laporan yang **sudah dikomit** dan membongkar sepuluh perdagangan terburuk yang
+tersimpan di ``diagnosa_biaya.terburuk``. Blok itu adalah keluaran
 ``run_wf.rincian_R`` apa adanya, jadi ia memuat ``alasan`` keluar - medan yang
 tidak ada di ``ekor_funding.terburuk``.
 
@@ -22,10 +22,11 @@ Dua besaran yang dihitung di sini:
     kerugian yang **tidak dijelaskan** oleh biaya maupun oleh geometri stop, dan
     itulah yang dicurigai ADR-015: keluar karena umur atau carry dinilai pada
     pembukaan bar sebelum stop bar itu diuji, sehingga bar yang menganga
-    melewati stop membayar seluruh selisih.
+    membayar seluruh selisihnya.
 
 Ambang ``-1.5R`` disalin dari gerbang ``invarian_risiko`` dan **tidak bergerak**.
-Diagnostik tidak boleh menjadi jalan keluar bagi hipotesis yang sudah divonis.
+Diagnostik tidak boleh menjadi jalan keluar bagi hipotesis yang sudah divonis,
+dan ada satu pengujian yang memaku angka itu.
 """
 
 from __future__ import annotations
@@ -43,6 +44,9 @@ ALASAN_STOP = "stop"
 
 #: Ambang gerbang invarian_risiko. Konstanta acuan, bukan parameter.
 AMBANG_INVARIAN_R = -1.5
+
+#: Rentang ramalan 4 ADR-015 untuk median R terlampaui kelompok "umur".
+RENTANG_RAMALAN_4 = (0.0, 0.10)
 
 #: Medan yang wajib ada pada tiap baris ``diagnosa_biaya.terburuk``.
 KUNCI_WAJIB: tuple[str, ...] = (
@@ -119,9 +123,8 @@ def ringkas(baris: Sequence[Mapping[str, Any]]) -> dict:
 
     ``ekor_menutup_ambang`` menjawab pertanyaan yang menentukan sah atau tidaknya
     kesimpulan apa pun tentang perdagangan di bawah ambang: bila perdagangan
-    paling ringan di dalam ekor masih lebih buruk dari ambang, maka mungkin ada
-    perdagangan lain di bawah ambang yang tidak tercatat, dan ekor ini tidak
-    cukup untuk menghitungnya.
+    paling ringan di dalam ekor masih lebih buruk dari ambang, mungkin ada
+    pelanggar lain yang tidak tercatat, dan ekor ini tidak cukup menghitungnya.
     """
     n = len(baris)
     if n == 0:
@@ -129,6 +132,7 @@ def ringkas(baris: Sequence[Mapping[str, Any]]) -> dict:
             "n": 0,
             "dapat_dinilai": False,
             "sebab": "tidak ada perdagangan terburuk di laporan",
+            "baris": [],
             "n_stop": 0,
             "n_bukan_stop": 0,
             "porsi_bukan_stop": None,
@@ -140,12 +144,13 @@ def ringkas(baris: Sequence[Mapping[str, Any]]) -> dict:
             "ambang": AMBANG_INVARIAN_R,
         }
 
-    n_stop = sum(1 for b in baris if b["alasan"] == ALASAN_STOP)
-    pelanggar = [b for b in baris if float(b["R"]) < AMBANG_INVARIAN_R]
-    teringan = max(float(b["R"]) for b in baris)
+    urut = sorted(baris, key=lambda b: float(b["R"]))
+    n_stop = sum(1 for b in urut if b["alasan"] == ALASAN_STOP)
+    pelanggar = [b for b in urut if float(b["R"]) < AMBANG_INVARIAN_R]
+    teringan = float(urut[-1]["R"])
 
     per_alasan: dict[str, list[float]] = {}
-    for b in baris:
+    for b in urut:
         per_alasan.setdefault(str(b["alasan"]), []).append(
             float(b["R_terlampaui"])
         )
@@ -154,14 +159,13 @@ def ringkas(baris: Sequence[Mapping[str, Any]]) -> dict:
         "n": n,
         "dapat_dinilai": True,
         "sebab": "",
+        "baris": list(urut),
         "n_stop": n_stop,
         "n_bukan_stop": n - n_stop,
         "porsi_bukan_stop": (n - n_stop) / n,
-        "terburuk": min(baris, key=lambda b: float(b["R"])),
+        "terburuk": urut[0],
         "pelanggar": pelanggar,
-        "pelanggar_stop": [
-            b for b in pelanggar if b["alasan"] == ALASAN_STOP
-        ],
+        "pelanggar_stop": [b for b in pelanggar if b["alasan"] == ALASAN_STOP],
         # Ekor menutup ambang bila perdagangan paling ringan di dalamnya sudah
         # di atas ambang: apa pun di bawah ambang mustahil berada di luar ekor.
         "ekor_menutup_ambang": teringan > AMBANG_INVARIAN_R,
@@ -181,11 +185,7 @@ def adili(r: Mapping[str, Any]) -> list[dict]:
     """
     if not r["dapat_dinilai"]:
         return [
-            {
-                "ramalan": i,
-                "hasil": "TIDAK DAPAT DINILAI",
-                "bukti": r["sebab"],
-            }
+            {"ramalan": i, "hasil": "TIDAK DAPAT DINILAI", "bukti": r["sebab"]}
             for i in (1, 2, 3, 4)
         ]
 
@@ -211,7 +211,7 @@ def adili(r: Mapping[str, Any]) -> list[dict]:
                 "bukti": (
                     f"perdagangan terburuk {t['R']:.4f}R pada {t['symbol']} "
                     f"beralasan keluar '{ALASAN_STOP}', sehingga bar yang "
-                    "menganga bukan penjelasannya"
+                    "menganga sesudah keluar bukan penjelasannya"
                 ),
             }
         )
@@ -223,8 +223,7 @@ def adili(r: Mapping[str, Any]) -> list[dict]:
                 "hasil": "TIDAK DAPAT DINILAI",
                 "bukti": (
                     "perdagangan teringan di dalam ekor masih di bawah ambang "
-                    f"{r['ambang']}R, jadi ekor ini tidak memuat semua "
-                    "pelanggar"
+                    f"{r['ambang']}R, jadi ekor ini tidak memuat semua pelanggar"
                 ),
             }
         )
@@ -251,7 +250,7 @@ def adili(r: Mapping[str, Any]) -> list[dict]:
             }
         )
 
-    porsi = r["porsi_bukan_stop"]
+    porsi = float(r["porsi_bukan_stop"])
     hasil.append(
         {
             "ramalan": 3,
@@ -273,10 +272,11 @@ def adili(r: Mapping[str, Any]) -> list[dict]:
             }
         )
     else:
+        bawah, atas = RENTANG_RAMALAN_4
         hasil.append(
             {
                 "ramalan": 4,
-                "hasil": "BENAR" if 0.0 <= med <= 0.10 else "SALAH",
+                "hasil": "BENAR" if bawah <= med <= atas else "SALAH",
                 "bukti": f"median R_terlampaui kelompok 'umur' = {med:.6f}R",
             }
         )
@@ -284,26 +284,30 @@ def adili(r: Mapping[str, Any]) -> list[dict]:
     return hasil
 
 
-def laporan_md(r: Mapping[str, Any], adjudikasi: Sequence[Mapping[str, Any]]) -> str:
+def laporan_md(
+    r: Mapping[str, Any], adjudikasi: Sequence[Mapping[str, Any]]
+) -> str:
     """Susun laporan markdown. Batas buktinya ditulis, bukan disembunyikan."""
     baris: list[str] = [
         "# Geometri keluar H-012 (ADR-015 Bagian A)",
         "",
-        "Dihitung dari laporan yang **sudah dikomit**, bukan dari run baru. "
-        "Tidak ada mesin yang dijalankan dan tidak ada angka baru yang "
-        "diproduksi bagi hipotesis yang sudah divonis.",
+        "Dihitung dari laporan yang **sudah dikomit**, bukan dari run baru. Tidak "
+        "ada mesin yang dijalankan dan tidak ada angka baru yang diproduksi bagi "
+        "hipotesis yang sudah divonis DITOLAK.",
         "",
         f"Ambang gerbang `invarian_risiko`: **{r['ambang']}R**, tidak bergerak.",
         "",
         "## Batas bukti",
         "",
         "Laporan hanya menyimpan **sepuluh** perdagangan terburuk, jadi tidak "
-        "semua pertanyaan dapat dijawab darinya. Yang dapat dijawab dengan pasti "
-        "adalah pertanyaan tentang perdagangan di bawah ambang, dan itu hanya "
-        "bila perdagangan paling ringan di dalam ekor sudah berada di atas "
-        "ambang - sebab dengan begitu tidak mungkin ada pelanggar di luar ekor.",
+        "semua pertanyaan dapat dijawab darinya. Pertanyaan tentang perdagangan "
+        "di bawah ambang dapat dijawab dengan pasti hanya bila perdagangan paling "
+        "ringan di dalam ekor sudah berada di atas ambang, sebab dengan begitu "
+        "mustahil ada pelanggar di luar ekor.",
         "",
-        f"- Ekor memuat semua pelanggar: **{'ya' if r['ekor_menutup_ambang'] else 'TIDAK'}**",
+        "- Ekor memuat semua pelanggar: "
+        f"**{'ya' if r['ekor_menutup_ambang'] else 'TIDAK'}**",
+        f"- Perdagangan di bawah ambang: **{len(r['pelanggar'])}**",
         "",
     ]
 
@@ -311,13 +315,41 @@ def laporan_md(r: Mapping[str, Any], adjudikasi: Sequence[Mapping[str, Any]]) ->
         return "\n".join(baris + [f"Tidak dapat dinilai: {r['sebab']}.", ""])
 
     baris += [
-        "## Sepuluh perdagangan terburuk",
+        f"## {r['n']} perdagangan terburuk",
         "",
-        "| Simbol | R | Alasan | Transaksi R | Funding R | R terlampaui | Celah R | Stop % | Jam |",
+        "| Simbol | R | Alasan | Transaksi R | Funding R | R terlampaui "
+        "| Celah R | Stop % harga | Jam |",
         "|---|---|---|---|---|---|---|---|---|",
     ]
-    for b in sorted(r["pelanggar"] + [x for x in [] ], key=lambda x: float(x["R"])):
-        pass
+    for b in r["baris"]:
+        baris.append(
+            f"| {b['symbol']} | {b['R']:.4f} | {b['alasan']} "
+            f"| {b['transaksi_R']:.4f} | {b['funding_R']:.4f} "
+            f"| {b['R_terlampaui']:.4f} | {b['celah_R']:+.4f} "
+            f"| {b['stop_frac'] * 100:.3f} | {b['jam']:.1f} |"
+        )
+
+    baris += [
+        "",
+        "## Median R terlampaui menurut alasan keluar",
+        "",
+        "| Alasan | Median R terlampaui |",
+        "|---|---|",
+    ]
+    for a, m in r["median_R_terlampaui"].items():
+        baris.append(f"| {a} | {m:.6f} |")
+
+    baris += [
+        "",
+        "## Adjudikasi ramalan Bagian A",
+        "",
+        "| Ramalan | Hasil | Bukti |",
+        "|---|---|---|",
+    ]
+    for h in adjudikasi:
+        baris.append(f"| {h['ramalan']} | **{h['hasil']}** | {h['bukti']} |")
+
+    baris += [""]
     return "\n".join(baris)
 
 
@@ -341,8 +373,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     baris = muat(a.laporan)
     r = ringkas(baris)
     adjudikasi = adili(r)
-    Path(a.out).parent.mkdir(parents=True, exist_ok=True)
-    Path(a.out).write_text(laporan_md(r, adjudikasi), encoding="utf-8")
+    keluar = Path(a.out)
+    keluar.parent.mkdir(parents=True, exist_ok=True)
+    keluar.write_text(laporan_md(r, adjudikasi), encoding="utf-8")
     for h in adjudikasi:
         print(f"ramalan {h['ramalan']}: {h['hasil']} - {h['bukti']}", flush=True)
     return 0
