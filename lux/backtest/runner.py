@@ -1,4 +1,4 @@
-"""Runner bersama untuk keluarga hipotesis (ADR-006, diperluas ADR-007, ADR-010, ADR-011, ADR-013).
+"""Runner bersama untuk keluarga hipotesis (ADR-006, diperluas ADR-007, ADR-010, ADR-011, ADR-013, ADR-014).
 
 ADR-005 mensyaratkan ekstraksi ini sebelum orkestrator keempat dibuat, dan
 syaratnya dipenuhi di sini. Tiga orkestrator lama — ``run_wf`` (H-001b),
@@ -33,6 +33,35 @@ ambang 0,05R. Perhitungannya berdiri di ``lux.analisis.sebaran`` karena
 ``ringkas_gabungan`` berada di ``run_wf`` yang dibekukan. Ambang pembandingnya
 diambil dari ``spek.h.kriteria.min_ekspektasi_R``, bukan diketik ulang, supaya
 angka ambang tetap hidup di satu tempat saja.
+
+ADR-014 MENAMBAHKAN DUA HAL, DAN HANYA DUA
+------------------------------------------
+**Pertama, penolakan pengaman biaya masuk ikut ditulis ke laporan** sebagai
+alasan tersendiri. Penolakan **bukan perdagangan**, jadi ia haram masuk
+histogram ``alasan_keluar``; tanpa baris sendiri ia hilang tanpa jejak, dan
+saringan yang membuang entri tanpa jejak adalah titik buta yang sama jenisnya
+dengan gerbang yang hasilnya tidak pernah ditulis ke ``reports/``.
+
+Angka itu wajib ditafsirkan dengan satu peringatan yang sudah dibayar: pada
+simbol yang **seluruhnya** degenerat, pengaman menolak entri juga saat
+pemilihan parameter, sehingga semua kandidat berskor ``-inf`` dan seluruh
+jendelanya dilewati. Simbol semacam itu menyumbang **nol** penolakan dan nol
+perdagangan. Jadi angka ini hanya menghitung simbol yang berubah degenerat di
+tengah jalan; yang membuat simbol degenerat total terlihat hanyalah lantai
+semesta.
+
+**Kedua, lantai semesta.** ``muat_konteks`` menyaring simbol yang median
+``stop_frac``-nya di bawah lantai lewat ``lux.degenerasi.saring_semesta``.
+Medan ``Opsi.min_median_stop_frac`` bawaannya **0.0 yang berarti MATI**, dengan
+alasan yang sama seperti empat saringan mesin: hasil H-001b sampai H-011 harus
+tetap dapat diulang, dan itu hanya mungkin bila runner bawaannya tidak
+menyaring apa pun. Ambangnya **tidak diketik di modul ini**; pemanggil
+menyerahkannya, dan pemanggil mengambilnya dari ``lux.degenerasi``.
+
+Simbol yang dibuang **wajib tertulis di laporan beserta median
+``stop_frac``-nya**. Semesta yang menyusut tanpa catatan adalah penyubsetan
+simbol yang tidak dapat dibedakan dari kecurangan ketika laporannya dibaca
+setahun kemudian.
 """
 
 from __future__ import annotations
@@ -52,7 +81,7 @@ from lux.analisis.sebaran import (
     jarak_ambang,
     ukur_sebaran,
 )
-from lux.backtest.engine import Hasil, Konfig, jalankan
+from lux.backtest.engine import Hasil, Konfig, atr, jalankan
 from lux.backtest.funding_ekor import (
     dari_rincian,
     gerbang_funding_ekor,
@@ -89,6 +118,7 @@ from lux.backtest.run_wf import (
     simbol_mati_dari_akhir,
 )
 from lux.backtest.walk_forward import jalankan_walk_forward
+from lux.degenerasi import median_stop_frac, saring_semesta
 from lux.funding_model import ambil_jadwal, muat_jadwal
 from lux.praregistrasi import Hipotesis, nilai, simpan
 
@@ -113,6 +143,11 @@ class Opsi:
     pemanasan: int = 200
     ulangan: int = 100
     sampel_permutasi: int = 10
+    # ADR-014. Nol berarti MATI, dan medan ini diletakkan paling akhir dengan
+    # alasan yang sama seperti medan Konfig baru: posisi argumen medan lama
+    # tidak boleh bergeser, dan hasil sebelas hipotesis lama harus tetap dapat
+    # diulang tanpa satu simbol pun tersaring.
+    min_median_stop_frac: float = 0.0
 
 
 @dataclass
@@ -127,6 +162,10 @@ class Konteks:
     gerbang_cs: Gerbang
     semesta_layak: list[str]
     mati: list[str]
+    # ADR-014. Hasil lengkap lantai semesta, atau None bila lantai mati.
+    # Dibawa sampai ke laporan supaya semesta yang menyusut selalu punya
+    # penjelasan yang dapat diperiksa tangan.
+    saringan: dict | None = None
 
 
 @dataclass
@@ -143,7 +182,64 @@ class Spek:
     buat_konfig: Callable[[dict, Konfig], Konfig] | None = None
 
 
-def muat_konteks(opsi: Opsi) -> Konteks:
+def median_stop_frac_bingkai(
+    df: pd.DataFrame, konfig: Konfig | None = None
+) -> float | None:
+    """Median jarak stop satu simbol sepanjang riwayatnya, atau ``None``.
+
+    ATR dihitung oleh ``engine.atr``, bukan oleh salinan di sini, dan aritmetika
+    medannya diserahkan ke ``lux.degenerasi``. Dua implementasi dari besaran yang
+    sama adalah cara paling andal melahirkan selisih yang tidak terdeteksi
+    siapa pun.
+
+    Satu ketidaktepatan yang disengaja dan wajib diketahui: mesin menentukan
+    ukuran posisi dari ATR bar ``t-1`` terhadap harga **pembukaan** bar ``t``
+    yang sudah diberi slippage, sedangkan di sini ATR bar ``t`` dibagi harga
+    **penutupan** bar ``t``. Selisihnya berorde satu bar dan satu slippage,
+    yakni per mil. Kriteria yang dinilai berselisih tiga orde besaran
+    (3,2e-06 terhadap 4e-03), jadi ketidaktepatan ini tidak dapat memindahkan
+    satu simbol pun melewati lantai. Ia tetap dicatat di sini alih-alih
+    dibiarkan tersembunyi.
+    """
+    k = konfig or Konfig()
+    wajib = ("high", "low", "close")
+    kurang = [c for c in wajib if c not in df.columns]
+    if kurang:
+        raise ValueError(f"kolom wajib hilang: {kurang}")
+    if len(df) == 0:
+        return None
+    h = df["high"].to_numpy(dtype="float64")
+    l = df["low"].to_numpy(dtype="float64")
+    c = df["close"].to_numpy(dtype="float64")
+    a = atr(h, l, c, k.atr_periode)
+    return median_stop_frac(a, c, k.atr_pengali_stop)
+
+
+def saring_bingkai(
+    bingkai: dict[str, pd.DataFrame],
+    ambang: float,
+    konfig: Konfig | None = None,
+) -> tuple[dict[str, pd.DataFrame], dict]:
+    """Buang simbol yang satuan risikonya runtuh, dengan alasan tercatat.
+
+    Putusannya seluruhnya milik ``lux.degenerasi.saring_semesta``; fungsi ini
+    hanya menyiapkan medannya dan membuang bingkai yang ditolak. Tidak ada nama
+    simbol yang diperlakukan istimewa di sini, karena degenerasi dibuktikan oleh
+    ``stop_frac`` dan bukan oleh ejaan (saringan nama naif sempat menandai
+    ``BUSDT`` dan ``TUSDT``).
+    """
+    if ambang <= 0:
+        raise ValueError("ambang lantai stop harus positif")
+    medan = {
+        s: median_stop_frac_bingkai(bingkai[s], konfig) for s in sorted(bingkai)
+    }
+    hasil = saring_semesta(medan, ambang)
+    layak = set(hasil["layak"])
+    tersisa = {s: bingkai[s] for s in sorted(bingkai) if s in layak}
+    return tersisa, hasil
+
+
+def muat_konteks(opsi: Opsi, konfig: Konfig | None = None) -> Konteks:
     semesta = json.loads(Path(opsi.universe).read_text(encoding="utf-8"))["simbol"]
     dipilih = sorted(semesta)[: opsi.limit] if opsi.limit > 0 else sorted(semesta)
     print(f"universe layak {len(semesta)}, diuji {len(dipilih)}", flush=True)
@@ -159,7 +255,10 @@ def muat_konteks(opsi: Opsi) -> Konteks:
         flush=True,
     )
 
-    # Checksum dinilai sekali: berkasnya sama untuk seluruh keluarga.
+    # Checksum dinilai sekali: berkasnya sama untuk seluruh keluarga. Dinilai
+    # atas SELURUH berkas yang benar-benar dibaca, termasuk berkas simbol yang
+    # sebentar lagi dibuang lantai. Yang dijaga gerbang ini adalah keutuhan
+    # data yang disentuh, bukan keanggotaan semesta.
     manifest_path = Path(opsi.out) / "manifest_aset.json"
     terhitung = {p.name: sha256_berkas(p) for p in berkas}
     if manifest_path.exists():
@@ -179,6 +278,33 @@ def muat_konteks(opsi: Opsi) -> Konteks:
         )
     print(f"checksum: {gerbang_cs.catatan}", flush=True)
 
+    # ADR-014: lantai satuan R sebagai kriteria kelayakan semesta. Simbol yang
+    # ditolak keluar dari semesta seluruhnya, bukan hanya dari pengujian, sebab
+    # ia memang tidak layak diuji dan bukan sekadar tidak diuji kali ini.
+    saringan: dict | None = None
+    if opsi.min_median_stop_frac > 0:
+        sebelum = len(bingkai)
+        bingkai, saringan = saring_bingkai(
+            bingkai, opsi.min_median_stop_frac, konfig
+        )
+        dibuang = {b["symbol"] for b in saringan["ditolak"]}
+        semesta = [s for s in semesta if s not in dibuang]
+        print(
+            f"lantai median stop_frac {opsi.min_median_stop_frac}: "
+            f"{saringan['n_layak']} layak, {saringan['n_ditolak']} dibuang "
+            f"dari {sebelum} simbol dimuat",
+            flush=True,
+        )
+        for b in saringan["ditolak"]:
+            m = b["median_stop_frac"]
+            print(
+                f"  DIBUANG {b['symbol']}: median_stop_frac "
+                f"{'-' if m is None else format(m, '.6e')}, {b['sebab']}",
+                flush=True,
+            )
+    else:
+        print("lantai median stop_frac: MATI", flush=True)
+
     semesta_layak = [s for s in semesta if s in akhir]
     mati = simbol_mati_dari_akhir({s: akhir[s] for s in semesta_layak})
 
@@ -191,6 +317,7 @@ def muat_konteks(opsi: Opsi) -> Konteks:
         gerbang_cs=gerbang_cs,
         semesta_layak=semesta_layak,
         mati=mati,
+        saringan=saringan,
     )
 
 
@@ -253,6 +380,9 @@ def jalankan_spek(
                 "ekspektasi_R": (
                     None if r["ekspektasi_R"] is None else round(r["ekspektasi_R"], 5)
                 ),
+                # ADR-014. Per simbol, supaya penolakan yang menumpuk di satu
+                # simbol tidak menyamar sebagai penolakan yang merata.
+                "entri_ditolak_biaya": r["entri_ditolak_biaya"],
                 "parameter": r["parameter_per_jendela"],
             }
         )
@@ -302,6 +432,20 @@ def jalankan_spek(
     for p in semua_trade:
         alasan[p.alasan_keluar] = alasan.get(p.alasan_keluar, 0) + 1
 
+    # ADR-014. Penolakan pengaman biaya BUKAN perdagangan, jadi ia sengaja
+    # tidak dijumlahkan ke dalam ``alasan`` di atas: mencampurnya akan membuat
+    # histogram alasan keluar berbohong tentang jumlah perdagangan. Ia berdiri
+    # sebagai angkanya sendiri.
+    entri_ditolak_biaya = sum(r["entri_ditolak_biaya"] for r in ringkasan_simbol)
+    simbol_dengan_penolakan = sorted(
+        (
+            {"symbol": r["symbol"], "entri_ditolak_biaya": r["entri_ditolak_biaya"]}
+            for r in ringkasan_simbol
+            if r["entri_ditolak_biaya"] > 0
+        ),
+        key=lambda b: -b["entri_ditolak_biaya"],
+    )
+
     # ADR-013. Nilai R tidak finit adalah cacat mesin dan wajib berbunyi, tetapi
     # bunyinya ditulis ke laporan alih-alih melempar galat: menaruh pemeriksaan
     # yang bisa gagal di UJUNG run panjang berarti membuang seluruh komputasi
@@ -333,6 +477,12 @@ def jalankan_spek(
 
     print(json.dumps(gabungan, indent=2), flush=True)
     print(f"alasan keluar: {alasan}", flush=True)
+    print(
+        f"entri ditolak pengaman biaya: {entri_ditolak_biaya} "
+        f"(pengaman {konfig.maks_biaya_masuk_R}R, "
+        f"lantai semesta {opsi.min_median_stop_frac})",
+        flush=True,
+    )
     print(f"parameter terpilih: {parameter_terpilih}", flush=True)
     print(f"konsentrasi: {g_konsentrasi.catatan}", flush=True)
     print(f"funding ekor: {g_funding_ekor.catatan}", flush=True)
@@ -439,10 +589,21 @@ def jalankan_spek(
             "maks_umur_bar": konfig.maks_umur_bar,
             "maks_carry_R": konfig.maks_carry_R,
             "jendela_carry_hari": konfig.jendela_carry_hari,
+            "maks_carry_realisasi_R": konfig.maks_carry_realisasi_R,
+            # ADR-014. Dua angka yang wajib terlihat di laporan, karena tanpa
+            # keduanya mustahil membedakan run yang lantainya menyala dari run
+            # yang lantainya mati.
+            "maks_biaya_masuk_R": konfig.maks_biaya_masuk_R,
+            "min_median_stop_frac": opsi.min_median_stop_frac,
             "konfig_per_kandidat": spek.buat_konfig is not None,
         },
         "gabungan": gabungan,
         "alasan_keluar": alasan,
+        # ADR-014: alasannya sendiri, di samping alasan_keluar dan
+        # diagnosa_biaya, bukan di dalam salah satunya.
+        "entri_ditolak_biaya": entri_ditolak_biaya,
+        "entri_ditolak_biaya_per_simbol": simbol_dengan_penolakan,
+        "lantai_semesta": ktx.saringan,
         "parameter_terpilih": parameter_terpilih,
         "diagnosa_biaya": diagnosa,
         "sebaran": sebaran,
@@ -487,7 +648,71 @@ def jalankan_spek(
         f"- Ekspektasi: **{gabungan['ekspektasi_R']}**",
         f"- Jendela positif: {gabungan['jendela_positif']}/{gabungan['jumlah_jendela']}",
         f"- Alasan keluar: {alasan}",
+        f"- Entri ditolak pengaman biaya (ADR-014): "
+        f"**{entri_ditolak_biaya:,}**, pengaman "
+        f"{konfig.maks_biaya_masuk_R}R",
         "",
+        "Penolakan pengaman biaya **bukan perdagangan** dan karena itu tidak "
+        "muncul di histogram alasan keluar maupun di jumlah perdagangan di "
+        "atas. Angka itu juga **tidak** mengukur seluruh keadaan degenerat: "
+        "pada simbol yang seluruhnya degenerat, pengaman menolak entri juga "
+        "saat pemilihan parameter, sehingga semua kandidat berskor -inf, "
+        "seluruh jendelanya dilewati, dan simbol itu menyumbang nol penolakan "
+        "sekaligus nol perdagangan. Yang tercatat di sini hanyalah simbol yang "
+        "berubah degenerat di tengah jalan; simbol yang degenerat sepanjang "
+        "riwayatnya hanya terlihat di lantai semesta di bawah.",
+        "",
+    ]
+    if simbol_dengan_penolakan:
+        md += [
+            "| Simbol | Entri ditolak |",
+            "|---|---|",
+        ]
+        for b in simbol_dengan_penolakan[:20]:
+            md.append(f"| {b['symbol']} | {b['entri_ditolak_biaya']:,} |")
+        md += [""]
+
+    md += ["## Lantai satuan R pada semesta (ADR-014)", ""]
+    if ktx.saringan is None:
+        md += [
+            "Lantai **MATI** (`min_median_stop_frac` = "
+            f"{opsi.min_median_stop_frac}). Semesta dipakai apa adanya, sama "
+            "seperti H-001b sampai H-011.",
+            "",
+        ]
+    else:
+        sr = ktx.saringan
+        md += [
+            f"Lantai median `stop_frac` **{sr['ambang']}**, diturunkan dari "
+            "aritmetika biaya dan bukan disetel: biaya bolak-balik 0,002 dari "
+            "harga menjadi tepat 0,5R di lantai itu. Kriteria ini seragam dan "
+            "dipra-registrasi, sehingga ia bukan penyubsetan simbol "
+            "pasca-hasil.",
+            "",
+            f"- Simbol dinilai: **{sr['n_masuk']}**",
+            f"- Layak: **{sr['n_layak']}**",
+            f"- Dibuang: **{sr['n_ditolak']}**",
+            "",
+        ]
+        if sr["ditolak"]:
+            md += [
+                "| Simbol | median stop_frac | biaya masuk R | Sebab |",
+                "|---|---|---|---|",
+            ]
+            for b in sr["ditolak"]:
+                m = b["median_stop_frac"]
+                bm = b["biaya_masuk_R"]
+                md.append(
+                    f"| {b['symbol']} "
+                    f"| {'\u2014' if m is None else format(m, '.6e')} "
+                    f"| {'\u2014' if bm is None else format(bm, '.2f')} "
+                    f"| {b['sebab']} |"
+                )
+            md += [""]
+        else:
+            md += ["Tidak ada simbol yang dibuang lantai.", ""]
+
+    md += [
         "## Sebaran R dan galat baku (ADR-013)",
         "",
         "Sampai H-010 laporan hanya memuat rerata, sehingga tidak ada hipotesis "
@@ -657,6 +882,10 @@ def jalankan_spek(
         "lulus": bool(putusan.lulus and laporan.semua_lulus),
         "alasan": putusan.alasan,
         "alasan_keluar": alasan,
+        "entri_ditolak_biaya": entri_ditolak_biaya,
+        "simbol_dibuang_lantai": (
+            [] if ktx.saringan is None else [b["symbol"] for b in ktx.saringan["ditolak"]]
+        ),
         "rerata_transaksi_R": diagnosa.get("rerata_transaksi_R"),
         "retensi_drop_1": g_konsentrasi.nilai,
         "porsi_funding_ekor_maks": g_funding_ekor.nilai,
