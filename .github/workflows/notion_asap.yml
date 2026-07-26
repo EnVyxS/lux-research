@@ -7,6 +7,13 @@ name: notion-asap
 #
 # Tugasnya satu: membuktikan bahwa NOTION_TOKEN dan NOTION_DB_RUN_RESULTS benar
 # bekerja. Kredensial yang belum pernah dipakai adalah asumsi, bukan fakta.
+#
+# Riwayat:
+#   run 1 (commit 3880408f) GAGAL di langkah 'uji' - main() tidak punya parameter
+#   token sehingga pengujiannya merah, dan langkah 'kirim' tidak pernah berjalan.
+#   Itu perilaku yang diinginkan: pengujian merah wajib menghentikan pengiriman.
+#   Komentar ini disentuh semata agar filter paths memicu ulang workflow dengan
+#   kode yang sudah diperbaiki. Tidak ada logika yang diubah.
 
 on:
   workflow_dispatch:

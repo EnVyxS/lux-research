@@ -1,4 +1,5 @@
-"""Pengujian CLI pelapor Notion. Tidak menyentuh jaringan sama sekali."""
+"""Pengujian CLI pelapor Notion. Tidak menyentuh jaringan dan tidak memakai
+kredensial nyata: token dan pengirim keduanya disuntik."""
 
 from __future__ import annotations
 
@@ -8,11 +9,14 @@ import pytest
 
 from lux import notion_reporter as pelapor
 
-SHA = "864da2ec4c84bb1ba5abfe396e18a1844b9d37f6"
+SHA = "3880408fabaf73947c966ac6ab32d39effb07e27"
+DB = "42052623cef043098f13a6f46baf7f3b"
+TOKEN_UJI = "token-uji-bukan-kredensial-nyata"
+URL_PALSU = "url-baris-notion-palsu"
 
 ARGV = [
     "--run-id",
-    "asap-notion-2026-07-26T12:40Z",
+    "asap-notion-2026-07-26T15:06Z",
     "--tahap",
     "Lainnya",
     "--status",
@@ -56,18 +60,33 @@ def test_main_mengirim_satu_baris_tanpa_jaringan(capsys):
 
     def pengirim(url, badan, kepala):
         dilihat["badan"] = json.loads(badan.decode("utf-8"))
-        return 200, json.dumps({"url": "https://notion.so/baris"})
+        return 200, json.dumps({"url": URL_PALSU})
 
     kode = pelapor.main(
-        ARGV, pengirim=pengirim, database_id="42052623cef043098f13a6f46baf7f3b"
+        ARGV, pengirim=pengirim, database_id=DB, token=TOKEN_UJI
     )
     assert kode == 0
     badan = dilihat["badan"]
-    assert badan["parent"]["database_id"] == "42052623cef043098f13a6f46baf7f3b"
+    assert badan["parent"]["database_id"] == DB
     assert badan["properties"]["Verdict"]["status"]["name"] == "Menunggu Penilaian"
-    assert "https://notion.so/baris" in capsys.readouterr().out
+    assert URL_PALSU in capsys.readouterr().out
+
+
+def test_main_meneruskan_token_suntikan_ke_header(monkeypatch):
+    """Token suntikan wajib sampai ke header, dan lingkungan tidak dipakai."""
+    monkeypatch.setenv(pelapor.NAMA_ENV_TOKEN, "token-lingkungan-yang-salah")
+    dilihat = {}
+
+    def pengirim(url, badan, kepala):
+        dilihat["otorisasi"] = kepala["Authorization"]
+        return 200, "{}"
+
+    pelapor.main(ARGV, pengirim=pengirim, database_id=DB, token=TOKEN_UJI)
+    assert dilihat["otorisasi"] == f"Bearer {TOKEN_UJI}"
 
 
 def test_main_gagal_bila_database_id_kosong():
     with pytest.raises(ValueError):
-        pelapor.main(ARGV, pengirim=lambda *_: (200, "{}"), database_id="")
+        pelapor.main(
+            ARGV, pengirim=lambda *_: (200, "{}"), database_id="", token=TOKEN_UJI
+        )

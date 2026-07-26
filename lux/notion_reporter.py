@@ -8,7 +8,8 @@ Batas yang disengaja:
 * Tidak ada dependensi baru. Runner tidak memiliki ``requests``; modul ini hanya
   memakai pustaka standar.
 * Tidak ada jaringan di dalam pengujian. :func:`kirim` dan :func:`main` menerima
-  ``pengirim`` yang dapat disuntik; hanya nilai bawaannya menyentuh jaringan.
+  ``pengirim`` dan ``token`` yang dapat disuntik; hanya nilai bawaannya yang
+  menyentuh jaringan atau lingkungan.
 * Workflow tidak dapat menulis ``Verdict``. :func:`properti_baris` tidak
   menerima argumen verdict dan selalu menulis ``Menunggu Penilaian``. Gerbang
   mutu yang boleh diisi oleh pihak yang dinilai bukan gerbang.
@@ -213,8 +214,9 @@ def kirim(
 ) -> tuple[int, str]:
     """Kirim satu baris ke Notion.
 
-    ``pengirim`` disuntik pada pengujian sehingga tidak ada jaringan di sana.
-    Token tidak pernah dicetak, dan tidak masuk pesan galat.
+    ``pengirim`` dan ``token`` disuntik pada pengujian sehingga tidak ada
+    jaringan dan tidak ada kredensial nyata di sana. Token tidak pernah
+    dicetak, dan tidak masuk pesan galat.
     """
     token_efektif = (
         token if token is not None else os.environ.get(NAMA_ENV_TOKEN, "")
@@ -262,8 +264,14 @@ def main(
     *,
     pengirim: Pengirim | None = None,
     database_id: str | None = None,
+    token: str | None = None,
 ) -> int:
-    """Titik masuk CLI. Mengembalikan 0 hanya bila Notion menerima baris."""
+    """Titik masuk CLI. Mengembalikan 0 hanya bila Notion menerima baris.
+
+    ``token`` wajib dapat disuntik. Tanpa itu fungsi ini hanya dapat dijalankan
+    bila kredensial nyata ada di lingkungan, yakni tidak dapat diuji sama sekali
+    (aturan 32).
+    """
     opsi = argumen(argv)
     db = (
         database_id
@@ -283,7 +291,9 @@ def main(
         selesai_iso=opsi.selesai,
         lokasi_artefak=opsi.lokasi,
     )
-    kode, teks = kirim(payload_baris(db, properti), pengirim=pengirim)
+    kode, teks = kirim(
+        payload_baris(db, properti), token=token, pengirim=pengirim
+    )
     try:
         url_baris = json.loads(teks).get("url", "(tanpa url)")
     except (json.JSONDecodeError, AttributeError):
