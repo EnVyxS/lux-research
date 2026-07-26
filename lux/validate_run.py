@@ -7,6 +7,11 @@ Laporan yang hanya menyebut "447 simbol lolos" tidak bisa didiagnosis, dan
 angka yang tidak bisa didiagnosis pernah membuat riset ini kehilangan dua
 putaran penuh.
 
+ADR-016 langkah 3 menambahkan satu hal: nama berkas universe kini menyebut
+interval. Sebelumnya seluruh interval menulis ke `universe_layak.json` yang sama,
+sehingga validasi 4h akan menimpa semesta 1h tanpa satu pun pesan galat,
+sementara `potong_ekor.yml` meneruskan tepat berkas itu lewat `--universe`.
+
 Pemakaian:
     python -m lux.validate_run --dir aset --interval 1h --config config/lux.yaml
 """
@@ -34,6 +39,28 @@ from lux.validate import (
 # normal. Membiarkannya ikut terbaca membuat tiga simbol terhitung dua kali dan
 # muncul sebagai 12.593 "duplikat waktu" yang tampak seperti data rusak.
 POLA_DILARANG = ("_retry",)
+
+# Interval yang berkas universe-nya masih ditulis dengan nama lama. Hanya 1h,
+# karena hanya 1h yang pernah punya pembaca: `potong_ekor.yml` meneruskan
+# `reports/universe_layak.json` sebagai `--universe`.
+INTERVAL_LEGASI = "1h"
+
+
+def nama_keluaran_universe(interval: str) -> list[str]:
+    """Nama berkas universe layak yang ditulis untuk sebuah interval.
+
+    Keputusan ini hidup sebagai fungsi tingkat modul, bukan di dalam `main`,
+    supaya ia dapat diuji tanpa parquet dan tanpa jaringan (aturan 32). Yang
+    dicegah bukan kesalahan tulis melainkan penimpaan senyap: berkas legasi
+    ditulis **hanya** untuk 1h, sehingga run 4h secara konstruksi tidak dapat
+    menyentuh semesta 1h yang menjadi masukan ADR-003.
+
+    Nama berinterval selalu berada di posisi pertama; ia yang kanonik.
+    """
+    nama = [f"universe_layak_{interval}.json"]
+    if interval == INTERVAL_LEGASI:
+        nama.append("universe_layak.json")
+    return nama
 
 
 def pilih_berkas(direktori: Path, interval: str) -> list[Path]:
@@ -155,22 +182,22 @@ def main(argv: list[str] | None = None) -> int:
         json.dumps({"ringkasan": ringkas, "per_simbol": hasil}, indent=2),
         encoding="utf-8",
     )
-    (out / "universe_layak.json").write_text(
-        json.dumps(
-            {
-                "interval": a.interval,
-                "ambang": {
-                    "min_bar": ambang.min_bar,
-                    "min_median_quote_volume_harian": ambang.min_median_quote_volume_harian,
-                    "maks_rasio_bar_datar": ambang.maks_rasio_bar_datar,
-                },
-                "jumlah": len(layak),
-                "simbol": sorted(h["symbol"] for h in layak),
+    teks_universe = json.dumps(
+        {
+            "interval": a.interval,
+            "ambang": {
+                "min_bar": ambang.min_bar,
+                "min_median_quote_volume_harian": ambang.min_median_quote_volume_harian,
+                "maks_rasio_bar_datar": ambang.maks_rasio_bar_datar,
             },
-            indent=2,
-        ),
-        encoding="utf-8",
+            "jumlah": len(layak),
+            "simbol": sorted(h["symbol"] for h in layak),
+        },
+        indent=2,
     )
+    for nama in nama_keluaran_universe(a.interval):
+        (out / nama).write_text(teks_universe, encoding="utf-8")
+        print(f"  universe ditulis: {nama}", flush=True)
 
     baris_md = [
         f"# Validasi Tier B {a.interval}",
