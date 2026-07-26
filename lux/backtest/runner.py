@@ -34,8 +34,8 @@ ambang 0,05R. Perhitungannya berdiri di ``lux.analisis.sebaran`` karena
 diambil dari ``spek.h.kriteria.min_ekspektasi_R``, bukan diketik ulang, supaya
 angka ambang tetap hidup di satu tempat saja.
 
-ADR-014 MENAMBAHKAN DUA HAL, DAN HANYA DUA
-------------------------------------------
+ADR-014 MENAMBAHKAN TIGA HAL, DAN HANYA TIGA
+--------------------------------------------
 **Pertama, penolakan pengaman biaya masuk ikut ditulis ke laporan** sebagai
 alasan tersendiri. Penolakan **bukan perdagangan**, jadi ia haram masuk
 histogram ``alasan_keluar``; tanpa baris sendiri ia hilang tanpa jejak, dan
@@ -62,6 +62,13 @@ Simbol yang dibuang **wajib tertulis di laporan beserta median
 ``stop_frac``-nya**. Semesta yang menyusut tanpa catatan adalah penyubsetan
 simbol yang tidak dapat dibedakan dari kecurangan ketika laporannya dibaca
 setahun kemudian.
+
+**Ketiga, agregat per bulan masuk.** Laporan sampai H-011 tidak memuat satu pun
+stempel waktu perdagangan, sehingga kriteria utama H-012 — ekspektasi pada
+periode waktu terakhir yang dibekukan — mustahil dihitung dari laporan yang
+dikomit. Blok ``agregat_periode`` menutup lubang itu. Ia hanya membaca ulang
+perdagangan yang sama menurut bulan kalender UTC waktu **masuk**; tidak ada
+ambang, putusan, maupun perilaku mesin yang tersentuh olehnya.
 """
 
 from __future__ import annotations
@@ -75,6 +82,8 @@ from typing import Callable
 import numpy as np
 import pandas as pd
 
+from lux.analisis.periode import agregat_per_bulan
+from lux.analisis.periode import dari_perdagangan as pasangan_periode
 from lux.analisis.sebaran import (
     KUNCI as KUNCI_SEBARAN,
     dari_perdagangan,
@@ -446,6 +455,12 @@ def jalankan_spek(
         key=lambda b: -b["entri_ditolak_biaya"],
     )
 
+    # ADR-014. Agregat menurut bulan kalender UTC waktu MASUK. Ditulis ke
+    # laporan karena kriteria utama H-012 adalah ekspektasi pada periode waktu
+    # terakhir yang dibekukan, dan kriteria utama wajib dapat dihitung ulang
+    # dari berkas yang dikomit — bukan dari nilai yang beredar di memori run.
+    agregat_periode = agregat_per_bulan(pasangan_periode(semua_trade))
+
     # ADR-013. Nilai R tidak finit adalah cacat mesin dan wajib berbunyi, tetapi
     # bunyinya ditulis ke laporan alih-alih melempar galat: menaruh pemeriksaan
     # yang bisa gagal di UJUNG run panjang berarti membuang seluruh komputasi
@@ -483,6 +498,7 @@ def jalankan_spek(
         f"lantai semesta {opsi.min_median_stop_frac})",
         flush=True,
     )
+    print(f"bulan dengan perdagangan: {len(agregat_periode)}", flush=True)
     print(f"parameter terpilih: {parameter_terpilih}", flush=True)
     print(f"konsentrasi: {g_konsentrasi.catatan}", flush=True)
     print(f"funding ekor: {g_funding_ekor.catatan}", flush=True)
@@ -604,6 +620,7 @@ def jalankan_spek(
         "entri_ditolak_biaya": entri_ditolak_biaya,
         "entri_ditolak_biaya_per_simbol": simbol_dengan_penolakan,
         "lantai_semesta": ktx.saringan,
+        "agregat_periode": agregat_periode,
         "parameter_terpilih": parameter_terpilih,
         "diagnosa_biaya": diagnosa,
         "sebaran": sebaran,
@@ -713,6 +730,30 @@ def jalankan_spek(
             md += ["Tidak ada simbol yang dibuang lantai.", ""]
 
     md += [
+        "## Hasil menurut bulan masuk (ADR-014)",
+        "",
+        "Setiap perdagangan dimiliki oleh bulan kalender UTC tempat ia "
+        "**dibuka**, karena keputusan yang diuji adalah keputusan masuk. "
+        "Akibatnya ada rembesan yang wajib dinyatakan: perdagangan yang dibuka "
+        "sesaat sebelum batas sebuah periode dapat ditutup sesudahnya, dan "
+        "besarnya rembesan itu terbatas oleh `maks_umur_bar` "
+        f"({konfig.maks_umur_bar} bar).",
+        "",
+        "Tabel ini **bukan** putusan dan bukan pula izin memilih periode "
+        "terbaik sesudah melihatnya. Memilih periode setelah hasil terlihat "
+        "adalah penyubsetan yang sama terlarangnya dengan memilih simbol.",
+        "",
+        "| Bulan masuk | Trade | Total R | Ekspektasi R |",
+        "|---|---|---|---|",
+    ]
+    for b in agregat_periode:
+        e = "\u2014" if b["ekspektasi_R"] is None else f"{b['ekspektasi_R']:+.6f}"
+        md.append(
+            f"| {b['periode']} | {b['trade']:,} | {b['total_R']:+.2f} | {e} |"
+        )
+
+    md += [
+        "",
         "## Sebaran R dan galat baku (ADR-013)",
         "",
         "Sampai H-010 laporan hanya memuat rerata, sehingga tidak ada hipotesis "
@@ -886,6 +927,7 @@ def jalankan_spek(
         "simbol_dibuang_lantai": (
             [] if ktx.saringan is None else [b["symbol"] for b in ktx.saringan["ditolak"]]
         ),
+        "bulan_dengan_trade": len(agregat_periode),
         "rerata_transaksi_R": diagnosa.get("rerata_transaksi_R"),
         "retensi_drop_1": g_konsentrasi.nilai,
         "porsi_funding_ekor_maks": g_funding_ekor.nilai,
