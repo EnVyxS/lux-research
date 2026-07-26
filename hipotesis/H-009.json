@@ -1,0 +1,43 @@
+{
+  "id": "H-009",
+  "pernyataan": "Dengan sinyal Donchian yang tidak diubah dan grid H-007 yang tidak diubah, memaksa keluar saat carry TEREALISASI melewati 0,25R — ambang yang dipatok konstan dan sengaja dikeluarkan dari ruang parameter — membuat gerbang invarian_risiko lulus. H-008 gagal bukan karena mekanismenya keliru melainkan karena pemilih yang memaksimalkan ekspektasi selalu mematikan pengaman yang memakan ekspektasi. Batas risiko karena itu tidak boleh dilombakan.",
+  "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)",
+  "ruang_parameter": {
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "imbalan_R": [
+      1.0,
+      2.0,
+      3.0,
+      4.0
+    ],
+    "maks_carry_realisasi_R": [
+      0.25
+    ],
+    "atr_pengali_stop": [
+      2.0
+    ],
+    "maks_umur_bar": [
+      168
+    ],
+    "maks_carry_R": [
+      0.25
+    ],
+    "jendela_carry_hari": [
+      30
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.05,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-26T03:48:12+00:00",
+  "komit": "",
+  "jumlah_kombinasi": 12,
+  "sidik": "eac6c83305bd10695e8507f498fae9f31f095fc8240495971c541c67a148b2c8"
+}
