@@ -9,7 +9,9 @@ name: backtest
 # ini didorong, sebelum langkah jalan, dan satu-satunya yang tertulis ke repo
 # adalah 'tidak ada log; kegagalan terjadi sebelum langkah jalan'. Agen tidak
 # punya akses ke log Actions, sehingga penyebabnya hanya bisa ditebak, dan
-# tebakan tentang penyebab kegagalan hampir selalu meleset.
+# tebakan tentang penyebab kegagalan hampir selalu meleset. Run 30177253467
+# lolos di atas kode yang sama persis, jadi kegagalan itu bersifat sesaat dan
+# tetap dicatat sebagai tidak diketahui, bukan ditebak.
 #
 # Cacatnya ada pada rancangan berkas ini, bukan pada kegagalannya: doktrin
 # 'tulis hasil ke reports/' hanya diterapkan pada langkah jalan, sedangkan
@@ -46,49 +48,82 @@ name: backtest
 #   H-006   run 30175665060  DITOLAK, -0,13449R, p entri acak 1,0
 #   H-007   run 30176317156  DITOLAK, +0,04044R terbaik, invarian_risiko -1,9769
 #   H-008   run 30177134015  GAGAL sebelum langkah jalan, penyebab tidak terbaca
-#   H-008   sekarang         pengaman carry keras (ADR-008), pra-terbang bersuara
+#   H-008   run 30177253467  DITOLAK, +0,04126R, invarian_risiko -1,9769
+#   H-009   sekarang         pengaman carry DIPATOK (ADR-009)
 #
 # Tidak satu pun dari hipotesis yang sudah divonis dijalankan ulang, dan tidak
 # satu ambang pun diturunkan. Yang boleh dilakukan hanya mendaftarkan hipotesis
 # baru dengan ID baru.
 #
-# ADR-008. H-007 adalah hasil terbaik yang pernah diukur dan dijatuhkan bukan
-# oleh ekspektasinya melainkan oleh gerbang risiko. Gerbang yang sama sudah
-# menjatuhkan empat dari tujuh hipotesis:
+# ADR-009. H-008 memasang pengaman carry terealisasi lalu menyerahkan ambangnya
+# kepada walk-forward. Hasilnya, dari 356 jendela:
 #
-#   H-001b  -2,5853R    H-003  -1,8637R
-#   H-005   -1,9122R    H-007  -1,9769R    (ambang -1,5R)
+#   ambang 0,00 (mati)  dipilih 334 jendela
+#   ambang 0,25         dipilih  22 jendela
+#   ambang 0,50         dipilih   0 jendela
 #
-# Stop berjarak 1R, jadi kerugian jauh melampaui 1R hanya mungkin bila ada biaya
-# menumpuk di luar kendali stop. Saringan carry ADR-004 seharusnya menutupnya,
-# dan saringan itu MENYALA di keempat run tersebut. Ia tetap tembus karena ia
-# proyeksi: dihitung sekali di saat entri dari rerata rate 30 hari terakhir,
-# lalu tidak pernah dinilai ulang. Rate yang melonjak sesudah entri tidak
-# terlihat olehnya.
+# Gerbang invarian_risiko jatuh di angka yang sama persis dengan H-007, yaitu
+# -1,9769R. Pembongkaran sepuluh perdagangan terburuk di dalam laporan H-008
+# menjelaskan sebabnya. Perdagangan terburuk, AIOTUSDT:
 #
-# H-008 menambahkan pengaman kedua yang tidak menebak apa pun: posisi ditutup
-# saat carry yang SUDAH tertagih melewati ambang, dinilai pada pembukaan tiap
-# bar. Alasan keluar barunya 'carry'.
+#   R -1,9769 = kotor -1,0182 - transaksi 0,0359 - FUNDING 0,9228
 #
-# Ruang parameter = grid H-007 PERSIS ditambah satu sumbu:
-#   lookback {20,55,100} x imbalan {1,2,3,4} x carry keras {0,00; 0,25; 0,50}
-#   = 36 kombinasi.
+# Funding menyumbang 46,7 persen kerugian itu, dan ia komponen biaya terbesar
+# di kesepuluh perdagangan terburuk. Stop bekerja sempurna di kesepuluhnya:
+# alasan keluar 'stop' dengan kotor tepat 1R ditambah slippage. Tidak ada harga
+# yang menganga melewati stop, dan lebar stop terburuk 2,83 persen justru lebih
+# lebar dari rerata 3,61 persen.
 #
-# Grid imbalan sengaja TIDAK dipersempit meski 4R menang di H-007. Mempersempit
-# ruang pencarian setelah melihat hasil adalah penyetelan pasca-hoc. Ambang 0,00
-# ikut dilombakan supaya percobaan ini bisa menyimpulkan bahwa pengamannya
-# merugikan, dari run yang sama.
+# Perdagangan itu terbukti berjalan dengan pengaman MATI, dan ini deduksi bukan
+# tebakan: carry 0,9228R melewati ambang teraktif mana pun di grid, jadi kalau
+# pengaman menyala ia pasti memicu lebih dulu; ia keluar 'stop', bukan 'carry'.
+#
+# Sebabnya struktural. Walk-forward memilih dengan memaksimalkan ekspektasi
+# dalam sampel, sementara invarian_risiko dinilai SESUDAH pemilihan selesai dan
+# tidak pernah masuk fungsi tujuan. Pengaman risiko memotong posisi sebelum
+# sempat pulih, jadi ia memakan ekspektasi, jadi pemaksimal ekspektasi akan
+# selalu mematikannya bila diberi pilihan. Karena itu H-008 bukan uji terhadap
+# pengaman carry melainkan uji terhadap kesediaan pemaksimal keuntungan
+# membatasi kerugiannya sendiri. Jawabannya tidak.
+#
+# Kesimpulannya satu kalimat: BATAS RISIKO TIDAK DILOMBAKAN.
+#
+# H-009 karena itu tidak mengubah mekanismenya sama sekali, hanya siapa yang
+# memutuskan. Ruang parameter kembali PERSIS ke grid H-007:
+#
+#   lookback {20,55,100} x imbalan {1,2,3,4} = 12 kombinasi
+#
+# dan maks_carry_realisasi_R dipatok konstan 0,25 di luar grid. Nilai itu sudah
+# tertulis di config/lux.yaml v2 sebagai risiko.maks_carry_R sejak ADR-004,
+# ditetapkan sebelum H-002 dijalankan. Ia bukan pemenang pasca-hoc; di H-008 ia
+# justru kalah 22 lawan 334.
+#
+# Grid imbalan tetap TIDAK dipersempit meski 4R menang di 194 dari 356 jendela
+# H-007. Mempersempit ruang pencarian setelah melihat hasil adalah penyetelan
+# pasca-hoc, dan itu tepat kesalahan yang sedang dihindari di sini.
+#
+# Ramalan ditulis sebelum run, termasuk yang merugikan hipotesis ini sendiri:
+#   1. keluar 'carry' melonjak dari 2 ke ratusan
+#   2. kerugian terburuk turun di bawah 1,5R sehingga invarian_risiko lulus
+#   3. ekspektasi TURUN di bawah 0,04126R milik H-008
+# Ramalan ketiga berarti H-009 kemungkinan besar tetap ditolak, kali ini oleh
+# kriteria 0,05R. Bila ekspektasi justru naik, yang patut dicurigai bukan
+# keberhasilan melainkan pengamannya tidak benar-benar memicu.
+#
+# Kriteria tidak dilonggarkan sedikit pun dari H-002, H-007, dan H-008.
+# Melonggarkannya sekarang, setelah tahu pengaman ini memakan ekspektasi,
+# adalah bentuk kecurangan yang paling mudah dibela.
 #
 # Percobaan tunggal, jadi ambang p entri acak tetap 0,05 tanpa koreksi
 # multiplisitas. ADR-006 melarang sinyal harga ketujuh; larangan itu dihormati
 # dengan tidak menulis satu baris pun di lux/strategi/. Sinyalnya sama persis
-# dengan H-002 dan H-007.
+# dengan H-002, H-007, dan H-008.
 #
-# Pengaman baru bawaannya MATI (0,0), sehingga H-001b sampai H-007 tetap dapat
-# diulang bita demi bita. Itu dikunci pengujian, bukan diandaikan.
+# Bawaan pengaman di engine tetap MATI (0,0), sehingga H-001b sampai H-007 tetap
+# dapat diulang bita demi bita. Itu dikunci pengujian, bukan diandaikan.
 #
 # limit tetap 40 simbol pertama secara alfabet. Mengubahnya membuat seluruh
-# hasil tidak dapat dibandingkan dengan H-001b sampai H-007.
+# hasil tidak dapat dibandingkan dengan H-001b sampai H-008.
 
 on:
   workflow_dispatch:
@@ -146,6 +181,11 @@ jobs:
       # Impor dan pembacaan config diuji sebelum satu bita pun diunduh.
       # pyyaml pernah hanya terpasang di sebagian workflow dan menjatuhkan run
       # ini tepat setelah unduhan selesai.
+      #
+      # Dua pemeriksaan terakhir adalah inti ADR-009 dan sengaja diletakkan di
+      # sini, bukan di ujung run: bila sumbu pengaman bocor kembali ke ruang
+      # pencarian, atau bila ambangnya mati, run harus berhenti dalam hitungan
+      # detik dan bukan setelah 559M aset diunduh.
       - name: Periksa impor modul jalan
         id: impor
         if: always() && steps.uji.outcome == 'success'
@@ -159,9 +199,11 @@ jobs:
             python -c "import yaml, pandas, pyarrow; print('impor pihak ketiga siap')"
             python -c "import lux.backtest.run_wf as m; print('run_wf siap', m.POLA_DILARANG)"
             python -c "import lux.backtest.runner as r; print('runner bersama siap')"
-            python -c "from lux.backtest.engine import Konfig; print('ADR-008 bawaan mati:', Konfig().maks_carry_realisasi_R == 0.0)"
+            python -c "from lux.backtest.engine import Konfig; print('bawaan pengaman mati:', Konfig().maks_carry_realisasi_R == 0.0)"
             python -c "from lux.analisis.titik_impas import ALASAN_TIDAK_SELESAI; print('alasan tidak selesai:', ALASAN_TIDAK_SELESAI)"
-            python -c "from lux.backtest.run_h008 import CARRY_KERAS, IMBALAN, LOOKBACK, kandidat, spek_h008; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); s = spek_h008(k); print('H-008 siap:', s.h.id, s.nama, s.h.jumlah_kombinasi, 'kombinasi, sidik', s.h.sidik()[:12]); print('  lookback', LOOKBACK, 'imbalan', IMBALAN, 'carry keras', CARRY_KERAS, 'kandidat', len(kandidat())); print('  saringan ADR-004 tetap:', k.maks_umur_bar, k.maks_carry_R, k.jendela_carry_hari)"
+            python -c "from lux.backtest.run_h009 import AMBANG_CARRY_KERAS, IMBALAN, LOOKBACK, kandidat, spek_h009; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); s = spek_h009(k); print('H-009 siap:', s.h.id, s.nama, s.h.jumlah_kombinasi, 'kombinasi, sidik', s.h.sidik()[:12]); print('  lookback', LOOKBACK, 'imbalan', IMBALAN, 'kandidat', len(kandidat())); print('  ambang carry DIPATOK:', AMBANG_CARRY_KERAS); print('  saringan ADR-004 tetap:', k.maks_umur_bar, k.maks_carry_R, k.jendela_carry_hari)"
+            python -c "from lux.backtest.run_h007 import IMBALAN as I7, LOOKBACK as L7; from lux.backtest.run_h009 import IMBALAN as I9, LOOKBACK as L9; assert I9 == I7 and L9 == L7, 'grid H-009 menyimpang dari H-007'; print('grid identik dengan H-007: ya')"
+            python -c "from lux.backtest.run_h009 import AMBANG_CARRY_KERAS, KUNCI_TERLARANG, buat_konfig, kandidat; from lux.backtest.engine import Konfig; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); assert all(KUNCI_TERLARANG not in p for p in kandidat()), 'batas risiko bocor ke ruang pencarian'; assert AMBANG_CARRY_KERAS > 0, 'pengaman mati'; assert all(buat_konfig(p, k).maks_carry_realisasi_R == AMBANG_CARRY_KERAS for p in kandidat()), 'ada kandidat tanpa pengaman'; print('ADR-009 ditegakkan: pengaman menyala di', len(kandidat()), 'dari', len(kandidat()), 'kandidat')"
           } 2>&1 | tee -a logs/preflight.log
 
       - name: Unduh aset
@@ -178,7 +220,7 @@ jobs:
           ls -la aset | tail -20 2>&1 | tee -a logs/preflight.log
           du -sh aset 2>&1 | tee -a logs/preflight.log
 
-      - name: Jalankan H-008 (pengaman carry keras)
+      - name: Jalankan H-009 (pengaman carry dipatok)
         id: jalan
         if: always() && steps.unduh.outcome == 'success'
         env:
@@ -186,7 +228,7 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p logs
-          python -m lux.backtest.run_h008 \
+          python -m lux.backtest.run_h009 \
             --dir aset \
             --interval 1h \
             --universe reports/universe_layak_v2.json \
@@ -203,7 +245,7 @@ jobs:
         run: |
           mkdir -p reports logs
           {
-            echo "# Log run backtest H-008 (ADR-008)"
+            echo "# Log run backtest H-009 (ADR-009)"
             echo
             echo "Commit: \`${GITHUB_SHA}\`"
             echo "Run: \`${GITHUB_RUN_ID}\`"
