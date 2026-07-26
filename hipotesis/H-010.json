@@ -1,0 +1,43 @@
+{
+  "id": "H-010",
+  "pernyataan": "Pada H-007, H-008, dan H-009 pemilih walk-forward menempel di batas atas grid imbalan, 194 dari 356 jendela di H-009. Selama dinding itu tidak digeser, dua tafsiran tidak dapat dipisahkan: optimum berada di 4R, atau optimum berada di luar grid dan yang terukur hanyalah dindingnya. H-010 menggeser dinding menjadi [2, 4, 6, 8] dengan jumlah kombinasi identik dan seluruh unsur lain tidak diubah. Bila laju kena target turun lebih lambat daripada titik impas 1/(1+imbalan), ekspektasi naik; bila lebih cepat, ia turun dan dinding H-007 terbukti bukan artefak.",
+  "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)",
+  "ruang_parameter": {
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "imbalan_R": [
+      2.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "maks_carry_realisasi_R": [
+      0.25
+    ],
+    "atr_pengali_stop": [
+      2.0
+    ],
+    "maks_umur_bar": [
+      168
+    ],
+    "maks_carry_R": [
+      0.25
+    ],
+    "jendela_carry_hari": [
+      30
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.05,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-26T08:03:22+00:00",
+  "komit": "",
+  "jumlah_kombinasi": 12,
+  "sidik": "14b2f3bfa8a754b50d7a3de4b7c522ac499ebf6390d342e553697ce23e9a10e2"
+}

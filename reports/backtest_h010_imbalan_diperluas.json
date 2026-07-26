@@ -1,0 +1,2243 @@
+{
+  "hipotesis": {
+    "id": "H-010",
+    "pernyataan": "Pada H-007, H-008, dan H-009 pemilih walk-forward menempel di batas atas grid imbalan, 194 dari 356 jendela di H-009. Selama dinding itu tidak digeser, dua tafsiran tidak dapat dipisahkan: optimum berada di 4R, atau optimum berada di luar grid dan yang terukur hanyalah dindingnya. H-010 menggeser dinding menjadi [2, 4, 6, 8] dengan jumlah kombinasi identik dan seluruh unsur lain tidak diubah. Bila laju kena target turun lebih lambat daripada titik impas 1/(1+imbalan), ekspektasi naik; bila lebih cepat, ia turun dan dinding H-007 terbukti bukan artefak.",
+    "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)",
+    "ruang_parameter": {
+      "lookback": [
+        20,
+        55,
+        100
+      ],
+      "imbalan_R": [
+        2.0,
+        4.0,
+        6.0,
+        8.0
+      ],
+      "maks_carry_realisasi_R": [
+        0.25
+      ],
+      "atr_pengali_stop": [
+        2.0
+      ],
+      "maks_umur_bar": [
+        168
+      ],
+      "maks_carry_R": [
+        0.25
+      ],
+      "jendela_carry_hari": [
+        30
+      ]
+    },
+    "kriteria": {
+      "min_ekspektasi_R": 0.05,
+      "min_trade_luar_sampel": 100,
+      "maks_p_entri_acak": 0.05,
+      "min_jendela_positif_rasio": 0.5
+    },
+    "dibuat_utc": "2026-07-26T08:03:22+00:00",
+    "komit": "",
+    "jumlah_kombinasi": 12,
+    "sidik": "14b2f3bfa8a754b50d7a3de4b7c522ac499ebf6390d342e553697ce23e9a10e2"
+  },
+  "parameter_run": {
+    "interval": "1h",
+    "limit": 40,
+    "panjang_latih": 4320,
+    "panjang_uji": 2160,
+    "embargo": 168,
+    "pemanasan": 200,
+    "ulangan_permutasi": 100,
+    "maks_umur_bar": 168,
+    "maks_carry_R": 0.25,
+    "jendela_carry_hari": 30,
+    "konfig_per_kandidat": true
+  },
+  "gabungan": {
+    "jumlah_simbol": 40,
+    "jumlah_jendela": 356,
+    "jendela_positif": 188,
+    "jumlah_trade_luar_sampel": 11734,
+    "total_R": 622.2348185492804,
+    "ekspektasi_R": 0.05302836360569971
+  },
+  "alasan_keluar": {
+    "stop": 8776,
+    "umur": 879,
+    "target": 1839,
+    "akhir_data": 214,
+    "carry": 26
+  },
+  "parameter_terpilih": {
+    "{\"imbalan_R\": 8.0, \"lookback\": 20}": 47,
+    "{\"imbalan_R\": 6.0, \"lookback\": 100}": 34,
+    "{\"imbalan_R\": 8.0, \"lookback\": 100}": 61,
+    "{\"imbalan_R\": 8.0, \"lookback\": 55}": 54,
+    "{\"imbalan_R\": 6.0, \"lookback\": 55}": 30,
+    "{\"imbalan_R\": 4.0, \"lookback\": 55}": 18,
+    "{\"imbalan_R\": 2.0, \"lookback\": 55}": 14,
+    "{\"imbalan_R\": 6.0, \"lookback\": 20}": 32,
+    "{\"imbalan_R\": 2.0, \"lookback\": 20}": 19,
+    "{\"imbalan_R\": 4.0, \"lookback\": 100}": 15,
+    "{\"imbalan_R\": 4.0, \"lookback\": 20}": 26,
+    "{\"imbalan_R\": 2.0, \"lookback\": 100}": 6
+  },
+  "diagnosa_biaya": {
+    "jumlah": 11734,
+    "rerata_transaksi_R": 0.03533768175614925,
+    "rerata_funding_R": 0.0008822844711273275,
+    "rerata_stop_frac": 0.03500509658946727,
+    "trade_biaya_lebih_1R": 0,
+    "terburuk": [
+      {
+        "symbol": "1000XECUSDT",
+        "R": -1.2732502343907903,
+        "kotor_R": -1.024668630697085,
+        "transaksi_R": 0.04982492707882251,
+        "funding_R": 0.19875667661488272,
+        "stop_frac": 0.019865999307538768,
+        "jam": 49.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "R": -1.2697928364736204,
+        "kotor_R": -1.0198258367728736,
+        "transaksi_R": 0.040141760627372,
+        "funding_R": 0.2098252390733748,
+        "stop_frac": 0.024599233260947487,
+        "jam": 94.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "1000FLOKIUSDT",
+        "R": -1.258814666207531,
+        "kotor_R": -1.027655567655239,
+        "transaksi_R": 0.054824963094316406,
+        "funding_R": 0.17633413545797552,
+        "stop_frac": 0.01841243042118613,
+        "jam": 90.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "1INCHUSDT",
+        "R": -1.2529360862965089,
+        "kotor_R": -1.0157486905810895,
+        "transaksi_R": 0.03198950681688736,
+        "funding_R": 0.20519788889853194,
+        "stop_frac": 0.030771710342119833,
+        "jam": 99.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "1000BONKUSDT",
+        "R": -1.2527837094363976,
+        "kotor_R": -1.0359891509158066,
+        "transaksi_R": 0.0714962964070903,
+        "funding_R": 0.14529826211350053,
+        "stop_frac": 0.014088812696196922,
+        "jam": 16.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "1000PEPEUSDT",
+        "R": -1.2435759736058754,
+        "kotor_R": -1.0115979947589535,
+        "transaksi_R": 0.02369019052053005,
+        "funding_R": 0.20828778832639172,
+        "stop_frac": 0.0413291632177231,
+        "jam": 104.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "1000WHYUSDT",
+        "R": -1.2361661412153613,
+        "kotor_R": -1.0189396996753537,
+        "transaksi_R": 0.03836992950088251,
+        "funding_R": 0.17885651203912484,
+        "stop_frac": 0.025720561960828652,
+        "jam": 50.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "1000SHIBUSDT",
+        "R": -1.2359578227069332,
+        "kotor_R": -1.0315316822627512,
+        "transaksi_R": 0.06354759868437296,
+        "funding_R": 0.14087854175980902,
+        "stop_frac": 0.015609545446241572,
+        "jam": 49.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "1000RATSUSDT",
+        "R": -1.235253652876948,
+        "kotor_R": -1.0138578067589754,
+        "transaksi_R": 0.028208684614576537,
+        "funding_R": 0.19318716150339618,
+        "stop_frac": 0.0348242603061465,
+        "jam": 55.0,
+        "alasan": "stop"
+      },
+      {
+        "symbol": "AINUSDT",
+        "R": -1.2310796689050456,
+        "kotor_R": -1.0097214935056276,
+        "transaksi_R": 0.019938126264505245,
+        "funding_R": 0.20142004913491265,
+        "stop_frac": 0.0489165306150855,
+        "jam": 128.0,
+        "alasan": "stop"
+      }
+    ]
+  },
+  "gerbang": {
+    "semua_lulus": true,
+    "gerbang_gagal": [],
+    "rincian": [
+      {
+        "nama": "forward_fill",
+        "lulus": true,
+        "nilai": 0.00025348542458808617,
+        "ambang": 0.3,
+        "catatan": "0 dari 40 simbol gagal"
+      },
+      {
+        "nama": "buy_and_hold",
+        "lulus": true,
+        "nilai": 0.7985618621498596,
+        "ambang": 0.0,
+        "catatan": "median selisih 0.7986; unggul di 36/40 simbol"
+      },
+      {
+        "nama": "entri_acak",
+        "lulus": true,
+        "nilai": 0.04950495049504951,
+        "ambang": 0.05,
+        "catatan": "4 dari 100 permutasi menyamai atau melampaui"
+      },
+      {
+        "nama": "lookahead",
+        "lulus": true,
+        "nilai": 0.0,
+        "ambang": 0.0,
+        "catatan": "0 sinyal berubah saat data masa depan dihapus"
+      },
+      {
+        "nama": "invarian_risiko",
+        "lulus": true,
+        "nilai": -1.2732502343907903,
+        "ambang": -1.5,
+        "catatan": "kerugian terburuk -1.273R dari 11734 perdagangan"
+      },
+      {
+        "nama": "funding",
+        "lulus": true,
+        "nilai": 11523.311034011791,
+        "ambang": 0.0,
+        "catatan": "total funding mutlak 11523.311034 atas 11734 trade"
+      },
+      {
+        "nama": "overlap",
+        "lulus": true,
+        "nilai": 0.0,
+        "ambang": 0.0,
+        "catatan": "0 dari 40 simbol gagal"
+      },
+      {
+        "nama": "checksum",
+        "lulus": true,
+        "nilai": 0.0,
+        "ambang": 0.0,
+        "catatan": "hilang 0, asing 0, tidak cocok 0"
+      },
+      {
+        "nama": "survivorship",
+        "lulus": true,
+        "nilai": 0.85546875,
+        "ambang": 0.5,
+        "catatan": "porsi delisted diuji 0.1250 vs universe 0.1461"
+      },
+      {
+        "nama": "konsentrasi",
+        "lulus": true,
+        "nilai": 0.8578454756024698,
+        "ambang": 0.6,
+        "catatan": "26 untung / 14 rugi dari 40 simbol; drop-1 0.04549R (retensi 0.8578), drop-2 0.03924R, median simbol +0.04604R, porsi bruto teratas 0.1346 (ADAUSDT), setara 14.9 simbol"
+      },
+      {
+        "nama": "funding_ekor",
+        "lulus": true,
+        "nilai": 0.16749100396531466,
+        "ambang": 0.35,
+        "catatan": "porsi ekor maks 0.1675 (rerata 0.1487 atas 10 terburuk), funding maks 0.4144R, 26 dari 11734 trade di atas pengaman (0.00222)"
+      }
+    ]
+  },
+  "jackknife": [
+    {
+      "k": 0,
+      "dibuang": null,
+      "simbol_sisa": 40,
+      "trade": 11734,
+      "total_R": 622.2348,
+      "ekspektasi_R": 0.053028,
+      "retensi": 1.0
+    },
+    {
+      "k": 1,
+      "dibuang": "ADAUSDT",
+      "simbol_sisa": 39,
+      "trade": 11035,
+      "total_R": 501.9837,
+      "ekspektasi_R": 0.04549,
+      "retensi": 0.8578
+    },
+    {
+      "k": 2,
+      "dibuang": "AAVEUSDT",
+      "simbol_sisa": 38,
+      "trade": 10360,
+      "total_R": 406.5271,
+      "ekspektasi_R": 0.03924,
+      "retensi": 0.74
+    },
+    {
+      "k": 3,
+      "dibuang": "ALGOUSDT",
+      "simbol_sisa": 37,
+      "trade": 9623,
+      "total_R": 337.8026,
+      "ekspektasi_R": 0.035104,
+      "retensi": 0.662
+    },
+    {
+      "k": 4,
+      "dibuang": "1000BONKUSDT",
+      "simbol_sisa": 36,
+      "trade": 9432,
+      "total_R": 271.6664,
+      "ekspektasi_R": 0.028803,
+      "retensi": 0.5432
+    },
+    {
+      "k": 5,
+      "dibuang": "AIUSDT",
+      "simbol_sisa": 35,
+      "trade": 9283,
+      "total_R": 208.4032,
+      "ekspektasi_R": 0.02245,
+      "retensi": 0.4234
+    }
+  ],
+  "ekor_funding": {
+    "ukuran": {
+      "n_trade": 11734,
+      "dapat_dinilai": true,
+      "sebab": "",
+      "n_rugi": 8893,
+      "k_ekor": 10,
+      "porsi_funding_ekor_maks": 0.16749100396531466,
+      "porsi_funding_ekor_rerata": 0.1487346970632044,
+      "funding_maks_R": 0.4144414369838951,
+      "funding_total_mutlak_R": 230.94680549538984,
+      "n_di_atas_pengaman": 26,
+      "porsi_di_atas_pengaman": 0.002215783194136697
+    },
+    "terburuk": [
+      {
+        "peringkat": 1,
+        "R": -1.2733,
+        "funding_R": 0.1988,
+        "porsi_funding": 0.1561
+      },
+      {
+        "peringkat": 2,
+        "R": -1.2698,
+        "funding_R": 0.2098,
+        "porsi_funding": 0.1652
+      },
+      {
+        "peringkat": 3,
+        "R": -1.2588,
+        "funding_R": 0.1763,
+        "porsi_funding": 0.1401
+      },
+      {
+        "peringkat": 4,
+        "R": -1.2529,
+        "funding_R": 0.2052,
+        "porsi_funding": 0.1638
+      },
+      {
+        "peringkat": 5,
+        "R": -1.2528,
+        "funding_R": 0.1453,
+        "porsi_funding": 0.116
+      },
+      {
+        "peringkat": 6,
+        "R": -1.2436,
+        "funding_R": 0.2083,
+        "porsi_funding": 0.1675
+      },
+      {
+        "peringkat": 7,
+        "R": -1.2362,
+        "funding_R": 0.1789,
+        "porsi_funding": 0.1447
+      },
+      {
+        "peringkat": 8,
+        "R": -1.236,
+        "funding_R": 0.1409,
+        "porsi_funding": 0.114
+      },
+      {
+        "peringkat": 9,
+        "R": -1.2353,
+        "funding_R": 0.1932,
+        "porsi_funding": 0.1564
+      },
+      {
+        "peringkat": 10,
+        "R": -1.2311,
+        "funding_R": 0.2014,
+        "porsi_funding": 0.1636
+      }
+    ]
+  },
+  "putusan": {
+    "lulus": true,
+    "alasan": []
+  },
+  "per_simbol": [
+    {
+      "symbol": "1000000BOBUSDT",
+      "bar": 9952,
+      "jendela": 2,
+      "trade": 39,
+      "total_R": 6.9843,
+      "ekspektasi_R": 0.17909,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000000MOGUSDT",
+      "bar": 14988,
+      "jendela": 4,
+      "trade": 94,
+      "total_R": 23.746,
+      "ekspektasi_R": 0.25262,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000BONKUSDT",
+      "bar": 23410,
+      "jendela": 8,
+      "trade": 191,
+      "total_R": 66.1362,
+      "ekspektasi_R": 0.34626,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000CATUSDT",
+      "bar": 15396,
+      "jendela": 5,
+      "trade": 169,
+      "total_R": 8.6808,
+      "ekspektasi_R": 0.05137,
+      "parameter": [
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000CHEEMSUSDT",
+      "bar": 14557,
+      "jendela": 4,
+      "trade": 143,
+      "total_R": -43.4973,
+      "ekspektasi_R": -0.30418,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000FLOKIUSDT",
+      "bar": 28208,
+      "jendela": 10,
+      "trade": 335,
+      "total_R": 53.2809,
+      "ekspektasi_R": 0.15905,
+      "parameter": [
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000LUNCUSDT",
+      "bar": 33947,
+      "jendela": 13,
+      "trade": 561,
+      "total_R": -41.12,
+      "ekspektasi_R": -0.0733,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000PEPEUSDT",
+      "bar": 28232,
+      "jendela": 10,
+      "trade": 324,
+      "total_R": 46.8198,
+      "ekspektasi_R": 0.14451,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000RATSUSDT",
+      "bar": 22858,
+      "jendela": 8,
+      "trade": 335,
+      "total_R": -23.2373,
+      "ekspektasi_R": -0.06937,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000SATSUSDT",
+      "bar": 22930,
+      "jendela": 8,
+      "trade": 233,
+      "total_R": 15.1772,
+      "ekspektasi_R": 0.06514,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000SHIBUSDT",
+      "bar": 45631,
+      "jendela": 19,
+      "trade": 685,
+      "total_R": 40.7308,
+      "ekspektasi_R": 0.05946,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000WHYUSDT",
+      "bar": 11446,
+      "jendela": 3,
+      "trade": 89,
+      "total_R": -10.7943,
+      "ekspektasi_R": -0.12128,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "1000XECUSDT",
+      "bar": 42525,
+      "jendela": 17,
+      "trade": 675,
+      "total_R": 11.7228,
+      "ekspektasi_R": 0.01737,
+      "parameter": [
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        }
+      ]
+    },
+    {
+      "symbol": "1INCHUSDT",
+      "bar": 48902,
+      "jendela": 20,
+      "trade": 720,
+      "total_R": 6.6286,
+      "ekspektasi_R": 0.00921,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        }
+      ]
+    },
+    {
+      "symbol": "1MBABYDOGEUSDT",
+      "bar": 16237,
+      "jendela": 5,
+      "trade": 162,
+      "total_R": 13.7728,
+      "ekspektasi_R": 0.08502,
+      "parameter": [
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "bar": 50585,
+      "jendela": 21,
+      "trade": 675,
+      "total_R": 95.4566,
+      "ekspektasi_R": 0.14142,
+      "parameter": [
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        }
+      ]
+    },
+    {
+      "symbol": "ACEUSDT",
+      "bar": 22790,
+      "jendela": 8,
+      "trade": 209,
+      "total_R": 6.4358,
+      "ekspektasi_R": 0.03079,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        }
+      ]
+    },
+    {
+      "symbol": "ACHUSDT",
+      "bar": 29962,
+      "jendela": 11,
+      "trade": 356,
+      "total_R": -17.036,
+      "ekspektasi_R": -0.04785,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "ACTUSDT",
+      "bar": 14892,
+      "jendela": 4,
+      "trade": 166,
+      "total_R": 3.2852,
+      "ekspektasi_R": 0.01979,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        }
+      ]
+    },
+    {
+      "symbol": "ACXUSDT",
+      "bar": 14289,
+      "jendela": 4,
+      "trade": 98,
+      "total_R": -19.5395,
+      "ekspektasi_R": -0.19938,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        }
+      ]
+    },
+    {
+      "symbol": "ADAUSDT",
+      "bar": 56800,
+      "jendela": 24,
+      "trade": 699,
+      "total_R": 120.2511,
+      "ekspektasi_R": 0.17203,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AEROUSDT",
+      "bar": 14338,
+      "jendela": 4,
+      "trade": 98,
+      "total_R": 25.9471,
+      "ekspektasi_R": 0.26477,
+      "parameter": [
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        }
+      ]
+    },
+    {
+      "symbol": "AEVOUSDT",
+      "bar": 20723,
+      "jendela": 7,
+      "trade": 237,
+      "total_R": 28.3526,
+      "ekspektasi_R": 0.11963,
+      "parameter": [
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "AGLDUSDT",
+      "bar": 26206,
+      "jendela": 10,
+      "trade": 350,
+      "total_R": 5.4646,
+      "ekspektasi_R": 0.01561,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        }
+      ]
+    },
+    {
+      "symbol": "AGTUSDT",
+      "bar": 10334,
+      "jendela": 2,
+      "trade": 100,
+      "total_R": -4.5752,
+      "ekspektasi_R": -0.04575,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        }
+      ]
+    },
+    {
+      "symbol": "AINUSDT",
+      "bar": 9110,
+      "jendela": 2,
+      "trade": 64,
+      "total_R": 25.7874,
+      "ekspektasi_R": 0.40293,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "AIOTUSDT",
+      "bar": 10812,
+      "jendela": 2,
+      "trade": 32,
+      "total_R": 57.5478,
+      "ekspektasi_R": 1.79837,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "AIUSDT",
+      "bar": 20183,
+      "jendela": 7,
+      "trade": 149,
+      "total_R": 63.2631,
+      "ekspektasi_R": 0.42458,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "AIXBTUSDT",
+      "bar": 13950,
+      "jendela": 4,
+      "trade": 135,
+      "total_R": -9.3466,
+      "ekspektasi_R": -0.06923,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "AKROUSDT",
+      "bar": 11835,
+      "jendela": 3,
+      "trade": 92,
+      "total_R": -8.9986,
+      "ekspektasi_R": -0.09781,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "AKTUSDT",
+      "bar": 14725,
+      "jendela": 4,
+      "trade": 110,
+      "total_R": 7.4405,
+      "ekspektasi_R": 0.06764,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALCHUSDT",
+      "bar": 13525,
+      "jendela": 4,
+      "trade": 97,
+      "total_R": -0.2694,
+      "ekspektasi_R": -0.00278,
+      "parameter": [
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALGOUSDT",
+      "bar": 53511,
+      "jendela": 22,
+      "trade": 737,
+      "total_R": 68.7245,
+      "ekspektasi_R": 0.09325,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALICEUSDT",
+      "bar": 46965,
+      "jendela": 19,
+      "trade": 725,
+      "total_R": -22.2978,
+      "ekspektasi_R": -0.03076,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALPHAUSDT",
+      "bar": 42363,
+      "jendela": 17,
+      "trade": 561,
+      "total_R": 46.9832,
+      "ekspektasi_R": 0.08375,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALPINEUSDT",
+      "bar": 10671,
+      "jendela": 2,
+      "trade": 55,
+      "total_R": -14.8715,
+      "ekspektasi_R": -0.27039,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "ALTUSDT",
+      "bar": 21874,
+      "jendela": 8,
+      "trade": 268,
+      "total_R": 20.3654,
+      "ekspektasi_R": 0.07599,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 4.0
+        }
+      ]
+    },
+    {
+      "symbol": "ANIMEUSDT",
+      "bar": 13135,
+      "jendela": 4,
+      "trade": 82,
+      "total_R": -4.096,
+      "ekspektasi_R": -0.04995,
+      "parameter": [
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        }
+      ]
+    },
+    {
+      "symbol": "ANKRUSDT",
+      "bar": 48137,
+      "jendela": 20,
+      "trade": 604,
+      "total_R": 24.5927,
+      "ekspektasi_R": 0.04072,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 2.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 8.0
+        }
+      ]
+    },
+    {
+      "symbol": "ANTUSDT",
+      "bar": 19829,
+      "jendela": 7,
+      "trade": 280,
+      "total_R": -51.6635,
+      "ekspektasi_R": -0.18451,
+      "parameter": [
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 55,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 100,
+          "imbalan_R": 6.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 8.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 4.0
+        },
+        {
+          "lookback": 20,
+          "imbalan_R": 2.0
+        }
+      ]
+    }
+  ],
+  "detik": 117.5
+}

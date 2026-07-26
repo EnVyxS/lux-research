@@ -1,7 +1,7 @@
-# Log run backtest H-009 (ADR-009)
+# Log run backtest H-010 (ADR-012)
 
-Commit: `d5f18c6f8859d200b73c9a2fde122ed6657a8115`
-Run: `30186730437`
+Commit: `0a30ced4696c6ee74b070be5da50ee83ba12973a`
+Run: `30193898133`
 
 | Langkah | Hasil |
 |---|---|
@@ -75,60 +75,73 @@ PyYAML          6.0.2
 six             1.17.0
 tzdata          2026.3
 === pytest ===
-........................................................................ [ 16%]
-........................................................................ [ 32%]
-........................................................................ [ 48%]
-........................................................................ [ 64%]
-........................................................................ [ 81%]
-........................................................................ [ 97%]
-............                                                             [100%]
-444 passed in 2.24s
+........................................................................ [ 14%]
+........................................................................ [ 28%]
+........................................................................ [ 42%]
+........................................................................ [ 56%]
+........................................................................ [ 70%]
+........................................................................ [ 84%]
+........................................................................ [ 98%]
+......                                                                   [100%]
+510 passed in 1.81s
 === impor ===
 impor pihak ketiga siap
 run_wf siap ('_retry',)
 runner bersama siap
+jumlah gerbang: 11
+  nama: ('forward_fill', 'buy_and_hold', 'entri_acak', 'lookahead', 'invarian_risiko', 'funding', 'overlap', 'checksum', 'survivorship', 'konsentrasi', 'funding_ekor')
+gerbang kesepuluh dan kesebelas terdaftar: ya
 bawaan pengaman mati: True
 alasan tidak selesai: ('umur', 'akhir_data', 'carry')
-H-009 siap: H-009 h009_carry_dipatok 12 kombinasi, sidik eac6c83305bd
-  lookback [20, 55, 100] imbalan [1.0, 2.0, 3.0, 4.0] kandidat 12
+  titik impas 4R 0.2 8R 0.1111
+H-010 siap: H-010 h010_imbalan_diperluas 12 kombinasi, sidik 14b2f3bfa8a7
+  lookback [20, 55, 100] imbalan [2.0, 4.0, 6.0, 8.0] kandidat 12
   ambang carry DIPATOK: 0.25
   saringan ADR-004 tetap: 168 0.25 30
-grid identik dengan H-007: ya
+kontrak beku H-009 utuh: ya
+ADR-012 ditegakkan: imbalan [1.0, 2.0, 3.0, 4.0] -> [2.0, 4.0, 6.0, 8.0] dengan 12 kombinasi
 ADR-009 ditegakkan: pengaman menyala di 12 dari 12 kandidat
 === unduh ===
 total 571540
-drwxr-xr-x  2 runner runner     4096 Jul 26 03:48 .
-drwxr-xr-x 15 runner runner     4096 Jul 26 03:48 ..
--rw-r--r--  1 runner runner  1439106 Jul 26 03:48 funding_shard00.parquet
--rw-r--r--  1 runner runner  1525153 Jul 26 03:48 funding_shard01.parquet
--rw-r--r--  1 runner runner  1539799 Jul 26 03:48 funding_shard02.parquet
--rw-r--r--  1 runner runner  1566092 Jul 26 03:48 funding_shard03.parquet
--rw-r--r--  1 runner runner 89681568 Jul 26 03:48 ohlcv_1h_shard00.parquet
--rw-r--r--  1 runner runner 72981771 Jul 26 03:48 ohlcv_1h_shard01.parquet
--rw-r--r--  1 runner runner 63261856 Jul 26 03:48 ohlcv_1h_shard02.parquet
--rw-r--r--  1 runner runner 66281060 Jul 26 03:48 ohlcv_1h_shard03.parquet
--rw-r--r--  1 runner runner 72859250 Jul 26 03:48 ohlcv_1h_shard04.parquet
--rw-r--r--  1 runner runner 65268945 Jul 26 03:48 ohlcv_1h_shard05.parquet
--rw-r--r--  1 runner runner 64058851 Jul 26 03:48 ohlcv_1h_shard06.parquet
--rw-r--r--  1 runner runner 65172181 Jul 26 03:48 ohlcv_1h_shard07.parquet
--rw-r--r--  1 runner runner  4834550 Jul 26 03:48 ohlcv_1h_tail_shard00.parquet
--rw-r--r--  1 runner runner  5234777 Jul 26 03:48 ohlcv_1h_tail_shard01.parquet
--rw-r--r--  1 runner runner  4894539 Jul 26 03:48 ohlcv_1h_tail_shard02.parquet
--rw-r--r--  1 runner runner  4624261 Jul 26 03:48 ohlcv_1h_tail_shard03.parquet
+drwxr-xr-x  2 runner runner     4096 Jul 26 08:03 .
+drwxr-xr-x 15 runner runner     4096 Jul 26 08:03 ..
+-rw-r--r--  1 runner runner  1439106 Jul 26 08:03 funding_shard00.parquet
+-rw-r--r--  1 runner runner  1525153 Jul 26 08:03 funding_shard01.parquet
+-rw-r--r--  1 runner runner  1539799 Jul 26 08:03 funding_shard02.parquet
+-rw-r--r--  1 runner runner  1566092 Jul 26 08:03 funding_shard03.parquet
+-rw-r--r--  1 runner runner 89681568 Jul 26 08:03 ohlcv_1h_shard00.parquet
+-rw-r--r--  1 runner runner 72981771 Jul 26 08:03 ohlcv_1h_shard01.parquet
+-rw-r--r--  1 runner runner 63261856 Jul 26 08:03 ohlcv_1h_shard02.parquet
+-rw-r--r--  1 runner runner 66281060 Jul 26 08:03 ohlcv_1h_shard03.parquet
+-rw-r--r--  1 runner runner 72859250 Jul 26 08:03 ohlcv_1h_shard04.parquet
+-rw-r--r--  1 runner runner 65268945 Jul 26 08:03 ohlcv_1h_shard05.parquet
+-rw-r--r--  1 runner runner 64058851 Jul 26 08:03 ohlcv_1h_shard06.parquet
+-rw-r--r--  1 runner runner 65172181 Jul 26 08:03 ohlcv_1h_shard07.parquet
+-rw-r--r--  1 runner runner  4834550 Jul 26 08:03 ohlcv_1h_tail_shard00.parquet
+-rw-r--r--  1 runner runner  5234777 Jul 26 08:03 ohlcv_1h_tail_shard01.parquet
+-rw-r--r--  1 runner runner  4894539 Jul 26 08:03 ohlcv_1h_tail_shard02.parquet
+-rw-r--r--  1 runner runner  4624261 Jul 26 08:03 ohlcv_1h_tail_shard03.parquet
 559M	aset
 ```
 
 ## Langkah jalan
 
 ```
-ADR-004 proyeksi: maks_carry_R=0.25
-ADR-009 ambang carry keras DIPATOK: 0.25 (bukan parameter, tidak dilombakan)
+ADR-012 grid imbalan: [2.0, 4.0, 6.0, 8.0] (H-007: [1.0, 2.0, 3.0, 4.0])
+ADR-009 ambang carry keras DIPATOK: 0.25
 kandidat: 12 kombinasi
-  pembanding H-007: +0.04044R, gerbang gagal: invarian_risiko -1.9769
-  pembanding H-008: +0.04126R, gerbang gagal: invarian_risiko -1.9769
-  ramalan keluar_carry: melonjak dari 2 ke ratusan
-  ramalan kerugian_terburuk_R: lebih kecil dari 1,5 sehingga invarian_risiko lulus
-  ramalan ekspektasi_R: turun di bawah 0,04126 milik H-008
+  titik impas kotor 2.0R: 0.3333
+  titik impas kotor 4.0R: 0.2000
+  titik impas kotor 6.0R: 0.1429
+  titik impas kotor 8.0R: 0.1111
+  pembanding H-007: +0.04044R, gerbang: invarian_risiko -1.9769
+  pembanding H-008: +0.04126R, gerbang: invarian_risiko -1.9769
+  pembanding H-009: +0.04136R, gerbang: tidak ada, ditolak oleh ambang 0,05R
+  ramalan porsi_jendela_imbalan_8: 30-55 persen; di atas 54,5 persen berarti penempelan bersifat mekanis, di bawah 25 persen berarti dinding H-007 bukan dinding
+  ramalan laju_kena_target: turun ke 0,13-0,20 dari 0,27544
+  ramalan porsi_tak_selesai: naik dari 3,7 persen ke lebih dari 12 persen
+  ramalan porsi_funding_ekor_maks: naik ke 0,20-0,35; di atas 0,35 gerbang kesebelas GAGAL dan itu temuan, bukan alasan melonggarkan ambang
+  ramalan ekspektasi_R: 0,030-0,048, jadi tidak mencapai 0,05
 universe layak 438, diuji 40
   dibaca ohlcv_1h_shard00.parquet
   dibaca ohlcv_1h_shard01.parquet
@@ -146,24 +159,30 @@ universe layak 438, diuji 40
 40 simbol dimuat, 447 jadwal funding, 790 simbol dipindai untuk survivorship
 checksum: hilang 0, asing 0, tidak cocok 0
 
-=== H-009 terdaftar di hipotesis/H-009.json (sidik eac6c83305bd, 12 kombinasi) ===
-  [10/40] 1000SATSUSDT: 261 trade, 16s
-  [20/40] ACXUSDT: 148 trade, 40s
-  [30/40] AKROUSDT: 155 trade, 54s
-  [40/40] ANTUSDT: 322 trade, 77s
+=== H-010 terdaftar di hipotesis/H-010.json (sidik 14b2f3bfa8a7, 12 kombinasi) ===
+  [10/40] 1000SATSUSDT: 233 trade, 12s
+  [20/40] ACXUSDT: 98 trade, 30s
+  [30/40] AKROUSDT: 92 trade, 41s
+  [40/40] ANTUSDT: 280 trade, 59s
 {
   "jumlah_simbol": 40,
   "jumlah_jendela": 356,
-  "jendela_positif": 198,
-  "jumlah_trade_luar_sampel": 14925,
-  "total_R": 617.2774008809608,
-  "ekspektasi_R": 0.041358619824519986
+  "jendela_positif": 188,
+  "jumlah_trade_luar_sampel": 11734,
+  "total_R": 622.2348185492804,
+  "ekspektasi_R": 0.05302836360569971
 }
-alasan keluar: {'stop': 10242, 'target': 4111, 'umur': 368, 'akhir_data': 188, 'carry': 16}
-parameter terpilih: {'{"imbalan_R": 3.0, "lookback": 20}': 42, '{"imbalan_R": 2.0, "lookback": 100}': 12, '{"imbalan_R": 4.0, "lookback": 100}': 82, '{"imbalan_R": 3.0, "lookback": 100}': 32, '{"imbalan_R": 4.0, "lookback": 20}': 64, '{"imbalan_R": 3.0, "lookback": 55}': 27, '{"imbalan_R": 4.0, "lookback": 55}': 48, '{"imbalan_R": 2.0, "lookback": 55}': 12, '{"imbalan_R": 1.0, "lookback": 20}': 11, '{"imbalan_R": 2.0, "lookback": 20}': 14, '{"imbalan_R": 1.0, "lookback": 100}': 7, '{"imbalan_R": 1.0, "lookback": 55}': 5}
-entri acak: nyata 0.10781R, p 0.009900990099009901
+alasan keluar: {'stop': 8776, 'umur': 879, 'target': 1839, 'akhir_data': 214, 'carry': 26}
+parameter terpilih: {'{"imbalan_R": 8.0, "lookback": 20}': 47, '{"imbalan_R": 6.0, "lookback": 100}': 34, '{"imbalan_R": 8.0, "lookback": 100}': 61, '{"imbalan_R": 8.0, "lookback": 55}': 54, '{"imbalan_R": 6.0, "lookback": 55}': 30, '{"imbalan_R": 4.0, "lookback": 55}': 18, '{"imbalan_R": 2.0, "lookback": 55}': 14, '{"imbalan_R": 6.0, "lookback": 20}': 32, '{"imbalan_R": 2.0, "lookback": 20}': 19, '{"imbalan_R": 4.0, "lookback": 100}': 15, '{"imbalan_R": 4.0, "lookback": 20}': 26, '{"imbalan_R": 2.0, "lookback": 100}': 6}
+konsentrasi: 26 untung / 14 rugi dari 40 simbol; drop-1 0.04549R (retensi 0.8578), drop-2 0.03924R, median simbol +0.04604R, porsi bruto teratas 0.1346 (ADAUSDT), setara 14.9 simbol
+funding ekor: porsi ekor maks 0.1675 (rerata 0.1487 atas 10 terburuk), funding maks 0.4144R, 26 dari 11734 trade di atas pengaman (0.00222)
+entri acak: nyata 0.04661R, p 0.04950495049504951
 
-keluar karena pengaman carry: 16
+laju kena target: 0.15672 (H-009 0.27544)
+porsi perdagangan tak selesai: 0.09536 (H-009 0.03832)
+keluar karena pengaman carry: 26
+porsi funding ekor maks: 0.16749100396531466 (H-009 0.165, ambang 0,35)
+retensi drop-1: 0.8578454756024698
 gerbang gagal: []
-ekspektasi 0.041358619824519986 vs H-008 0.04126
+ekspektasi 0.05302836360569971 vs H-009 0.041359
 ```
