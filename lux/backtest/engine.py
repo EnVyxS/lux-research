@@ -77,8 +77,26 @@ hanya menyala bila diminta secara eksplisit lewat ``Konfig``:
   jejak. Entri yang ditolak karena carry dihitung terpisah, karena mencampur
   dua sebab penolakan membuat laporan berbohong tentang penyebabnya.
 
-Selama keempat nilai itu nol, mesin berperilaku persis seperti sebelum ADR-004,
-ADR-008, dan ADR-014, dan itu dikunci oleh pengujian, bukan diandaikan.
+**ADR-016 menambahkan medan kelima, juga bawaan MATI:**
+
+- ``stop_hormati_celah`` membuat stop diisi pada harga **terburuk** antara harga
+  stop dan harga pembukaan bar. Tanpanya stop selalu terisi tepat di harga stop
+  meski bar **membuka jauh melewatinya**, sehingga mesin ini mustahil melahirkan
+  stop lebih buruk dari sekitar 1R ditambah biaya. Akibatnya gerbang
+  ``invarian_risiko`` praktis tidak punya daya pada jalur stop dan hanya dapat
+  dijatuhkan oleh ``umur``, ``carry``, dan ``akhir_data``, yaitu tiga jalur yang
+  mengisi pada harga bar sungguhan. Itulah sebab satu-satunya pelanggar ambang
+  di H-012, -21,3131R pada STGUSDT, muncul di jalur ``carry``: jalur itulah
+  satu-satunya yang jujur terhadap celah harga.
+
+  **Target sengaja tidak diperlakukan simetris.** Ia tetap terisi pada harga
+  target walau bar membuka melewatinya, sebab celah yang menguntungkan adalah
+  hadiah atas ketidaktahuan, persis yang dilarang oleh aturan "stop menang bila
+  keduanya tersentuh".
+
+Selama kelima nilai itu nol atau salah, mesin berperilaku persis seperti sebelum
+ADR-004, ADR-008, ADR-014, dan ADR-016, dan itu dikunci oleh pengujian, bukan
+diandaikan.
 """
 
 from __future__ import annotations
@@ -121,6 +139,9 @@ class Konfig:
     # ADR-014. Nol berarti mati, dan diletakkan paling akhir dengan alasan yang
     # sama: posisi argumen medan lama tidak boleh bergeser.
     maks_biaya_masuk_R: float = 0.0
+    # ADR-016. False berarti mati, dan diletakkan paling akhir dengan alasan
+    # yang sama. Menyalakannya MEMPERBURUK hasil; itu memang tujuannya.
+    stop_hormati_celah: bool = False
 
     def __post_init__(self) -> None:
         if self.atr_periode < 2:
@@ -256,6 +277,26 @@ def _harga_eksekusi(harga: float, arah: int, masuk: bool, slippage: float) -> fl
     """Slippage selalu memperburuk harga, ke arah mana pun posisinya."""
     sisi = arah if masuk else -arah
     return harga * (1.0 + sisi * slippage)
+
+
+def harga_stop_terisi(
+    stop: float, pembukaan: float, arah: int, hormati_celah: bool
+) -> float:
+    """Harga pengisian stop, dengan atau tanpa menghormati celah harga (ADR-016).
+
+    Aritmetikanya diletakkan di fungsi tingkat modul, bukan disisipkan di dalam
+    ``jalankan``, supaya ia dapat diuji tanpa membangun bingkai bar lengkap.
+    Aritmetika yang hanya hidup di dalam lingkaran besar adalah aritmetika yang
+    tidak pernah benar-benar diuji (aturan 32).
+
+    Ketika ``hormati_celah`` mati, hasilnya **persis** ``stop``, tanpa
+    menyentuh ``pembukaan`` sama sekali.
+    """
+    if not hormati_celah:
+        return float(stop)
+    if arah == 1:
+        return float(min(stop, pembukaan))
+    return float(max(stop, pembukaan))
 
 
 def _catat(
@@ -481,7 +522,17 @@ def jalankan(
             if kena_stop or kena_target:
                 # Stop menang bila keduanya tersentuh: urutan di dalam bar
                 # tidak diketahui, dan ketidaktahuan tidak boleh berbuah laba.
-                harga = stop if kena_stop else target
+                #
+                # ADR-016: bila bar MEMBUKA sudah melewati stop, pesanan stop
+                # di pasar sungguhan terisi pada pembukaan itu, bukan pada
+                # harga stop. Target tidak diperlakukan simetris; lihat
+                # docstring modul.
+                if kena_stop:
+                    harga = harga_stop_terisi(
+                        stop, float(o[t]), arah, k.stop_hormati_celah
+                    )
+                else:
+                    harga = target
                 p = _catat(
                     symbol,
                     arah,
