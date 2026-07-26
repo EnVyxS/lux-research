@@ -3,9 +3,11 @@ name: backtest
 # Catatan urutan dorongan: workflow yang memicu dirinya sendiri harus didorong
 # SESUDAH seluruh modul yang dipanggilnya ada di repo dan hijau. Berkas ini
 # pernah didorong lebih dulu, sehingga run pertamanya berjalan ketika
-# lux/backtest/run_wf.py belum ada. Untuk H-010 urutannya dihormati:
-# lux/backtest/run_h010.py dan tests/test_run_h010.py didorong di 3fa9f58c dan
-# laporan 53c6684c mencatat 510 pengujian lulus sebelum berkas ini disentuh.
+# lux/backtest/run_wf.py belum ada. Untuk H-011 urutannya dihormati:
+# lux/backtest/run_h011.py dan tests/test_run_h011.py didorong di e22745aa dan
+# laporan pada commit itu mencatat 542 pengujian lulus sebelum berkas ini
+# disentuh. Modul sebaran (ADR-013) lebih dulu hijau sendiri di 2650ae32 lalu
+# disambung ke runner di 485694e1.
 #
 # KEGAGALAN YANG TIDAK TERBACA. Run 30177134015 mati 30 detik setelah berkas
 # ini didorong, sebelum langkah jalan, dan satu-satunya yang tertulis ke repo
@@ -53,119 +55,110 @@ name: backtest
 #   H-008   run 30177253467  DITOLAK, +0,04126R, invarian_risiko -1,9769
 #   H-009   run 30186730437  DITOLAK, +0,041359R, SEMBILAN GERBANG LULUS,
 #                            jatuh hanya pada ambang 0,05R (kurang 0,008641R)
-#   H-010   sekarang         dinding grid imbalan digeser (ADR-012)
+#   H-010   run 30193898133  DITERIMA, +0,053028R, SEBELAS GERBANG LULUS.
+#                            Tiga dari lima ramalan meleset, ketiganya ke arah
+#                            yang menguntungkan hipotesis, dan itu justru
+#                            alasan kecurigaan naik (aturan 21).
+#   H-011   sekarang         apakah 40 simbol mewakili 438 (ADR-013)
 #
 # Tidak satu pun dari hipotesis yang sudah divonis dijalankan ulang, dan tidak
 # satu ambang pun diturunkan. Yang boleh dilakukan hanya mendaftarkan hipotesis
 # baru dengan ID baru.
 #
-# GERBANG SEKARANG SEBELAS, bukan sembilan. Dua tambahan sejak H-009:
+# GERBANG SEKARANG SEBELAS. Dua tambahan sejak H-009:
 #   konsentrasi   (ADR-010, disambung 8cf70f08) jackknife dan penyebut bruto
 #   funding_ekor  (ADR-011, disambung 114b0d7e) porsi funding pada sepuluh
 #                 perdagangan terburuk, bukan rerata dan bukan total
 # Keduanya ambangnya ditulis setelah sebagian data terlihat, sehingga keduanya
-# MENGIKAT MULAI H-010 dan tidak diterapkan ke belakang. H-010 karena itu
-# hipotesis pertama yang dinilai sebelas gerbang penuh.
+# MENGIKAT MULAI H-010 dan tidak diterapkan ke belakang.
 #
-# Mengapa funding_ekor ada. Gerbang funding lama menilai total funding mutlak
-# dan memberi 10.253,97 untuk H-008 lawan 10.199,59 untuk H-009, selisih
-# setengah persen, padahal di antara kedua run itu porsi funding pada
-# perdagangan terburuk jatuh dari 46,7 persen ke 16,5 persen dan gerbang
-# invarian_risiko berbalik dari gagal menjadi lulus. Gerbang yang memberi
-# jawaban sama pada dua keadaan bertolak belakang tidak memuat informasi.
+# ================= MENGAPA H-011 ADA (ADR-013 bagian 8) =================
 #
-# ADR-012, yang dijalankan run ini. Pada H-007, H-008, dan H-009 pemilih
-# walk-forward menempel di batas atas grid imbalan. Di H-009, dari 356 jendela:
+# H-010 lulus. Justru karena itu berkas ini tidak boleh berhenti di situ.
 #
-#   imbalan 4,0 (batas atas)  dipilih 194 jendela  54,5 persen
-#   imbalan 3,0               dipilih 101 jendela  28,4 persen
-#   imbalan 2,0               dipilih  38 jendela  10,7 persen
-#   imbalan 1,0               dipilih  23 jendela   6,5 persen
+# Seluruh hasil dari H-001b sampai H-010 diukur pada 40 SIMBOL PERTAMA SECARA
+# ALFABET, yaitu kurang dari sepersepuluh semesta layak yang berisi 438 simbol.
+# Asumsi bahwa 40 simbol itu mewakili 438 belum pernah diuji satu kali pun, dan
+# sekarang ia menopang satu-satunya hipotesis yang lulus. Daftar 40 simbol itu
+# juga bukan sampel acak: ia sarat token ber-pengali 1000 seperti 1000BONKUSDT,
+# 1000PEPEUSDT, dan 1000SHIBUSDT, yang justru kelompok paling tidak biasa di
+# seluruh semesta.
 #
-# Selama tiga hipotesis pola itu dibaca sebagai bukti bahwa menurunkan titik
-# impas bekerja. Itu benar, tetapi ada tafsiran kedua yang tidak pernah
-# diperiksa: optimumnya mungkin di LUAR grid, dan yang terukur hanya dinding
-# grid. Selama dindingnya tidak digeser, kedua tafsiran tidak dapat dipisahkan.
-# Itu cacat rancangan H-007, bukan hipotesis baru.
+# MEKANISMENYA TIDAK DIUBAH SAMA SEKALI. Grid, sinyal, konfig per kandidat,
+# pengaman carry, dan kriteria diimpor apa adanya dari H-010 dan H-009, dan
+# langkah impor di bawah MENOLAK run bila salah satunya berbeda. H-011 yang
+# mengubah mekanisme sekaligus semesta tidak menjawab apa pun: bila hasilnya
+# berubah, tidak akan diketahui penyebab mana yang bekerja.
 #
-# Maka H-010 mengubah TEPAT SATU hal: imbalan {1,2,3,4} menjadi {2,4,6,8}.
+# Yang berubah hanya dua angka:
+#   limit    40 -> 0     seluruh 438 simbol layak
+#   ulangan  100 -> 300  resolusi p membaik dari 0,0099 ke 0,00332
 #
-#   lookback {20,55,100} x imbalan {2,4,6,8} = 12 kombinasi, identik dengan
-#   H-009, sehingga multiplisitasnya sebanding dan ambang p tetap 0,05.
+# Kenaikan ulangan adalah PENINGKATAN RESOLUSI, BUKAN PELONGGARAN AMBANG.
+# Ambang p tetap 0,05. Alasannya H-010 lulus dengan p 0,049505, yaitu jarak
+# tepat SATU SATUAN RESOLUSI dari kegagalan: satu permutasi yang berbeda saja
+# akan memberi 0,059406 dan H-010 gagal. Margin sesempit resolusi alat ukur
+# bukan margin (aturan 19). Angka 300 ditetapkan di ADR-013 sebelum hasil
+# H-011 terlihat.
 #
-# Jangkar 2,0 dan 4,0 dipertahankan supaya hasilnya sebanding dengan H-009.
-# Nilai 1,0 dan 3,0 dibuang, bukan ditambahkan, karena menambah berarti 18
-# kombinasi dan multiplisitas yang berbeda. Satuan R tidak berubah karena jarak
-# stop tetap ATR x 2,0.
+# KRITERIA UTAMA BUKAN 'putusan' DI DALAM LAPORAN. Blok putusan menilai 438
+# simbol sebagai satu kesatuan, dan angka itu masih memuat 40 simbol yang sudah
+# dipakai memilih segalanya sejak H-001b. Yang menjawab pertanyaan adalah
+# EKSPEKTASI BERBOBOT PERDAGANGAN ATAS 398 SIMBOL TERTAHAN, dicetak terpisah
+# oleh run_h011 dari blok per_simbol di laporan yang sama. Berbobot perdagangan,
+# bukan rerata dari rerata: pencilan seperti AIOTUSDT (+1,798R atas 32
+# perdagangan) tidak boleh menyetarai ADAUSDT (699 perdagangan).
 #
-# Ini BUKAN penyempitan grid pasca-hoc. Grid tidak dipersempit ke arah nilai
-# yang sudah menang; dindingnya digeser KE LUAR, ke wilayah yang belum pernah
-# diukur, dan penjaga di langkah impor menolak run bila arah pergeserannya
-# terbalik atau bila jumlah kombinasinya berubah.
+# Ramalan ditulis sebelum run di ADR-013 bagian 8, dan yang pertama merugikan
+# hipotesis ini sendiri:
+#   1. ekspektasi tertahan TURUN ke 0,020-0,045, jadi H-011 GAGAL
+#   2. di atas 0,05 pada 398 simbol asing adalah bukti terkuat yang pernah
+#      dihasilkan riset ini; di bawah 0,020 berarti H-010 wajib diperlakukan
+#      sebagai derau seleksi
+#   3. p entri acak 0,01-0,15; p di atas 0,05 menjatuhkan H-011 MESKIPUN
+#      ekspektasinya tinggi
+#   4. perdagangan 100.000-160.000 (penskalaan 11.734 x 438/40 = 128.487)
+#   5. retensi drop-1 minimal 0,95; dengan 438 simbol satu simbol tidak boleh
+#      berarti apa-apa
+#   6. durasi 15-60 menit
+#   7. porsi funding ekor maks 0,10-0,30, tetap di bawah ambang 0,35
 #
-# run_h007.py HARAM disentuh. run_h009.py mengimpor grid dari run_h007 dan
-# menolak berjalan bila keduanya berbeda; mengubah grid H-007 akan membatalkan
-# penjaga itu dan mengubah arti laporan yang sudah dikomit. run_h010.py karena
-# itu mendefinisikan gridnya sendiri, tetapi mengimpor buat_konfig, DATASET,
-# KUNCI_TERLARANG, dan AMBANG_CARRY_KERAS dari run_h009 apa adanya, sehingga
-# pematokan pengaman carry dijalankan kode yang sama persis.
+# DILARANG bila hasilnya buruk: memperkecil semesta kembali ke 40, memilih
+# subkumpulan simbol mana pun sesudah melihat hasil, menurunkan ulangan,
+# melonggarkan ambang 0,05R, atau menyatakan H-010 tetap berlaku 'untuk simbol
+# likuid saja'. Yang terakhir itu pemilihan subkumpulan pasca-hoc yang memakai
+# kata lain.
+#
+# Bila run melewati batas 330 menit, itu TIMEOUT dan itu informasi. Jalan
+# keluarnya adalah menurunkan ulangan ke 100 pada run berikutnya sambil
+# mempertahankan limit 0, bukan mengecilkan semesta.
 #
 # ADR-009 tetap berlaku penuh: BATAS RISIKO TIDAK DILOMBAKAN.
-# maks_carry_realisasi_R tetap dipatok 0,25 di luar grid. Di H-008 ambang itu
-# kalah 22 lawan 334 ketika dilombakan, dan alasannya bukan biaya melainkan
-# kelangkaan: pengaman hanya menyala 16 kali dari 14.925 perdagangan (0,107
-# persen), jadi jendela latih tipikal memuat nol atau satu peristiwa dan
-# pemilih hanya melihat pemenang yang terpotong.
+# maks_carry_realisasi_R tetap dipatok 0,25 di luar grid.
 #
-# BAHAYA YANG SUDAH DIKETAHUI SEBELUM RUN. Target lebih jauh berarti pegangan
-# lebih lama, jadi:
-#   1. Perdagangan tak selesai membengkak. maks_umur_bar tetap 168. H-009
-#      mencatat umur 368 dan akhir_data 188, yaitu 3,7 persen. Pada 8R porsi
-#      itu HARUS naik. Porsinya dicetak SEBELUM ekspektasi, karena bila ia
-#      besar maka yang terukur adalah batas umur, bukan struktur keluar.
-#   2. Carry membesar, dan di situlah gerbang kesebelas mengikat.
-#   3. Pengaman carry lebih sering menyala. Itu fitur, bukan bug.
+# ADR-013 juga menambahkan blok 'sebaran' ke setiap laporan: simpangan baku per
+# perdagangan, galat baku ekspektasi, kuartil, dan jarak ke ambang dalam satuan
+# galat baku. Sampai H-010 laporan hanya memuat rerata, sehingga tidak satu pun
+# dari sepuluh hipotesis dapat dinilai secara statistik. Galat baku itu
+# mengandaikan perdagangan saling bebas, dan andaian itu TIDAK benar, jadi ia
+# taksiran bawah: sah untuk menjatuhkan klaim, tidak sah untuk menegakkannya.
 #
-# DILARANG bila hasilnya buruk: melonggarkan maks_umur_bar, mematikan pengaman
-# carry, atau melonggarkan ambang ADR-011 agar H-010 lulus. Ketiganya mengubah
-# percobaan ini menjadi pencarian konfigurasi yang lulus.
-#
-# Ramalan ditulis sebelum run di ADR-012 bagian 5, termasuk yang merugikan
-# hipotesis ini sendiri:
-#   1. imbalan 8,0 dipilih 30-55 persen jendela; di atas 54,5 persen berarti
-#      penempelan bersifat MEKANIS, di bawah 25 persen berarti dinding H-007
-#      memang bukan dinding
-#   2. laju kena target turun ke 0,13-0,20 dari 0,27544
-#   3. porsi tak selesai naik dari 3,7 persen ke lebih dari 12 persen
-#   4. porsi_funding_ekor_maks naik ke 0,20-0,35; di atas 0,35 gerbang
-#      kesebelas GAGAL dan itu temuan, bukan alasan melonggarkan ambang
-#   5. ekspektasi 0,030-0,048, jadi TIDAK mencapai 0,05 dan H-010 kemungkinan
-#      besar menjadi penolakan kesepuluh
-#
-# Kriteria tidak dilonggarkan sedikit pun dari H-002 sampai H-009. Setelah tahu
-# H-009 hanya kurang 0,008641R, melonggarkannya sekarang adalah bentuk
-# kecurangan yang paling mudah dibela dan paling merusak.
-#
-# Percobaan tunggal, jadi ambang p entri acak tetap 0,05 tanpa koreksi
-# multiplisitas. ADR-006 melarang sinyal harga ketujuh; larangan itu dihormati
-# dengan tidak menulis satu baris pun di lux/strategi/. Sinyalnya sama persis
-# dengan H-002, H-007, H-008, dan H-009.
+# ADR-006 melarang sinyal harga ketujuh; larangan itu dihormati dengan tidak
+# menulis satu baris pun di lux/strategi/. Sinyalnya sama persis dengan H-002,
+# H-007, H-008, H-009, dan H-010.
 #
 # Bawaan pengaman di engine tetap MATI (0,0), sehingga H-001b sampai H-007 tetap
 # dapat diulang bita demi bita. Itu dikunci pengujian, bukan diandaikan.
-#
-# limit tetap 40 simbol pertama secara alfabet. Mengubahnya membuat seluruh
-# hasil tidak dapat dibandingkan dengan H-001b sampai H-009.
 
 on:
   workflow_dispatch:
     inputs:
       limit:
-        description: "Jumlah simbol yang diuji (0 = semua)"
-        default: "40"
+        description: "Jumlah simbol yang diuji (0 = semua; H-011 menuntut 0)"
+        default: "0"
       ulangan:
         description: "Ulangan uji permutasi entri acak"
-        default: "100"
+        default: "300"
   push:
     paths:
       - ".github/workflows/backtest.yml"
@@ -198,7 +191,9 @@ jobs:
           pip list 2>&1 | tee -a logs/preflight.log
 
       # Gerbang pra-terbang. Sudah berkali-kali mencegah pekerjaan panjang yang
-      # sia-sia karena cacat yang tertangkap dalam hitungan detik.
+      # sia-sia karena cacat yang tertangkap dalam hitungan detik. Untuk H-011
+      # nilainya lebih besar lagi: run ini sebelas kali lebih panjang daripada
+      # seluruh pendahulunya.
       - name: Uji dulu, baru unduh
         id: uji
         if: always() && steps.deps.outcome == 'success'
@@ -214,11 +209,12 @@ jobs:
       # pyyaml pernah hanya terpasang di sebagian workflow dan menjatuhkan run
       # ini tepat setelah unduhan selesai.
       #
-      # Pemeriksaan ADR-009 dan ADR-012 sengaja diletakkan di sini, bukan di
-      # ujung run: bila sumbu pengaman bocor kembali ke ruang pencarian, bila
-      # ambangnya mati, bila grid H-009 menyimpang dari H-007, atau bila dinding
-      # imbalan digeser ke arah yang salah, run harus berhenti dalam hitungan
-      # detik dan bukan setelah 559M aset diunduh.
+      # Pemeriksaan ADR-009, ADR-012, dan ADR-013 sengaja diletakkan di sini,
+      # bukan di ujung run: bila sumbu pengaman bocor kembali ke ruang
+      # pencarian, bila ambangnya mati, bila grid menyimpang, atau bila
+      # mekanisme H-011 tidak lagi identik dengan H-010, run harus berhenti
+      # dalam hitungan detik dan bukan setelah 559M aset diunduh dan 438 simbol
+      # dihitung.
       - name: Periksa impor modul jalan
         id: impor
         if: always() && steps.uji.outcome == 'success'
@@ -235,11 +231,15 @@ jobs:
             python -c "from lux.backtest.gerbang import NAMA_GERBANG; print('jumlah gerbang:', len(NAMA_GERBANG)); print('  nama:', NAMA_GERBANG)"
             python -c "from lux.backtest.gerbang import NAMA_GERBANG; assert 'konsentrasi' in NAMA_GERBANG and 'funding_ekor' in NAMA_GERBANG, 'gerbang ADR-010/ADR-011 tidak terdaftar'; print('gerbang kesepuluh dan kesebelas terdaftar: ya')"
             python -c "from lux.backtest.engine import Konfig; print('bawaan pengaman mati:', Konfig().maks_carry_realisasi_R == 0.0)"
+            python -c "from lux.analisis.sebaran import KUNCI, ukur_sebaran; u = ukur_sebaran([1.0, 2.0, 3.0, 4.0]); assert abs(u['std_R'] - 1.2909944487358056) < 1e-12, 'sebaran memakai ddof yang salah'; print('ADR-013 sebaran siap:', len(KUNCI), 'kunci, std ddof=1', round(u['std_R'], 6), 'galat baku', round(u['galat_baku_R'], 6))"
+            python -c "import inspect; from lux.backtest.runner import jalankan_spek; src = inspect.getsource(jalankan_spek); assert 'ukur_sebaran' in src and 'jarak_ambang' in src, 'sebaran belum tersambung ke runner'; print('sebaran tersambung ke runner: ya')"
             python -c "from lux.analisis.titik_impas import ALASAN_TIDAK_SELESAI, titik_impas; print('alasan tidak selesai:', ALASAN_TIDAK_SELESAI); print('  titik impas 4R', round(titik_impas(4.0), 4), '8R', round(titik_impas(8.0), 4))"
-            python -c "from lux.backtest.run_h010 import AMBANG_CARRY_KERAS, IMBALAN, LOOKBACK, kandidat, spek_h010; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); s = spek_h010(k); print('H-010 siap:', s.h.id, s.nama, s.h.jumlah_kombinasi, 'kombinasi, sidik', s.h.sidik()[:12]); print('  lookback', LOOKBACK, 'imbalan', IMBALAN, 'kandidat', len(kandidat())); print('  ambang carry DIPATOK:', AMBANG_CARRY_KERAS); print('  saringan ADR-004 tetap:', k.maks_umur_bar, k.maks_carry_R, k.jendela_carry_hari)"
-            python -c "from lux.backtest.run_h007 import IMBALAN as I7, LOOKBACK as L7; from lux.backtest.run_h009 import IMBALAN as I9, LOOKBACK as L9; assert I9 == I7 and L9 == L7, 'grid H-009 menyimpang dari H-007'; print('kontrak beku H-009 utuh: ya')"
-            python -c "from lux.backtest.run_h007 import IMBALAN as I7, LOOKBACK as L7; from lux.backtest.run_h010 import IMBALAN as I10, JANGKAR, LOOKBACK as L10, kandidat; from lux.backtest.run_h009 import kandidat as k9; assert L10 == list(L7), 'lookback H-010 menyimpang'; assert I10 != list(I7), 'dinding tidak digeser, ADR-012 kosong'; assert len(I10) == len(I7), 'jumlah kombinasi berubah, multiplisitas tak sebanding'; assert max(I10) > max(I7), 'dinding digeser ke DALAM, bukan ke luar'; assert all(j in I10 for j in JANGKAR), 'jangkar pembanding hilang'; assert len(kandidat()) == len(k9()), 'kombinasi H-010 tidak sama dengan H-009'; print('ADR-012 ditegakkan: imbalan', list(I7), '->', I10, 'dengan', len(kandidat()), 'kombinasi')"
-            python -c "from lux.backtest.run_h010 import AMBANG_CARRY_KERAS, KUNCI_TERLARANG, buat_konfig, kandidat; from lux.backtest.run_h009 import buat_konfig as bk9; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); assert buat_konfig is bk9, 'buat_konfig H-010 bukan fungsi H-009'; assert all(KUNCI_TERLARANG not in p for p in kandidat()), 'batas risiko bocor ke ruang pencarian'; assert AMBANG_CARRY_KERAS > 0, 'pengaman mati'; assert all(buat_konfig(p, k).maks_carry_realisasi_R == AMBANG_CARRY_KERAS for p in kandidat()), 'ada kandidat tanpa pengaman'; print('ADR-009 ditegakkan: pengaman menyala di', len(kandidat()), 'dari', len(kandidat()), 'kandidat')"
+            python -c "from lux.backtest.run_h011 import BATAS_H010, NAMA, RAMALAN, spek_h011; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); s = spek_h011(k); print('H-011 siap:', s.h.id, s.nama, s.h.jumlah_kombinasi, 'kombinasi, sidik', s.h.sidik()[:12]); print('  batas simbol terpakai:', BATAS_H010, 'ramalan tertulis:', len(RAMALAN)); print('  saringan ADR-004 tetap:', k.maks_umur_bar, k.maks_carry_R, k.jendela_carry_hari)"
+            python -c "from lux.backtest.run_h010 import IMBALAN as I10, LOOKBACK as L10, kandidat as k10; from lux.backtest.run_h011 import IMBALAN_H010, LOOKBACK_H010, spek_h011; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); assert IMBALAN_H010 == I10 and LOOKBACK_H010 == L10, 'grid H-011 menyimpang dari H-010'; assert spek_h011(k).kandidat == k10(), 'kandidat H-011 bukan kandidat H-010'; print('mekanisme H-011 identik H-010: lookback', L10, 'imbalan', I10, len(k10()), 'kombinasi')"
+            python -c "from lux.backtest.run_h011 import spek_h011; from lux.backtest.run_h009 import buat_konfig as bk9, KUNCI_TERLARANG, AMBANG_CARRY_KERAS; from lux.backtest.run_h010 import kandidat; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); assert spek_h011(k).buat_konfig is bk9, 'buat_konfig H-011 bukan fungsi H-009'; assert all(KUNCI_TERLARANG not in p for p in kandidat()), 'batas risiko bocor ke ruang pencarian'; assert AMBANG_CARRY_KERAS > 0, 'pengaman mati'; assert all(bk9(p, k).maks_carry_realisasi_R == AMBANG_CARRY_KERAS for p in kandidat()), 'ada kandidat tanpa pengaman'; print('ADR-009 ditegakkan: pengaman menyala di', len(kandidat()), 'dari', len(kandidat()), 'kandidat')"
+            python -c "from lux.backtest.run_h011 import spek_h011; from lux.backtest.run_h010 import hipotesis_h010; from lux.backtest.run_h002 import muat_konfig_h002; k = muat_konfig_h002('config/lux.yaml'); a = spek_h011(k).h.kriteria; b = hipotesis_h010(k).kriteria; assert a == b, 'kriteria H-011 berbeda dari H-010'; assert a.min_ekspektasi_R == 0.05 and a.maks_p_entri_acak == 0.05, 'ambang bergeser'; print('kriteria tidak dilonggarkan dan tidak diperketat:', a)"
+            python -c "import json; from lux.backtest.run_h011 import BATAS_H010, simbol_teruji; t = simbol_teruji('reports/universe_layak_v2.json'); s = json.load(open('reports/universe_layak_v2.json'))['simbol']; assert len(t) == BATAS_H010, 'simbol terpakai bukan 40'; tertahan = [x for x in sorted(s) if x not in set(t)]; assert len(tertahan) > 0, 'tidak ada simbol tertahan'; print('semesta', len(s), '= terpakai', len(t), '+ tertahan', len(tertahan)); print('  terpakai:', t[0], '..', t[-1]); print('  tertahan:', tertahan[0], '..', tertahan[-1])"
+            python -c "from lux.backtest.run_h011 import main; import pytest" 2>/dev/null || true
           } 2>&1 | tee -a logs/preflight.log
 
       - name: Unduh aset
@@ -255,8 +255,9 @@ jobs:
           gh release download "$TAG" -p 'funding_shard*.parquet' -D aset --clobber
           ls -la aset | tail -20 2>&1 | tee -a logs/preflight.log
           du -sh aset 2>&1 | tee -a logs/preflight.log
+          df -h . 2>&1 | tee -a logs/preflight.log
 
-      - name: Jalankan H-010 (dinding grid imbalan digeser)
+      - name: Jalankan H-011 (seluruh 438 simbol, 398 tertahan)
         id: jalan
         if: always() && steps.unduh.outcome == 'success'
         env:
@@ -264,13 +265,13 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p logs
-          python -m lux.backtest.run_h010 \
+          python -m lux.backtest.run_h011 \
             --dir aset \
             --interval 1h \
             --universe reports/universe_layak_v2.json \
             --akhir-sejati reports/akhir_sejati.json \
-            --limit "${{ github.event.inputs.limit || 40 }}" \
-            --ulangan "${{ github.event.inputs.ulangan || 100 }}" \
+            --limit "${{ github.event.inputs.limit || 0 }}" \
+            --ulangan "${{ github.event.inputs.ulangan || 300 }}" \
             --out reports 2>&1 | tee logs/backtest.log
 
       # Laporan ini WAJIB tetap terbentuk pada kegagalan apa pun, termasuk
@@ -281,7 +282,7 @@ jobs:
         run: |
           mkdir -p reports logs
           {
-            echo "# Log run backtest H-010 (ADR-012)"
+            echo "# Log run backtest H-011 (ADR-013)"
             echo
             echo "Commit: \`${GITHUB_SHA}\`"
             echo "Run: \`${GITHUB_RUN_ID}\`"
@@ -303,7 +304,7 @@ jobs:
             echo "## Langkah jalan"
             echo
             echo '```'
-            tail -c 60000 logs/backtest.log 2>/dev/null || echo "(tidak ada log; kegagalan terjadi sebelum langkah jalan)"
+            tail -c 120000 logs/backtest.log 2>/dev/null || echo "(tidak ada log; kegagalan terjadi sebelum langkah jalan)"
             echo '```'
           } > reports/backtest_log.md
 
