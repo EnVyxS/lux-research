@@ -27,7 +27,7 @@ Rancangannya faktorial 2x2 (ADR-015 bagian B), dan yang dibandingkan adalah
 - **Sumbangan geometri = SS − SH.**
 - **Interaksi = (SS − AS) − (SH − AH).**
 
-LIMA HAL YANG WAJIB DIKETAHUI SEBELUM MEMBACA HASILNYA
+ENAM HAL YANG WAJIB DIKETAHUI SEBELUM MEMBACA HASILNYA
 ------------------------------------------------------
 **1. Tripwire dataset DIBALIK di sini.** ``run_h010`` dan ``run_h012`` menuntut
 dataset identik dengan H-002. Modul ini menuntut yang sebaliknya: dataset wajib
@@ -49,12 +49,20 @@ kegagalannya **sunyi**: laporan tetap terbentuk dan hanya berbunyi "tidak dapat
 dinilai". ``pemanasan`` sengaja **tidak** dikonversi; ia kebutuhan bar milik
 indikator, bukan satuan waktu.
 
-**4. ``imbalan_R`` dibekukan 2.0 di keempat sel (ADR-022).** Pada sel tanpa target
+**4. Dua pengaman TIDAK menyala lewat config, dan itu bukan dugaan.**
+``muat_konfig_h002`` memetakan delapan kunci saja: ``fee``, ``slippage``,
+``atr_periode``, ``atr_pengali_stop``, ``risiko_per_trade``, ``maks_umur_bar``,
+``maks_carry_R``, ``jendela_carry_hari``. ``maks_biaya_masuk_R`` dan
+``stop_hormati_celah`` tertulis di ``config/lux.yaml`` dan **tidak pernah dibaca**.
+Karena itu ``dasar_riset`` memasang keduanya eksplisit; run 30213913942 mati di
+pagar yang menemukan hal ini, dan pagar itu tidak diturunkan.
+
+**5. ``imbalan_R`` dibekukan 2.0 di keempat sel (ADR-022).** Pada sel tanpa target
 ia tidak berpengaruh, sehingga melombakannya berarti memberi sel bertarget dua
 belas kesempatan memilih melawan tiga — keuntungan gratis yang arahnya persis
 mendukung kesimpulan yang paling menyenangkan.
 
-**5. ``lookahead`` dan ``entri_acak`` DIJAMIN gagal pada sel AS dan AH (ADR-021).**
+**6. ``lookahead`` dan ``entri_acak`` DIJAMIN gagal pada sel AS dan AH (ADR-021).**
 Permutasi bergantung panjang array, sedangkan gerbang lookahead memotong data lalu
 menuntut sinyal awal tidak berubah. Menurut aturan 36 itu konsekuensi konstruksi,
 bukan ramalan, dan haram dilaporkan sebagai temuan. Sebelas gerbang tetap dinilai
@@ -88,7 +96,9 @@ from lux.backtest.run_h009 import (
     buat_konfig,
 )
 from lux.backtest.run_h010 import JANGKAR
+from lux.backtest.run_h012 import kunci_config
 from lux.backtest.runner import Opsi, Spek, jalankan_spek, muat_konteks
+from lux.degenerasi import AMBANG_BIAYA_MASUK_R
 from lux.kerangka import bar_dari_hari
 from lux.praregistrasi import Hipotesis, Kriteria
 from lux.strategi import breakout_atr
@@ -164,6 +174,31 @@ RAMALAN = {
         "keunggulan geometri di atas sinyal nol"
     ),
 }
+
+
+def dasar_riset(konfig: Konfig) -> Konfig:
+    """Pasang dua pengaman yang **tidak** dibaca oleh pemuat config.
+
+    ``muat_konfig_h002`` memetakan delapan kunci saja dan tidak menyentuh
+    ``maks_biaya_masuk_R`` maupun ``stop_hormati_celah``. Keduanya tertulis di
+    ``config/lux.yaml`` dan tidak pernah sampai ke mesin — sebuah angka yang hidup
+    di berkas tetapi tidak di dalam program, yang lebih sulit terlihat daripada
+    angka yang salah karena berkasnya tampak benar.
+
+    Nilai pengaman diambil dari ``lux.degenerasi``, sumber yang sama dengan lantai
+    semesta, bukan diketik di sini. ``stop_hormati_celah`` dinyalakan karena
+    ADR-016 menuntutnya: tanpa itu jalur stop mustahil merugi lebih dari sekitar
+    1R, dan ``invarian_risiko`` menjadi hampir tak berdaya justru di jalur yang
+    paling sering dipakai.
+
+    Pemuat ``run_h002`` sengaja **tidak** diperbaiki. Ia dipakai dua belas
+    hipotesis; menyentuhnya akan mengubah arti laporan yang sudah dikomit.
+    """
+    return replace(
+        konfig,
+        maks_biaya_masuk_R=AMBANG_BIAYA_MASUK_R,
+        stop_hormati_celah=True,
+    )
 
 
 def jendela_bar(interval: str) -> dict:
@@ -312,7 +347,11 @@ def hipotesis_h013(sel: str, konfig: Konfig, komit: str = "") -> Hipotesis:
             "atr_pengali_stop": [konfig.atr_pengali_stop],
             "maks_carry_R": [konfig.maks_carry_R],
             "jendela_carry_hari": [konfig.jendela_carry_hari],
+            # Kedua nilai ini hanya benar bila konfig sudah melewati
+            # dasar_riset; bila ia 0.0 atau False, sidiknya akan berbeda dan
+            # perbedaan itu terlihat di berkas hipotesis.
             "maks_biaya_masuk_R": [konfig.maks_biaya_masuk_R],
+            "stop_hormati_celah": [konfig.stop_hormati_celah],
         },
         # Tidak dilonggarkan sedikit pun dari H-002 sampai H-012, meskipun sel
         # pembanding memang tidak dimaksudkan lulus.
@@ -410,7 +449,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--komit", default="")
     a = ap.parse_args(argv)
 
-    konfig = muat_konfig_h002(Path(a.config))
+    # Dua pengaman dipasang di sini karena pemuat config tidak membacanya.
+    dasar = dasar_riset(muat_konfig_h002(Path(a.config)))
 
     # Seluruh pagar di bawah berjalan sebelum satu bar pun dimuat. Pemeriksaan
     # yang bisa gagal tidak boleh diletakkan di ujung run panjang.
@@ -448,14 +488,37 @@ def main(argv: list[str] | None = None) -> int:
         )
         return 2
 
-    if konfig.maks_biaya_masuk_R <= 0:
-        print(
-            "DITOLAK: pengaman biaya masuk ADR-014 wajib menyala di H-013.",
-            flush=True,
+    # Pengaman biaya masuk dan stop_hormati_celah dipasang oleh dasar_riset,
+    # BUKAN oleh config. Yang diperiksa di sini adalah hasil pemasangannya.
+    if dasar.maks_biaya_masuk_R != AMBANG_BIAYA_MASUK_R or dasar.maks_biaya_masuk_R <= 0:
+        raise ValueError(
+            f"pengaman biaya masuk gagal terpasang: {dasar.maks_biaya_masuk_R} "
+            f"bukan {AMBANG_BIAYA_MASUK_R}"
         )
-        return 2
 
-    if konfig.maks_carry_R <= 0:
+    if not dasar.stop_hormati_celah:
+        raise ValueError(
+            "stop_hormati_celah wajib menyala (ADR-016); tanpa itu jalur stop "
+            "mustahil merugi lebih dari sekitar 1R dan invarian_risiko hampir "
+            "tak berdaya di jalur yang paling sering dipakai"
+        )
+
+    # Angka kembar: nilai yang dipasang WAJIB sama dengan yang tertulis di
+    # config, meskipun config bukan yang memasangnya. Bila keduanya berselisih,
+    # salah satu digeser tanpa dijurnalkan.
+    kunci = kunci_config(Path(a.config))
+    if kunci["maks_biaya_masuk_R"] != AMBANG_BIAYA_MASUK_R:
+        raise ValueError(
+            f"config maks_biaya_masuk_R {kunci['maks_biaya_masuk_R']} berselisih "
+            f"dengan degenerasi {AMBANG_BIAYA_MASUK_R}"
+        )
+    if kunci["min_median_stop_frac"] != a.min_median_stop_frac:
+        raise ValueError(
+            f"lantai yang diberikan pemanggil {a.min_median_stop_frac} berselisih "
+            f"dengan config {kunci['min_median_stop_frac']}"
+        )
+
+    if dasar.maks_carry_R <= 0:
         raise ValueError("H-013 menuntut saringan ADR-004 tetap menyala")
 
     if AMBANG_CARRY_KERAS <= 0:
@@ -463,7 +526,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # Tripwire DIBALIK: dataset wajib BERBEDA dari H-002, sebab H-013 berjalan
     # pada 4h dengan semesta berlantai.
-    if DATASET == hipotesis_h002(konfig).dataset or DATASET == DATASET_H009:
+    if DATASET == hipotesis_h002(dasar).dataset or DATASET == DATASET_H009:
         raise ValueError(
             "dataset H-013 wajib berbeda dari H-002/H-009; interval dan "
             "semestanya memang bukan yang sama"
@@ -488,10 +551,10 @@ def main(argv: list[str] | None = None) -> int:
         if "pakai_target" in p or "maks_umur_bar" in p:
             raise ValueError("geometri keluar tidak boleh dilombakan (ADR-020)")
 
-    if UMUR_SEL_STOP == konfig.maks_umur_bar:
+    if UMUR_SEL_STOP == dasar.maks_umur_bar:
         raise ValueError(
             f"maks_umur_bar sel stop wajib diturunkan dari hari, bukan diambil "
-            f"dari config ({konfig.maks_umur_bar} bar = 28 hari pada 4h)"
+            f"dari config ({dasar.maks_umur_bar} bar = 28 hari pada 4h)"
         )
 
     # ADR-023. Jendela 1h wajib tidak bergeser sedikit pun, dan jendela 4h wajib
@@ -531,7 +594,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"kandidat per sel: {len(kandidat())} (imbalan BEKU {IMBALAN_BEKU})", flush=True)
     print(
         f"batas umur: sel stop {UMUR_SEL_STOP} bar 4h = 7 hari, "
-        f"sel horizon {H_BAR} bar 4h (config {konfig.maks_umur_bar} TIDAK dipakai)",
+        f"sel horizon {H_BAR} bar 4h (config {dasar.maks_umur_bar} TIDAK dipakai)",
         flush=True,
     )
     print(
@@ -547,7 +610,12 @@ def main(argv: list[str] | None = None) -> int:
         flush=True,
     )
     print(f"lantai median stop_frac: {a.min_median_stop_frac}", flush=True)
-    print(f"pengaman biaya masuk: {konfig.maks_biaya_masuk_R}R", flush=True)
+    print(
+        f"pengaman biaya masuk: {dasar.maks_biaya_masuk_R}R, "
+        f"stop_hormati_celah {dasar.stop_hormati_celah} "
+        "(keduanya DIPASANG dasar_riset; pemuat config tidak membacanya)",
+        flush=True,
+    )
     print(f"ulangan permutasi per sel: {a.ulangan}", flush=True)
     print(f"seed permutasi: {SEED_PERMUTASI} (sama dengan gerbang)", flush=True)
     print(
@@ -563,12 +631,12 @@ def main(argv: list[str] | None = None) -> int:
     for nama, isi_ramalan in RAMALAN.items():
         print(f"  ramalan {nama}: {isi_ramalan}", flush=True)
 
-    ktx = muat_konteks(opsi, konfig)
+    ktx = muat_konteks(opsi, dasar)
 
     hasil_sel: dict[str, dict] = {}
     for sel in NAMA_SEL:
         dasar_sel = replace(
-            konfig, maks_umur_bar=umur_sel(sel), pakai_target=pakai_target_sel(sel)
+            dasar, maks_umur_bar=umur_sel(sel), pakai_target=pakai_target_sel(sel)
         )
         print(
             f"\n### SEL {sel}: sinyal "
@@ -624,6 +692,8 @@ def main(argv: list[str] | None = None) -> int:
             "seed_permutasi": SEED_PERMUTASI,
             "ulangan": a.ulangan,
             "min_median_stop_frac": a.min_median_stop_frac,
+            "maks_biaya_masuk_R": dasar.maks_biaya_masuk_R,
+            "stop_hormati_celah": dasar.stop_hormati_celah,
             "jendela_bar": jen,
             "pemanasan_bar": PEMANASAN,
             "bar_dibutuhkan_satu_jendela": butuh,
@@ -655,6 +725,10 @@ def main(argv: list[str] | None = None) -> int:
         f"{jen['panjang_latih']} bar, uji {jen['panjang_uji']}, embargo "
         f"{jen['embargo']}, pemanasan {PEMANASAN} bar yang **tidak** dikonversi. "
         f"Satu jendela menuntut {butuh} bar.",
+        "",
+        f"Pengaman biaya masuk {dasar.maks_biaya_masuk_R}R dan "
+        f"`stop_hormati_celah` dipasang oleh `dasar_riset`, sebab pemuat config "
+        "tidak pernah membaca kedua kunci itu.",
         "",
         "## Empat sel",
         "",
@@ -693,8 +767,7 @@ def main(argv: list[str] | None = None) -> int:
         "",
         "`invarian_risiko` yang jatuh pada sel tanpa target **bukan** bukti "
         "target lebih baik: jalur `umur` mengisi pada harga bar sungguhan, "
-        "sedangkan jalur stop tanpa `stop_hormati_celah` tidak pernah lebih "
-        "buruk dari sekitar 1R.",
+        "sedangkan jalur stop hanya seburuk celah pembukaan.",
         "",
     ]
     (out / "backtest_h013_kontribusi.md").write_text(
