@@ -121,9 +121,7 @@ def test_ringkas_menemukan_pelanggar_dan_ekor_menutup_ambang():
 
 
 def test_ringkas_ekor_tidak_menutup_ambang_bila_semua_pelanggar():
-    baris = gk.dari_terburuk(
-        [baris_uji(R=-9.0), baris_uji(R=-8.0)]
-    )
+    baris = gk.dari_terburuk([baris_uji(R=-9.0), baris_uji(R=-8.0)])
     assert gk.ringkas(baris)["ekor_menutup_ambang"] is False
 
 
@@ -219,4 +217,3 @@ def test_main_menulis_laporan_dengan_tabel(tmp_path):
     assert "ZZZUSDT" in teks
     assert "umur" in teks
     assert "Adjudikasi ramalan Bagian A" in teks
-}
