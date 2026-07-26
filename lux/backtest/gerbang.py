@@ -1,4 +1,4 @@
-"""Sembilan gerbang mutu yang harus dilewati sebelum sebuah hasil dipercaya.
+"""Sepuluh gerbang mutu yang harus dilewati sebelum sebuah hasil dipercaya.
 
 Gerbang ini dipasang **bersamaan dengan mesinnya**, bukan sesudah ada hasil
 pertama. Urutan itu penting dan bukan soal kerapian: gerbang yang dirancang
@@ -13,8 +13,21 @@ menemukan pelanggaran; ia tidak menemukan apa-apa karena tidak memeriksa apa
 pun. Kelalaian yang menyamar sebagai kelulusan adalah cara paling sunyi sebuah
 pipeline riset membohongi pemiliknya.
 
-Sembilan gerbang: forward-fill, buy-and-hold, entri acak, lookahead, invarian
-risiko, funding, overlap, checksum, survivorship.
+Sembilan gerbang pertama: forward-fill, buy-and-hold, entri acak, lookahead,
+invarian risiko, funding, overlap, checksum, survivorship.
+
+Gerbang kesepuluh, **konsentrasi**, ditambahkan oleh ADR-010 dan tinggal di
+``lux/backtest/konsentrasi.py``, bukan di berkas ini. Alasannya teknis dan
+sudah dibayar sekali: modul itu mengimpor ``Gerbang`` dari sini, sehingga bila
+berkas ini mengimpornya balik lahirlah impor sirkular seperti cacat komit
+``4b77617``. ``NAMA_GERBANG`` tetap menjadi satu-satunya daftar resmi, dan
+runner-lah yang menyatukan keduanya.
+
+Konsekuensi yang perlu diketahui: tiga orkestrator lama yang dibekukan
+(``run_wf``, ``run_h002``, ``run_h003``) hanya menyusun sembilan gerbang. Bila
+salah satunya dijalankan lagi, ``konsentrasi`` akan tercatat sebagai "gerbang
+tidak dijalankan" dan laporannya gagal. Itu bukan cacat melainkan pernyataan
+yang benar: orkestrator itu sungguh tidak mengukur konsentrasi.
 """
 
 from __future__ import annotations
@@ -258,6 +271,12 @@ def gerbang_funding(hasil: Hasil, jadwal_dimuat: bool) -> Gerbang:
     lupa dipasang. Pada 79,1% periode funding bernilai positif, sehingga pemegang
     long membayar; strategi long yang funding-nya persis nol hampir pasti sedang
     tidak memperhitungkannya sama sekali.
+
+    Catatan yang diperoleh dengan mahal di S12: gerbang ini hanya memastikan
+    funding **dihitung**, bukan bahwa pengaruhnya jinak. Rerata funding 0,0004R
+    pernah saya pakai untuk menyimpulkan funding tidak bersalah, padahal pada
+    kerugian terburuk H-008 porsinya 46,7%. Rerata tidak mengatakan apa pun
+    tentang ekor.
     """
     if not jadwal_dimuat:
         return _gagal_tak_ternilai("funding", "jadwal funding tidak dimuat")
@@ -370,6 +389,15 @@ def gerbang_survivorship(
 
 
 # --------------------------------------------------------------------------
+# 10. Konsentrasi — lihat lux/backtest/konsentrasi.py
+# --------------------------------------------------------------------------
+# Gerbang kesepuluh sengaja tidak didefinisikan di berkas ini agar tidak ada
+# impor sirkular. Ia hidup di lux/backtest/konsentrasi.py dan dipanggil oleh
+# runner. Namanya tetap terdaftar di NAMA_GERBANG di bawah, sehingga bila
+# runner lupa memanggilnya, susun_laporan mencatatnya sebagai gagal.
+
+
+# --------------------------------------------------------------------------
 # Laporan gabungan
 # --------------------------------------------------------------------------
 @dataclass
@@ -380,11 +408,17 @@ class LaporanGerbang:
     def semua_lulus(self) -> bool:
         """Tidak ada rata-rata dan tidak ada keringanan.
 
-        Satu gerbang gagal berarti pipeline berhenti. Membiarkan delapan dari
-        sembilan dianggap cukup akan mengubah gerbang menjadi skor, dan skor
+        Satu gerbang gagal berarti pipeline berhenti. Membiarkan sembilan dari
+        sepuluh dianggap cukup akan mengubah gerbang menjadi skor, dan skor
         selalu bisa dinegosiasikan.
+
+        Jumlahnya dibandingkan dengan ``len(NAMA_GERBANG)``, bukan dengan angka
+        yang ditulis tangan. Angka yang ditulis tangan akan tertinggal pada saat
+        gerbang berikutnya ditambahkan, dan tertinggalnya akan berupa kelulusan.
         """
-        return len(self.gerbang) == 9 and all(g.lulus for g in self.gerbang)
+        return len(self.gerbang) == len(NAMA_GERBANG) and all(
+            g.lulus for g in self.gerbang
+        )
 
     @property
     def yang_gagal(self) -> list[str]:
@@ -417,11 +451,12 @@ NAMA_GERBANG = (
     "overlap",
     "checksum",
     "survivorship",
+    "konsentrasi",
 )
 
 
 def susun_laporan(gerbang: Iterable[Gerbang]) -> LaporanGerbang:
-    """Susun laporan sambil memastikan kesembilan gerbang benar-benar hadir.
+    """Susun laporan sambil memastikan kesepuluh gerbang benar-benar hadir.
 
     Gerbang yang lupa dijalankan dicatat sebagai gagal dengan sebab yang jelas.
     Diam bukan kelulusan.

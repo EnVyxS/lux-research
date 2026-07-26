@@ -1,4 +1,4 @@
-"""Runner bersama untuk keluarga hipotesis (ADR-006, diperluas ADR-007).
+"""Runner bersama untuk keluarga hipotesis (ADR-006, diperluas ADR-007, ADR-010).
 
 ADR-005 mensyaratkan ekstraksi ini sebelum orkestrator keempat dibuat, dan
 syaratnya dipenuhi di sini. Tiga orkestrator lama — ``run_wf`` (H-001b),
@@ -11,9 +11,14 @@ semua hipotesis melihat kumpulan berkas yang identik, sehingga gerbang
 ``checksum`` cukup dinilai sekali dan perbandingan antar hipotesis sah.
 
 Sejak ADR-007, sebuah ``Spek`` boleh membawa ``buat_konfig`` sehingga parameter
-keluar ikut dipilih walk-forward. Uji permutasi memakai konfig milik masing­-
+keluar ikut dipilih walk-forward. Uji permutasi memakai konfig milik masing-
 masing jendela, bukan konfig dasar, agar yang dibandingkan benar-benar wilayah
 penilaian yang sama.
+
+Sejak ADR-010 runner menilai gerbang kesepuluh, ``konsentrasi``, dari agregat
+per simbol dan menulis tabel jackknife ke laporan. Agregat yang dipakai adalah
+``ringkasan_simbol`` yang belum dibulatkan, bukan blok ``per_simbol`` yang
+dibulatkan ke empat desimal untuk keperluan pembacaan manusia.
 """
 
 from __future__ import annotations
@@ -39,6 +44,11 @@ from lux.backtest.gerbang import (
     gerbang_lookahead,
     gerbang_survivorship,
     susun_laporan,
+)
+from lux.backtest.konsentrasi import (
+    dari_ringkasan,
+    gerbang_konsentrasi,
+    tabel_jackknife,
 )
 from lux.backtest.run_wf import (
     akhir_per_simbol,
@@ -265,9 +275,17 @@ def jalankan_spek(
     for p in semua_trade:
         alasan[p.alasan_keluar] = alasan.get(p.alasan_keluar, 0) + 1
 
+    # ADR-010. Agregat yang dipakai belum dibulatkan; blok per_simbol di laporan
+    # membulatkan ke empat desimal untuk dibaca manusia, dan pembulatan itu
+    # tidak perlu diwariskan ke putusan gerbang.
+    kontribusi = dari_ringkasan(ringkasan_simbol)
+    jackknife = tabel_jackknife(kontribusi)
+    g_konsentrasi = gerbang_konsentrasi(kontribusi)
+
     print(json.dumps(gabungan, indent=2), flush=True)
     print(f"alasan keluar: {alasan}", flush=True)
     print(f"parameter terpilih: {parameter_terpilih}", flush=True)
+    print(f"konsentrasi: {g_konsentrasi.catatan}", flush=True)
 
     hasil_pool = Hasil(
         symbol="POOL",
@@ -338,6 +356,7 @@ def jalankan_spek(
                 simbol_delisted=ktx.mati,
                 simbol_universe=ktx.semesta_layak,
             ),
+            g_konsentrasi,
         ]
     )
     putusan = nilai(spek.h, gabungan, p_acak)
@@ -362,6 +381,7 @@ def jalankan_spek(
         "parameter_terpilih": parameter_terpilih,
         "diagnosa_biaya": diagnosa,
         "gerbang": laporan.ke_dict(),
+        "jackknife": jackknife,
         "putusan": {"lulus": putusan.lulus, "alasan": putusan.alasan},
         "per_simbol": per_simbol,
         "detik": round(time.time() - t0, 1),
@@ -400,7 +420,7 @@ def jalankan_spek(
         f"- Jendela positif: {gabungan['jendela_positif']}/{gabungan['jumlah_jendela']}",
         f"- Alasan keluar: {alasan}",
         "",
-        "## Sembilan gerbang",
+        "## Sepuluh gerbang",
         "",
         "| Gerbang | Putusan | Nilai | Ambang | Catatan |",
         "|---|---|---|---|---|",
@@ -411,6 +431,28 @@ def jalankan_spek(
         md.append(
             f"| {g.nama} | {'lulus' if g.lulus else 'GAGAL'} | {n} | {am} | "
             f"{g.catatan} |"
+        )
+
+    md += [
+        "",
+        "## Jackknife konsentrasi (ADR-010)",
+        "",
+        "Buang penyumbang teratas satu per satu. Retensi adalah ekspektasi "
+        "setelah pembuangan dibagi ekspektasi utuh. Ini menjawab pertanyaan yang "
+        "sesungguhnya penting: apakah keunggulan tetap ada seandainya simbol "
+        "paling untung tidak pernah ada.",
+        "",
+        "| k | Dibuang | Simbol sisa | Trade | Total R | Ekspektasi R | Retensi |",
+        "|---|---|---|---|---|---|---|",
+    ]
+    strip = "\u2014"
+    for b in jackknife:
+        dibuang = b["dibuang"] or strip
+        e = strip if b["ekspektasi_R"] is None else f"{b['ekspektasi_R']:.6f}"
+        ret = strip if b["retensi"] is None else f"{b['retensi']:.4f}"
+        md.append(
+            f"| {b['k']} | {dibuang} | {b['simbol_sisa']} | {b['trade']:,} | "
+            f"{b['total_R']:.2f} | {e} | {ret} |"
         )
 
     md += ["", "## Pembongkaran biaya", ""]
@@ -471,5 +513,6 @@ def jalankan_spek(
         "alasan": putusan.alasan,
         "alasan_keluar": alasan,
         "rerata_transaksi_R": diagnosa.get("rerata_transaksi_R"),
+        "retensi_drop_1": g_konsentrasi.nilai,
         "detik": isi["detik"],
     }
