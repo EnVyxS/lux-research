@@ -1,0 +1,18 @@
+interval yang diminta: 4h
+total 153972
+drwxr-xr-x  2 runner runner     4096 Jul 26 16:47 .
+drwxr-xr-x 15 runner runner     4096 Jul 26 16:47 ..
+-rw-r--r--  1 runner runner 23609925 Jul 26 16:47 ohlcv_4h_shard00.parquet
+-rw-r--r--  1 runner runner 19595753 Jul 26 16:47 ohlcv_4h_shard01.parquet
+-rw-r--r--  1 runner runner 17515963 Jul 26 16:47 ohlcv_4h_shard02.parquet
+-rw-r--r--  1 runner runner 18412119 Jul 26 16:47 ohlcv_4h_shard03.parquet
+-rw-r--r--  1 runner runner 19904881 Jul 26 16:47 ohlcv_4h_shard04.parquet
+-rw-r--r--  1 runner runner 17959843 Jul 26 16:47 ohlcv_4h_shard05.parquet
+-rw-r--r--  1 runner runner 17326751 Jul 26 16:47 ohlcv_4h_shard06.parquet
+-rw-r--r--  1 runner runner 17844356 Jul 26 16:47 ohlcv_4h_shard07.parquet
+-rw-r--r--  1 runner runner  1362914 Jul 26 16:47 ohlcv_4h_tail_shard00.parquet
+-rw-r--r--  1 runner runner  1437885 Jul 26 16:47 ohlcv_4h_tail_shard01.parquet
+-rw-r--r--  1 runner runner  1364053 Jul 26 16:47 ohlcv_4h_tail_shard02.parquet
+-rw-r--r--  1 runner runner  1294176 Jul 26 16:47 ohlcv_4h_tail_shard03.parquet
+jumlah berkas: 12
+151M	aset

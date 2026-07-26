@@ -1,0 +1,33 @@
+interval 4h ambang: min_bar=2190 min_median_quote=1,000,000 maks_bar_datar=0.3
+  dibaca ohlcv_4h_shard00.parquet: 554,156 baris
+  dibaca ohlcv_4h_shard01.parquet: 435,448 baris
+  dibaca ohlcv_4h_shard02.parquet: 421,959 baris
+  dibaca ohlcv_4h_shard03.parquet: 423,376 baris
+  dibaca ohlcv_4h_shard04.parquet: 452,472 baris
+  dibaca ohlcv_4h_shard05.parquet: 428,970 baris
+  dibaca ohlcv_4h_shard06.parquet: 399,410 baris
+  dibaca ohlcv_4h_shard07.parquet: 411,178 baris
+  dibaca ohlcv_4h_tail_shard00.parquet: 27,360 baris
+  dibaca ohlcv_4h_tail_shard01.parquet: 28,374 baris
+  dibaca ohlcv_4h_tail_shard02.parquet: 27,384 baris
+  dibaca ohlcv_4h_tail_shard03.parquet: 26,646 baris
+total 3,636,733 baris, 790 simbol
+  universe ditulis: universe_layak_4h.json
+{
+  "interval": "4h",
+  "min_bar": 2190,
+  "berkas_diabaikan": [],
+  "total_simbol": 790,
+  "total_baris": 3636733,
+  "integritas_gagal": 0,
+  "layak": 447,
+  "tidak_layak": 343,
+  "sebab_penolakan": {
+    "riwayat terlalu pendek": 277,
+    "terlalu banyak bar datar": 74,
+    "likuiditas terlalu tipis": 77
+  },
+  "total_celah": 112,
+  "total_duplikat": 0,
+  "gerbang_integritas_lulus": true
+}
