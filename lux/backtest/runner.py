@@ -1,4 +1,4 @@
-"""Runner bersama untuk keluarga hipotesis (ADR-006, diperluas ADR-007, ADR-010).
+"""Runner bersama untuk keluarga hipotesis (ADR-006, diperluas ADR-007, ADR-010, ADR-011).
 
 ADR-005 mensyaratkan ekstraksi ini sebelum orkestrator keempat dibuat, dan
 syaratnya dipenuhi di sini. Tiga orkestrator lama — ``run_wf`` (H-001b),
@@ -19,6 +19,11 @@ Sejak ADR-010 runner menilai gerbang kesepuluh, ``konsentrasi``, dari agregat
 per simbol dan menulis tabel jackknife ke laporan. Agregat yang dipakai adalah
 ``ringkasan_simbol`` yang belum dibulatkan, bukan blok ``per_simbol`` yang
 dibulatkan ke empat desimal untuk keperluan pembacaan manusia.
+
+Sejak ADR-011 runner menilai gerbang kesebelas, ``funding_ekor``, dari
+pembongkaran per perdagangan yang sama dengan ``diagnosa_biaya`` — keduanya
+memakai ``rincian_R``, sehingga angka gerbang dapat diperiksa tangan terhadap
+blok ``diagnosa_biaya.terburuk`` di laporan yang sama.
 """
 
 from __future__ import annotations
@@ -33,6 +38,12 @@ import numpy as np
 import pandas as pd
 
 from lux.backtest.engine import Hasil, Konfig, jalankan
+from lux.backtest.funding_ekor import (
+    dari_rincian,
+    gerbang_funding_ekor,
+    tabel_ekor_funding,
+    ukur_funding_ekor,
+)
 from lux.backtest.gerbang import (
     Gerbang,
     gerbang_buy_and_hold,
@@ -57,6 +68,7 @@ from lux.backtest.run_wf import (
     gerbang_bnh_gabungan,
     gerbang_overlap_gabungan,
     muat_ohlcv,
+    rincian_R,
     ringkas_gabungan,
     sha256_berkas,
     simbol_mati_dari_akhir,
@@ -282,10 +294,20 @@ def jalankan_spek(
     jackknife = tabel_jackknife(kontribusi)
     g_konsentrasi = gerbang_konsentrasi(kontribusi)
 
+    # ADR-011. Sumbernya rincian_R yang sama dengan diagnosa_biaya, supaya angka
+    # gerbang dapat diperiksa tangan terhadap blok terburuk di laporan ini.
+    trade_funding = dari_rincian(rincian_R(p) for p in semua_trade)
+    ukuran_funding = ukur_funding_ekor(trade_funding)
+    ekor_funding = tabel_ekor_funding(trade_funding)
+    g_funding_ekor = gerbang_funding_ekor(
+        trade_funding, jadwal_dimuat=bool(ktx.jadwal)
+    )
+
     print(json.dumps(gabungan, indent=2), flush=True)
     print(f"alasan keluar: {alasan}", flush=True)
     print(f"parameter terpilih: {parameter_terpilih}", flush=True)
     print(f"konsentrasi: {g_konsentrasi.catatan}", flush=True)
+    print(f"funding ekor: {g_funding_ekor.catatan}", flush=True)
 
     hasil_pool = Hasil(
         symbol="POOL",
@@ -357,6 +379,7 @@ def jalankan_spek(
                 simbol_universe=ktx.semesta_layak,
             ),
             g_konsentrasi,
+            g_funding_ekor,
         ]
     )
     putusan = nilai(spek.h, gabungan, p_acak)
@@ -382,6 +405,7 @@ def jalankan_spek(
         "diagnosa_biaya": diagnosa,
         "gerbang": laporan.ke_dict(),
         "jackknife": jackknife,
+        "ekor_funding": {"ukuran": ukuran_funding, "terburuk": ekor_funding},
         "putusan": {"lulus": putusan.lulus, "alasan": putusan.alasan},
         "per_simbol": per_simbol,
         "detik": round(time.time() - t0, 1),
@@ -420,7 +444,7 @@ def jalankan_spek(
         f"- Jendela positif: {gabungan['jendela_positif']}/{gabungan['jumlah_jendela']}",
         f"- Alasan keluar: {alasan}",
         "",
-        "## Sepuluh gerbang",
+        "## Sebelas gerbang",
         "",
         "| Gerbang | Putusan | Nilai | Ambang | Catatan |",
         "|---|---|---|---|---|",
@@ -454,6 +478,45 @@ def jalankan_spek(
             f"| {b['k']} | {dibuang} | {b['simbol_sisa']} | {b['trade']:,} | "
             f"{b['total_R']:.2f} | {e} | {ret} |"
         )
+
+    md += [
+        "",
+        "## Ekor funding (ADR-011)",
+        "",
+        "Gerbang funding lama menilai total mutlak dan memberi nilai yang "
+        "praktis sama untuk dua keadaan yang ekornya berbeda 4,4 kali. Yang "
+        "dinilai di sini adalah porsi funding terhadap kerugian pada sepuluh "
+        "perdagangan terburuk, karena di situlah funding pernah menyumbang "
+        "46,7% kerugian sementara reratanya hanya 0,0004R.",
+        "",
+    ]
+    if ukuran_funding["dapat_dinilai"]:
+        md += [
+            f"- Porsi funding terbesar di ekor: "
+            f"**{ukuran_funding['porsi_funding_ekor_maks']:.4f}** "
+            f"(ambang 0,35)",
+            f"- Rerata porsi di {ukuran_funding['k_ekor']} terburuk: "
+            f"**{ukuran_funding['porsi_funding_ekor_rerata']:.4f}**",
+            f"- Funding terbesar satu perdagangan: "
+            f"**{ukuran_funding['funding_maks_R']:.4f}R** (ambang 0,50R)",
+            f"- Perdagangan di atas pengaman 0,25R: "
+            f"**{ukuran_funding['n_di_atas_pengaman']:,}** dari "
+            f"{ukuran_funding['n_trade']:,} "
+            f"({ukuran_funding['porsi_di_atas_pengaman']:.5f}, ambang 0,005)",
+            "",
+            "| # | R | Funding R | Porsi funding |",
+            "|---|---|---|---|",
+        ]
+        for b in ekor_funding:
+            porsi = (
+                strip if b["porsi_funding"] is None else f"{b['porsi_funding']:.4f}"
+            )
+            md.append(
+                f"| {b['peringkat']} | {b['R']:.4f} | {b['funding_R']:.4f} | "
+                f"{porsi} |"
+            )
+    else:
+        md += [f"Tidak dapat dinilai: {ukuran_funding['sebab']}."]
 
     md += ["", "## Pembongkaran biaya", ""]
     if diagnosa["jumlah"]:
@@ -514,5 +577,6 @@ def jalankan_spek(
         "alasan_keluar": alasan,
         "rerata_transaksi_R": diagnosa.get("rerata_transaksi_R"),
         "retensi_drop_1": g_konsentrasi.nilai,
+        "porsi_funding_ekor_maks": g_funding_ekor.nilai,
         "detik": isi["detik"],
     }

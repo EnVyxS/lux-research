@@ -1,4 +1,4 @@
-"""Sepuluh gerbang mutu yang harus dilewati sebelum sebuah hasil dipercaya.
+"""Sebelas gerbang mutu yang harus dilewati sebelum sebuah hasil dipercaya.
 
 Gerbang ini dipasang **bersamaan dengan mesinnya**, bukan sesudah ada hasil
 pertama. Urutan itu penting dan bukan soal kerapian: gerbang yang dirancang
@@ -16,18 +16,22 @@ pipeline riset membohongi pemiliknya.
 Sembilan gerbang pertama: forward-fill, buy-and-hold, entri acak, lookahead,
 invarian risiko, funding, overlap, checksum, survivorship.
 
-Gerbang kesepuluh, **konsentrasi**, ditambahkan oleh ADR-010 dan tinggal di
-``lux/backtest/konsentrasi.py``, bukan di berkas ini. Alasannya teknis dan
-sudah dibayar sekali: modul itu mengimpor ``Gerbang`` dari sini, sehingga bila
-berkas ini mengimpornya balik lahirlah impor sirkular seperti cacat komit
-``4b77617``. ``NAMA_GERBANG`` tetap menjadi satu-satunya daftar resmi, dan
-runner-lah yang menyatukan keduanya.
+Dua gerbang berikutnya tinggal di modulnya sendiri, bukan di berkas ini:
+
+- **konsentrasi** (ADR-010) di ``lux/backtest/konsentrasi.py``
+- **funding_ekor** (ADR-011) di ``lux/backtest/funding_ekor.py``
+
+Alasannya teknis dan sudah dibayar sekali: kedua modul mengimpor ``Gerbang``
+dari sini, sehingga bila berkas ini mengimpornya balik lahirlah impor sirkular
+seperti cacat komit ``4b77617``. ``NAMA_GERBANG`` tetap menjadi satu-satunya
+daftar resmi, dan runner-lah yang menyatukan semuanya.
 
 Konsekuensi yang perlu diketahui: tiga orkestrator lama yang dibekukan
 (``run_wf``, ``run_h002``, ``run_h003``) hanya menyusun sembilan gerbang. Bila
-salah satunya dijalankan lagi, ``konsentrasi`` akan tercatat sebagai "gerbang
-tidak dijalankan" dan laporannya gagal. Itu bukan cacat melainkan pernyataan
-yang benar: orkestrator itu sungguh tidak mengukur konsentrasi.
+salah satunya dijalankan lagi, ``konsentrasi`` dan ``funding_ekor`` tercatat
+sebagai "gerbang tidak dijalankan" dan laporannya gagal. Itu bukan cacat
+melainkan pernyataan yang benar: orkestrator itu sungguh tidak mengukur
+konsentrasi maupun ekor funding.
 """
 
 from __future__ import annotations
@@ -262,7 +266,7 @@ def gerbang_invarian_risiko(hasil: Hasil, maks_kerugian_R: float = 1.5) -> Gerba
 
 
 # --------------------------------------------------------------------------
-# 6. Funding
+# 6. Funding — sejak ADR-011 hanya pemeriksaan kebersihan
 # --------------------------------------------------------------------------
 def gerbang_funding(hasil: Hasil, jadwal_dimuat: bool) -> Gerbang:
     """Funding harus benar-benar dihitung, bukan kebetulan bernilai nol.
@@ -272,11 +276,14 @@ def gerbang_funding(hasil: Hasil, jadwal_dimuat: bool) -> Gerbang:
     long membayar; strategi long yang funding-nya persis nol hampir pasti sedang
     tidak memperhitungkannya sama sekali.
 
-    Catatan yang diperoleh dengan mahal di S12: gerbang ini hanya memastikan
-    funding **dihitung**, bukan bahwa pengaruhnya jinak. Rerata funding 0,0004R
-    pernah saya pakai untuk menyimpulkan funding tidak bersalah, padahal pada
-    kerugian terburuk H-008 porsinya 46,7%. Rerata tidak mengatakan apa pun
-    tentang ekor.
+    **Batas kemampuannya dinyatakan tegas oleh ADR-011.** Ia memberi 10.253,97
+    untuk H-008 dan 10.199,59 untuk H-009 — selisih setengah persen — sementara
+    porsi funding pada perdagangan terburuk berubah dari 46,7% menjadi 16,5%
+    dan gerbang ``invarian_risiko`` berbalik dari gagal menjadi lulus. Jadi
+    gerbang ini hanya memastikan funding **dihitung**; yang menilai apakah
+    pengaruhnya jinak adalah ``funding_ekor``. Ia tidak dihapus karena tugas
+    memastikan jadwal nyata terpakai tetap perlu, dan karena menghapusnya akan
+    mengubah arti nama gerbang di seluruh laporan yang sudah dikomit.
     """
     if not jadwal_dimuat:
         return _gagal_tak_ternilai("funding", "jadwal funding tidak dimuat")
@@ -390,11 +397,12 @@ def gerbang_survivorship(
 
 # --------------------------------------------------------------------------
 # 10. Konsentrasi — lihat lux/backtest/konsentrasi.py
+# 11. Funding ekor — lihat lux/backtest/funding_ekor.py
 # --------------------------------------------------------------------------
-# Gerbang kesepuluh sengaja tidak didefinisikan di berkas ini agar tidak ada
-# impor sirkular. Ia hidup di lux/backtest/konsentrasi.py dan dipanggil oleh
-# runner. Namanya tetap terdaftar di NAMA_GERBANG di bawah, sehingga bila
-# runner lupa memanggilnya, susun_laporan mencatatnya sebagai gagal.
+# Kedua gerbang terakhir sengaja tidak didefinisikan di berkas ini agar tidak
+# ada impor sirkular. Keduanya dipanggil oleh runner. Namanya tetap terdaftar
+# di NAMA_GERBANG di bawah, sehingga bila runner lupa memanggilnya,
+# susun_laporan mencatatnya sebagai gagal.
 
 
 # --------------------------------------------------------------------------
@@ -408,13 +416,15 @@ class LaporanGerbang:
     def semua_lulus(self) -> bool:
         """Tidak ada rata-rata dan tidak ada keringanan.
 
-        Satu gerbang gagal berarti pipeline berhenti. Membiarkan sembilan dari
-        sepuluh dianggap cukup akan mengubah gerbang menjadi skor, dan skor
+        Satu gerbang gagal berarti pipeline berhenti. Membiarkan sepuluh dari
+        sebelas dianggap cukup akan mengubah gerbang menjadi skor, dan skor
         selalu bisa dinegosiasikan.
 
         Jumlahnya dibandingkan dengan ``len(NAMA_GERBANG)``, bukan dengan angka
         yang ditulis tangan. Angka yang ditulis tangan akan tertinggal pada saat
         gerbang berikutnya ditambahkan, dan tertinggalnya akan berupa kelulusan.
+        Penambahan gerbang kesebelas membuktikan gunanya: berkas ini tidak perlu
+        disentuh di bagian ini sama sekali.
         """
         return len(self.gerbang) == len(NAMA_GERBANG) and all(
             g.lulus for g in self.gerbang
@@ -452,11 +462,12 @@ NAMA_GERBANG = (
     "checksum",
     "survivorship",
     "konsentrasi",
+    "funding_ekor",
 )
 
 
 def susun_laporan(gerbang: Iterable[Gerbang]) -> LaporanGerbang:
-    """Susun laporan sambil memastikan kesepuluh gerbang benar-benar hadir.
+    """Susun laporan sambil memastikan seluruh gerbang benar-benar hadir.
 
     Gerbang yang lupa dijalankan dicatat sebagai gagal dengan sebab yang jelas.
     Diam bukan kelulusan.

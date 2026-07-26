@@ -5,6 +5,13 @@ daftar gerbang bertambah, dan supaya pengujian lama tidak perlu disentuh.
 
 Yang dikunci: daftar resmi memuat konsentrasi, laporan menuntut kehadirannya,
 dan ``semua_lulus`` tidak lagi bergantung pada angka yang ditulis tangan.
+
+**Diperbaiki saat gerbang kesebelas masuk.** Versi pertama berkas ini memakai
+``len(NAMA_GERBANG) == 10`` di tiga tempat, yaitu persis literal tulisan tangan
+yang dilarang oleh berkas yang diujinya. Literalnya pecah begitu ADR-011
+menambah satu gerbang. Sekarang berkas ini hanya menguji kehadiran dan
+kewajiban ``konsentrasi``; jumlah gerbang diuji di satu tempat saja, di
+``test_gerbang_kesebelas.py``, supaya perubahannya harus disengaja.
 """
 
 from __future__ import annotations
@@ -13,21 +20,22 @@ from lux.backtest.gerbang import NAMA_GERBANG, Gerbang, susun_laporan
 from lux.backtest.konsentrasi import gerbang_konsentrasi
 
 
-def test_daftar_gerbang_menjadi_sepuluh():
-    assert len(NAMA_GERBANG) == 10
-    assert NAMA_GERBANG[-1] == "konsentrasi"
-    assert len(set(NAMA_GERBANG)) == 10
+def test_konsentrasi_terdaftar_dan_daftar_tidak_berulang():
+    assert "konsentrasi" in NAMA_GERBANG
+    assert len(set(NAMA_GERBANG)) == len(NAMA_GERBANG)
 
 
-def test_sembilan_gerbang_lama_tidak_lagi_cukup():
-    """Orkestrator yang lupa gerbang baru harus gagal, bukan lolos diam-diam."""
-    lama = [Gerbang(n, True, 1.0, 0.0, "") for n in NAMA_GERBANG[:9]]
+def test_laporan_tanpa_konsentrasi_tidak_cukup():
+    """Orkestrator yang lupa gerbang ini harus gagal, bukan lolos diam-diam."""
+    lama = [
+        Gerbang(n, True, 1.0, 0.0, "") for n in NAMA_GERBANG if n != "konsentrasi"
+    ]
     lap = susun_laporan(lama)
     assert not lap.semua_lulus
     assert lap.yang_gagal == ["konsentrasi"]
 
 
-def test_kesepuluh_lulus_berarti_laporan_lulus():
+def test_seluruh_gerbang_lulus_berarti_laporan_lulus():
     lap = susun_laporan([Gerbang(n, True, 1.0, 0.0, "") for n in NAMA_GERBANG])
     assert lap.semua_lulus
     assert lap.yang_gagal == []
