@@ -23,6 +23,13 @@
 # langkah yang bisa gagal di bawah ini menulis keluarannya ke logs/ dan seluruh
 # logs/ disalin ke reports/ dengan if: always(). Aturan ini sudah ada di STATE
 # sejak S11; yang gagal adalah penerapannya, bukan aturannya.
+#
+# PELAJARAN RUN 30198631730 (GAGAL, 23 detik, log TERBACA): logs/uji.log memuat
+# satu baris, "No module named pytest". requirements.txt tidak memuat pytest;
+# tests.yml memasangnya terpisah. Jadi kedua kegagalan berasal dari langkah uji
+# dan pagar pra-terbang belum pernah sempat berjalan sekali pun. Pelajaran yang
+# lebih mahal: dugaan pertama saya menuduh pagar, dan dugaan itu keliru justru
+# karena bukti kegagalannya sengaja tidak ditulis ke reports/.
 
 name: backtest
 
@@ -66,8 +73,9 @@ jobs:
           set -o pipefail
           {
             python -m pip install --upgrade pip
-            pip install -r requirements.txt
+            pip install -r requirements.txt pytest
             python -c "import numpy, pandas, pyarrow, yaml; print('numpy', numpy.__version__)"
+            python -c "import pytest; print('pytest', pytest.__version__)"
           } 2>&1 | tee logs/deps.log
 
       - id: uji
@@ -99,7 +107,7 @@ jobs:
               Sengaja tidak membangun instans. Aturan 9 menjaga nilai bawaan
               pada definisi medan, bukan nilai pada satu objek yang kebetulan
               dibangun, dan membangun objek di sini berarti menebak tanda
-              tangan konstruktornya — yang justru mematikan run 30198306280.
+              tangan konstruktornya.
               """
               for f in dataclasses.fields(cls):
                   if f.name == nama:
