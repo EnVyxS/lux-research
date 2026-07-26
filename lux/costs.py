@@ -14,6 +14,31 @@ Dua komponen dipisahkan dengan sengaja:
 - Funding hanya berlaku pada perpetual dan tumbuh seiring lamanya posisi
   dipegang. Strategi yang menahan posisi berhari-hari bisa habis oleh funding
   meski arah tebakannya benar.
+
+BATAS PEMAKAIAN MODUL INI (penting, jangan dilanggar)
+-----------------------------------------------------
+``funding_dalam_R`` di modul ini memakai pembagi interval TETAP
+(``ModelBiaya.funding_interval_jam``, bawaan 8 jam) dan satu ``funding_rate``
+tunggal. Itu APROKSIMASI untuk penalaran di atas kertas: menghitung titik impas,
+memeriksa apakah sebuah konfigurasi mustahil, dan menulis ambang sebelum
+eksperimen.
+
+Aproksimasi itu BUKAN jalur kritis backtest. Mesin backtest memakai jadwal
+funding nyata dari arsip (``config/lux.yaml``:
+``biaya.funding_dari_jadwal_nyata: true``), yaitu ``lux/funding.py`` dengan
+``Jadwal`` bercap waktu sesungguhnya, karena interval funding di Binance tidak
+konstan: 295 dari 447 simbol berjadwal funding pernah berada di lebih dari satu
+rezim grid interval. Memakai pembagi 8 jam untuk simbol berinterval 4 jam akan
+mengecilkan ongkos funding sekitar setengahnya, dan arah kesalahannya selalu
+membuat strategi tampak lebih baik daripada kenyataan.
+
+Ada dua fungsi bernama sama di repo ini, dan keduanya berbeda arti:
+
+- ``lux.costs.funding_dalam_R``  -> aproksimasi interval tetap, hanya untuk
+  perhitungan tangan dan pemeriksaan kelayakan sebelum eksperimen.
+- ``lux.funding.funding_dalam_R`` -> jadwal nyata, dipakai mesin backtest.
+
+Jangan pernah mengimpor yang pertama ke jalur eksekusi backtest.
 """
 
 from __future__ import annotations
@@ -23,7 +48,12 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class ModelBiaya:
-    """Parameter biaya yang dibekukan sebelum eksperimen dijalankan."""
+    """Parameter biaya yang dibekukan sebelum eksperimen dijalankan.
+
+    ``funding_interval_jam`` adalah asumsi penyederhanaan, bukan fakta pasar.
+    Interval funding sesungguhnya dibaca dari jadwal arsip oleh
+    ``lux/funding.py``; lihat catatan BATAS PEMAKAIAN di docstring modul.
+    """
 
     fee: float = 0.0005
     slippage: float = 0.0005
@@ -67,7 +97,18 @@ def funding_dalam_R(
     arah: int = 1,
     model: ModelBiaya | None = None,
 ) -> float:
-    """Ongkos funding selama posisi ditahan, dalam satuan R.
+    """Ongkos funding selama posisi ditahan, dalam satuan R (APROKSIMASI).
+
+    Fungsi ini membagi ``jam_ditahan`` dengan interval TETAP
+    ``model.funding_interval_jam`` dan mengalikannya dengan satu
+    ``funding_rate`` tunggal. Dua penyederhanaan sekaligus: interval dianggap
+    konstan, dan rate dianggap tidak berubah selama posisi dipegang. Keduanya
+    salah di data nyata.
+
+    Pakai fungsi ini hanya untuk perhitungan kasar sebelum eksperimen. Ongkos
+    funding yang masuk ke laporan backtest berasal dari ``lux/funding.py``
+    memakai jadwal arsip, bukan dari sini. Bila suatu saat angka dari fungsi ini
+    muncul di ``reports/``, itu cacat, bukan hasil.
 
     ``arah`` bernilai +1 untuk long dan -1 untuk short. Funding rate positif
     berarti long membayar short, jadi tandanya berbalik untuk short. Kesalahan
@@ -92,6 +133,11 @@ def total_biaya_R(
     arah: int = 1,
     model: ModelBiaya | None = None,
 ) -> float:
+    """Jumlah biaya transaksi dan funding aproksimatif, dalam R.
+
+    Warisan sifat aproksimatif dari ``funding_dalam_R`` di modul ini berlaku
+    penuh di sini juga.
+    """
     return biaya_dalam_R(stop_pecahan, model) + funding_dalam_R(
         funding_rate, jam_ditahan, stop_pecahan, arah, model
     )
