@@ -29,6 +29,21 @@ dapat diperlakukan sebagai parameter yang dipilih di dalam sampel, bukan sebagai
 tetapan global. Bila argumen itu tidak diberikan, jalur eksekusinya sama persis
 seperti sebelum ADR-007 — syarat mutlak, karena hasil H-001b, H-002, dan H-003
 harus tetap dapat diulang bita demi bita.
+
+**Penolakan pengaman biaya diteruskan (ADR-014).** ``entri_ditolak_biaya``
+menjumlahkan entri yang ditolak pengaman biaya masuk, **hanya dari jendela
+uji**. Penolakan yang terjadi saat pemilihan parameter di dalam sampel adalah
+bagian dari pencarian, bukan bagian dari hasil yang dinilai, dan mencampur
+keduanya akan melipatgandakan angkanya sebanyak jumlah kandidat.
+
+Satu perilaku yang wajib dipahami sebelum menafsirkan angka itu: pada simbol
+yang **seluruhnya** degenerat, pengaman menolak setiap entri termasuk saat
+pemilihan, sehingga semua kandidat berskor ``-inf`` dan seluruh jendelanya
+dilewati. Simbol semacam itu menyumbang nol penolakan dan nol perdagangan, jadi
+ia tidak akan terlihat di angka ini sama sekali; yang membuatnya terlihat hanya
+lantai semesta di ``lux/degenerasi.py``. Penolakan yang benar-benar tercatat di
+sini berasal dari simbol yang berubah degenerat di tengah jalan, dan justru
+simbol seperti itu yang mustahil ditangkap oleh saringan semesta mana pun.
 """
 
 from __future__ import annotations
@@ -147,6 +162,16 @@ class HasilWalkForward:
     def perdagangan_luar_sampel(self) -> list[Perdagangan]:
         return [p for h in self.per_jendela for p in h.hasil_uji.perdagangan]
 
+    @property
+    def entri_ditolak_biaya(self) -> int:
+        """Entri yang ditolak pengaman biaya di jendela UJI saja (ADR-014).
+
+        Sengaja tidak menyertakan penolakan saat pemilihan parameter: jendela
+        latih dijalankan sekali untuk setiap kandidat, sehingga angkanya akan
+        terlipat sebanyak jumlah kandidat dan tidak lagi berarti apa pun.
+        """
+        return sum(h.hasil_uji.entri_ditolak_biaya for h in self.per_jendela)
+
     def ringkas(self) -> dict:
         """Ringkasan yang hanya menghitung perdagangan di luar sampel.
 
@@ -155,6 +180,9 @@ class HasilWalkForward:
         pencarian dilakukan, dan apakah parameter terpilih berubah-ubah tiap
         jendela. Parameter yang meloncat-loncat berarti tidak ada yang stabil
         untuk ditemukan, meskipun rata-rata hasilnya kebetulan positif.
+
+        ``entri_ditolak_biaya`` ikut dilaporkan karena saringan yang membuang
+        entri tanpa jejak adalah titik buta (aturan 10).
         """
         trades = self.perdagangan_luar_sampel
         n = len(trades)
@@ -163,6 +191,7 @@ class HasilWalkForward:
             "jumlah_jendela": len(self.per_jendela),
             "jumlah_kandidat": self.jumlah_kandidat,
             "jumlah_trade_luar_sampel": n,
+            "entri_ditolak_biaya": self.entri_ditolak_biaya,
             "parameter_per_jendela": [h.parameter for h in self.per_jendela],
         }
         if n == 0:
