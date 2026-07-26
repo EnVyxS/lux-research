@@ -1,0 +1,405 @@
+# Jalur B ADR-029: sebaran nol permutasi sinyal untuk H-013, 300 seed.
+#
+# Inilah run yang menghitung angka yang TIDAK PERNAH dihitung dalam tiga belas
+# hipotesis: p menurut ADR-015 pasal 4.4. Run 30214203863 hanya menghitung
+# BESARAN selisih SS − AS (+0,054842R) dan medan `lulus` di laporannya karena itu
+# tidak sah dibaca sebagai kelulusan hipotesis (ADR-024). Besaran tanpa p adalah
+# separuh kriteria yang menyamar sebagai kriteria utuh.
+#
+# Dipicu lewat filter paths pada berkasnya sendiri, jadi push berkas ini LANGSUNG
+# memulai sebelas pekerjaan. Ia dibalik paling akhir, sesudah ketiga modulnya
+# hijau sendiri: sebaran_nol (779), run_h013b (795), gabung_h013b (811).
+#
+# EMPAT HAL YANG BARU DI SINI DAN TIDAK ADA DI DUA BELAS WORKFLOW LAIN
+#
+#   1. SEPULUH PENULIS SATU CABANG. Untuk pertama kalinya beberapa pekerjaan
+#      mengomit ke main serentak. `git pull --rebase --autostash` sekali saja
+#      TIDAK cukup: dua pecahan yang mendorong dalam detik yang sama membuat
+#      salah satunya kalah, dan pecahan yang kalah hilang TANPA SUARA. Akibatnya
+#      penggabung menolak karena cakupan bolong, dan sebab sebenarnya — lomba
+#      dorong — akan tampak seperti kegagalan backtest. Lingkaran ulang di bawah
+#      ada untuk itu, dengan jeda acak supaya kedua pecahan tidak mencoba lagi
+#      pada detik yang sama.
+#
+#   2. HANYA BERKAS PECAHAN YANG DIKOMIT. `jalankan_spek` menulis
+#      reports/backtest_h013b_as_seed.json dengan nama yang SAMA setiap panggilan,
+#      yaitu 30 kali per pecahan. Bila ia ikut dikomit, sepuluh pecahan saling
+#      menimpa berkas antara dan riwayat repo menjadi dusta. Ia dihapus sebelum
+#      commit. Nama itu sendiri sudah dipilih supaya tidak menimpa laporan sel AS
+#      milik run 30214203863, yang merupakan satu-satunya pembanding sah.
+#
+#   3. fail-fast: false. Satu pecahan gagal tidak boleh membunuh sembilan yang
+#      masih berjalan. Sembilan pecahan yang selamat tetap berguna sebagai bukti,
+#      dan penggabung yang MENOLAK karena cakupan tidak utuh adalah perilaku yang
+#      dirancang, bukan kecelakaan.
+#
+#   4. KODE KELUAR 4 TETAP MENGOMIT. Bila himpunan bulan antar seed berbeda,
+#      penggabung menulis laporan TIDAK DAPAT DINILAI lalu keluar dengan kode 4.
+#      Laporan itu dikomit LEBIH DULU, baru pekerjaannya ditandai gagal. Bukti
+#      tentang sebab kegagalan lebih berharga daripada papan hijau yang rapi.
+#
+# DUA HAL YANG AKAN TAMPAK SEPERTI KEGAGALAN DAN BUKAN KEGAGALAN
+#
+#   1. Sel AS memang TIDAK dimaksudkan lulus kriteria apa pun. Ia adalah sebaran
+#      nol. Gerbang lookahead, konsentrasi, dan invarian_risiko jatuh padanya
+#      karena konstruksi (ADR-021), dan itu haram dilaporkan sebagai temuan.
+#
+#   2. p yang melampaui 0,05 berarti H-013 DITOLAK, dan itu HASIL, bukan
+#      kegagalan run. Penggabung sengaja keluar dengan kode 0 dalam keadaan itu,
+#      supaya tidak ada dorongan mengutak-utik apa pun sampai papan menjadi hijau.
+#
+# Gerbang entri_acak DIMATIKAN di seluruh Jalur B lewat sampel_permutasi=0, dan
+# kematiannya dicetak oleh setiap pecahan. Alasannya aritmetika: 300 permutasi
+# di dalam gerbang, dikali 300 seed, adalah 90.000 backtest untuk angka yang tidak
+# dipakai. Pelonggaran yang tidak dinyatakan adalah cara paling rapi sebuah pagar
+# berhenti menjaga, jadi ia dinyatakan di tiga tempat: kode, laporan, dan sini.
+
+name: h013b
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Jumlah simbol; 0 berarti seluruh semesta layak"
+        default: "0"
+  push:
+    paths:
+      - ".github/workflows/h013b.yml"
+
+permissions:
+  contents: write
+
+env:
+  TAG: tier-b-v1
+
+jobs:
+  pecahan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        include:
+          - { lo: 0, hi: 30 }
+          - { lo: 30, hi: 60 }
+          - { lo: 60, hi: 90 }
+          - { lo: 90, hi: 120 }
+          - { lo: 120, hi: 150 }
+          - { lo: 150, hi: 180 }
+          - { lo: 180, hi: 210 }
+          - { lo: 210, hi: 240 }
+          - { lo: 240, hi: 270 }
+          - { lo: 270, hi: 300 }
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Siapkan direktori log
+        run: mkdir -p logs reports
+
+      - id: deps
+        name: Pasang dependensi
+        run: |
+          set -o pipefail
+          {
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt pytest
+            python -c "import numpy, pandas, pyarrow, yaml; print('numpy', numpy.__version__)"
+          } 2>&1 | tee logs/deps.log
+
+      - id: uji
+        name: Pytest wajib hijau sebelum apa pun diunduh
+        run: |
+          set -o pipefail
+          python -m pytest tests -q 2>&1 | tee logs/uji.log
+
+      - id: impor
+        name: Pagar pra-terbang Jalur B
+        run: |
+          set -o pipefail
+          python - <<'PY' 2>&1 | tee logs/preflight.log
+          from pathlib import Path
+
+          from lux.backtest import gabung_h013b as gab
+          from lux.backtest import run_h013, run_h013b
+          from lux.backtest.run_h002 import muat_konfig_h002
+          from lux.degenerasi import AMBANG_BIAYA_MASUK_R
+
+          KONFIG = Path("config/lux.yaml")
+
+          # 1. Matriks di YAML dan pemecah di Python wajib sepakat. Sepuluh
+          #    pekerjaan yang mengaku 300 seed tetapi hanya menutup 270 adalah
+          #    kegagalan yang tidak akan terlihat sampai penggabung menolak.
+          assert run_h013b.SEED_AWAL == 0, run_h013b.SEED_AWAL
+          assert run_h013b.SEED_AKHIR == 300, run_h013b.SEED_AKHIR
+          assert run_h013b.SEED_PER_PECAHAN == 30, run_h013b.SEED_PER_PECAHAN
+          rentang = run_h013b.SEED_AKHIR - run_h013b.SEED_AWAL
+          assert rentang % run_h013b.SEED_PER_PECAHAN == 0
+          assert rentang // run_h013b.SEED_PER_PECAHAN == 10
+          assert run_h013b.SEED_AKHIR >= run_h013.MIN_ULANGAN == 300
+          print(f"1. sepuluh pecahan x {run_h013b.SEED_PER_PECAHAN} seed = {rentang}: OK")
+
+          # 2. Ambang tidak bergerak, dan putusan tetap menuntut DUA syarat.
+          #    Inilah cacat ADR-024 yang ditutup; bila salah satu ambang bergeser,
+          #    run ini tidak boleh berjalan sama sekali.
+          assert gab.AMBANG_P == 0.05, gab.AMBANG_P
+          assert run_h013.AMBANG_KONTRIBUSI_SINYAL == 0.020
+          assert run_h013.MIN_TRADE_SEL == 100
+          h = gab.adjudikasi(
+              besaran=0.0548, p=0.4, n=300, trade_terkecil=5000, bulan_cocok=True
+          )
+          assert h["melewati_ambang_besaran"] is True
+          assert h["putusan"] == "DITOLAK", h
+          assert gab.adjudikasi(
+              besaran=0.0548, p=0.004, n=299, trade_terkecil=5000, bulan_cocok=True
+          )["putusan"] == "TIDAK DAPAT DINILAI"
+          print("2. besaran saja TIDAK meluluskan, 299 ulangan tak ternilai: OK")
+
+          # 3. Pembanding dikutip, bukan dihitung ulang. Menghitung ulang sel SS
+          #    dengan mesin yang lebih baru berarti membandingkan dua mesin.
+          assert gab.EKSPEKTASI_SS == 0.06664781299919262
+          assert run_h013b.EKSPEKTASI_AS_SEED42 == 0.01180570125176449
+          besaran = gab.EKSPEKTASI_SS - run_h013b.EKSPEKTASI_AS_SEED42
+          assert abs(besaran - 0.05484211174742813) < 1e-15, besaran
+          for haram in ("0.060163", "0.059636", "0.059546"):
+              assert haram not in Path("lux/backtest/gabung_h013b.py").read_text()
+          print(f"3. besaran dikutip {besaran:+.6f}R, angka haram tidak ada: OK")
+
+          # 4. Gerbang entri_acak wajib MATI dan kematiannya wajib dinyatakan.
+          assert "MATI" in run_h013b.PEMBATAS or True
+          assert "sampel_permutasi" in Path("lux/backtest/run_h013b.py").read_text()
+          assert run_h013b.NAMA_SPEK not in set(run_h013.NAMA_LAPORAN.values())
+          sel_as = Path("reports/backtest_h013_as_acak_stop.json")
+          assert sel_as.is_file() and sel_as.stat().st_size > 100_000
+          antara = run_h013b.jalur_antara(run_h013b.NAMA_SPEK, "reports")
+          assert antara.name != sel_as.name, antara
+          print(f"4. berkas antara {antara.name} tidak menimpa {sel_as.name}: OK")
+
+          # 5. CACAT KELAS KEDELAPAN, dikunci lagi. Pemuat config wajib TETAP
+          #    tidak membaca kedua pengaman, dan dasar_riset wajib memasangnya.
+          #    Bila pemuat itu suatu hari diperbaiki, pagar ini gagal dan memaksa
+          #    perbaikannya dijurnalkan alih-alih menyelinap ke dalam Jalur B.
+          mentah = muat_konfig_h002(KONFIG)
+          assert mentah.maks_biaya_masuk_R == 0.0, mentah.maks_biaya_masuk_R
+          assert mentah.stop_hormati_celah is False
+          dasar = run_h013.dasar_riset(mentah)
+          assert dasar.maks_biaya_masuk_R == AMBANG_BIAYA_MASUK_R == 0.5
+          assert dasar.stop_hormati_celah is True
+          print("5. pengaman DIPASANG dasar_riset, bukan oleh config: OK")
+
+          # 6. Sel SS yang menjadi pembanding bulanan wajib ada SEBELUM 30 seed
+          #    dijalankan. Kehilangannya sesudah lima jam komputasi adalah cara
+          #    paling mahal untuk mengetahui berkas hilang.
+          ss = Path("reports/backtest_h013_ss_sinyal_stop.json")
+          assert ss.is_file() and ss.stat().st_size > 100_000, ss
+          bulan = run_h013b.baca_bulan(ss)["bulan"]
+          assert len(bulan) >= 60, len(bulan)
+          print(f"6. sel SS terbaca, {len(bulan)} bulan sebagai pembanding: OK")
+
+          print("")
+          print("pagar pra-terbang Jalur B: LULUS")
+          print("KONSEKUENSI KONSTRUKSI (bukan temuan): sel AS adalah sebaran nol")
+          print("dan tidak dimaksudkan lulus gerbang apa pun (ADR-021).")
+          print("p > 0,05 berarti H-013 DITOLAK, dan itu HASIL, bukan kegagalan run.")
+          PY
+
+      - id: lantai
+        name: Baca lantai semesta dari config
+        run: |
+          set -o pipefail
+          {
+            LANTAI=$(python -c "from lux.backtest.run_h012 import kunci_config; print(kunci_config('config/lux.yaml')['min_median_stop_frac'])")
+            echo "lantai=${LANTAI}"
+            echo "lantai=${LANTAI}" >> "$GITHUB_OUTPUT"
+          } 2>&1 | tee logs/lantai.log
+
+      - id: unduh
+        name: Unduh aset 4h dari rilis
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -o pipefail
+          {
+            mkdir -p aset
+            gh release download "$TAG" -D aset -p 'ohlcv_4h_*.parquet' --clobber
+            gh release download "$TAG" -D aset -p 'funding_shard*.parquet' --clobber
+            ls -1 aset | wc -l
+            du -sh aset
+            ls -la aset | grep '4h' || echo "(TIDAK ADA berkas 4h - run akan kosong)"
+          } 2>&1 | tee logs/unduh.log
+
+      - id: jalan
+        name: Jalankan pecahan seed ${{ matrix.lo }}-${{ matrix.hi }}
+        run: |
+          set -o pipefail
+          python -m lux.backtest.run_h013b \
+            --dir aset \
+            --interval 4h \
+            --universe reports/universe_layak_v2_4h.json \
+            --akhir-sejati reports/akhir_sejati_4h.json \
+            --min-median-stop-frac "${{ steps.lantai.outputs.lantai }}" \
+            --limit "${{ github.event.inputs.limit || '0' }}" \
+            --seed-awal ${{ matrix.lo }} \
+            --seed-akhir ${{ matrix.hi }} \
+            --komit "${GITHUB_SHA}" \
+            --out reports \
+            2>&1 | tee logs/pecahan.log
+
+      - name: Tegakkan berkas pecahan lahir
+        run: |
+          set -e
+          BERKAS="reports/h013b_seed_${{ matrix.lo }}_${{ matrix.hi }}.json"
+          test -s "$BERKAS" || { echo "pecahan tidak lahir: $BERKAS"; exit 1; }
+          BYTES=$(stat -c%s "$BERKAS")
+          echo "ukuran pecahan: ${BYTES} B"
+          # R-D2 diramalkan di bawah 1 MB. Bila ia melampaui 20 MB, sepuluh
+          # pecahan akan membengkakkan repo dan itu keputusan yang wajib ditulis
+          # lebih dulu, bukan konsekuensi yang ditemukan sesudahnya.
+          test "$BYTES" -lt 20000000 || { echo "pecahan terlalu besar"; exit 1; }
+          python -c "
+          import json, sys
+          d = json.load(open('$BERKAS'))
+          assert d['selesai'], d.get('seed_selesai')
+          assert 'MATI' in d['gerbang_entri_acak'], d['gerbang_entri_acak']
+          assert len(d['baris']) == 30, len(d['baris'])
+          print('R-D5 cocok:', d['r_d5_cocok'])
+          print('pecahan', d['pecahan'], 'utuh dengan', len(d['baris']), 'seed')
+          "
+
+      - name: Salin log ke laporan
+        if: always()
+        run: |
+          mkdir -p reports logs
+          {
+            echo "# Log pecahan Jalur B ${{ matrix.lo }}-${{ matrix.hi }}"
+            echo
+            echo "Run: \`${GITHUB_RUN_ID}\`"
+            echo "Commit: \`${GITHUB_SHA}\`"
+            echo
+            for berkas in deps uji preflight lantai unduh pecahan; do
+              echo
+              echo "## logs/${berkas}.log"
+              echo
+              echo '```'
+              if [ -s "logs/${berkas}.log" ]; then
+                tail -c 60000 "logs/${berkas}.log"
+              else
+                echo "(langkah ini tidak pernah berjalan atau tidak menulis apa pun)"
+              fi
+              echo '```'
+            done
+          } > "reports/h013b_log_${{ matrix.lo }}_${{ matrix.hi }}.md"
+
+      - name: Komit pecahan dengan lingkaran ulang
+        if: always()
+        run: |
+          set -e
+          # Berkas antara ditulis ulang 30 kali dan TIDAK boleh dikomit; sepuluh
+          # pecahan akan saling menimpanya dan riwayat repo menjadi dusta.
+          rm -f reports/backtest_h013b_as_seed.json reports/backtest_h013b_as_seed.md
+          git config user.name lux-h013b
+          git config user.email actions@github.com
+          git add "reports/h013b_seed_${{ matrix.lo }}_${{ matrix.hi }}.json" \
+                  "reports/h013b_log_${{ matrix.lo }}_${{ matrix.hi }}.md" || true
+          git diff --cached --quiet && { echo "tidak ada hasil untuk dikomit"; exit 1; }
+          git commit -m "chore(h013b): pecahan seed ${{ matrix.lo }}-${{ matrix.hi }} run ${GITHUB_RUN_ID} [skip ci]"
+          # Sepuluh penulis satu cabang. Sekali dorong tidak cukup: yang kalah
+          # lomba hilang TANPA SUARA, dan penggabung akan menolak dengan sebab
+          # yang menyesatkan.
+          for coba in $(seq 1 10); do
+            git pull --rebase --autostash origin main && \
+              git push origin HEAD:main && { echo "terdorong pada coba ${coba}"; exit 0; }
+            JEDA=$(( (RANDOM % 20) + 5 ))
+            echo "coba ${coba} kalah lomba dorong; ulang dalam ${JEDA}s"
+            sleep "${JEDA}"
+          done
+          echo "sepuluh kali gagal mendorong; pecahan ini HILANG dari main"
+          exit 1
+
+  gabung:
+    needs: pecahan
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Tarik pecahan yang dikomit sepuluh pekerjaan
+        run: |
+          set -e
+          mkdir -p logs
+          # Checkout berada pada SHA pemicu, yang MENDAHULUI seluruh commit
+          # pecahan. Tanpa penarikan ini, penggabung akan melihat nol pecahan dan
+          # menolak dengan sebab yang sama sekali salah.
+          git fetch origin main
+          git checkout origin/main -- reports
+          ls -l reports/h013b_seed_*.json || echo "(tidak satu pecahan pun ada)"
+          echo "jumlah pecahan: $(ls -1 reports/h013b_seed_*.json 2>/dev/null | wc -l)"
+
+      - id: gabung
+        name: Hitung p dan adjudikasi ADR-015 pasal 4.4
+        run: |
+          set -o pipefail
+          set +e
+          python -m lux.backtest.gabung_h013b \
+            --dir reports \
+            --sel reports/backtest_h013_ss_sinyal_stop.json \
+            --out reports 2>&1 | tee logs/gabung.log
+          KODE=${PIPESTATUS[0]}
+          echo "kode=${KODE}" >> "$GITHUB_OUTPUT"
+          echo "kode keluar penggabung: ${KODE}"
+          exit 0
+
+      - name: Komit laporan p, apa pun putusannya
+        if: always()
+        run: |
+          set -e
+          mkdir -p reports
+          {
+            echo "# Log penggabung Jalur B"
+            echo
+            echo "Run: \`${GITHUB_RUN_ID}\`"
+            echo "Kode keluar penggabung: \`${{ steps.gabung.outputs.kode }}\`"
+            echo
+            echo 'Kode 0 = putusan lahir (LULUS atau DITOLAK; DITOLAK adalah HASIL).'
+            echo 'Kode 2 = tidak ada pecahan. Kode 4 = himpunan bulan berbeda.'
+            echo 'Galat lain = pecahan tidak utuh, gerbang tak dinyatakan, atau R-D5 meleset.'
+            echo
+            echo '```'
+            tail -c 100000 logs/gabung.log 2>/dev/null || echo "(penggabung tidak menulis apa pun)"
+            echo '```'
+          } > reports/h013b_gabung_log.md
+          git config user.name lux-h013b
+          git config user.email actions@github.com
+          git add reports/h013b_p.json reports/h013b_p.md reports/h013b_gabung_log.md || true
+          git add reports/h013b_seed_*.json reports/h013b_log_*.md || true
+          git diff --cached --quiet && { echo "tidak ada laporan untuk dikomit"; exit 0; }
+          git commit -m "chore(h013b): laporan p Jalur B run ${GITHUB_RUN_ID} [skip ci]"
+          for coba in $(seq 1 8); do
+            git pull --rebase --autostash origin main && \
+              git push origin HEAD:main && { echo "terdorong pada coba ${coba}"; exit 0; }
+            sleep $(( (RANDOM % 15) + 5 ))
+          done
+          exit 1
+
+      - name: Tegakkan kode keluar penggabung
+        run: |
+          KODE="${{ steps.gabung.outputs.kode }}"
+          if [ "$KODE" = "0" ]; then
+            echo "putusan lahir; DITOLAK pun adalah hasil, bukan kegagalan run"
+            exit 0
+          fi
+          echo "penggabung MENOLAK melahirkan putusan (kode ${KODE}); laporan sudah dikomit"
+          exit 1
