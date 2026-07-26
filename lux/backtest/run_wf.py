@@ -36,6 +36,13 @@ write-once tetap terjaga. Import dilakukan secara lazy (di dalam fungsi
 
     run_wf -> potong_ekor -> diag_datar -> run_wf (untuk pilih_berkas)
 
+ADR-019 (cacat senyap kelima): ``muat_ohlcv`` kini **meneruskan interval** ke
+pemangkas. Sebelumnya ia menerima interval, memakainya untuk memilih berkas, lalu
+memanggil pemangkas tanpa ambang sehingga bawaan 24 bar berlaku untuk interval
+apa pun. Pada 4h itu berarti dua definisi ekor atas satu dataset: workflow
+pemangkasan memakai satu hari (6 bar) sementara jalur muat backtest memakai empat
+hari. Untuk 1h ambangnya tetap 24, jadi hasil H-001b tidak bergeser satu bit pun.
+
 Tanggal kematian sejati simbol dibaca dari ``reports/akhir_sejati.json``
 alih-alih dari stempel bar terakhir mentah -- perbedaan ini krusial karena
 pipa data mengisi harga terakhir simbol mati sampai ujung dataset, sehingga
@@ -118,13 +125,30 @@ def muat_ohlcv(
     memutus circular import:
         run_wf -> potong_ekor -> diag_datar -> run_wf (pilih_berkas)
     Pemangkasan diterapkan setelah sort; aset Parquet tidak disentuh.
+
+    ADR-019: ambang ekor diturunkan dari **interval**, bukan dari bawaan
+    pemangkas. Sebelum ini fungsi ini memakai bawaan 24 bar untuk interval apa
+    pun, sehingga pada 4h jalur muat backtest memangkas ekor empat hari
+    sementara workflow pemangkasan memangkas ekor satu hari. Dua definisi ekor
+    atas satu dataset, dan yang menentukan angka hasil adalah yang di sini.
     """
     # Lazy import untuk memutus circular: run_wf -> potong_ekor -> diag_datar -> run_wf
-    from lux.potong_ekor import potong as _potong_ekor  # noqa: PLC0415
+    from lux.potong_ekor import (  # noqa: PLC0415
+        min_panjang_untuk,
+        potong as _potong_ekor,
+    )
 
     berkas = pilih_berkas(direktori, interval)
     if not berkas:
         raise SystemExit(f"tidak ada ohlcv_{interval}_*.parquet sah di {direktori}")
+    # Gagal keras di sini bila intervalnya belum diputuskan, sebelum ratusan
+    # megabita dibaca. Interval tak dikenal adalah salah ketik, dan salah ketik
+    # tidak layak dibayar dengan lima menit pembacaan parquet.
+    min_panjang = min_panjang_untuk(interval)
+    print(
+        f"  ambang ekor datar {min_panjang} bar untuk interval {interval}",
+        flush=True,
+    )
     bagian = []
     for p in berkas:
         df = pd.read_parquet(p)
@@ -135,7 +159,7 @@ def muat_ohlcv(
     hasil = {}
     for s, b in gabung.groupby("symbol", sort=True, observed=True):
         sorted_b = b.sort_values("open_time").reset_index(drop=True)
-        hasil[str(s)] = _potong_ekor(sorted_b)
+        hasil[str(s)] = _potong_ekor(sorted_b, min_panjang)
     return hasil, berkas
 
 
@@ -523,6 +547,11 @@ def main(argv: list[str] | None = None) -> int:
             }
         )
 
+        # ADR-019 sengaja TIDAK menyentuh baris ini. run_wf adalah orkestrator
+        # H-001b yang dibekukan dan hanya pernah dijalankan pada 1h, di mana
+        # bawaan 24 bar memang berarti satu hari. Yang berinterval adalah
+        # runner; memperluas cakupan ke sini tanpa ADR justru melanggar aturan
+        # yang membuat ADR-019 ada.
         g_forward.append(gerbang_forward_fill(df))
         nama_forward.append(s)
 
