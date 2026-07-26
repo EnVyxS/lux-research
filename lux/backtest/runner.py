@@ -1,4 +1,4 @@
-"""Runner bersama untuk keluarga hipotesis (ADR-006, diperluas ADR-007, ADR-010, ADR-011).
+"""Runner bersama untuk keluarga hipotesis (ADR-006, diperluas ADR-007, ADR-010, ADR-011, ADR-013).
 
 ADR-005 mensyaratkan ekstraksi ini sebelum orkestrator keempat dibuat, dan
 syaratnya dipenuhi di sini. Tiga orkestrator lama — ``run_wf`` (H-001b),
@@ -24,6 +24,15 @@ Sejak ADR-011 runner menilai gerbang kesebelas, ``funding_ekor``, dari
 pembongkaran per perdagangan yang sama dengan ``diagnosa_biaya`` — keduanya
 memakai ``rincian_R``, sehingga angka gerbang dapat diperiksa tangan terhadap
 blok ``diagnosa_biaya.terburuk`` di laporan yang sama.
+
+Sejak ADR-013 runner menulis **sebaran R dan galat baku ekspektasi**. Sampai
+H-010 laporan hanya memuat rerata, sehingga tidak ada satu pun dari sepuluh
+hipotesis — termasuk yang lulus — yang dapat dinilai secara statistik: mustahil
+mengatakan apakah 0,053028R berbeda secara berarti dari 0,041359R atau dari
+ambang 0,05R. Perhitungannya berdiri di ``lux.analisis.sebaran`` karena
+``ringkas_gabungan`` berada di ``run_wf`` yang dibekukan. Ambang pembandingnya
+diambil dari ``spek.h.kriteria.min_ekspektasi_R``, bukan diketik ulang, supaya
+angka ambang tetap hidup di satu tempat saja.
 """
 
 from __future__ import annotations
@@ -37,6 +46,12 @@ from typing import Callable
 import numpy as np
 import pandas as pd
 
+from lux.analisis.sebaran import (
+    KUNCI as KUNCI_SEBARAN,
+    dari_perdagangan,
+    jarak_ambang,
+    ukur_sebaran,
+)
 from lux.backtest.engine import Hasil, Konfig, jalankan
 from lux.backtest.funding_ekor import (
     dari_rincian,
@@ -287,6 +302,19 @@ def jalankan_spek(
     for p in semua_trade:
         alasan[p.alasan_keluar] = alasan.get(p.alasan_keluar, 0) + 1
 
+    # ADR-013. Nilai R tidak finit adalah cacat mesin dan wajib berbunyi, tetapi
+    # bunyinya ditulis ke laporan alih-alih melempar galat: menaruh pemeriksaan
+    # yang bisa gagal di UJUNG run panjang berarti membuang seluruh komputasi
+    # yang sudah selesai. Aturan itu sudah dibayar mahal sebelumnya.
+    try:
+        sebaran = ukur_sebaran(dari_perdagangan(semua_trade))
+    except ValueError as e:
+        sebaran = {k: None for k in KUNCI_SEBARAN}
+        sebaran["n"] = len(semua_trade)
+        sebaran["dapat_dinilai"] = False
+        sebaran["sebab"] = f"CACAT MESIN: {e}"
+    jarak = jarak_ambang(sebaran, spek.h.kriteria.min_ekspektasi_R)
+
     # ADR-010. Agregat yang dipakai belum dibulatkan; blok per_simbol di laporan
     # membulatkan ke empat desimal untuk dibaca manusia, dan pembulatan itu
     # tidak perlu diwariskan ke putusan gerbang.
@@ -308,6 +336,20 @@ def jalankan_spek(
     print(f"parameter terpilih: {parameter_terpilih}", flush=True)
     print(f"konsentrasi: {g_konsentrasi.catatan}", flush=True)
     print(f"funding ekor: {g_funding_ekor.catatan}", flush=True)
+    if sebaran["dapat_dinilai"]:
+        print(
+            f"sebaran: std {sebaran['std_R']:.5f}R, galat baku "
+            f"{sebaran['galat_baku_R']:.6f}R, jarak ke ambang "
+            f"{jarak['jarak_R']:+.6f}R"
+            + (
+                f" = {jarak['jarak_galat_baku']:+.2f} galat baku"
+                if jarak["jarak_galat_baku"] is not None
+                else ""
+            ),
+            flush=True,
+        )
+    else:
+        print(f"sebaran: tidak dapat dinilai, {sebaran['sebab']}", flush=True)
 
     hasil_pool = Hasil(
         symbol="POOL",
@@ -403,6 +445,8 @@ def jalankan_spek(
         "alasan_keluar": alasan,
         "parameter_terpilih": parameter_terpilih,
         "diagnosa_biaya": diagnosa,
+        "sebaran": sebaran,
+        "jarak_ambang_ekspektasi": jarak,
         "gerbang": laporan.ke_dict(),
         "jackknife": jackknife,
         "ekor_funding": {"ukuran": ukuran_funding, "terburuk": ekor_funding},
@@ -443,6 +487,44 @@ def jalankan_spek(
         f"- Ekspektasi: **{gabungan['ekspektasi_R']}**",
         f"- Jendela positif: {gabungan['jendela_positif']}/{gabungan['jumlah_jendela']}",
         f"- Alasan keluar: {alasan}",
+        "",
+        "## Sebaran R dan galat baku (ADR-013)",
+        "",
+        "Sampai H-010 laporan hanya memuat rerata, sehingga tidak ada hipotesis "
+        "yang dapat dinilai secara statistik: mustahil mengatakan apakah "
+        "selisih terhadap ambang berarti sesuatu atau tidak.",
+        "",
+        "**Galat baku di bawah adalah taksiran BAWAH.** Ia mengandaikan "
+        "perdagangan saling bebas, dan andaian itu tidak benar: perdagangan "
+        "dari puluhan simbol kripto pada jendela waktu yang bertumpang "
+        "berkorelasi lewat gerakan pasar bersama. Galat sesungguhnya lebih "
+        "besar, jadi keyakinan sesungguhnya lebih kecil. Angka ini sah dipakai "
+        "untuk **menjatuhkan** klaim, dan tidak sah dipakai untuk "
+        "**menegakkan** klaim.",
+        "",
+    ]
+    if sebaran["dapat_dinilai"]:
+        md += [
+            f"- Simpangan baku per perdagangan: **{sebaran['std_R']:.5f}R** "
+            f"(ddof=1, n = {sebaran['n']:,})",
+            f"- Galat baku ekspektasi: **{sebaran['galat_baku_R']:.6f}R**",
+            f"- Selang 95% (pendekatan normal): "
+            f"**[{sebaran['ci95_bawah_R']:.6f}, {sebaran['ci95_atas_R']:.6f}]R**",
+            f"- Kuartil R: min {sebaran['min_R']:.4f} \u00b7 "
+            f"Q1 {sebaran['q1_R']:.4f} \u00b7 median {sebaran['median_R']:.4f} "
+            f"\u00b7 Q3 {sebaran['q3_R']:.4f} \u00b7 maks {sebaran['maks_R']:.4f}",
+            f"- Jarak ke ambang {jarak['ambang']}R: "
+            f"**{jarak['jarak_R']:+.6f}R**"
+            + (
+                f" = **{jarak['jarak_galat_baku']:+.2f} galat baku**"
+                if jarak["jarak_galat_baku"] is not None
+                else f" (satuan galat baku tidak dapat dihitung: {jarak['sebab']})"
+            ),
+        ]
+    else:
+        md += [f"Tidak dapat dinilai: {sebaran['sebab']}."]
+
+    md += [
         "",
         "## Sebelas gerbang",
         "",
@@ -578,5 +660,8 @@ def jalankan_spek(
         "rerata_transaksi_R": diagnosa.get("rerata_transaksi_R"),
         "retensi_drop_1": g_konsentrasi.nilai,
         "porsi_funding_ekor_maks": g_funding_ekor.nilai,
+        "std_R": sebaran["std_R"],
+        "galat_baku_R": sebaran["galat_baku_R"],
+        "jarak_galat_baku": jarak["jarak_galat_baku"],
         "detik": isi["detik"],
     }
