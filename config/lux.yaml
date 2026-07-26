@@ -8,7 +8,8 @@
 # Setiap perubahan pada berkas ini WAJIB tercatat di journal/ beserta alasannya.
 #
 # Dua kunci ADR-014 ditambahkan 2026-07-26 (universe.min_median_stop_frac dan
-# risiko.maks_biaya_masuk_R). Nomor `versi` sengaja TIDAK dinaikkan: saya belum
+# risiko.maks_biaya_masuk_R). Satu kunci ADR-016 ditambahkan pada hari yang sama
+# (risiko.stop_hormati_celah). Nomor `versi` sengaja TIDAK dinaikkan: saya belum
 # memeriksa setiap pembaca berkas ini dalam sesi ini, jadi menaikkannya adalah
 # perubahan yang akibatnya tidak saya ketahui. Bila kelak ada modul yang
 # menegakkan nomor versi, kenaikannya dikerjakan sebagai perubahan sendiri dan
@@ -98,6 +99,31 @@ risiko:
   #
   # DILARANG menurunkan angka ini sesudah hasil H-012 terlihat.
   maks_biaya_masuk_R: 0.5
+  # ADR-016, ditambahkan 2026-07-26 SESUDAH H-012 divonis dan SEBELUM H-013
+  # dirancang. Ini bukan ambang yang dapat disetel melainkan sakelar kejujuran
+  # eksekusi, jadi tidak ada angka yang bisa dilombakan di sini.
+  #
+  # Mengapa kunci ini ada. Sebelum ADR-016 mesin selalu mengisi stop tepat di
+  # harga stop, bahkan ketika bar MEMBUKA jauh melewatinya. Akibatnya mesin
+  # mustahil melahirkan stop lebih buruk dari sekitar 1R ditambah biaya, dan
+  # gerbang invarian_risiko praktis tidak punya daya pada jalur stop: ia hanya
+  # dapat dijatuhkan oleh umur, carry, dan akhir_data, yaitu tiga jalur yang
+  # mengisi pada harga bar sungguhan. Itulah sebab satu-satunya pelanggar ambang
+  # di H-012, -21,3131R pada STGUSDT, muncul lewat carry
+  # (reports/geometri_keluar_h012.md, run 30209272338).
+  #
+  # Target sengaja TIDAK diperlakukan simetris: ia tetap terisi di harga target
+  # walau bar membuka melewatinya, sebab celah yang menguntungkan adalah hadiah
+  # atas ketidaktahuan.
+  #
+  # Menyalakan kunci ini MEMPERBURUK setiap angka hasil. Bila suatu saat ia
+  # memperbaiki angka, yang ditemukan adalah cacat tanda, bukan keunggulan.
+  #
+  # Bawaan Konfig.stop_hormati_celah di engine.py tetap False yang berarti MATI,
+  # dan itu dikunci pengujian. Hasil H-001b sampai H-012 TIDAK dihitung ulang:
+  # menghitung ulang vonis dengan mesin berbeda akan mencampur dua mesin di
+  # dalam satu papan skor.
+  stop_hormati_celah: true
 
 validasi:
   seed: 42
