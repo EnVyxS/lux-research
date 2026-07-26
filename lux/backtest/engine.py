@@ -94,9 +94,36 @@ hanya menyala bila diminta secara eksplisit lewat ``Konfig``:
   hadiah atas ketidaktahuan, persis yang dilarang oleh aturan "stop menang bila
   keduanya tersentuh".
 
-Selama kelima nilai itu nol atau salah, mesin berperilaku persis seperti sebelum
-ADR-004, ADR-008, ADR-014, dan ADR-016, dan itu dikunci oleh pengujian, bukan
-diandaikan.
+**ADR-020 menambahkan medan keenam, dan bawaannya MENYALA:**
+
+- ``pakai_target`` mematikan sisi target sepenuhnya ketika ia ``False``: tidak ada
+  harga target yang dipasang dan ``kena_target`` tidak pernah dinilai, sehingga
+  posisi hanya dapat keluar lewat ``stop``, ``umur``, ``carry``, dan
+  ``akhir_data``. Medan ini ada karena sel "horizon tetap" pada H-013 (ADR-015
+  bagian 4.1) mustahil dibuat tanpanya, dan karena jalan pintasnya — memberi
+  ``imbalan_R`` nilai raksasa — bukan "tanpa target" melainkan target yang
+  letaknya dipilih tanpa dasar, yang pada simbol yang bergerak ekstrem masih
+  dapat tersentuh.
+
+  **Arah bawaannya sengaja berlawanan dengan lima medan di atas.** Kelima medan
+  itu bawaannya MATI karena masing-masing MENAMBAH saringan; medan ini bawaannya
+  MENYALA karena ia MEMPERTAHANKAN perilaku yang sudah ada. Aturan "medan baru
+  bawaannya tidak mengubah hasil lama" **tidak** berarti "bawaannya selalu
+  ``False``", dan membacanya secara harfiah di sini justru akan mematikan target
+  pada seluruh dua belas hipotesis. Jangan merapikannya menjadi ``False``.
+
+  Dua hal yang wajib diketahui sebelum memakainya. Pertama, mematikan target
+  bersama ``maks_umur_bar`` nol **ditolak keras**, sebab "horizon tetap tanpa
+  horizon" akan berjalan dan hasilnya tetap tampak masuk akal — semua perdagangan
+  keluar lewat ``stop`` dan ``akhir_data`` — sehingga tidak ada yang berbunyi.
+  Kedua, sel tanpa target menutup hampir seluruh perdagangannya lewat ``umur``,
+  dan ``umur`` mengisi pada harga bar sungguhan; sel itu karena itu **lebih
+  rentan** menjatuhkan ``invarian_risiko`` bukan karena keluarnya lebih buruk,
+  melainkan karena keluarnya lebih jujur.
+
+Selama kelima nilai ADR-004/008/014/016 nol atau salah dan ``pakai_target``
+menyala, mesin berperilaku persis seperti sebelum keenam ADR itu, dan itu dikunci
+oleh pengujian, bukan diandaikan.
 """
 
 from __future__ import annotations
@@ -142,6 +169,11 @@ class Konfig:
     # ADR-016. False berarti mati, dan diletakkan paling akhir dengan alasan
     # yang sama. Menyalakannya MEMPERBURUK hasil; itu memang tujuannya.
     stop_hormati_celah: bool = False
+    # ADR-020. True berarti MENYALA, yaitu perilaku lama. Arahnya berlawanan
+    # dengan lima medan di atas dengan sengaja: medan ini mempertahankan
+    # perilaku, tidak menambah saringan. Lihat docstring modul sebelum
+    # "merapikannya" menjadi False.
+    pakai_target: bool = True
 
     def __post_init__(self) -> None:
         if self.atr_periode < 2:
@@ -164,6 +196,16 @@ class Konfig:
             raise ValueError("maks_carry_realisasi_R tidak boleh negatif")
         if self.maks_biaya_masuk_R < 0:
             raise ValueError("maks_biaya_masuk_R tidak boleh negatif")
+        # ADR-020. "Horizon tetap tanpa horizon" akan berjalan tanpa keluhan dan
+        # hasilnya tetap tampak masuk akal, sebab seluruh perdagangan keluar
+        # lewat stop dan akhir_data. Karena itu ia ditolak di sini, bukan
+        # diserahkan kepada pembaca laporan.
+        if not self.pakai_target and self.maks_umur_bar <= 0:
+            raise ValueError(
+                "pakai_target mati menuntut maks_umur_bar positif; tanpa target "
+                "dan tanpa batas umur, posisi hanya keluar lewat stop dan "
+                "akhir_data sehingga tidak ada horizon yang diuji"
+            )
 
 
 @dataclass(frozen=True)
@@ -518,7 +560,15 @@ def jalankan(
 
         if arah != 0:
             kena_stop = l[t] <= stop if arah == 1 else h[t] >= stop
-            kena_target = h[t] >= target if arah == 1 else l[t] <= target
+            # ADR-020: ketika target dimatikan, ia tidak pernah dinilai. Lapis
+            # pertama pengamanannya adalah target bernilai NaN di bawah; lapis
+            # kedua adalah medan ini. Satu lapis cukup secara logika, tetapi
+            # perbandingan dengan harga target yang tertinggal dari entri
+            # sebelumnya adalah kebocoran yang tidak akan berbunyi.
+            if k.pakai_target:
+                kena_target = h[t] >= target if arah == 1 else l[t] <= target
+            else:
+                kena_target = False
             if kena_stop or kena_target:
                 # Stop menang bila keduanya tersentuh: urutan di dalam bar
                 # tidak diketahui, dan ketidaktahuan tidak boleh berbuah laba.
@@ -577,7 +627,14 @@ def jalankan(
                             jarak_stop = jarak
                             ukuran = (modal * k.risiko_per_trade) / jarak
                             stop = masuk - s * jarak
-                            target = masuk + s * jarak * k.imbalan_R
+                            # ADR-020: tanpa target, tidak ada harga target yang
+                            # dipasang sama sekali. NaN dipilih alih-alih nilai
+                            # jauh, supaya setiap perbandingan dengannya bernilai
+                            # False dan tidak ada angka yang bisa tersentuh.
+                            if k.pakai_target:
+                                target = masuk + s * jarak * k.imbalan_R
+                            else:
+                                target = float("nan")
 
         if arah != 0:
             ekuitas[t] = modal + arah * (c[t] - harga_masuk) * ukuran
