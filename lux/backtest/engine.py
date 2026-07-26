@@ -54,8 +54,31 @@ hanya menyala bila diminta secara eksplisit lewat ``Konfig``:
   H-001b, H-003, H-005, dan H-007 justru karena rate dapat melonjak setelah
   entri, dan proyeksi tidak punya cara mengetahuinya.
 
-Selama ketiga nilai itu nol, mesin berperilaku persis seperti sebelum ADR-004
-dan ADR-008, dan itu dikunci oleh pengujian, bukan diandaikan.
+**ADR-014 menambahkan saringan keempat, juga bawaan MATI:**
+
+- ``maks_biaya_masuk_R`` menolak entri yang biaya transaksi bolak-baliknya,
+  dinyatakan dalam satuan R, melebihi ambang. Saringan ini menutup cacat
+  terbesar yang pernah ditemukan riset ini: satuan R kehilangan artinya ketika
+  jarak stop mendekati nol. Pada USDCUSDT rasio ATR terhadap harga praktis nol
+  sehingga ``stop_frac`` mencapai 3,1984e-06, satu perdagangan mencatat biaya
+  312,73R, dan gerbang ``invarian_risiko`` melaporkan -470,06R terhadap ambang
+  -1,5R. Empat puluh simbol pertama secara alfabet tidak memuat satu pun
+  pasangan semacam itu, jadi cacat ini laten sejak H-001b dan baru terbuka di
+  H-011.
+
+  Tiga hal yang disengaja pada saringan ini. Pertama, aritmetikanya **tidak**
+  ditulis di sini melainkan diambil dari ``lux.degenerasi.entri_terlalu_mahal``,
+  supaya lantai semesta dan pengaman mesin mustahil melenceng satu terhadap
+  yang lain. Kedua, arah impornya satu arah: ``lux.degenerasi`` tidak mengimpor
+  modul ini, sehingga tidak ada lingkaran impor yang baru terasa jauh di dalam
+  run. Ketiga, penolakan **bukan perdagangan** dan karena itu tidak masuk
+  histogram alasan keluar; jumlahnya dicatat di ``Hasil.entri_ditolak_biaya``
+  agar sampai ke laporan sebagai alasannya sendiri alih-alih menghilang tanpa
+  jejak. Entri yang ditolak karena carry dihitung terpisah, karena mencampur
+  dua sebab penolakan membuat laporan berbohong tentang penyebabnya.
+
+Selama keempat nilai itu nol, mesin berperilaku persis seperti sebelum ADR-004,
+ADR-008, dan ADR-014, dan itu dikunci oleh pengujian, bukan diandaikan.
 """
 
 from __future__ import annotations
@@ -65,6 +88,7 @@ from dataclasses import dataclass, field
 import numpy as np
 import pandas as pd
 
+from lux.degenerasi import entri_terlalu_mahal
 from lux.funding_model import (
     HARI_MS,
     Jadwal,
@@ -94,6 +118,9 @@ class Konfig:
     # Medan ini sengaja diletakkan paling akhir supaya posisi argumen medan
     # lama tidak bergeser.
     maks_carry_realisasi_R: float = 0.0
+    # ADR-014. Nol berarti mati, dan diletakkan paling akhir dengan alasan yang
+    # sama: posisi argumen medan lama tidak boleh bergeser.
+    maks_biaya_masuk_R: float = 0.0
 
     def __post_init__(self) -> None:
         if self.atr_periode < 2:
@@ -114,6 +141,8 @@ class Konfig:
             raise ValueError("jendela_carry_hari harus positif")
         if self.maks_carry_realisasi_R < 0:
             raise ValueError("maks_carry_realisasi_R tidak boleh negatif")
+        if self.maks_biaya_masuk_R < 0:
+            raise ValueError("maks_biaya_masuk_R tidak boleh negatif")
 
 
 @dataclass(frozen=True)
@@ -152,6 +181,11 @@ class Hasil:
     perdagangan: list[Perdagangan] = field(default_factory=list)
     ekuitas: np.ndarray = field(default_factory=lambda: np.array([]))
     waktu: np.ndarray = field(default_factory=lambda: np.array([]))
+    # ADR-014. Entri yang ditolak pengaman biaya. Bukan perdagangan, jadi tidak
+    # masuk histogram alasan keluar, tetapi wajib tercatat: saringan yang
+    # membuang entri tanpa jejak adalah titik buta, sama seperti gerbang yang
+    # hasilnya tidak pernah ditulis ke reports/ (aturan 10).
+    entri_ditolak_biaya: int = 0
 
     @property
     def jumlah_trade(self) -> int:
@@ -171,6 +205,7 @@ class Hasil:
                 "biaya_funding": 0.0,
                 "maks_drawdown": 0.0,
                 "ekuitas_akhir": float(self.ekuitas[-1]) if self.ekuitas.size else 0.0,
+                "entri_ditolak_biaya": self.entri_ditolak_biaya,
             }
         rs = np.array([p.R for p in self.perdagangan], dtype="float64")
         menang = int((rs > 0).sum())
@@ -186,6 +221,7 @@ class Hasil:
             "biaya_funding": float(sum(p.biaya_funding for p in self.perdagangan)),
             "maks_drawdown": float(dd.min()),
             "ekuitas_akhir": float(self.ekuitas[-1]),
+            "entri_ditolak_biaya": self.entri_ditolak_biaya,
         }
 
 
@@ -273,6 +309,11 @@ def _boleh_masuk(
 
     ADR-008 memakai alasan yang sama: pengaman carry keras juga mustahil
     dinilai tanpa jadwal, jadi entri ditolak alih-alih dibuka tanpa pengawasan.
+
+    Pengaman biaya masuk ADR-014 **tidak** diletakkan di sini. Ia dinilai di
+    pemanggil supaya penolakan karena biaya dapat dihitung terpisah dari
+    penolakan karena carry; satu fungsi yang mengembalikan satu ``bool`` untuk
+    dua sebab berbeda akan menghapus perbedaan itu dari laporan.
     """
     if k.maks_carry_realisasi_R > 0 and jadwal is None:
         return False
@@ -367,6 +408,7 @@ def jalankan(
     ekuitas = np.empty(n, dtype="float64")
     modal = k.modal_awal
     perdagangan: list[Perdagangan] = []
+    ditolak_biaya = 0
 
     arah = 0
     harga_masuk = 0.0
@@ -464,21 +506,27 @@ def jalankan(
                 if np.isfinite(atr_t) and atr_t > 0:
                     jarak = k.atr_pengali_stop * atr_t
                     masuk = _harga_eksekusi(o[t], s, True, k.slippage)
-                    if (
-                        jarak > 0
-                        and masuk > 0
-                        and _boleh_masuk(
-                            k, jadwal, s, int(waktu[t]), jarak / masuk, interval_ms
-                        )
-                    ):
-                        arah = s
-                        harga_masuk = masuk
-                        masuk_ms = int(waktu[t])
-                        masuk_idx = t
-                        jarak_stop = jarak
-                        ukuran = (modal * k.risiko_per_trade) / jarak
-                        stop = masuk - s * jarak
-                        target = masuk + s * jarak * k.imbalan_R
+                    if jarak > 0 and masuk > 0:
+                        stop_pecahan = jarak / masuk
+                        # ADR-014: pengaman biaya masuk. Dinilai SEBELUM
+                        # saringan carry karena ia lebih murah dan karena
+                        # sebabnya harus dapat dibedakan di laporan. Penolakan
+                        # di sini bukan perdagangan.
+                        if k.maks_biaya_masuk_R > 0 and entri_terlalu_mahal(
+                            stop_pecahan, k.maks_biaya_masuk_R
+                        ):
+                            ditolak_biaya += 1
+                        elif _boleh_masuk(
+                            k, jadwal, s, int(waktu[t]), stop_pecahan, interval_ms
+                        ):
+                            arah = s
+                            harga_masuk = masuk
+                            masuk_ms = int(waktu[t])
+                            masuk_idx = t
+                            jarak_stop = jarak
+                            ukuran = (modal * k.risiko_per_trade) / jarak
+                            stop = masuk - s * jarak
+                            target = masuk + s * jarak * k.imbalan_R
 
         if arah != 0:
             ekuitas[t] = modal + arah * (c[t] - harga_masuk) * ukuran
@@ -506,4 +554,10 @@ def jalankan(
         modal += p.laba
         ekuitas[-1] = modal
 
-    return Hasil(symbol=symbol, perdagangan=perdagangan, ekuitas=ekuitas, waktu=waktu)
+    return Hasil(
+        symbol=symbol,
+        perdagangan=perdagangan,
+        ekuitas=ekuitas,
+        waktu=waktu,
+        entri_ditolak_biaya=ditolak_biaya,
+    )
