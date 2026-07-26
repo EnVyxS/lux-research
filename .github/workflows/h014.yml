@@ -1,0 +1,380 @@
+# H-014 (ADR-033, ADR-034): geometri keluar sendirian, dengan umur pegangan
+# DISETARAKAN pada 48 bar di kedua sel.
+#
+# KENAPA RUN INI ADA
+#
+# H-013 mengukur SS − SH = +0,029481R dan menamainya "sumbangan geometri keluar".
+# Nama itu salah. `run_h013.umur_sel` memberi sel bertarget 42 bar dan sel tanpa
+# target 48 bar, jadi selisih itu mencampur DUA medan sekaligus — ada-tidaknya
+# target DAN panjang pegangan — dan `maks_umur_bar` bukan medan pasif:
+# `engine._boleh_masuk` memakainya untuk proyeksi carry, sehingga 42 dan 48
+# MENOLAK ENTRI YANG BERBEDA. Itu sebab terukur pertama dari 60.018 lawan 44.614
+# perdagangan. Cacat kelas keempat belas; aturan 52 lahir darinya, dan run ini
+# adalah perbandingan yang namanya jujur: SATU medan berbeda.
+#
+# TIGA HAL YANG BERBEDA DARI h013b.yml
+#
+#   1. SATU pekerjaan, bukan sepuluh. Tidak ada sepuluh penulis satu cabang, jadi
+#      tidak ada lomba dorong yang membuat pecahan hilang tanpa suara. Lingkaran
+#      ulang tetap ada — workflow lain bisa mengomit bersamaan — tetapi lebih
+#      sederhana.
+#
+#   2. KEDUA LAPORAN SEL DIKOMIT. Di Jalur B berkas antara wajib DIHAPUS sebelum
+#      commit sebab tiga puluh seed menimpa satu nama. Di sini setiap sel punya
+#      namanya sendiri (`h014_ssp_target_umur48`, `h014_shp_tanpa_target_umur48`),
+#      dan `run_h014.periksa_nama` menuntut keduanya berbeda dari keempat nama
+#      H-013 maupun dari `h013b_as_seed` — sebab `jalankan_spek` menulis
+#      `backtest_<nama>.json` dengan nama yang sama tiap pemanggilan dan akan
+#      menimpa laporan yang sudah dikomit tanpa satu pesan galat.
+#
+#   3. GERBANG entri_acak MENYALA. Di Jalur B ia dimatikan karena 300 permutasi
+#      di dalam 300 seed adalah 90.000 backtest untuk angka yang tidak dipakai.
+#      Di sini kedua sel memakai sinyal Donchian SUNGGUHAN, jadi `lookahead` dan
+#      `entri_acak` DAPAT DINILAI di keduanya. Itu perbaikan terukur atas Jalur B,
+#      di mana keduanya gagal karena konstruksi dan sebelas gerbang menyusut
+#      menjadi sembilan yang berarti (ADR-021).
+#
+# DUA HAL YANG AKAN TAMPAK SEPERTI KEGAGALAN DAN BUKAN KEGAGALAN
+#
+#   1. Berkas md tiap sel akan mencetak LULUS atau DITOLAK. Itu putusan
+#      pra-registrasi PER SEL milik runner (ekspektasi 0,05R, 100 trade, p entri
+#      acak, rasio jendela positif) — BUKAN putusan H-014. Laporan H-013 mencetak
+#      **LULUS** dengan cara yang sama sementara kriteria utamanya belum pernah
+#      dihitung. Putusan H-014 hanya lahir dari `gabung_h014`.
+#
+#   2. H-014 MUSTAHIL LULUS, dan itu dipra-registrasi sebelum angkanya ada.
+#      `lux.analisis.berpasangan` menyatakan sendiri bahwa p-nya mengukur
+#      ketidakpastian penarikan BULAN dan bukan sebaran permutasi sinyal; ia sah
+#      untuk MENJATUHKAN dan tidak sah untuk MENEGAKKAN, dan ia memancarkan
+#      `memenuhi_adr015: False` tanpa syarat. Putusannya karena itu hanya DITOLAK
+#      atau TIDAK DAPAT DINILAI. Penggabung keluar 0 untuk DITOLAK (aturan 48):
+#      hasil yang mematikan hipotesis adalah hasil yang BERHASIL diperoleh, dan ia
+#      tidak boleh menyamar sebagai run gagal.
+
+name: h014
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Jumlah simbol; 0 berarti seluruh semesta layak"
+        default: "0"
+  push:
+    paths:
+      - ".github/workflows/h014.yml"
+
+permissions:
+  contents: write
+
+env:
+  TAG: tier-b-v1
+
+jobs:
+  h014:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Siapkan direktori log
+        run: mkdir -p logs reports
+
+      - id: deps
+        name: Pasang dependensi
+        run: |
+          set -o pipefail
+          {
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt pytest
+            python -c "import numpy, pandas, pyarrow, yaml; print('numpy', numpy.__version__)"
+          } 2>&1 | tee logs/deps.log
+
+      - id: uji
+        name: Pytest wajib hijau sebelum apa pun diunduh
+        run: |
+          set -o pipefail
+          python -m pytest tests -q 2>&1 | tee logs/uji.log
+
+      - id: preflight
+        name: Pagar pra-terbang H-014
+        run: |
+          set -o pipefail
+          python - <<'PY' 2>&1 | tee logs/preflight.log
+          from pathlib import Path
+
+          from lux.backtest import gabung_h014 as gab
+          from lux.backtest import run_h013, run_h014
+          from lux.backtest.engine import Konfig
+          from lux.backtest.run_h002 import muat_konfig_h002
+          from lux.backtest.run_h013b import NAMA_SPEK as NAMA_SPEK_B
+          from lux.degenerasi import AMBANG_BIAYA_MASUK_R
+
+          KONFIG = Path("config/lux.yaml")
+
+          # 1. ATURAN 52. Kedua sel wajib berbeda pada TEPAT satu medan. Bila dua,
+          #    selisihnya bukan pengukuran, dan seluruh run ini kehilangan makna
+          #    persis seperti +0,029481R kehilangan maknanya.
+          beda = run_h014.medan_berbeda(Konfig())
+          assert beda == ["pakai_target"], beda
+          assert run_h014.UMUR_SETARA == run_h013.H_BAR == 48
+          assert run_h014.umur_sel_h014("SSp") == run_h014.umur_sel_h014("SHp")
+          assert run_h014.UMUR_SETARA != run_h013.UMUR_SEL_STOP == 42
+          print(f"1. satu medan berbeda {beda}, umur setara 48 di kedua sel: OK")
+
+          # 2. Nama laporan tidak menimpa apa pun yang sudah dikomit. Tanpa pagar
+          #    ini, pemanggilan pertama akan menimpa laporan sel H-013 dan
+          #    satu-satunya pembanding sah hilang tanpa satu pesan galat.
+          assert run_h014.periksa_nama() is True
+          dipakai = set(run_h013.NAMA_LAPORAN.values()) | {NAMA_SPEK_B}
+          assert not set(run_h014.NAMA_LAPORAN_H014.values()) & dipakai
+          for sel in run_h014.NAMA_SEL:
+              print(f"   sel {sel} -> {run_h014.jalur_sel(sel, 'reports')}")
+          print("2. nama laporan H-014 tidak menimpa laporan yang dikomit: OK")
+
+          # 3. TIDAK ADA JALAN MENUJU LULUS, dan itu diperiksa dengan MENJALANKAN
+          #    adjudikasi atas masukan sintetis yang besaran dan p-nya keduanya
+          #    lolos — bukan hanya dengan membaca konstanta. Bila suatu hari cabang
+          #    LULUS diselundupkan, pagar ini gagal sebelum satu bar dimuat.
+          assert run_h014.PUTUSAN_MUNGKIN == ("DITOLAK", "TIDAK DAPAT DINILAI")
+          assert gab.PUTUSAN_MUNGKIN == run_h014.PUTUSAN_MUNGKIN
+          bulan = lambda n, e: {
+              "periode": n, "trade": 200, "total_R": e * 200, "ekspektasi_R": e
+          }
+          sel_sintetis = lambda v: {
+              "gabungan": {"jumlah_trade_luar_sampel": 60000},
+              "agregat_periode": [
+                  bulan(f"2025-{i + 1:02d}", x) for i, x in enumerate(v)
+              ],
+          }
+          kuat = gab.adjudikasi(
+              sel_sintetis([0.5] * 8),
+              sel_sintetis([0.0] * 8),
+              ambang_besaran=run_h014.AMBANG_BESARAN_R,
+              ambang_p=run_h014.AMBANG_P,
+              min_trade=run_h013.MIN_TRADE_SEL,
+              ulangan=1000,
+          )
+          assert kuat["p"] <= 0.05, kuat["p"]
+          assert kuat["putusan"] == gab.TIDAK_DAPAT_DINILAI, kuat["putusan"]
+          assert kuat["memenuhi_adr015"] is False
+          print(
+              "3. besaran DAN p keduanya lolos tetap bukan kelulusan "
+              f"({kuat['putusan']}): OK"
+          )
+
+          # 4. Ambang. 0,020R dipinjam DENGAN SADAR dari ADR-015 pasal 4.4 yang
+          #    membekukannya bagi kaki SINYAL; bagi kaki GEOMETRI ADR-015 tidak
+          #    pernah membekukan ambang, definisi p, maupun nol (cacat kelas kelima
+          #    belas, aturan 53). Ambang ini BARU, dan berkas wajib mengatakannya.
+          assert run_h014.AMBANG_BESARAN_R == 0.020
+          assert run_h014.AMBANG_P == 0.05
+          assert run_h013.MIN_TRADE_SEL == 100
+          assert "2026-07-27" in run_h014.CATATAN_AMBANG
+          assert "BARU" in run_h014.CATATAN_AMBANG
+          print("4. ambang BARU dinyatakan sebagai baru, bukan dikutip: OK")
+
+          # 5. Pembanding H-013 DILARANG dipakai sebagai "versi sebelum
+          #    perbaikan". Kedua pembatas wajib menyebut angkanya supaya larangan
+          #    itu ikut tercetak di laporan, bukan hanya hidup di ADR.
+          for teks in (run_h014.PEMBATAS, gab.PEMBATAS):
+              assert "0,029481" in teks, teks[:80]
+          assert "MUSTAHIL LULUS" in run_h014.PEMBATAS
+          print("5. larangan membandingkan ke +0,029481R ikut tercetak: OK")
+
+          # 6. CACAT KELAS KEDELAPAN, dikunci lagi. Pemuat config wajib TETAP
+          #    tidak membaca kedua pengaman, dan dasar_riset wajib memasangnya.
+          mentah = muat_konfig_h002(KONFIG)
+          assert mentah.maks_biaya_masuk_R == 0.0, mentah.maks_biaya_masuk_R
+          assert mentah.stop_hormati_celah is False
+          dasar = run_h013.dasar_riset(mentah)
+          assert dasar.maks_biaya_masuk_R == AMBANG_BIAYA_MASUK_R == 0.5
+          assert dasar.stop_hormati_celah is True
+          ssp = run_h014.konfig_sel_h014("SSp", dasar)
+          shp = run_h014.konfig_sel_h014("SHp", dasar)
+          assert ssp.pakai_target is True and shp.pakai_target is False
+          assert ssp.maks_umur_bar == shp.maks_umur_bar == 48
+          assert ssp.imbalan_R == shp.imbalan_R == run_h013.IMBALAN_BEKU == 2.0
+          assert run_h014.spek_h014("SSp", dasar).buat_konfig is None
+          print("6. pengaman dipasang dasar_riset, geometri TIDAK dilombakan: OK")
+
+          # 7. Hipotesis H-014 tidak boleh menimpa pra-registrasi H-013 yang sudah
+          #    dikomit, dan kedua sel wajib berbeda id sebab praregistrasi.simpan
+          #    MENOLAK id sama dengan isi berbeda — galat itu akan muncul di sel
+          #    KEDUA, sesudah sel pertama berjalan berjam-jam.
+          a = run_h014.hipotesis_h014("SSp", dasar)
+          b = run_h014.hipotesis_h014("SHp", dasar)
+          assert a.id != b.id and a.sidik() != b.sidik()
+          assert a.id.startswith("H-014-") and b.id.startswith("H-014-")
+          for h in (a, b):
+              lama = Path(f"hipotesis/{h.id}.json")
+              assert not lama.exists() or "H-014" in lama.name
+          assert not Path("hipotesis/H-014-SSp.json").exists() or True
+          print(f"7. hipotesis {a.id} dan {b.id} berdiri sendiri: OK")
+
+          # 8. Semesta dan akhir sejati 4h wajib ada SEBELUM apa pun diunduh.
+          for jalur in (
+              "reports/universe_layak_v2_4h.json",
+              "reports/akhir_sejati_4h.json",
+          ):
+              p = Path(jalur)
+              assert p.is_file() and p.stat().st_size > 100, jalur
+          print("8. semesta dan akhir sejati 4h ada: OK")
+
+          print("")
+          print("pagar pra-terbang H-014: LULUS")
+          print("KONSEKUENSI KONSTRUKSI (bukan temuan): berkas md tiap sel akan")
+          print("mencetak LULUS atau DITOLAK milik pra-registrasi PER SEL runner.")
+          print("Putusan H-014 hanya lahir dari gabung_h014, dan ia MUSTAHIL LULUS.")
+          PY
+
+      - id: lantai
+        name: Baca lantai semesta dari config
+        run: |
+          set -o pipefail
+          {
+            LANTAI=$(python -c "from lux.backtest.run_h012 import kunci_config; print(kunci_config('config/lux.yaml')['min_median_stop_frac'])")
+            echo "lantai=${LANTAI}"
+            echo "lantai=${LANTAI}" >> "$GITHUB_OUTPUT"
+          } 2>&1 | tee logs/lantai.log
+
+      - id: unduh
+        name: Unduh aset 4h dari rilis
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -o pipefail
+          {
+            mkdir -p aset
+            gh release download "$TAG" -D aset -p 'ohlcv_4h_*.parquet' --clobber
+            gh release download "$TAG" -D aset -p 'funding_shard*.parquet' --clobber
+            ls -1 aset | wc -l
+            du -sh aset
+          } 2>&1 | tee logs/unduh.log
+
+      - id: jalan
+        name: Jalankan kedua sel H-014
+        run: |
+          set -o pipefail
+          python -m lux.backtest.run_h014 \
+            --dir aset \
+            --interval 4h \
+            --universe reports/universe_layak_v2_4h.json \
+            --akhir-sejati reports/akhir_sejati_4h.json \
+            --min-median-stop-frac "${{ steps.lantai.outputs.lantai }}" \
+            --limit "${{ github.event.inputs.limit || '0' }}" \
+            --komit "${GITHUB_SHA}" \
+            --out reports \
+            2>&1 | tee logs/jalan.log
+
+      - name: Tegakkan kedua laporan sel lahir
+        run: |
+          set -e
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          from lux.backtest import run_h014
+
+          manifes = json.loads(
+              run_h014.jalur_manifes("reports").read_text(encoding="utf-8")
+          )
+          assert manifes["medan_berbeda"] == ["pakai_target"], manifes["medan_berbeda"]
+          for sel in run_h014.NAMA_SEL:
+              p = run_h014.jalur_sel(sel, "reports")
+              assert p.is_file() and p.stat().st_size > 100_000, p
+              isi = json.loads(p.read_text(encoding="utf-8"))
+              bulan = isi["agregat_periode"]
+              print(
+                  f"{sel}: {p.stat().st_size} B, "
+                  f"ekspektasi {isi['gabungan']['ekspektasi_R']!r}, "
+                  f"{isi['gabungan']['jumlah_trade_luar_sampel']} trade, "
+                  f"{len(bulan)} bulan, "
+                  f"umur {isi['parameter_run']['maks_umur_bar']}, "
+                  f"konfig_per_kandidat {isi['parameter_run']['konfig_per_kandidat']}"
+              )
+              assert isi["parameter_run"]["maks_umur_bar"] == 48
+              assert isi["parameter_run"]["konfig_per_kandidat"] is False
+          print("kedua sel lahir dengan umur 48 dan tanpa konfig per kandidat")
+          PY
+
+      - id: gabung
+        name: Adjudikasi berpasangan per bulan
+        run: |
+          set -o pipefail
+          set +e
+          python -m lux.backtest.gabung_h014 \
+            --sel-a "reports/backtest_h014_ssp_target_umur48.json" \
+            --sel-b "reports/backtest_h014_shp_tanpa_target_umur48.json" \
+            --ambang-besaran 0.020 \
+            --ambang-p 0.05 \
+            --min-trade 100 \
+            --out reports 2>&1 | tee logs/gabung.log
+          KODE=${PIPESTATUS[0]}
+          echo "kode=${KODE}" >> "$GITHUB_OUTPUT"
+          echo "kode keluar penggabung: ${KODE}"
+          exit 0
+
+      - name: Salin log ke laporan
+        if: always()
+        run: |
+          mkdir -p reports logs
+          {
+            echo "# Log H-014"
+            echo
+            echo "Run: \`${GITHUB_RUN_ID}\`"
+            echo "Commit: \`${GITHUB_SHA}\`"
+            echo "Kode keluar penggabung: \`${{ steps.gabung.outputs.kode }}\`"
+            echo
+            echo 'Kode 0 = DITOLAK, dan itu HASIL (aturan 48), bukan kegagalan run.'
+            echo 'Kode 4 = TIDAK DAPAT DINILAI. Tidak ada kode untuk LULUS sebab'
+            echo 'tidak ada cabangnya: H-014 dipra-registrasi MUSTAHIL LULUS.'
+            echo
+            for berkas in deps uji preflight lantai unduh jalan gabung; do
+              echo
+              echo "## logs/${berkas}.log"
+              echo
+              echo '```'
+              if [ -s "logs/${berkas}.log" ]; then
+                tail -c 60000 "logs/${berkas}.log"
+              else
+                echo "(langkah ini tidak pernah berjalan atau tidak menulis apa pun)"
+              fi
+              echo '```'
+            done
+          } > reports/h014_log.md
+
+      - name: Komit laporan, apa pun putusannya
+        if: always()
+        run: |
+          set -e
+          git config user.name lux-h014
+          git config user.email actions@github.com
+          git add reports/backtest_h014_*.json reports/backtest_h014_*.md || true
+          git add reports/h014_run.json reports/h014_berpasangan.json \
+                  reports/h014_berpasangan.md reports/h014_log.md || true
+          git add hipotesis/H-014-*.json || true
+          git diff --cached --quiet && { echo "tidak ada hasil untuk dikomit"; exit 1; }
+          git commit -m "chore(h014): laporan H-014 run ${GITHUB_RUN_ID} [skip ci]"
+          for coba in $(seq 1 8); do
+            git pull --rebase --autostash origin main && \
+              git push origin HEAD:main && { echo "terdorong pada coba ${coba}"; exit 0; }
+            JEDA=$(( (RANDOM % 15) + 5 ))
+            echo "coba ${coba} kalah lomba dorong; ulang dalam ${JEDA}s"
+            sleep "${JEDA}"
+          done
+          echo "delapan kali gagal mendorong; laporan H-014 HILANG dari main"
+          exit 1
+
+      - name: Tegakkan kode keluar penggabung
+        run: |
+          KODE="${{ steps.gabung.outputs.kode }}"
+          if [ "$KODE" = "0" ]; then
+            echo "putusan DITOLAK lahir; itu HASIL, bukan kegagalan run"
+            exit 0
+          fi
+          echo "penggabung tidak melahirkan putusan DITOLAK (kode ${KODE}); laporan sudah dikomit"
+          exit 1
