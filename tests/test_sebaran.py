@@ -91,8 +91,23 @@ def test_nilai_tidak_finit_ditolak_keras():
 
 
 def test_urutan_masukan_tidak_mengubah_hasil():
+    """Sifat yang dijamin adalah kesamaan sampai presisi float, bukan bit.
+
+    Versi pertama pengujian ini menuntut kesamaan bit dan GAGAL di run commit
+    `a911e99e`: rerata 0.28 lawan 0.27999999999999997, selisih satu satuan
+    terakhir. Penjumlahan float tidak asosiatif, jadi yang salah adalah
+    tuntutannya, bukan modulnya. Menuntut kesamaan bit atas agregat float adalah
+    pengujian yang akan menyala pada perilaku yang benar.
+    """
     xs = [0.3, -1.0, 2.5, 0.0, -0.4]
-    assert ukur_sebaran(xs) == ukur_sebaran(list(reversed(xs)))
+    a = ukur_sebaran(xs)
+    b = ukur_sebaran(list(reversed(xs)))
+    assert set(a) == set(b)
+    for k in a:
+        if isinstance(a[k], float):
+            assert abs(a[k] - b[k]) < 1e-12, k
+        else:
+            assert a[k] == b[k], k
 
 
 def test_seluruh_kunci_selalu_ada():
