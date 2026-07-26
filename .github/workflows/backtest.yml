@@ -5,7 +5,7 @@
 #
 # Dipicu lewat filter paths pada berkasnya sendiri. Akibatnya push berkas ini
 # LANGSUNG memulai run, jadi ia selalu dibalik paling akhir, sesudah seluruh modul
-# hijau sendiri. Untuk H-013 itu terjadi dua kali: 734 lalu 737 pengujian.
+# hijau sendiri. Untuk H-013 itu terjadi tiga kali: 734, 737, lalu 739 pengujian.
 #
 # H-013 BUKAN "H-010 setelah perbaikan", dan bukan pula H-012 yang diulang.
 # Pertanyaannya baru dan belum pernah ditanyakan dalam dua belas hipotesis: apakah
@@ -21,36 +21,42 @@
 #      diputuskan sebelum run, dan haram dilaporkan sebagai temuan.
 #
 #   2. invarian_risiko diramalkan jatuh pada sel SH dan AH. Sebabnya jalur umur
-#      mengisi pada harga bar sungguhan sedangkan jalur stop tidak. Itu BUKAN bukti
-#      target lebih baik, dan ambang -1,5R tidak dilonggarkan karenanya.
+#      mengisi pada harga bar sungguhan sedangkan jalur stop hanya seburuk celah
+#      pembukaan. Itu BUKAN bukti target lebih baik, dan ambang -1,5R tidak
+#      dilonggarkan karenanya.
 #
 # --komit sengaja TIDAK diteruskan ke orkestrator: yang mengomit adalah langkah di
 # bawah, sekali, sesudah seluruh berkas hasil ada. Laporan yang dikomit tanpa
 # backtest_h013_kontribusi.json berarti run GAGAL, bukan hasil yang tak ternilai.
 #
-# EMPAT KEGAGALAN BERURUTAN, DICATAT KARENA POLANYA BELUM KEDALUWARSA:
+# LIMA KEGAGALAN, DICATAT KARENA POLANYA BELUM KEDALUWARSA:
 #
 #   30198306280 (25s) mati di langkah uji, dan buktinya HILANG karena hanya
 #   logs/backtest.log yang disalin - berkas yang belum pernah ada bila
-#   kegagalannya mendahului langkah jalan. Satu putaran terbuang dan yang
-#   dihasilkannya cuma dugaan yang keliru.
+#   kegagalannya mendahului langkah jalan.
 #
 #   30198631730 (23s) mati di langkah uji juga: "No module named pytest".
-#   requirements.txt tidak memuat pytest; tests.yml memasangnya terpisah.
 #
 #   30198840830 (25s) mati di pagar: Konfig tidak punya medan fee_efektif.
 #   fee_efektif adalah kunci YAML; medan dataclass-nya bernama fee.
 #
-#   30198942815 (32s) LULUS kedelapan pagar, mengunduh 16 berkas 559M, lalu mati di
-#   orkestrator dengan AttributeError fee_efektif yang sama. Bug itu tidak pernah
-#   hanya milik pagar: pagar MENYALINNYA dari kode yang dijaganya. Pagar yang
-#   menyalin baris dari kode yang dijaganya tidak menjaga apa pun.
+#   30198942815 (32s) LULUS kedelapan pagar, mengunduh 559M, lalu mati di
+#   orkestrator dengan AttributeError fee_efektif yang sama. Pagar MENYALIN bug
+#   dari kode yang dijaganya, jadi ia tidak menjaga apa pun.
+#
+#   30213913942 mati di pagar butir 3 baris 65: maks_biaya_masuk_R pada Konfig
+#   ternyata 0.0 meskipun config/lux.yaml memuat 0.5. Sebabnya dibaca, bukan
+#   ditebak: muat_konfig_h002 memetakan delapan kunci dan tidak menyentuh
+#   maks_biaya_masuk_R maupun stop_hormati_celah. Dua pengaman yang saya andaikan
+#   menyala sesungguhnya MATI di sepanjang jalur config. Pagar tidak diturunkan;
+#   dasar_riset yang memasang keduanya.
 #
 # Tiga yang pertama satu kelas: nama atau lingkungan yang DITEBAK alih-alih dibaca.
-# Yang keempat kelas kedua: pagar yang menyalin. Karena itu pagar di bawah MEMANGGIL
-# fungsi modul - jendela_bar, bar_dibutuhkan, buat_konfig_sel, permutasi_sinyal -
-# dan setiap langkah menulis keluarannya ke logs/, lalu seluruh logs/ disalin ke
-# reports/ dengan if: always().
+# Yang keempat kelas kedua: pagar yang menyalin. Yang kelima kelas ketiga: angka yang
+# hidup di berkas config tetapi tidak di dalam program. Karena itu pagar di bawah
+# MEMANGGIL fungsi modul - dasar_riset, jendela_bar, bar_dibutuhkan, buat_konfig_sel,
+# permutasi_sinyal - dan setiap langkah menulis keluarannya ke logs/, lalu seluruh
+# logs/ disalin ke reports/ dengan if: always().
 
 name: backtest
 
@@ -167,17 +173,25 @@ jobs:
           assert run_h013.H_BAR == 48
           print("2. ambang ADR-015 tidak bergerak: OK")
 
-          # 3. Angka kembar. Lantai dan pengaman hidup di config/lux.yaml dan di
-          #    lux/degenerasi.py; bila keduanya berselisih, satu di antaranya
-          #    digeser tanpa dijurnalkan.
+          # 3. Angka kembar, DAN cacat pemuat config yang dikunci.
+          #
+          #    Inilah pagar yang menjatuhkan run 30213913942. Ia tidak diturunkan
+          #    melainkan diperkuat: config dan degenerasi wajib sepakat, pemuat
+          #    wajib TETAP tidak membaca kedua pengaman, dan dasar_riset wajib
+          #    memasangnya. Bila suatu hari pemuat itu diperbaiki, pagar ini gagal
+          #    dan memaksa perbaikannya dijurnalkan alih-alih menyelinap ke dalam
+          #    dua belas hipotesis yang memakainya.
           kunci = kunci_config(KONFIG)
           assert kunci["min_median_stop_frac"] == AMBANG_MIN_STOP_FRAC == 0.004
           assert kunci["maks_biaya_masuk_R"] == AMBANG_BIAYA_MASUK_R == 0.5
-          dasar = muat_konfig_h002(KONFIG)
+          mentah = muat_konfig_h002(KONFIG)
+          assert mentah.maks_biaya_masuk_R == 0.0, mentah.maks_biaya_masuk_R
+          assert mentah.stop_hormati_celah is False
+          dasar = run_h013.dasar_riset(mentah)
           assert dasar.maks_biaya_masuk_R == AMBANG_BIAYA_MASUK_R
-          assert dasar.maks_carry_R > 0
           assert dasar.stop_hormati_celah is True
-          print("3. angka kembar config <-> degenerasi: OK")
+          assert dasar.maks_carry_R > 0
+          print("3. angka kembar, pengaman DIPASANG dasar_riset: OK")
 
           # 4. CACAT BUTA-INTERVAL KETUJUH (ADR-023). Inilah pagar yang mencegah
           #    run ini menghasilkan empat laporan rapi yang seluruhnya kosong.
@@ -191,7 +205,6 @@ jobs:
           assert j4 == {"panjang_latih": 1080, "panjang_uji": 540, "embargo": 42}, j4
           butuh = run_h013.bar_dibutuhkan("4h")
           assert butuh == 1862, butuh
-          # Lantai kelayakan 4h dari config; satu jendela WAJIB muat di bawahnya.
           lantai_4h = kunci.get("min_bar_4h")
           if lantai_4h is not None:
               assert butuh < lantai_4h, (butuh, lantai_4h)
@@ -210,13 +223,17 @@ jobs:
           assert k_sh.pakai_target is False and k_sh.maks_umur_bar == 48
           assert k_ss.maks_carry_realisasi_R == run_h009.AMBANG_CARRY_KERAS
           assert k_sh.maks_carry_realisasi_R == run_h009.AMBANG_CARRY_KERAS
+          # Pengaman ikut terwarisi ke konfig per kandidat, bukan hilang di jalan.
+          assert k_ss.maks_biaya_masuk_R == AMBANG_BIAYA_MASUK_R
+          assert k_sh.stop_hormati_celah is True
           # 168 dari config adalah 28 hari pada 4h dan TIDAK boleh terpakai.
           assert k_ss.maks_umur_bar != dasar.maks_umur_bar
-          print("5. pakai_target dan batas umur per sel: OK")
+          print("5. pakai_target, batas umur, dan pengaman per sel: OK")
 
           # 6. Bawaan pengaman dan lantai tetap MATI, supaya H-001b sampai H-012
           #    tetap dapat diulang tanpa satu entri pun tertolak.
           assert bawaan(engine.Konfig, "maks_biaya_masuk_R") == 0.0
+          assert bawaan(engine.Konfig, "stop_hormati_celah") is False
           assert bawaan(runner.Opsi, "min_median_stop_frac") == 0.0
           assert bawaan(engine.Hasil, "entri_ditolak_biaya") == 0
           print("6. bawaan pengaman dan lantai tetap MATI: OK")
