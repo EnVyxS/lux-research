@@ -16,20 +16,24 @@
 # di bawah, sekali, sesudah seluruh berkas hasil ada. Laporan yang dikomit tanpa
 # berkas hasil berarti run GAGAL, bukan run yang laporannya kosong.
 #
-# PELAJARAN RUN 30198306280 (GAGAL, 25 detik, log kosong): langkah pagar menulis
-# ke stdout saja, sementara yang disalin ke reports/ hanya logs/backtest.log —
-# berkas yang belum pernah ada bila kegagalannya terjadi sebelum langkah jalan.
-# Kegagalan itu jadi tak terbaca sama sekali dari sandbox. Karena itu SETIAP
-# langkah yang bisa gagal di bawah ini menulis keluarannya ke logs/ dan seluruh
-# logs/ disalin ke reports/ dengan if: always(). Aturan ini sudah ada di STATE
-# sejak S11; yang gagal adalah penerapannya, bukan aturannya.
+# TIGA KEGAGALAN BERURUTAN, DICATAT KARENA POLANYA SATU DAN SAMA:
 #
-# PELAJARAN RUN 30198631730 (GAGAL, 23 detik, log TERBACA): logs/uji.log memuat
-# satu baris, "No module named pytest". requirements.txt tidak memuat pytest;
-# tests.yml memasangnya terpisah. Jadi kedua kegagalan berasal dari langkah uji
-# dan pagar pra-terbang belum pernah sempat berjalan sekali pun. Pelajaran yang
-# lebih mahal: dugaan pertama saya menuduh pagar, dan dugaan itu keliru justru
-# karena bukti kegagalannya sengaja tidak ditulis ke reports/.
+#   30198306280 (25s) mati di langkah uji, dan buktinya HILANG karena hanya
+#   logs/backtest.log yang disalin ke reports/ — berkas yang belum pernah ada
+#   bila kegagalannya mendahului langkah jalan. Satu putaran penuh terbuang dan
+#   yang dihasilkannya cuma dugaan yang keliru.
+#
+#   30198631730 (23s) mati di langkah uji juga: "No module named pytest".
+#   requirements.txt tidak memuat pytest, tests.yml memasangnya terpisah.
+#   Terbaca dalam satu pembacaan berkas karena logs/ sudah disalin seluruhnya.
+#
+#   30198840830 (25s) mati di pagar 4: Konfig tidak punya medan fee_efektif.
+#   fee_efektif adalah kunci YAML; medan dataclass-nya bernama fee.
+#
+# Ketiganya satu kelas kesalahan: nama atau lingkungan yang DITEBAK alih-alih
+# dibaca. Karena itu SETIAP langkah di bawah menulis keluarannya ke logs/ dan
+# seluruh logs/ disalin ke reports/ dengan if: always(). Aturan itu sudah ada di
+# STATE sejak S11; yang gagal adalah penerapannya.
 
 name: backtest
 
@@ -152,9 +156,13 @@ jobs:
 
           # 4. Aritmetika yang melahirkan keduanya DIHITUNG, bukan dipercaya
           #    sebagai label: biaya bolak-balik dibagi lantai harus tepat 0,5R.
-          #    Dipanggil dengan Path, sama seperti run_h012 memanggilnya.
+          #
+          #    Medan biayanya bernama fee dan slippage. "fee_efektif" adalah
+          #    kunci YAML yang dipetakan run_h002 menjadi Konfig(fee=...), dan
+          #    membacanya sebagai atribut objek justru mematikan run
+          #    30198840830. Dipanggil dengan Path, sama seperti run_h012.
           dasar = muat_konfig_h002(KONFIG)
-          bolak_balik = 2.0 * (dasar.fee_efektif + dasar.slippage)
+          bolak_balik = 2.0 * (dasar.fee + dasar.slippage)
           assert abs(bolak_balik - 0.002) < 1e-12, bolak_balik
           assert abs(bolak_balik / AMBANG_MIN_STOP_FRAC - AMBANG_BIAYA_MASUK_R) < 1e-12
           print(f"4. {bolak_balik} / {AMBANG_MIN_STOP_FRAC} = {AMBANG_BIAYA_MASUK_R}R: OK")
