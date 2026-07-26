@@ -1,4 +1,4 @@
-# Pemangkasan ekor datar simbol mati — pelaksanaan ADR-003.
+# Pemangkasan ekor datar simbol mati — pelaksanaan ADR-003, diperluas ke 4h oleh ADR-018.
 #
 # Diagnostik diag-datar membuktikan 62 dari 447 simbol layak berakhir dengan
 # blok bar datar berharga tunggal yang membentang sampai bar terakhir dataset,
@@ -14,14 +14,21 @@
 # untuk membuang ekornya akan menghapus kemampuan memeriksa ulang keputusan ini
 # terhadap data aslinya. Yang dihasilkan di sini adalah dua tabel yang dapat
 # diaudit: tanggal kematian sejati per simbol, dan universe layak versi dua.
+#
+# ADR-018: ambang panjang ekor dan lantai riwayat TIDAK lagi ditulis di sini.
+# Keduanya diturunkan modul dari interval dan dari config/lux.yaml, supaya tidak
+# ada tempat ketiga bagi ambang yang sama untuk bergeser tanpa keputusan.
 name: potong-ekor
 
 on:
   workflow_dispatch:
     inputs:
+      interval:
+        description: Kerangka waktu bar (1h atau 4h)
+        default: "4h"
       min_panjang:
-        description: Panjang minimum ekor datar yang dipangkas, dalam bar
-        default: "24"
+        description: Panjang minimum ekor datar dalam bar; kosongkan agar diturunkan dari interval
+        default: ""
       maks_rasio:
         description: Rasio bar datar maksimum setelah pemangkasan
         default: "0.10"
@@ -40,6 +47,10 @@ jobs:
   potong:
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    env:
+      INTERVAL: ${{ inputs.interval || '4h' }}
+      MIN_PANJANG: ${{ inputs.min_panjang || '' }}
+      MAKS_RASIO: ${{ inputs.maks_rasio || '0.10' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -49,30 +60,39 @@ jobs:
           cache: pip
 
       - name: Pasang dependensi
-        run: pip install -r requirements.txt pytest
+        run: |
+          set -o pipefail
+          mkdir -p logs
+          pip install -r requirements.txt pytest 2>&1 | tee logs/deps.log
 
       # Gerbang pra-terbang. Sembilan kali sudah menghentikan run dalam hitungan
       # detik sebelum unduhan ratusan megabita terlanjur berjalan.
       - name: Uji dulu, baru unduh
         env:
           PYTHONPATH: .
-        run: python -m pytest tests -q
+        run: |
+          set -o pipefail
+          mkdir -p logs
+          python -m pytest tests -q 2>&1 | tee logs/uji.log
 
       - name: Periksa impor modul jalan
         env:
           PYTHONPATH: .
-        run: python -c "import lux.potong_ekor; print('impor jalan')"
+        run: python -c "import lux.potong_ekor as m; print('impor jalan'); print('min_panjang', m.min_panjang_untuk('${{ inputs.interval || '4h' }}'))"
 
-      # Pola WAJIB lebar: ohlcv_1h_* mencakup shard utama dan shard ekor.
+      # Pola WAJIB lebar: ohlcv_<interval>_* mencakup shard utama dan shard ekor.
       # Mempersempitnya pernah membuang seluruh data ekor tanpa pesan galat.
       - name: Unduh aset OHLCV
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          mkdir -p aset
-          gh release download "$TAG" -p 'ohlcv_1h_*.parquet' -D aset --clobber
-          ls -la aset
-          du -sh aset
+          set -o pipefail
+          mkdir -p aset logs
+          gh release download "$TAG" -p "ohlcv_${INTERVAL}_*.parquet" -D aset --clobber
+          # Aset bertanda _retry adalah sisa percobaan gagal; modul menolaknya,
+          # dan membuangnya di sini menjaga du/ls tetap jujur.
+          rm -f aset/*_retry*.parquet || true
+          { ls -la aset; du -sh aset; } 2>&1 | tee logs/unduh.log
 
       - name: Jalankan pemangkasan
         id: jalan
@@ -81,14 +101,49 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p logs
+          ARG_PANJANG=""
+          if [ -n "$MIN_PANJANG" ]; then
+            ARG_PANJANG="--min-panjang $MIN_PANJANG"
+            echo "PERINGATAN: min_panjang dipaksa ke $MIN_PANJANG, menimpa nilai per interval"
+          fi
           python -m lux.potong_ekor \
             --dir aset \
-            --interval 1h \
-            --universe reports/universe_layak.json \
+            --interval "$INTERVAL" \
+            --config config/lux.yaml \
             --out reports \
-            --min-panjang "${{ github.event.inputs.min_panjang || '24' }}" \
-            --maks-rasio "${{ github.event.inputs.maks_rasio || '0.10' }}" \
-            2>&1 | tee logs/potong_ekor.log
+            --maks-rasio "$MAKS_RASIO" \
+            $ARG_PANJANG \
+            2>&1 | tee "logs/potong_ekor_${INTERVAL}.log"
+
+      # Aturan 5: laporan tanpa berkas hasil adalah run GAGAL, dan itu harus
+      # terbaca dari repo tanpa membuka log run.
+      - name: Berkas hasil ada atau tidak
+        if: always()
+        run: |
+          for f in "reports/potong_ekor_${INTERVAL}.md" \
+                   "reports/potong_ekor_${INTERVAL}.json" \
+                   "reports/universe_layak_v2_${INTERVAL}.json" \
+                   "reports/akhir_sejati_${INTERVAL}.json"; do
+            if [ -f "$f" ]; then
+              echo "ADA   $f ($(wc -c <"$f") bita)"
+            else
+              echo "HILANG $f (run GAGAL sebelum selesai)"
+            fi
+          done
+
+      # Pagar ADR-018. Pengujian unit membuktikan NIAT penamaan; pagar ini
+      # membuktikan HASILNYA di disk. Yang dijaga adalah tepat dua berkas yang
+      # dibaca backtest.yml, yaitu masukan H-012.
+      - name: Berkas legasi 1h tak tersentuh
+        if: env.INTERVAL != '1h'
+        run: |
+          if git diff --quiet -- reports/universe_layak_v2.json reports/akhir_sejati.json; then
+            echo "legasi 1h utuh: universe_layak_v2.json dan akhir_sejati.json tidak berubah"
+          else
+            echo "GAGAL: run ${INTERVAL} mengubah berkas legasi 1h"
+            git diff --stat -- reports/universe_layak_v2.json reports/akhir_sejati.json
+            exit 1
+          fi
 
       # Tidak ada cara membaca log run lewat MCP, jadi log dikomit balik.
       - name: Salin log ke laporan
@@ -96,23 +151,24 @@ jobs:
         run: |
           mkdir -p reports
           {
-            echo '# Log run pemangkasan ekor datar'
+            echo "# Log run pemangkasan ekor datar ${INTERVAL}"
             echo
             echo "Commit: \`${GITHUB_SHA}\`"
+            echo "Interval: \`${INTERVAL}\`"
             echo "Status langkah jalan: \`${{ steps.jalan.outcome }}\`"
             echo
             echo '```'
-            tail -c 60000 logs/potong_ekor.log 2>/dev/null || echo 'tidak ada log'
+            tail -c 60000 "logs/potong_ekor_${INTERVAL}.log" 2>/dev/null || echo 'tidak ada log'
             echo '```'
-          } > reports/potong_ekor_log.md
+          } > "reports/potong_ekor_log_${INTERVAL}.md"
 
       - name: Commit laporan kembali ke repo
         if: always()
         run: |
           git config user.name "lux-potong"
           git config user.email "actions@github.com"
-          git add reports || true
+          git add reports logs || true
           git diff --cached --quiet && exit 0
-          git commit -m "chore(potong): laporan ekor datar run ${GITHUB_RUN_ID} [skip ci]"
+          git commit -m "chore(potong): laporan ekor datar ${INTERVAL} run ${GITHUB_RUN_ID} [skip ci]"
           git pull --rebase --autostash origin main
           git push origin HEAD:main
