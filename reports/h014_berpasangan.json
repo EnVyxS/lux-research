@@ -1,0 +1,70 @@
+{
+  "hipotesis": "H-014",
+  "putusan": "DITOLAK",
+  "alasan": [
+    "rerata selisih bulanan -0.027715128544164157 < 0.02R",
+    "p uji tanda bulanan 0.37596240375962403 > 0.05"
+  ],
+  "besaran_rerata_bulanan_R": -0.027715128544164157,
+  "besaran_agregat_R": 0.027654378351416438,
+  "catatan_besaran": "Dua besaran dilaporkan sebab keduanya tidak identik (aturan 49). Pembanding terhadap rerata sebaran nol TIDAK ADA di uji ini: nol permutasi geometri belum dirancang.",
+  "p": 0.37596240375962403,
+  "ambang_besaran_R": 0.02,
+  "ambang_p": 0.05,
+  "min_trade_sel": 100,
+  "trade_a": 59324,
+  "trade_b": 44538,
+  "satuan_penarikan": "bulan",
+  "per_bulan": {
+    "kunci_id": "periode",
+    "kunci_nilai": "ekspektasi_R",
+    "n_pasangan": 73,
+    "hanya_a": [],
+    "hanya_b": [],
+    "tanpa_nilai": [],
+    "ambang_besaran": 0.02,
+    "memenuhi_adr015": false,
+    "sebab_adr015": "p di sini mengukur ketidakpastian PENARIKAN SIMBOL/BULAN, bukan sebaran permutasi sinyal. Ia TIDAK memenuhi ADR-015 pasal 4.4 yang menuntut p atas minimal 300 permutasi sinyal. Angka ini sah dipakai untuk MENJATUHKAN klaim selisih antar sel, dan tidak sah dipakai untuk MENEGAKKANNYA.",
+    "pembatas": "p di sini mengukur ketidakpastian PENARIKAN SIMBOL/BULAN, bukan sebaran permutasi sinyal. Ia TIDAK memenuhi ADR-015 pasal 4.4 yang menuntut p atas minimal 300 permutasi sinyal. Angka ini sah dipakai untuk MENJATUHKAN klaim selisih antar sel, dan tidak sah dipakai untuk MENEGAKKANNYA.",
+    "dapat_dinilai": true,
+    "sebab": "",
+    "rerata_selisih": -0.027715128544164157,
+    "rerata_berbobot": -0.012499029724652699,
+    "selisih_agregat": 0.027654378351416438,
+    "median_selisih": 0.03495217650445759,
+    "fraksi_positif": 0.5616438356164384,
+    "trade_a": 59324.0,
+    "trade_b": 44538.0,
+    "melewati_ambang_besaran": false,
+    "uji_tanda": {
+      "n": 73,
+      "dapat_dinilai": true,
+      "sebab": "",
+      "rerata": -0.027715128544164157,
+      "p": 0.37596240375962403,
+      "m_lebih_ekstrem": 3759,
+      "ulangan": 10000,
+      "seed": 20260727,
+      "pembatas": "p di sini mengukur ketidakpastian PENARIKAN SIMBOL/BULAN, bukan sebaran permutasi sinyal. Ia TIDAK memenuhi ADR-015 pasal 4.4 yang menuntut p atas minimal 300 permutasi sinyal. Angka ini sah dipakai untuk MENJATUHKAN klaim selisih antar sel, dan tidak sah dipakai untuk MENEGAKKANNYA."
+    },
+    "bootstrap": {
+      "n": 73,
+      "dapat_dinilai": true,
+      "sebab": "",
+      "rerata": -0.027715128544164157,
+      "bawah": -0.09067851377334449,
+      "atas": 0.029103950604927244,
+      "alpha": 0.05,
+      "ulangan": 10000,
+      "seed": 20260728,
+      "pembatas": "p di sini mengukur ketidakpastian PENARIKAN SIMBOL/BULAN, bukan sebaran permutasi sinyal. Ia TIDAK memenuhi ADR-015 pasal 4.4 yang menuntut p atas minimal 300 permutasi sinyal. Angka ini sah dipakai untuk MENJATUHKAN klaim selisih antar sel, dan tidak sah dipakai untuk MENEGAKKANNYA."
+    }
+  },
+  "putusan_mungkin": [
+    "DITOLAK",
+    "TIDAK DAPAT DINILAI"
+  ],
+  "memenuhi_adr015": false,
+  "pembatas": "Putusan H-014 hanya dapat DITOLAK atau TIDAK DAPAT DINILAI; tidak ada cabang LULUS di modul ini, dan pengujian menuntut ketiadaannya (ADR-034). SS' dan SH' BUKAN sel SS dan SH run 30214203863: kedua sel di sana berbeda pada DUA medan sekaligus (ada-tidaknya target DAN umur 42 lawan 48), sehingga +0,029481R tidak boleh dipakai sebagai pembanding maupun sebagai 'versi sebelum perbaikan'. Berkas md tiap sel mencetak LULUS atau DITOLAK milik pra-registrasi PER SEL dari runner; itu bukan putusan H-014.",
+  "pembatas_berpasangan": "p di sini mengukur ketidakpastian PENARIKAN SIMBOL/BULAN, bukan sebaran permutasi sinyal. Ia TIDAK memenuhi ADR-015 pasal 4.4 yang menuntut p atas minimal 300 permutasi sinyal. Angka ini sah dipakai untuk MENJATUHKAN klaim selisih antar sel, dan tidak sah dipakai untuk MENEGAKKANNYA."
+}

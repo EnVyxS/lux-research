@@ -1,0 +1,126 @@
+{
+  "hipotesis": "H-014",
+  "sel": [
+    "SSp",
+    "SHp"
+  ],
+  "nama_laporan": {
+    "SSp": "h014_ssp_target_umur48",
+    "SHp": "h014_shp_tanpa_target_umur48"
+  },
+  "medan_berbeda": [
+    "pakai_target"
+  ],
+  "putusan_mungkin": [
+    "DITOLAK",
+    "TIDAK DAPAT DINILAI"
+  ],
+  "satuan_penarikan": "bulan",
+  "ambang": {
+    "besaran_R": 0.02,
+    "p": 0.05,
+    "min_trade_sel": 100,
+    "catatan": "Ambang H-014 adalah ambang BARU yang dibekukan 2026-07-27, bukan kutipan ADR-015 pasal 4.4. Pasal itu membekukan ambang untuk kaki SINYAL (SS-AS, p atas permutasi sinyal); untuk kaki GEOMETRI, ADR-015 tidak pernah membekukan ambang, definisi p, maupun nol. Angka 0,020R dipinjam DENGAN SADAR dari pasal 4.4 supaya tidak ada ambang yang dipilih agar mudah dilewati."
+  },
+  "sel_di_bawah_min_trade": [],
+  "parameter_beku": {
+    "maks_umur_bar": 48,
+    "imbalan_R": 2.0,
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "jendela_bar": {
+      "panjang_latih": 1080,
+      "panjang_uji": 540,
+      "embargo": 42
+    },
+    "pemanasan_bar": 200,
+    "ulangan_permutasi": 300,
+    "sampel_permutasi": 10,
+    "min_median_stop_frac": 0.004,
+    "maks_biaya_masuk_R": 0.5,
+    "stop_hormati_celah": true,
+    "konfig_per_kandidat": false
+  },
+  "ringkasan_sel": {
+    "SSp": {
+      "id": "H-014-SSp",
+      "nama": "h014_ssp_target_umur48",
+      "sidik": "197c10e3f0d2a74f",
+      "ekspektasi_R": 0.06725203533326735,
+      "total_R": 3989.659744110752,
+      "trade": 59324,
+      "jendela_positif": 2229,
+      "jumlah_jendela": 4082,
+      "p_entri_acak": 0.016611295681063124,
+      "gerbang_gagal": [
+        "invarian_risiko",
+        "checksum",
+        "funding_ekor"
+      ],
+      "lulus": false,
+      "alasan": [],
+      "alasan_keluar": {
+        "target": 18667,
+        "stop": 33748,
+        "umur": 5174,
+        "akhir_data": 1735
+      },
+      "entri_ditolak_biaya": 0,
+      "simbol_dibuang_lantai": [
+        "USDCUSDT"
+      ],
+      "bulan_dengan_trade": 73,
+      "rerata_transaksi_R": 0.016972067025884545,
+      "retensi_drop_1": 0.9872139534556156,
+      "porsi_funding_ekor_maks": 0.02725753660385674,
+      "std_R": 1.3782652257172057,
+      "galat_baku_R": 0.005658711930023214,
+      "jarak_galat_baku": 3.04875659807559,
+      "detik": 56.9
+    },
+    "SHp": {
+      "id": "H-014-SHp",
+      "nama": "h014_shp_tanpa_target_umur48",
+      "sidik": "5721a88e59ebe90f",
+      "ekspektasi_R": 0.03959765698185091,
+      "total_R": 1763.6004466576758,
+      "trade": 44538,
+      "jendela_positif": 1982,
+      "jumlah_jendela": 4082,
+      "p_entri_acak": 0.21926910299003322,
+      "gerbang_gagal": [
+        "entri_acak",
+        "invarian_risiko",
+        "checksum",
+        "funding_ekor"
+      ],
+      "lulus": false,
+      "alasan": [
+        "ekspektasi 0.0396R < 0.05R",
+        "p entri acak 0.2193 > 0.05",
+        "jendela positif 0.49 < 0.5"
+      ],
+      "alasan_keluar": {
+        "umur": 14426,
+        "stop": 28013,
+        "akhir_data": 2099
+      },
+      "entri_ditolak_biaya": 0,
+      "simbol_dibuang_lantai": [
+        "USDCUSDT"
+      ],
+      "bulan_dengan_trade": 73,
+      "rerata_transaksi_R": 0.017816920985233506,
+      "retensi_drop_1": 0.9047413016076851,
+      "porsi_funding_ekor_maks": 0.02725753660385674,
+      "std_R": 2.2081753945524536,
+      "galat_baku_R": 0.010463288757767657,
+      "jarak_galat_baku": -0.9941752788220328,
+      "detik": 52.6
+    }
+  },
+  "pembatas": "H-014 MUSTAHIL LULUS, dan itu dipra-registrasi sebelum angkanya ada: putusannya hanya DITOLAK atau TIDAK DAPAT DINILAI. Signifikansinya diadjudikasi lux.analisis.berpasangan pada satuan BULAN kalender UTC, dan modul itu menyatakan sendiri bahwa p-nya mengukur ketidakpastian penarikan bulan, BUKAN sebaran permutasi sinyal; ia sah untuk MENJATUHKAN dan tidak sah untuk MENEGAKKAN. Berkas md tiap sel akan tetap mencetak LULUS atau DITOLAK milik pra-registrasi PER SEL dari runner; itu BUKAN putusan H-014. SS' dan SH' di sini BUKAN sel SS dan SH run 30214203863: kedua sel di sana berbeda pada DUA medan (target dan umur 42 lawan 48), sehingga +0,029481R tidak boleh dipakai sebagai pembanding maupun sebagai 'versi sebelum perbaikan'."
+}

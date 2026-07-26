@@ -1,0 +1,31 @@
+{
+  "id": "H-014-SHp",
+  "pernyataan": "Sel SH' — breakout Donchian dengan stop ATR TANPA target, batas umur 48 bar 4h, yakni umur yang SAMA dengan sel SS'. Selisih keduanya karena itu mengukur ada-tidaknya target dan bukan panjang pegangan.",
+  "dataset": "tier-b-v1 ohlcv_4h + funding_shard, universe_layak_v2_4h 438 simbol berlantai (ADR-017, ADR-018)",
+  "ruang_parameter": {
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "pakai_target": [
+      false
+    ],
+    "maks_umur_bar": [
+      48
+    ],
+    "imbalan_R": [
+      2.0
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.05,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-26T21:53:51+00:00",
+  "komit": "52c64ac576e81883cd516316437edfff1d596ac4",
+  "jumlah_kombinasi": 3,
+  "sidik": "5721a88e59ebe90fd7f46d7b2999eb67f5810750334dddff85c12a2b0335e6a8"
+}
