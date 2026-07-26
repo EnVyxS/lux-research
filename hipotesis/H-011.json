@@ -1,0 +1,46 @@
+{
+  "id": "H-011",
+  "pernyataan": "H-010 lulus dengan ekspektasi 0,053028R, tetapi seluruh hasil sejak H-001b diukur pada 40 simbol pertama secara alfabet, yaitu kurang dari sepersepuluh semesta layak. H-011 menjalankan mekanisme H-010 tanpa satu perubahan pun atas seluruh 438 simbol dan dinilai pada 398 simbol yang belum pernah disentuh. Bila ekspektasi tertahan bertahan di atas 0,05R, keunggulan itu bukan sifat dari 40 simbol tertentu; bila ia jatuh, hasil H-010 adalah derau seleksi dan bukan temuan.",
+  "dataset": "tier-b-v1 ohlcv_1h + funding_shard, universe_layak_v2 438 simbol (ADR-003, ekor datar dipangkas)",
+  "ruang_parameter": {
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "imbalan_R": [
+      2.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "maks_carry_realisasi_R": [
+      0.25
+    ],
+    "semesta": [
+      "seluruh universe_layak_v2"
+    ],
+    "atr_pengali_stop": [
+      2.0
+    ],
+    "maks_umur_bar": [
+      168
+    ],
+    "maks_carry_R": [
+      0.25
+    ],
+    "jendela_carry_hari": [
+      30
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.05,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-26T08:31:01+00:00",
+  "komit": "",
+  "jumlah_kombinasi": 12,
+  "sidik": "8a6efde6d333d8b5dbf275ac0972454fd8ba8eb4075be6e86fe09794fc55ec3d"
+}
