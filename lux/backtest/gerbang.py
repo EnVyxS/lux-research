@@ -32,6 +32,13 @@ salah satunya dijalankan lagi, ``konsentrasi`` dan ``funding_ekor`` tercatat
 sebagai "gerbang tidak dijalankan" dan laporannya gagal. Itu bukan cacat
 melainkan pernyataan yang benar: orkestrator itu sungguh tidak mengukur
 konsentrasi maupun ekor funding.
+
+ADR-019 menambahkan satu hal pada gerbang pertama: ia boleh diberi ``interval``,
+dan bila diberi, ambang deret bar datarnya berarti **satu hari** alih-alih 24 bar
+apa pun intervalnya. Impornya dari ``lux.kerangka``, sebuah modul daun tanpa
+impor ``lux`` sama sekali — syarat mutlak, sebab mengimpor ``potong_ekor`` dari
+sini akan menutup rantai ``gerbang → potong_ekor → diag_datar → run_wf →
+gerbang`` yang sudah pernah menjadi impor sirkular.
 """
 
 from __future__ import annotations
@@ -43,6 +50,7 @@ import numpy as np
 import pandas as pd
 
 from lux.backtest.engine import Hasil
+from lux.kerangka import bar_per_hari
 
 
 @dataclass(frozen=True)
@@ -80,7 +88,10 @@ def _gagal_tak_ternilai(nama: str, sebab: str) -> Gerbang:
 # 1. Forward-fill
 # --------------------------------------------------------------------------
 def gerbang_forward_fill(
-    df: pd.DataFrame, maks_rasio_datar: float = 0.30, maks_deret_datar: int = 24
+    df: pd.DataFrame,
+    maks_rasio_datar: float = 0.30,
+    maks_deret_datar: int = 24,
+    interval: str | None = None,
 ) -> Gerbang:
     """Menolak data yang harganya diisi ulang, bukan diperdagangkan.
 
@@ -88,9 +99,21 @@ def gerbang_forward_fill(
     yang lahir dari deretan bar seperti itu memperdagangkan harga yang tidak
     pernah ditawarkan siapa pun, dan stop pada bar datar tidak akan pernah
     tersentuh sehingga kerugian tampak lebih kecil daripada semestinya.
+
+    ``maks_deret_datar`` dimaksudkan sebagai **satu hari**, bukan sebagai 24 bar.
+    Bawaannya tetap 24 karena itu benar untuk 1h, dan karena hasil H-001b sampai
+    H-012 harus tetap dapat diulang bita demi bita. Bila ``interval`` dipasok,
+    ambangnya diturunkan dari ``lux.kerangka.bar_per_hari`` dan **menang** atas
+    ``maks_deret_datar`` yang dipasok eksplisit (ADR-019).
+
+    Urutan itu tegas dengan sengaja. Dua sumber untuk satu ambang tanpa urutan
+    yang dinyatakan akan diselesaikan oleh kebetulan cara pemanggilnya menulis
+    argumen, dan kebetulan bukan keputusan.
     """
     if df.empty:
         return _gagal_tak_ternilai("forward_fill", "bingkai kosong")
+    if interval is not None:
+        maks_deret_datar = bar_per_hari(interval)
     o = df["open"].to_numpy(dtype="float64")
     h = df["high"].to_numpy(dtype="float64")
     l = df["low"].to_numpy(dtype="float64")
@@ -110,7 +133,12 @@ def gerbang_forward_fill(
         lulus=lulus,
         nilai=rasio,
         ambang=maks_rasio_datar,
-        catatan=f"rasio bar datar {rasio:.4f}, deret terpanjang {terpanjang} bar",
+        catatan=(
+            f"rasio bar datar {rasio:.4f}, deret terpanjang {terpanjang} bar "
+            f"(ambang deret {maks_deret_datar}"
+            + (f", interval {interval}" if interval is not None else "")
+            + ")"
+        ),
     )
 
 
