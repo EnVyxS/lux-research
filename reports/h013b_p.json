@@ -1,0 +1,2603 @@
+{
+  "hipotesis": "H-013",
+  "jalur": "B",
+  "ekspektasi_ss_dikomit": 0.06664781299919262,
+  "ekspektasi_as_seed42_dikomit": 0.01180570125176449,
+  "besaran_sumbangan_sinyal_R": 0.05484211174742813,
+  "putusan": {
+    "besaran_R": 0.05484211174742813,
+    "ambang_besaran_R": 0.02,
+    "p": 0.2059800664451827,
+    "ambang_p": 0.05,
+    "satuan_p": "bulan",
+    "n": 300,
+    "min_ulangan": 300,
+    "trade_terkecil": 54812,
+    "melewati_ambang_besaran": true,
+    "dapat_dinilai": true,
+    "putusan": "DITOLAK",
+    "lulus": false,
+    "sebab": ""
+  },
+  "p_bulan": {
+    "satuan": "bulan",
+    "taksiran_bawah": false,
+    "mengikat": true,
+    "n_bulan": 73,
+    "seed": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299
+    ],
+    "rerata_bulanan_teramati": 0.03841464738162379,
+    "rerata_bulanan_berbobot_teramati": 0.06664781299919262,
+    "tak_berpasangan": {
+      "teramati": 0.03841464738162379,
+      "n": 300,
+      "cacah_ge": 61,
+      "p": 0.2059800664451827,
+      "p_terkecil_yang_mungkin": 0.0033222591362126247,
+      "nol_rerata": 0.02717693911787761,
+      "nol_std": 0.013055852438658757,
+      "nol_min": -0.006644305839926192,
+      "nol_maks": 0.058484629767393964
+    },
+    "berbobot": {
+      "teramati": 0.06664781299919262,
+      "n": 300,
+      "cacah_ge": 0,
+      "p": 0.0033222591362126247,
+      "p_terkecil_yang_mungkin": 0.0033222591362126247,
+      "nol_rerata": 0.022915857506940775,
+      "nol_std": 0.011376809633549314,
+      "nol_min": -0.004632462946794942,
+      "nol_maks": 0.05739448258911027
+    },
+    "berpasangan": {
+      "teramati": 0.0,
+      "n": 300,
+      "cacah_ge": 61,
+      "p": 0.2059800664451827,
+      "p_terkecil_yang_mungkin": 0.0033222591362126247,
+      "nol_rerata": -0.011237708263746184,
+      "nol_std": 0.013055852438658757,
+      "nol_min": -0.045058953221549986,
+      "nol_maks": 0.020069982385770176
+    },
+    "sepakat": true,
+    "per_seed": [
+      {
+        "seed": 0,
+        "rerata_bulanan": 0.018155633173438983,
+        "rerata_bulanan_berbobot": 0.017912256795342862,
+        "selisih_berpasangan": 0.020259014208184815
+      },
+      {
+        "seed": 1,
+        "rerata_bulanan": 0.03452390907033262,
+        "rerata_bulanan_berbobot": 0.025226113475066134,
+        "selisih_berpasangan": 0.0038907383112911755
+      },
+      {
+        "seed": 2,
+        "rerata_bulanan": 0.029663289353318557,
+        "rerata_bulanan_berbobot": 0.033361151937542334,
+        "selisih_berpasangan": 0.008751358028305236
+      },
+      {
+        "seed": 3,
+        "rerata_bulanan": 0.02004561560787095,
+        "rerata_bulanan_berbobot": 0.015456915804589893,
+        "selisih_berpasangan": 0.018369031773752844
+      },
+      {
+        "seed": 4,
+        "rerata_bulanan": 0.03365724254872954,
+        "rerata_bulanan_berbobot": 0.03489826950586729,
+        "selisih_berpasangan": 0.0047574048328942594
+      },
+      {
+        "seed": 5,
+        "rerata_bulanan": 0.015474084467578557,
+        "rerata_bulanan_berbobot": 0.012533032329536665,
+        "selisih_berpasangan": 0.02294056291404524
+      },
+      {
+        "seed": 6,
+        "rerata_bulanan": 0.02607336438044097,
+        "rerata_bulanan_berbobot": 0.020127133286642465,
+        "selisih_berpasangan": 0.012341283001182828
+      },
+      {
+        "seed": 7,
+        "rerata_bulanan": -0.0065505513696278725,
+        "rerata_bulanan_berbobot": 0.0037004344864713682,
+        "selisih_berpasangan": 0.04496519875125167
+      },
+      {
+        "seed": 8,
+        "rerata_bulanan": 0.023234197171221032,
+        "rerata_bulanan_berbobot": 0.02309049664562267,
+        "selisih_berpasangan": 0.015180450210402765
+      },
+      {
+        "seed": 9,
+        "rerata_bulanan": 0.039103669225500015,
+        "rerata_bulanan_berbobot": 0.035073713913986684,
+        "selisih_berpasangan": -0.0006890218438762216
+      },
+      {
+        "seed": 10,
+        "rerata_bulanan": 0.03768599480478252,
+        "rerata_bulanan_berbobot": 0.029391790597989943,
+        "selisih_berpasangan": 0.0007286525768412817
+      },
+      {
+        "seed": 11,
+        "rerata_bulanan": 0.035454910283963734,
+        "rerata_bulanan_berbobot": 0.02937273634421112,
+        "selisih_berpasangan": 0.0029597370976600585
+      },
+      {
+        "seed": 12,
+        "rerata_bulanan": 0.017887718010821424,
+        "rerata_bulanan_berbobot": 0.013972540173096697,
+        "selisih_berpasangan": 0.020526929370802374
+      },
+      {
+        "seed": 13,
+        "rerata_bulanan": 0.04170767526326679,
+        "rerata_bulanan_berbobot": 0.03223795586547549,
+        "selisih_berpasangan": -0.0032930278816429913
+      },
+      {
+        "seed": 14,
+        "rerata_bulanan": 0.029606737104036218,
+        "rerata_bulanan_berbobot": 0.017770190296034837,
+        "selisih_berpasangan": 0.008807910277587582
+      },
+      {
+        "seed": 15,
+        "rerata_bulanan": 0.03908819624463363,
+        "rerata_bulanan_berbobot": 0.04080430608714122,
+        "selisih_berpasangan": -0.0006735488630098352
+      },
+      {
+        "seed": 16,
+        "rerata_bulanan": 0.0025286767272547947,
+        "rerata_bulanan_berbobot": 0.001206125457634201,
+        "selisih_berpasangan": 0.035885970654369
+      },
+      {
+        "seed": 17,
+        "rerata_bulanan": 0.02063133194903967,
+        "rerata_bulanan_berbobot": 0.016682733804928043,
+        "selisih_berpasangan": 0.017783315432584126
+      },
+      {
+        "seed": 18,
+        "rerata_bulanan": 0.042167631251129004,
+        "rerata_bulanan_berbobot": 0.03063332164393249,
+        "selisih_berpasangan": -0.003752983869505204
+      },
+      {
+        "seed": 19,
+        "rerata_bulanan": 0.03648146211818762,
+        "rerata_bulanan_berbobot": 0.025591185706674787,
+        "selisih_berpasangan": 0.0019331852634361742
+      },
+      {
+        "seed": 20,
+        "rerata_bulanan": 0.025478735448624428,
+        "rerata_bulanan_berbobot": 0.02332664838186173,
+        "selisih_berpasangan": 0.012935911932999368
+      },
+      {
+        "seed": 21,
+        "rerata_bulanan": 0.002508781673501368,
+        "rerata_bulanan_berbobot": 0.00827012732616868,
+        "selisih_berpasangan": 0.035905865708122424
+      },
+      {
+        "seed": 22,
+        "rerata_bulanan": 0.019532414883622874,
+        "rerata_bulanan_berbobot": 0.01662624399137232,
+        "selisih_berpasangan": 0.018882232498000924
+      },
+      {
+        "seed": 23,
+        "rerata_bulanan": 0.04033148455975205,
+        "rerata_bulanan_berbobot": 0.04586342868173928,
+        "selisih_berpasangan": -0.0019168371781282515
+      },
+      {
+        "seed": 24,
+        "rerata_bulanan": 0.0187266168233938,
+        "rerata_bulanan_berbobot": 0.01768536623005354,
+        "selisih_berpasangan": 0.019688030558230003
+      },
+      {
+        "seed": 25,
+        "rerata_bulanan": 0.01494507987043957,
+        "rerata_bulanan_berbobot": 0.012780864806202913,
+        "selisih_berpasangan": 0.02346956751118423
+      },
+      {
+        "seed": 26,
+        "rerata_bulanan": 0.023114826099179125,
+        "rerata_bulanan_berbobot": 0.0094138442186666,
+        "selisih_berpasangan": 0.015299821282444673
+      },
+      {
+        "seed": 27,
+        "rerata_bulanan": 0.010065646105933333,
+        "rerata_bulanan_berbobot": 0.016901460928306817,
+        "selisih_berpasangan": 0.028349001275690462
+      },
+      {
+        "seed": 28,
+        "rerata_bulanan": 0.014176420545771893,
+        "rerata_bulanan_berbobot": 0.018296955116483268,
+        "selisih_berpasangan": 0.024238226835851903
+      },
+      {
+        "seed": 29,
+        "rerata_bulanan": 0.010514019993882788,
+        "rerata_bulanan_berbobot": 0.0038487750147492214,
+        "selisih_berpasangan": 0.027900627387741014
+      },
+      {
+        "seed": 30,
+        "rerata_bulanan": 0.04257100458691123,
+        "rerata_bulanan_berbobot": 0.04434300271667208,
+        "selisih_berpasangan": -0.004156357205287431
+      },
+      {
+        "seed": 31,
+        "rerata_bulanan": 0.011216754280968043,
+        "rerata_bulanan_berbobot": 0.006409531506117968,
+        "selisih_berpasangan": 0.027197893100655752
+      },
+      {
+        "seed": 32,
+        "rerata_bulanan": 0.013384351291253128,
+        "rerata_bulanan_berbobot": 0.01367709343462695,
+        "selisih_berpasangan": 0.025030296090370666
+      },
+      {
+        "seed": 33,
+        "rerata_bulanan": 0.02123304822703607,
+        "rerata_bulanan_berbobot": 0.007009171351651321,
+        "selisih_berpasangan": 0.017181599154587723
+      },
+      {
+        "seed": 34,
+        "rerata_bulanan": 0.056168962140185304,
+        "rerata_bulanan_berbobot": 0.04544986789966604,
+        "selisih_berpasangan": -0.01775431475856151
+      },
+      {
+        "seed": 35,
+        "rerata_bulanan": 0.041837943211532835,
+        "rerata_bulanan_berbobot": 0.027043449504347037,
+        "selisih_berpasangan": -0.0034232958299090393
+      },
+      {
+        "seed": 36,
+        "rerata_bulanan": 0.034936410814840814,
+        "rerata_bulanan_berbobot": 0.02511557748286633,
+        "selisih_berpasangan": 0.003478236566782985
+      },
+      {
+        "seed": 37,
+        "rerata_bulanan": 0.021931188434488873,
+        "rerata_bulanan_berbobot": 0.020953314670684214,
+        "selisih_berpasangan": 0.016483458947134925
+      },
+      {
+        "seed": 38,
+        "rerata_bulanan": 0.003895018859410412,
+        "rerata_bulanan_berbobot": -0.004632462946794942,
+        "selisih_berpasangan": 0.03451962852221338
+      },
+      {
+        "seed": 39,
+        "rerata_bulanan": 0.04053659837587205,
+        "rerata_bulanan_berbobot": 0.03476376917420185,
+        "selisih_berpasangan": -0.0021219509942482554
+      },
+      {
+        "seed": 40,
+        "rerata_bulanan": 0.024580691263175365,
+        "rerata_bulanan_berbobot": 0.02039535995940339,
+        "selisih_berpasangan": 0.013833956118448431
+      },
+      {
+        "seed": 41,
+        "rerata_bulanan": 0.04579846355772788,
+        "rerata_bulanan_berbobot": 0.039005801158799695,
+        "selisih_berpasangan": -0.0073838161761040815
+      },
+      {
+        "seed": 42,
+        "rerata_bulanan": 0.015087861557875152,
+        "rerata_bulanan_berbobot": 0.01180570125176449,
+        "selisih_berpasangan": 0.023326785823748645
+      },
+      {
+        "seed": 43,
+        "rerata_bulanan": 0.017730537391637564,
+        "rerata_bulanan_berbobot": 0.018923802841634082,
+        "selisih_berpasangan": 0.02068410998998623
+      },
+      {
+        "seed": 44,
+        "rerata_bulanan": 0.031554707382811784,
+        "rerata_bulanan_berbobot": 0.029110569890961467,
+        "selisih_berpasangan": 0.006859939998812014
+      },
+      {
+        "seed": 45,
+        "rerata_bulanan": 0.02292594458690011,
+        "rerata_bulanan_berbobot": 0.016614250621408522,
+        "selisih_berpasangan": 0.015488702794723688
+      },
+      {
+        "seed": 46,
+        "rerata_bulanan": 0.03035824602042062,
+        "rerata_bulanan_berbobot": 0.019842604873180923,
+        "selisih_berpasangan": 0.00805640136120318
+      },
+      {
+        "seed": 47,
+        "rerata_bulanan": 0.019483127388531318,
+        "rerata_bulanan_berbobot": 0.011038504714014479,
+        "selisih_berpasangan": 0.01893151999309248
+      },
+      {
+        "seed": 48,
+        "rerata_bulanan": 0.03075787557203429,
+        "rerata_bulanan_berbobot": 0.024325552817080754,
+        "selisih_berpasangan": 0.007656771809589508
+      },
+      {
+        "seed": 49,
+        "rerata_bulanan": 0.025107522716243676,
+        "rerata_bulanan_berbobot": 0.0225008199721184,
+        "selisih_berpasangan": 0.01330712466538012
+      },
+      {
+        "seed": 50,
+        "rerata_bulanan": 0.020383846001984667,
+        "rerata_bulanan_berbobot": 0.015110334669863007,
+        "selisih_berpasangan": 0.018030801379639128
+      },
+      {
+        "seed": 51,
+        "rerata_bulanan": 0.04628880285724125,
+        "rerata_bulanan_berbobot": 0.03506514064615422,
+        "selisih_berpasangan": -0.00787415547561745
+      },
+      {
+        "seed": 52,
+        "rerata_bulanan": 0.011814231504557416,
+        "rerata_bulanan_berbobot": 0.017445559113362045,
+        "selisih_berpasangan": 0.02660041587706638
+      },
+      {
+        "seed": 53,
+        "rerata_bulanan": 0.03220489882682669,
+        "rerata_bulanan_berbobot": 0.029581758475638237,
+        "selisih_berpasangan": 0.006209748554797105
+      },
+      {
+        "seed": 54,
+        "rerata_bulanan": 0.042968036725437204,
+        "rerata_bulanan_berbobot": 0.036425861232172126,
+        "selisih_berpasangan": -0.004553389343813411
+      },
+      {
+        "seed": 55,
+        "rerata_bulanan": 0.010854975586204416,
+        "rerata_bulanan_berbobot": 0.00934294108137388,
+        "selisih_berpasangan": 0.02755967179541938
+      },
+      {
+        "seed": 56,
+        "rerata_bulanan": 0.03664508266275142,
+        "rerata_bulanan_berbobot": 0.039346744942098645,
+        "selisih_berpasangan": 0.0017695647188723852
+      },
+      {
+        "seed": 57,
+        "rerata_bulanan": 0.02234922338083817,
+        "rerata_bulanan_berbobot": 0.019157256609758547,
+        "selisih_berpasangan": 0.016065424000785627
+      },
+      {
+        "seed": 58,
+        "rerata_bulanan": 0.00784085741551972,
+        "rerata_bulanan_berbobot": 0.008270686013188273,
+        "selisih_berpasangan": 0.03057378996610408
+      },
+      {
+        "seed": 59,
+        "rerata_bulanan": 0.0010702704714415862,
+        "rerata_bulanan_berbobot": 0.001715461783793809,
+        "selisih_berpasangan": 0.037344376910182206
+      },
+      {
+        "seed": 60,
+        "rerata_bulanan": 0.046453218194864476,
+        "rerata_bulanan_berbobot": 0.04025290079861816,
+        "selisih_berpasangan": -0.00803857081324068
+      },
+      {
+        "seed": 61,
+        "rerata_bulanan": 0.011353044148034874,
+        "rerata_bulanan_berbobot": 0.002885344745085916,
+        "selisih_berpasangan": 0.02706160323358892
+      },
+      {
+        "seed": 62,
+        "rerata_bulanan": 0.008296641724217117,
+        "rerata_bulanan_berbobot": 0.00835365417479978,
+        "selisih_berpasangan": 0.030118005657406684
+      },
+      {
+        "seed": 63,
+        "rerata_bulanan": 0.04105226124133903,
+        "rerata_bulanan_berbobot": 0.03498699610685123,
+        "selisih_berpasangan": -0.0026376138597152335
+      },
+      {
+        "seed": 64,
+        "rerata_bulanan": 0.014119835730323289,
+        "rerata_bulanan_berbobot": 0.010336201302523657,
+        "selisih_berpasangan": 0.024294811651300513
+      },
+      {
+        "seed": 65,
+        "rerata_bulanan": 0.05672090478740868,
+        "rerata_bulanan_berbobot": 0.04981582897856969,
+        "selisih_berpasangan": -0.01830625740578488
+      },
+      {
+        "seed": 66,
+        "rerata_bulanan": 0.016711537018090094,
+        "rerata_bulanan_berbobot": 0.012500144840994805,
+        "selisih_berpasangan": 0.021703110363533704
+      },
+      {
+        "seed": 67,
+        "rerata_bulanan": 0.020099211251502987,
+        "rerata_bulanan_berbobot": 0.02030033504043901,
+        "selisih_berpasangan": 0.018315436130120807
+      },
+      {
+        "seed": 68,
+        "rerata_bulanan": 0.02014115893736406,
+        "rerata_bulanan_berbobot": 0.012068640398517547,
+        "selisih_berpasangan": 0.018273488444259734
+      },
+      {
+        "seed": 69,
+        "rerata_bulanan": 0.04369058526053843,
+        "rerata_bulanan_berbobot": 0.025936855805248116,
+        "selisih_berpasangan": -0.005275937878914633
+      },
+      {
+        "seed": 70,
+        "rerata_bulanan": 0.014785286117689391,
+        "rerata_bulanan_berbobot": 0.0117794487683449,
+        "selisih_berpasangan": 0.023629361263934407
+      },
+      {
+        "seed": 71,
+        "rerata_bulanan": 0.029619476030731076,
+        "rerata_bulanan_berbobot": 0.02265101009748539,
+        "selisih_berpasangan": 0.00879517135089272
+      },
+      {
+        "seed": 72,
+        "rerata_bulanan": 0.027245509430973792,
+        "rerata_bulanan_berbobot": 0.018397079154722624,
+        "selisih_berpasangan": 0.011169137950650006
+      },
+      {
+        "seed": 73,
+        "rerata_bulanan": 0.025645395534670674,
+        "rerata_bulanan_berbobot": 0.02199855053723597,
+        "selisih_berpasangan": 0.012769251846953123
+      },
+      {
+        "seed": 74,
+        "rerata_bulanan": 0.014712937719740436,
+        "rerata_bulanan_berbobot": 0.016788842928269147,
+        "selisih_berpasangan": 0.023701709661883362
+      },
+      {
+        "seed": 75,
+        "rerata_bulanan": 0.04394288537411731,
+        "rerata_bulanan_berbobot": 0.0335229807723825,
+        "selisih_berpasangan": -0.0055282379924935085
+      },
+      {
+        "seed": 76,
+        "rerata_bulanan": 0.005893666566836601,
+        "rerata_bulanan_berbobot": 0.0005597776160234847,
+        "selisih_berpasangan": 0.032520980814787194
+      },
+      {
+        "seed": 77,
+        "rerata_bulanan": 0.04512736103180756,
+        "rerata_bulanan_berbobot": 0.02803052169069461,
+        "selisih_berpasangan": -0.006712713650183765
+      },
+      {
+        "seed": 78,
+        "rerata_bulanan": 0.050259708129547595,
+        "rerata_bulanan_berbobot": 0.053053285688063265,
+        "selisih_berpasangan": -0.011845060747923797
+      },
+      {
+        "seed": 79,
+        "rerata_bulanan": 0.0269744291904077,
+        "rerata_bulanan_berbobot": 0.024858832356055523,
+        "selisih_berpasangan": 0.011440218191216092
+      },
+      {
+        "seed": 80,
+        "rerata_bulanan": 0.043446253206589965,
+        "rerata_bulanan_berbobot": 0.03339310725367949,
+        "selisih_berpasangan": -0.005031605824966167
+      },
+      {
+        "seed": 81,
+        "rerata_bulanan": 0.015095448683721712,
+        "rerata_bulanan_berbobot": 0.013638389233224505,
+        "selisih_berpasangan": 0.023319198697902086
+      },
+      {
+        "seed": 82,
+        "rerata_bulanan": 0.03480289741992201,
+        "rerata_bulanan_berbobot": 0.02205071510013324,
+        "selisih_berpasangan": 0.003611749961701782
+      },
+      {
+        "seed": 83,
+        "rerata_bulanan": 0.038069929385256364,
+        "rerata_bulanan_berbobot": 0.0366460026805027,
+        "selisih_berpasangan": 0.0003447179963674333
+      },
+      {
+        "seed": 84,
+        "rerata_bulanan": 0.012934246563659595,
+        "rerata_bulanan_berbobot": 0.01234088433708139,
+        "selisih_berpasangan": 0.025480400817964204
+      },
+      {
+        "seed": 85,
+        "rerata_bulanan": 0.0282285882028393,
+        "rerata_bulanan_berbobot": 0.03019282122951949,
+        "selisih_berpasangan": 0.010186059178784498
+      },
+      {
+        "seed": 86,
+        "rerata_bulanan": 0.03877094859175228,
+        "rerata_bulanan_berbobot": 0.028231784315710023,
+        "selisih_berpasangan": -0.00035630121012848216
+      },
+      {
+        "seed": 87,
+        "rerata_bulanan": 0.03570647409609864,
+        "rerata_bulanan_berbobot": 0.030687388325049213,
+        "selisih_berpasangan": 0.002708173285525163
+      },
+      {
+        "seed": 88,
+        "rerata_bulanan": 0.028522333593923175,
+        "rerata_bulanan_berbobot": 0.019164693038650683,
+        "selisih_berpasangan": 0.009892313787700618
+      },
+      {
+        "seed": 89,
+        "rerata_bulanan": 0.034999855581521654,
+        "rerata_bulanan_berbobot": 0.026315906989471862,
+        "selisih_berpasangan": 0.003414791800102145
+      },
+      {
+        "seed": 90,
+        "rerata_bulanan": 0.036489259384290915,
+        "rerata_bulanan_berbobot": 0.026232059145499968,
+        "selisih_berpasangan": 0.001925387997332882
+      },
+      {
+        "seed": 91,
+        "rerata_bulanan": 0.0321006051541802,
+        "rerata_bulanan_berbobot": 0.034322879468235507,
+        "selisih_berpasangan": 0.006314042227443595
+      },
+      {
+        "seed": 92,
+        "rerata_bulanan": 0.021061234557292363,
+        "rerata_bulanan_berbobot": 0.014685183786960845,
+        "selisih_berpasangan": 0.017353412824331435
+      },
+      {
+        "seed": 93,
+        "rerata_bulanan": 0.04117775685080822,
+        "rerata_bulanan_berbobot": 0.024680283039063316,
+        "selisih_berpasangan": -0.0027631094691844176
+      },
+      {
+        "seed": 94,
+        "rerata_bulanan": 0.030886377824930707,
+        "rerata_bulanan_berbobot": 0.022059351054623335,
+        "selisih_berpasangan": 0.0075282695566930916
+      },
+      {
+        "seed": 95,
+        "rerata_bulanan": 0.018674061752394267,
+        "rerata_bulanan_berbobot": 0.02135051280726902,
+        "selisih_berpasangan": 0.01974058562922953
+      },
+      {
+        "seed": 96,
+        "rerata_bulanan": 0.02702493508615857,
+        "rerata_bulanan_berbobot": 0.024758891472509682,
+        "selisih_berpasangan": 0.011389712295465228
+      },
+      {
+        "seed": 97,
+        "rerata_bulanan": 0.0435958613286448,
+        "rerata_bulanan_berbobot": 0.0331175318986444,
+        "selisih_berpasangan": -0.005181213947021001
+      },
+      {
+        "seed": 98,
+        "rerata_bulanan": 0.024134426122302537,
+        "rerata_bulanan_berbobot": 0.021306494132696852,
+        "selisih_berpasangan": 0.014280221259321258
+      },
+      {
+        "seed": 99,
+        "rerata_bulanan": 0.023223496054740306,
+        "rerata_bulanan_berbobot": 0.01883336329092886,
+        "selisih_berpasangan": 0.015191151326883492
+      },
+      {
+        "seed": 100,
+        "rerata_bulanan": 0.04521901544755648,
+        "rerata_bulanan_berbobot": 0.02832961750114049,
+        "selisih_berpasangan": -0.006804368065932684
+      },
+      {
+        "seed": 101,
+        "rerata_bulanan": 0.027663969224127446,
+        "rerata_bulanan_berbobot": 0.015258997176946622,
+        "selisih_berpasangan": 0.010750678157496349
+      },
+      {
+        "seed": 102,
+        "rerata_bulanan": 0.03756333831029975,
+        "rerata_bulanan_berbobot": 0.023494725944429973,
+        "selisih_berpasangan": 0.000851309071324046
+      },
+      {
+        "seed": 103,
+        "rerata_bulanan": 0.05511452084651698,
+        "rerata_bulanan_berbobot": 0.04308991827528305,
+        "selisih_berpasangan": -0.016699873464893187
+      },
+      {
+        "seed": 104,
+        "rerata_bulanan": 0.006422375797728851,
+        "rerata_bulanan_berbobot": 0.006971816089401944,
+        "selisih_berpasangan": 0.03199227158389495
+      },
+      {
+        "seed": 105,
+        "rerata_bulanan": 0.02493588670885648,
+        "rerata_bulanan_berbobot": 0.017499077928853104,
+        "selisih_berpasangan": 0.013478760672767313
+      },
+      {
+        "seed": 106,
+        "rerata_bulanan": 0.005196469955713909,
+        "rerata_bulanan_berbobot": 0.006343446067752693,
+        "selisih_berpasangan": 0.033218177425909885
+      },
+      {
+        "seed": 107,
+        "rerata_bulanan": 0.03682787918395429,
+        "rerata_bulanan_berbobot": 0.023841007754953656,
+        "selisih_berpasangan": 0.0015867681976695026
+      },
+      {
+        "seed": 108,
+        "rerata_bulanan": 0.0241005256755203,
+        "rerata_bulanan_berbobot": 0.022991408505512883,
+        "selisih_berpasangan": 0.014314121706103492
+      },
+      {
+        "seed": 109,
+        "rerata_bulanan": 0.03554613571749912,
+        "rerata_bulanan_berbobot": 0.02551204229931957,
+        "selisih_berpasangan": 0.002868511664124681
+      },
+      {
+        "seed": 110,
+        "rerata_bulanan": 0.055776408477556154,
+        "rerata_bulanan_berbobot": 0.04827970768438238,
+        "selisih_berpasangan": -0.017361761095932356
+      },
+      {
+        "seed": 111,
+        "rerata_bulanan": 0.04066292431601422,
+        "rerata_bulanan_berbobot": 0.034244708186267736,
+        "selisih_berpasangan": -0.0022482769343904166
+      },
+      {
+        "seed": 112,
+        "rerata_bulanan": 0.03039036920636604,
+        "rerata_bulanan_berbobot": 0.031693364780900644,
+        "selisih_berpasangan": 0.00802427817525776
+      },
+      {
+        "seed": 113,
+        "rerata_bulanan": 0.04261460453201001,
+        "rerata_bulanan_berbobot": 0.03912065954856166,
+        "selisih_berpasangan": -0.004199957150386217
+      },
+      {
+        "seed": 114,
+        "rerata_bulanan": 0.020034329797365313,
+        "rerata_bulanan_berbobot": 0.013969002128937267,
+        "selisih_berpasangan": 0.018380317584258486
+      },
+      {
+        "seed": 115,
+        "rerata_bulanan": 0.03458700106292767,
+        "rerata_bulanan_berbobot": 0.027985861395494752,
+        "selisih_berpasangan": 0.00382764631869613
+      },
+      {
+        "seed": 116,
+        "rerata_bulanan": 0.0206587194841336,
+        "rerata_bulanan_berbobot": 0.029041482548078028,
+        "selisih_berpasangan": 0.017755927897490198
+      },
+      {
+        "seed": 117,
+        "rerata_bulanan": 0.015144876720227494,
+        "rerata_bulanan_berbobot": 0.011831533786516994,
+        "selisih_berpasangan": 0.0232697706613963
+      },
+      {
+        "seed": 118,
+        "rerata_bulanan": 0.03792302899198425,
+        "rerata_bulanan_berbobot": 0.03457202623420726,
+        "selisih_berpasangan": 0.0004916183896395457
+      },
+      {
+        "seed": 119,
+        "rerata_bulanan": 0.029271500521434197,
+        "rerata_bulanan_berbobot": 0.018114180252914846,
+        "selisih_berpasangan": 0.0091431468601896
+      },
+      {
+        "seed": 120,
+        "rerata_bulanan": 0.03329223377621819,
+        "rerata_bulanan_berbobot": 0.03082848061845586,
+        "selisih_berpasangan": 0.005122413605405603
+      },
+      {
+        "seed": 121,
+        "rerata_bulanan": 0.013482574266388624,
+        "rerata_bulanan_berbobot": 0.010438981282967455,
+        "selisih_berpasangan": 0.02493207311523517
+      },
+      {
+        "seed": 122,
+        "rerata_bulanan": 0.043928433018289734,
+        "rerata_bulanan_berbobot": 0.03559983513591345,
+        "selisih_berpasangan": -0.0055137856366659355
+      },
+      {
+        "seed": 123,
+        "rerata_bulanan": 0.010012592310940925,
+        "rerata_bulanan_berbobot": 0.011151503657690522,
+        "selisih_berpasangan": 0.028402055070682875
+      },
+      {
+        "seed": 124,
+        "rerata_bulanan": 0.018195897876710714,
+        "rerata_bulanan_berbobot": 0.015901955281298338,
+        "selisih_berpasangan": 0.02021874950491308
+      },
+      {
+        "seed": 125,
+        "rerata_bulanan": 0.007150768578112852,
+        "rerata_bulanan_berbobot": 0.005973261974574377,
+        "selisih_berpasangan": 0.03126387880351094
+      },
+      {
+        "seed": 126,
+        "rerata_bulanan": 0.03534179990274433,
+        "rerata_bulanan_berbobot": 0.03712767147177013,
+        "selisih_berpasangan": 0.003072847478879467
+      },
+      {
+        "seed": 127,
+        "rerata_bulanan": 0.026429363737434975,
+        "rerata_bulanan_berbobot": 0.027668257357678576,
+        "selisih_berpasangan": 0.011985283644188821
+      },
+      {
+        "seed": 128,
+        "rerata_bulanan": 0.019530224069798145,
+        "rerata_bulanan_berbobot": 0.019313899160472457,
+        "selisih_berpasangan": 0.018884423311825653
+      },
+      {
+        "seed": 129,
+        "rerata_bulanan": 0.02639909231188392,
+        "rerata_bulanan_berbobot": 0.02413195284255296,
+        "selisih_berpasangan": 0.012015555069739878
+      },
+      {
+        "seed": 130,
+        "rerata_bulanan": 0.010876764398538815,
+        "rerata_bulanan_berbobot": 0.0052004581477702585,
+        "selisih_berpasangan": 0.027537882983084978
+      },
+      {
+        "seed": 131,
+        "rerata_bulanan": 0.0025666096414306747,
+        "rerata_bulanan_berbobot": 0.00865863872651509,
+        "selisih_berpasangan": 0.03584803774019312
+      },
+      {
+        "seed": 132,
+        "rerata_bulanan": 0.04541096437605876,
+        "rerata_bulanan_berbobot": 0.032587113975953486,
+        "selisih_berpasangan": -0.00699631699443496
+      },
+      {
+        "seed": 133,
+        "rerata_bulanan": 0.03458836924000369,
+        "rerata_bulanan_berbobot": 0.03085118831577534,
+        "selisih_berpasangan": 0.003826278141620104
+      },
+      {
+        "seed": 134,
+        "rerata_bulanan": 0.04427347948871516,
+        "rerata_bulanan_berbobot": 0.0398085784139694,
+        "selisih_berpasangan": -0.0058588321070913675
+      },
+      {
+        "seed": 135,
+        "rerata_bulanan": 0.007920039076460286,
+        "rerata_bulanan_berbobot": 0.0034784912019945853,
+        "selisih_berpasangan": 0.03049460830516351
+      },
+      {
+        "seed": 136,
+        "rerata_bulanan": 0.04782144433838891,
+        "rerata_bulanan_berbobot": 0.03713082598251169,
+        "selisih_berpasangan": -0.009406796956765115
+      },
+      {
+        "seed": 137,
+        "rerata_bulanan": 0.03118341801003178,
+        "rerata_bulanan_berbobot": 0.028224519451015496,
+        "selisih_berpasangan": 0.007231229371592015
+      },
+      {
+        "seed": 138,
+        "rerata_bulanan": 0.0491067332933782,
+        "rerata_bulanan_berbobot": 0.04620026496137194,
+        "selisih_berpasangan": -0.010692085911754409
+      },
+      {
+        "seed": 139,
+        "rerata_bulanan": 0.03585335272546554,
+        "rerata_bulanan_berbobot": 0.03007461935731889,
+        "selisih_berpasangan": 0.00256129465615826
+      },
+      {
+        "seed": 140,
+        "rerata_bulanan": 0.03618005340833596,
+        "rerata_bulanan_berbobot": 0.03031081370949987,
+        "selisih_berpasangan": 0.0022345939732878396
+      },
+      {
+        "seed": 141,
+        "rerata_bulanan": 0.0107843536484373,
+        "rerata_bulanan_berbobot": 0.01717284781129503,
+        "selisih_berpasangan": 0.027630293733186498
+      },
+      {
+        "seed": 142,
+        "rerata_bulanan": 0.04237385067395639,
+        "rerata_bulanan_berbobot": 0.03582227345484053,
+        "selisih_berpasangan": -0.003959203292332592
+      },
+      {
+        "seed": 143,
+        "rerata_bulanan": 0.014095534563565923,
+        "rerata_bulanan_berbobot": -0.0008424549536480436,
+        "selisih_berpasangan": 0.024319112818057875
+      },
+      {
+        "seed": 144,
+        "rerata_bulanan": 0.04228252957406517,
+        "rerata_bulanan_berbobot": 0.03625355996826859,
+        "selisih_berpasangan": -0.003867882192441376
+      },
+      {
+        "seed": 145,
+        "rerata_bulanan": 0.020697239851429076,
+        "rerata_bulanan_berbobot": 0.016080892340162953,
+        "selisih_berpasangan": 0.017717407530194722
+      },
+      {
+        "seed": 146,
+        "rerata_bulanan": 0.0018381768808802717,
+        "rerata_bulanan_berbobot": 0.006715448348715976,
+        "selisih_berpasangan": 0.03657647050074352
+      },
+      {
+        "seed": 147,
+        "rerata_bulanan": 0.03948280495719697,
+        "rerata_bulanan_berbobot": 0.02957233448801094,
+        "selisih_berpasangan": -0.0010681575755731754
+      },
+      {
+        "seed": 148,
+        "rerata_bulanan": 0.01810730005379193,
+        "rerata_bulanan_berbobot": 0.01985643587975773,
+        "selisih_berpasangan": 0.02030734732783187
+      },
+      {
+        "seed": 149,
+        "rerata_bulanan": 0.030285469580234505,
+        "rerata_bulanan_berbobot": 0.03074697949122141,
+        "selisih_berpasangan": 0.008129177801389291
+      },
+      {
+        "seed": 150,
+        "rerata_bulanan": 0.03141165866926158,
+        "rerata_bulanan_berbobot": 0.016315079004455446,
+        "selisih_berpasangan": 0.007002988712362218
+      },
+      {
+        "seed": 151,
+        "rerata_bulanan": 0.013079547272091895,
+        "rerata_bulanan_berbobot": 0.006428768693153636,
+        "selisih_berpasangan": 0.025335100109531904
+      },
+      {
+        "seed": 152,
+        "rerata_bulanan": 0.02805546639012074,
+        "rerata_bulanan_berbobot": 0.030379799514791878,
+        "selisih_berpasangan": 0.010359180991503058
+      },
+      {
+        "seed": 153,
+        "rerata_bulanan": 0.032770411434525845,
+        "rerata_bulanan_berbobot": 0.029617443570593822,
+        "selisih_berpasangan": 0.00564423594709795
+      },
+      {
+        "seed": 154,
+        "rerata_bulanan": 0.02548172215130527,
+        "rerata_bulanan_berbobot": 0.02057467028068479,
+        "selisih_berpasangan": 0.012932925230318528
+      },
+      {
+        "seed": 155,
+        "rerata_bulanan": 0.03282095384488618,
+        "rerata_bulanan_berbobot": 0.0219820899862041,
+        "selisih_berpasangan": 0.00559369353673761
+      },
+      {
+        "seed": 156,
+        "rerata_bulanan": 0.013088232203945423,
+        "rerata_bulanan_berbobot": 0.011565717675790219,
+        "selisih_berpasangan": 0.025326415177678373
+      },
+      {
+        "seed": 157,
+        "rerata_bulanan": 0.03818636755432587,
+        "rerata_bulanan_berbobot": 0.030314270801345976,
+        "selisih_berpasangan": 0.00022827982729792687
+      },
+      {
+        "seed": 158,
+        "rerata_bulanan": -0.0007603204453122646,
+        "rerata_bulanan_berbobot": 0.002089114763823856,
+        "selisih_berpasangan": 0.03917496782693606
+      },
+      {
+        "seed": 159,
+        "rerata_bulanan": 0.05836558370345456,
+        "rerata_bulanan_berbobot": 0.04490609348991332,
+        "selisih_berpasangan": -0.019950936321830766
+      },
+      {
+        "seed": 160,
+        "rerata_bulanan": 0.05050125837952738,
+        "rerata_bulanan_berbobot": 0.04425275323399461,
+        "selisih_berpasangan": -0.012086610997903587
+      },
+      {
+        "seed": 161,
+        "rerata_bulanan": 0.03193337351619439,
+        "rerata_bulanan_berbobot": 0.020005051977666836,
+        "selisih_berpasangan": 0.006481273865429408
+      },
+      {
+        "seed": 162,
+        "rerata_bulanan": 0.01302922732743659,
+        "rerata_bulanan_berbobot": 0.01631245293797568,
+        "selisih_berpasangan": 0.025385420054187202
+      },
+      {
+        "seed": 163,
+        "rerata_bulanan": 0.034946728034781126,
+        "rerata_bulanan_berbobot": 0.0445330986392998,
+        "selisih_berpasangan": 0.003467919346842677
+      },
+      {
+        "seed": 164,
+        "rerata_bulanan": 0.03356901507843234,
+        "rerata_bulanan_berbobot": 0.029186497916273438,
+        "selisih_berpasangan": 0.004845632303191459
+      },
+      {
+        "seed": 165,
+        "rerata_bulanan": 0.0510181070695574,
+        "rerata_bulanan_berbobot": 0.04077062858112139,
+        "selisih_berpasangan": -0.012603459687933607
+      },
+      {
+        "seed": 166,
+        "rerata_bulanan": -0.0027307448215865993,
+        "rerata_bulanan_berbobot": -0.0009188065151150024,
+        "selisih_berpasangan": 0.041145392203210396
+      },
+      {
+        "seed": 167,
+        "rerata_bulanan": 0.02892276846238208,
+        "rerata_bulanan_berbobot": 0.017814975631018415,
+        "selisih_berpasangan": 0.009491878919241716
+      },
+      {
+        "seed": 168,
+        "rerata_bulanan": 0.012560842445429675,
+        "rerata_bulanan_berbobot": 0.003055694982095848,
+        "selisih_berpasangan": 0.02585380493619412
+      },
+      {
+        "seed": 169,
+        "rerata_bulanan": 0.013204926227158206,
+        "rerata_bulanan_berbobot": 0.010565312205799498,
+        "selisih_berpasangan": 0.02520972115446559
+      },
+      {
+        "seed": 170,
+        "rerata_bulanan": 0.03129040483590477,
+        "rerata_bulanan_berbobot": 0.02937093264777225,
+        "selisih_berpasangan": 0.007124242545719023
+      },
+      {
+        "seed": 171,
+        "rerata_bulanan": 0.025145872927206988,
+        "rerata_bulanan_berbobot": 0.02285328477916238,
+        "selisih_berpasangan": 0.013268774454416809
+      },
+      {
+        "seed": 172,
+        "rerata_bulanan": 0.058484629767393964,
+        "rerata_bulanan_berbobot": 0.05370870451793903,
+        "selisih_berpasangan": -0.020069982385770176
+      },
+      {
+        "seed": 173,
+        "rerata_bulanan": 0.03217367186603475,
+        "rerata_bulanan_berbobot": 0.02627339469843599,
+        "selisih_berpasangan": 0.006240975515589047
+      },
+      {
+        "seed": 174,
+        "rerata_bulanan": 0.026497990446819233,
+        "rerata_bulanan_berbobot": 0.020302425651103212,
+        "selisih_berpasangan": 0.011916656934804565
+      },
+      {
+        "seed": 175,
+        "rerata_bulanan": 0.03147630557423472,
+        "rerata_bulanan_berbobot": 0.027155860889703228,
+        "selisih_berpasangan": 0.006938341807389082
+      },
+      {
+        "seed": 176,
+        "rerata_bulanan": 0.019580122783520355,
+        "rerata_bulanan_berbobot": 0.0186410560559204,
+        "selisih_berpasangan": 0.01883452459810344
+      },
+      {
+        "seed": 177,
+        "rerata_bulanan": 0.04270894467453225,
+        "rerata_bulanan_berbobot": 0.031067854842200014,
+        "selisih_berpasangan": -0.00429429729290845
+      },
+      {
+        "seed": 178,
+        "rerata_bulanan": 0.02037613861674678,
+        "rerata_bulanan_berbobot": 0.024532811933822504,
+        "selisih_berpasangan": 0.018038508764877018
+      },
+      {
+        "seed": 179,
+        "rerata_bulanan": 0.009271945114503606,
+        "rerata_bulanan_berbobot": 0.008578024576945188,
+        "selisih_berpasangan": 0.029142702267120194
+      },
+      {
+        "seed": 180,
+        "rerata_bulanan": 0.04300563180847709,
+        "rerata_bulanan_berbobot": 0.03204952246755408,
+        "selisih_berpasangan": -0.004590984426853299
+      },
+      {
+        "seed": 181,
+        "rerata_bulanan": 0.020666798791902204,
+        "rerata_bulanan_berbobot": 0.013411537675083024,
+        "selisih_berpasangan": 0.017747848589721595
+      },
+      {
+        "seed": 182,
+        "rerata_bulanan": 0.029353828575566215,
+        "rerata_bulanan_berbobot": 0.02239658535989619,
+        "selisih_berpasangan": 0.009060818806057584
+      },
+      {
+        "seed": 183,
+        "rerata_bulanan": 0.039690918998661714,
+        "rerata_bulanan_berbobot": 0.03401662579547831,
+        "selisih_berpasangan": -0.0012762716170379143
+      },
+      {
+        "seed": 184,
+        "rerata_bulanan": 0.03427054085017581,
+        "rerata_bulanan_berbobot": 0.03140389227567784,
+        "selisih_berpasangan": 0.004144106531447991
+      },
+      {
+        "seed": 185,
+        "rerata_bulanan": 0.029521416172186486,
+        "rerata_bulanan_berbobot": 0.03317324996548365,
+        "selisih_berpasangan": 0.008893231209437311
+      },
+      {
+        "seed": 186,
+        "rerata_bulanan": 0.04955855930975041,
+        "rerata_bulanan_berbobot": 0.03498232673094297,
+        "selisih_berpasangan": -0.011143911928126618
+      },
+      {
+        "seed": 187,
+        "rerata_bulanan": 0.0010940081306525199,
+        "rerata_bulanan_berbobot": 0.0006002630947100923,
+        "selisih_berpasangan": 0.03732063925097128
+      },
+      {
+        "seed": 188,
+        "rerata_bulanan": 0.03567583222372023,
+        "rerata_bulanan_berbobot": 0.03716593977843152,
+        "selisih_berpasangan": 0.002738815157903574
+      },
+      {
+        "seed": 189,
+        "rerata_bulanan": 0.01545693036147547,
+        "rerata_bulanan_berbobot": 0.009795463921148962,
+        "selisih_berpasangan": 0.022957717020148326
+      },
+      {
+        "seed": 190,
+        "rerata_bulanan": 0.04621523927771216,
+        "rerata_bulanan_berbobot": 0.04794740375660755,
+        "selisih_berpasangan": -0.007800591896088359
+      },
+      {
+        "seed": 191,
+        "rerata_bulanan": 0.021731680703325616,
+        "rerata_bulanan_berbobot": 0.019201860499305504,
+        "selisih_berpasangan": 0.016682966678298175
+      },
+      {
+        "seed": 192,
+        "rerata_bulanan": 0.012219072458882145,
+        "rerata_bulanan_berbobot": 0.015969899330998464,
+        "selisih_berpasangan": 0.02619557492274165
+      },
+      {
+        "seed": 193,
+        "rerata_bulanan": 0.016644219624469415,
+        "rerata_bulanan_berbobot": 0.00724991645886845,
+        "selisih_berpasangan": 0.021770427757154386
+      },
+      {
+        "seed": 194,
+        "rerata_bulanan": 0.04596478318804805,
+        "rerata_bulanan_berbobot": 0.039873763170103285,
+        "selisih_berpasangan": -0.007550135806424254
+      },
+      {
+        "seed": 195,
+        "rerata_bulanan": 0.03512888431302305,
+        "rerata_bulanan_berbobot": 0.03480081404669083,
+        "selisih_berpasangan": 0.0032857630686007437
+      },
+      {
+        "seed": 196,
+        "rerata_bulanan": 0.021163038587006064,
+        "rerata_bulanan_berbobot": 0.009860587219592916,
+        "selisih_berpasangan": 0.01725160879461773
+      },
+      {
+        "seed": 197,
+        "rerata_bulanan": 0.03172822135843588,
+        "rerata_bulanan_berbobot": 0.024290475488306706,
+        "selisih_berpasangan": 0.006686426023187917
+      },
+      {
+        "seed": 198,
+        "rerata_bulanan": 0.006846328918415145,
+        "rerata_bulanan_berbobot": 0.010516210814863081,
+        "selisih_berpasangan": 0.03156831846320865
+      },
+      {
+        "seed": 199,
+        "rerata_bulanan": 0.017711157520744147,
+        "rerata_bulanan_berbobot": 0.014024277708112478,
+        "selisih_berpasangan": 0.020703489860879647
+      },
+      {
+        "seed": 200,
+        "rerata_bulanan": 0.03365194897663456,
+        "rerata_bulanan_berbobot": 0.03827750190061551,
+        "selisih_berpasangan": 0.004762698404989234
+      },
+      {
+        "seed": 201,
+        "rerata_bulanan": 0.017124416507575423,
+        "rerata_bulanan_berbobot": 0.016915920590533692,
+        "selisih_berpasangan": 0.021290230874048376
+      },
+      {
+        "seed": 202,
+        "rerata_bulanan": -0.006644305839926192,
+        "rerata_bulanan_berbobot": 0.0030397544358367274,
+        "selisih_berpasangan": 0.045058953221549986
+      },
+      {
+        "seed": 203,
+        "rerata_bulanan": 0.020599075885935566,
+        "rerata_bulanan_berbobot": 0.02282781761293928,
+        "selisih_berpasangan": 0.01781557149568823
+      },
+      {
+        "seed": 204,
+        "rerata_bulanan": 0.008204022018017098,
+        "rerata_bulanan_berbobot": 0.00426482395883175,
+        "selisih_berpasangan": 0.030210625363606695
+      },
+      {
+        "seed": 205,
+        "rerata_bulanan": 0.033481155865950164,
+        "rerata_bulanan_berbobot": 0.023768902813916318,
+        "selisih_berpasangan": 0.004933491515673629
+      },
+      {
+        "seed": 206,
+        "rerata_bulanan": 0.020767971501070067,
+        "rerata_bulanan_berbobot": 0.022747430411288332,
+        "selisih_berpasangan": 0.01764667588055373
+      },
+      {
+        "seed": 207,
+        "rerata_bulanan": 0.042107148940646155,
+        "rerata_bulanan_berbobot": 0.03519527433540584,
+        "selisih_berpasangan": -0.003692501559022357
+      },
+      {
+        "seed": 208,
+        "rerata_bulanan": 0.036076907460679146,
+        "rerata_bulanan_berbobot": 0.02526777322270872,
+        "selisih_berpasangan": 0.0023377399209446514
+      },
+      {
+        "seed": 209,
+        "rerata_bulanan": 0.021131466645556565,
+        "rerata_bulanan_berbobot": 0.015718833807879418,
+        "selisih_berpasangan": 0.01728318073606723
+      },
+      {
+        "seed": 210,
+        "rerata_bulanan": 0.021204532817237824,
+        "rerata_bulanan_berbobot": 0.021222692560631255,
+        "selisih_berpasangan": 0.017210114564385974
+      },
+      {
+        "seed": 211,
+        "rerata_bulanan": 0.04589129349005171,
+        "rerata_bulanan_berbobot": 0.037607167439487804,
+        "selisih_berpasangan": -0.007476646108427911
+      },
+      {
+        "seed": 212,
+        "rerata_bulanan": 0.014953384395463551,
+        "rerata_bulanan_berbobot": 0.016191594041764148,
+        "selisih_berpasangan": 0.023461262986160247
+      },
+      {
+        "seed": 213,
+        "rerata_bulanan": 0.03160235767211295,
+        "rerata_bulanan_berbobot": 0.02882628715632131,
+        "selisih_berpasangan": 0.006812289709510843
+      },
+      {
+        "seed": 214,
+        "rerata_bulanan": 0.03909769819259564,
+        "rerata_bulanan_berbobot": 0.03519004483878369,
+        "selisih_berpasangan": -0.0006830508109718473
+      },
+      {
+        "seed": 215,
+        "rerata_bulanan": 0.02856396313898809,
+        "rerata_bulanan_berbobot": 0.03367428383750231,
+        "selisih_berpasangan": 0.00985068424263571
+      },
+      {
+        "seed": 216,
+        "rerata_bulanan": 0.02589902413621977,
+        "rerata_bulanan_berbobot": 0.028188366830830078,
+        "selisih_berpasangan": 0.012515623245404025
+      },
+      {
+        "seed": 217,
+        "rerata_bulanan": 0.033804027763889515,
+        "rerata_bulanan_berbobot": 0.022799104504830206,
+        "selisih_berpasangan": 0.004610619617734282
+      },
+      {
+        "seed": 218,
+        "rerata_bulanan": 0.04122524841517862,
+        "rerata_bulanan_berbobot": 0.0309969929422903,
+        "selisih_berpasangan": -0.0028106010335548254
+      },
+      {
+        "seed": 219,
+        "rerata_bulanan": 0.03836182443094334,
+        "rerata_bulanan_berbobot": 0.025755485767046,
+        "selisih_berpasangan": 5.282295068045647e-05
+      },
+      {
+        "seed": 220,
+        "rerata_bulanan": 0.02487024709398502,
+        "rerata_bulanan_berbobot": 0.01710105622440692,
+        "selisih_berpasangan": 0.013544400287638774
+      },
+      {
+        "seed": 221,
+        "rerata_bulanan": 0.057422806389584934,
+        "rerata_bulanan_berbobot": 0.05739448258911027,
+        "selisih_berpasangan": -0.019008159007961142
+      },
+      {
+        "seed": 222,
+        "rerata_bulanan": 0.025707674048239412,
+        "rerata_bulanan_berbobot": 0.02197652690309539,
+        "selisih_berpasangan": 0.012706973333384384
+      },
+      {
+        "seed": 223,
+        "rerata_bulanan": 0.027698953890301123,
+        "rerata_bulanan_berbobot": 0.022187123013749113,
+        "selisih_berpasangan": 0.010715693491322672
+      },
+      {
+        "seed": 224,
+        "rerata_bulanan": 0.03793541537524615,
+        "rerata_bulanan_berbobot": 0.030610538218136172,
+        "selisih_berpasangan": 0.00047923200637764587
+      },
+      {
+        "seed": 225,
+        "rerata_bulanan": 0.015135279089270844,
+        "rerata_bulanan_berbobot": 0.011525113682034365,
+        "selisih_berpasangan": 0.02327936829235295
+      },
+      {
+        "seed": 226,
+        "rerata_bulanan": 0.028441363359854328,
+        "rerata_bulanan_berbobot": 0.028148856198965864,
+        "selisih_berpasangan": 0.009973284021769474
+      },
+      {
+        "seed": 227,
+        "rerata_bulanan": 0.02938528458459713,
+        "rerata_bulanan_berbobot": 0.02231561009400039,
+        "selisih_berpasangan": 0.009029362797026664
+      },
+      {
+        "seed": 228,
+        "rerata_bulanan": 0.012610903201626732,
+        "rerata_bulanan_berbobot": 0.023950487472407668,
+        "selisih_berpasangan": 0.025803744179997066
+      },
+      {
+        "seed": 229,
+        "rerata_bulanan": 0.02481905481829337,
+        "rerata_bulanan_berbobot": 0.008909375997163885,
+        "selisih_berpasangan": 0.013595592563330428
+      },
+      {
+        "seed": 230,
+        "rerata_bulanan": 0.014919028279236364,
+        "rerata_bulanan_berbobot": 0.014569123210444781,
+        "selisih_berpasangan": 0.023495619102387434
+      },
+      {
+        "seed": 231,
+        "rerata_bulanan": 0.03313009997238807,
+        "rerata_bulanan_berbobot": 0.02276276432577226,
+        "selisih_berpasangan": 0.005284547409235729
+      },
+      {
+        "seed": 232,
+        "rerata_bulanan": 0.00688192846343352,
+        "rerata_bulanan_berbobot": 0.006788867037639608,
+        "selisih_berpasangan": 0.03153271891819028
+      },
+      {
+        "seed": 233,
+        "rerata_bulanan": 0.012842444913351632,
+        "rerata_bulanan_berbobot": 0.012665995895691713,
+        "selisih_berpasangan": 0.025572202468272163
+      },
+      {
+        "seed": 234,
+        "rerata_bulanan": 0.030424273836280016,
+        "rerata_bulanan_berbobot": 0.022264883196868743,
+        "selisih_berpasangan": 0.00799037354534378
+      },
+      {
+        "seed": 235,
+        "rerata_bulanan": 0.012247414435880902,
+        "rerata_bulanan_berbobot": 0.008933034736076265,
+        "selisih_berpasangan": 0.026167232945742896
+      },
+      {
+        "seed": 236,
+        "rerata_bulanan": 0.012562793248534269,
+        "rerata_bulanan_berbobot": 0.009651280518403506,
+        "selisih_berpasangan": 0.025851854133089526
+      },
+      {
+        "seed": 237,
+        "rerata_bulanan": 0.015556389119237408,
+        "rerata_bulanan_berbobot": 0.0157679467027605,
+        "selisih_berpasangan": 0.02285825826238639
+      },
+      {
+        "seed": 238,
+        "rerata_bulanan": 0.026935094645806915,
+        "rerata_bulanan_berbobot": 0.02531739651081383,
+        "selisih_berpasangan": 0.01147955273581688
+      },
+      {
+        "seed": 239,
+        "rerata_bulanan": 0.021339239875197785,
+        "rerata_bulanan_berbobot": 0.022221158362944145,
+        "selisih_berpasangan": 0.017075407506426013
+      },
+      {
+        "seed": 240,
+        "rerata_bulanan": 0.034440214638727325,
+        "rerata_bulanan_berbobot": 0.028234435839195677,
+        "selisih_berpasangan": 0.003974432742896472
+      },
+      {
+        "seed": 241,
+        "rerata_bulanan": 0.012149168467882334,
+        "rerata_bulanan_berbobot": 0.014109819675047448,
+        "selisih_berpasangan": 0.026265478913741463
+      },
+      {
+        "seed": 242,
+        "rerata_bulanan": 0.02469554590604538,
+        "rerata_bulanan_berbobot": 0.01861651784486388,
+        "selisih_berpasangan": 0.013719101475578414
+      },
+      {
+        "seed": 243,
+        "rerata_bulanan": 0.00949943635805679,
+        "rerata_bulanan_berbobot": 0.01248230030117778,
+        "selisih_berpasangan": 0.028915211023567002
+      },
+      {
+        "seed": 244,
+        "rerata_bulanan": 0.029046156073332607,
+        "rerata_bulanan_berbobot": 0.02046991786342054,
+        "selisih_berpasangan": 0.009368491308291189
+      },
+      {
+        "seed": 245,
+        "rerata_bulanan": 0.0364483844151519,
+        "rerata_bulanan_berbobot": 0.04283014420551568,
+        "selisih_berpasangan": 0.001966262966471902
+      },
+      {
+        "seed": 246,
+        "rerata_bulanan": 0.03720727388548929,
+        "rerata_bulanan_berbobot": 0.030257990672306917,
+        "selisih_berpasangan": 0.0012073734961345027
+      },
+      {
+        "seed": 247,
+        "rerata_bulanan": 0.029183874137672528,
+        "rerata_bulanan_berbobot": 0.027151216619815614,
+        "selisih_berpasangan": 0.009230773243951268
+      },
+      {
+        "seed": 248,
+        "rerata_bulanan": 0.0160439099883013,
+        "rerata_bulanan_berbobot": 0.010165793168907906,
+        "selisih_berpasangan": 0.022370737393322498
+      },
+      {
+        "seed": 249,
+        "rerata_bulanan": 0.03659461298148847,
+        "rerata_bulanan_berbobot": 0.02365235230855689,
+        "selisih_berpasangan": 0.0018200344001353236
+      },
+      {
+        "seed": 250,
+        "rerata_bulanan": 0.03336733449112941,
+        "rerata_bulanan_berbobot": 0.029460514325388012,
+        "selisih_berpasangan": 0.005047312890494384
+      },
+      {
+        "seed": 251,
+        "rerata_bulanan": 0.03924167405969343,
+        "rerata_bulanan_berbobot": 0.038255574791113,
+        "selisih_berpasangan": -0.0008270266780696286
+      },
+      {
+        "seed": 252,
+        "rerata_bulanan": 0.02680798401749905,
+        "rerata_bulanan_berbobot": 0.027114899942557547,
+        "selisih_berpasangan": 0.01160666336412474
+      },
+      {
+        "seed": 253,
+        "rerata_bulanan": 0.035918648341040686,
+        "rerata_bulanan_berbobot": 0.03517355664863827,
+        "selisih_berpasangan": 0.00249599904058311
+      },
+      {
+        "seed": 254,
+        "rerata_bulanan": 0.02851000545566296,
+        "rerata_bulanan_berbobot": 0.026520741600779073,
+        "selisih_berpasangan": 0.009904641925960836
+      },
+      {
+        "seed": 255,
+        "rerata_bulanan": 0.03001958586230149,
+        "rerata_bulanan_berbobot": 0.024823291182023945,
+        "selisih_berpasangan": 0.008395061519322308
+      },
+      {
+        "seed": 256,
+        "rerata_bulanan": 0.03286625361298198,
+        "rerata_bulanan_berbobot": 0.024620285427271068,
+        "selisih_berpasangan": 0.005548393768641812
+      },
+      {
+        "seed": 257,
+        "rerata_bulanan": 0.03299755518951369,
+        "rerata_bulanan_berbobot": 0.02794450729943581,
+        "selisih_berpasangan": 0.005417092192110102
+      },
+      {
+        "seed": 258,
+        "rerata_bulanan": 0.02072978657641414,
+        "rerata_bulanan_berbobot": 0.019450609029183115,
+        "selisih_berpasangan": 0.017684860805209656
+      },
+      {
+        "seed": 259,
+        "rerata_bulanan": 0.04026055385415243,
+        "rerata_bulanan_berbobot": 0.032268715270799345,
+        "selisih_berpasangan": -0.0018459064725286287
+      },
+      {
+        "seed": 260,
+        "rerata_bulanan": 0.0437763795308794,
+        "rerata_bulanan_berbobot": 0.03542680902634618,
+        "selisih_berpasangan": -0.0053617321492556045
+      },
+      {
+        "seed": 261,
+        "rerata_bulanan": 0.02300382567288198,
+        "rerata_bulanan_berbobot": 0.015292682788943756,
+        "selisih_berpasangan": 0.015410821708741819
+      },
+      {
+        "seed": 262,
+        "rerata_bulanan": 0.01651667447709485,
+        "rerata_bulanan_berbobot": 0.018459617914737155,
+        "selisih_berpasangan": 0.02189797290452895
+      },
+      {
+        "seed": 263,
+        "rerata_bulanan": 0.032454354843237186,
+        "rerata_bulanan_berbobot": 0.03148269668664112,
+        "selisih_berpasangan": 0.005960292538386606
+      },
+      {
+        "seed": 264,
+        "rerata_bulanan": 0.02361555516167395,
+        "rerata_bulanan_berbobot": 0.01983063791637789,
+        "selisih_berpasangan": 0.014799092219949845
+      },
+      {
+        "seed": 265,
+        "rerata_bulanan": 0.013392454688868089,
+        "rerata_bulanan_berbobot": 0.009012922578616113,
+        "selisih_berpasangan": 0.025022192692755706
+      },
+      {
+        "seed": 266,
+        "rerata_bulanan": 0.051616619726158705,
+        "rerata_bulanan_berbobot": 0.041169741256273706,
+        "selisih_berpasangan": -0.013201972344534907
+      },
+      {
+        "seed": 267,
+        "rerata_bulanan": 0.017055365067752643,
+        "rerata_bulanan_berbobot": 0.011723117888688064,
+        "selisih_berpasangan": 0.021359282313871155
+      },
+      {
+        "seed": 268,
+        "rerata_bulanan": 0.0472731758679077,
+        "rerata_bulanan_berbobot": 0.03994940475889624,
+        "selisih_berpasangan": -0.008858528486283905
+      },
+      {
+        "seed": 269,
+        "rerata_bulanan": 0.020347056531893618,
+        "rerata_bulanan_berbobot": 0.018565210780532596,
+        "selisih_berpasangan": 0.018067590849730177
+      },
+      {
+        "seed": 270,
+        "rerata_bulanan": 0.01770544942718803,
+        "rerata_bulanan_berbobot": 0.007445684360012891,
+        "selisih_berpasangan": 0.02070919795443577
+      },
+      {
+        "seed": 271,
+        "rerata_bulanan": 0.03424179070612852,
+        "rerata_bulanan_berbobot": 0.03523016272386252,
+        "selisih_berpasangan": 0.004172856675495277
+      },
+      {
+        "seed": 272,
+        "rerata_bulanan": 0.021446366411013298,
+        "rerata_bulanan_berbobot": 0.00963404871060447,
+        "selisih_berpasangan": 0.016968280970610497
+      },
+      {
+        "seed": 273,
+        "rerata_bulanan": 0.03045337124899688,
+        "rerata_bulanan_berbobot": 0.029757215188269886,
+        "selisih_berpasangan": 0.00796127613262692
+      },
+      {
+        "seed": 274,
+        "rerata_bulanan": 0.023196617365470056,
+        "rerata_bulanan_berbobot": 0.018474327293208796,
+        "selisih_berpasangan": 0.015218030016153742
+      },
+      {
+        "seed": 275,
+        "rerata_bulanan": 0.025432677596788463,
+        "rerata_bulanan_berbobot": 0.025439311021709026,
+        "selisih_berpasangan": 0.012981969784835335
+      },
+      {
+        "seed": 276,
+        "rerata_bulanan": 0.010182465026972393,
+        "rerata_bulanan_berbobot": 0.01307637558179046,
+        "selisih_berpasangan": 0.0282321823546514
+      },
+      {
+        "seed": 277,
+        "rerata_bulanan": 0.028359016537138775,
+        "rerata_bulanan_berbobot": 0.01710943424304335,
+        "selisih_berpasangan": 0.010055630844485018
+      },
+      {
+        "seed": 278,
+        "rerata_bulanan": 0.043597637338915814,
+        "rerata_bulanan_berbobot": 0.027482637671165284,
+        "selisih_berpasangan": -0.005182989957292016
+      },
+      {
+        "seed": 279,
+        "rerata_bulanan": 0.040737159804344766,
+        "rerata_bulanan_berbobot": 0.03766556957971424,
+        "selisih_berpasangan": -0.0023225124227209694
+      },
+      {
+        "seed": 280,
+        "rerata_bulanan": 0.024772594383199106,
+        "rerata_bulanan_berbobot": 0.02248676409422792,
+        "selisih_berpasangan": 0.013642052998424685
+      },
+      {
+        "seed": 281,
+        "rerata_bulanan": 0.028948722289804794,
+        "rerata_bulanan_berbobot": 0.02506577527563893,
+        "selisih_berpasangan": 0.009465925091819004
+      },
+      {
+        "seed": 282,
+        "rerata_bulanan": 0.01441914568203874,
+        "rerata_bulanan_berbobot": 0.009109995692073165,
+        "selisih_berpasangan": 0.02399550169958506
+      },
+      {
+        "seed": 283,
+        "rerata_bulanan": 0.028994465935473918,
+        "rerata_bulanan_berbobot": 0.025313948346175823,
+        "selisih_berpasangan": 0.009420181446149877
+      },
+      {
+        "seed": 284,
+        "rerata_bulanan": 0.028683364989146677,
+        "rerata_bulanan_berbobot": 0.021427497701735528,
+        "selisih_berpasangan": 0.009731282392477121
+      },
+      {
+        "seed": 285,
+        "rerata_bulanan": 0.03623973921688801,
+        "rerata_bulanan_berbobot": 0.033507760203183995,
+        "selisih_berpasangan": 0.002174908164735794
+      },
+      {
+        "seed": 286,
+        "rerata_bulanan": 0.014932805767982876,
+        "rerata_bulanan_berbobot": 0.01542697352981864,
+        "selisih_berpasangan": 0.023481841613640923
+      },
+      {
+        "seed": 287,
+        "rerata_bulanan": 0.010210489458033897,
+        "rerata_bulanan_berbobot": 0.018239804264121393,
+        "selisih_berpasangan": 0.028204157923589903
+      },
+      {
+        "seed": 288,
+        "rerata_bulanan": 0.0504456539391326,
+        "rerata_bulanan_berbobot": 0.03526711792913667,
+        "selisih_berpasangan": -0.012031006557508807
+      },
+      {
+        "seed": 289,
+        "rerata_bulanan": 0.043427877598079964,
+        "rerata_bulanan_berbobot": 0.029977717973428342,
+        "selisih_berpasangan": -0.005013230216456166
+      },
+      {
+        "seed": 290,
+        "rerata_bulanan": 0.028393192167305265,
+        "rerata_bulanan_berbobot": 0.025564814605190486,
+        "selisih_berpasangan": 0.010021455214318528
+      },
+      {
+        "seed": 291,
+        "rerata_bulanan": 0.01586155423975071,
+        "rerata_bulanan_berbobot": 0.01440788396299706,
+        "selisih_berpasangan": 0.022553093141873086
+      },
+      {
+        "seed": 292,
+        "rerata_bulanan": 0.0021381432796866795,
+        "rerata_bulanan_berbobot": 0.007691188389880929,
+        "selisih_berpasangan": 0.03627650410193712
+      },
+      {
+        "seed": 293,
+        "rerata_bulanan": 0.009177589848912723,
+        "rerata_bulanan_berbobot": 0.004403644582952444,
+        "selisih_berpasangan": 0.029237057532711073
+      },
+      {
+        "seed": 294,
+        "rerata_bulanan": 0.021002234300970573,
+        "rerata_bulanan_berbobot": 0.013022912840862204,
+        "selisih_berpasangan": 0.017412413080653225
+      },
+      {
+        "seed": 295,
+        "rerata_bulanan": 0.0291701939393869,
+        "rerata_bulanan_berbobot": 0.022233573195081013,
+        "selisih_berpasangan": 0.009244453442236894
+      },
+      {
+        "seed": 296,
+        "rerata_bulanan": 0.016600148368845064,
+        "rerata_bulanan_berbobot": 0.016861650378527018,
+        "selisih_berpasangan": 0.021814499012778734
+      },
+      {
+        "seed": 297,
+        "rerata_bulanan": 0.033634684568280525,
+        "rerata_bulanan_berbobot": 0.02074025923681916,
+        "selisih_berpasangan": 0.004779962813343276
+      },
+      {
+        "seed": 298,
+        "rerata_bulanan": 0.03904483212669832,
+        "rerata_bulanan_berbobot": 0.023719057269116713,
+        "selisih_berpasangan": -0.0006301847450745195
+      },
+      {
+        "seed": 299,
+        "rerata_bulanan": 0.022008551636622003,
+        "rerata_bulanan_berbobot": 0.021431940543027495,
+        "selisih_berpasangan": 0.01640609574500179
+      }
+    ],
+    "pembatas": "Nilai p di berkas ini sah HANYA pada satuan penarikan yang tertulis di medan `satuan`. Satuan resmi riset ini adalah BULAN kalender UTC (ADR-028); nilai p pada satuan perdagangan adalah TAKSIRAN BAWAH sebab perdagangan lintas simbol pada jendela yang bertumpang berkorelasi, sehingga ia hanya sah untuk MENJATUHKAN klaim dan tidak pernah untuk menegakkannya. p dihitung dengan koreksi (1 + cacah) / (1 + n) sehingga ia tidak pernah nol: 300 ulangan hanya sanggup membuktikan p turun sampai 1/301, bukan sampai mustahil."
+  },
+  "p_perdagangan": {
+    "teramati": 0.06664781299919262,
+    "n": 300,
+    "cacah_ge": 0,
+    "p": 0.0033222591362126247,
+    "p_terkecil_yang_mungkin": 0.0033222591362126247,
+    "nol_rerata": 0.022915857506940775,
+    "nol_std": 0.011376809633549314,
+    "nol_min": -0.0046324629467949414,
+    "nol_maks": 0.05739448258911027,
+    "satuan": "perdagangan",
+    "taksiran_bawah": true,
+    "mengikat": false,
+    "seed": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299
+    ],
+    "pembatas": "Nilai p di berkas ini sah HANYA pada satuan penarikan yang tertulis di medan `satuan`. Satuan resmi riset ini adalah BULAN kalender UTC (ADR-028); nilai p pada satuan perdagangan adalah TAKSIRAN BAWAH sebab perdagangan lintas simbol pada jendela yang bertumpang berkorelasi, sehingga ia hanya sah untuk MENJATUHKAN klaim dan tidak pernah untuk menegakkannya. p dihitung dengan koreksi (1 + cacah) / (1 + n) sehingga ia tidak pernah nol: 300 ulangan hanya sanggup membuktikan p turun sampai 1/301, bukan sampai mustahil."
+  },
+  "ketidaksesuaian_bulan": [],
+  "sebaran_seed": {
+    "n": 300,
+    "rerata": 0.022915857506940775,
+    "std": 0.011376809633549314,
+    "min": -0.0046324629467949414,
+    "maks": 0.05739448258911027
+  },
+  "ramalan": {
+    "R-D3": {
+      "bunyi": "sedikitnya satu seed melampaui ekspektasi sel SS 0.06664781299919262; bila tidak, permutasinya cacat",
+      "tepat": false,
+      "seed_tertinggi_R": 0.05739448258911027
+    },
+    "R-D4": {
+      "bunyi": "simpangan baku antar seed MELAMPAUI galat baku per perdagangan 0.00557R, bukti langsung cacat kelas kedua belas",
+      "tepat": true,
+      "std_antar_seed": 0.011376809633549314,
+      "galat_baku_per_perdagangan": 0.00557
+    }
+  },
+  "pecahan": [
+    {
+      "berkas": "h013b_seed_0_30.json",
+      "pecahan": [
+        0,
+        30
+      ],
+      "seed": 30,
+      "r_d5_cocok": null
+    },
+    {
+      "berkas": "h013b_seed_30_60.json",
+      "pecahan": [
+        30,
+        60
+      ],
+      "seed": 30,
+      "r_d5_cocok": true
+    },
+    {
+      "berkas": "h013b_seed_60_90.json",
+      "pecahan": [
+        60,
+        90
+      ],
+      "seed": 30,
+      "r_d5_cocok": null
+    },
+    {
+      "berkas": "h013b_seed_90_120.json",
+      "pecahan": [
+        90,
+        120
+      ],
+      "seed": 30,
+      "r_d5_cocok": null
+    },
+    {
+      "berkas": "h013b_seed_120_150.json",
+      "pecahan": [
+        120,
+        150
+      ],
+      "seed": 30,
+      "r_d5_cocok": null
+    },
+    {
+      "berkas": "h013b_seed_150_180.json",
+      "pecahan": [
+        150,
+        180
+      ],
+      "seed": 30,
+      "r_d5_cocok": null
+    },
+    {
+      "berkas": "h013b_seed_180_210.json",
+      "pecahan": [
+        180,
+        210
+      ],
+      "seed": 30,
+      "r_d5_cocok": null
+    },
+    {
+      "berkas": "h013b_seed_210_240.json",
+      "pecahan": [
+        210,
+        240
+      ],
+      "seed": 30,
+      "r_d5_cocok": null
+    },
+    {
+      "berkas": "h013b_seed_240_270.json",
+      "pecahan": [
+        240,
+        270
+      ],
+      "seed": 30,
+      "r_d5_cocok": null
+    },
+    {
+      "berkas": "h013b_seed_270_300.json",
+      "pecahan": [
+        270,
+        300
+      ],
+      "seed": 30,
+      "r_d5_cocok": null
+    }
+  ],
+  "r_d5_terbukti": true,
+  "gerbang_entri_acak": "MATI di seluruh run Jalur B",
+  "pembatas": "Putusan di berkas ini menuntut DUA syarat sekaligus, seperti bunyi ADR-015 pasal 4.4: besaran SS − AS ≥ 0,020R DAN p ≤ 0,05 atas sedikitnya 300 ulangan permutasi sinyal. Satu syarat saja tidak pernah cukup, dan besaran tanpa p adalah keadaan yang membuat medan `lulus` di laporan kontribusi H-013 tidak sah dibaca sebagai kelulusan (ADR-024). Satuan penarikan yang MENGIKAT adalah bulan kalender UTC (ADR-028); p per perdagangan ikut dilaporkan sebagai taksiran bawah dan hanya sah untuk MENJATUHKAN. Gerbang `entri_acak` dimatikan di seluruh run Jalur B, dan sel AS memang tidak dimaksudkan lulus kriteria apa pun. DITOLAK adalah hasil, bukan kegagalan run.",
+  "pembatas_sebaran": "Nilai p di berkas ini sah HANYA pada satuan penarikan yang tertulis di medan `satuan`. Satuan resmi riset ini adalah BULAN kalender UTC (ADR-028); nilai p pada satuan perdagangan adalah TAKSIRAN BAWAH sebab perdagangan lintas simbol pada jendela yang bertumpang berkorelasi, sehingga ia hanya sah untuk MENJATUHKAN klaim dan tidak pernah untuk menegakkannya. p dihitung dengan koreksi (1 + cacah) / (1 + n) sehingga ia tidak pernah nol: 300 ulangan hanya sanggup membuktikan p turun sampai 1/301, bukan sampai mustahil."
+}
