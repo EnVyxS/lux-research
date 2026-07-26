@@ -81,6 +81,21 @@ dan tanpa itu keheningan tiga hari penuh lolos sebagai data bersih.
 Ambang yang diserahkan ke ``gabung_gerbang`` tetap ``0.30`` dan itu disengaja:
 0,30 adalah ambang **rasio** bar datar, bukan ambang **deret**. Keduanya syarat
 yang berbeda pada gerbang yang sama.
+
+ADR-025 MENGUBAH SATU BARIS LAGI
+--------------------------------
+Jalur manifest aset kini datang dari ``lux.backtest.manifest.jalur_manifest``,
+sehingga tiap interval punya berkasnya sendiri. Sebelum ini nama berkasnya tetap
+``manifest_aset.json`` apa pun intervalnya, dan karena berkas itu lahir di era 1h
+ia hanya memuat dua belas kunci ``ohlcv_1h_*``. Run 4h membaca dua belas berkas
+``ohlcv_4h_*``, jadi tidak ada satu nama pun yang bertemu dan gerbang
+``checksum`` melaporkan "hilang 12, asing 12, tidak cocok 0" — sebuah gerbang
+yang **tidak mungkin lulus**, dan gerbang yang tidak mungkin lulus tidak menjaga
+apa pun.
+
+Pada 1h tidak ada yang berubah: ``jalur_manifest("1h", "reports")`` mengembalikan
+``reports/manifest_aset.json``, nama yang sama persis dengan sebelumnya, sehingga
+manifest yang sudah dikomit tetap menjadi rujukan keutuhan hasil lama.
 """
 
 from __future__ import annotations
@@ -126,6 +141,7 @@ from lux.backtest.konsentrasi import (
     gerbang_konsentrasi,
     tabel_jackknife,
 )
+from lux.backtest.manifest import jalur_manifest
 from lux.backtest.run_wf import (
     akhir_per_simbol,
     diagnosa_biaya,
@@ -280,7 +296,12 @@ def muat_konteks(opsi: Opsi, konfig: Konfig | None = None) -> Konteks:
     # atas SELURUH berkas yang benar-benar dibaca, termasuk berkas simbol yang
     # sebentar lagi dibuang lantai. Yang dijaga gerbang ini adalah keutuhan
     # data yang disentuh, bukan keanggotaan semesta.
-    manifest_path = Path(opsi.out) / "manifest_aset.json"
+    #
+    # ADR-025: jalurnya per interval. Nama 1h tetap manifest_aset.json, jadi
+    # jalur lama tidak bergeser; 4h memakai manifest_aset_4h.json, dan tanpa itu
+    # gerbang ini membandingkan dua belas nama 4h terhadap dua belas nama 1h dan
+    # tidak mungkin lulus.
+    manifest_path = jalur_manifest(opsi.interval, opsi.out)
     terhitung = {p.name: sha256_berkas(p) for p in berkas}
     if manifest_path.exists():
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -297,6 +318,11 @@ def muat_konteks(opsi: Opsi, konfig: Konfig | None = None) -> Konteks:
             None,
             "tidak dapat dinilai: manifest baru ditulis pada run ini",
         )
+    print(
+        f"manifest aset {manifest_path} ({len(terhitung)} berkas interval "
+        f"{opsi.interval})",
+        flush=True,
+    )
     print(f"checksum: {gerbang_cs.catatan}", flush=True)
 
     # ADR-014: lantai satuan R sebagai kriteria kelayakan semesta. Simbol yang
@@ -627,6 +653,9 @@ def jalankan_spek(
             "maks_biaya_masuk_R": konfig.maks_biaya_masuk_R,
             "min_median_stop_frac": opsi.min_median_stop_frac,
             "konfig_per_kandidat": spek.buat_konfig is not None,
+            # ADR-025. Jalur manifest ikut tertulis supaya laporan membuktikan
+            # berkas keutuhan mana yang dibandingkan gerbang checksum.
+            "manifest_aset": str(jalur_manifest(opsi.interval, opsi.out)),
         },
         "gabungan": gabungan,
         "alasan_keluar": alasan,
@@ -658,8 +687,8 @@ def jalankan_spek(
         "",
         f"> {spek.h.pernyataan}",
         "",
-        f"Sidik `{spek.h.sidik()[:16]}` \u00b7 {spek.h.jumlah_kombinasi} kombinasi "
-        f"\u00b7 {gabungan['jumlah_simbol']} simbol \u00b7 {isi['detik']}s",
+        f"Sidik `{spek.h.sidik()[:16]}` · {spek.h.jumlah_kombinasi} kombinasi "
+        f"· {gabungan['jumlah_simbol']} simbol · {isi['detik']}s",
         "",
         "## Putusan",
         "",
@@ -731,14 +760,14 @@ def jalankan_spek(
                 "| Simbol | median stop_frac | biaya masuk R | Sebab |",
                 "|---|---|---|---|",
             ]
+            strip_lantai = "—"
             for b in sr["ditolak"]:
                 m = b["median_stop_frac"]
                 bm = b["biaya_masuk_R"]
+                m_txt = strip_lantai if m is None else format(m, ".6e")
+                bm_txt = strip_lantai if bm is None else format(bm, ".2f")
                 md.append(
-                    f"| {b['symbol']} "
-                    f"| {'\u2014' if m is None else format(m, '.6e')} "
-                    f"| {'\u2014' if bm is None else format(bm, '.2f')} "
-                    f"| {b['sebab']} |"
+                    f"| {b['symbol']} | {m_txt} | {bm_txt} | {b['sebab']} |"
                 )
             md += [""]
         else:
@@ -762,7 +791,7 @@ def jalankan_spek(
         "|---|---|---|---|",
     ]
     for b in agregat_periode:
-        e = "\u2014" if b["ekspektasi_R"] is None else f"{b['ekspektasi_R']:+.6f}"
+        e = "—" if b["ekspektasi_R"] is None else f"{b['ekspektasi_R']:+.6f}"
         md.append(
             f"| {b['periode']} | {b['trade']:,} | {b['total_R']:+.2f} | {e} |"
         )
@@ -791,9 +820,9 @@ def jalankan_spek(
             f"- Galat baku ekspektasi: **{sebaran['galat_baku_R']:.6f}R**",
             f"- Selang 95% (pendekatan normal): "
             f"**[{sebaran['ci95_bawah_R']:.6f}, {sebaran['ci95_atas_R']:.6f}]R**",
-            f"- Kuartil R: min {sebaran['min_R']:.4f} \u00b7 "
-            f"Q1 {sebaran['q1_R']:.4f} \u00b7 median {sebaran['median_R']:.4f} "
-            f"\u00b7 Q3 {sebaran['q3_R']:.4f} \u00b7 maks {sebaran['maks_R']:.4f}",
+            f"- Kuartil R: min {sebaran['min_R']:.4f} · "
+            f"Q1 {sebaran['q1_R']:.4f} · median {sebaran['median_R']:.4f} "
+            f"· Q3 {sebaran['q3_R']:.4f} · maks {sebaran['maks_R']:.4f}",
             f"- Jarak ke ambang {jarak['ambang']}R: "
             f"**{jarak['jarak_R']:+.6f}R**"
             + (
@@ -813,8 +842,8 @@ def jalankan_spek(
         "|---|---|---|---|---|",
     ]
     for g in laporan.gerbang:
-        n = "\u2014" if g.nilai is None else f"{g.nilai:.4f}"
-        am = "\u2014" if g.ambang is None else f"{g.ambang}"
+        n = "—" if g.nilai is None else f"{g.nilai:.4f}"
+        am = "—" if g.ambang is None else f"{g.ambang}"
         md.append(
             f"| {g.nama} | {'lulus' if g.lulus else 'GAGAL'} | {n} | {am} | "
             f"{g.catatan} |"
@@ -832,7 +861,7 @@ def jalankan_spek(
         "| k | Dibuang | Simbol sisa | Trade | Total R | Ekspektasi R | Retensi |",
         "|---|---|---|---|---|---|---|",
     ]
-    strip = "\u2014"
+    strip = "—"
     for b in jackknife:
         dibuang = b["dibuang"] or strip
         e = strip if b["ekspektasi_R"] is None else f"{b['ekspektasi_R']:.6f}"
