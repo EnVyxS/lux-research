@@ -1,0 +1,161 @@
+{
+  "hipotesis": "H-013",
+  "sel": {
+    "SS": {
+      "id": "H-013-SS",
+      "nama": "h013_ss_sinyal_stop",
+      "sidik": "06c3805bdd7ad4de",
+      "ekspektasi_R": 0.06664781299919262,
+      "total_R": 4000.0684405855427,
+      "trade": 60018,
+      "jumlah_jendela": 4082,
+      "jendela_positif": 2250,
+      "p_entri_acak": 0.016611295681063124,
+      "gerbang_gagal": [
+        "invarian_risiko",
+        "checksum"
+      ],
+      "alasan_keluar": {
+        "target": 18293,
+        "stop": 33467,
+        "carry": 92,
+        "umur": 6474,
+        "akhir_data": 1692
+      },
+      "pakai_target": true,
+      "maks_umur_bar": 42,
+      "sinyal_dipermutasi": false
+    },
+    "SH": {
+      "id": "H-013-SH",
+      "nama": "h013_sh_sinyal_horizon",
+      "sidik": "af1145aab7f13567",
+      "ekspektasi_R": 0.037166633609032385,
+      "total_R": 1658.1521918333708,
+      "trade": 44614,
+      "jumlah_jendela": 4082,
+      "jendela_positif": 1981,
+      "p_entri_acak": 0.22591362126245848,
+      "gerbang_gagal": [
+        "entri_acak",
+        "invarian_risiko",
+        "checksum",
+        "funding_ekor"
+      ],
+      "alasan_keluar": {
+        "umur": 14197,
+        "stop": 28010,
+        "carry": 320,
+        "akhir_data": 2087
+      },
+      "pakai_target": false,
+      "maks_umur_bar": 48,
+      "sinyal_dipermutasi": false
+    },
+    "AS": {
+      "id": "H-013-AS",
+      "nama": "h013_as_acak_stop",
+      "sidik": "5ee4b130f9ed228d",
+      "ekspektasi_R": 0.01180570125176449,
+      "total_R": 660.2574539074326,
+      "trade": 55927,
+      "jumlah_jendela": 4082,
+      "jendela_positif": 2046,
+      "p_entri_acak": 0.3588039867109635,
+      "gerbang_gagal": [
+        "entri_acak",
+        "lookahead",
+        "invarian_risiko",
+        "checksum",
+        "konsentrasi"
+      ],
+      "alasan_keluar": {
+        "target": 14491,
+        "umur": 8574,
+        "stop": 30853,
+        "akhir_data": 1913,
+        "carry": 96
+      },
+      "pakai_target": true,
+      "maks_umur_bar": 42,
+      "sinyal_dipermutasi": true
+    },
+    "AH": {
+      "id": "H-013-AH",
+      "nama": "h013_ah_acak_horizon",
+      "sidik": "4ada4587abede644",
+      "ekspektasi_R": 0.05817042814276683,
+      "total_R": 2639.657688262473,
+      "trade": 45378,
+      "jumlah_jendela": 4082,
+      "jendela_positif": 2060,
+      "p_entri_acak": 0.19933554817275748,
+      "gerbang_gagal": [
+        "entri_acak",
+        "lookahead",
+        "invarian_risiko",
+        "checksum",
+        "funding_ekor"
+      ],
+      "alasan_keluar": {
+        "umur": 15588,
+        "stop": 27297,
+        "carry": 258,
+        "akhir_data": 2235
+      },
+      "pakai_target": false,
+      "maks_umur_bar": 48,
+      "sinyal_dipermutasi": true
+    }
+  },
+  "kontribusi": {
+    "ambang_sumbangan_sinyal_R": 0.02,
+    "min_trade_per_sel": 100,
+    "ekspektasi_R": {
+      "SS": 0.06664781299919262,
+      "SH": 0.037166633609032385,
+      "AS": 0.01180570125176449,
+      "AH": 0.05817042814276683
+    },
+    "trade": {
+      "SS": 60018,
+      "SH": 44614,
+      "AS": 55927,
+      "AH": 45378
+    },
+    "dapat_dinilai": true,
+    "sebab": "",
+    "sumbangan_sinyal_R": 0.05484211174742813,
+    "sumbangan_geometri_R": 0.029481179390160234,
+    "interaksi_R": 0.07584590628116258,
+    "lulus": true
+  },
+  "parameter_beku": {
+    "imbalan_R": 2.0,
+    "h_bar": 48,
+    "umur_sel_stop": 42,
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "seed_permutasi": 42,
+    "ulangan": 300,
+    "min_median_stop_frac": 0.004,
+    "maks_biaya_masuk_R": 0.5,
+    "stop_hormati_celah": true,
+    "jendela_bar": {
+      "panjang_latih": 1080,
+      "panjang_uji": 540,
+      "embargo": 42
+    },
+    "pemanasan_bar": 200,
+    "bar_dibutuhkan_satu_jendela": 1862
+  },
+  "ramalan": {
+    "sumbangan_sinyal_R": "0,000-0,015 sehingga GAGAL terhadap ambang 0,020; ini ramalan ADR-015 bagian 4.5 yang diulang tanpa perubahan",
+    "sumbangan_geometri_R": "nilai mutlaknya LEBIH BESAR daripada sumbangan sinyal",
+    "invarian_risiko": "gagal pada SH dan AH, lulus atau hampir lulus pada SS; sebabnya umur mengisi di harga bar sungguhan sedangkan jalur stop tidak, jadi itu BUKAN bukti target lebih baik",
+    "peringkat_AH": "AH belum tentu terburuk; bila AH mengalahkan AS, yang terukur adalah keunggulan geometri di atas sinyal nol"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "H-013-AH",
+  "pernyataan": "Sel AH dari rancangan faktorial 2x2 ADR-015 bagian B: sinyal permutasi, geometri keluar horizon tetap 48 bar tanpa target. Yang diuji BUKAN kelulusan sel ini melainkan selisih antar sel: sumbangan sinyal SS - AS dengan ambang 0,020R, sumbangan geometri SS - SH, dan interaksinya. Skor entri acak H-010 dan H-012 identik sampai lima desimal pada 0,04661R sementara sinyal sungguhan bergerak di sekitarnya, sehingga kemungkinan paling sederhana adalah sinyalnya tidak menyumbang apa pun — dan kemungkinan itu belum pernah diuji sekali pun dalam dua belas hipotesis.",
+  "dataset": "tier-b-v1 ohlcv_4h + funding_shard, universe_layak_v2_4h 438 simbol berlantai (ADR-017, ADR-018)",
+  "ruang_parameter": {
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "imbalan_R": [
+      2.0
+    ],
+    "sel": [
+      "AH"
+    ],
+    "pakai_target": [
+      false
+    ],
+    "sinyal_dipermutasi": [
+      true
+    ],
+    "maks_umur_bar": [
+      48
+    ],
+    "jendela_hari": [
+      180,
+      90,
+      7
+    ],
+    "maks_carry_realisasi_R": [
+      0.25
+    ],
+    "atr_pengali_stop": [
+      2.0
+    ],
+    "maks_carry_R": [
+      0.25
+    ],
+    "jendela_carry_hari": [
+      30
+    ],
+    "maks_biaya_masuk_R": [
+      0.5
+    ],
+    "stop_hormati_celah": [
+      true
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.05,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-26T18:19:12+00:00",
+  "komit": "",
+  "jumlah_kombinasi": 9,
+  "sidik": "4ada4587abede6445756031fdd764105dc2c988dee618b8ecbe70b899fc0cdd6"
+}
