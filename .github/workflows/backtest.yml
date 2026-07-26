@@ -15,6 +15,14 @@
 # --komit sengaja TIDAK diteruskan ke orkestrator: yang mengomit adalah langkah
 # di bawah, sekali, sesudah seluruh berkas hasil ada. Laporan yang dikomit tanpa
 # berkas hasil berarti run GAGAL, bukan run yang laporannya kosong.
+#
+# PELAJARAN RUN 30198306280 (GAGAL, 25 detik, log kosong): langkah pagar menulis
+# ke stdout saja, sementara yang disalin ke reports/ hanya logs/backtest.log —
+# berkas yang belum pernah ada bila kegagalannya terjadi sebelum langkah jalan.
+# Kegagalan itu jadi tak terbaca sama sekali dari sandbox. Karena itu SETIAP
+# langkah yang bisa gagal di bawah ini menulis keluarannya ke logs/ dan seluruh
+# logs/ disalin ke reports/ dengan if: always(). Aturan ini sudah ada di STATE
+# sejak S11; yang gagal adalah penerapannya, bukan aturannya.
 
 name: backtest
 
@@ -48,27 +56,56 @@ jobs:
         with:
           python-version: "3.12"
 
+      - id: siap
+        name: Siapkan direktori log
+        run: mkdir -p logs reports
+
       - id: deps
         name: Pasang dependensi
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          python -c "import numpy, pandas, pyarrow, yaml; print(numpy.__version__)"
+          set -o pipefail
+          {
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+            python -c "import numpy, pandas, pyarrow, yaml; print('numpy', numpy.__version__)"
+          } 2>&1 | tee logs/deps.log
 
       - id: uji
         name: Pytest wajib hijau sebelum apa pun diunduh
-        run: python -m pytest tests -q
+        run: |
+          set -o pipefail
+          python -m pytest tests -q 2>&1 | tee logs/uji.log
 
       - id: impor
         name: Pagar pra-terbang H-012
         run: |
-          python - <<'PY'
+          set -o pipefail
+          python - <<'PY' 2>&1 | tee logs/preflight.log
+          import dataclasses
           import inspect
+          from pathlib import Path
 
           from lux.analisis import periode
           from lux.backtest import engine, run_h009, run_h010, run_h012, runner
           from lux.backtest.run_h002 import muat_konfig_h002
           from lux.degenerasi import AMBANG_BIAYA_MASUK_R, AMBANG_MIN_STOP_FRAC
+
+          KONFIG = Path("config/lux.yaml")
+
+
+          def bawaan(cls, nama):
+              """Nilai bawaan yang DIDEKLARASIKAN pada medan dataclass.
+
+              Sengaja tidak membangun instans. Aturan 9 menjaga nilai bawaan
+              pada definisi medan, bukan nilai pada satu objek yang kebetulan
+              dibangun, dan membangun objek di sini berarti menebak tanda
+              tangan konstruktornya — yang justru mematikan run 30198306280.
+              """
+              for f in dataclasses.fields(cls):
+                  if f.name == nama:
+                      return f.default
+              raise AssertionError(f"{cls.__name__} tidak punya medan {nama}")
+
 
           # 1. Mekanisme WAJIB identik dengan H-010/H-009. Bila grid ikut
           #    bergeser, perubahan hasil tidak dapat dipisahkan dari perubahan
@@ -82,6 +119,7 @@ jobs:
           for p in run_h012.kandidat_h010():
               assert run_h009.KUNCI_TERLARANG not in p
               assert "maks_biaya_masuk_R" not in p
+          print("1. mekanisme identik H-010/H-009: OK")
 
           # 2. Ambang pra-registrasi tidak bergerak, tidak dilonggarkan dan
           #    tidak pula diperketat.
@@ -94,27 +132,32 @@ jobs:
           assert run_h012.PERIODE_TAHAN_TANGGAL == "2026-01-01"
           assert run_h012.PERIODE_TAHAN_MS == 1767225600000
           assert run_h012.PERIODE_TAHAN_BULAN == "2026-01"
+          print("2. ambang pra-registrasi dan batas periode: OK")
 
           # 3. Angka kembar. Lantai dan pengaman hidup di config/lux.yaml dan di
           #    lux/degenerasi.py; bila keduanya berselisih, satu di antaranya
           #    digeser tanpa dijurnalkan.
-          kunci = run_h012.kunci_config("config/lux.yaml")
+          kunci = run_h012.kunci_config(KONFIG)
           assert kunci["min_median_stop_frac"] == AMBANG_MIN_STOP_FRAC == 0.004
           assert kunci["maks_biaya_masuk_R"] == AMBANG_BIAYA_MASUK_R == 0.5
+          print("3. angka kembar config <-> degenerasi: OK")
 
           # 4. Aritmetika yang melahirkan keduanya DIHITUNG, bukan dipercaya
           #    sebagai label: biaya bolak-balik dibagi lantai harus tepat 0,5R.
-          dasar = muat_konfig_h002("config/lux.yaml")
+          #    Dipanggil dengan Path, sama seperti run_h012 memanggilnya.
+          dasar = muat_konfig_h002(KONFIG)
           bolak_balik = 2.0 * (dasar.fee_efektif + dasar.slippage)
           assert abs(bolak_balik - 0.002) < 1e-12, bolak_balik
           assert abs(bolak_balik / AMBANG_MIN_STOP_FRAC - AMBANG_BIAYA_MASUK_R) < 1e-12
+          print(f"4. {bolak_balik} / {AMBANG_MIN_STOP_FRAC} = {AMBANG_BIAYA_MASUK_R}R: OK")
 
           # 5. Bawaan mesin dan runner tetap MATI, supaya H-001b sampai H-011
           #    tetap dapat diulang tanpa satu entri pun tertolak dan tanpa satu
           #    simbol pun tersaring.
-          assert engine.Konfig().maks_biaya_masuk_R == 0.0
-          assert runner.Opsi(dir_aset="aset").min_median_stop_frac == 0.0
-          assert engine.Hasil(symbol="X", perdagangan=[]).entri_ditolak_biaya == 0
+          assert bawaan(engine.Konfig, "maks_biaya_masuk_R") == 0.0
+          assert bawaan(runner.Opsi, "min_median_stop_frac") == 0.0
+          assert bawaan(engine.Hasil, "entri_ditolak_biaya") == 0
+          print("5. bawaan pengaman dan lantai tetap MATI: OK")
 
           # 6. Sambungannya benar-benar ada. Modul yang hijau sendiri tetapi
           #    tidak tersambung menghasilkan laporan yang diam-diam kosong, dan
@@ -132,6 +175,7 @@ jobs:
               "min_median_stop_frac",
           ):
               assert kunci_laporan in src_spek, kunci_laporan
+          print("6. lantai dan agregat periode tersambung di runner: OK")
 
           # 7. Agregat periode memakai waktu MASUK dan batasnya milik periode
           #    tahan. Diperiksa pada data buatan, bukan diandaikan.
@@ -140,6 +184,7 @@ jobs:
           assert [b["periode"] for b in uji] == ["2025-12", "2026-01"]
           assert run_h012.agregat_tahan(uji)["trade"] == 1
           assert run_h012.agregat_sebelum(uji)["trade"] == 1
+          print("7. batas periode dimiliki periode tahan: OK")
 
           # 8. Angka haram tidak boleh menyelinap masuk sebagai pembanding.
           #    +0,060163R adalah hasil membuang USDCUSDT sesudah melihat
@@ -148,7 +193,9 @@ jobs:
           for haram in ("0.060163", "0.059546", "0.060168"):
               assert haram not in isi, haram
           assert run_h012.SEBELUMNYA["h010_p_entri_acak_300_ulangan"] == 0.0631
+          print("8. angka haram tidak dipakai sebagai pembanding: OK")
 
+          print("")
           print("pagar pra-terbang H-012: LULUS")
           print(f"lantai {AMBANG_MIN_STOP_FRAC}, pengaman {AMBANG_BIAYA_MASUK_R}R")
           print(f"periode tahan sejak {run_h012.PERIODE_TAHAN_TANGGAL} UTC")
@@ -161,16 +208,19 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mkdir -p aset
-          gh release download "$TAG" -D aset -p 'ohlcv_1h_*.parquet' --clobber
-          gh release download "$TAG" -D aset -p 'funding_shard*.parquet' --clobber
-          ls -1 aset | wc -l
-          du -sh aset
+          set -o pipefail
+          {
+            mkdir -p aset
+            gh release download "$TAG" -D aset -p 'ohlcv_1h_*.parquet' --clobber
+            gh release download "$TAG" -D aset -p 'funding_shard*.parquet' --clobber
+            ls -1 aset | wc -l
+            du -sh aset
+          } 2>&1 | tee logs/unduh.log
 
       - id: jalan
         name: Jalankan H-012
         run: |
-          mkdir -p logs reports
+          set -o pipefail
           python -m lux.backtest.run_h012 \
             --dir aset \
             --interval 1h \
@@ -184,16 +234,34 @@ jobs:
       - name: Salin log ke laporan
         if: always()
         run: |
-          mkdir -p reports
+          mkdir -p reports logs
           {
             echo "# Log backtest H-012"
             echo
             echo "Run: \`${GITHUB_RUN_ID}\`"
             echo "Commit: \`${GITHUB_SHA}\`"
             echo
+            echo "## Berkas hasil"
+            echo
+            echo 'Laporan yang dikomit tanpa berkas hasil berarti run GAGAL.'
+            echo
             echo '```'
-            tail -c 200000 logs/backtest.log 2>/dev/null || echo "(tidak ada log)"
+            ls -l reports/backtest_h012_periode_tertahan.md \
+                  reports/backtest_h012_periode_tertahan.json 2>&1 \
+              || echo "(berkas hasil TIDAK ADA - run GAGAL sebelum selesai)"
             echo '```'
+            for berkas in deps uji preflight unduh backtest; do
+              echo
+              echo "## logs/${berkas}.log"
+              echo
+              echo '```'
+              if [ -s "logs/${berkas}.log" ]; then
+                tail -c 120000 "logs/${berkas}.log"
+              else
+                echo "(langkah ini tidak pernah berjalan atau tidak menulis apa pun)"
+              fi
+              echo '```'
+            done
           } > reports/backtest_log.md
 
       - name: Komit hasil
