@@ -6,6 +6,13 @@
 # tanpa disadari, karena tidak ada yang mencatat kapan ia diubah.
 #
 # Setiap perubahan pada berkas ini WAJIB tercatat di journal/ beserta alasannya.
+#
+# Dua kunci ADR-014 ditambahkan 2026-07-26 (universe.min_median_stop_frac dan
+# risiko.maks_biaya_masuk_R). Nomor `versi` sengaja TIDAK dinaikkan: saya belum
+# memeriksa setiap pembaca berkas ini dalam sesi ini, jadi menaikkannya adalah
+# perubahan yang akibatnya tidak saya ketahui. Bila kelak ada modul yang
+# menegakkan nomor versi, kenaikannya dikerjakan sebagai perubahan sendiri dan
+# dijurnalkan.
 
 versi: 2
 
@@ -21,6 +28,31 @@ universe:
   # Bar datar berlebihan menandakan harga tidak bergerak sama sekali; strategi
   # apa pun yang untung di sana kemungkinan besar mengeksploitasi cacat data.
   maks_rasio_bar_datar: 0.30
+  # ADR-014, dibekukan 2026-07-26 SEBELUM H-012 dijalankan. Lantai jarak stop
+  # sebagai pecahan harga, diukur dengan MEDIAN sepanjang riwayat simbol.
+  #
+  # Mengapa kunci ini ada. Ketiga kriteria di atas tidak satu pun menyentuh
+  # volatilitas, dan USDCUSDT lolos ketiganya dengan mudah: umurnya panjang,
+  # volumenya besar sekali, dan barnya tidak datar dalam arti harga-tak-berubah.
+  # Padahal ATR/harga-nya praktis nol, sehingga stop_frac mencapai 3,1984e-06,
+  # biaya satu perdagangan menjadi 312,73R di laporan H-011, dan gerbang
+  # invarian_risiko melaporkan -470,06R terhadap ambang -1,5R. Satuan R berhenti
+  # bermakna ketika jarak stop mendekati nol, sebab setiap biaya dinyatakan
+  # dengan MEMBAGI jarak itu dan pembagian itu tidak punya batas bawah.
+  #
+  # Mengapa 0,004 dan bukan angka lain. Ia diturunkan, bukan disetel: biaya
+  # bolak-balik 2*(fee_efektif + slippage) = 0,002 dari harga menjadi tepat
+  # 0,5R pada jarak stop 0,004, karena 0,002 / 0,004 = 0,5. Di bawah lantai itu
+  # biaya memakan lebih dari separuh satuan risiko.
+  #
+  # Lantai ini adalah KRITERIA KELAYAKAN SEMESTA yang seragam, bukan pembuangan
+  # simbol sesudah hasilnya terlihat. Membuang USDCUSDT karena hasilnya buruk
+  # adalah penyubsetan pasca-hasil yang dilarang ADR-013 bagian 8; aturan yang
+  # ditulis lebih dulu dan berlaku bagi simbol mana pun, termasuk simbol yang
+  # belum ada hari ini, adalah satu-satunya bentuk yang sah.
+  #
+  # DILARANG menaikkan maupun menurunkan angka ini sesudah hasil H-012 terlihat.
+  min_median_stop_frac: 0.004
 
 biaya:
   fee_maker: 0.0002
@@ -49,6 +81,23 @@ risiko:
   maks_umur_bar: 168        # tujuh hari pada bar 1 jam
   maks_carry_R: 0.25        # seperempat risiko yang dipertaruhkan
   jendela_carry_hari: 30
+  # ADR-014, dibekukan 2026-07-26 SEBELUM H-012 dijalankan. Pagar risiko di
+  # mesin: entri yang biaya bolak-baliknya melebihi angka ini, dinyatakan dalam
+  # satuan R, DITOLAK dan tidak menjadi perdagangan.
+  #
+  # Ini pasangan aritmetika dari universe.min_median_stop_frac di atas, bukan
+  # angka kedua yang berdiri sendiri: keduanya bertemu tepat di titik batas,
+  # sehingga median tepat di lantai diterima dan entri tepat di lantai tidak
+  # ditolak. Sejenis dengan maks_carry_R: batas risiko DIPATOK, tidak pernah
+  # dilombakan di dalam walk-forward (ADR-009 — pemaksimal ekspektasi akan
+  # selalu mematikan pengaman yang memakan ekspektasi bila diberi pilihan).
+  #
+  # Bawaan Konfig.maks_biaya_masuk_R di lux/backtest/engine.py tetap 0,0 yang
+  # berarti MATI, dan itu dikunci pengujian. Angka di sini hanya menyala bila
+  # orkestrator hipotesis memasangnya secara eksplisit.
+  #
+  # DILARANG menurunkan angka ini sesudah hasil H-012 terlihat.
+  maks_biaya_masuk_R: 0.5
 
 validasi:
   seed: 42
