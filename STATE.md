@@ -2,11 +2,11 @@
 
 > **Sesi baru mulai dari sini.** Berkas ini ditulis ulang setiap sesi. Ia menggantikan kebutuhan membaca Notion atau arsip jurnal. Jika sesuatu tidak tercatat di sini, anggap belum diketahui.
 
-**Diperbarui:** 2026-07-26 19:05 WIB (versi 20)
+**Diperbarui:** 2026-07-26 23:30 WIB (versi 21)
 
-**Tahap sekarang:** S15 — **H-012 DITOLAK.** Run **`30200123505`** selesai dalam **1220,6 detik**, berkas hasil ada, sidik **`75f9c7ccd65ec30f`**. Kriteria utama ADR-014 §8: ekspektasi periode tahan sejak `2026-01` = **0,041713R** atas **22.117 perdagangan**, terhadap ambang **0,05R** yang tidak bergerak. **GAGAL, dan dapat dinilai.** Gerbang gagal: `entri_acak` p 0,0631 · `invarian_risiko` −21,3131R · `funding_ekor` lewat `funding_maks_R` 0,6601.
+**Tahap sekarang:** S16 — **H-012 tetap DITOLAK, dan sesi ini menemukan cacat mesin yang lebih penting daripada vonis itu.** Diagnostik geometri keluar (run **`30209272338`**) membuktikan kerugian terburuk −21,3131R keluar lewat **`carry`**, bukan `stop`. Pembacaan `engine.py` kemudian membuktikan sebabnya: **stop selalu diisi tepat pada harga stop, bahkan ketika bar MEMBUKA jauh melewatinya.** Mesin karena itu mustahil melahirkan stop lebih buruk dari sekitar 1R ditambah biaya. Perbaikannya sudah terpasang dan hijau: `Konfig.stop_hormati_celah` (`955b419a`, **673 pengujian**), dinyalakan di config (`fb710521`).
 
-**Tahap berikutnya:** memeriksa **alasan keluar perdagangan terburuk (−21,3131R)** dari `backtest_h012_periode_tertahan.json`, karena `invarian_risiko` yang tetap gagal sesudah lantai 0,004 menunjuk cacat **geometri keluar**, bukan cacat satuan R. Lalu ADR-015: memisahkan sinyal dari geometri keluar.
+**Tahap berikutnya:** `validate.yml` untuk interval **4h** — prasyarat mutlak, dan satu-satunya dimensi yang masih benar-benar bersih. Sesudahnya modul H-013 (ADR-015 Bagian B), lalu `backtest.yml` dibalik **paling akhir**.
 
 ---
 
@@ -36,20 +36,22 @@ Aturan yang lahir dari kesalahan nyata, bukan dari teori:
 18. (S12) **Angka jumlah yang ditulis tangan hanya boleh ada di satu tempat, yaitu pengujian tripwire.**
 19. (S13) **Margin setipis satu satuan resolusi bukan margin.** `entri_acak` H-010 lulus p 0,049505 pada 100 permutasi; pada 300 permutasi mekanisme yang sama memberi **0,0631** dan **gagal**. Dikonfirmasi ulang di H-012: **0,06312292358803986**.
 20. (S13) **Ekspektasi yang naik karena penyebutnya menyusut bukan keunggulan yang membesar.**
-21. (S13) **Kecurigaan wajib naik, bukan turun, ketika hasilnya menyenangkan.** Di H-012 kedua ramalan yang salah justru **merugikan** hipotesis dan rancangan saya sendiri; itu tanda pra-registrasinya bekerja, bukan tanda boleh lengah.
-22. (S13, ADR-014) **Menuntut kesamaan bit pada agregat pecahan adalah pengujian yang menyala pada perilaku yang benar.**
+21. (S13) **Kecurigaan wajib naik, bukan turun, ketika hasilnya menyenangkan.**
+22. (S13, ADR-014) **Menuntut kesamaan bit pada agregat pecahan adalah pengujian yang menyala pada perilaku yang benar.** Di dalam satu fungsi murni, kesamaan bit tetap sah dan dipakai `test_tanpa_celah_identik_bit_demi_bit`.
 23. (S13, ADR-014) **Pagar yang memastikan masukan identik tidak memastikan masukan sah.**
 24. (S13, ADR-014) **Satu simbol dapat mendominasi agregat 438 simbol.**
-25. (S13, ADR-014) **Himpunan tertahan habis pada saat pertama kali dilihat.** Ia hanya bisa dibelanjakan sekali. **Periode waktu tertahan kini juga sudah dibelanjakan.**
+25. (S13, ADR-014) **Himpunan tertahan habis pada saat pertama kali dilihat.** Periode waktu tertahan kini juga sudah dibelanjakan.
 26. (S13, ADR-014) **Cacat yang membalik tanda hasil tidak boleh diperbaiki di dalam hipotesis yang sama.**
 27. (S13, ADR-014) **Eksperimen yang tercemar tidak informatif ke arah mana pun.**
-28. (S13, ADR-014) **Saringan yang menolak entri juga menolak saat pemilihan.** Terbukti secara kuantitatif di H-012: hanya **62** entri ditolak pengaman, seluruhnya dari enam simbol yang berubah degenerat di tengah jalan (PAXGUSDT 42, BTCDOMUSDT 11, MASKUSDT 4, BNBUSDT 3, BTCUSDT 1, TRXUSDT 1). USDCUSDT menyumbang **nol** penolakan karena ia dibuang lantai lebih dulu.
+28. (S13, ADR-014) **Saringan yang menolak entri juga menolak saat pemilihan.** Terbukti kuantitatif di H-012: hanya **62** entri ditolak pengaman.
 29. (S14) **Pra-registrasi wajib diperiksa terhadap apa yang benar-benar dapat dihitung dari laporan.**
-30. (S14) **Kriteria utama dihitung dari berkas laporan yang dikomit, bukan dari nilai yang beredar di memori run.** Terbukti bekerja di H-012: `agregat_tahan` membaca blok `agregat_periode` dari JSON yang baru ditulis, sehingga 0,041713R dapat dihitung ulang tangan oleh siapa pun.
-31. (S15) **Pagar yang menyalin baris dari kode yang dijaganya tidak menjaga apa pun.** Run `30198942815` lulus kedelapan kelompok pagar lalu mati di `run_h012.main` dengan `AttributeError` yang **identik** dengan yang baru saja diperbaiki di pagar, sebab pagar 4 menyalin baris beserta salah namanya. Pagar hanya berguna bila dibaca dari **definisi** (`dataclasses.fields`) atau bila ia **memanggil fungsi yang sama** dengan yang dipakai produksi.
-32. (S15) **Aritmetika yang hidup di dalam `main` tidak dapat diuji.** 615 pengujian hijau tidak menangkap bug di `run_h012.main` karena `main` menuntut dataset 559 MB. Perhitungan yang bisa salah wajib menjadi fungsi tingkat modul; `biaya_bolak_balik_R` lahir dari aturan ini.
-33. (S15) **Setiap langkah workflow wajib `tee` ke `logs/` dan seluruh `logs/` disalin ke `reports/` dengan `if: always()`.** Run `30198306280` gagal dan buktinya **hilang** karena hanya `logs/backtest.log` yang disalin — berkas yang belum pernah ada bila kegagalannya mendahului langkah `jalan`. Satu putaran penuh terbuang dan yang dihasilkannya cuma dugaan keliru.
-34. (S15) **Lingkungan pagar wajib memasang dependensi yang sama dengan `tests.yml`.** `backtest.yml` memanggil pytest tanpa memasangnya; `requirements.txt` tidak memuat pytest. Bersaudara dengan aturan 24: laporan hijau dari workflow lain **bukan** bukti tentang lingkungan ini.
+30. (S14) **Kriteria utama dihitung dari berkas laporan yang dikomit, bukan dari nilai yang beredar di memori run.**
+31. (S15) **Pagar yang menyalin baris dari kode yang dijaganya tidak menjaga apa pun.** Pagar hanya berguna bila dibaca dari **definisi** (`dataclasses.fields`) atau bila ia **memanggil fungsi yang sama** dengan produksi.
+32. (S15) **Aritmetika yang hidup di dalam `main` tidak dapat diuji.** Perhitungan yang bisa salah wajib menjadi fungsi tingkat modul; `biaya_bolak_balik_R` dan `harga_stop_terisi` lahir dari aturan ini.
+33. (S15) **Setiap langkah workflow wajib `tee` ke `logs/` dan seluruh `logs/` disalin ke `reports/` dengan `if: always()`.**
+34. (S15) **Lingkungan pagar wajib memasang dependensi yang sama dengan `tests.yml`.**
+35. (S16) **Muatan tulis yang panjang wajib dibaca ulang utuh sebelum dikirim, dan jumlah pengujian dicacah dari muatan yang benar-benar dikirim, bukan dari rencana.** Dua ramalan salah (635 lawan 638, 662 lawan 665) sebabnya identik: mencacah dari niat. Dua commit cacat berturut (`953ce24a` sisa baris percobaan, `2a0f8545` `}` liar yang menjatuhkan **seluruh** koleksi pytest) sebabnya juga identik: menulis berkas panjang satu tarikan tanpa membaca ulang.
+36. (S16, ADR-016) **Ramalan yang dijamin benar oleh konstruksi bukan ramalan.** Sebelum menghitung sebuah ramalan lulus, tunjukkan keadaan yang membuatnya gagal. Ramalan 2 ADR-015 benar secara sepele: ia meramalkan tidak ada stop di bawah −1,5R terhadap mesin yang **mustahil** menghasilkannya.
 
 ---
 
@@ -61,11 +63,77 @@ Sistem trading kuantitatif untuk Binance USD-M Futures, dibangun ulang dari nol.
 
 ## 3. Fakta terverifikasi
 
+### TEMUAN S16 — mesin buta terhadap celah harga pada jalur stop
+
+**Rantai buktinya, bukan dugaannya:**
+
+1. Gerbang `invarian_risiko` H-012 gagal pada **−21,3131R** terhadap ambang −1,5R.
+2. Diagnostik `lux/analisis/geometri_keluar.py` atas `reports/backtest_h012_periode_tertahan.json`, run **`30209272338`**, laporan dikomit **`06841a30`**, log `logs/uji.log` = `22 passed in 0.08s`: perdagangan itu **STGUSDT**, `alasan` keluar **`carry`**, `transaksi_R` 0,0559, `funding_R` 0,4825, pelampauan di luar biaya **20,3131R**, `stop_frac` 2,197%, `jam` **1,0**.
+3. Tidak satu pun keluar `stop` di bawah −1,5R; stop terburuk **−1,4966R**; median pelampauan pada jalur stop hanya **0,410263R**.
+4. Pembacaan `lux/backtest/engine.py` (blob **`621298a8`**) menjelaskan mengapa: di blok stop/target, `harga = stop if kena_stop else target`. **Harga bar tidak pernah dipakai.** Stop karena itu selalu terisi sempurna.
+
+**Konsekuensi yang wajib ikut dikutip setiap kali angka R lama disebut:**
+
+- Gerbang `invarian_risiko` **praktis tidak punya daya pada jalur stop**. Ia hanya dapat dijatuhkan oleh `umur`, `carry`, dan `akhir_data` — tiga jalur yang mengisi pada `o[t]` atau `c[-1]`, yaitu harga bar sungguhan.
+- Seluruh **dua belas** hipotesis dinilai oleh mesin yang **optimistis terhadap risiko celah**.
+- Arah biasnya **melawan penolakan**: seandainya celah dihormati, penolakan akan lebih tegas. **Tidak ada vonis yang perlu dibalik.** Tetapi tidak satu pun angka R lama boleh disebut konservatif.
+- Jalur `carry` **bukan** pihak yang cacat. −21,3131R adalah angka jujur, dan justru satu-satunya jendela kejujuran yang tersisa.
+
+**Klaim saya yang DITARIK:** "mekanisme stop sendiri sehat" (ditulis sesudah ramalan 2 terbukti). Salah, dan penarikannya resmi di `decisions/ADR-016.md` bagian 2.
+
+### ADR-016 — perbaikan yang memperburuk hasil, dan itu alasan ia dikerjakan
+
+Ditulis **sebelum** sebaris kode perbaikan, commit **`05339d3d`**. Delapan bagian: fakta terverifikasi, penarikan klaim, sebab sebenarnya, batas dugaan, keputusan, lima ramalan beku, tujuh langkah, dua usul aturan.
+
+**Pelaksanaan langkah 1 — commit `955b419a`:**
+
+- `Konfig.stop_hormati_celah: bool = False`, diletakkan **paling akhir**, bawaan **MATI** (aturan 9).
+- Fungsi tingkat modul `harga_stop_terisi(stop, buka_bar, arah)`: long `min(stop, buka)`, short `max(stop, buka)` (aturan 32).
+- **Target sengaja TIDAK simetris** — ia tetap terisi di harga target walau bar membuka melewatinya, sebab celah yang menguntungkan adalah hadiah atas ketidaktahuan.
+- `tests/test_stop_celah.py`, delapan pengujian, angka sengaja bulat (fee 0, slippage 0, ATR 1,0): long celah turun **−1,0R** ketika mati lawan **−5,25R** ketika menyala; short celah naik **−1,0R** lawan **−7,25R**; bar tanpa celah **identik bit demi bit**.
+
+**Pengujian: `673 passed in 2,69s`, kode keluar `0`**, run **`30209850366`**, laporan dikomit **`311d2a86`**, blob **`c9aeb95d`**. **Ramalan 1 ADR-016 BENAR:** 665 pengujian lama lulus **tanpa satu pun disunting** — bukti bahwa medan itu benar-benar bawaan mati.
+
+**Langkah 2 — commit `fb710521`:** `config/lux.yaml` memuat `risiko.stop_hormati_celah: true`. Bawaan mesin tetap mati dan dikunci pengujian; angka config hanya berlaku bila orkestrator hipotesis memasangnya eksplisit, pola yang sama dengan `maks_biaya_masuk_R`. `versi` **tetap 2**; `praregistrasi.py` terverifikasi tidak membaca config sama sekali (blob `98a2806e`). Commit ini **tidak memicu workflow apa pun** karena `tests.yml` memfilter `lux/**` dan `tests/**`, jadi ramalan "673 tetap" **tidak dapat diadili** dan tidak dihitung.
+
+**Hasil H-001b sampai H-012 TIDAK dihitung ulang.** Menghitung ulang vonis dengan mesin berbeda akan mencampur dua mesin di dalam satu papan skor.
+
+### ADR-015 Bagian A — teradili tanpa satu run backtest
+
+Empat ramalan dibekukan di `c6049fa7` dengan ambang −1,5R, lalu diadili dari laporan yang sudah dikomit:
+
+| # | Ramalan | Hasil | Putusan |
+|---|---|---|---|
+| 1 | perdagangan terburuk keluar lewat `umur`/`carry`/`akhir_data`, bukan `stop` | `carry` | **BENAR** |
+| 2 | tidak ada keluar `stop` di bawah −1,5R | tidak ada; terburuk −1,4966R | **BENAR, tetapi sepele** (aturan 36) |
+| 3 | porsi bukan-stop di sepuluh terburuk ≥ 0,5 | **0,1000** | **SALAH** |
+| 4 | keluar `umur` mendominasi ekor | tak ada `umur` di ekor | **TIDAK DAPAT DINILAI** |
+
+Sepuluh perdagangan terburuk: STGUSDT −21,3131 (`carry`) lalu sembilan keluar `stop` antara −1,4966 dan −1,3865 (TRXUSDT ×4, SUNUSDT ×2, BTCDOMUSDT ×2, PAXGUSDT ×1). Median pelampauan: `carry` **20,313091R**, `stop` **0,410263R** — dua orde besaran, dan itu tepat bentuk yang diperkirakan oleh temuan di atas.
+
+Modul: `lux/analisis/geometri_keluar.py` + `tests/test_geometri_keluar.py`, **22 pengujian**, hijau di `eae7eb3a` (**665 passed**, run `30208582479`). Workflow `geometri.yml` (`51758f36`) berdiri sendiri, memfilter berkasnya sendiri, dan **sudah memuat `git pull --rebase --autostash origin main`** sebelum `git push` — workflow pertama yang membayar utang itu.
+
+### Pelapor Notion — hijau dan kredensialnya terverifikasi
+
+`lux/notion_reporter.py` memakai `urllib.request` sebab runner tanpa `requests`. Kredensial CI **terverifikasi bekerja**, bukan diasumsikan: run asap **`30207584722`** mencatat `baris Notion dibuat, kode 200`, laporan dikomit `5e29432a`, dan barisnya dikonfirmasi dari sisi Notion (page `3a9d5df0-96f9-81df-90a7-f6075d071680`). Secret `NOTION_TOKEN`, variable `NOTION_DB_RUN_RESULTS = 42052623cef043098f13a6f46baf7f3b`.
+
+Satu run merah mendahuluinya (`30207492404`, `1 failed, 641 passed`) karena pengujian menuntut token yang saat itu belum ada; sejak `b4b1963c` pengujian melewatkan diri sendiri tanpa kredensial.
+
+### Papan ramalan jumlah pengujian
+
+| Commit | Ramalan | Nyata | Putusan |
+|---|---|---|---|
+| `864da2ec` | 635 | **638** | SALAH |
+| `3880408f` | 642 | 642 | TEPAT |
+| `b4b1963c` | 643 | 643 | TEPAT |
+| `eae7eb3a` | 662 | **665** | SALAH |
+| `955b419a` | **673** | **673** | TEPAT |
+
+Jejak lengkap: 444 → 462 → 467 → 488 → 494 → 510 → 525 → 542 → 563 → 574 → 578 → 589 → 601 → 615 → 638 → 642 → 643 → 665 → **673**.
+
 ### H-012 — DITOLAK (ADR-014 §8)
 
-Run **`30200123505`**, commit **`56a325d2`**, laporan **`b3399b39`**, sidik **`75f9c7ccd65ec30f`**, **1220,6 detik**, 437 simbol dari 438 dinilai, 12 kombinasi, 4.081 jendela. Berkas `reports/backtest_h012_periode_tertahan.{md,json}` ada, jadi run sah diadili (aturan 5).
-
-**Kriteria utama, dihitung dari blok `agregat_periode` di laporan yang dikomit:**
+Run **`30200123505`**, commit **`56a325d2`**, laporan **`b3399b39`**, sidik **`75f9c7ccd65ec30f`**, **1220,6 detik**, 437 simbol dari 438 dinilai, 12 kombinasi, 4.081 jendela.
 
 | Sisi batas | Bulan | Trade | Total R | Ekspektasi R |
 |---|---|---|---|---|
@@ -73,126 +141,21 @@ Run **`30200123505`**, commit **`56a325d2`**, laporan **`b3399b39`**, sidik **`7
 | Sebelum `2026-01` | 66 | 113.564 | +7.168,96 | +0,063127 |
 | Seluruh riwayat | 73 | 135.681 | +8.091,52 | +0,059636 |
 
-Selisih tahan − sebelum: **−0,021414R**. Periode tahan memuat 22.117 perdagangan, jauh di atas syarat 100, jadi ia **DAPAT dinilai**: ini kegagalan karena sinyal, bukan kegagalan karena kekurangan data. **0,041713R < 0,05R → GAGAL.**
+Selisih tahan − sebelum **−0,021414R**. 22.117 perdagangan jauh di atas syarat 100, jadi ini kegagalan karena **sinyal**, bukan karena kekurangan data. **0,041713R < 0,05R → GAGAL.**
 
-**Lantai semesta bekerja dan tidak membatalkan apa pun.** 438 dinilai, 437 layak, **1 dibuang**: USDCUSDT dengan median `stop_frac` **1,293930e−04** dan biaya masuk **15,46R**. Satu jauh di bawah `BATAS_VOID` 20, jadi semesta yang diuji masih semesta yang dipra-registrasi.
+Lantai semesta membuang **1** simbol: USDCUSDT, median `stop_frac` **1,293930e−04**, biaya masuk **15,46R** — jauh di bawah `BATAS_VOID` 20, jadi semesta yang diuji masih semesta yang dipra-registrasi.
 
-**Sebelas gerbang:**
+**Sebelas gerbang:** forward_fill 0,0013 lulus · buy_and_hold 0,8401 lulus (unggul 394/437) · **entri_acak GAGAL p 0,06312292358803986** (18/300) · lookahead 0,0000 lulus · **invarian_risiko GAGAL −21,3131R** · funding lulus · overlap lulus · checksum lulus · survivorship 0,1465 lulus · konsentrasi retensi 0,9849 lulus · **funding_ekor GAGAL `funding_maks_R` 0,6601**.
 
-| Gerbang | Putusan | Nilai | Ambang |
-|---|---|---|---|
-| forward_fill | lulus | 0,0013 | 0,3 |
-| buy_and_hold | lulus | 0,8401 (unggul 394/437) | 0,0 |
-| **entri_acak** | **GAGAL** | **p 0,06312292358803986** (18/300) | 0,05 |
-| lookahead | lulus | 0,0000 | 0,0 |
-| **invarian_risiko** | **GAGAL** | **−21,3131R** | −1,5 |
-| funding | lulus | 153.788,1322 | 0,0 |
-| overlap | lulus | 0,0000 | 0,0 |
-| checksum | lulus | 0,0000 | 0,0 |
-| survivorship | lulus | 0,1465 diuji vs 0,1465 universe | 0,5 |
-| konsentrasi | lulus | retensi 0,9849 | 0,6 |
-| **funding_ekor** | **GAGAL** | `funding_maks_R` **0,6601** | 0,50 |
+Skor entri acak nyata **0,04661R** — **persis angka H-010**.
 
-Skor entri acak nyata **0,04661R** — **persis angka H-010**, jadi geometri keluar menghasilkan hampir seluruh ekspektasi juga di semesta penuh berlantai.
+**Sebaran (ADR-013):** std 2,22746R, galat baku 0,006047R, CI95 **[0,047784, 0,071489]R** yang **memuat** 0,05. Kuartil: min −21,3131 · Q1 −1,0632 · median −1,0401 · Q3 −0,4209 · maks 12,9076. Biaya: rerata transaksi **0,0359R**, funding −0,0010R, jarak stop 3,507%, **nol** perdagangan berbiaya di atas 1R dari 135.681. Alasan keluar: stop 101.417 · target 21.658 · umur 9.699 · akhir_data 2.479 · carry 428. Jendela positif 2.246/4.081 = 0,55036. Entri ditolak pengaman **62** (PAXGUSDT 42, BTCDOMUSDT 11, MASKUSDT 4, BNBUSDT 3, BTCUSDT 1, TRXUSDT 1).
 
-**Konsentrasi sehat, dan itu sungguhan:** 306 untung / 131 rugi dari 437; drop-1 0,05873R (retensi **0,9849**, jauh di atas 0,857845 milik H-010); drop-22 0,04497R; median per simbol +0,06285R; porsi bruto teratas **0,0142** (FLMUSDT), setara **174,3 simbol**. Semesta 437 simbol menghapus keberatan konsentrasi yang menghantui H-009 dan H-010 — tetapi tidak menyelamatkan hipotesisnya.
+**Adjudikasi tujuh ramalan ADR-014 §8 — lima tepat, dua salah:** 1 BENAR (1 simbol dibuang, di batas bawah) · 2 BENAR (0,059636, haram jadi bukti) · 3 BENAR (0,041713 → GAGAL) · 4 BENAR (0,063123, dan menjatuhkan) · **5 SALAH** (62 lawan ramalan 500–5.000) · **6 SALAH** (`invarian_risiko` GAGAL, bukan lulus) · 7 BENAR (20,3 menit).
 
-**Sebaran (ADR-013):** std per perdagangan **2,22746R** (ddof=1, n 135.681), galat baku **0,006047R**, selang 95% **[0,047784, 0,071489]R**, jarak ke ambang **+0,009636R = +1,59 galat baku**. Kuartil: min −21,3131 · Q1 −1,0632 · median −1,0401 · Q3 −0,4209 · maks 12,9076. Selang itu memuat 0,05, jadi bahkan angka seluruh riwayat tidak memisahkan diri dari ambang — dan galat baku ini **taksiran bawah**.
+Ramalan 6 adalah pintu masuk seluruh temuan S16. Lantai 0,004 **bekerja besar-besaran** (−470,0612R → −21,3131R, turun 95,5%; biaya 0,12552R → 0,0359R; perdagangan di atas 1R 478 → **0**) tetapi **tidak** membuat gerbangnya lulus — dan sekarang diketahui sebabnya bukan satuan R melainkan mesin yang buta celah.
 
-**Biaya sehat, dan ini yang membuat `invarian_risiko` menarik:** rerata biaya transaksi **0,0359R**, rerata funding **−0,0010R**, rerata jarak stop terhadap harga **3,507%**, dan **nol** perdagangan berbiaya di atas 1R dari 135.681. Bandingkan H-011: 0,12552R dan 478 perdagangan di atas 1R. Lantai 0,004 **memang** menutup jalan masuk degenerasi biaya.
-
-Alasan keluar: stop 101.417 · target 21.658 · umur 9.699 · akhir_data 2.479 · carry 428. Jendela positif 2.246/4.081 = 0,55036, di atas 0,5. Parameter terpilih masih dipimpin imbalan 8,0 (655+574+496 = 1.725 dari 4.081 = **42,27%**), sama seperti H-011 (42,25%), jadi optimum tetap di dalam grid.
-
-**Adjudikasi tujuh ramalan ADR-014 §8 — lima tepat, dua salah:**
-
-| # | Ramalan | Hasil | Putusan |
-|---|---|---|---|
-| 1 | 1–6 simbol dibuang lantai | **1** (USDCUSDT) | **BENAR**, di batas bawah |
-| 2 | ekspektasi seluruh riwayat 0,050–0,065 | **0,059636** | **BENAR** (haram jadi bukti) |
-| 3 | ekspektasi periode tahan 0,010–0,045 → GAGAL | **0,041713** | **BENAR** |
-| 4 | p entri acak 0,01–0,20 | **0,063123** | **BENAR**, dan menjatuhkan |
-| 5 | 500–5.000 entri ditolak pengaman | **62** | **SALAH**, 8×–80× terlalu tinggi |
-| 6 | `invarian_risiko` LULUS | **GAGAL −21,3131R** | **SALAH** |
-| 7 | durasi 10–60 menit | **20,3 menit** | **BENAR** |
-
-**Ramalan 6 adalah temuan terpenting sesi ini, dan ia merugikan rancangan saya sendiri.** Kalimat yang saya bekukan sebelum run berbunyi: bila `invarian_risiko` masih gagal, lantai 0,004 belum menutup jalan masuk degenerasi dan seluruh ADR-014 keliru. Yang terverifikasi sekarang lebih sempit dan lebih tajam:
-
-- Lantai **bekerja besar-besaran**: kerugian terburuk satu perdagangan **−470,0612R → −21,3131R** (turun 95,5%), rerata biaya 0,12552R → 0,0359R, perdagangan berbiaya di atas 1R 478 → **0**.
-- Lantai **tidak** membuat gerbangnya lulus: −21,3131R masih 14 kali ambang −1,5R.
-- Perdagangan terburuk itu **bukan** gejala satuan R yang runtuh: funding-nya hanya 0,4825R (porsi 0,0226) dan biayanya di bawah 1R. Sesuatu yang lain membayar 20R.
-
-Jadi ADR-014 tidak seluruhnya keliru; ia menutup **satu** jalan masuk dan membuka pandangan ke jalan masuk **kedua** yang belum pernah dinamai. Penyebab pastinya **belum terverifikasi** dan dicatat sebagai asumsi di bagian 4.
-
-**Yang haram dilakukan terhadap hasil ini:** mengutip 0,059636R sebagai kelulusan (seluruh riwayat sudah dipakai memilih segalanya sejak H-001b; ramalan 2 menyatakannya haram sebelum angkanya dilihat) · memilih bulan terbaik dari tabel 73 bulan · menyatakan H-012 "hampir lulus" karena +1,59 galat baku · menurunkan ambang 0,05R · melonggarkan −1,5R.
-
-### Lima run gagal sebelum H-012 berhasil — dan polanya satu
-
-| Run | Durasi | Mati di | Sebab |
-|---|---|---|---|
-| `30198306280` | 25 s | langkah `uji` | **buktinya hilang**: hanya `logs/backtest.log` disalin, dan berkas itu belum pernah ada |
-| `30198631730` | 23 s | langkah `uji` | `No module named pytest`; `requirements.txt` tidak memuatnya |
-| `30198840830` | 25 s | pagar 4 | `'Konfig' object has no attribute 'fee_efektif'` |
-| `30198942815` | 32 s | `run_h012.main` baris 327 | `fee_efektif` yang **sama**, kali ini di orkestrator; pagar 4 telah menyalinnya |
-| `30200123505` | 1220,6 s | — | **SELESAI** |
-
-Keempat kegagalan mati **sebelum** langkah `jalan` menghasilkan komputasi, jadi nol kuota berat terbuang; yang terbuang adalah satu putaran buta yang melahirkan diagnosis keliru. Empat kelas kesalahan, semuanya kini beraturan: nama ditebak alih-alih dibaca dari definisi (aturan 31), aritmetika tersembunyi di `main` (32), log tidak disalin seluruhnya (33), lingkungan pagar berbeda dari `tests.yml` (34).
-
-**Diagnosis saya yang salah dan sudah ditarik:** saya menuduh tiga baris pagar penebak konstruktor sebagai penyebab `30198306280`, padahal pagar itu tidak pernah dieksekusi — run mati di langkah `uji`. Alasan saya menyingkirkan `uji` juga cacat: saya bersandar pada `reports/tests.md` yang lahir dari `tests.yml`, lingkungan yang berbeda. Itu tepat kelas kesalahan aturan 24.
-
-### Enam commit ADR-014 dan dua commit perbaikan CI
-
-| Commit | Isi | Pengujian |
-|---|---|---|
-| `bfb5f2d9` | `runner.py`: lantai semesta, `entri_ditolak_biaya`, simbol dibuang + `median_stop_frac` + `tests/test_runner_lantai.py` | 578 → **589** |
-| `81b213b2` | `config/lux.yaml`: `min_median_stop_frac: 0.004`, `maks_biaya_masuk_R: 0.5` | 589 |
-| `0684bca0` | `lux/analisis/periode.py` + pengujiannya, hijau sendiri lebih dulu | 589 → **601** |
-| `f6efbd7a` | sambungan `periode` ke `runner.jalankan_spek` | **601** |
-| `884d6c8e` | `lux/backtest/run_h012.py` + `tests/test_run_h012.py` | 601 → **615** |
-| `f7da5cf3` | `backtest.yml` dibalik ke H-012 — memicu run | — |
-| `7912758f` | instrumentasi log: `tee` tiap langkah, salin lima log `if: always()` | 615 |
-| `07c8541e` | pasang `pytest` di `backtest.yml` | 615 |
-| `1637d035` | pagar 4 memakai `Konfig.fee` | 615 |
-| `56a325d2` | `run_h012.biaya_bolak_balik_R`, pagar 4 memanggilnya alih-alih menyalinnya — memicu run yang berhasil | **615** |
-
-**Pengujian terverifikasi:** 615 lulus, kode keluar 0, di `tests.yml` (run `30198241082`) **dan** di dalam `backtest.yml` sendiri (2,47–2,75 detik pada empat run terakhir). Ketiga ramalan jumlah pengujian S14 tepat (589, 601, 615) — tepat kesepuluh berturut-turut.
-
-**Yang dipatok sebelum run dan tidak bergerak sesudahnya:** lantai 0,004 · pengaman 0,5R · `PERIODE_TAHAN_MS` 1767225600000 (`2026-01`, titik batas milik periode tahan) · `BATAS_VOID` 20 · kriteria 0,05R / 100 trade / p ≤ 0,05 / ≥ 0,5 · `--ulangan` 300 · grid identik H-010/H-009. Aritmetika lantai–pengaman **dihitung**, bukan dipercaya sebagai label: `2×(fee + slippage)` = 0,002 dari harga = tepat 0,5R pada jarak stop 0,004, dan sejak `56a325d2` pagar dan orkestrator memakai **fungsi yang sama** untuk menghitungnya.
-
-**Batas kejujuran yang wajib ikut dikutip.** Periode tahan **tidak** sebersih himpunan simbol tertahan sebelum H-011: riwayat yang sudah dilihat memuat periode itu di dalam agregatnya, dan yang belum pernah dilihat hanyalah **angkanya secara terpisah**. Perdagangan yang dibuka sesaat sebelum batas dapat ditutup sesudahnya; rembesan itu terbatas `maks_umur_bar` 168 bar = tujuh hari, arahnya tidak diketahui.
-
-**Utang teknis yang masih terbuka:**
-
-1. `runner.median_stop_frac_bingkai` memakai ATR bar `t` dibagi **close** bar `t`; mesin memakai ATR bar `t−1` terhadap **open** bar `t` ber-slippage. Selisih per mil terhadap kriteria yang berselisih tiga orde besaran, jadi ia tidak dapat memindahkan satu simbol pun melewati lantai. Tertulis di docstring.
-2. `tests/test_run_h012.py::test_kriteria_tidak_bergerak` memakai satu baris `hasattr` + `__import__` yang rapuh secara gaya. Hijau, tetapi wajib dirapikan menjadi impor `engine.Konfig` biasa.
-3. `pytest` belum masuk `requirements.txt` maupun `requirements-dev.txt`; aturan 34 masih dijaga tangan.
-
-### H-011 — DITOLAK, dan yang terbongkar adalah cacat semesta (ADR-014)
-
-Run **`30194733599`**, laporan **`2bb7b963`**, sidik **`8a6efde6d333d8b5`**, **838,1 detik**, 438 simbol.
-
-| Kelompok | n simbol | Trade | Total R | Ekspektasi R |
-|---|---|---|---|---|
-| Teruji (40 pertama alfabet) | 40 | 11.734 | +622,2348 | **+0,053028** |
-| **Tertahan (398)** | 398 | 124.603 | **−11.403,5584** | **−0,091519** |
-| Seluruh semesta | 438 | 136.337 | −10.781,3236 | −0,079078 |
-
-Baris teruji **identik bit-per-bit** dengan H-010. **Penyebab tunggal:** `USDCUSDT` — 649 perdagangan, total_R **−18.861,0596**, ekspektasi **−29,06173**, `stop_frac` terburuk **3,1984170825288993e−06**, `transaksi_R` **312,7333** pada satu perdagangan ber-`R` **−470,0612**. Cacat pengukuran, bukan temuan pasar. Gerbang gagal: `entri_acak` 0,0631 · `invarian_risiko` −470,0612R · `konsentrasi` tak dapat dinilai · `funding_ekor` `funding_maks_R` 2,3900.
-
-H-012 kini memberi pembanding yang bersih untuk klaim itu: dengan simbol yang sama dibuang oleh **kriteria seragam yang dipra-registrasi**, ekspektasi 437 simbol menjadi **+0,059636R**. Itu **bukan** kelulusan dan bukan rehabilitasi H-011 — H-011 tetap tercemar dan tetap ditolak (aturan 27) — tetapi ia memisahkan "semesta penuh rugi" dari "satu simbol merusak satuan ukurannya".
-
-### SEMESTA LAYAK v2 — CACAT LAMA, KINI BERLANTAI
-
-Kriteria lama (`min_bar_1h` 8760, `min_median_quote_volume_harian` 1.000.000, `maks_rasio_bar_datar` 0,30) **tidak satu pun menyentuh volatilitas**; USDCUSDT lolos ketiganya dan saringan volume justru menariknya masuk. Sejak `81b213b2` berkas memuat `universe.min_median_stop_frac: 0.004` dan `risiko.maks_biaya_masuk_R: 0.5`. Nomor `versi` **tetap 2**, sengaja, karena belum seluruh pembacanya diperiksa. Terverifikasi: `muat_konfig_h002` memakai `yaml.safe_load` lalu hanya mengambil kunci yang disebutnya, jadi penambahan ini tidak menjatuhkan pembacaan lama — dan kini terbukti di run nyata.
-
-### HIMPUNAN TERTAHAN — HABIS, DAN PERIODE TAHAN JUGA
-
-Hasil per simbol untuk seluruh 438 simbol pada 1h sudah dilihat (H-011), dan tabel 73 bulan sudah dilihat (H-012). Dimensi yang masih bersih hanya **kerangka 4h** dan **pemisahan sinyal dari geometri keluar**.
-
-### H-010 — LULUS pada 40 simbol dengan empat keberatan; TIDAK DIREHABILITASI
-
-Run **`30193898133`**, sidik **`14b2f3bfa8a754b5`**, 117,5 detik, 40 simbol. Kriteria: ekspektasi **0,053028** · 11.734 trade · p **0,049505** · jendela positif **0,528090**.
-
-**Empat keberatan, dan tiga di antaranya kini diperkuat H-012:** (1) p 0,049505 = (4+1)/(100+1), dan pada 300 permutasi mekanisme yang sama memberi **0,0631** di H-010, **0,0631** di H-011, dan **0,063123** di H-012 — tiga kali, tiga semesta, angka yang sama; (2) skor nyata entri acak **0,10781R → 0,04661R (−56,8%)**, dan H-012 mengulang **0,04661R** persis, jadi tafsiran "keunggulan mungkin seluruhnya milik geometri keluar" makin sulit dihindari; (3) jendela positif 0,528090; (4) semesta yang kini diketahui cacat — keberatan ini **selesai** dijawab H-012.
+**Yang haram dilakukan terhadap hasil ini:** mengutip 0,059636R sebagai kelulusan · memilih bulan terbaik dari tabel 73 bulan · menyatakan H-012 "hampir lulus" karena +1,59 galat baku · menurunkan ambang 0,05R · melonggarkan −1,5R.
 
 ### Papan skor dua belas hipotesis
 
@@ -205,77 +168,65 @@ Run **`30193898133`**, sidik **`14b2f3bfa8a754b5`**, 117,5 detik, 40 simbol. Kri
 | H-005 | entri retest | −0,03571 | `invarian_risiko` | DITOLAK |
 | H-006 | sapuan likuiditas | −0,13449 | `entri_acak`, `invarian_risiko` | DITOLAK |
 | H-007 | imbalan dipilih walk-forward | 0,04044 | `invarian_risiko` −1,9769 | DITOLAK |
-| H-008 | pengaman carry dilombakan | 0,04126 | `invarian_risiko` −1,9769 | DITOLAK, pengaman dimatikan pemilih |
+| H-008 | pengaman carry dilombakan | 0,04126 | `invarian_risiko` −1,9769 | DITOLAK |
 | H-009 | pengaman carry dipatok 0,25 | 0,041359 | tidak ada | DITOLAK oleh ambang 0,05R |
 | H-010 | grid imbalan {2,4,6,8}, 40 simbol | 0,053028 | tidak ada dari sebelas | LULUS, empat keberatan; **p 0,0631 pada 300 permutasi** |
-| H-011 | mekanisme H-010 atas 438 simbol | −0,079078 | `entri_acak`, `invarian_risiko`, `konsentrasi`, `funding_ekor` | **DITOLAK, dan TERCEMAR** |
-| **H-012** | semesta berlantai 0,004 + pagar 0,5R, dinilai sejak 2026-01-01 | **0,041713 (periode tahan)** | `entri_acak` 0,0631 · `invarian_risiko` −21,3131 · `funding_ekor` 0,6601 | **DITOLAK** |
+| H-011 | mekanisme H-010 atas 438 simbol | −0,079078 | empat gerbang | **DITOLAK, dan TERCEMAR** |
+| **H-012** | semesta berlantai 0,004 + pagar 0,5R, dinilai sejak 2026-01-01 | **0,041713 (periode tahan)** | `entri_acak` · `invarian_risiko` · `funding_ekor` | **DITOLAK** |
 
-Sidik: H-001b `e458f4c82abf6735` · H-002 `16fb57692a6f0888` · H-003 `3a1cdc867f61bf67` · H-004 `98d6a5e15b2cc08b` · H-005 `9c4b6324e79569eb` · H-006 `e503a9a833182b25` · H-007 `7f5e7aeeaa29284b` · H-008 `dfeeea04fd4107f6` · H-009 `eac6c83305bd1069` · H-010 `14b2f3bfa8a754b5` · H-011 `8a6efde6d333d8b5` · **H-012 `75f9c7ccd65ec30f`**.
+Sidik: H-001b `e458f4c82abf6735` · H-002 `16fb57692a6f0888` · H-003 `3a1cdc867f61bf67` · H-004 `98d6a5e15b2cc08b` · H-005 `9c4b6324e79569eb` · H-006 `e503a9a833182b25` · H-007 `7f5e7aeeaa29284b` · H-008 `dfeeea04fd4107f6` · H-009 `eac6c83305bd1069` · H-010 `14b2f3bfa8a754b5` · H-011 `8a6efde6d333d8b5` · H-012 `75f9c7ccd65ec30f`.
 
 **Sebelas dari dua belas ditolak.** Yang satu itu lulus pada 100 permutasi dan gagal pada 300.
 
-**Kesimpulan struktural, diperkuat H-012:** enam percobaan pada sisi **masuk** menghasilkan nol perbaikan; empat pada sisi **keluar** menghasilkan seluruh kemajuan yang pernah ada. Skor entri acak yang **identik** (0,04661R) di H-010 dan H-012 adalah bukti terkuat sejauh ini bahwa keunggulan yang terukur mungkin **seluruhnya** milik geometri keluar, bukan milik sinyal kelanjutan.
+**Kesimpulan struktural:** enam percobaan pada sisi **masuk** menghasilkan nol perbaikan; empat pada sisi **keluar** menghasilkan seluruh kemajuan. Skor entri acak **identik** 0,04661R di H-010 dan H-012 adalah bukti terkuat bahwa keunggulan yang terukur mungkin **seluruhnya** milik geometri keluar. Temuan S16 menambahkan lapisan yang tidak nyaman: sebagian geometri keluar itu ternyata **artefak mesin**, bukan perilaku pasar.
 
-### Titik impas
+### H-011 — DITOLAK dan TERCEMAR
 
-`1/(1+imbalan)`: 1R 0,5000 · 2R 0,3333 · 3R 0,2500 · 4R 0,2000 · 6R 0,1429 · 8R 0,1111. Di H-009, **194 dari 356 jendela (54,5%)** memilih imbalan 4,0. **Versi 16 menulis 226 dan 63,5%; itu salah.**
+Run `30194733599`, sidik `8a6efde6d333d8b5`, 838,1 detik. Teruji 40 simbol +0,053028R identik bit-per-bit dengan H-010; tertahan 398 simbol **−0,091519R**; seluruh semesta −0,079078R. **Penyebab tunggal USDCUSDT**: 649 perdagangan, total −18.861,0596R, `stop_frac` terburuk **3,1984e−06**, `transaksi_R` **312,7333** pada satu perdagangan ber-`R` **−470,0612**. Cacat pengukuran, bukan temuan pasar. Tetap ditolak dan tidak direhabilitasi (aturan 27).
 
-| Hipotesis | Laju target | Bersih tercatat | Seretan |
-|---|---|---|---|
-| H-002 | 0,36028 | +0,03159 | 0,04926 |
-| H-009 | 0,27544 | +0,041359 | 0,034614 |
-| H-010 | 0,15672 | +0,053028 | 0,036220 |
-| H-011 | 0,15879 | −0,079078 | 0,125520 (tercemar) |
-| **H-012** | **0,15963** | **+0,059636** | **0,035900** |
+### SEMESTA, HIMPUNAN TERTAHAN, TITIK IMPAS
 
-Seretan H-012 (0,0359R) hampir sama dengan H-010 (0,03622R) dan sepertiga H-011 — lantai memulihkan aritmetika biaya sepenuhnya.
+Kriteria lama tidak satu pun menyentuh volatilitas; sejak `81b213b2` config memuat lantai 0,004 dan pagar 0,5R. **Himpunan tertahan HABIS**: hasil per simbol untuk 438 simbol sudah dilihat (H-011) dan tabel 73 bulan sudah dilihat (H-012). Dimensi yang masih bersih hanya **kerangka 4h** dan **pemisahan sinyal dari geometri keluar**.
+
+Titik impas `1/(1+imbalan)`: 1R 0,5000 · 2R 0,3333 · 3R 0,2500 · 4R 0,2000 · 6R 0,1429 · 8R 0,1111. Di H-009, **194 dari 356 jendela (54,5%)** memilih imbalan 4,0 — **versi 16 menulis 226 dan 63,5%; itu salah.** Seretan: H-002 0,04926 · H-009 0,034614 · H-010 0,036220 · H-011 0,125520 (tercemar) · H-012 **0,035900**.
 
 ### MESIN BACKTEST
 
-`lux/backtest/`: `engine.py`, `gerbang.py`, `konsentrasi.py`, `funding_ekor.py`, `walk_forward.py`, `run_wf.py`, `run_h002.py`, `run_h003.py`, `runner.py`, `run_keluarga.py`, `run_h007.py`–`run_h012.py`. Analisis: `lux/analisis/{titik_impas,sebaran,periode}.py`. Degenerasi: `lux/degenerasi.py`.
+`lux/backtest/`: `engine.py`, `gerbang.py`, `konsentrasi.py`, `funding_ekor.py`, `walk_forward.py`, `run_wf.py`, `run_h002.py`, `run_h003.py`, `runner.py`, `run_keluarga.py`, `run_h007.py`–`run_h012.py`. Analisis: `lux/analisis/{titik_impas,sebaran,periode,geometri_keluar}.py`.
 
-**`engine.Konfig` — nama medan terverifikasi dari sumber:** `fee` (0,0005), `slippage` (0,0005), `atr_periode` (14), `atr_pengali_stop` (2,0), `risiko_per_trade` (0,005), `imbalan_R` (2,0), `modal_awal` (10.000), `izinkan_short` (True), `maks_umur_bar` (0), `maks_carry_R` (0,0), `jendela_carry_hari` (30), `maks_carry_realisasi_R` (0,0), `maks_biaya_masuk_R` (0,0). **Tidak ada medan bernama `fee_efektif`** — itu kunci YAML yang dipetakan `muat_konfig_h002` menjadi `fee`. Empat medan terakhir bawaan **MATI** dan dikunci pengujian serta pagar `dataclasses.fields`.
+**`engine.Konfig` — nama medan terverifikasi dari sumber:** `fee` (0,0005), `slippage` (0,0005), `atr_periode` (14), `atr_pengali_stop` (2,0), `risiko_per_trade` (0,005), `imbalan_R` (2,0), `modal_awal` (10.000), `izinkan_short` (True), `maks_umur_bar` (0), `maks_carry_R` (0,0), `jendela_carry_hari` (30), `maks_carry_realisasi_R` (0,0), `maks_biaya_masuk_R` (0,0), **`stop_hormati_celah` (False)**. **Tidak ada medan bernama `fee_efektif`** — itu kunci YAML yang dipetakan `muat_konfig_h002` menjadi `fee`. Lima medan terakhir bawaan **MATI** dan dikunci pengujian serta pagar `dataclasses.fields`.
 
-**`run_h012.biaya_bolak_balik_R(konfig)`** (`56a325d2`): satu-satunya tempat aritmetika `2×(fee + slippage)` hidup; memvalidasi keberadaan medan lewat `dataclasses.fields` dan dipanggil **baik** oleh `main` **maupun** oleh pagar 4 `backtest.yml`. Lahir dari aturan 31 dan 32.
-
-**Urutan pemeriksaan per bar di `engine.jalankan`:** umur → carry realisasi → stop/target → entri (pengaman biaya lalu carry proyeksi) → ekuitas. **Umur dan carry dinilai pada pembukaan bar, sebelum stop bar itu diuji** — disengaja dan didokumentasikan, supaya posisi tidak mendapat satu bar gratis untuk menyentuh target. Konsekuensinya belum pernah diukur dan kini menjadi tersangka utama `invarian_risiko`.
-
-**Laporan memuat** (sejak `bfb5f2d9` dan `f6efbd7a`): `entri_ditolak_biaya`, `entri_ditolak_biaya_per_simbol`, `lantai_semesta` beserta tabel simbol dibuang, `agregat_periode` per bulan masuk, `parameter_run.maks_biaya_masuk_R`, `parameter_run.min_median_stop_frac`. Penolakan pengaman **tidak** dijumlahkan ke `alasan_keluar`.
+**Urutan pemeriksaan per bar di `engine.jalankan`:** umur → carry realisasi → stop/target → entri (pengaman biaya lalu carry proyeksi) → ekuitas. Umur dan carry dinilai pada pembukaan bar, **sebelum** stop bar itu diuji. `umur` dan `carry` mengisi pada `o[t]`, `akhir_data` pada `c[-1]` — ketiganya jujur terhadap celah. Stop dan target mengisi pada harga stop/target; sejak ADR-016 stop dapat dibuat jujur dengan `stop_hormati_celah`.
 
 Gerbang: `forward_fill`, `buy_and_hold`, `entri_acak`, `lookahead`, `invarian_risiko`, `funding`, `overlap`, `checksum`, `survivorship`, `konsentrasi`, `funding_ekor`. **Tidak dapat dinilai = GAGAL.** `ALASAN_TIDAK_SELESAI = ("umur", "akhir_data", "carry")`.
 
 ### DATASET TIER B PUTARAN 2
 
-**14.545.679 bar 1h dan 3.636.733 bar 4h**, 790 simbol, rasio 1h:4h **3,9996**, ~703 MB. Validasi 1h: 0 pelanggaran fatal, 447 simbol layak; ADR-003 memangkas 141 simbol berekor datar, universe layak v2 = **438**, dan sejak H-012 **437** yang berlantai. Funding: 1.982.017 baris, 447 simbol, 3 celah sejati, 79,1% positif, jitter maks 47 ms. Unduhan run: **16 berkas, 559 MB** (delapan `ohlcv_1h_shard`, empat `tail_shard`, empat `funding_shard`).
-
-### Pengujian — `reports/tests.md`
-
-**615 hijau**, kode keluar 0, tanpa jaringan. Jejak: 444 → 462 → 467 → 488 → 494 → 510 → 525 → 542 → 563 → 574 → 578 → **589** → **601** → **615**. **Sepuluh ramalan jumlah pengujian berturut-turut tepat.** Tidak satu pun menjalankan `run_h012.main`, dan itu sebabnya bug `fee_efektif` lolos (aturan 32).
+**14.545.679 bar 1h dan 3.636.733 bar 4h**, 790 simbol, rasio 1h:4h **3,9996**, ~703 MB. Validasi 1h: 0 pelanggaran fatal, 447 simbol layak; ADR-003 memangkas 141, universe layak v2 = **438**, berlantai **437**. Funding 1.982.017 baris, 3 celah sejati, 79,1% positif. Unduhan run: 16 berkas, 559 MB.
 
 ### Kapasitas runner dan konektivitas
 
-4 vCPU, 15 GB RAM, 88 GB disk. **Batas 6 jam per job yang mengikat, bukan disk.** H-012: 437 simbol × 12 kombinasi × 300 ulangan = **1220,6 detik**, jadi masih ada ruang 17 kali lipat. python 3.12.13, numpy 2.5.1, pytest 9.1.1, **tanpa scipy**. CDN `data.binance.vision` 200; REST `fapi.binance.com` **451 permanen**.
+4 vCPU, 15 GB RAM, 88 GB disk. **Batas 6 jam per job yang mengikat, bukan disk.** H-012 memakai 1220,6 s dari 21.600 s. python 3.12.13, numpy 2.5.1, pytest 9.1.1, pandas 2.2.3, pyarrow 17.0.0, **tanpa scipy**, **tanpa requests**. CDN `data.binance.vision` 200; REST `fapi.binance.com` **451 permanen**.
 
 ### Batas alat agen dan solusinya
 
-- Daftar alat GitHub **tidak memuat satu pun fungsi Actions**. Diverifikasi ulang di S14.
+- Daftar alat GitHub **tidak memuat satu pun fungsi Actions**. Diverifikasi ulang di S16.
 - `search_code` **nol hasil di repo ini**. `get_file_contents` menuntut SHA 40 karakter penuh; `list_commits` dipakai memperolehnya.
-- `push_files` **mengganti seluruh isi berkas**, jadi baca dulu sebelum menulis ulang.
-- Filter `paths` per berkas: menyentuh `.github/workflows/backtest.yml` **langsung memulai run**, jadi ia dibalik paling akhir. `tests.yml` memfilter `lux/**` dan `tests/**`.
-- **Kabar buruk datang dalam 23–32 detik; kabar baik 20 menit.** Komit laporan dapat muncul beberapa detik sesudah pemeriksaan, jadi **diamnya laporan bukan tanda lolos** — kesalahan yang saya buat di S15 dan sudah ditarik.
+- `push_files` **mengganti seluruh isi berkas**, jadi baca dulu sebelum menulis ulang — dan baca ulang muatannya sebelum mengirim (aturan 35).
+- Filter `paths` per berkas: menyentuh `.github/workflows/backtest.yml` **langsung memulai run**, jadi ia dibalik paling akhir. `tests.yml` memfilter `lux/**` dan `tests/**`, jadi perubahan `config/`, `journal/`, `decisions/`, dan `STATE.md` **tidak** memicunya.
+- **Kabar buruk datang dalam 23–32 detik; kabar baik 20 menit.** Komit laporan dapat muncul beberapa detik sesudah pemeriksaan, jadi **diamnya laporan bukan tanda lolos**.
 - **Commit laporan tanpa berkas hasil berarti run GAGAL.** Blob laporan yang tidak berubah berarti **belum ditulis**.
 - **Modul baru berdiri hijau sendiri lebih dulu.** **Baca modulnya sebelum menulis kode terhadapnya.**
-- **Tulisan yang hanya menyentuh dokumen** (`STATE.md`, `PROMPT_KELANJUTAN.md`, `journal/`, `decisions/`) tidak memicu workflow apa pun.
 
 ### Cacat yang sudah ditutup dan tidak boleh terulang
 
 - **Parser 1–3**, **metrik celah funding**, **circular import** `run_wf → potong_ekor → diag_datar → run_wf` (`4b77617`).
 - **S11:** langkah pra-terbang bisu; `245747ee`.
-- **S12:** STATE v11 dan v13 menaikkan kekeliruan menjadi fakta; ditarik v12 dan v14. `test_gerbang_kesepuluh.py` memakai literal terlarang; `114b0d7e`.
-- **S13:** "226 dari 356 jendela (63,5%)" padahal **194 (54,5%)**. `test_sebaran.py` menuntut kesamaan bit; `2650ae32`. Saringan nama menandai `BUSDT`/`TUSDT` sebagai stablecoin — **degenerasi wajib dibuktikan lewat `stop_frac`, bukan ejaan nama**.
-- **S14:** pra-registrasi menetapkan kriteria yang laporannya tidak mampu menghasilkan; ditutup dua commit sebelum satu angka dilihat.
-- **S15:** empat run gagal berturut karena nama ditebak, aritmetika tersembunyi di `main`, log tak disalin, dan lingkungan pagar berbeda. Aturan 31–34. Diagnosis pertama saya atas `30198306280` **salah** dan ditarik.
+- **S12:** STATE v11 dan v13 menaikkan kekeliruan menjadi fakta; ditarik v12 dan v14.
+- **S13:** "226 dari 356 jendela (63,5%)" padahal **194 (54,5%)**. Saringan nama menandai `BUSDT`/`TUSDT` sebagai stablecoin — **degenerasi wajib dibuktikan lewat `stop_frac`, bukan ejaan nama**.
+- **S14:** pra-registrasi menetapkan kriteria yang laporannya tidak mampu menghasilkan.
+- **S15:** empat run gagal berturut (`30198306280` bukti hilang · `30198631730` pytest tak terpasang · `30198840830` dan `30198942815` `fee_efektif` ditebak). Aturan 31–34.
+- **S16:** dua commit cacat (`953ce24a`, `2a0f8545`) dan dua ramalan cacah salah. Aturan 35. Klaim "mekanisme stop sehat" **ditarik**. Aturan 36.
 
 ---
 
@@ -283,63 +234,58 @@ Gerbang: `forward_fill`, `buy_and_hold`, `entri_acak`, `lookahead`, `invarian_ri
 
 | Asumsi | Cara memverifikasi |
 |---|---|
-| **Kerugian −21,3131R lahir dari keluar `umur`/`carry` pada pembukaan bar yang menganga melewati stop** — dugaan, bukan fakta. Dasarnya: biaya per perdagangan sehat (0,0359R, nol di atas 1R), funding-nya 0,4825R, dan urutan mesin menilai umur/carry **sebelum** stop | baca `alasan_keluar`, `harga_masuk`, `harga_keluar`, dan `jarak_stop` perdagangan terburuk dari `backtest_h012_periode_tertahan.json`; bila benar, ini cacat **geometri keluar**, bukan cacat satuan R |
-| Lantai 0,004 menutup **seluruh** jalan masuk degenerasi | **DIFALSIFIKASI SEBAGIAN.** Ia memotong −470,06R → −21,31R dan memulihkan aritmetika biaya, tetapi `invarian_risiko` tetap gagal 14× ambang |
-| Keunggulan H-010 bukan seluruhnya milik geometri keluar | **makin lemah**: skor entri acak nyata **0,04661R identik** di H-010 dan H-012. Butuh uji yang memisahkan sinyal dari geometri keluar; belum dirancang, wajib punya ADR sendiri |
-| Sinyal kelanjutan `breakout_atr` punya keunggulan yang bertahan di waktu pada 1h | **DIFALSIFIKASI** oleh H-012: 0,041713R pada periode tahan, p 0,063123 |
-| Keunggulan kelanjutan membesar pada horizon 4h | jalankan hipotesis 4h **setelah** `validate.yml` untuk 4h |
-| Funding sebagai **sinyal** memuat informasi arah | belum pernah diuji |
+| **STGUSDT benar-benar bergerak melawan sekitar 46,8% dalam rentang kira-kira satu bar 1h** (aritmetika 21,3131 × 0,02197). Apakah barnya nyata atau cacat dataset **belum terbukti** | bar itu ada di rilis artefak, bukan di repo, dan sandbox tanpa jaringan. Kedua kemungkinan menuntut perbaikan yang sama, jadi pekerjaan tidak menunggu |
+| Menyalakan `stop_hormati_celah` akan menjatuhkan `invarian_risiko` lewat **`stop`** sedikitnya sekali | ramalan 4 ADR-016; diadili pada H-013 |
+| Ekspektasi R H-013 dengan medan menyala **lebih rendah** daripada dengan medan mati | ramalan 5 ADR-016. Bila ia **membaik**, yang ditemukan adalah cacat tanda, bukan keunggulan |
+| Keunggulan H-010 bukan seluruhnya milik geometri keluar | **makin lemah**: skor entri acak nyata **0,04661R identik** di H-010 dan H-012 |
+| Keunggulan kelanjutan membesar pada horizon 4h | ADR-015 Bagian B, **setelah** `validate.yml` untuk 4h |
 | Integritas 4h sama bersihnya dengan 1h | jalankan `validate.yml` untuk interval 4h |
+| Funding sebagai **sinyal** memuat informasi arah | belum pernah diuji |
+| Balapan `git push` menelan laporan asap run pertama (`3880408f`) | tetap dugaan; mitigasi `git pull --rebase --autostash` sudah ada di `geometri.yml`, belum di workflow lain |
 | Dataset G lama (528 simbol) konsisten dengan data baru | diff terhadap universe layak v2 438 |
-| Throughput cukup untuk Tier A dalam 6 jam per shard | H-012 memakai 1220,6 s dari 21.600 s tersedia; ukur ulang dengan ≥24 shard |
+| Throughput cukup untuk Tier A dalam 6 jam per shard | ukur ulang dengan ≥24 shard |
 
-**Diselesaikan sebelumnya:** saringan rezim tren memperbaiki breakout (**salah**) · retest memperkecil biaya per R (**salah**) · SMC yang dapat dikodekan punya keunggulan (**salah**) · imbalan lebih besar menaikkan ekspektasi (**benar**, +28%) · lama pegang membesarkan kerugian ekor (**benar**) · pengaman carry dipatok membuat `invarian_risiko` lulus (**benar** pada 40 simbol) · "biaya menjaga risiko memakan ekspektasi" (**salah**) · keunggulan bertahan bila penyumbang terbesar dibuang (**benar**, dan H-012 memperkuatnya: retensi 0,9849 atas 437 simbol) · "ekspektasi bergantung umur simbol" (**salah**) · "kerugian ekor dari bar menganga" dan "dari stop rapat" (**salah** — tetapi lihat asumsi pertama di atas: bar menganga kembali menjadi tersangka pada **keluar umur**, bukan pada stop) · "funding bukan penyebab kerugian ekor" (**ditarik**) · "laba terkonsentrasi pada sepuluh simbol" (**ditarik**) · "gerbang funding memantau biaya funding" (**salah**) · "optimum imbalan di luar grid H-007" (**benar sebagian**) · "target lebih jauh membesarkan porsi funding ekor" (**salah**) · "H-010 akan menjadi penolakan kesepuluh" (**salah**) · **"H-012 gagal" (benar, dan diramalkan sebelum run)**.
+**Difalsifikasi sebelumnya:** saringan rezim tren memperbaiki breakout · retest memperkecil biaya per R · SMC yang dapat dikodekan punya keunggulan · "biaya menjaga risiko memakan ekspektasi" · "ekspektasi bergantung umur simbol" · "kerugian ekor dari bar menganga pada stop" · sinyal `breakout_atr` punya keunggulan yang bertahan di waktu pada 1h (H-012) · lantai 0,004 menutup **seluruh** jalan masuk degenerasi (difalsifikasi sebagian) · "hasil 40 simbol mewakili 438 simbol".
 
-**"Hasil 40 simbol pertama mewakili 438 simbol" — kini TERJAWAB, dan jawabannya tidak.** Pada semesta berlantai 437 simbol, ekspektasi seluruh riwayat 0,059636R sedangkan periode tahan 0,041713R; `invarian_risiko` dan `funding_ekor` yang lulus pada 40 simbol **gagal** pada 437. H-011 tidak dapat menjawabnya karena tercemar; H-012 menjawabnya dengan kriteria seragam yang dipra-registrasi.
+**Terbukti benar:** imbalan lebih besar menaikkan ekspektasi (+28%) · lama pegang membesarkan kerugian ekor · keunggulan bertahan bila penyumbang terbesar dibuang (retensi 0,9849 atas 437 simbol) · **"H-012 gagal", diramalkan sebelum run**.
 
-**Angka yang dilarang dikutip:** seluruh hasil ingest putaran 1 · metrik celah funding putaran 1–4 · seluruh run pilot H-001 termasuk `30170073890` · porsi "101,2%" · selisih muda-lawan-tua · nilai gerbang `funding` sebagai bukti funding aman · "226 jendela / 63,5%" (benar 194 / 54,5%) · ekspektasi H-010 0,053028R sebagai bukti sistem layak dagang · **+0,060163R** dan **+0,059546R** (penyubsetan pasca-hasil, ADR-013 §8) · **+0,060168R** · **281 dari 398 simbol positif** dan median **+0,06343** · **−0,091519R** sah hanya bersama sebabnya · **+0,059636R milik H-012** sebagai kelulusan atau bukti keunggulan — seluruh riwayat sudah dipakai memilih segalanya sejak H-001b, dan ramalan 2 menyatakannya haram **sebelum** angkanya dilihat · **+2.347,27R bulan 2026-01** atau bulan mana pun sebagai bukti.
+**Angka yang dilarang dikutip:** seluruh hasil ingest putaran 1 · metrik celah funding putaran 1–4 · seluruh run pilot H-001 termasuk `30170073890` · porsi "101,2%" · nilai gerbang `funding` sebagai bukti funding aman · "226 jendela / 63,5%" (benar 194 / 54,5%) · ekspektasi H-010 0,053028R sebagai bukti sistem layak dagang · **+0,060163R** · **+0,059546R** · **+0,060168R** · **281 dari 398 simbol positif** dan median **+0,06343** · **−0,091519R** tanpa sebabnya · **+0,059636R** sebagai kelulusan · **+2.347,27R bulan 2026-01** atau bulan mana pun sebagai bukti.
 
 ---
 
 ## 5. Penghalang aktif
 
-Tidak ada. H-012 selesai dan divonis; tidak ada run yang berjalan.
-
-Dibutuhkan dari pengguna, belum memblokir: **token integrasi Notion** sebagai GitHub Secret `NOTION_TOKEN`.
+Tidak ada. Tidak ada run yang berjalan. Tidak ada yang dibutuhkan dari pengguna.
 
 ---
 
 ## 6. Tindakan berikutnya
 
-1. **Bedah perdagangan terburuk H-012.** Baca `backtest_h012_periode_tertahan.json` dan ambil `alasan_keluar` beserta harga perdagangan ber-`R` −21,3131. Ini pekerjaan sandbox tanpa jaringan dan tanpa run. Bila alasannya `umur`, `carry`, atau `akhir_data`, maka `invarian_risiko` selama dua belas hipotesis sedang melaporkan **cacat geometri keluar**, bukan cacat satuan R — dan itu menjelaskan mengapa ia gagal di H-001b (−2,5853), H-005, H-006, H-007 (−1,9769), dan H-008 dengan angka yang jauh lebih kecil daripada H-011.
+Urutannya mengikuti ADR-016 bagian 7 dan **tidak boleh dibalik**.
 
-2. **ADR-015: memisahkan sinyal dari geometri keluar.** Skor entri acak nyata **identik 0,04661R** di H-010 dan H-012, sedangkan skor sinyal nyata jatuh 56,8% ketika entri diacak. Ini **pertanyaan paling penting yang tersisa**, dan hasil butir 1 kemungkinan menjadi masukannya. Rancangannya belum ada.
+1. ~~Medan `Konfig.stop_hormati_celah` + delapan pengujian~~ — **selesai**, `955b419a`, 673 hijau.
+2. ~~`config/lux.yaml` menyalakannya + jurnal~~ — **selesai**, `fb710521`.
+3. **`validate.yml` untuk interval 4h.** Prasyarat mutlak sebelum H-013, dan satu-satunya kerangka waktu yang masih bersih. Wajib dibaca utuh lebih dulu.
+4. **Modul H-013** (ADR-015 Bagian B): empat sel SS/SH/AS/AH, `h=48` bar 4h, ambang **SS − AS ≥ 0,020R**, p ≤ 0,05, ≥300 ulangan, ≥100 trade per sel. Mekanisme diimpor tanpa perubahan dari `run_h010`/`run_h009`. Modul berdiri hijau sendiri lebih dulu (aturan 2). **Dilarang berjalan sebelum butir 3 hijau.**
+5. **`backtest.yml` dibalik PALING AKHIR** — menyentuhnya langsung memulai run.
+6. Tambahkan `git pull --rebase --autostash origin main` sebelum `git push` pada **semua** workflow lain; baru `geometri.yml` yang memilikinya.
+7. **Segarkan `PROMPT_KELANJUTAN.md`** — belum dikerjakan sejak S13, dan kini tertinggal enam aturan (31–36). Wajib **dibaca utuh** lebih dulu; menulis ulang dari ingatan adalah kelas kesalahan "226 jendela".
+8. Pemetaan `dari_laporan` pada pelapor Notion terhadap kunci JSON `runner.py`: `gabungan`, `alasan_keluar`, `entri_ditolak_biaya`, `lantai_semesta`, `agregat_periode`, `diagnosa_biaya`, `sebaran`, `jarak_ambang_ekspektasi`, `gerbang`, `jackknife`, `ekor_funding`, `putusan`, `per_simbol`, `detik`, `parameter_run`.
+9. Utang teknis: `hasattr`/`__import__` di `test_run_h012.py` · pengujian untuk `biaya_bolak_balik_R` · `pytest` ke `requirements-dev.txt` · docstring `median_stop_frac_bingkai`.
+10. **Funding sebagai sinyal.** Belum pernah diuji kandungan informasi arahnya.
+11. Perketat `lux/funding.py::gerbang_lulus` (utang ADR-011) · diff Dataset G lama · `lux/manifest.py`, `Makefile`, `docs/PIPELINE.md` · naikkan `versi` config sesudah seluruh pembacanya diperiksa · Tier A (1m) hanya setelah seluruh gerbang Tier B lulus, ≥24 shard · pertimbangkan memangkas `potong_ekor.yml` sesudah Tier A diputuskan.
 
-3. **Rapikan tiga utang teknis:** `hasattr`/`__import__` di `test_run_h012.py`, `pytest` ke `requirements-dev.txt`, docstring `median_stop_frac_bingkai`.
-
-4. **Segarkan `PROMPT_KELANJUTAN.md`** — belum dikerjakan sejak S13. Wajib **dibaca utuh lebih dulu**; `push_files` mengganti seluruh isinya, dan menulis ulang 34 aturan dari ingatan adalah kelas kesalahan "226 jendela".
-
-5. **Horizon 4h.** Prasyarat mutlak `validate.yml` untuk 4h. Satu-satunya kerangka waktu yang masih benar-benar bersih.
-
-6. **Funding sebagai sinyal.** Belum pernah diuji kandungan informasi arahnya.
-
-**Yang DILARANG:** menyatakan sistem siap dagang · mengutip +0,060163R atau +0,059636R sebagai kelulusan · membuang simbol atau memilih bulan sesudah melihat hasil · **menyebut H-012 sebagai "H-010 setelah perbaikan"** · menggeser lantai 0,004, pagar 0,5R, `BATAS_VOID` 20, atau batas `2026-01-01` · mematok `imbalan_R` ke 8,0 · menurunkan `--ulangan` dari 300 · menaikkan `maks_umur_bar` dari 168 **sebagai penyelamatan** (mengubahnya sebagai hipotesis baru ber-ADR boleh) · membuang simbol merugi · memakai `konsentrasi` atau `funding_ekor` sebagai penyaring simbol · saringan berbasis umur simbol · melombakan ambang pengaman · menghitung ulang hipotesis yang sudah divonis · melonggarkan `invarian_risiko` dari −1,5R · melonggarkan ambang ADR-011 · **menurunkan maupun menaikkan ambang ekspektasi 0,05R**.
-
-Sisanya, tidak memblokir:
-
-7. Perketat `lux/funding.py::gerbang_lulus`. Utang ADR-011.
-8. Diff terhadap Dataset G lama (528 simbol).
-9. `lux/manifest.py`, `Makefile`, `docs/PIPELINE.md`; salin ADR-001 dan ADR-002 ke `decisions/`.
-10. Pelapor Notion (`NOTION_TOKEN`); instruksi Gatekeeper masih menyebut sembilan gerbang.
-11. Tier A (1m) hanya setelah seluruh gerbang Tier B lulus, dengan ≥24 shard.
-12. Naikkan `versi` di `config/lux.yaml` sesudah seluruh pembacanya diperiksa.
-13. Pertimbangkan memangkas `potong_ekor.yml`: tugas ADR-003 tuntas dan hasilnya beku di `universe_layak_v2.json`. Ditahan sampai Tier A diputuskan; workflow idle tidak memakan kuota karena filter `paths`.
+**Yang DILARANG:** menyatakan sistem siap dagang · mengutip +0,060163R atau +0,059636R sebagai kelulusan · membuang simbol atau memilih bulan sesudah melihat hasil · **menyebut H-012 sebagai "H-010 setelah perbaikan"** · menyebut angka R lama **konservatif** (mesinnya optimistis terhadap celah) · **menghitung ulang H-001b sampai H-012 dengan mesin ADR-016** · menggeser lantai 0,004, pagar 0,5R, `BATAS_VOID` 20, batas `2026-01-01`, atau ambang SS − AS 0,020R · mematok `imbalan_R` ke 8,0 · menurunkan `--ulangan` dari 300 · menaikkan `maks_umur_bar` dari 168 sebagai penyelamatan · membuang simbol merugi · memakai `konsentrasi` atau `funding_ekor` sebagai penyaring simbol · melombakan ambang pengaman · melonggarkan `invarian_risiko` dari −1,5R · **menurunkan maupun menaikkan ambang ekspektasi 0,05R** · menjadikan `stop_hormati_celah` parameter yang dilombakan (ia sakelar kejujuran, bukan ambang).
 
 ---
 
-## 7. Pengawasan otonom
+## 7. Pengawasan otonom — DIHENTIKAN
 
-Agen **LUX Gatekeeper** aktif di Notion. Terpicu saat runner membuat baris di database Run Results, menilai hasil terhadap gerbang mutu. Sudah diuji dengan baris sintetis bercacat dan menolak dengan benar. **Verdict Ditolak menghentikan pipeline.** Instruksinya masih menyebut sembilan gerbang dan perlu disesuaikan menjadi sebelas bila pelapor Notion diaktifkan.
+Agen **LUX Gatekeeper** dan **LUX Gatekeeper Reporter** **tidak dipakai lagi.** Keputusan pengguna, 2026-07-26: kreditnya kemungkinan habis sebelum riset selesai.
+
+Keputusan itu sehat melampaui penghematan. Bukti dari sisi Notion (`viewVersionHistory` atas baris asap `3a9d5df0-96f9-81df-90a7-f6075d071680`): agen itu mengadili **setiap** baris secara otomatis dalam sekitar dua menit, termasuk baris yang secara eksplisit menyatakan `bukan_hasil_riset=true`, dan ia memakai `Ditolak` untuk "bukti tidak cukup" padahal `Ditolak` semestinya berarti hipotesis gagal. **Vonis yang salah arti lebih buruk daripada tidak ada vonis**, sebab ia menghentikan pipeline atas alasan yang tidak pernah terjadi.
+
+Akibatnya: kolom `Verdict` di database `LUX — Run Results` menjadi kolom **manusia**. Pelapor Notion tetap dipertahankan sebagai papan hasil yang dapat dibaca dari ponsel; tidak ada perubahan kode yang diperlukan. Pekerjaan "selaraskan instruksi Gatekeeper dari sembilan ke sebelas gerbang" **dibatalkan** dan dihapus dari daftar tindakan.
 
 ---
 
@@ -347,27 +293,29 @@ Agen **LUX Gatekeeper** aktif di Notion. Terpicu saat runner membuat baris di da
 
 | Path | Isi |
 |---|---|
-| `config/lux.yaml` | seluruh parameter yang memengaruhi hasil; memuat lantai `min_median_stop_frac` 0,004 dan pagar `maks_biaya_masuk_R` 0,5; `versi` masih 2 dengan alasan tertulis |
+| `config/lux.yaml` | seluruh parameter yang memengaruhi hasil; lantai `min_median_stop_frac` 0,004, pagar `maks_biaya_masuk_R` 0,5, sakelar `stop_hormati_celah` true; `versi` masih 2 dengan alasan tertulis |
 | `lux/binance_vision.py` | klien arsip: listing S3, unduhan, checksum, percent-encoding |
 | `lux/universe.py` | universe point-in-time dan klasifikasi jenis kontrak |
 | `lux/ingest.py` · `lux/backfill_daily.py` | ingest Tier B dan penutup celah ekor |
 | `lux/validate.py` · `lux/validate_run.py` | integritas OHLCV, kelayakan universe, penolak aset `_retry` |
-| `lux/funding.py` · `lux/funding_check.py` | ingest funding rate dan metrik kisinya; `gerbang_lulus` masih terlalu longgar |
+| `lux/funding.py` · `lux/funding_check.py` | ingest funding rate dan metrik kisinya; `gerbang_lulus` masih longgar |
 | `lux/funding_model.py` | jadwal funding nyata, penagihan, carry terproyeksi dan terealisasi |
-| `lux/costs.py` | model biaya dalam satuan R; aproksimasi interval tetap, **BUKAN jalur kritis** |
+| `lux/costs.py` | model biaya dalam satuan R; **BUKAN jalur kritis** |
 | `lux/degenerasi.py` | satuan R yang runtuh: ambang 0,004 dan 0,5R, kasus USDCUSDT, `saring_semesta` |
+| `lux/notion_reporter.py` | pelapor baris hasil ke Notion lewat `urllib.request`; kredensial terverifikasi run `30207584722` |
 | `lux/diag_datar.py` · `lux/potong_ekor.py` | diagnosis dan pemangkasan ekor datar (ADR-003) |
-| `lux/praregistrasi.py` | hipotesis sekali tulis dan penilaian terhadap kriteria |
+| `lux/praregistrasi.py` | hipotesis sekali tulis; **tidak membaca `config/lux.yaml`** |
 | `lux/analisis/titik_impas.py` | aritmetika titik impas atas laporan yang sudah dikomit |
-| `lux/analisis/sebaran.py` | std, galat baku, kuartil, jarak ambang. Bukan gerbang. **Galat bakunya taksiran bawah** |
-| `lux/analisis/periode.py` | agregat per bulan masuk; batas periode tahan; kepemilikan menurut waktu masuk |
+| `lux/analisis/sebaran.py` | std, galat baku, kuartil. Bukan gerbang. **Galat bakunya taksiran bawah** |
+| `lux/analisis/periode.py` | agregat per bulan masuk; batas periode tahan |
+| `lux/analisis/geometri_keluar.py` | bedah sepuluh perdagangan terburuk: `R_terlampaui`, `celah_R`, `ringkas`, `adili` |
 | `lux/strategi/breakout_atr.py` | sinyal kelanjutan (H-001b, H-002, H-007–H-012) |
 | `lux/strategi/reversi_zskor.py` · `rezim_adx.py` · `retest.py` · `smc.py` | H-003 · H-004 · H-005 · H-006 |
-| `lux/backtest/engine.py` | mesin eksekusi; **urutan per bar umur → carry → stop/target → entri**; empat saringan bawaan MATI |
+| `lux/backtest/engine.py` | mesin eksekusi; urutan per bar umur → carry → stop/target → entri; **lima saringan bawaan MATI**; `harga_stop_terisi` |
 | `lux/backtest/gerbang.py` | sembilan gerbang pertama + `NAMA_GERBANG` sebelas nama |
 | `lux/backtest/konsentrasi.py` · `funding_ekor.py` | gerbang kesepuluh dan kesebelas |
 | `lux/backtest/walk_forward.py` | pemilihan parameter dalam sampel; konfig per kandidat (ADR-007) |
-| `lux/backtest/run_wf.py` | orkestrator H-001b — **jangan disunting** |
+| `lux/backtest/run_wf.py` | orkestrator H-001b — **jangan disunting**; sumber `rincian_R` dan `diagnosa_biaya` |
 | `lux/backtest/run_h002.py` · `run_h003.py` | orkestrator beku; `muat_konfig_h002` memetakan YAML `fee_efektif` → medan `fee` |
 | `lux/backtest/runner.py` | runner bersama: muat sekali, lantai semesta, sebelas gerbang, jackknife, ekor funding, sebaran, penolakan biaya, agregat periode |
 | `lux/backtest/run_keluarga.py` | keluarga ADR-006 (H-004, H-005, H-006) |
@@ -375,14 +323,14 @@ Agen **LUX Gatekeeper** aktif di Notion. Terpicu saat runner membuat baris di da
 | `lux/backtest/run_h008.py` · `run_h009.py` | dibekukan; `run_h009` sumber `buat_konfig` dan `AMBANG_CARRY_KERAS` |
 | `lux/backtest/run_h010.py` | sumber grid imbalan {2,4,6,8} dan `kandidat()` |
 | `lux/backtest/run_h011.py` | H-011, semesta penuh; `BATAS_H010 = 40` |
-| `lux/backtest/run_h012.py` | H-012: `BATAS_VOID = 20`, `PERIODE_TAHAN_TANGGAL`, tujuh ramalan, **`biaya_bolak_balik_R`** |
-| `tests/` | **615** pengujian tanpa jaringan, wajib hijau sebelum unduhan |
-| `reports/` | keluaran mesin tiap run, termasuk `backtest_log.md` berisi lima log lengkap |
-| `hipotesis/` | pendaftaran sekali tulis: `H-001b` … **`H-012`** |
-| `decisions/` | ADR-003 … **ADR-014** |
-| `journal/` | riwayat per sesi, sampai **`2026-07-26-11.md`** |
+| `lux/backtest/run_h012.py` | H-012: `BATAS_VOID = 20`, `PERIODE_TAHAN_TANGGAL`, tujuh ramalan, `biaya_bolak_balik_R` |
+| `tests/` | **673** pengujian tanpa jaringan, wajib hijau sebelum unduhan |
+| `reports/` | keluaran mesin tiap run; `backtest_log.md`, `geometri_log.md`, `notion_asap.md` |
+| `hipotesis/` | pendaftaran sekali tulis: `H-001b` … `H-012` |
+| `decisions/` | ADR-003 … **ADR-016** |
+| `journal/` | riwayat per sesi, sampai **`2026-07-26-12.md`** |
 
-**Workflow aktif (10):** `tests`, `backtest`, `validate`, `potong_ekor`, `ingest_tier_b`, `backfill_daily`, `funding`, `funding_check`, `universe`, `doctor`. Tidak ada yang perlu dihapus: semuanya idle di belakang filter `paths` dan tidak memakan kuota. `backtest.yml` menjalankan `lux.backtest.run_h012` dengan `limit` 0 dan `ulangan` 300; langkah `impor`-nya memuat delapan kelompok pagar dan pagar 4 **memanggil** `run_h012.biaya_bolak_balik_R` alih-alih menyalinnya (aturan 31); setiap langkah `tee` ke `logs/` dan seluruhnya disalin ke `reports/backtest_log.md` dengan `if: always()` (aturan 33).
+**Workflow aktif (12):** `tests`, `backtest`, `validate`, `potong_ekor`, `ingest_tier_b`, `backfill_daily`, `funding`, `funding_check`, `universe`, `doctor`, `notion_asap`, `geometri`. Semuanya idle di belakang filter `paths` dan tidak memakan kuota; tidak ada yang perlu dihapus. `backtest.yml` masih menjalankan `lux.backtest.run_h012` dengan `limit` 0 dan `ulangan` 300 — **jangan disentuh sampai butir 3 dan 4 selesai**. `geometri.yml` satu-satunya yang sudah memakai `git pull --rebase --autostash` sebelum `git push`.
 
 **Dihapus di S7:** `analyze_tail.yml` (`07860a7`), `diagnose.yml` (`f4af734`), `diag_datar.yml` (`41ca693`), `retry_failed.yml` (`3a206c6`).
 
