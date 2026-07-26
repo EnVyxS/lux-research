@@ -2,7 +2,7 @@
 
 Modul ini ada karena satu pertanyaan sepele ternyata dijawab berbeda-beda di
 tempat berbeda, dan setiap jawaban yang menyimpang berbentuk **ambang dalam
-satuan bar yang tidak tahu intervalnya**. Tiga kali kelas cacat yang sama sudah
+satuan bar yang tidak tahu intervalnya**. Empat kali kelas cacat yang sama sudah
 ditemukan di proyek ini:
 
 - ``validate_run.muat_ambang`` membaca ``min_bar_1h`` tanpa memandang interval
@@ -10,7 +10,9 @@ ditemukan di proyek ini:
 - ``potong_ekor.MIN_PANJANG`` bernilai 24, yang berarti satu hari pada 1h tetapi
   empat hari pada 4h (diperbaiki ADR-018);
 - ``gerbang_forward_fill(maks_deret_datar=24)`` dan ``muat_ohlcv`` yang tidak
-  meneruskan interval ke pemangkas ekor (ADR-019, yakni sebab modul ini ada).
+  meneruskan interval ke pemangkas ekor (ADR-019, yakni sebab modul ini ada);
+- ``maks_umur_bar`` bernilai 168, yang berarti tujuh hari pada 1h tetapi dua
+  puluh delapan hari pada 4h (ADR-020, sebab ``bar_dari_hari`` ada).
 
 Dua syarat rancangan yang tidak boleh dilanggar.
 
@@ -22,7 +24,7 @@ tinggal di ``potong_ekor``, maka ``gerbang.py`` yang membutuhkannya akan menutup
 rantai itu kembali. Sebagai daun, modul ini dapat diimpor siapa pun tanpa risiko.
 
 **Kedua, interval tak dikenal gagal keras.** Mengembalikan nilai bawaan ketika
-intervalnya tidak dikenali adalah cara paling andal melahirkan cacat keempat dari
+intervalnya tidak dikenali adalah cara paling andal melahirkan cacat kelima dari
 kelas yang sama: ambangnya akan tampak masuk akal, laporannya akan tampak
 konsisten, dan tidak ada yang berbunyi.
 """
@@ -68,3 +70,35 @@ def bar_per_hari(interval: str) -> int:
             f"{JAM_SEHARI} jam dengan rata; ambang satu hari menjadi taksa"
         )
     return JAM_SEHARI // jam
+
+
+def bar_dari_hari(hari: int, interval: str) -> int:
+    """Berapa bar yang menyusun ``hari`` hari penuh pada ``interval`` (ADR-020).
+
+    ``bar_per_hari`` tidak cukup untuk horizon yang lebih panjang dari sehari, dan
+    kekurangan itu punya korban nyata: ``maks_umur_bar = 168`` berarti tujuh hari
+    pada 1h dan **dua puluh delapan** hari pada 4h. Angkanya tidak berubah;
+    maknanya yang berubah, dan diam.
+
+    Kenapa itu lebih berbahaya daripada tampaknya: H-013 menilai **selisih** antara
+    kolom bertarget dan kolom berhorizon tetap. Bila kolom pertama boleh memegang
+    posisi 28 hari sementara kolom kedua ditutup paksa pada 8 hari, selisihnya
+    mengukur panjang pegangan alih-alih ada-tidaknya target — yaitu mengukur hal
+    lain daripada yang tertulis di pra-registrasinya, sambil tetap terlihat rapi.
+
+    ``hari`` wajib bilangan bulat positif. Nol dan negatif ditolak keras alih-alih
+    dibiarkan lewat, sebab horizon nol bar akan terbaca oleh mesin sebagai
+    saringan yang **mati** — keliru yang membuat posisi dipegang tanpa batas justru
+    ketika penulisnya berniat membatasinya. ``bool`` juga ditolak meski secara
+    teknis ia ``int``: ``bar_dari_hari(True, "1h")`` hampir pasti salah tulis.
+    """
+    if isinstance(hari, bool) or not isinstance(hari, int):
+        raise SystemExit(
+            f"hari wajib bilangan bulat, bukan {type(hari).__name__}: {hari!r}"
+        )
+    if hari <= 0:
+        raise SystemExit(
+            f"hari wajib positif, diberi {hari}; horizon nol atau negatif akan "
+            "terbaca sebagai saringan yang mati"
+        )
+    return hari * bar_per_hari(interval)

@@ -1,4 +1,4 @@
-"""Pengujian modul daun kerangka waktu (ADR-019 langkah 1 dan 2).
+"""Pengujian modul daun kerangka waktu (ADR-019 langkah 1 dan 2, ADR-020 langkah 1).
 
 Yang diuji bukan sekadar dua angka, melainkan **sifat** yang membuat kelas cacat
 "ambang buta interval" tidak dapat lahir lagi: setiap interval yang dikenal harus
@@ -12,6 +12,7 @@ import pytest
 from lux.kerangka import (
     INTERVAL_JAM,
     JAM_SEHARI,
+    bar_dari_hari,
     bar_per_hari,
     interval_dikenal,
     jam_interval,
@@ -89,3 +90,35 @@ def test_ambang_potong_ekor_tetap_setara_satu_hari_kerangka():
     with pytest.raises(SystemExit) as e:
         min_panjang_untuk("15m")
     assert "ADR" in str(e.value)
+
+
+def test_bar_dari_hari_tujuh_hari_1h_tetap_seratus_enam_puluh_delapan():
+    """Tripwire ADR-020: arah kecurigaannya sengaja dibalik.
+
+    168 bukan angka yang sedang diusulkan; ia angka yang sudah dipakai sebelas
+    hipotesis sebagai ``maks_umur_bar``. Jadi bila fungsi baru ini memberi angka
+    lain untuk tujuh hari pada 1h, yang salah adalah fungsi barunya, bukan 168.
+    """
+    assert bar_dari_hari(7, "1h") == 168
+    # Dan ia wajib konsisten dengan aritmetika sehari yang sudah ada, bukan
+    # menjadi jalur hitung kedua yang bisa melenceng sendiri.
+    assert bar_dari_hari(7, "1h") == 7 * bar_per_hari("1h")
+
+
+def test_bar_dari_hari_4h_adalah_42_dan_hari_tak_sah_gagal_keras():
+    # 42 ≠ 168 adalah keseluruhan isi cacat senyap keenam: horizon yang sama
+    # dalam hari menuntut angka bar yang berbeda pada interval yang berbeda.
+    assert bar_dari_hari(7, "4h") == 42
+    assert bar_dari_hari(1, "4h") == bar_per_hari("4h") == 6
+    # Horizon nol akan terbaca mesin sebagai saringan MATI, yaitu kebalikan dari
+    # maksud penulisnya. Karena itu ia berbunyi, bukan lewat.
+    with pytest.raises(SystemExit):
+        bar_dari_hari(0, "1h")
+    with pytest.raises(SystemExit):
+        bar_dari_hari(-7, "1h")
+    # bool secara teknis int, dan bar_dari_hari(True, ...) hampir pasti salah tulis.
+    with pytest.raises(SystemExit):
+        bar_dari_hari(True, "1h")
+    # Interval tetap gagal keras lewat bar_per_hari, bukan dilewati diam-diam.
+    with pytest.raises(SystemExit):
+        bar_dari_hari(7, "15m")
