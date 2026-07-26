@@ -42,6 +42,25 @@ kode keluarnya tetap 0, sebab run yang menjatuhkan hipotesis bekerja dengan bena
 Yang menghasilkan kode keluar bukan-nol hanyalah keadaan di mana putusan **tidak
 dapat** dibentuk.
 
+BESARAN WAJIB DIUKUR TERHADAP RERATA SEBARAN NOL (aturan 49)
+------------------------------------------------------------
+``sumbangan_sinyal_R`` H-013 dihitung terhadap **satu** undian nol, yaitu sel AS
+seed 42. Run 30217516013 memperlihatkan undian itu terletak kira-kira 0,98
+simpangan baku **di bawah** rerata sebaran nol, sehingga +0,054842R adalah angka
+yang kebetulan bagus; terhadap rerata nol besarannya +0,043732R. Itulah cacat
+kelas ketiga belas, dan sejak berkas ini kedua besaran dilaporkan bersama supaya
+cacat yang sama tidak dapat lewat tanpa terlihat.
+
+PROSA RAMALAN YANG TERBANTAH (aturan 50)
+----------------------------------------
+R-D3 berbunyi "sedikitnya satu seed melampaui ekspektasi sel SS; bila tidak,
+permutasinya cacat". Seed tertinggi run 30217516013 hanya +0,057394R, dan klausa
+keduanya ikut terbantah: ekspektasi sel SS terletak kira-kira 3,8 simpangan baku
+di atas rerata sebaran nol, jadi 300 undian memang TIDAK diharapkan
+menyentuhnya. Permutasinya sehat; inferensinya yang salah. Bunyi asli disimpan
+apa adanya di medan ``bunyi_asli`` dan ikut dicetak — koreksi dilakukan di
+sumber, bukan dengan menghapus jejaknya.
+
 Pemakaian:
     python -m lux.backtest.gabung_h013b --dir reports \\
         --sel reports/backtest_h013_ss_sinyal_stop.json --out reports
@@ -89,6 +108,22 @@ GALAT_BAKU_PER_PERDAGANGAN_SS = 0.005570
 # ADR-015 pasal 4.4. Tidak digeser, dan tidak akan digeser sesudah hasil terlihat.
 AMBANG_P = 0.05
 
+# Bunyi R-D3 SEBELUM terbantah, disimpan verbatim. Aturan 50 melarang menghapus
+# jejak ramalan yang meleset; yang dikoreksi adalah alasannya, bukan riwayatnya.
+BUNYI_ASLI_R_D3 = (
+    "sedikitnya satu seed melampaui ekspektasi sel SS "
+    f"{EKSPEKTASI_SS}; bila tidak, permutasinya cacat"
+)
+
+KOREKSI_R_D3 = (
+    "Klausa kedua bunyi asli TERBANTAH oleh run 30217516013. Ekspektasi sel SS "
+    "terletak kira-kira 3,8 simpangan baku di atas rerata sebaran nol, sehingga "
+    "300 undian memang TIDAK diharapkan menyentuhnya: permutasinya sehat, dan "
+    "inferensi yang menyebutnya cacat itulah yang salah. Seed tertinggi yang "
+    "tidak melampaui ekspektasi sel SS karena itu bukan tanda kerusakan mesin "
+    "permutasi. Ramalan aslinya tetap dicatat MELESET dan tidak dihaluskan."
+)
+
 PEMBATAS = (
     "Putusan di berkas ini menuntut DUA syarat sekaligus, seperti bunyi ADR-015 "
     "pasal 4.4: besaran SS \u2212 AS \u2265 0,020R DAN p \u2264 0,05 atas sedikitnya 300 "
@@ -97,6 +132,9 @@ PEMBATAS = (
     "H-013 tidak sah dibaca sebagai kelulusan (ADR-024). Satuan penarikan yang "
     "MENGIKAT adalah bulan kalender UTC (ADR-028); p per perdagangan ikut "
     "dilaporkan sebagai taksiran bawah dan hanya sah untuk MENJATUHKAN. "
+    "Besaran dilaporkan DUA KALI: terhadap satu undian nol (sel AS seed 42, "
+    "cara lama) dan terhadap RERATA sebaran nol (aturan 49). Bila keduanya "
+    "berbeda jauh, angka lama terlalu bagus. "
     "Gerbang `entri_acak` dimatikan di seluruh run Jalur B, dan sel AS memang "
     "tidak dimaksudkan lulus kriteria apa pun. DITOLAK adalah hasil, bukan "
     "kegagalan run."
@@ -281,6 +319,10 @@ def ringkas(muat: dict, bulan_ss: list[dict], pesan_bulan: list[str]) -> dict:
 
     R-D3 dan R-D4 diadili di sini alih-alih di dalam prosa, sebab ramalan yang
     dinilai oleh mata pembaca bukan ramalan yang diadili.
+
+    Besaran dilaporkan dua kali (aturan 49): terhadap sel AS seed 42, yaitu satu
+    undian nol, dan terhadap rerata sebaran nol. Selisih keduanya adalah ukuran
+    langsung seberapa beruntung undian tunggal itu.
     """
     seed = muat["seed"]
     nol_bulanan = {s: seed[s]["bulan"] for s in seed}
@@ -300,6 +342,12 @@ def ringkas(muat: dict, bulan_ss: list[dict], pesan_bulan: list[str]) -> dict:
     )
 
     besaran = EKSPEKTASI_SS - EKSPEKTASI_AS_SEED42
+    besaran_rerata_nol = EKSPEKTASI_SS - rerata
+    jarak_seed42 = (
+        None if not std else (EKSPEKTASI_AS_SEED42 - rerata) / std
+    )
+    jarak_ss = None if not std else (EKSPEKTASI_SS - rerata) / std
+
     putusan = adjudikasi(
         besaran=besaran,
         p=None if hasil_bulan is None else hasil_bulan["tak_berpasangan"]["p"],
@@ -314,6 +362,14 @@ def ringkas(muat: dict, bulan_ss: list[dict], pesan_bulan: list[str]) -> dict:
         "ekspektasi_ss_dikomit": EKSPEKTASI_SS,
         "ekspektasi_as_seed42_dikomit": EKSPEKTASI_AS_SEED42,
         "besaran_sumbangan_sinyal_R": besaran,
+        "besaran_terhadap_rerata_nol_R": besaran_rerata_nol,
+        "jarak_as_seed42_dari_rerata_nol_sb": jarak_seed42,
+        "jarak_ss_dari_rerata_nol_sb": jarak_ss,
+        "catatan_besaran": (
+            "besaran_sumbangan_sinyal_R diukur terhadap SATU undian nol (sel AS "
+            "seed 42); besaran_terhadap_rerata_nol_R diukur terhadap rerata "
+            "sebaran nol dan itulah angka yang wajib ikut dikutip (aturan 49)"
+        ),
         "putusan": putusan,
         "p_bulan": hasil_bulan,
         "p_perdagangan": hasil_trade,
@@ -329,10 +385,13 @@ def ringkas(muat: dict, bulan_ss: list[dict], pesan_bulan: list[str]) -> dict:
             "R-D3": {
                 "bunyi": (
                     "sedikitnya satu seed melampaui ekspektasi sel SS "
-                    f"{EKSPEKTASI_SS}; bila tidak, permutasinya cacat"
+                    f"{EKSPEKTASI_SS}"
                 ),
+                "bunyi_asli": BUNYI_ASLI_R_D3,
+                "koreksi": KOREKSI_R_D3,
                 "tepat": nilai[-1] > EKSPEKTASI_SS,
                 "seed_tertinggi_R": nilai[-1],
+                "jarak_ss_dari_rerata_nol_sb": jarak_ss,
             },
             "R-D4": {
                 "bunyi": (
@@ -390,6 +449,22 @@ def tulis_laporan(isi: dict, out: Path | str = "reports", nama: str = NAMA) -> t
     if p["sebab"]:
         baris += [f"Sebab tak ternilai: {p['sebab']}", ""]
 
+    baris += [
+        "## Besaran diukur dua kali (aturan 49)",
+        "",
+        f"- terhadap satu undian nol (sel AS seed 42): "
+        f"{angka(isi['besaran_sumbangan_sinyal_R'])}R",
+        f"- terhadap rerata sebaran nol: "
+        f"{angka(isi['besaran_terhadap_rerata_nol_R'])}R",
+        f"- jarak sel AS seed 42 dari rerata nol: "
+        f"{angka(isi['jarak_as_seed42_dari_rerata_nol_sb'], '+.2f')} simpangan baku",
+        f"- jarak sel SS dari rerata nol: "
+        f"{angka(isi['jarak_ss_dari_rerata_nol_sb'], '+.2f')} simpangan baku",
+        "",
+        isi["catatan_besaran"],
+        "",
+    ]
+
     if isi["ketidaksesuaian_bulan"]:
         baris += [
             "## Himpunan bulan tidak sama",
@@ -418,6 +493,11 @@ def tulis_laporan(isi: dict, out: Path | str = "reports", nama: str = NAMA) -> t
     for kunci, r in isi["ramalan"].items():
         status = {True: "TEPAT", False: "MELESET", None: "tidak ternilai"}[r["tepat"]]
         baris += [f"- **{kunci}** {status}: {r['bunyi']}"]
+        asli = r.get("bunyi_asli")
+        if asli and asli != r["bunyi"]:
+            baris += [f"    - bunyi asli: {asli}"]
+        if r.get("koreksi"):
+            baris += [f"    - koreksi: {r['koreksi']}"]
     baris += [
         "",
         "## p pada satuan perdagangan (taksiran bawah, tidak mengikat)",
