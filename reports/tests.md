@@ -1,17 +1,41 @@
 # Laporan pengujian
 
-Commit: `953ce24a349148b4f98a8b80558490a0bb269bba`
-Kode keluar: `0`
+Commit: `2a0f8545f5184abda05c355facd1c1e615343938`
+Kode keluar: `2`
 
 ```
-........................................................................ [ 11%]
-........................................................................ [ 22%]
-........................................................................ [ 33%]
-........................................................................ [ 44%]
-........................................................................ [ 55%]
-........................................................................ [ 67%]
-........................................................................ [ 78%]
-........................................................................ [ 89%]
-...................................................................      [100%]
-643 passed in 2.68s
+
+==================================== ERRORS ====================================
+________________ ERROR collecting tests/test_geometri_keluar.py ________________
+/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule
+    mod = import_path(
+/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path
+    importlib.import_module(module_name)
+/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:179: in exec_module
+    source_stat, co = _rewrite_test(fn, self.config)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:348: in _rewrite_test
+    tree = ast.parse(source, filename=strfn)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/ast.py:52: in parse
+    return compile(source, filename, mode, flags,
+E     File "/home/runner/work/lux-research/lux-research/tests/test_geometri_keluar.py", line 222
+E       }
+E       ^
+E   SyntaxError: unmatched '}'
+=========================== short test summary info ============================
+ERROR tests/test_geometri_keluar.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 1.65s
 ```
