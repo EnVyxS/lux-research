@@ -9,7 +9,8 @@
 #
 # Dua kunci ADR-014 ditambahkan 2026-07-26 (universe.min_median_stop_frac dan
 # risiko.maks_biaya_masuk_R). Satu kunci ADR-016 ditambahkan pada hari yang sama
-# (risiko.stop_hormati_celah). Nomor `versi` sengaja TIDAK dinaikkan: saya belum
+# (risiko.stop_hormati_celah), dan satu kunci ADR-017 menyusul
+# (universe.min_bar_4h). Nomor `versi` sengaja TIDAK dinaikkan: saya belum
 # memeriksa setiap pembaca berkas ini dalam sesi ini, jadi menaikkannya adalah
 # perubahan yang akibatnya tidak saya ketahui. Bila kelak ada modul yang
 # menegakkan nomor versi, kenaikannya dikerjakan sebagai perubahan sendiri dan
@@ -23,11 +24,37 @@ universe:
   # Instrumen dengan riwayat terlalu pendek tidak dapat diuji secara bermakna:
   # tidak cukup untuk walk-forward maupun untuk mengukur perilaku lintas rezim.
   min_bar_1h: 8760          # kira-kira satu tahun
+  # ADR-017, dibekukan 2026-07-26 SEBELUM satu byte data 4h pernah dibaca.
+  #
+  # Yang dibekukan adalah MAKNANYA, bukan angkanya: lantai riwayat tetap satu
+  # tahun kalender untuk setiap interval. 2190 = 8760 / 4, dihitung bukan
+  # ditaksir.
+  #
+  # Mengapa kunci ini ada. `lux/validate_run.py` dahulu membaca `min_bar_1h`
+  # APA PUN intervalnya. Dipakai untuk 4h, 8.760 bar berhenti berarti satu tahun
+  # dan berubah menjadi EMPAT TAHUN, sehingga semesta 4h akan menyusut tajam
+  # oleh satuan yang diwarisi diam-diam — dan penyusutan itu akan tampak sebagai
+  # temuan tentang pasar. H-011 sudah sekali gugur karena definisi semesta,
+  # bukan karena sinyal; sekali cukup.
+  #
+  # `muat_ambang` kini gagal keras bila kunci `min_bar_<interval>` tidak ada.
+  # Tidak ada nilai bawaan tersembunyi, sebab jatuh diam-diam ke lantai 1h
+  # adalah tepat cacat yang kunci ini perbaiki.
+  min_bar_4h: 2190          # satu tahun pada bar empat jam
   # Ambang likuiditas memakai median nilai transaksi harian, bukan volume koin,
-  # supaya sebanding antar instrumen dengan harga sangat berbeda.
+  # supaya sebanding antar instrumen dengan harga sangat berbeda. Satuannya per
+  # hari, jadi ia tidak ikut berubah makna ketika interval berganti.
   min_median_quote_volume_harian: 1000000
   # Bar datar berlebihan menandakan harga tidak bergerak sama sekali; strategi
   # apa pun yang untung di sana kemungkinan besar mengeksploitasi cacat data.
+  #
+  # ADR-017 mencatat keberatan yang belum dikompensasi: satu bar 4h hanya datar
+  # bila keempat bar 1h penyusunnya datar, jadi rasio bar datar 4h umumnya LEBIH
+  # KECIL daripada 1h untuk simbol yang sama, dan ambang 0,30 karena itu bekerja
+  # LEBIH LONGGAR pada 4h. Angkanya sengaja tidak digeser — menggeser ambang
+  # tanpa bukti hanya memindahkan kesewenangan. Yang menjaga sisi ini adalah
+  # lantai min_median_stop_frac di bawah, ditambah kewajiban laporan menyebut
+  # jumlah simbol terbuang per sebab.
   maks_rasio_bar_datar: 0.30
   # ADR-014, dibekukan 2026-07-26 SEBELUM H-012 dijalankan. Lantai jarak stop
   # sebagai pecahan harga, diukur dengan MEDIAN sepanjang riwayat simbol.

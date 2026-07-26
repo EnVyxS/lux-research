@@ -12,6 +12,10 @@ interval. Sebelumnya seluruh interval menulis ke `universe_layak.json` yang sama
 sehingga validasi 4h akan menimpa semesta 1h tanpa satu pun pesan galat,
 sementara `potong_ekor.yml` meneruskan tepat berkas itu lewat `--universe`.
 
+ADR-017 menambahkan yang kedua: ambang jumlah bar dibaca per interval. `8760`
+bukan angka sembarang melainkan satu tahun kalender dalam bar 1h; dipakai ulang
+pada 4h ia diam-diam berubah makna menjadi empat tahun.
+
 Pemakaian:
     python -m lux.validate_run --dir aset --interval 1h --config config/lux.yaml
 """
@@ -74,19 +78,33 @@ def pilih_berkas(direktori: Path, interval: str) -> list[Path]:
     return [p for p in semua if not any(t in p.name for t in POLA_DILARANG)]
 
 
-def muat_ambang(path: Path) -> AmbangKelayakan:
+def muat_ambang(path: Path, interval: str = INTERVAL_LEGASI) -> AmbangKelayakan:
     """Membaca ambang dari config. Gagal keras bila config tidak terbaca.
 
     Diam-diam memakai nilai bawaan akan membuat laporan tampak sah padahal
     aturannya bukan aturan yang disepakati.
+
+    Lantai jumlah bar dibaca dari kunci `min_bar_<interval>` (ADR-017). Tidak ada
+    jalan mundur ke `min_bar_1h`: satu tahun pada 1h adalah 8.760 bar sedangkan
+    pada 4h 2.190, jadi mewarisi angka 1h berarti menuntut empat tahun riwayat
+    tanpa seorang pun memutuskannya. Kunci yang hilang WAJIB menghentikan run,
+    sebab semesta yang salah definisi sudah sekali menggugurkan satu hipotesis
+    (H-011) tanpa memberi tahu apa pun tentang sinyal.
     """
     import yaml
 
     with path.open(encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
     u = cfg["universe"]
+    kunci_bar = f"min_bar_{interval}"
+    if kunci_bar not in u:
+        raise SystemExit(
+            f"config {path} tidak memuat universe.{kunci_bar}; "
+            f"tambahkan lantai riwayat untuk interval {interval} lebih dulu "
+            f"(ADR-017). Nilai bawaan sengaja tidak disediakan."
+        )
     return AmbangKelayakan(
-        min_bar=int(u["min_bar_1h"]),
+        min_bar=int(u[kunci_bar]),
         min_median_quote_volume_harian=float(u["min_median_quote_volume_harian"]),
         maks_rasio_bar_datar=float(u["maks_rasio_bar_datar"]),
     )
@@ -127,8 +145,9 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--out", default="reports")
     a = ap.parse_args(argv)
 
-    ambang = muat_ambang(Path(a.config))
+    ambang = muat_ambang(Path(a.config), a.interval)
     print(
+        f"interval {a.interval} "
         f"ambang: min_bar={ambang.min_bar} "
         f"min_median_quote={ambang.min_median_quote_volume_harian:,.0f} "
         f"maks_bar_datar={ambang.maks_rasio_bar_datar}",
@@ -164,6 +183,7 @@ def main(argv: list[str] | None = None) -> int:
 
     ringkas = {
         "interval": a.interval,
+        "min_bar": ambang.min_bar,
         "berkas_diabaikan": diabaikan,
         "total_simbol": len(hasil),
         "total_baris": int(len(df)),
@@ -203,6 +223,7 @@ def main(argv: list[str] | None = None) -> int:
         f"# Validasi Tier B {a.interval}",
         "",
         f"Total {ringkas['total_baris']:,} baris atas {ringkas['total_simbol']} simbol.",
+        f"Lantai riwayat interval ini: {ambang.min_bar:,} bar.",
         "",
         "## Integritas",
         "",
