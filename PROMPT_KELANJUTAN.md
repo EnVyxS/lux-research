@@ -1,7 +1,8 @@
 # PROMPT KELANJUTAN — LUX
 
 Disegarkan pada commit sesudah `a25160ca4a238fbb5b652bd4839ed9917183dcba` (ADR-035, putusan H-014).
-Versi sebelumnya: `8feef37b` (lapuk 17 commit). Waktu penulisan: 2026-07-27 ~05:10 WIB.
+Dikoreksi pada commit ini sesudah pembacaan retroaktif atas `8feef37b` (lihat bagian 11).
+Waktu penulisan: 2026-07-27 ~05:27 WIB.
 
 Berkas ini adalah **penyerahan lintas-sesi dan lintas-akun**. Sesi berikutnya mungkin dijalankan oleh
 akun yang tidak memiliki riwayat percakapan apa pun. Karena itu berkas ini harus cukup berdiri sendiri.
@@ -39,15 +40,28 @@ bias dan overfitting. Mesin lokal tidak sanggup backtest penuh dan tidak ada VM 
   langsung memulai run x. Konsekuensi: **jangan** menyentuh berkas workflow hanya untuk memperbaiki
   kosmetik — perbaikan harus **menumpang** run berikutnya yang memang dikehendaki.
 - `search_code` **nol hasil** di repo ini. `get_file_contents` menuntut SHA 40 karakter penuh tetapi
-  menerima `ref:"main"` dan menerima path direktori untuk daftar isi.
-- Menulis memakai `push_files`, yang **MENGGANTI SELURUH ISI BERKAS** → **baca dulu sebelum menulis ulang**.
+  menerima `ref:"main"` dan menerima path direktori untuk daftar isi. **Pada direktori ia memberi
+  ukuran tiap berkas tanpa menarik isinya** — cara termurah mengadili ramalan ukuran laporan.
+- Menulis memakai `push_files`, yang **MENGGANTI SELURUH ISI BERKAS** → **baca dulu sebelum menulis
+  ulang**. **Bentuk panggilan yang benar**: `{ toolName: "push_files", toolArguments: { owner, repo,
+  branch, message, files } }` — `owner`/`repo`/`branch` masuk **di dalam** `toolArguments`, bukan di
+  tingkat atas panggilan. Teks Python di repo ini memuat escape Unicode literal (`\u00b7`, `\u2014`)
+  dan f-string berkutip bersarang — salin apa adanya saat membaca ulang sebelum menyunting.
 - `fapi.binance.com` HTTP **451 permanen**; CDN `data.binance.vision` tetap 200.
 - Runner: python 3.12.13, numpy 2.5.1, pytest 9.1.1, pandas 2.2.3, pyarrow 17.0.0. **Tanpa scipy,
   tanpa requests.** 4 vCPU / 15 GB, batas 6 jam per job.
 - **Kabar buruk datang cepat, kabar baik datang lambat**: gagal dalam 23–32 detik, lulus ±20 menit
-  untuk 1h. Diamnya laporan **bukan** tanda lolos. Commit laporan tanpa berkas hasil = run **GAGAL**.
-  Blob laporan yang SHA-nya tidak berubah = belum ditulis, run belum selesai. **Verifikasi lewat
-  `list_commits`, jangan berasumsi.**
+  untuk 1h (kecuali `tests.yml`, yang memberi kabar **baik** dalam ~23 detik juga — jangan membaca
+  cepatnya laporan uji sebagai kegagalan, baca isinya). Diamnya laporan **bukan** tanda lolos. Commit
+  laporan tanpa berkas hasil = run **GAGAL**. Blob laporan yang SHA-nya tidak berubah = belum ditulis,
+  run belum selesai. **Verifikasi lewat `list_commits`, jangan berasumsi.**
+- **Dua dorongan berurutan ke `lux/**` melahirkan DUA run `tests.yml`**, dan keduanya wajib diadili
+  terpisah. Laporan run yang lebih dulu **tertimpa** oleh run berikutnya di `main`, tetapi masih
+  terbaca dengan `get_file_contents` memakai **SHA commit laporan itu**, bukan `ref:"main"`.
+- **Pekerjaan matriks yang bergantung pada keluaran pekerjaan lain wajib `git fetch` +
+  `git checkout origin/main -- reports`.** Checkout bawaan berada pada SHA pemicu, yang **mendahului**
+  seluruh commit pecahan — pelajaran mahal dari `h013b.yml`, relevan lagi bila pola matriks dipakai
+  ulang (mis. riset funding atau geometri lanjutan).
 - **Peringatan waktu (dipelajari 2026-07-27):** H-014 dua sel 4h selesai dalam **2 menit 19 detik**.
   Waktu run 1h yang lama didominasi **unduhan**, bukan komputasi. Jangan menyimpulkan "terlalu cepat =
   gagal" — saya melakukan itu dan **salah**. Baca lognya.
@@ -167,10 +181,19 @@ Kegagalan gerbang `lookahead`+`entri_acak` di sel AS/AH dan `invarian_risiko` di
 ## 7. Larangan (jangan dilanggar, semuanya berdasar)
 
 - **Jangan menyatakan sistem siap dagang.** Empat belas hipotesis, empat belas ditolak.
-- Jangan mengutip `+0,060163R`, `+0,059636R`, atau `+0,029481R` sebagai kelulusan.
+- Jangan mengutip `+0,060163R` (H-010 tanpa USDCUSDT) atau `+0,059636R` (H-012 seluruh riwayat) sebagai
+  kelulusan — keduanya pemilihan pasca-hasil.
+- Jangan mengutip `+0,054842R`, `+0,043732R`, atau `+0,066648R` sebagai kelulusan atau kelayakan H-013;
+  `+0,054842R` juga haram dikutip sebagai besaran apa pun **tanpa menyebut seed 42**. Jangan mengutip
+  `+0,029481R` sebagai kelulusan geometri — ia tercemar (cacat 14).
+- Kata **LULUS** pada `reports/backtest_h013_kontribusi.md` haram dikutip. **p 0,001100** tingkat simbol
+  haram dikutip sebagai keberartian. **Setiap p atau galat baku per perdagangan** haram dipakai sebagai
+  bukti keberartian, termasuk **0,003322** dan "+2,99 galat baku". **Prosa R-D3 di `reports/h013b_p.md`
+  haram dipakai sebagai penilaian atas kesehatan permutasi** — ia terbantah dan sengaja tidak ditulis ulang.
 - Jangan menyebut H-012/H-013/H-014 sebagai "H-010 sesudah perbaikan".
 - Jangan menghitung ulang H-001b … H-012 dengan mesin ADR-016.
 - Jangan membuang simbol atau memilih bulan **sesudah** melihat hasil. Jangan membuang simbol merugi.
+  Jangan memilih satuan penarikan sesudah hasil terlihat.
 - Jangan memakai gerbang konsentrasi / `funding_ekor` sebagai penyaring simbol.
 - Jangan melombakan ambang pengaman. Jangan menjadikan `stop_hormati_celah` parameter yang dilombakan.
 - **Jangan menggeser**: lantai 0,004 · pagar 0,5R · `BATAS_VOID` 20 · batas tanggal 2026-01-01 ·
@@ -178,10 +201,12 @@ Kegagalan gerbang `lookahead`+`entri_acak` di sel AS/AH dan `invarian_risiko` di
   `invarian_risiko` −1,5R.
 - Jangan mematok `imbalan_R` ke 8,0. Jangan menurunkan `--ulangan` dari 300. Jangan menaikkan
   `maks_umur_bar` dari 168.
+- Jangan menandai putusan DITOLAK sebagai kegagalan pekerjaan — hasil yang menjatuhkan hipotesis dengan
+  kode keluar 0 adalah alat yang bekerja benar (aturan 48).
 - Agen otonom "LUX Gatekeeper" dan "LUX Gatekeeper Reporter" **tidak dipakai lagi**. Kolom Verdict di
   database Notion "LUX — Run Results" sekarang **kolom manusia**.
 
-## 8. Aturan 47–56 (ringkas; 1–46 ada di `STATE.md` bagian 1)
+## 8. Aturan 47–56 (ringkas; 1–46 ada di `STATE.md` bagian 1 — itulah versi yang mengikat)
 
 47. Alat yang selalu menghasilkan angka tidak menjaga apa pun.
 48. Hasil yang membunuh hipotesis keluar dengan kode 0.
@@ -202,7 +227,8 @@ Kegagalan gerbang `lookahead`+`entri_acak` di sel AS/AH dan `invarian_risiko` di
 `d8cc4ecc` (ADR-034+j30) → `4af21176` (kode H-014, 855 uji) → `4795767b` (laporan uji, run 30221837845)
 → `17ef54f7` (jurnal 31, aturan 54) → `52c64ac5` (`h014.yml`, memicu run **30221967019**)
 → `603477ce` (laporan H-014, 21:54:44Z) → `a3355294` (STATE v27) →
-**`a25160ca4a238fbb5b652bd4839ed9917183dcba`** (ADR-035 + jurnal 32).
+`a25160ca4a238fbb5b652bd4839ed9917183dcba` (ADR-035 + jurnal 32) → `d49aab94` (berkas ini, v1) →
+**berkas ini (v2, dikoreksi)**.
 
 **Berikutnya bebas:** `decisions/ADR-036.md` · `journal/2026-07-27-33.md` · `STATE.md` v28.
 Penamaan ADR: `ADR-0NN.md` telanjang sejak 015. Cacah uji sekarang **855**.
@@ -221,3 +247,16 @@ Penamaan ADR: `ADR-0NN.md` telanjang sejak 015. Cacah uji sekarang **855**.
   posisi dipegang sampai stop kena, dan stop biasanya kena lebih dahulu.
 - **"226 jendela / 63,5%"** yang nyatanya **194 / 54,5%** — ditulis dari ingatan. Jangan mengutip angka
   dari ingatan; kutip dari blob.
+- **Menulis ulang berkas ini (v1, `d49aab94`) tanpa membaca `8feef37b` lebih dahulu**, melanggar aturan
+  push_files sendiri. Lihat bagian 11.
+
+## 11. Koreksi retroaktif (dicatat, bukan disembunyikan)
+
+Commit `d49aab94` (v1 berkas ini) ditulis **tanpa** membaca `8feef37b` (versi sebelumnya) lebih dahulu.
+Saya beralasan saat itu bahwa berkas ini memang harus diganti seluruhnya dengan posisi terkini — alasan
+yang salah, karena itu justru argumen untuk membaca dulu, bukan melewatkannya: saya tidak tahu apakah
+versi lama memuat sesuatu yang unik. Pengguna mempertanyakannya secara langsung. Pembacaan retroaktif
+atas blob `8feef37b4edc8e862cafe97eb745a0dfeae22619` menemukan **lima kehilangan nyata**, semuanya
+dikembalikan pada commit ini (lihat bagian 2 dan 7). Mitigasi yang membuat ini bisa diperbaiki:
+`push_files` menimpa `main`, tetapi commit lama tetap ada di riwayat git — tidak ada yang musnah, hanya
+sempat tidak terlihat.
