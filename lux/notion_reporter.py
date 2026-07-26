@@ -7,24 +7,26 @@ Batas yang disengaja:
 
 * Tidak ada dependensi baru. Runner tidak memiliki ``requests``; modul ini hanya
   memakai pustaka standar.
-* Tidak ada jaringan di dalam pengujian. :func:`kirim` menerima ``pengirim``
-  yang dapat disuntik; hanya nilai bawaannya yang menyentuh jaringan.
+* Tidak ada jaringan di dalam pengujian. :func:`kirim` dan :func:`main` menerima
+  ``pengirim`` yang dapat disuntik; hanya nilai bawaannya menyentuh jaringan.
 * Workflow tidak dapat menulis ``Verdict``. :func:`properti_baris` tidak
   menerima argumen verdict dan selalu menulis ``Menunggu Penilaian``. Gerbang
   mutu yang boleh diisi oleh pihak yang dinilai bukan gerbang.
 * ID database tidak ditanam dalam kode. Ia dibaca dari variabel lingkungan
-  ``NOTION_DB_RUN_RESULTS``, sebab bentuk mentah UUID itu belum pernah terlihat
-  dan menebaknya berarti mengarang (aturan 6).
+  ``NOTION_DB_RUN_RESULTS``.
+* Token tidak pernah dicetak dan tidak pernah masuk pesan galat.
 
 Yang sengaja BELUM ada: pemetaan otomatis dari kunci JSON laporan backtest ke
 baris Notion. Kunci itu ditulis setelah struktur berkas laporan yang dikomit
-dibaca, bukan dari ingatan.
+dibaca, bukan dari ingatan (aturan 6).
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import os
+import sys
 import urllib.error
 import urllib.request
 from typing import Any, Callable, Mapping, Sequence
@@ -70,6 +72,9 @@ TAHAP_SAH: tuple[str, ...] = (
 STATUS_SAH: tuple[str, ...] = ("Sukses", "Sebagian", "Gagal")
 
 PANJANG_SHA = 40
+
+NAMA_ENV_TOKEN = "NOTION_TOKEN"
+NAMA_ENV_DATABASE = "NOTION_DB_RUN_RESULTS"
 
 
 class GalatPelapor(RuntimeError):
@@ -175,7 +180,7 @@ def payload_baris(database_id: str, properti: Mapping[str, Any]) -> dict[str, An
     """Bungkus properti menjadi badan permintaan create-page Notion."""
     if not database_id:
         raise ValueError(
-            "database_id kosong; setel NOTION_DB_RUN_RESULTS pada workflow"
+            f"database_id kosong; setel {NAMA_ENV_DATABASE} pada workflow"
         )
     return {
         "parent": {"type": "database_id", "database_id": database_id},
@@ -183,7 +188,9 @@ def payload_baris(database_id: str, properti: Mapping[str, Any]) -> dict[str, An
     }
 
 
-def _pengirim_urllib(url: str, badan: bytes, kepala: Mapping[str, str]) -> tuple[int, str]:
+def _pengirim_urllib(
+    url: str, badan: bytes, kepala: Mapping[str, str]
+) -> tuple[int, str]:
     permintaan = urllib.request.Request(
         url, data=badan, headers=dict(kepala), method="POST"
     )
@@ -209,10 +216,12 @@ def kirim(
     ``pengirim`` disuntik pada pengujian sehingga tidak ada jaringan di sana.
     Token tidak pernah dicetak, dan tidak masuk pesan galat.
     """
-    token_efektif = token if token is not None else os.environ.get("NOTION_TOKEN", "")
+    token_efektif = (
+        token if token is not None else os.environ.get(NAMA_ENV_TOKEN, "")
+    )
     if not token_efektif:
         raise GalatPelapor(
-            "NOTION_TOKEN tidak tersedia; baris hasil tidak dikirim"
+            f"{NAMA_ENV_TOKEN} tidak tersedia; baris hasil tidak dikirim"
         )
 
     kepala = {
@@ -226,3 +235,62 @@ def kirim(
     if kode < 200 or kode >= 300:
         raise GalatPelapor(f"Notion menolak baris, kode {kode}: {potong(teks, 500)}")
     return kode, teks
+
+
+def argumen(argv: Sequence[str] | None = None) -> argparse.Namespace:
+    """Baca argumen baris perintah. Pilihan dibatasi skema database."""
+    pengurai = argparse.ArgumentParser(
+        prog="lux.notion_reporter",
+        description="Kirim satu baris hasil run ke database Notion 'LUX - Run Results'.",
+    )
+    pengurai.add_argument("--run-id", required=True)
+    pengurai.add_argument("--tahap", required=True, choices=list(TAHAP_SAH))
+    pengurai.add_argument("--status", required=True, choices=list(STATUS_SAH))
+    pengurai.add_argument("--commit", required=True)
+    pengurai.add_argument("--ringkasan", required=True)
+    pengurai.add_argument("--gerbang", nargs="*", default=[])
+    pengurai.add_argument("--baris", type=int, default=None)
+    pengurai.add_argument("--simbol", type=int, default=None)
+    pengurai.add_argument("--durasi", type=float, default=None)
+    pengurai.add_argument("--selesai", default=None)
+    pengurai.add_argument("--lokasi", default=None)
+    return pengurai.parse_args(argv)
+
+
+def main(
+    argv: Sequence[str] | None = None,
+    *,
+    pengirim: Pengirim | None = None,
+    database_id: str | None = None,
+) -> int:
+    """Titik masuk CLI. Mengembalikan 0 hanya bila Notion menerima baris."""
+    opsi = argumen(argv)
+    db = (
+        database_id
+        if database_id is not None
+        else os.environ.get(NAMA_ENV_DATABASE, "")
+    )
+    properti = properti_baris(
+        run_id=opsi.run_id,
+        tahap=opsi.tahap,
+        status_eksekusi=opsi.status,
+        commit=opsi.commit,
+        ringkasan=opsi.ringkasan,
+        gerbang_gagal=opsi.gerbang,
+        baris_diproses=opsi.baris,
+        simbol_diproses=opsi.simbol,
+        durasi_detik=opsi.durasi,
+        selesai_iso=opsi.selesai,
+        lokasi_artefak=opsi.lokasi,
+    )
+    kode, teks = kirim(payload_baris(db, properti), pengirim=pengirim)
+    try:
+        url_baris = json.loads(teks).get("url", "(tanpa url)")
+    except (json.JSONDecodeError, AttributeError):
+        url_baris = "(tanggapan bukan JSON)"
+    print(f"baris Notion dibuat, kode {kode}: {url_baris}")
+    return 0
+
+
+if __name__ == "__main__":  # pragma: no cover
+    sys.exit(main())

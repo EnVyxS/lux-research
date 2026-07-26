@@ -1,0 +1,91 @@
+name: notion-asap
+
+# Workflow ini SENGAJA berdiri sendiri dan tidak menyentuh backtest.yml.
+# backtest.yml memicu dirinya sendiri lewat filter paths, dan yang tertanam di
+# sana sekarang adalah H-012 yang sudah divonis DITOLAK. Menyentuhnya berarti
+# memproduksi angka baru bagi vonis lama (aturan 5 dan 26).
+#
+# Tugasnya satu: membuktikan bahwa NOTION_TOKEN dan NOTION_DB_RUN_RESULTS benar
+# bekerja. Kredensial yang belum pernah dipakai adalah asumsi, bukan fakta.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/notion_asap.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  asap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: siap
+        run: mkdir -p logs reports
+
+      # Aturan 34: lingkungan wajib memasang dependensi yang sama dengan tests.yml.
+      - name: deps
+        run: |
+          set -o pipefail
+          python -m pip install --upgrade pip 2>&1 | tee -a logs/deps.log
+          pip install -r requirements.txt pytest 2>&1 | tee -a logs/deps.log
+
+      # Aturan 1: pengujian hijau sebelum satu permintaan HTTP dibuat.
+      - name: uji
+        run: |
+          set -o pipefail
+          python -m pytest -q tests/test_notion_reporter.py \
+            tests/test_notion_reporter_cli.py 2>&1 | tee -a logs/uji.log
+
+      # Baris ini jujur menyebut dirinya asap. Ia bukan hasil riset.
+      - name: kirim
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DB_RUN_RESULTS: ${{ vars.NOTION_DB_RUN_RESULTS }}
+        run: |
+          set -o pipefail
+          python -m lux.notion_reporter \
+            --run-id "asap-notion-$(date -u +%Y-%m-%dT%H:%MZ)" \
+            --tahap "Lainnya" \
+            --status "Sukses" \
+            --commit "${GITHUB_SHA}" \
+            --ringkasan '{"jenis":"asap","tujuan":"verifikasi kredensial dan akses database","bukan_hasil_riset":true}' \
+            --lokasi "run ${GITHUB_RUN_ID}" 2>&1 | tee -a logs/notion_asap.log
+
+      # Aturan 33: seluruh logs/ disalin ke reports/ apa pun yang terjadi.
+      - name: Salin log ke laporan
+        if: always()
+        run: |
+          {
+            echo "# Laporan asap Notion"
+            echo
+            echo "Commit: \`${GITHUB_SHA}\`"
+            echo "Run: \`${GITHUB_RUN_ID}\`"
+            echo
+            for berkas in logs/*.log; do
+              [ -f "$berkas" ] || continue
+              echo "## $berkas"
+              echo '```'
+              cat "$berkas"
+              echo '```'
+              echo
+            done
+          } > reports/notion_asap.md
+
+      - name: Komit hasil
+        if: always()
+        run: |
+          git config user.name lux-notion
+          git config user.email actions@github.com
+          git add reports/notion_asap.md
+          git commit -m "chore(notion): laporan asap ${GITHUB_RUN_ID} [skip ci]" \
+            || echo "tidak ada perubahan untuk dikomit"
+          git push
