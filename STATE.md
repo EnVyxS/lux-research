@@ -2,11 +2,11 @@
 
 > **Sesi baru mulai dari sini.** Berkas ini ditulis ulang setiap sesi. Ia menggantikan kebutuhan membaca Notion atau arsip jurnal. Jika sesuatu tidak tercatat di sini, anggap belum diketahui.
 
-**Diperbarui:** 2026-07-27 03:40 WIB (versi 25)
+**Diperbarui:** 2026-07-27 04:05 WIB (versi 26)
 
-**Tahap sekarang:** S20 — **Jalur B SELESAI dan H-013 DITOLAK.** Run **`30217516013`** (sepuluh pecahan × 30 seed + penggabung, pemicu `97b36c19`) menghitung untuk **pertama kalinya dalam tiga belas hipotesis** kedua syarat ADR-015 §4.4 atas run yang sama: besaran SS − AS **+0,054842R ≥ 0,020R** (terpenuhi) dan **p = 0,205980 pada satuan bulan > 0,05** (TIDAK terpenuhi), atas 300 ulangan penuh dengan trade terkecil 54.812. Putusan **DITOLAK**, penggabung keluar berkode **0** karena DITOLAK adalah HASIL (ADR-030 R2). Berkas putusan: `reports/h013b_p.json` blob `cd45685b`, `.md` blob `4c780435`, log penggabung `48fbfa8b`.
+**Tahap sekarang:** S20 — **Jalur B SELESAI, H-013 DITOLAK, dan utang metodologisnya sudah dibayar di sumber.** Run **`30217516013`** (sepuluh pecahan × 30 seed + penggabung, pemicu `97b36c19`) menghitung untuk **pertama kalinya dalam tiga belas hipotesis** kedua syarat ADR-015 §4.4 atas run yang sama: besaran SS − AS **+0,054842R ≥ 0,020R** (terpenuhi) dan **p = 0,205980 pada satuan bulan > 0,05** (TIDAK terpenuhi), atas 300 ulangan penuh dengan trade terkecil 54.812. Putusan **DITOLAK**, penggabung keluar berkode **0** karena DITOLAK adalah HASIL (ADR-030 R2). Berkas putusan: `reports/h013b_p.json` blob `cd45685b`, `.md` blob `4c780435`, log penggabung `48fbfa8b`. Sesudah itu **aturan 49 dan aturan 50 dipasang ke dalam alat, bukan hanya ke dokumen** (`6ae83062` + `5bd73fbf`, **819** uji hijau).
 
-**Tahap berikutnya:** **funding sebagai SINYAL** — satu-satunya dimensi bersih yang belum pernah diuji sekali pun, datanya sudah ada di rilis `tier-b-v1`. Wajib dipra-registrasi lengkap **sebelum** satu baris kode ditulis, dan wajib melewati gerbang p bulanan (ADR-031 keputusan 5). Sebelum itu: utang tertulis di bagian 6 butir 3–9.
+**Tahap berikutnya:** **geometri keluar diuji sendiri dengan mesin p bulanan** (butir 8), lalu **funding sebagai SINYAL** — satu-satunya dimensi bersih yang belum pernah diuji sekali pun, datanya sudah ada di rilis `tier-b-v1`. Funding wajib dipra-registrasi lengkap **sebelum** satu baris kode ditulis, dan wajib melewati gerbang p bulanan (ADR-031 keputusan 5).
 
 ---
 
@@ -50,7 +50,7 @@ Aturan yang lahir dari kesalahan nyata, bukan dari teori:
 32. (S15) **Aritmetika yang hidup di dalam `main` tidak dapat diuji.**
 33. (S15) **Setiap langkah workflow wajib `tee` ke `logs/` dan seluruh `logs/` disalin ke `reports/` dengan `if: always()`.**
 34. (S15) **Lingkungan pagar wajib memasang dependensi yang sama dengan `tests.yml`.**
-35. (S16) **Muatan tulis yang panjang wajib dibaca ulang utuh sebelum dikirim, dan jumlah pengujian dicacah dari muatan yang benar-benar dikirim, bukan dari rencana.** Sejak aturan ini dipatuhi, **sembilan belas** ramalan cacah berturut-turut tepat.
+35. (S16) **Muatan tulis yang panjang wajib dibaca ulang utuh sebelum dikirim, dan jumlah pengujian dicacah dari muatan yang benar-benar dikirim, bukan dari rencana.** Sejak aturan ini dipatuhi, **dua puluh satu** ramalan cacah berturut-turut tepat.
 36. (S16, ADR-016) **Ramalan yang dijamin benar oleh konstruksi bukan ramalan.**
 37. (S17, ADR-017–019) **Angka yang benar untuk satu interval tidak berubah nilai ketika dipakai di interval lain — ia berubah MAKNA, dan diam.** Setiap besaran yang berarti "satu hari" wajib diturunkan lewat `lux.kerangka`, tidak pernah dari literal.
 38. (S17) **Dua definisi atas satu dataset selalu dimenangkan oleh yang tidak terlihat.**
@@ -61,11 +61,12 @@ Aturan yang lahir dari kesalahan nyata, bukan dari teori:
 43. (S19, ADR-026) **Rencana analisis wajib diperiksa terhadap struktur berkas laporan sebelum dijadwalkan.** ADR-024 menjadwalkan uji atas "4.082 jendela" padahal `per_simbol.jendela` adalah **cacah**. Pemasangan hanya mungkin pada **simbol (437)** dan **bulan (73)**.
 44. (S19, ADR-028) **Ambang statistik tanpa satuan penarikan bukan ambang.** Cacat kelas kedua belas. Satuan resmi kini **bulan kalender UTC**. **Dibuktikan telanjang di S20:** satu run yang sama memberi p 0,003322 per perdagangan dan **0,205980** per bulan.
 45. (S19, ADR-028) **`p` sah hanya untuk MENJATUHKAN, tidak untuk MENEGAKKAN.**
-46. (S19) **Ramalan saya tepat ketika menyangkut kode saya sendiri dan meleset ketika menyangkut pasar.** Sembilan belas ramalan cacah uji berturut-turut tepat; dari sebelas ramalan angka H-013 sembilan meleset, dan dari lima ramalan Jalur B dua meleset. Sebab tiap kekeliruan sama: sebuah asumsi yang tidak pernah diperiksa diperlakukan sebagai fakta. **Sebelum membekukan ramalan angka, sebutkan asumsi yang menopangnya dan tandai mana yang belum diperiksa.**
+46. (S19) **Ramalan saya tepat ketika menyangkut kode saya sendiri dan meleset ketika menyangkut pasar.** Dua puluh satu ramalan cacah uji berturut-turut tepat; dari sebelas ramalan angka H-013 sembilan meleset, dan dari lima ramalan Jalur B dua meleset. Sebab tiap kekeliruan sama: sebuah asumsi yang tidak pernah diperiksa diperlakukan sebagai fakta. **Sebelum membekukan ramalan angka, sebutkan asumsi yang menopangnya dan tandai mana yang belum diperiksa.**
 47. (S19–S20, ADR-030) **Alat yang selalu menghasilkan angka tidak menjaga apa pun.** Penggabung yang memaksakan keluaran atas himpunan bulan yang berbeda akan mencetak angka yang tampak waras atas dua himpunan yang bukan pasangan. Karena itu ia **MENOLAK** (kode 4), tidak memotong ke irisan, dan tidak mengisi nol. Berhenti adalah keluaran yang sah.
 48. (S20, ADR-030) **Hasil yang menjatuhkan hipotesis wajib berkode keluar 0.** Menandai DITOLAK sebagai kegagalan pekerjaan akan mendorong siapa pun mengutak-utik sampai papan hijau. Merah hanya untuk mesin yang rusak, bukan untuk hipotesis yang mati.
-49. (S20, ADR-031) **Besaran tidak boleh diukur terhadap satu undian nol.** Sel AS seed 42 (+0,011806R) ternyata ~0,98 simpangan baku **di bawah** rerata sebaran nol (+0,022916R). Setiap besaran terhadap sel nol wajib dilaporkan juga terhadap **rerata** sebaran nol; besaran terhadap satu seed hanya boleh dikutip bila nomor seed-nya ikut ditulis.
-50. (S20, ADR-031) **Ramalan yang terbukti salah alasannya dikoreksi sebagai PROSA di sumbernya, dan jejak bunyi aslinya tidak dihapus.** Laporan yang sudah dikomit tidak ditulis ulang untuk menutupi ramalan yang meleset.
+49. (S20, ADR-031) **Besaran tidak boleh diukur terhadap satu undian nol.** Sel AS seed 42 (+0,011806R) ternyata ~0,98 simpangan baku **di bawah** rerata sebaran nol (+0,022916R). Setiap besaran terhadap sel nol wajib dilaporkan juga terhadap **rerata** sebaran nol; besaran terhadap satu seed hanya boleh dikutip bila nomor seed-nya ikut ditulis. **Sejak `6ae83062` aturan ini dijalankan oleh alat**: `ringkas()` wajib mengembalikan `besaran_terhadap_rerata_nol_R`, `jarak_as_seed42_dari_rerata_nol_sb`, dan `jarak_ss_dari_rerata_nol_sb`, dan laporannya mencetak sendiri kedua besaran.
+50. (S20, ADR-031) **Ramalan yang terbukti salah alasannya dikoreksi sebagai PROSA di sumbernya, dan jejak bunyi aslinya tidak dihapus.** Laporan yang sudah dikomit tidak ditulis ulang untuk menutupi ramalan yang meleset. **Dijalankan oleh alat sejak `6ae83062`**: `BUNYI_ASLI_R_D3` menyimpan bunyi terbantah verbatim, `KOREKSI_R_D3` menyatakan koreksinya, dan satu pengujian menuntut keduanya tercetak bersamaan.
+51. (S20) **Sumber dan pagarnya adalah satu commit.** Commit `6ae83062` mengubah `gabung_h013b.py` tanpa membawa pengujiannya, padahal pesan commit itu sendiri meramalkan 819; akibatnya `main` sempat memuat alat yang belum dijaga dan pesan commit itu membantah dirinya sendiri. **Perubahan modul yang membawa perilaku baru wajib satu dorongan dengan pengujiannya, dan ramalan cacah wajib menyebut commit mana yang diramalkan.**
 
 ---
 
@@ -96,7 +97,7 @@ Run **`30217516013`**, pemicu `97b36c19` pada 2026-07-26T19:45:13Z. Sepuluh peca
 
 Jalur A membenarkannya dengan mesin berbeda: p bulanan berpasangan **0,365363**, bootstrap memuat nol. Angkanya memang tidak sama (0,205980 lawan 0,365363) sebab ujinya berbeda — Jalur A menguji selisih berpasangan per bulan, Jalur B menguji sel SS terhadap 300 sinyal acak yang dibangkitkan ulang. Arahnya sama.
 
-### CACAT KELAS KETIGA BELAS — besaran diukur terhadap satu undian nol (ADR-031)
+### CACAT KELAS KETIGA BELAS — besaran diukur terhadap satu undian nol (ADR-031, SUDAH DIPASANG KE ALAT)
 
 Sumbangan sinyal +0,054842R dihitung sebagai SS − AS dengan AS = **satu** sel, seed 42, +0,011806R. Sesudah sebaran nolnya diketahui, seed 42 terletak sekitar **0,98 simpangan baku di bawah rerata nol**.
 
@@ -105,7 +106,14 @@ Sumbangan sinyal +0,054842R dihitung sebagai SS − AS dengan AS = **satu** sel,
 
 Dua puluh persen lebih kecil. Putusan **tidak berubah** — keduanya melewati 0,020R dan yang menjatuhkan H-013 adalah p — tetapi angka yang dikutip di seluruh laporan sebelumnya lebih bagus daripada yang pantas, dan sebabnya struktural: satu undian nol tidak punya galat. Sekeluarga dengan cacat kelas kedua belas, yang hari ini terbukti lagi: simpangan baku antar seed **0,011377R** melawan galat baku per perdagangan **0,005570R** — **dua kali lebih lebar**.
 
-Larangan menghitung ulang H-001b sampai H-012 **tetap berlaku**. Aturan 49 berlaku untuk hipotesis yang akan datang.
+**Utang ini sudah dibayar di sumbernya**, dua commit, **bukan** dengan menulis ulang laporan yang sudah dikomit:
+
+| Commit | Berkas | Isi | Uji |
+|---|---|---|---|
+| `6ae83062` | `lux/backtest/gabung_h013b.py` | `BUNYI_ASLI_R_D3` + `KOREKSI_R_D3`; prosa R-D3 tidak lagi menyebut "permutasinya cacat"; `ringkas()` menambah `besaran_terhadap_rerata_nol_R`, `jarak_as_seed42_dari_rerata_nol_sb`, `jarak_ss_dari_rerata_nol_sb`, `catatan_besaran`; `PEMBATAS` memuat kalimat dua-besaran; `tulis_laporan` mencetak bagian "Besaran diukur dua kali (aturan 49)" berikut sub-butir `bunyi asli:` dan `koreksi:` | **811** (tanpa pengujiannya — aturan 51) |
+| `5bd73fbf` | `tests/test_gabung_h013b.py` | 16 → **24** pengujian; penolong `ringkasan_sintetis(tmp)` membangun sebaran nol yang rerata-nya **di atas** `EKSPEKTASI_AS_SEED42` supaya bentuk cacat kelas ketiga belas dijaga oleh angka | **819** |
+
+`reports/h013b_p.md` yang sudah dikomit **tetap** memuat prosa R-D3 yang salah dan **tidak** ditulis ulang (aturan 50). Larangan menghitung ulang H-001b sampai H-012 **tetap berlaku**; aturan 49 berlaku untuk hipotesis yang akan datang.
 
 ### Mesin Jalur B — tiga modul, masing-masing hijau sendiri lebih dulu
 
@@ -113,7 +121,7 @@ Larangan menghitung ulang H-001b sampai H-012 **tetap berlaku**. Aturan 49 berla
 |---|---|---|---|
 | `lux/analisis/sebaran_nol.py` | `05df8b78` | **779** | `KUNCI_BULAN`, `rerata_bulanan`, `rerata_bulanan_berbobot`, `selisih_bulanan`, `p_ekor_atas` (`p = (1+cacah)/(1+n)`), `p_per_perdagangan` (`taksiran_bawah: True`, `mengikat: False`), `p_bulanan` (`satuan: "bulan"`, `mengikat: True`) |
 | `lux/backtest/run_h013b.py` | `4f09c8d5` | **795** | `NAMA_SPEK="h013b_as_seed"`, `SEED_PER_PECAHAN=30`, `EKSPEKTASI_AS_SEED42=0.01180570125176449`, `periksa_kesetaraan`, `baris_seed`, keluar 3 bila R-D5 meleset |
-| `lux/backtest/gabung_h013b.py` | `0859e8dd` | **811** | `EKSPEKTASI_SS=0.06664781299919262`, `TRADE_SS=60018`, `AMBANG_P=0.05`, `periksa_cakupan`, `periksa_bulan`, `adjudikasi`, `ringkas`, `tulis_laporan` |
+| `lux/backtest/gabung_h013b.py` | `0859e8dd` → `6ae83062` | **811** → **819** | `EKSPEKTASI_SS=0.06664781299919262`, `TRADE_SS=60018`, `AMBANG_P=0.05`, `periksa_cakupan`, `periksa_bulan`, `adjudikasi`, `ringkas`, `tulis_laporan`, `BUNYI_ASLI_R_D3`, `KOREKSI_R_D3` |
 
 Workflow `.github/workflows/h013b.yml` (`97b36c19`) memuat empat hal yang tidak ada di dua belas workflow lain: sepuluh penulis satu cabang dengan **lingkaran ulang dorong sepuluh kali berjeda acak**, berkas antara `backtest_h013b_as_seed.json` yang **tidak pernah dikomit** (ia ditulis ulang 30 kali per pecahan oleh `jalankan_spek` dengan nama berkas yang sama), `fail-fast: false`, dan **kode keluar 4 yang tetap mengomit laporannya lebih dulu**.
 
@@ -252,8 +260,10 @@ Keberatan ADR-018 yang masih berdiri: `MAKS_RASIO_DATAR = 0.10` dipakai untuk ke
 | `05df8b78` (`sebaran_nol.py`) | **779** | 779 | TEPAT |
 | `4f09c8d5` (`run_h013b.py`) | **795** | 795 | TEPAT |
 | `0859e8dd` (`gabung_h013b.py`) | **811** | **811 passed in 3,24s** | TEPAT |
+| `6ae83062` (R-E1, sumber tanpa pagar) | **811** | **811 passed in 3,06s** (run `30219837959`) | TEPAT |
+| `5bd73fbf` (R-E1, delapan pengujian) | **819** | **819 passed in 3,26s** (run `30219885271`) | TEPAT |
 
-Jejak: 444 → … → 761 → 767 → 779 → 795 → **811**. **Sembilan belas ramalan cacah berturut-turut tepat.** Blob `reports/tests.md` terakhir: **`e6bdaf690111c6350be8635dc0fd7eb2bf4ff782`** (run `30217319899`). Berkas markdown **tidak** memicu `tests.yml`, jadi 811 tetap berlaku sesudah commit dokumentasi.
+Jejak: 444 → … → 761 → 767 → 779 → 795 → 811 → **819**. **Dua puluh satu ramalan cacah berturut-turut tepat.** Blob `reports/tests.md`: **`d768d55fead476daa311b9670b70531f3cb9b386`** (811, run `30219837959`, dikomit `781d4a92`) lalu **`0e480f90b715fdfcbffb683d05436fa6b177c3a4`** (819, run `30219885271`, dikomit `7aa761ec`). Berkas markdown **tidak** memicu `tests.yml`, jadi 819 tetap berlaku sesudah commit dokumentasi.
 
 **Papan ramalan perilaku sistem:** S18 nol dari enam tepat; S19 empat dari enam pada Jalur A; **S20 tiga dari lima pada Jalur B**. Gabungan sebelas ramalan angka H-013: sembilan meleset (aturan 46).
 
@@ -269,7 +279,16 @@ Jejak: 444 → … → 761 → 767 → 779 → 795 → **811**. **Sembilan belas
 
 **R-D1:** yang diramalkan adalah lamanya pecahan berjalan; yang dapat diukur hanyalah selisih waktu commit terhadap pemicu, yang memuat waktu antre dan jeda lingkaran ulang dorong. Log workflow tak terbaca, jadi lama pekerjaan itu sendiri **memerlukan verifikasi** — tetapi bukti satu-satunya melampaui ambang yang saya sebut, jadi ia dicatat MELESET (aturan 19).
 
-**R-D3:** prosa ramalannya berbunyi "bila tidak, permutasinya cacat", dan prosa itu ikut terbantah. Permutasinya **sehat** — rerata nol +0,022916R dan sebarannya rapat serta hampir simetris. Yang salah inferensi saya: dengan simpangan baku 0,011377R, angka 0,066648R terletak sekitar **3,8 simpangan baku** di atas rerata nol, jadi 300 undian memang tidak dapat menyentuhnya. Saya menuntut kejadian berpeluang kecil lalu menyebutnya syarat kesehatan. **Akibatnya `reports/h013b_p.md` yang sudah dikomit memuat prosa yang salah**, sebab teksnya dicetak dari tetapan RAMALAN di sumber — diperbaiki menurut aturan 50, angka tidak disentuh.
+**R-D3:** prosa ramalannya berbunyi "bila tidak, permutasinya cacat", dan prosa itu ikut terbantah. Permutasinya **sehat** — rerata nol +0,022916R dan sebarannya rapat serta hampir simetris. Yang salah inferensi saya: dengan simpangan baku 0,011377R, angka 0,066648R terletak sekitar **3,8 simpangan baku** di atas rerata nol, jadi 300 undian memang tidak dapat menyentuhnya. Saya menuntut kejadian berpeluang kecil lalu menyebutnya syarat kesehatan. **Akibatnya `reports/h013b_p.md` yang sudah dikomit memuat prosa yang salah**, sebab teksnya dicetak dari tetapan RAMALAN di sumber — **sudah diperbaiki di sumbernya** menurut aturan 50 (`6ae83062`), angka tidak disentuh, laporan lama tidak ditulis ulang.
+
+### Adjudikasi R-E1 — dua-duanya TEPAT
+
+| Kode | Isi | Nyata | Putusan |
+|---|---|---|---|
+| R-E1a | run `tests.yml` yang dipicu `5bd73fbf` melaporkan **819** | 819 lulus, keluar 0, run `30219885271` | **TEPAT** |
+| R-E1b | run yang dipicu `6ae83062` melaporkan **811**, dan angka lain berarti perubahan sumber merusak pengujian yang ada | 811 lulus, keluar 0, run `30219837959` | **TEPAT** |
+
+R-E1b adalah ramalan yang membosankan dan justru itu gunanya: ia membuktikan koreksi prosa dan penambahan medan `ringkas()` **tidak menyentuh satu pun** dari 811 pengujian lama. Ia juga bukti tertulis atas kesalahan proses saya sendiri di sesi ini (aturan 51): dua run seharusnya satu.
 
 ### Ramalan beku yang SUDAH teradili di S20
 
@@ -278,6 +297,7 @@ Jejak: 444 → … → 761 → 767 → 779 → 795 → **811**. **Sembilan belas
 | R-B2 / R-C1 | Jalur B per-perdagangan memberi p ≤ 0,05 tetapi **menyesatkan** | 0,003322 | **TEPAT** |
 | R-B3 / R-C2 | Jalur B pada satuan bulan memberi p > 0,05 sehingga H-013 **DITOLAK** | 0,205980 | **TEPAT** |
 | R-C3 | selisih p per-perdagangan lawan p bulanan lebih dari satu orde besaran | 0,003322 lawan 0,205980 = faktor **62** | **TEPAT** |
+| R-E1a · R-E1b | cacah pengujian 819 dan 811 | 819 · 811 | **TEPAT** |
 
 ### Ramalan beku yang MASIH belum teradili
 
@@ -371,7 +391,7 @@ Gerbang (11): `forward_fill`, `buy_and_hold`, `entri_acak`, `lookahead`, `invari
 ### Batas alat agen dan solusinya
 
 - Daftar alat GitHub **tidak memuat satu pun fungsi Actions**. Diverifikasi ulang di S18, S19, dan S20.
-- `search_code` **nol hasil di repo ini**. `get_file_contents` menuntut SHA 40 karakter penuh, tetapi **menerima `ref: "main"`**, dan pada direktori ia memberi **ukuran berkas** — itulah cara mengadili ramalan ukuran tanpa menarik isinya.
+- `search_code` **nol hasil di repo ini**. `get_file_contents` menuntut SHA 40 karakter penuh, tetapi **menerima `ref: "main"`**, dan pada direktori ia memberi **ukuran berkas** — itulah cara mengadili ramalan ukuran tanpa menarik isinya. **Ia juga menerima SHA commit apa pun**, jadi laporan yang sudah tertimpa tetap dapat dibaca pada commit tempat ia lahir — itulah cara mengadili dua run `tests.yml` berurutan.
 - `push_files` **mengganti seluruh isi berkas**; baca dulu sebelum menulis ulang, dan baca ulang muatannya sebelum mengirim (aturan 35). **Tidak ada mode tambal.**
 - Filter `paths` per berkas: menyentuh `.github/workflows/backtest.yml` atau `h013b.yml` **langsung memulai run**. `tests.yml` memfilter `lux/**` dan `tests/**`, jadi perubahan `config/`, `journal/`, `decisions/`, dan `STATE.md` **tidak** memicunya.
 - **Kabar buruk datang dalam 23–32 detik; kabar baik 10–45 menit** — kecuali `tests.yml`, yang memberi kabar **baik** dalam ~23 detik juga. Jadi jangan membaca cepatnya laporan uji sebagai kegagalan; **baca isinya**.
@@ -380,6 +400,7 @@ Gerbang (11): `forward_fill`, `buy_and_hold`, `entri_acak`, `lookahead`, `invari
 - **Beberapa pekerjaan yang mengomit ke satu cabang menuntut lingkaran ulang dorong**; yang kalah lomba hilang **tanpa suara** (ADR-030 R3).
 - **`backfill_daily.yml` berjadwal mingguan**, jadi tidak setiap perubahan blob berasal dari saya.
 - **Modul baru berdiri hijau sendiri lebih dulu. Baca modulnya sebelum menulis kode terhadapnya.**
+- **Dua dorongan berurutan ke `lux/**` melahirkan dua run `tests.yml`**, dan keduanya wajib diadili terpisah (aturan 51).
 
 ### Cacat yang sudah ditutup dan tidak boleh terulang
 
@@ -391,7 +412,7 @@ Gerbang (11): `forward_fill`, `buy_and_hold`, `entri_acak`, `lookahead`, `invari
 - **S17:** lima cacat buta-interval; ramalan 693 salah; klaim v21 tentang `git pull --rebase` salah. Aturan 37–38.
 - **S18:** cacat kelas kedelapan, kesembilan, kesepuluh. Aturan 39–41.
 - **S19:** cacat kesebelas dan kedua belas. **Kekeliruan saya sendiri:** ADR-024 menjadwalkan uji per jendela yang **mustahil** karena datanya tidak ada di laporan; dikoreksi ADR-026. Dua ramalan Jalur A meleset. Aturan 42–46.
-- **S20:** cacat kelas **ketiga belas** (besaran terhadap satu undian nol). **Dua rancangan Jalur B saya sendiri jatuh sebelum ditulis** (ADR-029 §2): agregat bulanan dari `jalankan_spek` mustahil sebab `bulan_dengan_trade` adalah **cacah** — "saya menganggap angka tersedia karena namanya muncul"; dan nama laporan unik per seed akan melahirkan ~130 MB. **Satu bahaya penimpaan diam-diam** tertangkap hanya karena membaca ulang `runner.py` sebelum menulis. **Dua ramalan Jalur B meleset**, salah satunya berikut alasannya (R-D3). Aturan 47–50.
+- **S20:** cacat kelas **ketiga belas** (besaran terhadap satu undian nol). **Dua rancangan Jalur B saya sendiri jatuh sebelum ditulis** (ADR-029 §2): agregat bulanan dari `jalankan_spek` mustahil sebab `bulan_dengan_trade` adalah **cacah** — "saya menganggap angka tersedia karena namanya muncul"; dan nama laporan unik per seed akan melahirkan ~130 MB. **Satu bahaya penimpaan diam-diam** tertangkap hanya karena membaca ulang `runner.py` sebelum menulis. **Dua ramalan Jalur B meleset**, salah satunya berikut alasannya (R-D3). **Satu kesalahan proses:** `6ae83062` mendorong sumber tanpa pagarnya sehingga pesan commit-nya membantah dirinya sendiri — aturan 51. Aturan 47–51.
 
 ---
 
@@ -414,7 +435,7 @@ Gerbang (11): `forward_fill`, `buy_and_hold`, `entri_acak`, `lookahead`, `invari
 
 **Difalsifikasi sebelumnya:** saringan rezim tren memperbaiki breakout · retest memperkecil biaya per R · SMC yang dapat dikodekan punya keunggulan · "biaya menjaga risiko memakan ekspektasi" · "ekspektasi bergantung umur simbol" · "kerugian ekor dari bar menganga pada stop" · sinyal `breakout_atr` punya keunggulan yang bertahan di waktu pada 1h (H-012) · lantai 0,004 menutup **seluruh** jalan masuk degenerasi (sebagian) · "hasil 40 simbol mewakili 438 simbol" · dugaan bahwa `gabung_gerbang` membuang syarat deret datar · **"jendela walk-forward adalah jumlah bar"** (ADR-023) · **"nilai di `config/lux.yaml` sampai ke mesin"** (aturan 39) · **"semesta 4h disalin dari 1h"** · **"laporan memuat R per jendela"** (aturan 43) · **"sumbangan sinyal tersebar merata di waktu"** (fraksi bulan positif 0,5342) · **"SH < AH menuntut penjelasan"** (derau) · **"laporan memuat agregat bulanan yang dapat dipakai langsung"** (ADR-029 §2) · **"sebaran nol cukup lebar sampai menyentuh +0,066648R"** (R-D3; 3,8 simpangan baku) · **"sumbangan sinyal +0,054842R adalah besaran yang sah tanpa menyebut seed"** (aturan 49).
 
-**Terbukti benar:** imbalan lebih besar menaikkan ekspektasi (+28%) · lama pegang membesarkan kerugian ekor · keunggulan bertahan bila penyumbang terbesar dibuang (retensi 0,9849; H-013 drop-1 0,06575R, retensi 0,9866) · "H-012 gagal", diramalkan sebelum run · jalur 1h bit-identik sesudah ADR-019 · konversi jendela ADR-023 menghasilkan 4.082 jendela per sel · dugaan manifest 1h lawan aset 4h sebagai sebab `checksum` (blob `2e95a0ff`) · **"p per-perdagangan menyesatkan sementara p bulanan menjatuhkan"** (R-B2, R-B3, R-C3) · **"simpangan baku antar seed melampaui galat baku per perdagangan"** (R-D4).
+**Terbukti benar:** imbalan lebih besar menaikkan ekspektasi (+28%) · lama pegang membesarkan kerugian ekor · keunggulan bertahan bila penyumbang terbesar dibuang (retensi 0,9849; H-013 drop-1 0,06575R, retensi 0,9866) · "H-012 gagal", diramalkan sebelum run · jalur 1h bit-identik sesudah ADR-019 · konversi jendela ADR-023 menghasilkan 4.082 jendela per sel · dugaan manifest 1h lawan aset 4h sebagai sebab `checksum` (blob `2e95a0ff`) · **"p per-perdagangan menyesatkan sementara p bulanan menjatuhkan"** (R-B2, R-B3, R-C3) · **"simpangan baku antar seed melampaui galat baku per perdagangan"** (R-D4) · **"koreksi prosa dan penambahan medan `ringkas()` tidak merusak satu pun dari 811 pengujian"** (R-E1b).
 
 **Angka yang dilarang dikutip:** seluruh hasil ingest putaran 1 · metrik celah funding putaran 1–4 · seluruh run pilot H-001 termasuk `30170073890` · porsi "101,2%" · nilai gerbang `funding` sebagai bukti funding aman · "226 jendela / 63,5%" · ekspektasi H-010 0,053028R sebagai bukti layak dagang · **+0,060163R** · **+0,059546R** · **+0,060168R** · **281 dari 398 simbol positif** dan median **+0,06343** · **−0,091519R** tanpa sebabnya · **+0,059636R** sebagai kelulusan · **+2.347,27R bulan 2026-01** atau bulan mana pun · gerbang bar datar 4h dan `maks_rasio` 4h sebagai bukti kebersihan data · **`+0,054842R` sebagai kelulusan H-013, dan sebagai besaran mana pun tanpa menyebut seed 42** · **`+0,043732R` sebagai kelulusan** · **`+0,066648R` sebagai bukti layak dagang** · kata "LULUS" pada `reports/backtest_h013_kontribusi.md` · **`p = 0,001100` tingkat simbol sebagai bukti keberartian** · **`p = 0,003322` satuan perdagangan Jalur B sebagai bukti keberartian atau kelulusan** · **p atau galat baku per-perdagangan mana pun sebagai bukti keberartian**, termasuk "+2,99 galat baku" · **prosa R-D3 di `reports/h013b_p.md` sebagai penilaian atas kesehatan permutasi**.
 
@@ -428,18 +449,18 @@ Tidak ada run yang berjalan. Tidak ada yang dibutuhkan dari pengguna. Satu hal y
 
 ## 6. Tindakan berikutnya
 
-1. ~~ADR-017 s.d. ADR-023~~ · ~~jalankan H-013~~ · ~~Jalur A~~ · ~~ADR-025 manifest per interval~~ · ~~ADR-026/027/028~~ · ~~STATE v23, v24~~ · ~~cacat kelas kesepuluh (767)~~ · ~~ADR-029 rancangan Jalur B~~ · ~~Jalur B tiga modul (779, 795, 811)~~ · ~~ADR-030 keputusan langkah 3~~ · ~~jalankan Jalur B (run 30217516013)~~ · ~~ADR-031 adjudikasi~~ · ~~segarkan PROMPT_KELANJUTAN.md~~ · ~~STATE v25~~ — **selesai**.
-2. **Perbaiki prosa ramalan R-D3** di `lux/backtest/gabung_h013b.py` menurut aturan 50: koreksi alasannya, **jangan** sentuh angkanya, **jangan** hapus jejak bunyi aslinya.
+1. ~~ADR-017 s.d. ADR-023~~ · ~~jalankan H-013~~ · ~~Jalur A~~ · ~~ADR-025 manifest per interval~~ · ~~ADR-026/027/028~~ · ~~STATE v23, v24, v25~~ · ~~cacat kelas kesepuluh (767)~~ · ~~ADR-029 rancangan Jalur B~~ · ~~Jalur B tiga modul (779, 795, 811)~~ · ~~ADR-030 keputusan langkah 3~~ · ~~jalankan Jalur B (run 30217516013)~~ · ~~ADR-031 adjudikasi~~ · ~~segarkan PROMPT_KELANJUTAN.md~~ · ~~perbaiki prosa R-D3 dan pasang aturan 49 ke alat (819 uji)~~ — **selesai**.
+2. **Segarkan `PROMPT_KELANJUTAN.md` ke era v26**: berkas `c849486f` masih menulis "Jalur B sedang berjalan", padahal H-013 sudah DITOLAK, aturannya 51, dan cacah ujinya 819. **Baca utuh lebih dulu** (aturan 35).
 3. **Baca `reports/backtest_h013_ss_sinyal_stop.json`** untuk nilai `invarian_risiko` SS. Lewat skrip sisi runner yang mencetak ringkasan ke `reports/`, **jangan** menarik 432 KB ke konteks.
 4. **Selesaikan pertanyaan bar datar 1h lawan 4h:** bandingkan `reports/diag_datar.json` terhadap perhitungan 4h. Bar 4h datar hanya bila keempat bar 1h datar, jadi penolakan 4h semestinya **≤ 74**.
 5. **Nasib `notion_asap.yml`** (`git push` polos, `git commit \|\| echo` yang menelan kegagalan) dan **`backfill_daily.yml`** (cron mingguan + `--clobber`, mengancam ADR-025 R4). Perbaiki atau hapus **dengan keputusan tertulis**.
 6. **Tinjau workflow yang mungkin tak lagi diperlukan:** `funding.yml`, `funding_check.yml` (keduanya masih memakai `reports/universe_layak.json` pra-lantai), `doctor.yml`, `universe.yml`. **Jangan hapus tanpa keputusan tertulis.**
 7. Utang teknis: **sambungkan `maks_rasio_bar_datar` config ke gerbang** · periksa kunci config lain yang mungkin tak pernah dibaca (aturan 39) · bandingkan `runner.py` terhadap blob `fc79e070` dan `run_h013.py` terhadap `418f6084` · `hasattr`/`__import__` di `test_run_h012.py` · pengujian `biaya_bolak_balik_R` · `pytest` ke `requirements-dev.txt` · nama ganda legasi `potong_ekor` · tripwire tekstual `inspect.getsource` (lemah, dicatat sebagai lemah) · pemetaan `dari_laporan` pelapor Notion terhadap kunci JSON `runner.py`.
-8. **Uji geometri keluar sendiri dengan mesin p bulanan** (SS − SH +0,029481R). Mesinnya sudah ada; ia belum pernah diarahkan ke sana, dan tanpa itu "pemisahan sinyal dari geometri keluar" hanya separuh dijawab.
+8. **Uji geometri keluar sendiri dengan mesin p bulanan** (SS − SH +0,029481R). Mesinnya sudah ada; ia belum pernah diarahkan ke sana, dan tanpa itu "pemisahan sinyal dari geometri keluar" hanya separuh dijawab. **Pra-registrasi lebih dulu**, dan besarannya wajib dilaporkan dua kali (aturan 49).
 9. **Program riset lanjutan: funding sebagai SINYAL** — satu-satunya dimensi bersih yang tersisa, belum pernah diuji sekali pun, datanya sudah ada. **Pra-registrasi lengkap wajib ditulis dan dikomit lebih dulu**, dengan p bulanan sebagai gerbang (ADR-031 keputusan 5). ADR-015 §4.5 butir 5 tampak terbalik dan §6 sudah berjanji mengakuinya.
 10. Perketat `lux/funding.py::gerbang_lulus` · diff Dataset G lama · `lux/manifest.py`, `Makefile`, `docs/PIPELINE.md` · salin ADR-001/ADR-002 ke `decisions/` · naikkan `versi` config sesudah seluruh pembacanya diperiksa · Tier A (1m) hanya setelah seluruh gerbang Tier B lulus, ≥24 shard.
 
-**Yang DILARANG:** menyatakan sistem siap dagang · **menyebut H-013 lulus** · **mengutip +0,054842R, +0,043732R, atau +0,066648R sebagai kelulusan atau kelayakan** · **mengutip p per-perdagangan atau galat baku per-perdagangan sebagai bukti keberartian, termasuk 0,003322** · **mengutip p 0,001100 tingkat simbol sebagai kelulusan** · mengutip +0,060163R atau +0,059636R sebagai kelulusan · **memilih satuan penarikan sesudah hasil terlihat** · membuang simbol atau memilih bulan sesudah melihat hasil · **menyebut H-012 atau H-013 sebagai "H-010 setelah perbaikan"** · menyebut angka R lama **konservatif** · **menghitung ulang H-001b sampai H-012 dengan mesin ADR-016, satuan ADR-028, maupun aturan 49** · menggeser lantai 0,004, pagar 0,5R, `BATAS_VOID` 20, batas `2026-01-01`, **ambang SS − AS 0,020R**, **p ≤ 0,05**, **≥300 ulangan**, **≥100 trade per sel**, `MAKS_RASIO_DATAR` 0,10, atau ambang rasio 0,30 · **melonggarkan ambang dengan berdalih memperbaiki satuan penarikan** · mematok `imbalan_R` ke 8,0 · melombakan `imbalan_R`, `h`, atau `pakai_target` · menurunkan `--ulangan` dari 300 · **menurunkan cakupan seed dari 300 atau memotong ke irisan bulan yang tidak utuh** · menaikkan `maks_umur_bar` dari 168 sebagai penyelamatan · membuang simbol merugi · memakai `konsentrasi` atau `funding_ekor` sebagai penyaring simbol · melombakan ambang pengaman · melonggarkan `invarian_risiko` dari −1,5R · **menurunkan maupun menaikkan ambang ekspektasi 0,05R** · menjadikan `stop_hormati_celah` parameter yang dilombakan · **memperbaiki `muat_konfig_h002` tanpa ADR** · **menurunkan pagar pra-terbang yang menemukan cacat** · **menyentuh `reports/manifest_aset.json`** · **menandai putusan DITOLAK sebagai kegagalan pekerjaan** (aturan 48) · **menulis ulang laporan yang sudah dikomit untuk menutupi ramalan yang meleset** (aturan 50).
+**Yang DILARANG:** menyatakan sistem siap dagang · **menyebut H-013 lulus** · **mengutip +0,054842R, +0,043732R, atau +0,066648R sebagai kelulusan atau kelayakan** · **mengutip p per-perdagangan atau galat baku per-perdagangan sebagai bukti keberartian, termasuk 0,003322** · **mengutip p 0,001100 tingkat simbol sebagai kelulusan** · mengutip +0,060163R atau +0,059636R sebagai kelulusan · **memilih satuan penarikan sesudah hasil terlihat** · membuang simbol atau memilih bulan sesudah melihat hasil · **menyebut H-012 atau H-013 sebagai "H-010 setelah perbaikan"** · menyebut angka R lama **konservatif** · **menghitung ulang H-001b sampai H-012 dengan mesin ADR-016, satuan ADR-028, maupun aturan 49** · menggeser lantai 0,004, pagar 0,5R, `BATAS_VOID` 20, batas `2026-01-01`, **ambang SS − AS 0,020R**, **p ≤ 0,05**, **≥300 ulangan**, **≥100 trade per sel**, `MAKS_RASIO_DATAR` 0,10, atau ambang rasio 0,30 · **melonggarkan ambang dengan berdalih memperbaiki satuan penarikan** · mematok `imbalan_R` ke 8,0 · melombakan `imbalan_R`, `h`, atau `pakai_target` · menurunkan `--ulangan` dari 300 · **menurunkan cakupan seed dari 300 atau memotong ke irisan bulan yang tidak utuh** · menaikkan `maks_umur_bar` dari 168 sebagai penyelamatan · membuang simbol merugi · memakai `konsentrasi` atau `funding_ekor` sebagai penyaring simbol · melombakan ambang pengaman · melonggarkan `invarian_risiko` dari −1,5R · **menurunkan maupun menaikkan ambang ekspektasi 0,05R** · menjadikan `stop_hormati_celah` parameter yang dilombakan · **memperbaiki `muat_konfig_h002` tanpa ADR** · **menurunkan pagar pra-terbang yang menemukan cacat** · **menyentuh `reports/manifest_aset.json`** · **menandai putusan DITOLAK sebagai kegagalan pekerjaan** (aturan 48) · **menulis ulang laporan yang sudah dikomit untuk menutupi ramalan yang meleset** (aturan 50) · **menghapus jejak `BUNYI_ASLI_R_D3`** · **mendorong perubahan modul tanpa pengujiannya di dorongan yang sama** (aturan 51).
 
 ---
 
@@ -487,12 +508,12 @@ Kolom `Verdict` di database `LUX — Run Results` karena itu menjadi kolom **man
 | `lux/backtest/run_h010.py` · `run_h011.py` · `run_h012.py` | grid imbalan {2,4,6,8} · `BATAS_H010 = 40` · `BATAS_VOID = 20` |
 | `lux/backtest/run_h013.py` | empat sel H-013; `kontribusi` hanya separuh kriteria (ADR-024); prosa md **sudah** diturunkan dari angka (`b0e79220`) |
 | `lux/backtest/run_h013b.py` | **Jalur B pecahan**: 30 seed per pecahan, `NAMA_SPEK="h013b_as_seed"`, keluar 3 bila R-D5 meleset |
-| `lux/backtest/gabung_h013b.py` | **Jalur B penggabung**: `periksa_cakupan`, `periksa_bulan`, `adjudikasi` dua syarat, keluar 4 bila bulan berbeda |
-| `tests/` | **811** pengujian tanpa jaringan, wajib hijau sebelum unduhan |
+| `lux/backtest/gabung_h013b.py` | **Jalur B penggabung**: `periksa_cakupan`, `periksa_bulan`, `adjudikasi` dua syarat, keluar 4 bila bulan berbeda; **aturan 49 dan 50 dijalankan di sini** (`BUNYI_ASLI_R_D3`, `KOREKSI_R_D3`, `besaran_terhadap_rerata_nol_R`) |
+| `tests/` | **819** pengujian tanpa jaringan, wajib hijau sebelum unduhan |
 | `reports/` | keluaran mesin tiap run; empat berkas sel H-013 ~432 KB; sepuluh pecahan Jalur B ~370 kB masing-masing; `h013b_p.json` **satu-satunya berkas putusan H-013 yang sah**; `manifest_aset.json` **hanya 1h** |
 | `hipotesis/` | pendaftaran sekali tulis: `H-001b` … `H-012`, `H-013-SS/SH/AS/AH` |
 | `decisions/` | ADR-003 … **ADR-031** |
-| `journal/` | riwayat per sesi, sampai **`2026-07-27-26.md`** |
+| `journal/` | riwayat per sesi, sampai **`2026-07-27-27.md`** |
 
 **Workflow aktif (14):** `tests`, `backtest`, `validate`, `potong_ekor`, `ingest_tier_b`, `backfill_daily`, `funding`, `funding_check`, `universe`, `doctor`, `notion_asap`, `geometri`, `berpasangan`, **`h013b`**. **Tiga belas dari empat belas** memakai `git pull --rebase --autostash origin main` sebelum push; **`notion_asap.yml` tidak**. **`backfill_daily.yml` satu-satunya berjadwal.** `h013b.yml` satu-satunya matriks dan satu-satunya yang mendorong di dalam lingkaran ulang.
 
@@ -500,4 +521,4 @@ Kolom `Verdict` di database `LUX — Run Results` karena itu menjadi kolom **man
 
 Release **`tier-b-v1`** (id `359778114`) memuat `ohlcv_{interval}_shard{NN}.parquet`, `..._tail_shard{NN}.parquet`, dan `funding_shard{00..03}.parquet`. **Aset 4h ada: 12 berkas, 157.628.619 B.**
 
-**Rantai commit S18–S20 (naik):** `4007e189` → `8bda1473` → `135b159c` → `ab3e9792` → `93a4309b` → `9ca18373` → `e060749c` → `4a00f8e4` (STATE v23) → `341c1486` (ADR-025+026) → `48cf1b9f` (749) → `a4a4a46a` → `5970c136` → `e3309954` (Jalur A) → `ae149fe9` (ADR-027) → `fb128c93` (758) → `aa59afba` → `43cd4eed` (761) → `e544a952` → `48c83d59` (ADR-028) → `43fc6052` (STATE v24) → `b0e79220` (767) → `1566de0c` → `6c639275` (journal-23) → `d3f44f76` (ADR-029+journal-24) → `05df8b78` (779) → `e61be44f` → `4f09c8d5` (795) → `7ee531b3` → `0859e8dd` (811) → `56a27110` → **`97b36c19`** (h013b.yml, pemicu) → `af470704` (ADR-030+journal-25, ditulis sebelum hasil) → `c849486f` (PROMPT_KELANJUTAN v24+) → sepuluh commit pecahan `lux-h013b` → **`1d746879`** (laporan p, DITOLAK) → `dc028faa` (ADR-031+journal-26) → **STATE v25**.
+**Rantai commit S18–S20 (naik):** `4007e189` → `8bda1473` → `135b159c` → `ab3e9792` → `93a4309b` → `9ca18373` → `e060749c` → `4a00f8e4` (STATE v23) → `341c1486` (ADR-025+026) → `48cf1b9f` (749) → `a4a4a46a` → `5970c136` → `e3309954` (Jalur A) → `ae149fe9` (ADR-027) → `fb128c93` (758) → `aa59afba` → `43cd4eed` (761) → `e544a952` → `48c83d59` (ADR-028) → `43fc6052` (STATE v24) → `b0e79220` (767) → `1566de0c` → `6c639275` (journal-23) → `d3f44f76` (ADR-029+journal-24) → `05df8b78` (779) → `e61be44f` → `4f09c8d5` (795) → `7ee531b3` → `0859e8dd` (811) → `56a27110` → **`97b36c19`** (h013b.yml, pemicu) → `af470704` (ADR-030+journal-25, ditulis sebelum hasil) → `c849486f` (PROMPT_KELANJUTAN v24+) → sepuluh commit pecahan `lux-h013b` → **`1d746879`** (laporan p, DITOLAK) → `dc028faa` (ADR-031+journal-26) → `9a7c741b` (STATE v25) → **`6ae83062`** (koreksi prosa R-D3 + aturan 49 ke alat, 811) → **`5bd73fbf`** (delapan pengujian, 819) → `781d4a92` (laporan uji 811) → `2ca7ceeb` (journal-27, ditulis sebelum hasil) → `7aa761ec` (laporan uji 819) → **STATE v26**.
