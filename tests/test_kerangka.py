@@ -1,4 +1,4 @@
-"""Pengujian modul daun kerangka waktu (ADR-019 langkah 1).
+"""Pengujian modul daun kerangka waktu (ADR-019 langkah 1 dan 2).
 
 Yang diuji bukan sekadar dua angka, melainkan **sifat** yang membuat kelas cacat
 "ambang buta interval" tidak dapat lahir lagi: setiap interval yang dikenal harus
@@ -70,3 +70,22 @@ def test_hasil_selalu_bilangan_bulat_positif():
         n = bar_per_hari(interval)
         assert isinstance(n, int)
         assert n > 0
+
+
+def test_ambang_potong_ekor_tetap_setara_satu_hari_kerangka():
+    """Tripwire ADR-019 langkah 2: dua pihak, satu aritmetika.
+
+    Kesetaraan ini tampak jelas hari ini, dan justru karena tampak jelas ia wajib
+    diikat. Bila kemudian salah satu pihak disunting sendirian, yang berbunyi
+    harus pengujian ini — bukan laporan hasil enam bulan kemudian.
+    """
+    from lux.potong_ekor import MIN_PANJANG, min_panjang_untuk
+
+    for interval in interval_dikenal():
+        assert min_panjang_untuk(interval) == bar_per_hari(interval), interval
+    # Jalur 1h wajib bit-identik dengan sebelum ADR-019.
+    assert MIN_PANJANG == bar_per_hari("1h") == 24
+    # Pembungkus tetap gagal keras, dan pesannya tetap menyebut ADR.
+    with pytest.raises(SystemExit) as e:
+        min_panjang_untuk("15m")
+    assert "ADR" in str(e.value)

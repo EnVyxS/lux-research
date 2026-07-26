@@ -28,6 +28,14 @@ bernama sama untuk interval apa pun, sementara ``backtest.yml`` membaca dua di
 antaranya — sehingga run 4h akan menimpa masukan backtest 1h tanpa satu pun
 pesan galat.
 
+ADR-019 memindahkan aritmetika "satu hari berapa bar" ke modul daun
+``lux.kerangka``. Modul ini **memakai**, bukan memiliki, aritmetika itu. Sebabnya
+konkret: ``gerbang.py`` juga membutuhkannya, dan bila ia mengimpor dari sini
+lahirlah rantai ``gerbang → potong_ekor → diag_datar → run_wf → gerbang`` yang
+sudah pernah menjadi impor sirkular pada komit ``4b77617``. ``JAM_SEHARI`` dan
+``INTERVAL_JAM`` tetap dapat diimpor dari modul ini agar pemanggil lama tidak
+patah, tetapi keduanya kini hanya nama lain bagi nilai di ``lux.kerangka``.
+
 Pemakaian:
     python -m lux.potong_ekor --dir aset --interval 4h \\
         --universe reports/universe_layak_4h.json --out reports
@@ -44,21 +52,19 @@ import numpy as np
 import pandas as pd
 
 from lux.diag_datar import KOLOM_BACA, blok_datar, tanggal
+from lux.kerangka import INTERVAL_JAM, JAM_SEHARI, bar_per_hari, interval_dikenal
 from lux.backtest.run_wf import pilih_berkas
 from lux.validate_run import INTERVAL_LEGASI, muat_ambang
-
-# Ambang panjang ekor dinyatakan dalam WAKTU, lalu diterjemahkan ke jumlah bar.
-# Angka 24 pada 1h bukan angka sembarang: ia satu hari kalender, dan ia sengaja
-# sama dengan maks_deret_datar pada gerbang forward_fill supaya yang dipangkas di
-# sini persis yang dikeluhkan di sana. ADR-018 bagian 4 mencatat bahwa kesamaan
-# itu belum berlaku untuk 4h, dan bahwa menyamakannya adalah prasyarat H-013.
-JAM_SEHARI = 24
-INTERVAL_JAM = {"1h": 1, "4h": 4}
 
 # Nilai bawaan fungsi, setara satu hari pada 1h. `main` selalu memasok nilai per
 # interval secara eksplisit; konstanta ini tidak pernah menjadi jalan mundur
 # senyap bagi interval lain.
-MIN_PANJANG = JAM_SEHARI // INTERVAL_JAM[INTERVAL_LEGASI]
+#
+# Angka 24 pada 1h bukan angka sembarang: ia satu hari kalender, dan ia sengaja
+# sama dengan maks_deret_datar pada gerbang forward_fill supaya yang dipangkas di
+# sini persis yang dikeluhkan di sana. ADR-018 bagian 4 mencatat bahwa kesamaan
+# itu belum berlaku untuk 4h; ADR-019 memberlakukannya lewat lux.kerangka.
+MIN_PANJANG = bar_per_hari(INTERVAL_LEGASI)
 
 # ADR-003 butir 6: diturunkan dari 0,30. Sesudah ekor palsu hilang, membiarkan
 # 30% bar tanpa transaksi bukan lagi toleransi yang dapat dipertanggungjawabkan.
@@ -83,18 +89,25 @@ BERKAS_DASAR = (
 def min_panjang_untuk(interval: str) -> int:
     """Panjang ekor minimum dalam bar, setara satu hari kalender.
 
+    Sejak ADR-019 aritmetikanya milik ``lux.kerangka.bar_per_hari``; fungsi ini
+    tinggal sebagai pembungkus supaya pemanggil dan pengujian ADR-018 tidak
+    patah, dan supaya pesan galatnya tetap menyebut ADR yang membekukan
+    keputusan interval. Pesan galat adalah kontrak yang sudah diuji.
+
     Gagal keras untuk interval yang belum diputuskan. Nilai bawaan tersembunyi
-    adalah tepat cacat yang ADR-017 dan ADR-018 perbaiki: angka yang benar untuk
-    satu interval berubah makna, bukan berubah nilai, ketika dipakai di interval
-    lain.
+    adalah tepat cacat yang ADR-017, ADR-018, dan ADR-019 perbaiki: angka yang
+    benar untuk satu interval berubah makna, bukan berubah nilai, ketika dipakai
+    di interval lain.
     """
-    if interval not in INTERVAL_JAM:
+    try:
+        return bar_per_hari(interval)
+    except SystemExit as e:
         raise SystemExit(
             f"interval {interval} belum punya ambang ekor datar; tambahkan ke "
-            f"INTERVAL_JAM dan bekukan keputusannya di ADR lebih dulu "
-            f"(ADR-018). Interval yang dikenal: {sorted(INTERVAL_JAM)}"
-        )
-    return JAM_SEHARI // INTERVAL_JAM[interval]
+            f"lux.kerangka.INTERVAL_JAM dan bekukan keputusannya di ADR lebih "
+            f"dulu (ADR-018, ADR-019). Interval yang dikenal: "
+            f"{interval_dikenal()}. Sebab asli: {e}"
+        ) from e
 
 
 def nama_keluaran(dasar: str, interval: str) -> list[str]:
