@@ -16,7 +16,7 @@
 # di bawah, sekali, sesudah seluruh berkas hasil ada. Laporan yang dikomit tanpa
 # berkas hasil berarti run GAGAL, bukan run yang laporannya kosong.
 #
-# TIGA KEGAGALAN BERURUTAN, DICATAT KARENA POLANYA SATU DAN SAMA:
+# EMPAT KEGAGALAN BERURUTAN, DICATAT KARENA POLANYA SATU DAN SAMA:
 #
 #   30198306280 (25s) mati di langkah uji, dan buktinya HILANG karena hanya
 #   logs/backtest.log yang disalin ke reports/ — berkas yang belum pernah ada
@@ -30,10 +30,19 @@
 #   30198840830 (25s) mati di pagar 4: Konfig tidak punya medan fee_efektif.
 #   fee_efektif adalah kunci YAML; medan dataclass-nya bernama fee.
 #
-# Ketiganya satu kelas kesalahan: nama atau lingkungan yang DITEBAK alih-alih
-# dibaca. Karena itu SETIAP langkah di bawah menulis keluarannya ke logs/ dan
-# seluruh logs/ disalin ke reports/ dengan if: always(). Aturan itu sudah ada di
-# STATE sejak S11; yang gagal adalah penerapannya.
+#   30198942815 (32s) LULUS kedelapan pagar, mengunduh 16 berkas 559M, lalu mati
+#   di run_h012.main baris 327 — dengan AttributeError fee_efektif yang sama.
+#   Bug itu tidak pernah hanya milik pagar: ia ada di orkestrator sejak 884d6c8e,
+#   dan pagar 4 MENYALINNYA. Pagar yang disalin dari kode yang dijaganya tidak
+#   menjaga apa pun; ia mengulang asumsi yang sama dua kali. Karena itu
+#   perhitungan biaya kini hidup di run_h012.biaya_bolak_balik_R yang dapat
+#   diuji tanpa dataset, dan pagar 4 memanggil fungsi itu alih-alih menyalin
+#   aritmetikanya.
+#
+# Ketiga kegagalan pertama satu kelas: nama atau lingkungan yang DITEBAK
+# alih-alih dibaca. Yang keempat menambahkan kelas kedua: pagar yang menyalin
+# baris dari kode yang dijaganya. Karena itu SETIAP langkah di bawah menulis
+# keluarannya ke logs/ dan seluruh logs/ disalin ke reports/ dengan if: always().
 
 name: backtest
 
@@ -157,14 +166,15 @@ jobs:
           # 4. Aritmetika yang melahirkan keduanya DIHITUNG, bukan dipercaya
           #    sebagai label: biaya bolak-balik dibagi lantai harus tepat 0,5R.
           #
-          #    Medan biayanya bernama fee dan slippage. "fee_efektif" adalah
-          #    kunci YAML yang dipetakan run_h002 menjadi Konfig(fee=...), dan
-          #    membacanya sebagai atribut objek justru mematikan run
-          #    30198840830. Dipanggil dengan Path, sama seperti run_h012.
+          #    Fungsi yang dipanggil di sini WAJIB fungsi yang sama dengan yang
+          #    dipakai orkestrator. Versi lama pagar ini menyalin aritmetikanya,
+          #    menyalin pula salah nama medannya, dan karena itu lulus sementara
+          #    run 30198942815 mati pada baris yang setara.
           dasar = muat_konfig_h002(KONFIG)
-          bolak_balik = 2.0 * (dasar.fee + dasar.slippage)
+          bolak_balik = run_h012.biaya_bolak_balik_R(dasar)
           assert abs(bolak_balik - 0.002) < 1e-12, bolak_balik
           assert abs(bolak_balik / AMBANG_MIN_STOP_FRAC - AMBANG_BIAYA_MASUK_R) < 1e-12
+          assert "biaya_bolak_balik_R(" in inspect.getsource(run_h012.main)
           print(f"4. {bolak_balik} / {AMBANG_MIN_STOP_FRAC} = {AMBANG_BIAYA_MASUK_R}R: OK")
 
           # 5. Bawaan mesin dan runner tetap MATI, supaya H-001b sampai H-011

@@ -168,6 +168,30 @@ def kunci_config(path: str | Path) -> dict:
     }
 
 
+def biaya_bolak_balik_R(konfig: Konfig) -> float:
+    """Biaya transaksi bolak-balik sebagai pecahan harga.
+
+    Dipisahkan menjadi fungsi tersendiri karena baris inilah yang mematikan run
+    30198942815: ia dulu membaca ``konfig.fee_efektif``, padahal ``fee_efektif``
+    adalah nama KUNCI YAML dan medan dataclass-nya bernama ``fee`` — lihat
+    ``run_h002.muat_konfig_h002`` yang memetakannya. Sebagai fungsi tingkat
+    modul, aritmetika ini dapat diuji tanpa dataset 559M, sedangkan di dalam
+    ``main`` ia mustahil disentuh pytest dan karena itu lolos dari 615
+    pengujian.
+
+    Medannya dibaca lewat ``dataclasses.fields`` supaya salah nama gagal di sini
+    dengan pesan yang menyebut nama medan yang benar-benar ada, bukan dengan
+    ``AttributeError`` yang tidak memberi petunjuk apa pun.
+    """
+    ada = {f.name for f in dataclasses.fields(konfig)}
+    for nama in ("fee", "slippage"):
+        if nama not in ada:
+            raise AttributeError(
+                f"Konfig tidak punya medan {nama!r}; yang ada: {sorted(ada)}"
+            )
+    return 2.0 * (konfig.fee + konfig.slippage)
+
+
 def agregat_tahan(
     agregat_periode: Iterable[dict], mulai_bulan: str = PERIODE_TAHAN_BULAN
 ) -> dict:
@@ -322,9 +346,10 @@ def main(argv: list[str] | None = None) -> int:
 
     # Aritmetika yang melahirkan kedua angka, diperiksa dan tidak dipercayai
     # sebagai label (aturan 11): biaya bolak-balik 2*(fee+slippage) dibagi
-    # lantai jarak stop harus tepat sama dengan pengaman.
+    # lantai jarak stop harus tepat sama dengan pengaman. Perhitungannya ada di
+    # biaya_bolak_balik_R supaya ia dapat diuji tanpa dataset.
     dasar = muat_konfig_h002(Path(a.config))
-    bolak_balik = 2.0 * (dasar.fee_efektif + dasar.slippage)
+    bolak_balik = biaya_bolak_balik_R(dasar)
     turunan = bolak_balik / AMBANG_MIN_STOP_FRAC
     if abs(turunan - AMBANG_BIAYA_MASUK_R) > 1e-12:
         raise ValueError(
@@ -396,6 +421,11 @@ def main(argv: list[str] | None = None) -> int:
         f"H-012 periode tertahan: limit {a.limit}, ulangan {a.ulangan}, "
         f"lantai {opsi.min_median_stop_frac}, pengaman "
         f"{konfig.maks_biaya_masuk_R}R",
+        flush=True,
+    )
+    print(
+        f"biaya bolak-balik {bolak_balik} / lantai {AMBANG_MIN_STOP_FRAC} = "
+        f"{turunan}R",
         flush=True,
     )
     print(
