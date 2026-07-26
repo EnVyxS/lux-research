@@ -16,9 +16,21 @@ kembali keputusan ini terhadap data aslinya. Pemangkasan dilakukan saat muat,
 dan tanggal kematian sejati disimpan sekali sebagai tabel yang dapat dibaca
 manusia supaya angka yang dipakai gerbang survivorship dapat diperiksa.
 
+ADR-018 menambahkan dua hal, keduanya karena kerangka 4h.
+
+Pertama, ambang panjang ekor dihitung dari **waktu**, bukan dari jumlah bar yang
+diwarisi: satu hari kalender berarti 24 bar pada 1h dan 6 bar pada 4h. Memakai
+24 untuk 4h akan membiarkan ekor palsu sepanjang satu sampai tiga hari lolos
+tanpa terdeteksi.
+
+Kedua, keluaran modul ini kini menyebut interval. Sebelumnya keempat berkasnya
+bernama sama untuk interval apa pun, sementara ``backtest.yml`` membaca dua di
+antaranya — sehingga run 4h akan menimpa masukan backtest 1h tanpa satu pun
+pesan galat.
+
 Pemakaian:
-    python -m lux.potong_ekor --dir aset --interval 1h \\
-        --universe reports/universe_layak.json --out reports
+    python -m lux.potong_ekor --dir aset --interval 4h \\
+        --universe reports/universe_layak_4h.json --out reports
 """
 
 from __future__ import annotations
@@ -33,20 +45,81 @@ import pandas as pd
 
 from lux.diag_datar import KOLOM_BACA, blok_datar, tanggal
 from lux.backtest.run_wf import pilih_berkas
+from lux.validate_run import INTERVAL_LEGASI, muat_ambang
 
-# Ambang panjang ekor. Sama dengan maks_deret_datar pada gerbang forward_fill,
-# supaya yang dipangkas di sini persis yang dikeluhkan di sana.
-MIN_PANJANG = 24
+# Ambang panjang ekor dinyatakan dalam WAKTU, lalu diterjemahkan ke jumlah bar.
+# Angka 24 pada 1h bukan angka sembarang: ia satu hari kalender, dan ia sengaja
+# sama dengan maks_deret_datar pada gerbang forward_fill supaya yang dipangkas di
+# sini persis yang dikeluhkan di sana. ADR-018 bagian 4 mencatat bahwa kesamaan
+# itu belum berlaku untuk 4h, dan bahwa menyamakannya adalah prasyarat H-013.
+JAM_SEHARI = 24
+INTERVAL_JAM = {"1h": 1, "4h": 4}
 
-# Sama dengan AmbangKelayakan.min_bar yang sudah dipakai validasi.
-MIN_BAR = 8760
+# Nilai bawaan fungsi, setara satu hari pada 1h. `main` selalu memasok nilai per
+# interval secara eksplisit; konstanta ini tidak pernah menjadi jalan mundur
+# senyap bagi interval lain.
+MIN_PANJANG = JAM_SEHARI // INTERVAL_JAM[INTERVAL_LEGASI]
 
 # ADR-003 butir 6: diturunkan dari 0,30. Sesudah ekor palsu hilang, membiarkan
 # 30% bar tanpa transaksi bukan lagi toleransi yang dapat dipertanggungjawabkan.
 # Rasio simbol bermasalah berdesakan tepat di bawah 0,30 (DFUSDT 0,2950,
 # MYROUSDT 0,2899, RENUSDT 0,2836), yang menunjukkan ambang lama disetel pas di
 # atas kelas cacat yang seharusnya ia tangkap.
+#
+# ADR-018 mempertahankan 0,10 untuk kedua interval, dengan keberatan tertulis:
+# rasio bar datar 4h mekanis lebih kecil, jadi gerbang ini lebih LONGGAR di sana.
 MAKS_RASIO_DATAR = 0.10
+
+# Berkas keluaran, dengan nama dasar tanpa interval. Dua yang pertama dibaca oleh
+# backtest.yml; itu sebabnya nama lama tetap ditulis untuk 1h.
+BERKAS_DASAR = (
+    "akhir_sejati.json",
+    "universe_layak_v2.json",
+    "potong_ekor.json",
+    "potong_ekor.md",
+)
+
+
+def min_panjang_untuk(interval: str) -> int:
+    """Panjang ekor minimum dalam bar, setara satu hari kalender.
+
+    Gagal keras untuk interval yang belum diputuskan. Nilai bawaan tersembunyi
+    adalah tepat cacat yang ADR-017 dan ADR-018 perbaiki: angka yang benar untuk
+    satu interval berubah makna, bukan berubah nilai, ketika dipakai di interval
+    lain.
+    """
+    if interval not in INTERVAL_JAM:
+        raise SystemExit(
+            f"interval {interval} belum punya ambang ekor datar; tambahkan ke "
+            f"INTERVAL_JAM dan bekukan keputusannya di ADR lebih dulu "
+            f"(ADR-018). Interval yang dikenal: {sorted(INTERVAL_JAM)}"
+        )
+    return JAM_SEHARI // INTERVAL_JAM[interval]
+
+
+def nama_keluaran(dasar: str, interval: str) -> list[str]:
+    """Nama berkas keluaran untuk sebuah interval; yang kanonik selalu pertama.
+
+    Berkas bernama lama ditulis **hanya** untuk 1h, karena hanya 1h yang punya
+    pembaca: ``backtest.yml`` meneruskan ``reports/universe_layak_v2.json`` dan
+    ``reports/akhir_sejati.json``. Dengan begitu run 4h secara konstruksi tidak
+    dapat menimpa masukan backtest 1h.
+    """
+    batang, _, ekstensi = dasar.rpartition(".")
+    nama = [f"{batang}_{interval}.{ekstensi}"]
+    if interval == INTERVAL_LEGASI:
+        nama.append(dasar)
+    return nama
+
+
+def tulis_keluaran(out: Path, dasar: str, interval: str, teks: str) -> list[str]:
+    """Menulis satu keluaran ke seluruh nama yang berlaku bagi interval itu."""
+    ditulis = []
+    for nama in nama_keluaran(dasar, interval):
+        (out / nama).write_text(teks, encoding="utf-8")
+        ditulis.append(nama)
+        print(f"  ditulis: {nama}", flush=True)
+    return ditulis
 
 
 def rasio_datar(df: pd.DataFrame) -> float:
@@ -87,11 +160,15 @@ def potong(df: pd.DataFrame, min_panjang: int = MIN_PANJANG) -> pd.DataFrame:
 def evaluasi(
     symbol: str,
     df: pd.DataFrame,
-    min_panjang: int = MIN_PANJANG,
-    min_bar: int = MIN_BAR,
+    min_panjang: int,
+    min_bar: int,
     maks_rasio: float = MAKS_RASIO_DATAR,
 ) -> dict:
     """Putusan kelayakan satu simbol sesudah ekornya dipangkas.
+
+    ``min_panjang`` dan ``min_bar`` wajib dipasok. Keduanya bergantung interval,
+    dan nilai bawaan untuk besaran yang bergantung interval sudah sekali hampir
+    menyusutkan semesta 4h tanpa keputusan siapa pun.
 
     Urutan pemeriksaannya disengaja: blok tengah diperiksa sebelum panjang
     riwayat, supaya simbol yang punya lubang di tengah dilaporkan karena
@@ -151,17 +228,36 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", required=True)
     ap.add_argument("--interval", default="1h")
-    ap.add_argument("--universe", default="reports/universe_layak.json")
+    ap.add_argument("--universe", default=None)
+    ap.add_argument("--config", default="config/lux.yaml")
     ap.add_argument("--out", default="reports")
-    ap.add_argument("--min-panjang", type=int, default=MIN_PANJANG)
-    ap.add_argument("--min-bar", type=int, default=MIN_BAR)
+    ap.add_argument("--min-panjang", type=int, default=None)
+    ap.add_argument("--min-bar", type=int, default=None)
     ap.add_argument("--maks-rasio", type=float, default=MAKS_RASIO_DATAR)
     a = ap.parse_args(argv)
 
-    kandidat = set(json.loads(Path(a.universe).read_text(encoding="utf-8"))["simbol"])
+    interval = a.interval
+    min_panjang = a.min_panjang if a.min_panjang is not None else min_panjang_untuk(interval)
+    # Lantai riwayat punya satu sumber kebenaran: config. muat_ambang gagal keras
+    # bila interval ini belum punya kuncinya (ADR-017).
+    min_bar = (
+        a.min_bar
+        if a.min_bar is not None
+        else muat_ambang(Path(a.config), interval).min_bar
+    )
+    universe = a.universe or f"reports/universe_layak_{interval}.json"
+
+    print(
+        f"interval {interval} · min_panjang {min_panjang} bar (= {JAM_SEHARI} jam) · "
+        f"min_bar {min_bar} · maks_rasio {a.maks_rasio}",
+        flush=True,
+    )
+    print(f"universe masukan: {universe}", flush=True)
+
+    kandidat = set(json.loads(Path(universe).read_text(encoding="utf-8"))["simbol"])
     print(f"kandidat layak lama: {len(kandidat)}", flush=True)
 
-    bingkai = muat_semua(Path(a.dir), a.interval)
+    bingkai = muat_semua(Path(a.dir), interval)
     print(f"{len(bingkai)} simbol dimuat dari aset", flush=True)
 
     # Tanggal kematian sejati dihitung atas SELURUH simbol, bukan hanya
@@ -171,7 +267,7 @@ def main(argv: list[str] | None = None) -> int:
     akhir: dict[str, dict] = {}
     hasil: list[dict] = []
     for s in sorted(bingkai):
-        e = evaluasi(s, bingkai[s], a.min_panjang, a.min_bar, a.maks_rasio)
+        e = evaluasi(s, bingkai[s], min_panjang, min_bar, a.maks_rasio)
         akhir[s] = {
             "akhir_ms": e["akhir_ms"],
             "dipangkas": e["dipangkas"],
@@ -188,11 +284,15 @@ def main(argv: list[str] | None = None) -> int:
 
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
-    (out / "akhir_sejati.json").write_text(
+
+    tulis_keluaran(
+        out,
+        "akhir_sejati.json",
+        interval,
         json.dumps(
             {
-                "interval": a.interval,
-                "min_panjang": a.min_panjang,
+                "interval": interval,
+                "min_panjang": min_panjang,
                 "simbol": len(akhir),
                 "simbol_dipangkas": simbol_dipangkas_semua,
                 "bar_dipangkas": int(total_dipangkas),
@@ -201,13 +301,17 @@ def main(argv: list[str] | None = None) -> int:
             indent=2,
             ensure_ascii=False,
         ),
-        encoding="utf-8",
     )
-    (out / "universe_layak_v2.json").write_text(
+    tulis_keluaran(
+        out,
+        "universe_layak_v2.json",
+        interval,
         json.dumps(
             {
                 "sumber": "ADR-003, setelah ekor datar dipangkas",
-                "min_bar": a.min_bar,
+                "interval": interval,
+                "min_panjang": min_panjang,
+                "min_bar": min_bar,
                 "maks_rasio_datar": a.maks_rasio,
                 "jumlah": len(layak),
                 "simbol": layak,
@@ -215,17 +319,22 @@ def main(argv: list[str] | None = None) -> int:
             indent=2,
             ensure_ascii=False,
         ),
-        encoding="utf-8",
     )
-    (out / "potong_ekor.json").write_text(
-        json.dumps({"hasil": hasil}, indent=2, ensure_ascii=False), encoding="utf-8"
+    tulis_keluaran(
+        out,
+        "potong_ekor.json",
+        interval,
+        json.dumps({"interval": interval, "hasil": hasil}, indent=2, ensure_ascii=False),
     )
 
     md = [
-        "# Pemangkasan ekor datar",
+        f"# Pemangkasan ekor datar {interval}",
         "",
         "Pelaksanaan ADR-003. Aset tidak ditulis ulang; pemangkasan berlaku saat "
         "muat, dan tabel ini adalah catatan yang dapat diaudit atasnya.",
+        "",
+        f"- Ambang ekor: **{min_panjang} bar** (= {JAM_SEHARI} jam) · "
+        f"lantai riwayat: **{min_bar:,} bar** · maks rasio datar: **{a.maks_rasio}**",
         "",
         f"- Simbol dipindai (seluruh aset): **{len(akhir):,}**",
         f"- Simbol yang punya ekor datar: **{simbol_dipangkas_semua:,}**",
@@ -261,7 +370,7 @@ def main(argv: list[str] | None = None) -> int:
         md.append(f"| {k} | {v} |")
     md += [""]
 
-    (out / "potong_ekor.md").write_text("\n".join(md) + "\n", encoding="utf-8")
+    tulis_keluaran(out, "potong_ekor.md", interval, "\n".join(md) + "\n")
     print("\n".join(md), flush=True)
     return 0
 
