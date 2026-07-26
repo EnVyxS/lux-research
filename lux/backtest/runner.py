@@ -69,6 +69,18 @@ periode waktu terakhir yang dibekukan — mustahil dihitung dari laporan yang
 dikomit. Blok ``agregat_periode`` menutup lubang itu. Ia hanya membaca ulang
 perdagangan yang sama menurut bulan kalender UTC waktu **masuk**; tidak ada
 ambang, putusan, maupun perilaku mesin yang tersentuh olehnya.
+
+ADR-019 MENGUBAH SATU BARIS
+---------------------------
+Gerbang ``forward_fill`` kini dipanggil dengan ``interval=opsi.interval``,
+sehingga ambang deret bar datarnya berarti **satu hari** alih-alih 24 bar apa pun
+intervalnya. Pada 1h tidak ada yang berubah sedikit pun, sebab
+``bar_per_hari("1h")`` sama dengan bawaan lama; pada 4h ambangnya menjadi 6 bar,
+dan tanpa itu keheningan tiga hari penuh lolos sebagai data bersih.
+
+Ambang yang diserahkan ke ``gabung_gerbang`` tetap ``0.30`` dan itu disengaja:
+0,30 adalah ambang **rasio** bar datar, bukan ambang **deret**. Keduanya syarat
+yang berbeda pada gerbang yang sama.
 """
 
 from __future__ import annotations
@@ -402,7 +414,10 @@ def jalankan_spek(
             kunci = json.dumps(p, sort_keys=True, ensure_ascii=False)
             parameter_terpilih[kunci] = parameter_terpilih.get(kunci, 0) + 1
 
-        g_forward.append(gerbang_forward_fill(df))
+        # ADR-019. Interval dipasok supaya ambang deret bar datar berarti satu
+        # HARI, bukan 24 bar. Untuk 1h nilainya tetap 24 sehingga hasil lama
+        # tidak bergeser; untuk 4h ia menjadi 6.
+        g_forward.append(gerbang_forward_fill(df, interval=opsi.interval))
         nama_forward.append(s)
 
         if wf.per_jendela and trade_simbol:
