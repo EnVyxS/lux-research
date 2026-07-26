@@ -27,8 +27,8 @@ Rancangannya faktorial 2x2 (ADR-015 bagian B), dan yang dibandingkan adalah
 - **Sumbangan geometri = SS − SH.**
 - **Interaksi = (SS − AS) − (SH − AH).**
 
-ENAM HAL YANG WAJIB DIKETAHUI SEBELUM MEMBACA HASILNYA
-------------------------------------------------------
+TUJUH HAL YANG WAJIB DIKETAHUI SEBELUM MEMBACA HASILNYA
+-------------------------------------------------------
 **1. Tripwire dataset DIBALIK di sini.** ``run_h010`` dan ``run_h012`` menuntut
 dataset identik dengan H-002. Modul ini menuntut yang sebaliknya: dataset wajib
 **berbeda** dan wajib menyebut ``4h``. H-013 berjalan pada kerangka 4h dengan
@@ -67,6 +67,17 @@ Permutasi bergantung panjang array, sedangkan gerbang lookahead memotong data la
 menuntut sinyal awal tidak berubah. Menurut aturan 36 itu konsekuensi konstruksi,
 bukan ramalan, dan haram dilaporkan sebagai temuan. Sebelas gerbang tetap dinilai
 dan ditulis pada keempat sel; kelulusannya hanya menjadi syarat pada sel SS.
+
+**7. ``kontribusi`` hanya memeriksa SEPARUH kriteria utama, dan laporannya kini
+mengatakannya sendiri (ADR-024).** ADR-015 §4.4 menuntut dua syarat dalam satu
+kalimat — besaran ``SS − AS ≥ 0,020R`` **dan** ``p ≤ 0,05`` atas ≥300 ulangan
+permutasi sinyal. ``kontribusi`` menghitung yang pertama saja; ``p_entri_acak``
+yang tercetak per sel adalah **uji lain** yang tidak pernah membandingkan SS
+terhadap AS. Medan ``lulus`` karena itu **tidak boleh** dibaca sebagai kelulusan
+hipotesis. Cacatnya tidak diperbaiki di sini dengan sengaja — memperbaiki putusan
+di dalam commit yang sama dengan memperbaiki prosa akan membuat keduanya sulit
+ditinjau — tetapi sejak commit ini setiap laporan **menyatakan** keterbatasan itu
+beserta satuan penarikan ADR-028.
 
 Pemakaian:
     python -m lux.backtest.run_h013 --dir aset --interval 4h \\
@@ -157,6 +168,28 @@ DATASET = (
 # karena ia pembanding acak dan bukan hasil: 0,04661R muncul identik di kedua
 # hipotesis. Ekspektasi keduanya TIDAK dikutip di sini.
 SKOR_ACAK_TERDAHULU = 0.04661
+
+# ADR-024 dan ADR-028. Kalimat ini WAJIB muncul di setiap laporan kontribusi,
+# apa pun angkanya, sebab keterbatasannya tidak bergantung angka. Ia berdiri
+# sebagai konstanta supaya pengujian dapat menuntut kehadirannya.
+PEMBATAS_PUTUSAN = (
+    "Medan `lulus` di berkas ini BUKAN kelulusan hipotesis. ADR-015 bagian 4.4 "
+    "menuntut dua syarat dalam satu kalimat \u2014 besaran SS \u2212 AS \u2265 0,020R DAN "
+    "p \u2264 0,05 atas sedikitnya 300 ulangan permutasi sinyal \u2014 sementara "
+    "`kontribusi` hanya menghitung besarannya (ADR-024). Nilai `p acak` per sel "
+    "adalah uji LAIN: ia mengacak entri di dalam satu sel dan tidak pernah "
+    "membandingkan SS terhadap AS. Selain itu ADR-028 mematok satuan penarikan "
+    "seluruh p pada BULAN kalender UTC, bukan per perdagangan, sehingga galat "
+    "baku per perdagangan di laporan sel hanya sah untuk MENJATUHKAN klaim."
+)
+
+# Keterangan mekanis yang juga tidak bergantung angka: ia menerangkan MENGAPA
+# sebuah gerbang jatuh, bukan menafsirkan besar selisih.
+PEMBATAS_INVARIAN = (
+    "`invarian_risiko` yang jatuh pada sel tanpa target **bukan** bukti target "
+    "lebih baik: jalur `umur` mengisi pada harga bar sungguhan, sedangkan jalur "
+    "stop hanya seburuk celah pembukaan."
+)
 
 RAMALAN = {
     "sumbangan_sinyal_R": (
@@ -387,6 +420,10 @@ def kontribusi(ekspektasi: dict, trade: dict) -> dict:
     seluruh perbandingan **TIDAK DAPAT DINILAI**, bukan membuatnya gagal dan
     bukan pula dinilai dengan sel yang tersisa. Menilai selisih dari sel yang
     tipis berarti melaporkan kebisingan sebagai temuan.
+
+    **Peringatan yang wajib dibaca bersama medan ``lulus``** (ADR-024): medan itu
+    hanya menguji besaran, bukan ``p``. Ia sengaja tidak diubah di commit yang
+    memperbaiki prosa; lihat ``PEMBATAS_PUTUSAN``.
     """
     kurang = [s for s in NAMA_SEL if s not in ekspektasi or s not in trade]
     if kurang:
@@ -430,6 +467,116 @@ def kontribusi(ekspektasi: dict, trade: dict) -> dict:
         "interaksi_R": (ss - a_s) - (sh - ah),
         "lulus": sinyal >= AMBANG_KONTRIBUSI_SINYAL,
     }
+
+
+def prosa_kontribusi(ringkas: dict) -> list[str]:
+    """Kalimat penafsir yang **diturunkan dari angka**, bukan dipatok (aturan 41).
+
+    Sampai commit ini, penulis md mencetak "sumbangan geometri yang lebih besar
+    daripada sumbangan sinyal" pada nilai apa pun. Pada run 30214203863 angkanya
+    justru sebaliknya — geometri +0,029481R lawan sinyal +0,054842R — sehingga
+    laporan membantah datanya sendiri. Prosa yang tidak dapat salah adalah prosa
+    yang tidak memuat informasi, dan prosa yang dipatok justru **dapat** salah
+    tanpa pernah berbunyi.
+
+    Fungsinya berdiri di tingkat modul supaya arah kalimatnya dapat diuji tanpa
+    menjalankan backtest (aturan 32). Ia mengembalikan daftar baris Markdown.
+
+    Dua pembatas selalu ikut, apa pun angkanya, sebab keduanya tidak bergantung
+    angka: ``PEMBATAS_PUTUSAN`` (ADR-024, ADR-028) dan ``PEMBATAS_INVARIAN``.
+    """
+    if not ringkas.get("dapat_dinilai"):
+        return [
+            "**TIDAK DAPAT DINILAI.** Tidak satu pun kalimat penafsir ditulis di "
+            "sini, sebab tidak ada selisih yang sah untuk ditafsirkan. "
+            f"Sebab: {ringkas.get('sebab') or 'tidak dinyatakan'}",
+            "",
+            PEMBATAS_PUTUSAN,
+            "",
+            PEMBATAS_INVARIAN,
+            "",
+        ]
+
+    sinyal = float(ringkas["sumbangan_sinyal_R"])
+    geometri = float(ringkas["sumbangan_geometri_R"])
+    interaksi = float(ringkas["interaksi_R"])
+    ambang = float(ringkas["ambang_sumbangan_sinyal_R"])
+
+    baris: list[str] = []
+
+    # 1. Mana yang lebih besar. Ini kalimat yang dulu dipatok.
+    if abs(geometri) > abs(sinyal):
+        baris.append(
+            f"Sumbangan **geometri** ({geometri:+.6f}R) lebih besar dalam nilai "
+            f"mutlak daripada sumbangan **sinyal** ({sinyal:+.6f}R). Bacaan itu "
+            "konsisten dengan sepuluh hipotesis pertama yang mengukur struktur "
+            "keluar alih-alih kemampuan memilih momen. Ia hasil yang sah dan "
+            "bukan kegagalan mesin."
+        )
+    elif abs(sinyal) > abs(geometri):
+        baris.append(
+            f"Sumbangan **sinyal** ({sinyal:+.6f}R) lebih besar dalam nilai "
+            f"mutlak daripada sumbangan **geometri** ({geometri:+.6f}R). Ini "
+            "**membalik** bacaan yang dipegang sampai H-012, yaitu bahwa seluruh "
+            "kemajuan datang dari sisi keluar. Pembalikan itu tidak boleh "
+            "dinyatakan sebagai posisi sebelum p atas selisih dihitung pada "
+            "satuan penarikan resmi."
+        )
+    else:
+        baris.append(
+            f"Sumbangan sinyal dan geometri sama besar dalam nilai mutlak "
+            f"({sinyal:+.6f}R lawan {geometri:+.6f}R). Kesamaan sepersis itu "
+            "lebih mungkin menandakan cacat perhitungan daripada keseimbangan "
+            "yang sungguh terjadi, dan wajib diperiksa sebelum ditafsirkan."
+        )
+
+    # 2. Tanda sumbangan sinyal.
+    if sinyal < 0:
+        baris.append(
+            f"Sumbangan sinyal **negatif** ({sinyal:+.6f}R): sinyal sungguhan "
+            "kalah dari sinyal yang waktunya diacak. Bila ini bertahan sesudah "
+            "uji permutasi, yang gugur bukan hanya H-013 melainkan seluruh "
+            "anggapan bahwa Donchian memuat informasi arah."
+        )
+    elif sinyal < ambang:
+        baris.append(
+            f"Sumbangan sinyal {sinyal:+.6f}R **di bawah** ambang beku {ambang}R, "
+            "jadi separuh kriteria utama yang dapat dihitung sudah tidak "
+            "terpenuhi. Ambang itu tidak digeser."
+        )
+    else:
+        baris.append(
+            f"Sumbangan sinyal {sinyal:+.6f}R **melewati** ambang besaran "
+            f"{ambang}R. Itu aritmetika, bukan kelulusan: syarat keduanya, p, "
+            "belum dihitung di berkas ini."
+        )
+
+    # 3. Interaksi. Tandanya menentukan artinya, jadi ia tidak boleh dipatok.
+    if interaksi > 0:
+        baris.append(
+            f"Interaksi **positif** ({interaksi:+.6f}R): keunggulan sinyal lebih "
+            "besar ketika target dipasang daripada ketika posisi ditutup oleh "
+            "horizon. Sinyal dan geometri karena itu **tidak** dapat dibaca "
+            "sebagai dua sumbangan yang dapat dijumlahkan."
+        )
+    elif interaksi < 0:
+        baris.append(
+            f"Interaksi **negatif** ({interaksi:+.6f}R): keunggulan sinyal lebih "
+            "kecil ketika target dipasang. Target dalam keadaan itu memotong "
+            "justru perdagangan yang sinyalnya benar."
+        )
+    else:
+        baris.append(
+            "Interaksi **nol persis**, yang pada bilangan pecahan lebih mungkin "
+            "berarti dua sel identik daripada berarti aditif; periksa sidik "
+            "keempat sel sebelum menafsirkannya."
+        )
+
+    hasil: list[str] = []
+    for b in baris:
+        hasil += [b, ""]
+    hasil += [PEMBATAS_PUTUSAN, "", PEMBATAS_INVARIAN, ""]
+    return hasil
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -628,6 +775,10 @@ def main(argv: list[str] | None = None) -> int:
         "GAGAL pada sel AS dan AH; kelulusan gerbang hanya syarat pada SS",
         flush=True,
     )
+    print(
+        "PEMBATAS PUTUSAN (ADR-024): medan lulus hanya menguji besaran, bukan p",
+        flush=True,
+    )
     for nama, isi_ramalan in RAMALAN.items():
         print(f"  ramalan {nama}: {isi_ramalan}", flush=True)
 
@@ -684,6 +835,7 @@ def main(argv: list[str] | None = None) -> int:
             for s in NAMA_SEL
         },
         "kontribusi": ringkas,
+        "pembatas_putusan": PEMBATAS_PUTUSAN,
         "parameter_beku": {
             "imbalan_R": IMBALAN_BEKU,
             "h_bar": H_BAR,
@@ -759,17 +911,12 @@ def main(argv: list[str] | None = None) -> int:
     ]
     if not ringkas["dapat_dinilai"]:
         md += [ringkas["sebab"], ""]
-    md += [
-        "Sumbangan geometri yang lebih besar daripada sumbangan sinyal berarti "
-        "sepuluh hipotesis pertama mengukur struktur keluar, bukan kemampuan "
-        "memilih momen. Itu hasil yang sah dan tidak boleh dibaca sebagai "
-        "kegagalan mesin.",
-        "",
-        "`invarian_risiko` yang jatuh pada sel tanpa target **bukan** bukti "
-        "target lebih baik: jalur `umur` mengisi pada harga bar sungguhan, "
-        "sedangkan jalur stop hanya seburuk celah pembukaan.",
-        "",
-    ]
+
+    # ADR-024, cacat kelas kesepuluh: kalimat penafsir DITURUNKAN dari angka,
+    # tidak lagi dipatok di sini.
+    md += ["## Bacaan angka", ""]
+    md += prosa_kontribusi(ringkas)
+
     (out / "backtest_h013_kontribusi.md").write_text(
         "\n".join(md) + "\n", encoding="utf-8"
     )
