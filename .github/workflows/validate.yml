@@ -6,15 +6,42 @@ name: validate
 # Ambang ditulis sebelum data dilihat. Jumlah simbol yang lolos dicatat apa pun
 # hasilnya, termasuk bila jauh lebih kecil dari 790.
 #
-# Percobaan 3. Percobaan 1 mati di gerbang pengujian (bingkai uji tidak selaras
-# batas hari UTC). Percobaan 2 berjalan penuh tetapi membaca aset `_retry`
-# pra-perbaikan parser yang masih tertinggal di Release, sehingga tiga simbol
-# non-ASCII terhitung dua kali: 12.593 baris berlebih, tepat sama dengan isi
-# aset usang itu. Kini aset tersebut dihapus dari Release sekaligus disaring
+# Percobaan 3 (1h). Percobaan 1 mati di gerbang pengujian (bingkai uji tidak
+# selaras batas hari UTC). Percobaan 2 berjalan penuh tetapi membaca aset
+# `_retry` pra-perbaikan parser yang masih tertinggal di Release, sehingga tiga
+# simbol non-ASCII terhitung dua kali: 12.593 baris berlebih, tepat sama dengan
+# isi aset usang itu. Kini aset tersebut dihapus dari Release sekaligus disaring
 # di dalam kode.
+#
+# ---------------------------------------------------------------------------
+# ADR-017 langkah 3, 2026-07-26. Interval kini PARAMETER dengan bawaan 4h.
+#
+# Dua hal yang wajib dipahami sebelum menyunting berkas ini.
+#
+# Pertama, run ini SENGAJA tidak menjalankan 1h sekaligus. Menjalankan ulang 1h
+# akan menulis ulang reports/universe_layak.json yang menjadi masukan ADR-003,
+# dan sejak validasi 1h terakhir backfill_daily sudah menambah ekor data — jadi
+# semesta 1h dapat bergeser tanpa satu pun ADR memutuskannya. Menghitung ulang
+# semesta secara tak sengaja adalah cara paling sunyi untuk membuat dua hipotesis
+# berjalan di atas dua definisi berbeda.
+#
+# Kedua, lantai riwayat yang berlaku di sini adalah universe.min_bar_4h = 2190,
+# bukan 8760. Keduanya berarti satu tahun kalender; yang dibekukan ADR-017 adalah
+# maknanya, bukan angkanya. lux/validate_run.muat_ambang akan GAGAL KERAS bila
+# kunci min_bar_<interval> tidak ada, jadi salah interval tidak dapat berujung
+# pada laporan yang tampak sah.
+#
+# Aset 4h ber-download_count 0 saat berkas ini ditulis: run ini adalah pembacaan
+# pertama data 4h dalam riset ini.
+# ---------------------------------------------------------------------------
 
 on:
   workflow_dispatch:
+    inputs:
+      interval:
+        description: 'Interval bar yang divalidasi (harus punya universe.min_bar_<interval> di config)'
+        required: false
+        default: '4h'
   push:
     paths:
       - '.github/workflows/validate.yml'
@@ -29,6 +56,8 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    env:
+      INTERVAL: ${{ inputs.interval || '4h' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -37,12 +66,16 @@ jobs:
           python-version: '3.12'
           cache: 'pip'
 
-      - run: pip install -r requirements.txt pyyaml pytest
+      - run: |
+          mkdir -p logs
+          pip install -r requirements.txt pyyaml pytest 2>&1 | tee logs/deps.log
 
       - name: Uji dulu, baru unduh
         env:
           PYTHONPATH: .
-        run: python -m pytest tests -q
+        run: |
+          set -o pipefail
+          python -m pytest tests -q 2>&1 | tee logs/uji.log
 
       - name: Hapus aset usang dari release
         env:
@@ -60,32 +93,54 @@ jobs:
             done
           fi
 
-      - name: Unduh aset Parquet 1h dari release
+      - name: Unduh aset Parquet dari release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mkdir -p aset
-          gh release download "$TAG" -p 'ohlcv_1h_*.parquet' -D aset --clobber
-          ls -la aset
-          du -sh aset
+          set -eo pipefail
+          mkdir -p aset logs
+          {
+            echo "interval yang diminta: $INTERVAL"
+            gh release download "$TAG" -p "ohlcv_${INTERVAL}_*.parquet" -D aset --clobber
+            ls -la aset
+            echo "jumlah berkas: $(ls aset | wc -l)"
+            du -sh aset
+          } 2>&1 | tee logs/unduh.log
 
       - name: Validasi
         env:
           PYTHONPATH: .
         run: |
+          set -o pipefail
           python -m lux.validate_run \
             --dir aset \
-            --interval 1h \
+            --interval "$INTERVAL" \
             --config config/lux.yaml \
-            --out reports
+            --out reports 2>&1 | tee "logs/validate_${INTERVAL}.log"
+
+      - name: Berkas hasil ada atau tidak
+        if: always()
+        run: |
+          echo "== reports =="
+          ls -la reports/ || true
+          for f in "reports/validate_${INTERVAL}.json" \
+                   "reports/validate_${INTERVAL}.md" \
+                   "reports/universe_layak_${INTERVAL}.json"; do
+            if [ -f "$f" ]; then
+              echo "ADA  $f ($(wc -c < "$f") byte)"
+            else
+              echo "TIDAK ADA  $f  <-- run gagal sebelum selesai"
+            fi
+          done
 
       - name: Commit laporan
+        if: always()
         run: |
           set -e
           git config user.name "lux-validate"
           git config user.email "actions@github.com"
-          git add reports/
+          git add reports/ logs/
           git diff --cached --quiet && exit 0
-          git commit -m "data(validate): laporan validasi run ${GITHUB_RUN_ID} [skip ci]"
+          git commit -m "data(validate): laporan validasi ${INTERVAL} run ${GITHUB_RUN_ID} [skip ci]"
           git pull --rebase --autostash origin main
           git push origin HEAD:main
