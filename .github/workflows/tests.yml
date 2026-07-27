@@ -6,6 +6,17 @@ name: tests
 # yang berjalan sebelum job berdurasi delapan belas menit dimulai. Pengujian
 # murni-logika berjalan dalam hitungan detik dan menangkap kelas kesalahan itu
 # jauh lebih murah.
+#
+# Yang mahal di sini BUKAN pytest. Seribu dua puluh sembilan uji selesai dalam
+# 3,8 detik sementara satu putaran memakan 23-30 detik, jadi hampir seluruh
+# biaya adalah menyalakan putaran itu sendiri. Karena itu yang dioptimalkan di
+# berkas ini adalah JUMLAH PUTARAN, bukan lamanya pytest: satu putaran harus
+# memuat cukup keterangan sehingga pembacanya tidak perlu menyalakan putaran
+# kedua hanya untuk melihat sebab kegagalan atau cacah uji.
+#
+# Karena itu pula berkas ini TIDAK memakai pytest-xdist dan TIDAK memakai -x.
+# Keduanya memperkecil biaya yang bukan biaya, dan -x justru menyembunyikan
+# kegagalan kedua sampai putaran berikutnya - yakni menambah putaran.
 
 on:
   workflow_dispatch:
@@ -32,15 +43,39 @@ jobs:
 
       - run: pip install -r requirements.txt pytest
 
-      - name: Jalankan pytest
-        id: pytest
+      # Pengumpulan berdiri sebagai langkahnya sendiri, SEBELUM pytest, supaya
+      # cacah butir uji terbaca dari berkas walau pytest sesudahnya merah.
+      # Aturan 54 menuntut ramalan cacah uji diadjudikasi dari berkas, dan
+      # aturan 60 menuntut ramalan menyebut medan yang mengadjudikasinya;
+      # sebelum langkah ini ada, cacah hanya terbaca dari baris "passed" yang
+      # tidak muncul pada run merah.
+      - name: Kumpulkan butir uji
+        id: kumpul
         env:
           PYTHONPATH: .
         run: |
           set +e
+          python -m pytest tests --collect-only -q > /tmp/collect.txt 2>&1
+          kode_kumpul=$?
+          butir=$(grep -c '::' /tmp/collect.txt)
+          set -e
+          tail -n 3 /tmp/collect.txt
+          echo "butir terkumpul: ${butir} (kode ${kode_kumpul})"
+          echo "butir=${butir}" >> "$GITHUB_OUTPUT"
+          echo "kode=${kode_kumpul}" >> "$GITHUB_OUTPUT"
+
+      - name: Jalankan pytest
+        id: pytest
+        env:
+          PYTHONPATH: .
+          BUTIR: ${{ steps.kumpul.outputs.butir }}
+          KODE_KUMPUL: ${{ steps.kumpul.outputs.kode }}
+        run: |
+          set +e
           mkdir -p reports
-          python -m pytest tests -q --tb=short > /tmp/pytest.txt 2>&1
+          python -m pytest tests -q -rf --tb=short > /tmp/pytest.txt 2>&1
           kode=$?
+          grep -E 'FAILED|ERROR' /tmp/pytest.txt > /tmp/gagal.txt
           set -e
           tail -n 60 /tmp/pytest.txt
           {
@@ -48,13 +83,33 @@ jobs:
             echo
             echo "Commit: \`${GITHUB_SHA}\`"
             echo "Kode keluar: \`${kode}\`"
+            echo "Butir terkumpul: ${BUTIR}"
+            echo "Kode kumpul: \`${KODE_KUMPUL}\`"
+            echo
+            echo "## Baris FAILED dan ERROR"
+            echo
+            echo "Seluruh baris, tanpa dipotong. Ringkasan pendek \`-rf\` ikut"
+            echo "tertangkap di sini."
             echo
             echo '```'
-            tail -n 80 /tmp/pytest.txt
+            if [ -s /tmp/gagal.txt ]; then
+              cat /tmp/gagal.txt
+            else
+              echo "Tidak ada baris FAILED atau ERROR."
+            fi
+            echo '```'
+            echo
+            echo "## Ekor keluaran (200 baris)"
+            echo
+            echo '```'
+            tail -n 200 /tmp/pytest.txt
             echo '```'
           } > reports/tests.md
           echo "kode=${kode}" >> "$GITHUB_OUTPUT"
 
+      # Laporan dikomit SEBELUM hasil ditegakkan. Urutan ini satu-satunya sebab
+      # laporan run merah pun sampai ke repo; membalikkannya berarti setiap run
+      # merah menuntut putaran kedua untuk dibaca.
       - name: Commit laporan
         run: |
           set -e
