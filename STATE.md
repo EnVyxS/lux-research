@@ -1,10 +1,18 @@
 # STATE — Posisi Riset LUX
 
-> **Sesi baru mulai dari sini.** Berkas ini ditulis ulang setiap sesi. Arsip rinci ada di **`STATE_LAMPIRAN.md`** dan wajib dibaca bersamanya. Jika sesuatu tidak tercatat di salah satu dari keduanya, anggap belum diketahui.
+> **Sesi baru mulai dari sini.** Berkas ini ditulis ulang setiap sesi. Arsip rinci ada di **`STATE_LAMPIRAN.md`** dan **`STATE_LAMPIRAN_ANGKA.md`**, dan wajib dibaca bersamanya. Jika sesuatu tidak tercatat di salah satu dari ketiganya, anggap belum diketahui.
 
-**Diperbarui:** 2026-07-27 (versi 32) — ditulis sesudah blob v31 (`53e48c0f8ec9121ad97f2f8e790be23b52dd18be`, commit `bfc5bef7`) dibaca **utuh**. Aturan 1–58 dibawa **verbatim**; yang ditambahkan hanya catatan pemakaian yang punya bukti.
+**Diperbarui:** 2026-07-27 (versi 33) — ditulis sesudah blob v32 (`4c1ff162c33f5ab2510f677fb50092de86f0f544`, commit `0dd14098`) dibaca **utuh**. Aturan 1–58 dibawa **verbatim**; ditambahkan **aturan 59 dan 60**.
 
-**KOREKSI ATAS KOREKSI — berlaku atas seluruh berkas ini dan atas v30.** v30 menyatakan rujukan "ADR-009" atas pengaman carry **keliru** dan menggantinya dengan ADR-008. **Itu koreksi yang terlalu keras.** Sesudah ADR-008 dan ADR-009 dibaca **utuh** (blob `1d1b9e5781d4a70aebb5829b8c423281bf497ee1` dan `2226847bbb983546f0290593e0b8d14b0c537bce`), yang benar berlapis tiga:
+**MITIGASI ATURAN 35, DIJALANKAN DI v33.** v32 berukuran 48.058 B dan **tumbuh** melawan mitigasi aturan 35 sendiri. Seluruh tabel besaran H-011 sampai H-015 karena itu dipindahkan **verbatim** ke **`STATE_LAMPIRAN_ANGKA.md`**. Tidak ada angka yang dibuang; yang dibuang adalah kebiasaan menaruhnya di berkas yang wajib dibaca ulang utuh setiap sesi.
+
+**KOREKSI YANG WAJIB DIBACA LEBIH DAHULU — v32 dan PROMPT v4 keliru.** Keduanya menyatakan H-015 "**berkode LENGKAP** serta hijau". Kata **lengkap TIDAK BENAR**: pada saat itu `lux/backtest/gabung_h015.py` **belum ada**, sehingga tidak ada satu pun alat yang dapat mengadjudikasi hasilnya. Berkas lama tidak ditulis ulang (aturan 50); jejaknya ada di jurnal 40, 41, dan 42.
+
+**KOREKSI KEDUA.** v32 dan jurnal 40/41 mencatat "**delapan** butir pagar pra-terbang". `logs/preflight.log` H-015 mencetak **sembilan** (butir 1 sampai 9). Salah cacah oleh saya, bukan salah kode.
+
+**KOREKSI KETIGA — atas penalaran saya sendiri.** Di jurnal 41 saya menyebut kerugian −11,4736R sebagai "ekor tunggal" dan membangun ramalan R-O2 di atas premis itu. Tabel ekor sel F membantahnya: sekurangnya **sepuluh** perdagangan melewati −4R. Premisnya salah, jadi R-O2 dinyatakan **cacat penalaran**, bukan "menunggu bukti".
+
+**KOREKSI ATAS KOREKSI (dibawa dari v32, berlaku penuh).** v30 menyatakan rujukan "ADR-009" atas pengaman carry keliru dan menggantinya dengan ADR-008. Itu koreksi yang **terlalu keras**. Yang benar berlapis tiga:
 
 | Lapisan | Dokumen | Kutipan |
 |---|---|---|
@@ -12,17 +20,19 @@
 | **0,25 dipatok sebagai batas risiko yang TIDAK dilombakan** | **ADR-009** | "dikeluarkan dari ruang parameter dan dipatok menyala… Nilai yang dipatok adalah **0,25**" |
 | **Asal angka 0,25** | **ADR-004** | "sudah ada di `config/lux.yaml` versi 2 sebagai `risiko.maks_carry_R = 0.25` sejak ADR-004" |
 
-Di ADR-008, 0,25 masih **dilombakan** ({0,0 · 0,25 · 0,50}) dan **kalah 22 lawan 334** — dari kekalahan itulah aturan 12 lahir. Karena `run_h009.AMBANG_CARRY_KERAS` memasang **patokannya**, sebutan "pengaman carry keras ADR-009" di `lux/backtest/funding_ekor.py` **dapat dibela** dan tidak keliru. Berkas lama **tidak** ditulis ulang (aturan 50); jejak kedua kesalahan ada di jurnal 35, 36, dan **37**.
+Di ADR-008, 0,25 masih **dilombakan** ({0,0 · 0,25 · 0,50}) dan **kalah 22 lawan 334** — dari kekalahan itulah aturan 12 lahir. Karena `run_h009.AMBANG_CARRY_KERAS` memasang **patokannya**, sebutan "pengaman carry keras ADR-009" di `lux/backtest/funding_ekor.py` **dapat dibela**. Jejak kedua kesalahan ada di jurnal 35, 36, dan 37.
 
-**Cacat alat yang masih tercatat dari v28:** dorongan v28 **pertama** (commit `56633f80`) **terpotong** di tengah bagian 8 — pelanggaran **aturan 35** dalam bentuk ketiga. Mitigasi struktural: arsip rinci dipindah ke `STATE_LAMPIRAN.md` (commit `7869b7d5`). Commit terpotong itu **tidak dihapus dan tidak disembunyikan** (aturan 50).
+**Cacat alat yang masih tercatat dari v28:** dorongan v28 pertama (commit `56633f80`) **terpotong** di tengah bagian 8 — pelanggaran aturan 35 dalam bentuk ketiga. Commit terpotong itu **tidak dihapus dan tidak disembunyikan** (aturan 50).
 
-**Tahap sekarang:** S22 — **H-014 DITOLAK** (run `30221967019`, ADR-035); anomali SH ≠ SH′ terjawab dari sumber (ADR-036): kedua sel H-014 berjalan dengan pengaman carry terealisasi **MATI**, cacat kelas kedelapan belas, aturan **57**. **H-015 terdaftar (ADR-037) dan kini BERKODE LENGKAP serta hijau** — `saringan_funding.py` dan `run_h015.py` ada di `main`, **942 uji lulus**, tetapi **belum menjalankan satu bar pun**. **Empat belas hipotesis dinilai, empat belas ditolak. Nol kandidat bertahan.**
+**Tahap sekarang:** S22 — **H-015 DIJALANKAN dan putusannya TIDAK DAPAT DINILAI** (run `30249117960`, ADR-038). Ketiga selnya gagal dua gerbang: `checksum` (cacat alat, sudah dibayar) dan **`invarian_risiko` (substantif, tidak akan sembuh dengan run ulang)**. **ADR-038 membekukan adjudikasi seluruh jalur berjalan** sampai sebab kerugian melewati −1,5R diketahui. **Empat belas hipotesis dinilai, empat belas ditolak; H-015 belum terhitung karena belum dapat dinilai. Nol kandidat bertahan.**
 
-**Cacat 18 naik satu tingkat, tetap TERBUKA.** v31 mencatat `konfig_audit` "belum dipanggil satu run pun". Kini ia **dipanggil oleh `run_h015.py`** — tetapi runner itu belum berjalan, jadi aturan 42 tetap berlaku. Penutupnya bukan laporan hijau `konfig_audit`, melainkan **R-L5**: alasan keluar `carry` bercacah bukan nol pada ketiga sel.
+**Cacat 18 DITUTUP.** Penutupnya adalah R-L5, dan R-L5 **TEPAT**: alasan keluar `carry` bercacah **82 / 27 / 26** pada sel K / F / A. Pengaman carry terealisasi terbukti hidup di dalam run sungguhan, bukan hanya di pytest.
 
-**Beratnya cacat 18 (jurnal 37):** ADR-009 memutuskan pengaman itu **dipatok menyala untuk seterusnya**, bukan hanya untuk H-009. H-014 mengembalikannya diam-diam ke bawaan ADR-008 lewat `buat_konfig=None`, jadi ia **melanggar keputusan mengikat ADR-009**.
+**Cacat 17 DIBAYAR, efeknya belum terlihat.** `reports/manifest_aset_4h.json` kini ada di `main` (blob `b8f7b04253710be797e0fba501e70457c856d545`). H-011 dan H-012 lulus `checksum` karena manifes 1h-nya sudah ada sebelum run — itu bukti empiris mekanismenya benar. Cabang `runner.py` yang memancarkan "manifest baru ditulis pada run ini" **belum dibaca; ini memerlukan verifikasi**.
 
-**Tahap berikutnya:** (a) tutup **cacat 17** dengan menumpangkan perbaikan daftar `git add` pada run 4h H-015; (b) **jalankan H-015**, adjudikasi R-L1…R-L5 dan R-M1; (c) adjudikasi R-J1.
+**KESALAHAN URUTAN, DIAKUI:** membayar cacat 17 di dalam sentuhan yang **memulai** run adalah keputusan sadar dan salah. Manifes seharusnya dikomit lewat dorongan yang tidak memicu apa pun. Ongkosnya satu run — dan ongkos itu ternyata murah, sebab run 4h H-015 hanya 8 menit 52 detik, bukan 4 jam.
+
+**Tahap berikutnya:** (a) diagnostik ADR-038 §5.4 atas perdagangan yang melewati −1,5R; (b) jurnal 43; (c) instrumentasi penolakan saringan per arah, atau cabut R-L1.
 
 **Tidak ada run yang sedang berjalan.** Satu-satunya proses berjadwal adalah `backfill_daily.yml`, tiap Senin 02:00 UTC.
 
@@ -37,61 +47,63 @@ Aturan yang lahir dari kesalahan nyata, bukan dari teori:
 1. **Angka yang lulus gerbang belum tentu benar.** Rasio 1h:4h 4,014 pernah dicatat sebagai uji silang yang lulus, padahal sedang melaporkan bug.
 2. **SHA laporan yang tidak berubah bukan tanda pekerjaan masih berjalan.**
 3. **Penjelasan yang membuat anomali terasa wajar harus dicurigai lebih keras daripada anomalinya.** **Dipakai dua kali di S22 pada diri sendiri, dan kedua kalinya saya kalah:** pertama "ADR-009 memasang pengamannya, jadi pengamannya milik ADR-009"; lalu koreksinya sendiri, "kalau bukan ADR-009 berarti ADR-008" — keduanya rapi, keduanya tidak lengkap. Yang benar berlapis tiga (lihat kepala berkas). **Bentuk kesalahannya: satu label untuk tiga keputusan yang berbeda lapisan.**
-4. **Lihat sebaran mentah sebelum berteori.** Metrik celah funding gagal lima putaran; satu histogram di awal cukup.
-5. **Hipotesis yang ditolak tetap ditolak.** Ambang tidak disetel ulang setelah hasil terlihat. **Dipakai di S22:** H-014 **tidak** dijalankan ulang dengan pengaman carry dinyalakan, sekalipun cacat 18 ditemukan sesudahnya, dan sekalipun kemudian diketahui H-014 melanggar ADR-009.
-6. (S8) **Percobaan yang informatif ke dua arah lebih berharga daripada percobaan yang dirancang agar berhasil.** **Dipakai sebagai rancangan H-015:** sel A (penolakan acak setara) membuat H-015 informatif meski funding tidak memuat apa-apa.
-7. (S9) **Saringan yang membuang perdagangan tidak otomatis membuang perdagangan yang buruk.** **Inti bahaya H-015:** saringan funding membuang long tiga kali lebih sering; itu bukan keunggulan.
+4. **Lihat sebaran mentah sebelum berteori.** Metrik celah funding gagal lima putaran; satu histogram di awal cukup. **Dipakai lagi di S22 akhir dan berbuah:** membaca sepuluh baris tabel ekor sel F membatalkan seluruh penalaran "ekor tunggal" yang saya bangun tanpa melihat sebarannya.
+5. **Hipotesis yang ditolak tetap ditolak.** Ambang tidak disetel ulang setelah hasil terlihat. **Dipakai di S22:** H-014 **tidak** dijalankan ulang dengan pengaman carry dinyalakan, sekalipun cacat 18 ditemukan sesudahnya. **Dipakai kedua kali di ADR-038:** ambang `invarian_risiko` −1,5R **tidak** digeser sekalipun ia menghalangi setiap putusan.
+6. (S8) **Percobaan yang informatif ke dua arah lebih berharga daripada percobaan yang dirancang agar berhasil.** **Terbukti pada H-015:** sel A membuat run tetap informatif, dan yang paling informatif justru datang dari arah yang tidak dirancang — gerbangnya, bukan sinyalnya.
+7. (S9) **Saringan yang membuang perdagangan tidak otomatis membuang perdagangan yang buruk.** Saringan funding membuang 6.281 perdagangan dari 59.306; **pemecahan per arahnya tidak pernah dipancarkan** (cacat 21).
 8. (S10) **Periksa apakah dugaanmu mungkin secara konstruksi sebelum menjadwalkannya sebagai penelitian.**
-9. (S11) **Periksa apakah laporan yang sudah dikomit sudah menjawabnya.**
+9. (S11) **Periksa apakah laporan yang sudah dikomit sudah menjawabnya.** **Dipakai di S22 akhir dan berbuah besar:** R-O3 diadjudikasi utuh **tanpa satu run pun**, hanya dengan membaca laporan H-011 dan H-012 yang sudah dikomit berbulan riset lalu.
 10. (S11) **Gerbang yang kegagalannya tidak tertulis ke `reports/` adalah titik buta yang menyamar sebagai gerbang.**
-11. (S12) **Rerata tidak mengatakan apa pun tentang ekor.** Gerbang nilai ekstrem hanya boleh dibantah dengan nilai ekstrem.
-12. (S12) **Batas risiko tidak dilombakan.** Lahir di ADR-009 sesudah pemilih membuang pengaman pada **334 dari 356 jendela**. **Dilanggar tanpa sengaja di S22:** H-014 tidak melombakan batas itu, ia **mematikannya** (cacat 18, aturan 57) — dan mematikan lewat `None` tidak meninggalkan jejak di manifes, sedangkan melombakan meninggalkan jejak.
+11. (S12) **Rerata tidak mengatakan apa pun tentang ekor.** Gerbang nilai ekstrem hanya boleh dibantah dengan nilai ekstrem. **Bentuk kedua ditemukan di S22:** **kuartil pun tidak mengatakan apa pun tentang ekor.** Q1 −1,0289 lawan min −11,4736 saya baca sebagai bukti ekor tunggal; kenyataannya sepuluh perdagangan terburuk semuanya melewati −4R. Ekor hanya dapat dibaca dari daftar ekor.
+12. (S12) **Batas risiko tidak dilombakan.** Lahir di ADR-009 sesudah pemilih membuang pengaman pada **334 dari 356 jendela**. **Dilanggar tanpa sengaja di S22:** H-014 tidak melombakan batas itu, ia **mematikannya** (cacat 18, aturan 57) — dan mematikan lewat `None` tidak meninggalkan jejak di manifes.
 13. (S12) **Peristiwa yang terlalu jarang tidak dapat dipilih oleh pemilih dalam sampel.**
-14. (S12) **Ramalan yang salah lebih murah daripada ramalan yang tidak pernah ditulis.**
+14. (S12) **Ramalan yang salah lebih murah daripada ramalan yang tidak pernah ditulis.** **Batasnya ditemukan di S22 dan menjadi aturan 60:** ramalan yang **tidak dapat dinilai** lebih mahal daripada keduanya, sebab ia tampak seperti disiplin.
 15. (S12) **Porsi terhadap nilai bersih bukan ukuran konsentrasi.** Pakai jackknife dan penyebut bruto.
 16. (S12) **Proksi yang berkorelasi 0,97 dengan hal lain bukan proksi.**
 17. (S12) **Gerbang yang memberi jawaban sama pada dua keadaan bertolak belakang tidak memuat informasi.**
 18. (S12) **Angka jumlah yang ditulis tangan hanya boleh ada di satu tempat, yaitu pengujian tripwire.**
 19. (S13) **Margin setipis satu satuan resolusi bukan margin.** `entri_acak` H-010 lulus p 0,049505 pada 100 permutasi; pada 300 permutasi mekanisme yang sama memberi **0,0631** dan **gagal**. Dikonfirmasi ulang di H-012: **0,06312292358803986**. Diperluas di S19: R-A4 meramal p ≤ 0,001 dan nyatanya 0,001100. Diperluas lagi di S20: **R-D1 meleset hanya tiga menit dua detik dan tetap dicatat MELESET.** **Dan di S22: R-K2 meleset SATU uji — tetap MELESET.** Tipis bukan alasan. **Bentuk ketiganya muncul di S22 sebagai float biner:** `0.06 - 0.04` bernilai `0.019999999999999997`, jatuh 3 × 10⁻¹⁸ di bawah ambang 0,020 dan karena itu **TIDAK** lulus — dan ambang itu **tidak** dilunakkan dengan pembulatan.
 20. (S13) **Ekspektasi yang naik karena penyebutnya menyusut bukan keunggulan yang membesar.**
-21. (S13) **Kecurigaan wajib naik, bukan turun, ketika hasilnya menyenangkan.** Dipakai empat kali di S16–S17 atas run yang terasa terlalu cepat; keempatnya **tak berdasar**. Kelima di S18 atas +0,054842R — **berdasar** (ADR-024). Keenam di S19 atas p simbol 0,001100 — **berdasar** (ADR-028). Ketujuh di S20 atas p per-perdagangan 0,003322 — **berdasar** (ADR-031). Kedelapan di S21 atas +0,029481R — **berdasar** (ADR-033, cacat 14). **Kesembilan di S22 atas agregat +0,027654R — berdasar** (ADR-035, cacat 16). **Bentuk terbaliknya juga nyata:** di S22 saya mencurigai run 2 menit 19 detik sebagai kegagalan dan **salah**.
+21. (S13) **Kecurigaan wajib naik, bukan turun, ketika hasilnya menyenangkan.** Dipakai empat kali di S16–S17 atas run yang terasa terlalu cepat; keempatnya **tak berdasar**. Kelima di S18 atas +0,054842R — **berdasar** (ADR-024). Keenam di S19 atas p simbol 0,001100 — **berdasar** (ADR-028). Ketujuh di S20 atas p per-perdagangan 0,003322 — **berdasar** (ADR-031). Kedelapan di S21 atas +0,029481R — **berdasar** (ADR-033, cacat 14). Kesembilan di S22 atas agregat +0,027654R — **berdasar** (ADR-035, cacat 16). **Bentuk terbaliknya juga nyata:** di S22 saya mencurigai run 2 menit 19 detik sebagai kegagalan dan **salah**. **Kesepuluh di S22 akhir atas sel F yang +5,22 galat baku di atas ambang — berdasar, dan sebabnya bukan statistik melainkan gerbang.**
 22. (S13, ADR-014) **Menuntut kesamaan bit pada agregat pecahan adalah pengujian yang menyala pada perilaku yang benar.** Di dalam satu fungsi murni, kesamaan bit tetap sah.
-23. (S13, ADR-014) **Pagar yang memastikan masukan identik tidak memastikan masukan sah.** Diperluas di S17: **kesamaan hasil lintas dua run berbeda dilarang diterima tanpa pemeriksaan.** **Dipakai lagi di S22 pada arah sebaliknya, dan berbuah:** SH dan SH′ nominal identik tetapi **tidak** identik (44.614 lawan 44.538); menolak membulatkan selisih 0,17% menjadi derau adalah satu-satunya hal yang membongkar cacat 18.
+23. (S13, ADR-014) **Pagar yang memastikan masukan identik tidak memastikan masukan sah.** Diperluas di S17: **kesamaan hasil lintas dua run berbeda dilarang diterima tanpa pemeriksaan.** **Dipakai lagi di S22 pada arah sebaliknya, dan berbuah:** SH dan SH′ nominal identik tetapi **tidak** identik (44.614 lawan 44.538). **Bentuk ketiga di S22 akhir:** −11,4736R **identik** pada empat sel bersinyal berbeda — dan kali ini keidentikan itu **bermakna**, sebab ia membuktikan perdagangan itu bukan sifat sinyal melainkan sifat data.
 24. (S13, ADR-014) **Satu simbol dapat mendominasi agregat 438 simbol.**
 25. (S13, ADR-014) **Himpunan tertahan habis pada saat pertama kali dilihat.**
-26. (S13, ADR-014) **Cacat yang membalik tanda hasil tidak boleh diperbaiki di dalam hipotesis yang sama.** **Dipakai di S22:** cacat 18 tidak diperbaiki di dalam H-014; perbaikannya hidup di H-015.
+26. (S13, ADR-014) **Cacat yang membalik tanda hasil tidak boleh diperbaiki di dalam hipotesis yang sama.** **Dipakai di S22:** cacat 18 tidak diperbaiki di dalam H-014; perbaikannya hidup di H-015, dan di sana ia terbukti bekerja.
 27. (S13, ADR-014) **Eksperimen yang tercemar tidak informatif ke arah mana pun.** **Diuji di S22 dan TIDAK berlaku pada H-014:** kedua sel salah **secara identik**, sehingga selisih antar sel tetap mengukur satu medan (ADR-036 §4).
 28. (S13, ADR-014) **Saringan yang menolak entri juga menolak saat pemilihan.** Terbukti kuantitatif di H-012: hanya **62** entri ditolak pengaman. **Terbukti kedua kali di S21:** `maks_umur_bar` ikut menolak **entri** lewat proyeksi carry di `_boleh_masuk`.
-29. (S14) **Pra-registrasi wajib diperiksa terhadap apa yang benar-benar dapat dihitung dari laporan.**
+29. (S14) **Pra-registrasi wajib diperiksa terhadap apa yang benar-benar dapat dihitung dari laporan.** **Dilanggar di S22 pada R-L1, dan itu melahirkan aturan 60.**
 30. (S14) **Kriteria utama dihitung dari berkas laporan yang dikomit, bukan dari nilai yang beredar di memori run.**
-31. (S15) **Pagar yang menyalin baris dari kode yang dijaganya tidak menjaga apa pun.** **Dipakai sebagai rancangan di S22:** `konfig_audit` sengaja **tidak** memuat angka 0,25; daftar pengaman wajib datang dari pemanggil. **Diperkuat di S22 akhir:** tuntutan atas `maks_carry_R` **bukan** tautologi sebab angkanya datang dari `config/lux.yaml`, berkas di luar kode H-015; tuntutan atas `maks_carry_realisasi_R` **nyaris** tautologi dan yang dijaganya adalah **jalurnya**, bukan angkanya.
+31. (S15) **Pagar yang menyalin baris dari kode yang dijaganya tidak menjaga apa pun.** **Dipakai sebagai rancangan di S22:** `konfig_audit` sengaja **tidak** memuat angka 0,25; daftar pengaman wajib datang dari pemanggil. **Diperkuat di S22 akhir:** tuntutan atas `maks_carry_R` **bukan** tautologi sebab angkanya datang dari `config/lux.yaml`; tuntutan atas `maks_carry_realisasi_R` **nyaris** tautologi dan yang dijaganya adalah **jalurnya**, bukan angkanya.
 32. (S15) **Aritmetika yang hidup di dalam `main` tidak dapat diuji.**
-33. (S15) **Setiap langkah workflow wajib `tee` ke `logs/` dan seluruh `logs/` disalin ke `reports/` dengan `if: always()`.**
+33. (S15) **Setiap langkah workflow wajib `tee` ke `logs/` dan seluruh `logs/` disalin ke `reports/` dengan `if: always()`.** **Terbukti menyelamatkan di S22 akhir:** run `30249117960` merah, dan seluruh laporannya tetap dikomit (`5b2f70b6`) — tanpa itu, putusan H-015 tidak akan pernah terbaca.
 34. (S15) **Lingkungan pagar wajib memasang dependensi yang sama dengan `tests.yml`.**
-35. (S16) **Muatan tulis yang panjang wajib dibaca ulang utuh sebelum dikirim, dan jumlah pengujian dicacah dari muatan yang benar-benar dikirim, bukan dari rencana.** **DILANGGAR DI S22 dalam bentuk ketiga:** muatan `STATE.md` v28 pertama **terpotong** dan dikomit terpotong (`56633f80`). Mitigasi: berkas panjang dipecah, dan setiap dorongan panjang **dibaca ulang dari `main` sesudah dikirim** — dijalankan atas `65916ec6`, v30, ADR-037, v31, `499c64c7`, `4e6a6584`, jurnal 39, PROMPT v4, dan versi ini. **Mitigasi ketiga ditambahkan:** jangan membaca berkas 40 KB lalu menulis penggantinya dalam jendela konteks yang sama.
-36. (S16, ADR-016) **Ramalan yang dijamin benar oleh konstruksi bukan ramalan.** **Dibuktikan telanjang di S22:** R-H3 meramal run selesai di bawah 25 menit; kenyataannya 2 menit 19 detik — **TEPAT tetapi tidak berguna**. Diulang sadar pada R-K4 (23 detik). Bentuk lain: **R-J3 sengaja ditulis padahal tidak akan pernah dapat diadili** (ADR-036 §6). **Dipakai di muka pada H-015:** R-L1 ditandai tak bernilai **sebelum** run. **Bentuk keempat di S22 akhir:** dua ramalan cacah uji yang **tepat persis** justru jatuh pada run yang **gagal** — benar, dan tak berharga.
-37. (S17, ADR-017–019) **Angka yang benar untuk satu interval tidak berubah nilai ketika dipakai di interval lain — ia berubah MAKNA, dan diam.** Setiap besaran yang berarti "satu hari" wajib diturunkan lewat `lux.kerangka`.
+35. (S16) **Muatan tulis yang panjang wajib dibaca ulang utuh sebelum dikirim, dan jumlah pengujian dicacah dari muatan yang benar-benar dikirim, bukan dari rencana.** **DILANGGAR DI S22 dalam bentuk ketiga:** muatan `STATE.md` v28 pertama **terpotong** dan dikomit terpotong (`56633f80`). Mitigasi: berkas panjang dipecah, dan setiap dorongan panjang **dibaca ulang dari `main` sesudah dikirim**. **Mitigasi ketiga:** jangan membaca berkas 40 KB lalu menulis penggantinya dalam jendela konteks yang sama. **Mitigasi keempat, dijalankan di v33:** tabel besaran dipindah ke `STATE_LAMPIRAN_ANGKA.md` supaya `STATE.md` **menyusut**, sebab v32 tumbuh menjadi 48.058 B.
+36. (S17, ADR-016) **Ramalan yang dijamin benar oleh konstruksi bukan ramalan.** **Dibuktikan telanjang di S22:** R-H3 meramal run selesai di bawah 25 menit; kenyataannya 2 menit 19 detik — **TEPAT tetapi tidak berguna**. Diulang sadar pada R-K4 (23 detik). Bentuk lain: **R-J3 sengaja ditulis padahal tidak akan pernah dapat diadili** (ADR-036 §6). **Bentuk keempat di S22:** dua ramalan cacah uji yang **tepat persis** justru jatuh pada run yang **gagal**. **Bentuk kelima, dan yang paling buruk, menjadi aturan 60.**
+37. (S17, ADR-017–019) **Angka yang benar untuk satu interval tidak berubah nilai ketika dipakai di interval lain — ia berubah MAKNA, dan diam.** Setiap besaran yang berarti "satu hari" wajib diturunkan lewat `lux.kerangka`. **Bentuk baru di S22 akhir:** ambang `invarian_risiko` −1,5R bernilai sama pada 1h dan 4h, tetapi **bentuk ekor yang dihadapinya berbeda** — satu pelanggaran pada H-012, sekurangnya sepuluh pada H-015.
 38. (S17) **Dua definisi atas satu dataset selalu dimenangkan oleh yang tidak terlihat.**
-39. (S18) **Angka dapat hidup di berkas konfigurasi tanpa pernah masuk ke dalam program.** Cacat kelas kedelapan. **Kode wajib dibandingkan terhadap berkas, bukan hanya dibaca.** **Dipakai terbalik di S22 akhir, dan menyelamatkan:** uji H-015 gagal justru karena fixture memakai bawaan `Konfig()` alih-alih `config/lux.yaml`; yang salah **ujinya**, dan sesudah diperbaiki uji itu menjadi pagar berdiri yang membandingkan config terhadap tuntutan run.
-40. (S18, ADR-024) **Putusan yang dihitung dari separuh kriteria pra-registrasi adalah putusan palsu, dan ia paling berbahaya ketika angkanya menyenangkan.** Cacat kelas kesembilan.
+39. (S18) **Angka dapat hidup di berkas konfigurasi tanpa pernah masuk ke dalam program.** Cacat kelas kedelapan. **Kode wajib dibandingkan terhadap berkas, bukan hanya dibaca.** **Dipakai terbalik di S22 dan menyelamatkan:** uji H-015 gagal justru karena fixture memakai bawaan `Konfig()` alih-alih `config/lux.yaml`; yang salah **ujinya**.
+40. (S18, ADR-024) **Putusan yang dihitung dari separuh kriteria pra-registrasi adalah putusan palsu, dan ia paling berbahaya ketika angkanya menyenangkan.** Cacat kelas kesembilan. **Bentuk terburuknya terbukti nyata di S22 akhir:** `gabung_h014` menghitung putusan tanpa memeriksa gerbang sama sekali (cacat 20, aturan 59).
 41. (S18, ADR-024) **Prosa kesimpulan yang dipatok di dalam kode bukan kesimpulan.** Cacat kelas kesepuluh; **ditutup** di `b0e79220`.
-42. (S19, ADR-025) **Gerbang yang tidak mungkin lulus tidak menjaga apa pun, dan ia terlihat seperti gerbang yang bekerja.** Cacat kelas kesebelas. **Terulang di S22 lewat pintu lain** (cacat 17). **Dan berlaku atas alat baru saya sendiri:** `konfig_audit` kini **dipanggil** oleh `run_h015.py`, tetapi runner itu belum berjalan — 942 uji hijau berarti kodenya tidak menabrak dirinya sendiri, bukan bahwa ia menjaga sesuatu. **Berlaku juga atas uji:** uji pun kode yang belum dijalankan.
+42. (S19, ADR-025) **Gerbang yang tidak mungkin lulus tidak menjaga apa pun, dan ia terlihat seperti gerbang yang bekerja.** Cacat kelas kesebelas. **Terulang di S22 lewat pintu lain** (cacat 17, kini dibayar). **Dan berlaku atas alat saya sendiri:** 977 uji hijau berarti kodenya tidak menabrak dirinya sendiri, bukan bahwa ia menjaga sesuatu. Yang menutup cacat 18 adalah **R-L5 dari run sungguhan**, tepat seperti aturan ini menuntut.
 43. (S19, ADR-026) **Rencana analisis wajib diperiksa terhadap struktur berkas laporan sebelum dijadwalkan.** Pemasangan hanya mungkin pada **simbol (437)** dan **bulan (73)**.
 44. (S19, ADR-028) **Ambang statistik tanpa satuan penarikan bukan ambang.** Cacat kelas kedua belas. Satuan resmi **bulan kalender UTC**. **Dibuktikan di S20:** satu run memberi p 0,003322 per perdagangan dan **0,205980** per bulan.
-45. (S19, ADR-028) **`p` sah hanya untuk MENJATUHKAN, tidak untuk MENEGAKKAN.** Dijalankan secara struktural oleh `lux/analisis/berpasangan.py` (`memenuhi_adr015` dipatok `False`).
-46. (S19) **Ramalan saya tepat ketika menyangkut kode saya sendiri dan meleset ketika menyangkut pasar** — **difalsifikasi di S21** (R-H1) dan **diperkuat falsifikasinya di S22** (R-G4; muatan STATE terpotong; cacat 18; R-K2). **Sebelum membekukan ramalan angka, sebutkan asumsi yang menopangnya dan tandai mana yang belum diperiksa.**
-47. (S19–S20, ADR-030) **Alat yang selalu menghasilkan angka tidak menjaga apa pun.** Penggabung **MENOLAK** (kode 4) alih-alih memotong ke irisan atau mengisi nol. Berhenti adalah keluaran yang sah.
-48. (S20, ADR-030) **Hasil yang menjatuhkan hipotesis wajib berkode keluar 0.** Merah hanya untuk mesin yang rusak. **Pengecualian yang dinyatakan ADR-037 §7:** `pengaman_mati` tidak kosong → kode keluar bukan nol, sebab itu mesin yang rusak, bukan hipotesis yang jatuh. **Terpasang di `run_h015.main` sebagai kode 3.**
+45. (S19, ADR-028) **`p` sah hanya untuk MENJATUHKAN, tidak untuk MENEGAKKAN.** Dijalankan secara struktural oleh `lux/analisis/berpasangan.py` (`memenuhi_adr015` dipatok `False`) — dan pagar pra-terbang H-015 butir 2 membuktikan patokan itu bertahan bahkan di cabang LULUS.
+46. (S19) **Ramalan saya tepat ketika menyangkut kode saya sendiri dan meleset ketika menyangkut pasar** — **difalsifikasi di S21** (R-H1) dan **diperkuat falsifikasinya di S22** (R-G4; muatan STATE terpotong; cacat 18; R-K2; **R-M1 yang meleset dua kali sekaligus tentang run saya sendiri**). **Sebelum membekukan ramalan angka, sebutkan asumsi yang menopangnya dan tandai mana yang belum diperiksa.**
+47. (S19–S20, ADR-030) **Alat yang selalu menghasilkan angka tidak menjaga apa pun.** Penggabung **MENOLAK** (kode 4) alih-alih memotong ke irisan atau mengisi nol. Berhenti adalah keluaran yang sah. **Dibuktikan mahal-mahal di S22 akhir:** `gabung_h015` berhenti kode 4 dan membuat run merah; itu **bekerja sebagaimana dirancang**, dan penggabung pendahulunya yang tidak berhenti justru yang cacat.
+48. (S20, ADR-030) **Hasil yang menjatuhkan hipotesis wajib berkode keluar 0.** Merah hanya untuk mesin yang rusak. **Pengecualian ADR-037 §7:** `pengaman_mati` tidak kosong → kode bukan nol. Terpasang di `run_h015.main` sebagai kode 3. **Perluasan yang terbukti di S22:** kode 4 (TIDAK DAPAT DINILAI) **juga** sah merah, sebab keadaan itu bukan hipotesis yang jatuh.
 49. (S20, ADR-031) **Besaran tidak boleh diukur terhadap satu undian nol.** AS seed 42 (+0,011806R) ~0,98 simpangan baku **di bawah** rerata nol (+0,022916R). Besaran wajib dilaporkan **dua kali**. **S22 memperlihatkan aturan ini tidak cukup: dua pelaporan dapat berbeda TANDA** (aturan 55).
-50. (S20, ADR-031) **Ramalan yang terbukti salah alasannya dikoreksi sebagai PROSA di sumbernya, dan jejak bunyi aslinya tidak dihapus.** Dipatuhi di S22 atas prosa ADR-033, atas commit terpotong `56633f80`, atas dokstring `run_h014`, atas rujukan ADR-009/ADR-008, **dan atas koreksi saya sendiri yang terlalu keras di v30** — diperbaiki di kepala berkas ini, bukan dengan menulis ulang v30.
-51. (S20) **Sumber dan pagarnya adalah satu commit.** Dipatuhi di `4af21176`, `65916ec6`, **`499c64c7`** (`saringan_funding.py` + ujinya), dan **`4e6a6584`** (`run_h015.py` + ujinya).
-52. (S21, ADR-033) **Sel pembanding hanya boleh berbeda pada SATU medan; bila dua, selisihnya bukan pengukuran.** Cacat kelas keempat belas. **Keterbatasannya kini diketahui:** `medan_berbeda` hanya membandingkan sel A terhadap sel B **di dalam satu hipotesis**, sehingga medan yang salah **secara identik di kedua sel** tidak terlihat. Penambalnya `konfig_audit.selisih_konfig`, **kini tersambung** di `run_h015.spek_sel` terhadap pendahulu "H-013 SS" — belum diuji oleh run sungguhan.
-53. (S21, ADR-034) **Ambang hanya boleh dikutip sebagai beku bila dokumen yang membekukannya membekukannya untuk besaran yang sedang diuji; bila tidak, ia ambang BARU dan wajib dinyatakan begitu beserta tanggalnya.** Cacat kelas kelima belas. **Dipatuhi ADR-037 §3.1:** `AMBANG_RATE = 0,0001` dinyatakan sebagai ambang **baru**, lengkap dengan turunan konstruksinya.
+50. (S20, ADR-031) **Ramalan yang terbukti salah alasannya dikoreksi sebagai PROSA di sumbernya, dan jejak bunyi aslinya tidak dihapus.** Dipatuhi di S22 atas prosa ADR-033, atas commit terpotong `56633f80`, atas dokstring `run_h014`, atas rujukan ADR-009/ADR-008, atas koreksi v30 yang terlalu keras, **dan di v33 atas tiga kesalahan saya sendiri: "berkode lengkap", "delapan pagar", dan "ekor tunggal".**
+51. (S20) **Sumber dan pagarnya adalah satu commit.** Dipatuhi di `4af21176`, `65916ec6`, `499c64c7`, `4e6a6584`, dan **`29c0f4a0`** (`gabung_h015.py` + 35 ujinya).
+52. (S21, ADR-033) **Sel pembanding hanya boleh berbeda pada SATU medan; bila dua, selisihnya bukan pengukuran.** Cacat kelas keempat belas. **Keterbatasannya diketahui:** `medan_berbeda` hanya membandingkan sel A terhadap sel B **di dalam satu hipotesis**. Penambalnya `konfig_audit.selisih_konfig`, **kini terbukti bekerja pada run sungguhan**: H-015 melaporkan selisih terhadap H-013 SS hanya pada `maks_umur_bar` (48 lawan 42), dan selisih itu **dinyatakan**, bukan disembunyikan.
+53. (S21, ADR-034) **Ambang hanya boleh dikutip sebagai beku bila dokumen yang membekukannya membekukannya untuk besaran yang sedang diuji; bila tidak, ia ambang BARU dan wajib dinyatakan begitu beserta tanggalnya.** Cacat kelas kelima belas. **Dipatuhi ADR-037 §3.1.**
 54. (S21) **Ramalan cacah uji wajib dihitung dari berkas yang benar-benar akan didorong, bukan dari rencana; bila ramalan dan berkas berselisih, yang salah SELALU ramalannya.** `4af21176` meramal 850 dan memberi **855**; `65916ec6` meramal 871 dan memberi **872**.
-55. (S22, ADR-035) **Besaran yang tandanya bergantung pada pembobotan bukan besaran.** Cacat kelas keenam belas. Setiap selisih antar sel wajib dilaporkan dalam **empat** bentuk — **agregat**, **rerata per unit penarikan**, **berbobot**, dan **median** — dan pra-registrasi wajib menyatakan **mana yang mengikat sebelum run**. **Dipatuhi ADR-037 §5:** yang mengikat adalah rerata bulanan tak berbobot.
-56. (S22, ADR-035) **Berkas yang dilahirkan sebuah run dan dibutuhkan sebuah gerbang agar dapat lulus wajib ikut dikomit; daftar `git add` adalah bagian dari gerbang, bukan urusan tata usaha.** Cacat kelas ketujuh belas. **Masih terbuka.**
-57. (S22, ADR-036) **Pengaman risiko wajib hidup di Konfig DASAR, bukan di dalam fungsi pembangun kandidat.** Cacat kelas kedelapan belas. Turunannya: (a) manifes run wajib memuat `asdict(konfig)` **utuh** per sel; (b) pagar kesebandingan wajib membandingkan Konfig sel terhadap Konfig sel pembanding di **hipotesis pendahulunya**, dan setiap selisih wajib **dinyatakan**, bukan dilarang. Pengaman yang dimaksud: **mekanisme ADR-008, patokan 0,25 ADR-009, angka asal ADR-004** (lihat kepala berkas). **Keduanya terpasang di `run_h015.py`, belum diuji run sungguhan.**
-58. (S22) **Selama mekanisme kelahiran sebuah angka belum diketahui, angka itu diramalkan sebagai BATAS BAWAH, bukan sebagai nilai pasti.** Perluasan aturan 54, dan **bukan** kelas cacat baru. Dua ramalan cacah uji berturut-turut meleset ke arah yang sama (850→855, 871→872) sementara cacah `def test_` yang saya tulis terverifikasi benar. Sampai uji ke-17 ditemukan, ramalan cacah uji berbunyi "paling sedikit N" — dipatuhi di R-L4. **TIDAK DICABUT oleh empat ketepatan berturut-turut di S22 akhir** (905, 907, 940, 942): keempatnya terjadi pada berkas yang saya tulis sendiri, dalam satu sesi, tanpa parametrisasi — itu menghitung, bukan meramal, dan dua bukti tandingan lama belum terbantah.
+55. (S22, ADR-035) **Besaran yang tandanya bergantung pada pembobotan bukan besaran.** Cacat kelas keenam belas. Setiap selisih antar sel wajib dilaporkan dalam **empat** bentuk — agregat, rerata per unit penarikan, berbobot, dan median — dan pra-registrasi wajib menyatakan **mana yang mengikat sebelum run**. Dipatuhi ADR-037 §5. **Terulang di H-015:** F − K bulanan **−0,0157R** lawan F − K ekspektasi run **+0,0135R**, berlawanan tanda; keduanya haram dipakai.
+56. (S22, ADR-035) **Berkas yang dilahirkan sebuah run dan dibutuhkan sebuah gerbang agar dapat lulus wajib ikut dikomit; daftar `git add` adalah bagian dari gerbang, bukan urusan tata usaha.** Cacat kelas ketujuh belas. **DIBAYAR** di `017e0ac3`; efeknya baru terlihat pada run 4h berikutnya. **Pelajaran tambahan yang mahal:** pembayarannya **tidak boleh** menumpang sentuhan yang memulai run.
+57. (S22, ADR-036) **Pengaman risiko wajib hidup di Konfig DASAR, bukan di dalam fungsi pembangun kandidat.** Cacat kelas kedelapan belas. Turunannya: (a) manifes run wajib memuat `asdict(konfig)` **utuh** per sel; (b) pagar kesebandingan wajib membandingkan Konfig sel terhadap Konfig sel pembanding di hipotesis pendahulunya, dan setiap selisih wajib **dinyatakan**. **DITUTUP oleh R-L5:** carry 82 / 27 / 26 pada sel K / F / A.
+58. (S22) **Selama mekanisme kelahiran sebuah angka belum diketahui, angka itu diramalkan sebagai BATAS BAWAH, bukan sebagai nilai pasti.** Perluasan aturan 54, bukan kelas cacat baru. Dua ramalan cacah uji berturut-turut meleset ke arah yang sama (850→855, 871→872) sementara cacah `def test_` yang saya tulis terverifikasi benar. Sampai uji ke-17 ditemukan, ramalan cacah uji berbunyi "paling sedikit N" — dipatuhi di R-L4 dan R-N1. **TIDAK DICABUT** oleh ketepatan berturut-turut di S22 (905, 907, 940, 942, 977): semuanya terjadi pada berkas yang saya tulis sendiri, dalam satu sesi, tanpa parametrisasi — itu menghitung, bukan meramal.
+59. **(S22, ADR-038) Adjudikator yang tidak memeriksa gerbang bukan adjudikator; ia mesin cetak putusan.** Cacat kelas **kedua puluh**. `gabung_h014.adjudikasi` menghitung putusan H-014 tanpa membaca `gerbang_gagal` sekali pun, padahal kedua sel gagal **tiga** gerbang. `gabung_h015` memeriksanya, dan justru karena itu H-015 berhenti kode 4 alih-alih mengumumkan DITOLAK dengan +0,008903R. **Pengakuan tandingan yang tidak dihaluskan: seandainya saya menulis `gabung_h015` mengikuti preseden `gabung_h014`, cacat ini tidak akan pernah terlihat, dan H-015 hari ini akan diumumkan DITOLAK atas angka yang tidak berhak.** Turunannya: setiap penggabung baru wajib memuat `gerbang_gagal_tak_dimaklumi`, dan pemakluman gerbang hanya sah bila ditulis **sebelum** run **dan** kegagalannya dijamin konstruksi.
+60. **(S22, ADR-038) Ramalan atas besaran yang kodenya tidak pernah memancarkan adalah hiasan, bukan disiplin — dan ia lebih buruk daripada ramalan yang meleset.** Cacat kelas **kedua puluh satu**. R-L1 dipra-registrasi berbunyi "sel F menolak long lebih dari 3x lebih sering daripada short"; sesudah `h015_log.md` dan `backtest_h015_f_saringan.md` dibaca utuh, **tidak ada satu medan pun** yang mencatat penolakan saringan menurut arah. Ramalan yang meleset mengajari sesuatu; ramalan yang tak ternilai lolos dari falsifikasi sambil terlihat seperti kejujuran. Turunannya: setiap ramalan wajib menyebut **berkas dan medan** yang akan mengadjudikasinya, dan bila medan itu belum dipancarkan, instrumentasinya ditulis lebih dahulu **atau ramalannya dicabut**.
 
 ---
 
@@ -103,264 +115,142 @@ Sistem trading kuantitatif untuk Binance USD-M Futures, dibangun ulang dari nol.
 
 ## 3. Fakta terverifikasi
 
-### H-015 BERKODE LENGKAP dan HIJAU — belum menjalankan satu bar pun
+> Seluruh **besaran** H-011 sampai H-015 ada di **`STATE_LAMPIRAN_ANGKA.md`**, bukan di sini. Bagian ini memuat putusan, sebab, bukti, dan cacat.
 
-**Bukti:** dua commit, sumber dan pagarnya masing-masing menyatu (aturan 51).
+### H-015 — TIDAK DAPAT DINILAI (run `30249117960`, ADR-038)
 
-| Berkas | Ukuran | Blob | Commit |
-|---|---|---|---|
-| `lux/backtest/saringan_funding.py` | 12.738 B | `7227647fad46950aea6e120faeb06a187395da2f` | `499c64c7fe961cf02b0d97b5a5508f9306363b15` |
-| `lux/backtest/run_h015.py` | 26.917 B | `aedd23b1716fbc0c23041240690b9f7021e9757c` | `4e6a65845e99f819021a22703dd6e503fd933924` |
-| `lux/backtest/konfig_audit.py` | 7.759 B | `75a5334620befcd4c85fcfc57220ad82618d33f1` | `65916ec6` |
+**Bukti:** workflow `.github/workflows/h015.yml` didorong `017e0ac3` pada 08:14:15Z; job `89922832695` **merah** sesudah **8 menit 52 detik**; laporan tetap dikomit **`5b2f70b6`** pada 08:23:08Z lewat `if: always()`. Sembilan pagar pra-terbang lulus. `logs/uji.log` **`977 passed in 3.49s`**. `logs/lantai.log` `lantai=0.004`. `logs/unduh.log` `16` berkas / `157M aset`.
 
-**`saringan_funding.py`** — konstanta `AMBANG_RATE 0,0001`, `MIN_PENAGIHAN 30`, `JENDELA_HARI 30`, `SEED_ACAK_H015 20260727`, `NAMA_SEL ("K","F","A")`; fungsi `simbol_bingkai`, `waktu_bingkai`, `bulan_utc`, `arah_ditolak`, `mask_tolak`, `penolakan_setara`, `terapkan`, `sinyal_sel`. Sel **K** mengembalikan bingkai dasar **itu sendiri** (`is dasar`) sehingga kontrol mustahil tercemar salinan. Jadwal `None` → **tolak semua entri**, bukan lolos berbiaya nol. `runner.py` **tidak disentuh**.
+**Putusan verbatim dari `logs/gabung.log`:** `"putusan": "TIDAK DAPAT DINILAI"`, `"dapat_dinilai": true`, `"lulus": false`, `"pengaman_mati": {}`.
 
-**`run_h015.py`** — `NAMA_LAPORAN {K: h015_k_kontrol, F: h015_f_saringan, A: h015_a_acak}`, **`PENGAMAN_WAJIB = {"maks_carry_realisasi_R": 0.25, "maks_carry_R": 0.25}`**, `NAMA_PENDAHULU = "H-013 SS"`, `PEMBATAS_PUTUSAN`, `RAMALAN` (R-L1…R-L5); fungsi `kandidat`, `buat_konfig_h015`, `konfig_dasar_h015`, `hipotesis_h015`, `spek_sel`, `kontribusi_h015`, `prosa_h015`, `main`. Konfig pendahulu dibangun oleh **kode H-013 sendiri** (`buat_konfig_sel("SS")`), bukan disalin tangan (aturan 31). Ketiga sel wajib berkonfig identik (`selisih_konfig` = {}); `menghalangi` → **halt kode 3** (aturan 48); pagar argumen → kode 2; manifes `reports/h015_run.json` + `.md` memuat **`audit_konfig` utuh** (aturan 57a).
+**Sebab kemerahan run bukan operasional.** `gabung_h015` keluar berkode **4**, dan langkah "Tegakkan kode keluar penggabung" menerjemahkannya menjadi `exit 1`. Sebab substantifnya: **`invarian_risiko` dan `checksum` merah di ketiga sel**.
 
-**Yang belum dibuktikan, dan wajib dibaca begitu:** 942 uji hijau berarti kode ini tidak menabrak dirinya sendiri. Ia **tidak** berarti saringannya bermakna, dan **tidak** menutup cacat 18. Aturan 42 berlaku penuh.
-
-### Pengujian — 942 lulus, sesudah DUA run merah berturut-turut
-
-**Keadaan sekarang, terverifikasi:** run **`30246906896`** atas commit **`bccaa55f4a2f864615a2fbb1db1a11e42511fee2`**, laporan dikomit **`8bb57075c96c9820f6a8b85b8de3d3d5bd7029bd`** (blob `1266179b4b9d9f3b74c533a474d0a80d072ed778`), **`Kode keluar: 0`**, **`942 passed in 3.13s`**.
-
-**Run merah pertama — `30245804583` atas `499c64c7`:** `3 failed, 902 passed`. Galat verbatim: `TypeError: object of type 'JadwalBoneka' has no len()` pada `lux/funding_model.py:199: in ambil_jadwal / if j is None or len(j) == 0:`. Boneka uji saya tulis dari **ringkasan API saya sendiri** yang menyebut `ambil_jadwal` melempar `KeyError`; ia memang melempar `KeyError`, tetapi memanggil `len(j)` **lebih dahulu**. Diperbaiki pada **bonekanya** lewat `a04478a7d5e14be9f340d2e1dae14d0d0baa4a4d` — melonggarkan `ambil_jadwal` akan membuka jalan simbol tanpa jadwal diperlakukan berbiaya nol, yaitu lubang yang mematikan H-014. Hasil: **907 lulus** (`1bf29f21`).
-
-**Run merah kedua — atas `4e6a6584`:** `3 failed, 937 passed`, laporan `0fbd4edb`. Ketiganya di `tests/test_run_h015.py`:
-
-| Uji | Galat verbatim | Sifat |
+| Gerbang | Sifat | Keadaan |
 |---|---|---|
-| `test_audit_tidak_menghalangi_saat_pengaman_hidup` | `assert ['maks_carry_R'] == []` | cacat fixture |
-| `test_audit_menghalangi_saat_pengaman_dimatikan` | `At index 0 diff: 'maks_carry_R' != 'maks_carry_realisasi_R'` | cacat fixture |
-| `test_lulus_besaran_tepat_di_ambang` | `assert False is True` | **temuan sah** |
+| `checksum` | **cacat alat** (cacat 17) | manifes 4h ditulis oleh run itu sendiri; kini ada di `main`, **dibayar** |
+| `invarian_risiko` | **substantif** | kerugian terburuk **−11,4736R** lawan ambang −1,5R; **tidak akan sembuh dengan run ulang** |
 
-Dua yang pertama: fixture `dasar()` membangun konfig dari bawaan `Konfig()` (`maks_carry_R = 0.0`) alih-alih dari `config/lux.yaml`, yang memuat **`maks_carry_R: 0.25`** — terverifikasi pada blob **`8a66f15cf559f64dbebb523a29f21357a9300607`**. Audit karena itu **benar** melaporkan pengaman mati, pada konfig yang tidak pernah dipakai siapa pun. Fixture kini membaca config sungguhan lewat `muat_konfig_h002`, sehingga uji itu berubah menjadi **pagar berdiri**: bila kelak `risiko.maks_carry_R` diturunkan, run H-015 akan berhenti kode 3 sesudah empat jam — dan pytest mengatakannya dalam tiga detik.
+Urutan sebab checksum kini **terverifikasi dari log**, bukan lagi dugaan: `manifest aset reports/manifest_aset_4h.json (12 berkas interval 4h)` diikuti langsung `checksum: tidak dapat dinilai: manifest baru ditulis pada run ini`.
 
-Yang ketiga bukan cacat: `0.06 - 0.04` bernilai `0.019999999999999997`, **tidak** melewati ambang 0,020. Kode **tidak** ditambal (ADR-037 §10 melarang menggeser ambang beku); ujinya yang diperbaiki, dan tepi pisau itu kini punya **ujinya sendiri**. Perbaikan: commit **`bccaa55f`**.
+**Waktu run membatalkan seluruh kerangka "run panjang":** tiga sel hanya 70 s + 74 s + 162 s. Kenaikan `timeout-minutes` 180 → 350 **tidak diperlukan** — kehati-hatian yang tidak terbayar. **Reruns 4h murah.**
 
-**Akar tunggal kedua run merah:** uji ditulis terhadap **model saya tentang kode**, bukan terhadap kode. Bentuk lain dari aturan 42. Ongkosnya nol di pytest, empat jam di runner.
+### ADR-038 — adjudikasi seluruh jalur DIBEKUKAN, gerbang TIDAK dilunakkan
 
-**Adjudikasi ramalan cacah uji:** ≥905 → **905**; ≥907 → **907**; ≥940 → **940**; ≥942 → **942**. Empat **TEPAT persis**. **R-L4 (≥884) TERPENUHI** pada 907, sebelum runner ditulis. **Aturan 58 tetap berdiri** — lihat catatannya di bagian 1.
+**Bukti:** `decisions/ADR-038.md`, commit **`26ee44620da3bcba2690edcf0f2178d7c0209210`**.
 
-**Uji ke-17 masih belum terjelaskan** (872 nyata lawan 871 diramalkan). **Ini memerlukan verifikasi.**
+**Fakta yang memaksanya (tabel utuh di `STATE_LAMPIRAN_ANGKA.md` §1):** `invarian_risiko` **GAGAL** pada H-011 (−470,0612R, 1h, tanpa lantai), H-012 (−21,3131R, 1h), H-013 SS (−11,4736R, 4h), H-014 SSp/SHp, dan ketiga sel H-015 (−11,4736R). **Tidak ada satu pun hasil, pada interval apa pun, yang pernah lolos sebelas gerbang.** R-O3 **TEPAT**, dan lebih luas daripada yang saya ramalkan — saya menduga jalur 4h saja.
 
-### H-015 TERDAFTAR — ADR-037, pra-registrasi funding sebagai SINYAL
+Tiga fakta turunan: (a) **−11,4736R identik pada empat sel bersinyal berbeda** → perdagangan itu sifat **data**, bukan sifat sinyal; (b) lantai ADR-014 memperbaiki kerugian terburuk **faktor 41** (470R → 11,47R) dan tetap **7,6 kali** ambang; (c) bentuk ekor 1h dan 4h **berbeda** — H-012 punya **satu** pelanggaran, H-015 sekurangnya **sepuluh**.
 
-**Bukti:** `decisions/ADR-037.md`, blob **`dfec68a7fbacd0b1c67ba0a0486099ec6d7ee02a`** (15.999 B), commit **`08e21b3fd6e940f180d4ef472a7a1a5b14b95324`**, dibaca ulang utuh dari `main` sesudah didorong (aturan 35). Ditulis **sebelum** satu baris kode H-015 ada.
+**Bukan sebabnya, terverifikasi:** funding (porsi funding 0,0000 pada perdagangan terburuk) dan biaya (0 dari 53.025 perdagangan berbiaya > 1R).
 
-**Modul yang dibaca utuh sebelum ADR ditulis** (aturan 8, 29, 43): `lux/funding_model.py` (`ef867388…`), `lux/funding.py` (`7e6af69a…`), `lux/backtest/funding_ekor.py` (`b21fedce…`), `lux/strategi/breakout_atr.py` (`3ac5d3bf…`), `lux/praregistrasi.py` (`98a2806e…`), `lux/backtest/engine.py` (`81c1db8a…`), ADR-008, ADR-009.
+**Putusan ADR-038:** selama `invarian_risiko` merah, **tidak ada putusan atas angka** di jalur mana pun. Putusan DITOLAK H-001…H-014 **tetap** — angka tak terpercaya tidak dapat menyelamatkan hipotesis, hanya gagal menjatuhkannya. Yang **dibatalkan** adalah kewenangan besarannya. **Dilarang permanen:** memaklumi `invarian_risiko`, menggeser ambang 1,5R, menaikkan `min_median_stop_frac` di atas 0,004, membuang perdagangan ekor, dan menghidupkan kembali angka H-011…H-015 dengan gerbang yang direformulasi kelak.
 
-**Rancangan, tiga sel:** **K** kontrol tanpa saringan · **F** dengan saringan funding · **A** penolakan **acak** yang menyamai cacah penolakan F **per arah per bulan**. **Hanya F − A yang mengikat putusan**; F − K dilaporkan tetapi tidak dapat meluluskan apa pun — sebab funding positif pada **79,1%** periode, sehingga saringan apa pun condong membuang long, dan kecondongan arah bukan keunggulan funding.
+**Run H-015 kedua belum boleh dimulai** — ia hanya akan menghijaukan `checksum` dan menyisakan `invarian_risiko` merah (R-O1). Yang boleh jalan berikutnya hanya **diagnostik** ADR-038 §5.4.
 
-**Sinyal:** `rerata, n = jadwal[s].statistik_trailing(sampai_ms=t_masuk, jendela_ms=30*HARI_MS)`; entri ditolak bila `d × rerata > AMBANG_RATE` atau `n < MIN_PENAGIHAN`. `statistik_trailing` dipilih karena batas atas jendelanya adalah waktu masuk itu sendiri dan **tidak ada argumen yang dapat menggesernya maju** — kebocoran masa depan mustahil **secara bentuk**, bukan karena kehati-hatian.
+### CACAT KELAS KEDUA PULUH — adjudikator buta gerbang (aturan 59)
 
-**Konstanta beku:** `AMBANG_RATE = 0,0001` (turunan konstruksi §3.1: 0,125R ÷ lebar stop 3,61% ÷ 48 penagihan = 0,000094, dibulatkan) · `MIN_PENAGIHAN = 30` · `SEED_ACAK_H015 = 20260727` · `imbalan_R` 2,0 · `maks_umur_bar` 48 · `pakai_target` True · `lookback` {20,55,100} · **`maks_carry_realisasi_R` 0,25 dan `maks_carry_R` 0,25, keduanya di Konfig dasar** · horizon 4h. Ruang pencarian **3 kombinasi** × 3 sel.
+**Bukti:** `reports/h014_run.json` (blob `5642b7cf47e3117a1c455095ca1da49caebab66d`) mencatat `gerbang_gagal` SSp `["invarian_risiko","checksum","funding_ekor"]` dan SHp `["entri_acak","invarian_risiko","checksum","funding_ekor"]`. `gabung_h014.adjudikasi` **tidak pernah membaca medan itu**. H-014 diumumkan DITOLAK atas angka yang lahir di balik empat gerbang merah.
 
-**Kriteria mengikat (§5):** satuan **bulan kalender UTC**; pembobotan mengikat **rerata bulanan tak berbobot**, keempat pembobotan tetap dilaporkan; LULUS menuntut rerata bulanan (F−A) ≥ +0,020R, p tanda bulanan ≤ 0,05, ≥100 trade tiap sel, ≥300 ulangan, sebelas gerbang lulus tiap sel, dan `pengaman_mati` kosong. `PUTUSAN_MUNGKIN = ("LULUS", "DITOLAK", "TIDAK DAPAT DINILAI")` — cabang LULUS **ada** karena H-015 didaftarkan sebelum datanya dilihat; larangan menambah LULUS tetap berlaku atas H-014.
+**Akibat:** setiap tabel angka H-011…H-015 di berkas ini dan di lampiran **wajib membawa keterangan gerbang mana yang merah**. Dijalankan di v33.
 
-### CACAT KELAS KESEMBILAN BELAS — berkas pra-registrasi tidak mampu mengunci kriterianya sendiri (ADR-037 §8)
+### CACAT KELAS KEDUA PULUH SATU — ramalan tak ternilai (aturan 60)
 
-**Terverifikasi dari `lux/praregistrasi.py` blob `98a2806e630811167b2f1c826a927b611c9083d0`.** `Kriteria` memuat empat medan: `min_ekspektasi_R`, `min_trade_luar_sampel`, `maks_p_entri_acak`, `min_jendela_positif_rasio`. **Tidak ada medan untuk satuan penarikan, pembobotan mengikat, maupun p bulanan.** Medan terakhirnya bahkan mengunci satuan yang **sudah ditinggalkan** — jendela walk-forward, sedangkan aturan 44 dan ADR-031 §5 memindahkan satuan ke bulan kalender.
+**Bukti:** `reports/h015_log.md` (blob `7eb5fd1ee4e1f44a6049c5ac37439ae56ca05c36`, 23.125 B) dan `backtest_h015_f_saringan.md` dibaca **utuh**; tidak ada medan penolakan saringan menurut arah. Yang ada hanya `entri ditolak pengaman biaya: 0` — pengaman ADR-014, bukan saringan funding. **R-L1 BELUM DINILAI dan tidak dapat dinilai dari artefak yang dikomit.**
 
-Akibatnya: **berkas yang satu-satunya tugasnya membuat kriteria mustahil diubah, tidak mampu menyatakan kriteria yang sekarang mengikat.** `nilai()` akan memutus menurut aturan tiga belas hipotesis lalu.
+### Pengujian — 977 lulus
 
-**Keputusan H-015:** kriteria mengikat adalah ADR-037 §5; **`praregistrasi.nilai()` tidak dipakai sebagai pemutus**; berkas hipotesis tetap didaftarkan lewat `simpan()` dan `pernyataan` wajib memuat string `"ADR-037 §5 mengikat"` beserta sidik ADR — **terpasang di `hipotesis_h015`**. **Utang terbuka:** `Kriteria` perlu medan satuan, pembobotan, dan p bulanan berikut pengujiannya — **bukan** pekerjaan run H-015.
+Run **`30248730497`** atas `29c0f4a0`, laporan **`abed0edf`**, **`977 passed`**, kode keluar 0. Ditegaskan ulang oleh `logs/uji.log` run H-015: **`977 passed in 3.49s`**.
 
-### CACAT KELAS KEDELAPAN BELAS — H-014 berjalan dengan pengaman carry keras **MATI** (ADR-036, aturan 57)
+Rantai merah–hijau S22, dua akar tunggal yang sama (**uji ditulis terhadap model saya tentang kode, bukan terhadap kode** — aturan 42): `499c64c7` → `3 failed, 902 passed` (`TypeError: object of type 'JadwalBoneka' has no len()`) → `a04478a7` → **907**; `4e6a6584` → `3 failed, 937 passed` (`assert ['maks_carry_R'] == []`; `'maks_carry_R' != 'maks_carry_realisasi_R'`; `assert False is True` atas `0.06 - 0.04 = 0.019999999999999997`) → `bccaa55f` → **942**; `29c0f4a0` (`gabung_h015.py` 18.869 B + 35 uji) → **977**.
 
-**Anomali SH ≠ SH′ TERJAWAB.** Bukan derau float. Rantainya dibaca dari lima berkas sumber:
+Dua yang pertama cacat fixture: `dasar()` membangun konfig dari bawaan `Konfig()` (`maks_carry_R = 0.0`) alih-alih dari `config/lux.yaml` yang memuat `maks_carry_R: 0.25` (blob `8a66f15cf559f64dbebb523a29f21357a9300607`). Fixture kini membaca config sungguhan lewat `muat_konfig_h002`, sehingga uji itu menjadi **pagar berdiri**. Yang ketiga bukan cacat dan **tidak** ditambal (ADR-037 §10).
 
-| Berkas | Blob |
-|---|---|
-| `lux/backtest/run_h014.py` | `dd2429f03d60c799535188fdccf736c58ec30c33` |
-| `lux/backtest/run_h013.py` | `239b88d0b048b1ccc659cbb70fc15013172096b4` |
-| `lux/backtest/run_h009.py` | `aee7409339187554a60e727f59b275362bbeedc9` |
-| `lux/backtest/run_h002.py` | `8bf480da315eb04eba08d5721ea747b13e6a88df` |
-| `lux/backtest/engine.py` | `81c1db8ad147dae149795db1d1166476efd210a9` |
+**Adjudikasi cacah uji:** ≥905 → 905 · ≥907 → 907 · ≥940 → 940 · ≥942 → 942 · **R-N1 ≥977 → 977** · **R-L4 (≥884) TERPENUHI**. Semuanya tepat; **aturan 58 tetap berdiri**. **Uji ke-17 masih belum terjelaskan** (872 nyata lawan 871 diramalkan) — **ini memerlukan verifikasi**.
 
-- H-013 memakai `buat_konfig=buat_konfig_sel(sel)` → `run_h009.buat_konfig` → `replace(dasar, imbalan_R=…, maks_carry_realisasi_R=AMBANG_CARRY_KERAS)` dengan **`AMBANG_CARRY_KERAS = 0.25`**.
-- H-014 memakai **`buat_konfig=None`**, jadi fungsi itu **tidak pernah dipanggil**.
-- `run_h002.muat_konfig_h002` membangun `Konfig` dari **delapan** kunci, dan `maks_carry_realisasi_R` **bukan** salah satunya.
-- **Terverifikasi dari `engine.py`:** `Konfig` adalah `@dataclass(frozen=True)` dan **`maks_carry_realisasi_R` berbawaan `0.0`** — keadaan MATI.
-- **Terverifikasi dari ADR-009:** pengaman itu **dipatok menyala untuk seterusnya**. Maka H-014 **melanggar keputusan mengikat ADR-009**.
+### `gabung_h015.py` — satu-satunya adjudikator yang memeriksa gerbang
 
-| Medan | SH (H-013) | SH′ (H-014) |
-|---|---|---|
-| `pakai_target` | False | False |
-| `maks_umur_bar` | 48 | 48 |
-| `imbalan_R` | 2,0 | 2,0 |
-| **`maks_carry_realisasi_R`** | **0,25 — menyala** | **0,0 — MATI** |
+**Bukti:** blob `5f96bb4a3d0b01e0febec1610b9fcc94a35ed70e` (18.869 B), commit `29c0f4a0`, 35 uji menyatu (aturan 51). `PUTUSAN_MUNGKIN = ("LULUS","DITOLAK","TIDAK DAPAT DINILAI")` · `MIN_PASANGAN = 2` · `SEL_MENGIKAT = ("F","A")` · `SEL_KONTROL = "K"` · **`GERBANG_DIMAKLUMI = {"A": ("lookahead",)}`** · `KUNCI_RUN_WAJIB = ("sel","audit_konfig","parameter_beku")`. Fungsi `gerbang_gagal_tak_dimaklumi` inilah yang menghasilkan kode 4. **Kode 0 = DITOLAK atau LULUS · 4 = TIDAK DAPAT DINILAI · 2 = pagar · 3 = pengaman mati.**
 
-**Bukti pendukung dari laporan run:** alasan keluar kedua sel H-014 **tidak memuat kunci `carry` sama sekali**.
+### `gerbang.py` — sebelas gerbang, aturan pokoknya
 
-**Mengapa dua pagar tidak menangkapnya:** `medan_berbeda` hanya melihat sel A lawan sel B **di dalam** H-014; `manifes["parameter_beku"]` mencatat sebelas butir pilihan, **bukan** seluruh `Konfig`.
+**Bukti:** blob `9bddf8d36e3446219c3b234e20b57b1d1bb3dd72`, dibaca utuh. `NAMA_GERBANG = ("forward_fill","buy_and_hold","entri_acak","lookahead","invarian_risiko","funding","overlap","checksum","survivorship","konsentrasi","funding_ekor")`. `gerbang_invarian_risiko(hasil, maks_kerugian_R=1.5)` → `terburuk = min(p.R)`, lulus bila `terburuk >= -maks_kerugian_R`. `LaporanGerbang.semua_lulus` menuntut `len(gerbang) == len(NAMA_GERBANG)`; `susun_laporan` mengisi gerbang yang lupa dijalankan sebagai **gagal**. Aturan pokoknya verbatim: **"gerbang yang tidak dapat dinilai berarti GAGAL, bukan lulus"**.
 
-**Akibat terhadap putusan (ADR-036 §4):** **H-014 tetap DITOLAK, ADR-035 tidak dicabut.** Kedua sel salah **secara identik**, jadi SS′ − SH′ tetap mengukur satu medan (aturan 52 utuh); p bulanan 0,375962 dan rerata bulanan −0,027715R jauh dari ambang ke arah yang salah; **tidak ada run ulang** (aturan 5, 26). Yang gugur adalah **kesebandingan lintas hipotesis**. Yang tidak dihaluskan: **sebuah run riset berjalan dengan pengaman risiko mati, yang mematikannya bukan pemaksimal ekspektasi melainkan saya lewat satu argumen bernilai `None`, dan aturan 12 yang dilanggarnya lahir dari ADR yang sama.**
+### H-015 TERDAFTAR — ADR-037, funding sebagai SINYAL
 
-### Modul `konfig_audit` — kini tersambung, belum teruji run
+**Bukti:** blob `dfec68a7fbacd0b1c67ba0a0486099ec6d7ee02a` (15.999 B), commit `08e21b3f`, ditulis **sebelum** satu baris kode H-015 ada. Rancangan tiga sel: **K** kontrol · **F** saringan funding · **A** penolakan acak setara per arah per bulan. **Hanya F − A mengikat**; F − K haram meluluskan apa pun sebab funding positif pada **79,1%** periode. Sinyal memakai `statistik_trailing(sampai_ms=t_masuk, jendela_ms=30*HARI_MS)` — kebocoran masa depan mustahil **secara bentuk**. Konstanta beku: `AMBANG_RATE 0,0001` (turunan §3.1) · `MIN_PENAGIHAN 30` · seed `20260727` · `imbalan_R 2,0` · `maks_umur_bar 48` · `lookback {20,55,100}` · `maks_carry_realisasi_R` dan `maks_carry_R` **0,25 di Konfig dasar**.
 
-- Empat fungsi: `konfig_penuh`, `selisih_konfig`, `pengaman_mati`, `laporan_kesebandingan`.
-- **Selisih tidak menghalangi run; pengaman mati menghalangi.**
-- Modul **tidak memuat angka 0,25**; daftar pengaman wajib datang dari pemanggil (aturan 31).
-- `tests/test_konfig_audit.py` blob `77f76e69d6dac4d9b8dc9546b6e45672a0a40e04`, **16 uji**, dua di antaranya membangun ulang pasangan Konfig SH dan SH′ sebagai uji regresi cacat 18.
-- **Penyimpangan yang dinyatakan:** ADR-036 keputusan 2 dan 3 menyebut `run_h014.py`; alat ini lahir sebagai modul terpisah. Dicatat di jurnal 35 §2.
-- **Status utang:** penyambungan **selesai** di `run_h015.py`; **pembuktiannya belum** — R-L5.
+### CACAT KELAS KESEMBILAN BELAS — `praregistrasi.Kriteria` tidak dapat mengunci kriterianya sendiri
 
-### H-014 — DITOLAK (ADR-035, run `30221967019`)
+**Terverifikasi dari blob `98a2806e630811167b2f1c826a927b611c9083d0`.** Empat medan: `min_ekspektasi_R`, `min_trade_luar_sampel`, `maks_p_entri_acak`, `min_jendela_positif_rasio`. **Tidak ada medan untuk satuan penarikan, pembobotan mengikat, maupun p bulanan**, dan medan terakhirnya mengunci satuan yang sudah ditinggalkan. `praregistrasi.nilai()` **tidak dipakai** sebagai pemutus H-015. **Utang terbuka.**
 
-**Bukti:** pemicu `52c64ac576e81883cd516316437edfff1d596ac4` pada 2026-07-26T21:52:25Z; laporan dikomit **`603477ce8b9b55e2a67d9a7a0e7c3c843c2be379`** pada 21:54:44Z; log blob **`03e0c35c54134d9906515e2df515eb5f1c939b6c`**. Runner melaporkan **`855 passed in 2.98s`** sebelum satu berkas diunduh. Delapan butir pagar pra-terbang lulus **pada percobaan pertama**. 157 MB aset 4h terunduh, 438 simbol dimuat, **437 layak**. Sel SS′ **56,9 s**, sel SH′ **52,6 s**, seluruh run **2 menit 19 detik**.
+### CACAT KELAS KEDELAPAN BELAS — DITUTUP
 
-| Syarat (BARU, dibekukan 2026-07-27, ADR-034) | Nilai | Ambang | Terpenuhi |
-|---|---|---|---|
-| rerata selisih bulanan SS′ − SH′ | **−0,027715128544164157R** | ≥ 0,020R | **TIDAK** |
-| p uji tanda berpasangan bulanan | **0,37596240375962403** | ≤ 0,05 | **TIDAK** |
-| pasangan bulan | 73 | ≥ 2 | ya |
-| trade sel A / sel B | 59.324 / 44.538 | ≥ 100 | ya |
+H-014 berjalan dengan pengaman carry keras **MATI** karena `buat_konfig=None`, sehingga `run_h009.buat_konfig` (`AMBANG_CARRY_KERAS = 0.25`) tidak pernah dipanggil, dan `Konfig` berbawaan `maks_carry_realisasi_R = 0.0`. Bukti pendukung: alasan keluar kedua sel H-014 **tidak memuat kunci `carry` sama sekali**. Ia **melanggar keputusan mengikat ADR-009**.
 
-`p` dihitung dengan m 3759, ulangan 10000, seed 20260727. Bootstrap 95% **[−0,09067851377334449, +0,029103950604927244]** (seed 20260728) — **memuat nol**. `memenuhi_adr015` **false**. Penggabung keluar berkode **0** (aturan 48).
+**Penutupnya: R-L5 TEPAT** — alasan keluar `carry` bercacah **82 / 27 / 26** pada sel K / F / A H-015. Pengaman terbukti hidup di run sungguhan. `konfig_audit` (blob `75a5334620befcd4c85fcfc57220ad82618d33f1`, 16 uji) melaporkan `pengaman_mati []` dan `menghalangi false` pada ketiga sel.
 
-| Sel | `pakai_target` | `maks_umur_bar` | Trade | Ekspektasi R | Jendela positif | p entri acak | Gerbang gagal |
-|---|---|---|---|---|---|---|---|
-| SS′ | **True** | 48 | **59.324** | **+0,06725203533326735** | 2229 / 4082 | 0,016611295681063124 | `invarian_risiko`, `checksum`, `funding_ekor` |
-| SH′ | **False** | 48 | **44.538** | **+0,03959765698185091** | 1982 / 4082 | 0,21926910299003322 | `entri_acak`, `invarian_risiko`, `checksum`, `funding_ekor` |
-
-Alasan keluar SS′: `stop` 33.748 · `target` 18.667 · `umur` 5.174 · `akhir_data` 1.735. SH′: `stop` 28.013 · `umur` 14.426 · `akhir_data` 2.099. **Nol `carry` pada keduanya** — lihat cacat 18, dan bandingkan R-L5.
-
-SS′: 309 untung / 128 rugi, drop-1 **0,06639R** (retensi **0,9872**), drop-22 0,05419R, median simbol +0,06789R, porsi bruto teratas 0,0139 (SANDUSDT), funding maks 0,8285R, std **1,37827R**, galat baku 0,005659R (+3,05 SE), parameter {55:836, 20:1711, 100:1535}, sidik `197c10e3f0d2`.
-SH′: 234 untung / 203 rugi, drop-1 **0,03583R** (retensi **0,9047**), drop-22 0,01225R, median simbol +0,02710R, porsi bruto teratas 0,0431 (VELVETUSDT), funding maks **2,9000R**, std **2,20818R**, galat baku 0,010463R (−0,99 SE), parameter {55:1073, 20:1995, 100:1014}, sidik `5721a88e59eb`. 73 bulan pada kedua sel.
-
-**Kode H-014:** commit **`4af2117639c15ace7ba4a442ce2841091a1e25fb`**; `reports/tests.md` blob **`94e5096e2f989edc13d3f1a95daa84b6b512331e`**, run **`30221837845`**, **`855 passed in 3.06s`**. Workflow `h014.yml` commit **`52c64ac5`**: `timeout-minutes: 180`, delapan butir pagar pra-terbang — **tetapi daftar `git add`-nya cacat** (cacat 17).
-
-**H-014 tidak pernah dapat LULUS, dan itu dipra-registrasi** (ADR-034 §2): `PUTUSAN_MUNGKIN = ("DITOLAK", "TIDAK DAPAT DINILAI")`.
-
-### CACAT KELAS KEENAM BELAS — tanda besaran bergantung pada pembobotan (ADR-035 §2, aturan 55)
-
-| Cara membobot | Nilai | Tanda |
-|---|---|---|
-| selisih **agregat** | **+0,027654378351416438R** | **POSITIF** |
-| **rerata** selisih bulanan | **−0,027715128544164157R** | **NEGATIF** |
-| rerata **berbobot trade** | −0,012499029724652699R | NEGATIF |
-| **median** selisih bulanan | +0,03495217650445759R | POSITIF |
-| fraksi bulan positif | 0,5616438356164384 | — |
-
-Dua angka pertama **hampir sama besar dan berlawanan tanda**. **Bila pembobotan bebas dipilih, H-014 melewati ambang besaran dengan agregat +0,0277R.** Yang mencegahnya bukan kehati-hatian saya melainkan `gabung_h014.adjudikasi` membaca `rerata_selisih`, dan kode itu dikomit **sebelum** satu angka pun ada. **p 0,376 menjatuhkan hipotesis pada pembobotan mana pun.**
-
-### CACAT KELAS KETUJUH BELAS — gerbang yang saya sendiri buat mustahil lulus (ADR-035 §3, aturan 56)
-
-Log run mencetak, verbatim:
-
-> `manifest aset reports/manifest_aset_4h.json (12 berkas interval 4h)`
-> `checksum: tidak dapat dinilai: manifest baru ditulis pada run ini`
-
-Itu **separuh pertama R-B1 TEPAT**. Tetapi `reports/manifest_aset_4h.json` **tidak ada di `main`**: daftar `git add` di `h014.yml` tidak menambahkannya. Terverifikasi dari `runner.py` (blob `4ce34a3c`): gerbang itu hanya lulus bila berkasnya **bertahan** di `main`.
-
-**Keputusan:** perbaikan **menumpang run 4h berikutnya** — yaitu run H-015 — tetapi **tidak digabung** ke dalam commit kodenya. Sampai itu, **kegagalan `checksum` pada 4h wajib dibaca sebagai cacat alat** (aturan 42). **Ini dasar utama R-M1.**
-
-### KLAIM ADR-033 DIBATALKAN SEBAGIAN — umur 42 lawan 48 bukan sebab utama (ADR-035 §4)
-
-| Sel | Umur | Trade |
-|---|---|---|
-| SS (H-013) | 42 | 60.018 |
-| **SS′ (H-014)** | **48** | **59.324** |
-| SH (H-013) | 48 | 44.614 |
-| **SH′ (H-014)** | **48** | **44.538** |
-
-Efek menaikkan umur 42 → 48 pada sel bertarget: **−694 perdagangan, −1,2%**. Jarak antar sel dengan umur **disetarakan**: **+33,2%** — hampir seluruhnya `pakai_target`. **Aturan 52 tidak dibatalkan** dan **+0,029481R tetap haram dikutip**. **Catatan ADR-036:** baris SH lawan SH′ kini diketahui **juga** memuat efek pengaman carry yang mati.
-
-### CACAT KELAS KEEMPAT BELAS dan KELIMA BELAS (ADR-033, ADR-034)
-
-**Keempat belas:** `run_h013.umur_sel` memberi 42 untuk sel bertarget dan 48 untuk sel tanpa target, jadi **SS − SH mencampur dua medan**. **Putusan H-013 tidak berubah** — ia mati pada p bulanan 0,205980 kaki **sinyal**. Yang berubah: **`+0,029481R` tidak mengukur apa yang namanya sebut**.
-
-**Kelima belas:** ADR-032 dan ADR-033 mengutip ambang ADR-015 §4.4 sebagai beku untuk kaki **geometri**, padahal §4.4 membekukannya untuk kaki **sinyal**. Ambang H-014 karena itu **BARU**, dibekukan 2026-07-27.
-
-### ADR-032 DIBATALKAN SEBAGIAN (ADR-033 §2)
-
-Keberatan B ADR-032 ("tanpa stop, penyebut R adalah jarak nosional") **SALAH**: `engine.jalankan` mengevaluasi `kena_stop` **tanpa syarat**, `pakai_target=False` hanya mematikan target, jadi penyebut R **dibangun identik**. Akibatnya **`AH = +0,05817042814276683R` kembali TIDAK TERJELASKAN — ini memerlukan verifikasi**. **R-F1…R-F5 DIBATALKAN.**
-
-### JALUR B — H-013 DITOLAK (ADR-031, run `30217516013`)
-
-Pemicu `97b36c19`; sepuluh pecahan 20:13:43Z–20:28:15Z; laporan p `1d746879`. Seed utuh 300 pada [0,300), 73 bulan pada SS, keluar 0.
-
-| Syarat ADR-015 §4.4 | Nilai | Ambang | Terpenuhi |
-|---|---|---|---|
-| besaran SS − AS | **+0,054842R** | 0,020R | ya |
-| **p satuan bulan** | **0,205980** | 0,05 | **TIDAK** |
-| ulangan | 300 | 300 | ya |
-| trade terkecil antar sel | 54.812 | 100 | ya |
-
-Sebaran nol 300 seed: rerata **+0,022916R** · sd **+0,011377R** · rentang **−0,004632R … +0,057394R** · sel SS +0,066648R. p satuan perdagangan 0,003322 — **haram** menegakkan (aturan 45). Jalur A membenarkan dengan mesin berbeda: p bulanan berpasangan **0,365363**, bootstrap memuat nol.
-
-**Cacat kelas ketiga belas (ADR-031):** +0,054842R dihitung terhadap **satu** sel nol seed 42; terhadap rerata nol ia **+0,043732R**. Dibayar di sumber lewat `6ae83062` dan `5bd73fbf`. `reports/h013b_p.md` **tetap** memuat prosa R-D3 yang salah (aturan 50).
-
-### JALUR A — keberartian jatuh pada satuan bulan
-
-**SS lawan AS:**
-
-| Besaran | simbol (437) | bulan (73) |
-|---|---|---|
-| rerata selisih | +0,035625R | +0,023327R |
-| rerata berbobot trade | +0,053518R | +0,047950R |
-| selisih agregat | +0,054842R | +0,054842R |
-| median selisih | +0,050280R | +0,036628R |
-| fraksi positif | 0,6293 | **0,5342** |
-| p uji tanda | **0,001100** | **0,365363** |
-| bootstrap 95% | [+0,015182, +0,055725]R | **[−0,027040, +0,073620]R — MEMUAT NOL** |
-
-**SH lawan AH:** simbol — rerata −0,010358R, berbobot −0,023331R, agregat −0,021004R, fraksi 0,4760, p 0,777622. Bulan — rerata −0,029960R, berbobot −0,028521R, median −0,072371R, fraksi 0,4110, **p 0,280372**. **Anomali SH < AH turun pangkat menjadi derau.** R-A1…R-A6: empat tepat, **R-A4 MELESET**, **R-A5 MELESET JAUH**.
+**Yang tidak dihaluskan:** sebuah run riset berjalan dengan pengaman risiko mati, yang mematikannya bukan pemaksimal ekspektasi melainkan saya lewat satu argumen bernilai `None`, dan aturan 12 yang dilanggarnya lahir dari ADR yang sama.
 
 ### Papan skor hipotesis — EMPAT BELAS DINILAI, EMPAT BELAS DITOLAK
 
-| ID | Mekanisme | Ekspektasi R | Putusan |
+| ID | Mekanisme | Putusan | Gerbang saat angkanya lahir |
 |---|---|---|---|
-| H-001b | Donchian polos | 0,03086 | DITOLAK (`invarian_risiko` −2,5853) |
-| H-002 | Donchian + saringan carry | 0,03159 | DITOLAK |
-| H-003 | pembalikan skor-z | −0,24782 | DITOLAK |
-| H-004 | Donchian + ADX ≥ 30 | −0,01818 | DITOLAK |
-| H-005 | entri retest | −0,03571 | DITOLAK |
-| H-006 | sapuan likuiditas | −0,13449 | DITOLAK |
-| H-007 | imbalan bergrid | — | DITOLAK |
-| H-008 | saringan rezim / carry keras dilombakan | — | DITOLAK (pemilih mematikan pengaman, 334/356) |
-| H-009 | pengaman dipatok 0,25 | — | DITOLAK |
-| H-010 | imbalan 4R terbatas | — | DITOLAK (`entri_acak` 0,0631) |
-| H-011 | pengaman biaya masuk | — | DITOLAK |
-| H-012 | himpunan tertahan sejak 2026-01 | **+0,041713** | DITOLAK (< 0,05R) |
-| H-013 | dekomposisi sinyal/geometri | +0,066648 (SS) | **DITOLAK** (p bulan 0,205980) |
-| **H-014** | `pakai_target` satu medan, umur setara | +0,067252 (SS′) | **DITOLAK** (rerata bulanan −0,027715R; p 0,375962) |
-| **H-015** | **funding sebagai sinyal (K/F/A)** | — | **BERKODE LENGKAP dan HIJAU, BELUM DIJALANKAN** |
+| H-001b | Donchian polos | DITOLAK | `invarian_risiko` −2,5853 |
+| H-002 | Donchian + saringan carry | DITOLAK | — |
+| H-003 | pembalikan skor-z | DITOLAK | — |
+| H-004 | Donchian + ADX ≥ 30 | DITOLAK | — |
+| H-005 | entri retest | DITOLAK | — |
+| H-006 | sapuan likuiditas | DITOLAK | — |
+| H-007 | imbalan bergrid | DITOLAK | — |
+| H-008 | carry keras dilombakan | DITOLAK | pemilih mematikan pengaman, 334/356 |
+| H-009 | pengaman dipatok 0,25 | DITOLAK | — |
+| H-010 | imbalan 4R terbatas | DITOLAK | `entri_acak` 0,0631 |
+| H-011 | pengaman biaya masuk | DITOLAK | **`invarian_risiko` −470,0612R** |
+| H-012 | himpunan tertahan sejak 2026-01 | DITOLAK | **`entri_acak` 0,0631 · `invarian_risiko` −21,3131 · `funding_ekor`** |
+| H-013 | dekomposisi sinyal/geometri | DITOLAK (p bulan 0,205980) | **`invarian_risiko` −11,4736** |
+| H-014 | `pakai_target` satu medan | DITOLAK (rerata bulanan −0,027715R; p 0,375962) | **`invarian_risiko`, `checksum`, `funding_ekor` — dan adjudikatornya tidak memeriksanya (cacat 20)** |
+| **H-015** | **funding sebagai sinyal (K/F/A)** | **TIDAK DAPAT DINILAI** | **`invarian_risiko`, `checksum` di ketiga sel** |
 
 ### Angka yang HARAM dikutip sebagai kelulusan
 
-`+0,029481R` · **`+0,027654R` sebagai besaran yang lulus** · `+0,054842R`, `+0,043732R`, `+0,066648R` sebagai kelulusan · `+0,060163R` · `+0,059636R` · p 0,001100 (satuan simbol) · p 0,003322 dan "+2,99 galat baku" · kata "LULUS" di `reports/backtest_h013_kontribusi.md` · prosa R-D3 di `reports/h013b_p.md` · ambang ADR-015 §4.4 sebagai pra-registrasi kaki geometri · "226 jendela / 63,5%" (yang benar 194 / 54,5%) · **angka H-014 mana pun dibandingkan langsung dengan angka H-013** (ADR-036) · **angka H-015 mana pun dibandingkan langsung dengan H-014** (ADR-037 §10) · **F − K sebagai dasar kelulusan H-015**.
+`+0,029481R` · `+0,027654R` sebagai besaran yang lulus · `+0,054842R`, `+0,043732R`, `+0,066648R` sebagai kelulusan · `+0,060163R` · `+0,059636R` · p 0,001100 (satuan simbol) · p 0,003322 dan "+2,99 galat baku" · kata "LULUS" di `reports/backtest_h013_kontribusi.md` · prosa R-D3 di `reports/h013b_p.md` · ambang ADR-015 §4.4 sebagai pra-registrasi kaki geometri · "226 jendela / 63,5%" (yang benar 194 / 54,5%) · angka H-014 mana pun dibandingkan langsung dengan H-013 (ADR-036) · angka H-015 mana pun dibandingkan langsung dengan H-014 (ADR-037 §10) · **F − K sebagai dasar kelulusan H-015** · **SELURUH angka run `30249117960`, sebab ketiga selnya gagal gerbang (ADR-038 §5.3)**.
 
-**Larangan permanen:** jangan pernah menyatakan sistem siap diperdagangkan; jangan menambahkan cabang `LULUS` ke H-014; jangan menambal `berpasangan.py` agar memancarkan kelulusan; **jangan menjalankan ulang H-014 dengan pengaman carry dinyalakan** (aturan 5); **jangan menggeser `AMBANG_RATE`, `MIN_PENAGIHAN`, atau seed H-015 sesudah hasil terlihat** (ADR-037 §10); **jangan melunakkan perbandingan ambang 0,020R dengan pembulatan**; jangan menulis aritmetika funding kedua di luar `funding_model`; jangan menyentuh `lux/strategi/`.
+**Larangan permanen:** jangan pernah menyatakan sistem siap diperdagangkan; jangan menambahkan cabang `LULUS` ke H-014; jangan menambal `berpasangan.py`; jangan menjalankan ulang H-014 dengan pengaman carry dinyalakan (aturan 5); jangan menggeser `AMBANG_RATE`, `MIN_PENAGIHAN`, atau seed H-015 sesudah hasil terlihat; jangan melunakkan ambang 0,020R dengan pembulatan; jangan menulis aritmetika funding kedua di luar `funding_model`; jangan menyentuh `lux/strategi/`; **jangan memaklumi `invarian_risiko`; jangan menggeser ambang 1,5R; jangan menaikkan lantai 0,004 agar gerbang hijau (ADR-038 §5.2)**.
 
 ### Ambang beku — tidak digeser
 
-lantai 0,004 · pengaman 0,5R · `BATAS_VOID` 20 · potong tanggal 2026-01-01 · SS−AS 0,020R · p ≤ 0,05 · ≥300 ulangan · ≥100 trade per sel · `MAKS_RASIO_DATAR` 0,10 · rasio 0,30 · ekspektasi 0,05R · `invarian_risiko` −1,5R · `maks_umur_bar` ≤ 168 · `imbalan_R` **tidak** dipatok 8,0 · **`maks_carry_realisasi_R` = 0,25 (mekanisme ADR-008, patokan ADR-009, angka ADR-004), wajib hidup di Konfig dasar (aturan 57)** · **`AMBANG_RATE` = 0,0001 dan `MIN_PENAGIHAN` = 30 (ADR-037, baru 2026-07-27)** · gerbang kesebelas 0,35 / 0,50R / 0,005 (ADR-011).
+lantai 0,004 · pengaman biaya masuk 0,5R · `BATAS_VOID` 20 · potong tanggal 2026-01-01 · selisih antar sel 0,020R · p ≤ 0,05 · ≥300 ulangan · ≥100 trade per sel · `MAKS_RASIO_DATAR` 0,10 · rasio datar 0,30 · ekspektasi 0,05R · **`invarian_risiko` −1,5R (ditegaskan ADR-038)** · `maks_umur_bar` ≤ 168 · `imbalan_R` **tidak** dipatok 8,0 · `maks_carry_realisasi_R` = 0,25 (mekanisme ADR-008, patokan ADR-009, angka ADR-004), wajib hidup di Konfig dasar (aturan 57) · `AMBANG_RATE` 0,0001 dan `MIN_PENAGIHAN` 30 (ADR-037, baru 2026-07-27) · gerbang kesebelas 0,35 / 0,50R / 0,005 (ADR-011).
 
 ---
 
 ## 4. Asumsi — BUKAN fakta
 
-1. **Kelayakan 1h dan 4h identik (447/74/112)** belum dijelaskan.
-2. **`AH = +0,05817042814276683R`** — sesudah ADR-032 dibatalkan sebagian, penyebabnya **tidak diketahui**.
-3. **Besar kegagalan `invarian_risiko`** pada enam sel H-013/H-014 belum pernah dibaca. **Kini lebih menarik:** dua sel H-014 gagal gerbang itu **tanpa** pengaman carry keras — dan H-015 akan menjalankannya **dengan** pengaman hidup.
-4. **Cacah keluar `carry` sel SH** (`reports/backtest_h013_sh_sinyal_horizon.json`) belum dibaca — R-J1 menyatakan > 0.
-5. **Apakah eksperimen lain memakai `buat_konfig=None`** — **R-J2 TERJAWAB SEBAGIAN**: `run_wf.py` (blob `c51f91d6…`, 33.359 B) dibaca dan **tidak memuat `buat_konfig` maupun `jadwal`**; `muat_konfig`-nya membangun `Konfig` dari lima medan. Belum dituangkan sebagai adjudikasi resmi.
-6. **Asal uji ke-17** pada cacah 872 belum diketahui. Berlaku aturan 58.
-7. **Rasio bar datar 1h lawan 4h** — `reports/diag_datar.json`; penolakan 4h seharusnya ≤ 74.
-8. **Apakah funding memuat informasi arah** — terdaftar sebagai H-015, **berkode**, belum dijalankan, belum diketahui. Ramalan saya sendiri (R-L2) adalah **tidak**.
-9. **Commit `09ba55450a42482b58a0bd2feb212d0ac697d59b`** (`lux-backfill`, 2026-07-27T06:07:39Z) mendarat pada 06:07 UTC padahal cron `backfill_daily.yml` berbunyi `'0 2 * * 1'`. Isinya **belum dibaca**. **Ini memerlukan verifikasi.**
+1. **Sebab kerugian melewati −1,5R belum diketahui.** `config/lux.yaml` memuat `stop_hormati_celah: true`, jadi kerugian > 1R **mungkin** konsekuensi pemodelan yang jujur; cabang mesin yang melaksanakannya belum dibaca baris demi baris. Dugaan tandingan yang belum tersingkirkan: ukuran posisi dihitung dari modal, bukan dari risiko. **Ini memerlukan verifikasi** dan ia pertanyaan terpenting yang terbuka sekarang.
+2. **Identitas perdagangan −11,4736R** (simbol, tanggal, harga masuk/stop/keluar) tidak ada di artefak mana pun yang dikomit; hanya dapat diperoleh lewat skrip sisi runner.
+3. **Sel A memakan 162 detik lawan K 70 s dan F 74 s** — lebih dari dua kali lipat, belum terjelaskan. Begitu pula `entri acak nyata` A **0,10723R** yang tertinggi dari ketiga sel.
+4. **Cabang `runner.py`** yang memancarkan "manifest baru ditulis pada run ini" belum dibaca. Preseden H-011/H-012 (checksum lulus dengan manifes 1h yang sudah ada) menaikkan keyakinan menjadi dugaan berdasar, bukan fakta.
+5. **`AH = +0,05817042814276683R`** — sesudah ADR-032 dibatalkan sebagian, penyebabnya tidak diketahui.
+6. **Cacah keluar `carry` sel SH** (`reports/backtest_h013_sh_sinyal_horizon.json`) belum dibaca — R-J1 menyatakan > 0.
+7. **R-J2 TERJAWAB SEBAGIAN**: `run_wf.py` (blob `c51f91d6…`) tidak memuat `buat_konfig` maupun `jadwal`. Belum dituangkan sebagai adjudikasi resmi.
+8. **Asal uji ke-17** pada cacah 872 belum diketahui. Berlaku aturan 58.
+9. **Rasio bar datar 1h lawan 4h** — `reports/diag_datar.json`; penolakan 4h seharusnya ≤ 74.
+10. **Apakah funding memuat informasi arah** — **masih belum diketahui**, dan run yang seharusnya menjawabnya tidak dapat dinilai. Rerata bulanan F − A +0,008903R tidak boleh dipakai ke arah mana pun.
+11. **Bacaan ADR-037 §5 lawan `berpasangan.PEMBATAS`** — pendamaian yang saya usulkan (LULUS = lulus pra-registrasi, `memenuhi_adr015` tetap False) belum diverifikasi. Tidak mendesak: cabang LULUS tak tercapai.
+12. **Commit `09ba55450a42482b58a0bd2feb212d0ac697d59b`** (`lux-backfill`, 2026-07-27T06:07:39Z) mendarat pada 06:07 UTC padahal cron berbunyi `'0 2 * * 1'`. Isinya belum dibaca.
 
 ---
 
 ## 5. Penghalang aktif
 
 - **Tidak ada run yang sedang berjalan.**
-- **Cacat 18 terbuka.** `konfig_audit` kini dipanggil oleh `run_h015.py`, tetapi runner itu belum berjalan (aturan 42). Penutupnya adalah **R-L5**, bukan laporan hijau alat itu sendiri.
-- **Cacat 17 terbuka:** gerbang `checksum` 4h mustahil lulus sampai daftar `git add` `h014.yml` diperbaiki, dan perbaikan itu wajib **menumpang** run 4h berikutnya.
+- **`invarian_risiko` merah di seluruh jalur.** Ini penghalang utama: tidak ada hipotesis yang dapat diadjudikasi atas angka sampai sebabnya diketahui (ADR-038).
 - **Cacat 19 terbuka:** `praregistrasi.Kriteria` tidak dapat menyatakan satuan penarikan, pembobotan mengikat, maupun p bulanan.
-- **Cacah uji tidak dapat diramal** sampai uji ke-17 ditemukan (aturan 58), sekalipun empat ramalan terakhir tepat.
-- `backfill_daily.yml` berjalan tiap Senin 02:00 UTC tanpa dipicu manusia — dan sekali mendarat 06:07 UTC (asumsi 9).
+- **Cacat 20 terbuka sebagai utang perbaikan:** `gabung_h014` tetap buta gerbang; ia **tidak** ditambal dan H-014 **tidak** dijalankan ulang, tetapi setiap penggabung baru wajib memeriksa gerbang (aturan 59).
+- **Cacat 21 terbuka:** R-L1 tidak dapat dinilai; instrumentasi penolakan per arah belum ada.
+- **Cacat 17 dibayar, belum terbukti.** Efeknya baru terlihat pada run 4h berikutnya.
+- Cacah uji tidak dapat diramal sampai uji ke-17 ditemukan (aturan 58).
+- `backfill_daily.yml` berjalan tiap Senin 02:00 UTC tanpa dipicu manusia — dan sekali mendarat 06:07 UTC (asumsi 12).
 - `notion_asap.yml` masih tanpa `git pull --rebase --autostash`.
 - Tiga kunci `config/lux.yaml` masih tidak dibaca program (lampiran §8).
 
@@ -368,37 +258,43 @@ lantai 0,004 · pengaman 0,5R · `BATAS_VOID` 20 · potong tanggal 2026-01-01 ·
 
 ## 6. Tindakan berikutnya (urutan mengikat)
 
-1. **Tutup cacat 17 bersamaan run 4h H-015** — sunting daftar `git add` di workflow, **tidak** digabung ke commit kode H-015. Sesudah manifes 4h ada di `main`, adjudikasi **paruh kedua R-B1**.
-2. **Jalankan H-015.** Menyentuh berkas workflow memulai run 4 jam — satu sentuhan, sekali jalan. Sesudahnya adjudikasi **R-L1…R-L5** dan **R-M1**, lalu tulis ADR putusan (nomor bebas berikutnya **ADR-038**).
-3. **Adjudikasi R-J1** — baca cacah keluar `carry` sel SH lewat skrip sisi runner; jangan menarik JSON 432 KB ke konteks. Sekalian baca besar kegagalan `invarian_risiko` enam sel.
-4. **Tuangkan R-J2** sebagai adjudikasi resmi berdasarkan pembacaan `run_wf.py` (asumsi 5).
-5. **Temukan uji ke-17** — satu dorongan yang **hanya** menyentuh `tests/` tanpa menambah modul baru di `lux/`.
-6. **Bayar cacat 19** — medan satuan/pembobotan/p bulanan pada `praregistrasi.Kriteria` berikut pengujian yang menolak hipotesis tanpa satuan. **Sesudah** H-015 berjalan.
-7. **Rasio bar datar 4h** dari `reports/diag_datar.json`; **baca commit `09ba5545`**.
-8. **Nasib workflow** — `notion_asap.yml`, `backfill_daily.yml`, `funding*.yml`, `doctor.yml`, `universe.yml`.
-9. Utang panjang: audit config aturan 39, `runner.py` lawan `fc79e070`, `run_h013.py` lawan `418f6084`, `requirements-dev.txt`.
+1. **Diagnostik ADR-038 §5.4.** Skrip sisi runner yang memancarkan, untuk setiap perdagangan yang melewati −1,5R: simbol, waktu masuk, harga masuk, harga stop, harga keluar, alasan keluar, dan selisih stop–keluar. **Tidak mengubah putusan apa pun.** Adjudikasi R-P1, R-P2, R-P3. Murah: tidak menuntut backtest penuh.
+2. **Jurnal 43.**
+3. **Instrumentasi penolakan saringan per arah, atau cabut R-L1** (aturan 60).
+4. **Baca cabang `runner.py`** yang memancarkan catatan manifes (asumsi 4).
+5. **Jelaskan sel A 162 detik** dan `entri acak nyata` A tertinggi (asumsi 3).
+6. **Adjudikasi R-J1** dan **tuangkan R-J2** sebagai adjudikasi resmi.
+7. **Temukan uji ke-17** — satu dorongan yang hanya menyentuh `tests/`.
+8. **Bayar cacat 19** — medan satuan/pembobotan/p bulanan pada `praregistrasi.Kriteria`.
+9. **PROMPT_KELANJUTAN v5** sebelum konteks penuh.
+10. **Rasio bar datar 4h**; **baca commit `09ba5545`**; nasib workflow lain; utang audit config aturan 39.
 
-Nomor ADR bebas berikutnya: **ADR-038**. Jurnal berikutnya: **`journal/2026-07-27-40.md`** (33–39 dipakai).
+**Run H-015 kedua TIDAK ada dalam daftar ini,** dan itu disengaja (ADR-038 §6).
+
+Nomor ADR bebas berikutnya: **ADR-039**. Jurnal berikutnya: **`journal/2026-07-27-43.md`** (33–42 dipakai).
 
 ---
 
 ## 7. Disiplin kerja
 
 - Pisahkan fakta (commit / run ID / kutipan) dari asumsi; bila belum terverifikasi, katakan **"Ini memerlukan verifikasi."**
-- Ramalan ditulis **sebelum** hasil terlihat, dan yang meleset **tidak dihaluskan**. Cacah uji diramalkan sebagai **batas bawah** (aturan 58).
-- **Koreksi pun dapat salah.** Bila sebuah koreksi ternyata terlalu keras, ia diperbaiki sebagai prosa dan kedua kesalahan tetap tercatat (aturan 50, dijalankan di v31).
-- **Uji ditulis dari badan fungsi, bukan dari ringkasan API sendiri.** Dua run merah berturut-turut di S22 lahir dari pelanggaran ini.
+- Ramalan ditulis **sebelum** hasil terlihat, wajib menyebut **berkas dan medan** yang akan mengadjudikasinya (aturan 60), dan yang meleset **tidak dihaluskan**. Cacah uji diramalkan sebagai **batas bawah** (aturan 58).
+- **Koreksi pun dapat salah.** Bila sebuah koreksi ternyata terlalu keras, ia diperbaiki sebagai prosa dan kedua kesalahan tetap tercatat (aturan 50).
+- **Uji ditulis dari badan fungsi, bukan dari ringkasan API sendiri.**
+- **Setiap adjudikator wajib memeriksa gerbang** (aturan 59).
 - `STATE.md` diperbarui setiap posisi berubah; satu entri `journal/` per sesi; ADR untuk setiap keputusan yang membatasi masa depan.
-- Berkas panjang **dipecah**; setiap muatan dorongan dibaca ulang **dari `main` sesudah dikirim** (aturan 35); jangan membaca berkas 40 KB lalu menulis penggantinya dalam jendela konteks yang sama.
+- Berkas panjang **dipecah**; setiap muatan dorongan dibaca ulang **dari `main` sesudah dikirim** (aturan 35); besaran tinggal di `STATE_LAMPIRAN_ANGKA.md`, bukan di sini.
 
 ---
 
 ## 8. Rujukan cepat
 
-Repo `EnVyxS/lux-research`, cabang `main`. Rincian peta repo, inventaris modul, audit workflow, batas alat, papan ramalan, angka H-012/H-013, dan rantai commit ada di **`STATE_LAMPIRAN.md`**.
+Repo `EnVyxS/lux-research`, cabang `main`. Peta repo, inventaris modul, audit workflow, batas alat, dan papan ramalan lama ada di **`STATE_LAMPIRAN.md`**. Seluruh besaran H-011…H-015 ada di **`STATE_LAMPIRAN_ANGKA.md`**.
 
-**Ramalan aktif.** ADR-037 §9: **R-L1** (dijamin konstruksi, tak bernilai) · **R-L2** H-015 DITOLAK · **R-L3** |F−A| < |F−K| · **R-L4** ≥884 uji — **TERPENUHI** pada 907 · **R-L5** keluar `carry` bukan nol pada ketiga sel. Jurnal 39 §6: **R-M1** run 4 jam pertama H-015 gagal karena sebab **operasional** · **R-M2** H-015 juga DITOLAK, 15 dari 15.
+**Batas alat yang diperbarui:** tidak ada fungsi Actions; log run hanya lewat `reports/*_log.md` yang dikomit. `search_code` nihil. Menyentuh `h014.yml`/`backtest.yml`/`h013b.yml`/`h015.yml` **memulai run**. `tests.yml` 23–30 s. **Run H-015 tiga sel penuh 8 m 52 s — reruns 4h MURAH.** `fapi.binance.com` 451, `data.binance.vision` 200. Runner: python 3.12.13, numpy 2.5.1, pytest 9.1.1, pandas 2.2.3, pyarrow 17.0.0, pyyaml 6.0.2, tanpa scipy/requests, 4 vCPU / 15 GB, batas 6 jam. Rilis `tier-b-v1` id `359778114`, aset 4h 12 berkas / 157.628.619 B.
 
-Tonggak terakhir: `08e21b3f` (ADR-037) → `bfc5bef7` (v31) → `2f9c577e` (PROMPT v3) → `ac260865` (jurnal 38) → **`499c64c7`** (`saringan_funding.py` + uji) → `bad6fdc3` (laporan merah 902) → **`a04478a7`** (perbaikan boneka) → `1bf29f21` (**907 uji**) → **`4e6a6584`** (`run_h015.py` + uji) → `0fbd4edb` (laporan merah 937) → **`bccaa55f`** (perbaikan fixture) → `8bb57075` (**942 uji, hijau**) → `2e191e5f` (jurnal 39) → `3912f70f` (**PROMPT v4**) → **v32 (berkas ini)**.
+**Ramalan aktif.** TEPAT: R-N1 (977) · R-L3 · R-L4 · **R-L5** (carry 82/27/26, menutup cacat 18) · **R-O3** (gerbang merah di seluruh jalur). MELESET: R-N2 · **R-L2** (saya meramal DITOLAK, hasilnya TIDAK DAPAT DINILAI — besaran kecil **tidak** menyelamatkan ramalan putusan) · **R-M1** (dua kali sekaligus: run tidak gagal operasional dan tidak panjang) · R-K2 · R-H1 · R-G4. TAK DAPAT DINILAI: **R-L1** (cacat 21). CACAT PENALARAN: **R-O2** (premis "ekor tunggal" runtuh). BELUM: R-M2 · R-O1 · R-B1 paruh kedua · R-J1 · R-J2 · **R-P1** (keluar pada harga pembukaan bar) · **R-P2** (10 ≤ pelanggaran ≤ 500 dari 59.306) · **R-P3** (sekurangnya satu ekor dari simbol yang median `stop_frac`-nya nyaris menyentuh lantai).
 
-**Posisi: 14 hipotesis dinilai, 14 DITOLAK, 1 berkode lengkap dan hijau tetapi belum dijalankan. 58 aturan. 19 kelas cacat. 942 uji.**
+Tonggak terakhir: `0dd14098` (v32) → `29c0f4a0` (`gabung_h015` + 35 uji) → `abed0edf` (**977 hijau**) → `16f4af2e` (jurnal 40) → `017e0ac3` (`h015.yml`) → `5b2f70b6` (laporan H-015, run `30249117960` **merah**) → `93d69c08` (jurnal 41) → `3d1d3e37` (jurnal 42) → **`26ee4462` (ADR-038)** → **v33 (berkas ini)**.
+
+**Posisi: 14 hipotesis dinilai, 14 DITOLAK; H-015 dijalankan dan TIDAK DAPAT DINILAI. 60 aturan. 21 kelas cacat. 977 uji. Nol hasil yang pernah lolos sebelas gerbang.**
