@@ -3,16 +3,27 @@
 Seluruh berkas ini berjalan tanpa satu bar parquet pun. Yang diuji adalah tiga
 kewajiban runner dan aritmetika putusannya — bukan hasil backtest, yang memang
 belum ada dan tidak boleh diramalkan dari sini.
+
+Konfig dasar dibangun dari ``config/lux.yaml`` yang **sungguhan**, bukan dari
+bawaan ``Konfig()``. Itu perbedaan yang sempat membuat run pengujian atas commit
+4e6a6584 gagal, dan perbedaan itu justru gunanya: bawaan ``Konfig`` memuat
+``maks_carry_R = 0.0`` sedangkan config memuat 0,25, sehingga fixture yang
+memakai bawaan akan menguji konfig yang tidak pernah dijalankan siapa pun. Dengan
+membaca config, berkas ini menjadi pagar berdiri: bila kelak ada yang menurunkan
+``risiko.maks_carry_R``, run empat jam H-015 akan berhenti dengan kode 3 — dan
+pytest mengatakannya lebih dahulu dalam tiga detik.
 """
 
 from __future__ import annotations
 
 from dataclasses import replace
+from pathlib import Path
 
 import pytest
 
 from lux.backtest.engine import Konfig
 from lux.backtest.konfig_audit import laporan_kesebandingan
+from lux.backtest.run_h002 import muat_konfig_h002
 from lux.backtest.run_h013 import AMBANG_KONTRIBUSI_SINYAL, H_BAR, MIN_TRADE_SEL
 from lux.backtest.run_h015 import (
     DATASET,
@@ -32,9 +43,18 @@ from lux.backtest.run_h015 import (
 
 CONTOH = {"lookback": 55, "imbalan_R": 2.0}
 
+# Jalur config diturunkan dari letak berkas uji, bukan dari direktori kerja:
+# uji yang hanya lulus bila dijalankan dari akar repo adalah uji yang akan
+# gugur di tempat yang tidak ada hubungannya dengan isinya.
+JALUR_CONFIG = Path(__file__).resolve().parents[1] / "config" / "lux.yaml"
+
+
+def konfig_config() -> Konfig:
+    return muat_konfig_h002(JALUR_CONFIG)
+
 
 def dasar():
-    return konfig_dasar_h015(Konfig())
+    return konfig_dasar_h015(konfig_config())
 
 
 def ekspektasi(k=0.03, f=0.05, a=0.04):
@@ -53,6 +73,16 @@ def test_pengaman_wajib_menuntut_kedua_medan_carry():
         "maks_carry_realisasi_R": 0.25,
         "maks_carry_R": 0.25,
     }
+
+
+def test_config_memenuhi_pengaman_yang_dituntut_run():
+    """Kaitan yang membuat run empat jam berhenti di detik pertama, bukan jam keempat.
+
+    ``maks_carry_R`` datang dari ``config/lux.yaml`` dan **bukan** dipasang oleh
+    kode H-015. Karena itu tuntutan di ``PENGAMAN_WAJIB`` bukan tautologi di
+    medan ini: ia dapat gagal, dan bila ia gagal, ia gagal di sini.
+    """
+    assert konfig_config().maks_carry_R == PENGAMAN_WAJIB["maks_carry_R"]
 
 
 def test_konfig_dasar_menyalakan_pengaman_carry_terealisasi():
@@ -163,9 +193,23 @@ def test_besaran_f_min_k_yang_besar_tidak_meluluskan():
 
 
 def test_lulus_besaran_tepat_di_ambang():
-    r = kontribusi_h015(ekspektasi(f=0.06, a=0.04), trade())
-    assert r["selisih_mengikat_F_A_R"] == pytest.approx(AMBANG_KONTRIBUSI_SINYAL)
+    r = kontribusi_h015(ekspektasi(f=0.02, a=0.0), trade())
+    assert r["selisih_mengikat_F_A_R"] == AMBANG_KONTRIBUSI_SINYAL
     assert r["lulus"] is True
+
+
+def test_ambang_tidak_dilunakkan_oleh_pembulatan():
+    """0,06 \u2212 0,04 bernilai 0,019999999999999997 dalam float biner.
+
+    Karena itu ia **tidak** lulus, dan itu memang yang dikehendaki: membulatkan
+    perbandingan berarti menggeser ambang beku ke bawah, dan ambang H-015 tidak
+    bergerak sesudah kodenya ditulis (ADR-037 \u00a710). Tepi pisau ini dikunci di
+    sini supaya kelak tidak ada yang "memperbaikinya" tanpa menyadari apa yang
+    sedang ia geser.
+    """
+    r = kontribusi_h015(ekspektasi(f=0.06, a=0.04), trade())
+    assert r["selisih_mengikat_F_A_R"] < AMBANG_KONTRIBUSI_SINYAL
+    assert r["lulus"] is False
 
 
 def test_sel_tipis_membuat_tidak_dapat_dinilai():
