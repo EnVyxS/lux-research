@@ -6,6 +6,16 @@ ini berjalan tanpa satu bar parquet pun dan tanpa mesin backtest, sesuai aturan
 ``statistik_trailing``, sebab itulah **satu-satunya** jalur data funding yang
 boleh dipakai modul yang diuji (ADR-037 §2) — dan boneka yang tidak menyediakan
 apa pun selain itu membuat pelanggarannya gagal seketika alih-alih lolos diam.
+
+Boneka itu juga menyediakan ``__len__``, dan pengecualian ini perlu dijelaskan
+karena ia dibayar dengan satu run gagal (30245804583, tiga uji gugur dengan
+``TypeError: object of type 'JadwalBoneka' has no len()``). ``ambil_jadwal``
+menguji kesahihan hasil pencarian dengan ``len(j) == 0``: jadwal kosong
+diperlakukan sama dengan jadwal yang tidak ada, supaya simbol tanpa data tidak
+pernah diam-diam menjadi simbol berbiaya nol. Itu jalur **pencarian**, bukan
+jalur **aritmetika funding**; boneka ini tetap tidak punya ``jumlah_rate``,
+``jumlah_penagihan``, maupun ``kumulatif``, sehingga setiap upaya menghitung
+funding di luar ``statistik_trailing`` tetap gugur seketika.
 """
 
 from __future__ import annotations
@@ -29,17 +39,21 @@ from lux.backtest.saringan_funding import (
     terapkan,
     waktu_bingkai,
 )
+from lux.funding_model import ambil_jadwal
 
 JAM_MS = 3_600_000
 
 
 class JadwalBoneka:
-    """Hanya ``statistik_trailing``. Sengaja tidak punya yang lain."""
+    """``statistik_trailing`` dan ``__len__``. Sengaja tidak punya yang lain."""
 
     def __init__(self, rerata, n=MIN_PENAGIHAN):
         self.rerata = rerata
         self.n = n
         self.dipanggil: list[tuple[int, int]] = []
+
+    def __len__(self):
+        return int(self.n)
 
     def statistik_trailing(self, sampai_ms, jendela_ms):
         self.dipanggil.append((int(sampai_ms), int(jendela_ms)))
@@ -221,6 +235,25 @@ def test_terapkan_tidak_menyunting_di_tempat():
     hasil = terapkan(s, np.array([True, False, False]))
     assert s.tolist() == [1, -1, 1]
     assert hasil.tolist() == [0, -1, 1]
+
+
+# --------------------------------------------------------------------------
+# Kontrak pencarian jadwal
+# --------------------------------------------------------------------------
+def test_jadwal_kosong_ditolak_seperti_jadwal_yang_tidak_ada():
+    """``len(j) == 0`` adalah uji kesahihan, bukan basa-basi.
+
+    Inilah jalur yang membuat run 30245804583 gagal, dan ia dikunci di sini
+    supaya perbaikan boneka tidak diam-diam melemahkannya.
+    """
+    with pytest.raises(KeyError):
+        ambil_jadwal({"AAAUSDT": JadwalBoneka(0.0, n=0)}, "AAAUSDT")
+
+
+def test_sel_f_dengan_jadwal_kosong_menolak_bukan_meloloskan():
+    j = {"AAAUSDT": JadwalBoneka(-1.0, n=0)}
+    f = sinyal_sel("F", j, dasar_tetap(1))
+    assert f(bingkai(), {}).tolist() == [0] * 6
 
 
 # --------------------------------------------------------------------------
