@@ -1,0 +1,225 @@
+{
+  "hipotesis": "H-015",
+  "sel": {
+    "K": {
+      "id": "H-015-K",
+      "nama": "h015_k_kontrol",
+      "sidik": "61dc0acf646d5b69",
+      "ekspektasi_R": 0.06773132069859376,
+      "total_R": 4016.8737053508016,
+      "trade": 59306,
+      "jumlah_jendela": 4085,
+      "jendela_positif": 2228,
+      "p_entri_acak": 0.009966777408637873,
+      "gerbang_gagal": [
+        "invarian_risiko",
+        "checksum"
+      ],
+      "alasan_keluar": {
+        "target": 18643,
+        "stop": 33703,
+        "carry": 82,
+        "umur": 5149,
+        "akhir_data": 1729
+      }
+    },
+    "F": {
+      "id": "H-015-F",
+      "nama": "h015_f_saringan",
+      "sidik": "f4b823362d12c27b",
+      "ekspektasi_R": 0.08121494707506911,
+      "total_R": 4306.42256865554,
+      "trade": 53025,
+      "jumlah_jendela": 4083,
+      "jendela_positif": 2269,
+      "p_entri_acak": 0.009966777408637873,
+      "gerbang_gagal": [
+        "invarian_risiko",
+        "checksum"
+      ],
+      "alasan_keluar": {
+        "target": 16706,
+        "stop": 29835,
+        "umur": 4881,
+        "akhir_data": 1576,
+        "carry": 27
+      }
+    },
+    "A": {
+      "id": "H-015-A",
+      "nama": "h015_a_acak",
+      "sidik": "96fa54b7cca7abb1",
+      "ekspektasi_R": 0.07903293535777578,
+      "total_R": 4260.191347525546,
+      "trade": 53904,
+      "jumlah_jendela": 4083,
+      "jendela_positif": 2260,
+      "p_entri_acak": 0.006644518272425249,
+      "gerbang_gagal": [
+        "invarian_risiko",
+        "checksum"
+      ],
+      "alasan_keluar": {
+        "target": 16956,
+        "stop": 30395,
+        "umur": 4937,
+        "akhir_data": 1590,
+        "carry": 26
+      }
+    }
+  },
+  "audit_konfig": {
+    "K": {
+      "sel": "H-015-K",
+      "pendahulu": "H-013 SS",
+      "konfig": {
+        "atr_pengali_stop": 2.0,
+        "atr_periode": 14,
+        "fee": 0.0005,
+        "imbalan_R": 2.0,
+        "izinkan_short": true,
+        "jendela_carry_hari": 30,
+        "maks_biaya_masuk_R": 0.5,
+        "maks_carry_R": 0.25,
+        "maks_carry_realisasi_R": 0.25,
+        "maks_umur_bar": 48,
+        "modal_awal": 10000.0,
+        "pakai_target": true,
+        "risiko_per_trade": 0.005,
+        "slippage": 0.0005,
+        "stop_hormati_celah": true
+      },
+      "selisih_terhadap_pendahulu": {
+        "maks_umur_bar": {
+          "kiri": 48,
+          "kanan": 42
+        }
+      },
+      "pengaman_mati": [],
+      "menghalangi": false,
+      "prosa": [
+        "konfig H-015-K: 15 medan tercatat utuh",
+        "selisih terhadap H-013 SS: maks_umur_bar 48 lawan 42"
+      ]
+    },
+    "F": {
+      "sel": "H-015-F",
+      "pendahulu": "H-013 SS",
+      "konfig": {
+        "atr_pengali_stop": 2.0,
+        "atr_periode": 14,
+        "fee": 0.0005,
+        "imbalan_R": 2.0,
+        "izinkan_short": true,
+        "jendela_carry_hari": 30,
+        "maks_biaya_masuk_R": 0.5,
+        "maks_carry_R": 0.25,
+        "maks_carry_realisasi_R": 0.25,
+        "maks_umur_bar": 48,
+        "modal_awal": 10000.0,
+        "pakai_target": true,
+        "risiko_per_trade": 0.005,
+        "slippage": 0.0005,
+        "stop_hormati_celah": true
+      },
+      "selisih_terhadap_pendahulu": {
+        "maks_umur_bar": {
+          "kiri": 48,
+          "kanan": 42
+        }
+      },
+      "pengaman_mati": [],
+      "menghalangi": false,
+      "prosa": [
+        "konfig H-015-F: 15 medan tercatat utuh",
+        "selisih terhadap H-013 SS: maks_umur_bar 48 lawan 42"
+      ]
+    },
+    "A": {
+      "sel": "H-015-A",
+      "pendahulu": "H-013 SS",
+      "konfig": {
+        "atr_pengali_stop": 2.0,
+        "atr_periode": 14,
+        "fee": 0.0005,
+        "imbalan_R": 2.0,
+        "izinkan_short": true,
+        "jendela_carry_hari": 30,
+        "maks_biaya_masuk_R": 0.5,
+        "maks_carry_R": 0.25,
+        "maks_carry_realisasi_R": 0.25,
+        "maks_umur_bar": 48,
+        "modal_awal": 10000.0,
+        "pakai_target": true,
+        "risiko_per_trade": 0.005,
+        "slippage": 0.0005,
+        "stop_hormati_celah": true
+      },
+      "selisih_terhadap_pendahulu": {
+        "maks_umur_bar": {
+          "kiri": 48,
+          "kanan": 42
+        }
+      },
+      "pengaman_mati": [],
+      "menghalangi": false,
+      "prosa": [
+        "konfig H-015-A: 15 medan tercatat utuh",
+        "selisih terhadap H-013 SS: maks_umur_bar 48 lawan 42"
+      ]
+    }
+  },
+  "pengaman_wajib": {
+    "maks_carry_realisasi_R": 0.25,
+    "maks_carry_R": 0.25
+  },
+  "kontribusi": {
+    "ambang_selisih_mengikat_R": 0.02,
+    "min_trade_per_sel": 100,
+    "ekspektasi_R": {
+      "K": 0.06773132069859376,
+      "F": 0.08121494707506911,
+      "A": 0.07903293535777578
+    },
+    "trade": {
+      "K": 59306,
+      "F": 53025,
+      "A": 53904
+    },
+    "dapat_dinilai": true,
+    "sebab": "",
+    "selisih_mengikat_F_A_R": 0.0021820117172933334,
+    "selisih_TIDAK_mengikat_F_K_R": 0.01348362637647535,
+    "lulus": false
+  },
+  "pembatas_putusan": "Medan `lulus` di berkas ini hanya menguji BESARAN F − A terhadap ambang 0,020R. Ia BUKAN kelulusan hipotesis: ADR-037 §5 menuntut besaran itu DAN p ≤ 0,05 atas satuan penarikan bulan kalender UTC (ADR-028), dan p tidak dihitung di berkas ini. Selisih F − K yang ikut tercetak TIDAK MENGIKAT dalam bentuk apa pun: funding positif pada 79,1% periode membuat saringan apa pun mengalahkan kontrol tanpa memuat informasi, sehingga memakainya sebagai dasar kelulusan ada di daftar angka haram.",
+  "parameter_beku": {
+    "ambang_rate": 0.0001,
+    "min_penagihan": 30,
+    "jendela_funding_hari": 30,
+    "seed_acak": 20260727,
+    "imbalan_R": 2.0,
+    "maks_umur_bar": 48,
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "ulangan": 300,
+    "min_median_stop_frac": 0.004,
+    "jendela_bar": {
+      "panjang_latih": 1080,
+      "panjang_uji": 540,
+      "embargo": 42
+    },
+    "pemanasan_bar": 200,
+    "bar_dibutuhkan_satu_jendela": 1862
+  },
+  "ramalan": {
+    "R-L1": "sel F menolak long lebih dari 3x lebih sering daripada short; DIJAMIN konstruksi, jadi ketepatannya tidak bernilai apa-apa",
+    "R-L2": "H-015 DITOLAK: rerata bulanan F − A kurang dari +0,020R",
+    "R-L3": "nilai mutlak F − A lebih kecil daripada nilai mutlak F − K",
+    "R-L4": "cacah pytest paling sedikit 884",
+    "R-L5": "keluar `carry` bukan nol pada ketiga sel; nol berarti sidik jari cacat 18 dan run dibatalkan meski audit konfig hijau"
+  }
+}

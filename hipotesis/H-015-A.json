@@ -1,0 +1,63 @@
+{
+  "id": "H-015-A",
+  "pernyataan": "Sel A (pembanding, entri ditolak acak dengan cacah identik sel F) dari rancangan tiga sel ADR-037. Yang diuji bukan kelulusan sel ini melainkan selisih F − A: apakah saringan funding memuat INFORMASI, ataukah keunggulannya seluruhnya berasal dari kecondongan arah. Funding positif pada 79,1% periode, sehingga saringan apa pun membuang long jauh lebih sering daripada short dan akan mengalahkan kontrol tanpa memuat apa pun. Karena itu hanya ADR-037 §5 mengikat, dan selisih F − K haram dipakai sebagai dasar kelulusan.",
+  "dataset": "tier-b-v1 ohlcv_4h + funding_shard, universe_layak_v2_4h 438 simbol berlantai (ADR-017, ADR-018), jadwal funding per simbol dari funding_model",
+  "ruang_parameter": {
+    "lookback": [
+      20,
+      55,
+      100
+    ],
+    "imbalan_R": [
+      2.0
+    ],
+    "sel": [
+      "A"
+    ],
+    "ambang_rate": [
+      0.0001
+    ],
+    "min_penagihan": [
+      30
+    ],
+    "jendela_funding_hari": [
+      30
+    ],
+    "seed_acak": [
+      20260727
+    ],
+    "maks_umur_bar": [
+      48
+    ],
+    "pakai_target": [
+      true
+    ],
+    "jendela_hari": [
+      180,
+      90,
+      7
+    ],
+    "maks_carry_realisasi_R": [
+      0.25
+    ],
+    "maks_carry_R": [
+      0.25
+    ],
+    "maks_biaya_masuk_R": [
+      0.5
+    ],
+    "stop_hormati_celah": [
+      true
+    ]
+  },
+  "kriteria": {
+    "min_ekspektasi_R": 0.05,
+    "min_trade_luar_sampel": 100,
+    "maks_p_entri_acak": 0.05,
+    "min_jendela_positif_rasio": 0.5
+  },
+  "dibuat_utc": "2026-07-27T08:19:24+00:00",
+  "komit": "017e0ac37fe15059b520bacb9c7df0d4f1edccd3",
+  "jumlah_kombinasi": 9,
+  "sidik": "96fa54b7cca7abb1f1943dd92c97d383dbb90aed10917d94948c2dcf9c5a61dd"
+}

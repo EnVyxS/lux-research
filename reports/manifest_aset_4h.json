@@ -1,0 +1,14 @@
+{
+  "ohlcv_4h_shard00.parquet": "ff24b7abf44ecb65c71a785a85d20c1716ab705f034e17f8724c12a0df5c212b",
+  "ohlcv_4h_shard01.parquet": "634f8ee6e728b826e54e0554f7eacc8ea6b8e1ce66271fb4868550374d37788c",
+  "ohlcv_4h_shard02.parquet": "64b17fda4658fdcbc545f72afbc1cd6abb1429f6e2c554fce93e16fbb330aedc",
+  "ohlcv_4h_shard03.parquet": "0612b1e8933a08fbd0388c446520fcd419ed234319cdfc136934299d2ec09e9e",
+  "ohlcv_4h_shard04.parquet": "a46490b96c2327dabbbfa9f0750037045af3d73df599b6178a7564a5d126e43f",
+  "ohlcv_4h_shard05.parquet": "902be7a142e23a04eac8abf9008055a4e7b30f8360806b929aa8167b31bf65ca",
+  "ohlcv_4h_shard06.parquet": "42dabb41e911d372d8fca73270327e4c1949eb51d8b2b4177f0d662e1f8bd50f",
+  "ohlcv_4h_shard07.parquet": "48242fa884218367c877b453c72dca718765b03a2421f2d654a39b958ab39f5f",
+  "ohlcv_4h_tail_shard00.parquet": "673e9d4e8bf14ca6e21456927297a9d5b4b11362770f24613b61b7857d04c774",
+  "ohlcv_4h_tail_shard01.parquet": "2693b2ebfcb6ed76690c13ed7299b0f0e06e7c6c1227a59590dd4fd1a43ba0f7",
+  "ohlcv_4h_tail_shard02.parquet": "335ff4bc296431257e74e6572369dbd754bdebd593cc96bf7a628d21aa20bf25",
+  "ohlcv_4h_tail_shard03.parquet": "20cbafec8ec417cd599b9f9274e2ff44aea4a27852a1df7b8780794897a49134"
+}

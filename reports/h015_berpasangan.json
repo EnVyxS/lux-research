@@ -1,0 +1,94 @@
+{
+  "hipotesis": "H-015",
+  "putusan": "TIDAK DAPAT DINILAI",
+  "alasan": [
+    "gerbang gagal tanpa pemakluman: {'A': ['checksum', 'invarian_risiko'], 'F': ['checksum', 'invarian_risiko'], 'K': ['checksum', 'invarian_risiko']}. Gerbang ada supaya angkanya tidak dipercaya, jadi angkanya tidak dipakai untuk menjatuhkan maupun menegakkan apa pun"
+  ],
+  "besaran_rerata_bulanan_R": 0.008903082974700181,
+  "besaran_agregat_R": 0.0021820117172933196,
+  "catatan_besaran": "Dua besaran dilaporkan sebab keduanya tidak identik (aturan 49). Yang MENGIKAT adalah rerata bulanan, sebab satuan penarikan H-015 adalah bulan kalender UTC (ADR-028). H-014 mati dengan kedua angka ini berlawanan tanda, dan itu tercatat sebagai cacat kelas 16.",
+  "p": 0.1872812718728127,
+  "ambang_besaran_R": 0.02,
+  "ambang_p": 0.05,
+  "min_trade_sel": 100,
+  "min_ulangan": 300,
+  "ulangan_run": 300,
+  "trade_F": 53025,
+  "trade_A": 53904,
+  "pengaman_mati": {},
+  "gerbang_gagal_tak_dimaklumi": {
+    "A": [
+      "checksum",
+      "invarian_risiko"
+    ],
+    "F": [
+      "checksum",
+      "invarian_risiko"
+    ],
+    "K": [
+      "checksum",
+      "invarian_risiko"
+    ]
+  },
+  "gerbang_dimaklumi": {
+    "A": [
+      "lookahead"
+    ]
+  },
+  "satuan_penarikan": "bulan",
+  "per_bulan": {
+    "kunci_id": "periode",
+    "kunci_nilai": "ekspektasi_R",
+    "n_pasangan": 73,
+    "hanya_a": [],
+    "hanya_b": [],
+    "tanpa_nilai": [],
+    "ambang_besaran": 0.02,
+    "memenuhi_adr015": false,
+    "sebab_adr015": "p di sini mengukur ketidakpastian PENARIKAN SIMBOL/BULAN, bukan sebaran permutasi sinyal. Ia TIDAK memenuhi ADR-015 pasal 4.4 yang menuntut p atas minimal 300 permutasi sinyal. Angka ini sah dipakai untuk MENJATUHKAN klaim selisih antar sel, dan tidak sah dipakai untuk MENEGAKKANNYA.",
+    "pembatas": "p di sini mengukur ketidakpastian PENARIKAN SIMBOL/BULAN, bukan sebaran permutasi sinyal. Ia TIDAK memenuhi ADR-015 pasal 4.4 yang menuntut p atas minimal 300 permutasi sinyal. Angka ini sah dipakai untuk MENJATUHKAN klaim selisih antar sel, dan tidak sah dipakai untuk MENEGAKKANNYA.",
+    "dapat_dinilai": true,
+    "sebab": "",
+    "rerata_selisih": 0.008903082974700181,
+    "rerata_berbobot": 0.001667219936026623,
+    "selisih_agregat": 0.0021820117172933196,
+    "median_selisih": 0.002404502189742308,
+    "fraksi_positif": 0.589041095890411,
+    "trade_a": 53025.0,
+    "trade_b": 53904.0,
+    "melewati_ambang_besaran": false,
+    "uji_tanda": {
+      "n": 73,
+      "dapat_dinilai": true,
+      "sebab": "",
+      "rerata": 0.008903082974700181,
+      "p": 0.1872812718728127,
+      "m_lebih_ekstrem": 1872,
+      "ulangan": 10000,
+      "seed": 20260727,
+      "pembatas": "p di sini mengukur ketidakpastian PENARIKAN SIMBOL/BULAN, bukan sebaran permutasi sinyal. Ia TIDAK memenuhi ADR-015 pasal 4.4 yang menuntut p atas minimal 300 permutasi sinyal. Angka ini sah dipakai untuk MENJATUHKAN klaim selisih antar sel, dan tidak sah dipakai untuk MENEGAKKANNYA."
+    },
+    "bootstrap": {
+      "n": 73,
+      "dapat_dinilai": true,
+      "sebab": "",
+      "rerata": 0.008903082974700181,
+      "bawah": -0.003112849756744765,
+      "atas": 0.02188788728847709,
+      "alpha": 0.05,
+      "ulangan": 10000,
+      "seed": 20260728,
+      "pembatas": "p di sini mengukur ketidakpastian PENARIKAN SIMBOL/BULAN, bukan sebaran permutasi sinyal. Ia TIDAK memenuhi ADR-015 pasal 4.4 yang menuntut p atas minimal 300 permutasi sinyal. Angka ini sah dipakai untuk MENJATUHKAN klaim selisih antar sel, dan tidak sah dipakai untuk MENEGAKKANNYA."
+    }
+  },
+  "selisih_TIDAK_mengikat_F_K": -0.01571883629037982,
+  "catatan_F_K": "Selisih F - K TIDAK MENGIKAT dalam bentuk apa pun dan haram dipakai sebagai dasar kelulusan.",
+  "putusan_mungkin": [
+    "LULUS",
+    "DITOLAK",
+    "TIDAK DAPAT DINILAI"
+  ],
+  "memenuhi_adr015": false,
+  "pembatas": "Putusan H-015 dapat LULUS, DITOLAK, atau TIDAK DAPAT DINILAI. LULUS di sini berarti LULUS KRITERIA PRA-REGISTRASI ADR-037 pasal 5, dan BUKAN kelulusan ADR-015 pasal 4.4: p yang dipakai berasal dari penarikan bulan kalender UTC (ADR-028), bukan dari sebaran permutasi sinyal, sehingga medan memenuhi_adr015 tetap False bahkan pada cabang LULUS. Yang mengikat hanya F - A. Selisih F - K ikut dicetak dan HARAM dipakai sebagai dasar kelulusan: funding positif pada 79,1% periode membuat saringan apa pun mengalahkan kontrol tanpa memuat setitik pun informasi. Angka +0,029481R milik H-014 bukan pembanding H-015 dalam bentuk apa pun.",
+  "pembatas_berpasangan": "p di sini mengukur ketidakpastian PENARIKAN SIMBOL/BULAN, bukan sebaran permutasi sinyal. Ia TIDAK memenuhi ADR-015 pasal 4.4 yang menuntut p atas minimal 300 permutasi sinyal. Angka ini sah dipakai untuk MENJATUHKAN klaim selisih antar sel, dan tidak sah dipakai untuk MENEGAKKANNYA."
+}
