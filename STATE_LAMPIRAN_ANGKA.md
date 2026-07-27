@@ -4,6 +4,75 @@
 >
 > **PERINGATAN YANG BERLAKU ATAS SELURUH BERKAS INI (ADR-038 §5.3).** Setiap besaran di bawah lahir pada run yang **gagal gerbang `invarian_risiko`**, dan sebagian juga gagal `checksum` dan `funding_ekor`. Putusan DITOLAK-nya tetap berlaku; **kewenangan besarannya dibatalkan**. Angka-angka ini disimpan sebagai catatan sejarah dan bahan diagnostik, **bukan** sebagai bukti tentang perilaku strategi.
 
+## 0. Ledger percobaan (BARU 2026-07-27, ADR-040 §4.3)
+
+ADR-040 §4.3 memerintahkan `N_percobaan` dicatat di berkas ini, monoton naik, dan dipakai pada saat adjudikasi. Bagian ini memenuhi perintah itu.
+
+| Medan | Nilai |
+|---|---|
+| **`N_percobaan`** | **21** |
+| Sifat angka | batas bawah **rapat** (tiga kanal bersesuaian), bukan angka mutlak |
+| Run mati sebelum `putusan` yang diketahui | **1** (`30213913942`) |
+| Ambang Šidák pada N=21 | **0,002442** — `1 − (1 − 0,05)^(1/21)` |
+| Ambang Bonferroni pada N=21 | **0,002381** — `0,05 / 21` |
+| Ditetapkan pada | 2026-07-27 (UTC), jurnal 50 §3 dan jurnal 51 §1 |
+
+### 0.1 Cara mencacah
+
+Satu percobaan = satu pemanggilan `jalankan_spek` yang **menghasilkan `putusan`**. Setiap pemanggilan menulis tepat satu `reports/backtest_<nama>.json`. Pencacahan karena itu dilakukan atas berkas, bukan atas ingatan atau atas jumlah hipotesis dikali dugaan jumlah sel.
+
+Dua puluh satu berkas gerbang tersebut:
+
+1. `backtest_h001.json`
+2. `backtest_h002.json`
+3. `backtest_h003.json`
+4. `backtest_h004_adx.json`
+5. `backtest_h005_retest.json`
+6. `backtest_h006_smc.json`
+7. `backtest_h007_keluar.json`
+8. `backtest_h008_carry_keras.json`
+9. `backtest_h009_carry_dipatok.json`
+10. `backtest_h010_imbalan_diperluas.json`
+11. `backtest_h011_semesta_penuh.json`
+12. `backtest_h012_periode_tertahan.json`
+13. `backtest_h013_ss_sinyal_stop.json`
+14. `backtest_h013_sh_sinyal_horizon.json`
+15. `backtest_h013_as_acak_stop.json`
+16. `backtest_h013_ah_acak_horizon.json`
+17. `backtest_h014_ssp_target_umur48.json`
+18. `backtest_h014_shp_tanpa_target_umur48.json`
+19. `backtest_h015_k_kontrol.json`
+20. `backtest_h015_f_saringan.json`
+21. `backtest_h015_a_acak.json`
+
+Pemetaan berkas-ke-pemanggilan terbukti 1:1 pada tiga hipotesis terakhir: H-013 empat sel, H-014 dua sel (`h014_log.md`, satu run `30221967019`, tanpa ulangan), H-015 tiga sel (`h015_log.md`, satu run `30249117960`, tanpa ulangan) — sembilan berkas berbanding sembilan pemanggilan.
+
+### 0.2 Yang TIDAK dicacah, dengan sebabnya
+
+- **Sepuluh pecahan `h013b_seed_*.json` dan `h013b_p.json`** — 300 seed itu satu **sebaran nol permutasi** untuk satu hipotesis yang sudah dicacah, bukan 300 percobaan. Menghitungnya akan meniup `N_percobaan` menjadi ratusan dan membuat setiap gerbang p mustahil dilewati oleh sebab yang salah.
+- **`backtest_h013_kontribusi.json`** — dekomposisi pasca-hoc atas sel yang sudah dicacah.
+- **Berkas log dan berkas berpasangan** (`backtest_log.md` yang sesungguhnya **hanya log H-013**, `h014_log.md`, `h015_log.md`, `h014_run.json`, `h015_run.json`, `*_berpasangan.json`) — turunan, bukan pemanggilan.
+- **Berkas infrastruktur** (`universe*.json`, `manifest_aset*.json`, `akhir_sejati*.json`, `validate_*.json`, `doctor.json`, `funding*.json`, `potong_ekor*.json`, `diag_datar.json`, `titik_impas.json`, `tail_anomali.json`, `tests.md`, dan sejenisnya) — tidak pernah menghasilkan `putusan`.
+- **Sel pra-saring `PS`** (ADR-040 §2) — menambah **nol**; laporannya wajib memuat `"bukan_bukti": true`.
+
+### 0.3 Run mati sebelum `putusan`
+
+ADR-040 §4.3: run yang mati sebelum `putusan` bernilai **nol** percobaan tetapi **dicatat terpisah**.
+
+| Run | Commit | Mati di | Sebab |
+|---|---|---|---|
+| `30213913942` | `135b159c` | pagar pra-terbang butir 3 (H-013) | `muat_konfig_h002` hanya memetakan delapan kunci, sehingga `maks_biaya_masuk_R` dan `stop_hormati_celah` tertulis di `config/lux.yaml` tetapi tidak pernah dibaca program |
+
+**Kelas ini tidak dapat dihitung penuh dari repo.** Kegagalan pagar pra-terbang tidak meninggalkan commit sama sekali; ia hanya terlihat bila seseorang menuliskannya pada saat kejadian. Untuk era H-001…H-012 kelas ini kemungkinan permanen tak terverifikasi. Ke depan, setiap run mati wajib ditambahkan ke tabel ini pada sesi yang sama.
+
+### 0.4 Peringatan: §1 di bawah BUKAN ledger percobaan
+
+Tabel §1 memuat **tujuh baris**, tetapi itu **sel terpilih untuk audit gerbang**, bukan pemanggilan berputusan: H-014 memadatkan dua sel menjadi satu baris dan H-013 hanya menampilkan SS dari empat selnya. Mencacah `N_percobaan` dari §1 memberi 7 dan itu **salah**. Angka yang sah hanya §0.
+
+### 0.5 Akibat pada papan skor
+
+Pada N=21, ambang koreksi banyak-pembandingan menjadi 0,002442 (Šidák) atau 0,002381 (Bonferroni). Tidak satu pun dari 14 penolakan bergerak: p terkecil yang pernah tercatat pada kaki yang mengikat masih jauh di atas kedua ambang itu. Estimasi lama "≈45" dibatalkan; ia lahir dari mengalikan 15 hipotesis dengan dugaan jumlah sel, padahal H-001…H-012 sebagian besar bersel tunggal (ramalan R-T2, **MELESET**, jurnal 50 §4 dan jurnal 51 §2).
+
 ## 1. Audit gerbang lintas hipotesis (BARU di v33, ADR-038 §2)
 
 | Hipotesis | Interval | Lantai ADR-014 | `invarian_risiko` | Kerugian terburuk | SHA laporan |
