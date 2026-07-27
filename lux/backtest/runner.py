@@ -96,6 +96,32 @@ apa pun.
 Pada 1h tidak ada yang berubah: ``jalur_manifest("1h", "reports")`` mengembalikan
 ``reports/manifest_aset.json``, nama yang sama persis dengan sebelumnya, sehingga
 manifest yang sudah dikomit tetap menjadi rujukan keutuhan hasil lama.
+
+ADR-038 §5.4 MENAMBAHKAN SATU PEMANGGILAN YANG HANYA MEMBACA
+------------------------------------------------------------
+``emisikan`` dari ``lux.diagnostik.emisi`` dipanggil sesudah gerbang
+``funding_ekor`` dinilai dan **sebelum** uji permutasi, sehingga bila ia gagal
+ia gagal sebelum komputasi termahal alih-alih sesudahnya. Ia menulis
+``pelanggaran_risiko_<nama>.md`` dan ``.json`` ke direktori keluaran yang sama
+dengan laporan hipotesisnya.
+
+Tiga hal yang wajib tetap benar, dan bila salah satunya dilanggar seluruh papan
+skor lima belas hipotesis berhenti sebanding:
+
+1. Diagnostik hanya **membaca**. Ia tidak menyentuh ``konfig``, gerbang,
+   ambang, maupun ``putusan``; satu-satunya medan konfig yang dibacanya adalah
+   ``slippage``, dan ambang −1,5R diambilnya dari tanda tangan
+   ``gerbang_invarian_risiko``, bukan diketik ulang.
+2. ``emisikan`` **tidak pernah melempar**. Diagnostik yang menjatuhkan run
+   empat jam yang komputasinya sudah selesai adalah cacat yang sama dengan
+   yang dihindari blok sebaran ADR-013 di bawah.
+3. Nama selnya ``spek.nama`` — nama yang sama yang dipakai
+   ``backtest_<nama>.json`` — supaya laporan diagnostik selalu dapat
+   dipasangkan ke laporan induknya tanpa menebak.
+
+Diagnostik ini **tidak dapat** disambungkan dari ``run_h015.py``:
+``jalankan_spek`` hanya mengembalikan dict ringkasan, sedangkan objek
+``Perdagangan`` hidup dan mati di dalam fungsi ini.
 """
 
 from __future__ import annotations
@@ -156,6 +182,7 @@ from lux.backtest.run_wf import (
 )
 from lux.backtest.walk_forward import jalankan_walk_forward
 from lux.degenerasi import median_stop_frac, saring_semesta
+from lux.diagnostik.emisi import emisikan
 from lux.funding_model import ambil_jadwal, muat_jadwal
 from lux.praregistrasi import Hipotesis, nilai, simpan
 
@@ -531,6 +558,25 @@ def jalankan_spek(
         trade_funding, jadwal_dimuat=bool(ktx.jadwal)
     )
 
+    # ADR-038 §5.4. Diagnostik ekor −1,5R. Ia HANYA MEMBACA perdagangan yang
+    # sudah selesai dan menulis dua berkas laporan; ia tidak menyentuh konfig,
+    # gerbang, ambang, maupun putusan, sehingga kesebandingan seluruh papan skor
+    # tetap utuh. Letaknya sebelum uji permutasi supaya kegagalannya, bila ada,
+    # terjadi sebelum komputasi termahal alih-alih sesudahnya.
+    #
+    # ``dir_laporan`` diserahkan dari opsi, bukan dibiarkan memakai bawaan
+    # ``reports``: run yang memakai --out lain harus menaruh laporan
+    # diagnostiknya di samping laporan induknya, bukan di direktori lain.
+    # ``cacah_trade`` diambil dari agregat, bukan dari len(semua_trade), supaya
+    # porsi pelanggaran tidak bersandar pada kebetulan bahwa keduanya sama.
+    diagnostik_pelanggaran = emisikan(
+        semua_trade,
+        konfig,
+        spek.nama,
+        dir_laporan=Path(opsi.out),
+        cacah_trade=gabungan["jumlah_trade_luar_sampel"],
+    )
+
     print(json.dumps(gabungan, indent=2), flush=True)
     print(f"alasan keluar: {alasan}", flush=True)
     print(
@@ -543,6 +589,10 @@ def jalankan_spek(
     print(f"parameter terpilih: {parameter_terpilih}", flush=True)
     print(f"konsentrasi: {g_konsentrasi.catatan}", flush=True)
     print(f"funding ekor: {g_funding_ekor.catatan}", flush=True)
+    print(
+        f"diagnostik pelanggaran risiko: {diagnostik_pelanggaran}",
+        flush=True,
+    )
     if sebaran["dapat_dinilai"]:
         print(
             f"sebaran: std {sebaran['std_R']:.5f}R, galat baku "
@@ -672,6 +722,10 @@ def jalankan_spek(
         "gerbang": laporan.ke_dict(),
         "jackknife": jackknife,
         "ekor_funding": {"ukuran": ukuran_funding, "terburuk": ekor_funding},
+        # ADR-038 §5.4. Ringkasan diagnostik saja; barisnya tinggal di berkas
+        # pelanggaran_risiko_<nama>.json supaya laporan hipotesis tidak
+        # membengkak menjadi tak terbaca.
+        "diagnostik_pelanggaran_risiko": diagnostik_pelanggaran,
         "putusan": {"lulus": putusan.lulus, "alasan": putusan.alasan},
         "per_simbol": per_simbol,
         "detik": round(time.time() - t0, 1),
@@ -923,6 +977,39 @@ def jalankan_spek(
     else:
         md += ["Tidak ada perdagangan untuk dibongkar."]
 
+    md += ["", "## Diagnostik ambang invarian_risiko (ADR-038 §5.4)", ""]
+    if "galat" in diagnostik_pelanggaran:
+        md += [
+            "Diagnostik **gagal menulis laporannya** dan sengaja tidak "
+            "menjatuhkan run ini: "
+            f"`{diagnostik_pelanggaran['galat']}`. Angka gerbang di atas tidak "
+            "terpengaruh, sebab diagnostik hanya membaca.",
+            "",
+        ]
+    else:
+        d = diagnostik_pelanggaran
+        md += [
+            f"Perdagangan yang melewati ambang **{d['ambang_R']}R**: "
+            f"**{d['cacah_pelanggaran']:,}** dari {d['cacah_trade']:,} "
+            f"(porsi {d['porsi']}). Terburuk **{d['terburuk_R']}R**.",
+            "",
+            f"- Menurut alasan keluar: {d['per_alasan']}",
+            f"- Keluar melewati stop karena celah: "
+            f"**{d['cacah_celah_melewati_stop']:,}**",
+            f"- Keluar pada harga bar sungguhan (umur/carry/akhir_data): "
+            f"**{d['cacah_harga_bar_sungguhan']:,}**",
+            f"- Selisih stop terburuk: **{d['terburuk_selisih_stop_R']}R**",
+            "",
+            f"Rincian per perdagangan ada di `{d['berkas_md']}` dan "
+            f"`{d['berkas_json']}`"
+            + (
+                " (JSON dipotong pada batas barisnya)."
+                if d["dipotong_json"]
+                else "."
+            ),
+            "",
+        ]
+
     if parameter_terpilih:
         md += [
             "",
@@ -978,5 +1065,8 @@ def jalankan_spek(
         "std_R": sebaran["std_R"],
         "galat_baku_R": sebaran["galat_baku_R"],
         "jarak_galat_baku": jarak["jarak_galat_baku"],
+        "cacah_pelanggaran_risiko": diagnostik_pelanggaran.get(
+            "cacah_pelanggaran"
+        ),
         "detik": isi["detik"],
     }
