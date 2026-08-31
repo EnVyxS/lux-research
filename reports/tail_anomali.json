@@ -2,85 +2,86 @@
   "1h": {
     "simbol_aktif": 763,
     "bar_per_hari_diharapkan": 24,
-    "total_hari_ditambal": 16781,
-    "total_baris": 402744,
-    "baris_diharapkan": 402744,
+    "total_hari_ditambal": 22853,
+    "total_baris": 548472,
+    "baris_diharapkan": 548472,
     "rasio_terisi": 1.0,
     "simbol_tepat": 763,
     "simbol_kurang": 0,
     "simbol_lebih": 0,
     "total_celah": 3,
     "celah_per_simbol": 0.0,
-    "celah_per_hari": 0.0002,
+    "celah_per_hari": 0.0001,
     "sebaran_hari_perlu": {
       "1": 1,
-      "22": 756,
-      "23": 4,
+      "23": 1,
       "27": 1,
-      "29": 1
+      "29": 1,
+      "30": 756,
+      "31": 3
     },
     "contoh_kurang": [],
     "contoh_lebih": [],
     "celah_terbanyak": [
       {
         "symbol": "BCHUSDT",
-        "hari_perlu": 23,
+        "hari_perlu": 31,
         "celah_kisi": 1,
-        "baris": 552
+        "baris": 744
       },
       {
         "symbol": "BTCUSDT",
-        "hari_perlu": 23,
+        "hari_perlu": 31,
         "celah_kisi": 1,
-        "baris": 552
+        "baris": 744
       },
       {
         "symbol": "ETHUSDT",
-        "hari_perlu": 23,
+        "hari_perlu": 31,
         "celah_kisi": 1,
-        "baris": 552
+        "baris": 744
       },
       {
         "symbol": "0GUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "1000LUNCUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "1000SHIBUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "1INCHUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "4USDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "AAVEUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "ACUUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "AERGOUSDT",
@@ -90,172 +91,173 @@
       },
       {
         "symbol": "AGLDUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "AIGENSYNUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "AIUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "AKTUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "ALICEUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "ALPHAUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "AMBUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "ANIMEUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "APEUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "ARBUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "ARKUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "ARXUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "ASTRUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       },
       {
         "symbol": "ATOMUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 528
+        "baris": 720
       }
     ]
   },
   "4h": {
     "simbol_aktif": 763,
     "bar_per_hari_diharapkan": 6,
-    "total_hari_ditambal": 16781,
-    "total_baris": 100686,
-    "baris_diharapkan": 100686,
+    "total_hari_ditambal": 22853,
+    "total_baris": 137118,
+    "baris_diharapkan": 137118,
     "rasio_terisi": 1.0,
     "simbol_tepat": 763,
     "simbol_kurang": 0,
     "simbol_lebih": 0,
     "total_celah": 3,
     "celah_per_simbol": 0.0,
-    "celah_per_hari": 0.0002,
+    "celah_per_hari": 0.0001,
     "sebaran_hari_perlu": {
       "1": 1,
-      "22": 756,
-      "23": 4,
+      "23": 1,
       "27": 1,
-      "29": 1
+      "29": 1,
+      "30": 756,
+      "31": 3
     },
     "contoh_kurang": [],
     "contoh_lebih": [],
     "celah_terbanyak": [
       {
         "symbol": "BCHUSDT",
-        "hari_perlu": 23,
+        "hari_perlu": 31,
         "celah_kisi": 1,
-        "baris": 138
+        "baris": 186
       },
       {
         "symbol": "BTCUSDT",
-        "hari_perlu": 23,
+        "hari_perlu": 31,
         "celah_kisi": 1,
-        "baris": 138
+        "baris": 186
       },
       {
         "symbol": "ETHUSDT",
-        "hari_perlu": 23,
+        "hari_perlu": 31,
         "celah_kisi": 1,
-        "baris": 138
+        "baris": 186
       },
       {
         "symbol": "0GUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "1000LUNCUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "1000SHIBUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "1INCHUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "4USDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "AAVEUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "ACUUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "AERGOUSDT",
@@ -265,94 +267,94 @@
       },
       {
         "symbol": "AGLDUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "AIGENSYNUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "AIUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "AKTUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "ALICEUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "ALPHAUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "AMBUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "ANIMEUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "APEUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "ARBUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "ARKUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "ARXUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "ASTRUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       },
       {
         "symbol": "ATOMUSDT",
-        "hari_perlu": 22,
+        "hari_perlu": 30,
         "celah_kisi": 0,
-        "baris": 132
+        "baris": 180
       }
     ]
   },
   "perbandingan": {
     "hari_sama": true,
-    "hari_1h": 16781,
-    "hari_4h": 16781,
+    "hari_1h": 22853,
+    "hari_4h": 22853,
     "rasio_baris_1h_per_4h": 4.0,
     "rasio_seharusnya": 4.0,
     "diagnosis": "jumlah hari sama, selisih ada pada isi berkas"
