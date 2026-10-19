@@ -4,7 +4,7 @@ Digabung dari 4 shard.
 
 | Interval | Baris | Simbol OK | Gagal | Duplikat | Celah kisi | Ukuran |
 |---|---|---|---|---|---|---|
-| 1h | 184,128 | 790 | 0 | 0 | 4 | 8.3 MB |
-| 4h | 46,044 | 790 | 0 | 0 | 4 | 2.4 MB |
+| 1h | 311,520 | 790 | 0 | 0 | 4 | 14.0 MB |
+| 4h | 77,880 | 790 | 0 | 0 | 4 | 3.9 MB |
 
 Semua gerbang lulus: **True**
