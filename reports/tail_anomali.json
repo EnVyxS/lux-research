@@ -1,363 +1,363 @@
 {
   "1h": {
-    "simbol_aktif": 748,
+    "simbol_aktif": 763,
     "bar_per_hari_diharapkan": 24,
-    "total_hari_ditambal": 5583,
-    "total_baris": 133992,
-    "baris_diharapkan": 133992,
+    "total_hari_ditambal": 6084,
+    "total_baris": 146016,
+    "baris_diharapkan": 146016,
     "rasio_terisi": 1.0,
-    "simbol_tepat": 748,
+    "simbol_tepat": 763,
     "simbol_kurang": 0,
     "simbol_lebih": 0,
-    "total_celah": 164,
-    "celah_per_simbol": 0.22,
-    "celah_per_hari": 0.0294,
+    "total_celah": 3,
+    "celah_per_simbol": 0.0,
+    "celah_per_hari": 0.0005,
     "sebaran_hari_perlu": {
-      "1": 581,
-      "2": 3,
+      "1": 1,
+      "7": 71,
+      "8": 685,
+      "9": 3,
       "23": 1,
       "27": 1,
-      "29": 1,
-      "30": 74,
-      "31": 87
+      "29": 1
     },
     "contoh_kurang": [],
     "contoh_lebih": [],
     "celah_terbanyak": [
       {
-        "symbol": "PROVEUSDT",
-        "hari_perlu": 31,
+        "symbol": "BCHUSDT",
+        "hari_perlu": 9,
         "celah_kisi": 1,
-        "baris": 744
+        "baris": 216
       },
       {
-        "symbol": "QNTUSDT",
-        "hari_perlu": 31,
+        "symbol": "BTCUSDT",
+        "hari_perlu": 9,
         "celah_kisi": 1,
-        "baris": 744
+        "baris": 216
       },
       {
-        "symbol": "ROBOUSDT",
-        "hari_perlu": 31,
+        "symbol": "ETHUSDT",
+        "hari_perlu": 9,
         "celah_kisi": 1,
-        "baris": 744
+        "baris": 216
       },
       {
-        "symbol": "SAFEUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 744
+        "symbol": "0GUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "SCRUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 744
+        "symbol": "1000LUNCUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "SKATEUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 720
+        "symbol": "1000SHIBUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "SNXUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 720
+        "symbol": "1INCHUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "SPKUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 720
+        "symbol": "4USDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "STGUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 744
+        "symbol": "AAVEUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "STPTUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 744
+        "symbol": "ACUUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "STXXUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 744
+        "symbol": "AERGOUSDT",
+        "hari_perlu": 23,
+        "celah_kisi": 0,
+        "baris": 552
       },
       {
-        "symbol": "SUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 744
+        "symbol": "AGLDUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "SYSUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 744
+        "symbol": "AIGENSYNUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "TAKEUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 744
+        "symbol": "AIUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "TNSRUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 720
+        "symbol": "AKTUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "TOSHIUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 720
+        "symbol": "ALICEUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "TRUMPUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 744
+        "symbol": "ALPHAUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "TURBOUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 720
+        "symbol": "AMBUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "TWTUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 744
+        "symbol": "ANIMEUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "UMAUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 720
+        "symbol": "APEUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "USARUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 720
+        "symbol": "ARBUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "USUALUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 744
+        "symbol": "ARKUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "VANAUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 720
+        "symbol": "ARXUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "VINEUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 744
+        "symbol": "ASTRUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       },
       {
-        "symbol": "WAXPUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 720
+        "symbol": "ATOMUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 192
       }
     ]
   },
   "4h": {
-    "simbol_aktif": 748,
+    "simbol_aktif": 763,
     "bar_per_hari_diharapkan": 6,
-    "total_hari_ditambal": 5163,
-    "total_baris": 30978,
-    "baris_diharapkan": 30978,
+    "total_hari_ditambal": 6102,
+    "total_baris": 36612,
+    "baris_diharapkan": 36612,
     "rasio_terisi": 1.0,
-    "simbol_tepat": 748,
+    "simbol_tepat": 763,
     "simbol_kurang": 0,
     "simbol_lebih": 0,
-    "total_celah": 150,
-    "celah_per_simbol": 0.2,
-    "celah_per_hari": 0.0291,
+    "total_celah": 3,
+    "celah_per_simbol": 0.0,
+    "celah_per_hari": 0.0005,
     "sebaran_hari_perlu": {
-      "1": 595,
-      "2": 3,
+      "1": 1,
+      "7": 53,
+      "8": 703,
+      "9": 3,
       "23": 1,
       "27": 1,
-      "29": 1,
-      "30": 74,
-      "31": 73
+      "29": 1
     },
     "contoh_kurang": [],
     "contoh_lebih": [],
     "celah_terbanyak": [
       {
-        "symbol": "PROVEUSDT",
-        "hari_perlu": 31,
+        "symbol": "BCHUSDT",
+        "hari_perlu": 9,
         "celah_kisi": 1,
-        "baris": 186
+        "baris": 54
       },
       {
-        "symbol": "QNTUSDT",
-        "hari_perlu": 31,
+        "symbol": "BTCUSDT",
+        "hari_perlu": 9,
         "celah_kisi": 1,
-        "baris": 186
+        "baris": 54
       },
       {
-        "symbol": "ROBOUSDT",
-        "hari_perlu": 31,
+        "symbol": "ETHUSDT",
+        "hari_perlu": 9,
         "celah_kisi": 1,
-        "baris": 186
+        "baris": 54
       },
       {
-        "symbol": "SAFEUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 186
+        "symbol": "0GUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "SCRUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 186
+        "symbol": "1000LUNCUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "SKATEUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 180
+        "symbol": "1000SHIBUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "SNXUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 180
+        "symbol": "1INCHUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "SPKUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 180
+        "symbol": "4USDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "STGUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 186
+        "symbol": "AAVEUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "STPTUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 186
+        "symbol": "ACUUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "STXXUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 186
+        "symbol": "AERGOUSDT",
+        "hari_perlu": 23,
+        "celah_kisi": 0,
+        "baris": 138
       },
       {
-        "symbol": "SUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 186
+        "symbol": "AGLDUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "SYSUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 186
+        "symbol": "AIGENSYNUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "TAKEUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 186
+        "symbol": "AIUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "TNSRUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 180
+        "symbol": "AKTUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "TOSHIUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 180
+        "symbol": "ALICEUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "TRUMPUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 186
+        "symbol": "ALPHAUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "TURBOUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 180
+        "symbol": "AMBUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "TWTUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 186
+        "symbol": "ANIMEUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "UMAUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 180
+        "symbol": "APEUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "USARUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 180
+        "symbol": "ARBUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "USUALUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 186
+        "symbol": "ARKUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "VANAUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 180
+        "symbol": "ARXUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "VINEUSDT",
-        "hari_perlu": 31,
-        "celah_kisi": 1,
-        "baris": 186
+        "symbol": "ASTRUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       },
       {
-        "symbol": "WAXPUSDT",
-        "hari_perlu": 30,
-        "celah_kisi": 1,
-        "baris": 180
+        "symbol": "ATOMUSDT",
+        "hari_perlu": 8,
+        "celah_kisi": 0,
+        "baris": 48
       }
     ]
   },
   "perbandingan": {
     "hari_sama": false,
-    "hari_1h": 5583,
-    "hari_4h": 5163,
-    "rasio_baris_1h_per_4h": 4.3254,
+    "hari_1h": 6084,
+    "hari_4h": 6102,
+    "rasio_baris_1h_per_4h": 3.9882,
     "rasio_seharusnya": 4.0,
     "diagnosis": "arsip harian tidak simetris antar interval"
   }

@@ -1,28 +1,28 @@
 {
-  "waktu_utc": "2026-11-02T09:01:16+00:00",
+  "waktu_utc": "2026-11-09T09:14:18+00:00",
   "jumlah_shard": 4,
   "total": {
     "1h": {
-      "baris": 133992,
+      "baris": 146016,
       "simbol_berhasil": 790,
       "simbol_gagal": 0,
-      "simbol_butuh_backfill": 748,
-      "total_hari_diunduh": 5583,
+      "simbol_butuh_backfill": 763,
+      "total_hari_diunduh": 6084,
       "total_duplikat": 0,
-      "total_celah_kisi": 164,
-      "bytes": 6215908,
-      "detik_maks": 220.9
+      "total_celah_kisi": 3,
+      "bytes": 6708263,
+      "detik_maks": 227.7
     },
     "4h": {
-      "baris": 30978,
+      "baris": 36612,
       "simbol_berhasil": 790,
       "simbol_gagal": 0,
-      "simbol_butuh_backfill": 748,
-      "total_hari_diunduh": 5163,
+      "simbol_butuh_backfill": 763,
+      "total_hari_diunduh": 6102,
       "total_duplikat": 0,
-      "total_celah_kisi": 150,
-      "bytes": 1633742,
-      "detik_maks": 216.8
+      "total_celah_kisi": 3,
+      "bytes": 1947946,
+      "detik_maks": 229.6
     }
   },
   "gerbang": {
@@ -46,136 +46,136 @@
       "shards": 4,
       "quote": "USDT",
       "simbol_ditugaskan": 198,
-      "mulai_utc": "2026-11-02T08:53:51+00:00",
+      "mulai_utc": "2026-11-09T09:06:30+00:00",
       "interval": {
         "1h": {
-          "baris": 31224,
+          "baris": 36384,
           "simbol_berhasil": 198,
           "simbol_gagal": 0,
-          "simbol_butuh_backfill": 185,
-          "total_hari_diunduh": 1301,
+          "simbol_butuh_backfill": 191,
+          "total_hari_diunduh": 1516,
           "total_duplikat": 0,
-          "total_celah_kisi": 37,
+          "total_celah_kisi": 0,
           "berkas": "out/ohlcv_1h_tail_shard00.parquet",
-          "bytes": 1431435,
-          "detik": 211.6
+          "bytes": 1695407,
+          "detik": 227.7
         },
         "4h": {
-          "baris": 7806,
+          "baris": 9138,
           "simbol_berhasil": 198,
           "simbol_gagal": 0,
-          "simbol_butuh_backfill": 185,
-          "total_hari_diunduh": 1301,
+          "simbol_butuh_backfill": 191,
+          "total_hari_diunduh": 1523,
           "total_duplikat": 0,
-          "total_celah_kisi": 37,
+          "total_celah_kisi": 0,
           "berkas": "out/ohlcv_4h_tail_shard00.parquet",
-          "bytes": 416225,
-          "detik": 216.8
+          "bytes": 498926,
+          "detik": 229.6
         }
       },
-      "selesai_utc": "2026-11-02T09:01:00+00:00"
+      "selesai_utc": "2026-11-09T09:14:07+00:00"
     },
     {
       "shard": 1,
       "shards": 4,
       "quote": "USDT",
       "simbol_ditugaskan": 198,
-      "mulai_utc": "2026-11-02T08:53:50+00:00",
+      "mulai_utc": "2026-11-09T09:06:33+00:00",
       "interval": {
         "1h": {
-          "baris": 41496,
+          "baris": 37944,
           "simbol_berhasil": 198,
           "simbol_gagal": 0,
-          "simbol_butuh_backfill": 194,
-          "total_hari_diunduh": 1729,
+          "simbol_butuh_backfill": 197,
+          "total_hari_diunduh": 1581,
           "total_duplikat": 0,
-          "total_celah_kisi": 52,
+          "total_celah_kisi": 1,
           "berkas": "out/ohlcv_1h_tail_shard01.parquet",
-          "bytes": 1998916,
-          "detik": 189.6
+          "bytes": 1744816,
+          "detik": 177.4
         },
         "4h": {
-          "baris": 9294,
+          "baris": 9492,
           "simbol_berhasil": 198,
           "simbol_gagal": 0,
-          "simbol_butuh_backfill": 194,
-          "total_hari_diunduh": 1549,
+          "simbol_butuh_backfill": 197,
+          "total_hari_diunduh": 1582,
           "total_duplikat": 0,
-          "total_celah_kisi": 46,
+          "total_celah_kisi": 1,
           "berkas": "out/ohlcv_4h_tail_shard01.parquet",
-          "bytes": 495991,
-          "detik": 173.6
+          "bytes": 504686,
+          "detik": 181.6
         }
       },
-      "selesai_utc": "2026-11-02T08:59:53+00:00"
+      "selesai_utc": "2026-11-09T09:12:32+00:00"
     },
     {
       "shard": 2,
       "shards": 4,
       "quote": "USDT",
       "simbol_ditugaskan": 197,
-      "mulai_utc": "2026-11-02T08:53:52+00:00",
+      "mulai_utc": "2026-11-09T09:06:36+00:00",
       "interval": {
         "1h": {
-          "baris": 32904,
+          "baris": 36720,
           "simbol_berhasil": 197,
           "simbol_gagal": 0,
           "simbol_butuh_backfill": 190,
-          "total_hari_diunduh": 1371,
+          "total_hari_diunduh": 1530,
           "total_duplikat": 0,
-          "total_celah_kisi": 40,
+          "total_celah_kisi": 1,
           "berkas": "out/ohlcv_1h_tail_shard02.parquet",
-          "bytes": 1595485,
-          "detik": 220.9
+          "bytes": 1678710,
+          "detik": 216.6
         },
         "4h": {
-          "baris": 7866,
+          "baris": 9204,
           "simbol_berhasil": 197,
           "simbol_gagal": 0,
           "simbol_butuh_backfill": 190,
-          "total_hari_diunduh": 1311,
+          "total_hari_diunduh": 1534,
           "total_duplikat": 0,
-          "total_celah_kisi": 38,
+          "total_celah_kisi": 1,
           "berkas": "out/ohlcv_4h_tail_shard02.parquet",
-          "bytes": 438407,
-          "detik": 208.7
+          "bytes": 484348,
+          "detik": 218.6
         }
       },
-      "selesai_utc": "2026-11-02T09:01:02+00:00"
+      "selesai_utc": "2026-11-09T09:13:52+00:00"
     },
     {
       "shard": 3,
       "shards": 4,
       "quote": "USDT",
       "simbol_ditugaskan": 197,
-      "mulai_utc": "2026-11-02T08:53:54+00:00",
+      "mulai_utc": "2026-11-09T09:06:36+00:00",
       "interval": {
         "1h": {
-          "baris": 28368,
+          "baris": 34968,
           "simbol_berhasil": 197,
           "simbol_gagal": 0,
-          "simbol_butuh_backfill": 179,
-          "total_hari_diunduh": 1182,
+          "simbol_butuh_backfill": 185,
+          "total_hari_diunduh": 1457,
           "total_duplikat": 0,
-          "total_celah_kisi": 35,
+          "total_celah_kisi": 1,
           "berkas": "out/ohlcv_1h_tail_shard03.parquet",
-          "bytes": 1190072,
-          "detik": 147.2
+          "bytes": 1589330,
+          "detik": 165.4
         },
         "4h": {
-          "baris": 6012,
+          "baris": 8778,
           "simbol_berhasil": 197,
           "simbol_gagal": 0,
-          "simbol_butuh_backfill": 179,
-          "total_hari_diunduh": 1002,
+          "simbol_butuh_backfill": 185,
+          "total_hari_diunduh": 1463,
           "total_duplikat": 0,
-          "total_celah_kisi": 29,
+          "total_celah_kisi": 1,
           "berkas": "out/ohlcv_4h_tail_shard03.parquet",
-          "bytes": 283119,
-          "detik": 138.8
+          "bytes": 459986,
+          "detik": 165.2
         }
       },
-      "selesai_utc": "2026-11-02T08:58:40+00:00"
+      "selesai_utc": "2026-11-09T09:12:07+00:00"
     }
   ]
 }
